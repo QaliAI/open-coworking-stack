@@ -1,0 +1,19 @@
+tool_id: odoo-community
+pack_status: reference-only
+reviewed_on: 2026-07-18
+pilot_outcome: 'Reconcile ten synthetic leads and one reviewed invoice sample with no edition surprise'
+required_owners:
+  - executive_sponsor
+  - sales_process_owner
+  - qualified_finance_reviewer
+  - technical_data_owner
+minimum_skills:
+  - Odoo Community version and module administration
+  - PostgreSQL and filestore backup and restore
+  - role/access and import troubleshooting
+  - accounting localization review
+allowed_data: synthetic only
+module_allowlist: 'Record exact chosen-version technical module names before installation'
+major_upgrade_in_scope: false
+production_gate: 'Separate implementation project and all expert approvals required'
+runtime_verified: false

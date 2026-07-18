@@ -1,0 +1,30 @@
+tool_id: borgbackup
+pack_status: documentation-reviewed-runtime-untested
+pilot_outcome: clean-host-restore-of-one-linux-service
+accountable_owner: recovery-owner
+responsible_operators:
+  - backup-operator
+required_reviewers:
+  - application-owner
+  - key-custodian
+  - restore-witness
+minimum_skills:
+  - linux-filesystems
+  - shell-and-scheduler
+  - ssh-hardening
+  - application-database-recovery
+human_approval_gates:
+  - source-and-exclude-manifest
+  - retention-and-prune-rule
+  - repair-or-repository-deletion
+  - production-restore
+excluded_scope:
+  - payment-data
+  - unprepared-live-database-files
+  - automatic-production-overwrite
+evidence_required:
+  - archive-job-record
+  - independent-key-recovery
+  - clean-host-restore-record
+untested_limitations:
+  - all-runtime-storage-and-performance-behavior

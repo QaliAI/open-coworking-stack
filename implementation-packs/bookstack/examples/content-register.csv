@@ -1,0 +1,4 @@
+source_id,title,class,source_version,page_owner,qualified_reviewer,bookstack_path,review_on,migration_status,permission_test,export_test
+SOP-001,Opening checklist,staff-private,CHANGE-ME,operations-owner,site-manager,CHANGE-ME,CHANGE-ME,not-started,not-run,not-run
+SOP-002,Emergency reference,staff-private,CHANGE-ME,safety-owner,qualified-safety-reviewer,CHANGE-ME,CHANGE-ME,not-started,not-run,not-run
+SOP-003,Member FAQ,approved-public,CHANGE-ME,community-owner,privacy-reviewer,CHANGE-ME,CHANGE-ME,not-started,not-run,not-run

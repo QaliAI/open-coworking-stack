@@ -1,0 +1,22 @@
+tool_id: paperless-ngx
+profile_status: fill-before-pilot
+pilot_documents:
+  class: historical-supplier-invoices
+  expected_count: 20
+  originals_retained: true
+excluded_workflows:
+  - member mail
+  - contracts
+  - identity documents
+  - unattended email intake
+owners:
+  document: unassigned
+  finance_quality: unassigned
+  privacy_records: unassigned
+  intake: unassigned
+  technical: unassigned
+  restore_reviewer: unassigned
+deployment_version: unpinned
+database: unselected
+retention_policy: unapproved
+runtime_evidence: not-tested

@@ -1,0 +1,31 @@
+tool_id: authentik
+pack_status: documentation-reviewed-runtime-untested
+pilot_outcome: staff-sso-for-one-non-critical-app
+accountable_owner: identity-owner
+responsible_operators:
+  - technical-operator
+required_reviewers:
+  - application-owner
+  - security-reviewer
+  - recovery-witness
+minimum_skills:
+  - linux-containers
+  - dns-tls
+  - oidc-or-saml
+  - postgresql-recovery
+human_approval_gates:
+  - access-matrix
+  - privileged-policy
+  - production-cutover
+  - rollback-or-restore
+excluded_scope:
+  - member-eligibility
+  - physical-door-access
+  - payroll
+  - payment-data
+evidence_required:
+  - access-test-record
+  - outage-fallback-record
+  - restore-drill-record
+untested_limitations:
+  - all-runtime-and-integration-behavior

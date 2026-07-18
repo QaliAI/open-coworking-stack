@@ -1,0 +1,19 @@
+service_id: CHANGE-ME
+application_owner: CHANGE-ME
+recovery_owner: CHANGE-ME
+preparation:
+  command_reference: CHANGE-ME-NOT-A-SECRET
+  success_evidence: CHANGE-ME
+include_paths:
+  - /path/to/prepared-data
+exclude_paths:
+  - /path/to/cache
+secrets_supplied_separately:
+  - database-credential
+archive_name_pattern: CHANGE-ME
+retention_policy_reference: CHANGE-ME
+maximum_acceptable_data_loss: UNVERIFIED
+maximum_acceptable_recovery_time: UNVERIFIED
+restore_validation:
+  - application-integrity-check
+  - representative-record-review

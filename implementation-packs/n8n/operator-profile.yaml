@@ -1,0 +1,19 @@
+tool_id: n8n
+pack_status: reference-only
+reviewed_on: 2026-07-18
+pilot_outcome: 'Move one synthetic lead exactly once and surface every exception to staff'
+required_owners:
+  - process_owner
+  - data_owner
+  - integration_owner
+  - lead_coordinator
+minimum_skills:
+  - HTTP and provider API troubleshooting
+  - secret and OAuth credential administration
+  - database/state backup and encryption-key custody
+  - idempotency, retries, and reconciliation
+license_review_required: true
+pilot_systems: test source and test destination only
+high_risk_workflows_allowed: false
+production_gate: 'All fixture cases, manual fallback, and isolated restore accepted'
+runtime_verified: false

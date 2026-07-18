@@ -1,0 +1,24 @@
+tool_id: umami
+environment: staging
+business_question: REPLACE_ME
+site_domain: REPLACE_ME
+event_name: REPLACE_ME
+allowed_properties: []
+prohibited_values:
+  - name
+  - email
+  - phone
+  - member_or_lead_id
+  - free_text
+  - payment_data
+expected_synthetic_sequence: []
+retention_and_deletion: REPLACE_ME
+notice_and_consent_decision: REPLACE_ME
+script_disable_method: REPLACE_ME
+approvals:
+  marketing: PENDING
+  privacy: PENDING
+  web: PENDING
+  security: PENDING
+result: NOT_RUN
+unknowns: []

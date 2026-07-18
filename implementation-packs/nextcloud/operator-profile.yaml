@@ -1,0 +1,20 @@
+tool_id: nextcloud
+pack_status: reference-only
+reviewed_on: 2026-07-18
+pilot_outcome: 'Two staff exchange one non-sensitive SOP while a leaver is denied and clean restore succeeds'
+required_owners:
+  - information_owner
+  - service_administrator
+  - access_reviewer
+  - privacy_owner
+minimum_skills:
+  - Nextcloud version-matched administration
+  - database and storage operations
+  - TLS, authentication, and access review
+  - coordinated backup and restore
+pilot_apps:
+  - files
+member_archive_allowed: false
+extra_apps_require_new_review: true
+production_gate: 'Access, leaver, sync, neutral export, capacity, and timed restore accepted'
+runtime_verified: false

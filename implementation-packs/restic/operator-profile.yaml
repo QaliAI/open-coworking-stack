@@ -1,0 +1,19 @@
+tool_id: restic
+profile_status: fill-before-pilot
+pilot_service: unassigned-non-critical-service
+existing_backup_remains_active: true
+recovery_objectives:
+  maximum_data_loss: unapproved
+  maximum_recovery_time: unapproved
+owners:
+  application: unassigned
+  backup_operator: unassigned
+  security: unassigned
+  password_custodian_2: unassigned
+  restore_witness: unassigned
+repository:
+  backend: unselected
+  offsite_failure_domain: unverified
+  provider_pricing_checked_on: null
+retention_policy: unapproved
+runtime_evidence: not-tested

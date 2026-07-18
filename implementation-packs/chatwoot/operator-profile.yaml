@@ -1,0 +1,33 @@
+tool_id: chatwoot
+pack_status: documentation-reviewed-runtime-untested
+pilot_outcome: one-week-two-agent-website-inbox
+accountable_owner: inbox-owner
+responsible_operators:
+  - community-agent
+  - sales-agent
+required_reviewers:
+  - privacy-reviewer
+  - website-owner
+  - technical-recovery-owner
+  - after-hours-manager
+minimum_skills:
+  - inbox-operations
+  - customer-communication
+  - privacy-and-retention
+  - self-host-postgresql-storage-if-selected
+human_approval_gates:
+  - inbox-policy-and-wording
+  - agent-and-channel-access
+  - automation-or-new-channel
+  - production-publication-or-rollback
+excluded_scope:
+  - emergency-response
+  - payment-data
+  - identity-verification
+  - autonomous-dispute-resolution
+evidence_required:
+  - role-and-message-tests
+  - open-case-reconciliation
+  - export-or-restore-record
+untested_limitations:
+  - all-edition-runtime-and-channel-behavior

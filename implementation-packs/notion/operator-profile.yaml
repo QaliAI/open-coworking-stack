@@ -1,0 +1,21 @@
+tool_id: notion
+profile_status: fill-before-pilot
+pilot_scope: five non-critical coworking SOPs
+authoritative_source_during_pilot: existing controlled document store
+owners:
+  sponsor: operations-manager
+  knowledge: unassigned
+  workspace_admin: unassigned
+  privacy: unassigned
+  export_reviewer: unassigned
+excluded_data:
+  - payment credentials
+  - door codes
+  - member case files
+  - identity or health documents
+decisions_required:
+  - chosen plan and seat count
+  - approved guest policy
+  - export destination
+  - page review interval
+runtime_evidence: not-tested

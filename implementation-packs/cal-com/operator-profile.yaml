@@ -1,0 +1,32 @@
+tool_id: cal-com
+pack_status: documentation-reviewed-runtime-untested
+pilot_outcome: five-reconciled-coworking-tour-bookings
+accountable_owner: scheduling-owner
+responsible_operators:
+  - sales-or-community-host
+  - technical-operator
+required_reviewers:
+  - calendar-administrator
+  - privacy-reviewer
+  - visitor-operations-owner
+minimum_skills:
+  - calendar-administration
+  - scheduling-rule-design
+  - privacy-and-form-review
+  - self-host-operations-if-selected
+human_approval_gates:
+  - event-rules-and-fields
+  - calendar-scope
+  - public-link-publication
+  - expansion-or-rollback
+excluded_scope:
+  - payments
+  - room-contractual-inventory
+  - door-access
+  - automated-lead-qualification
+evidence_required:
+  - five-booking-reconciliation
+  - calendar-and-notification-tests
+  - export-or-restore-record
+untested_limitations:
+  - all-plan-runtime-and-integration-behavior

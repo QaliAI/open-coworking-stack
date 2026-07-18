@@ -1,0 +1,19 @@
+tool_id: keycloak
+pilot_scope: one staging realm, one non-critical OIDC client, two test users
+required_owners:
+  - staff_entitlement_approver
+  - identity_owner
+  - application_owner
+  - security_privacy_owner
+  - technical_recovery_owner
+required_skills:
+  - OIDC and OAuth security
+  - Keycloak administration
+  - Linux, TLS, and reverse proxy operations
+  - Postgres backup and recovery
+  - application authentication fallback
+excluded_scope:
+  - member identity and proofing
+  - physical or emergency access
+  - production federation and high availability
+readiness_gate: app-local fallback and break-glass tested without Keycloak

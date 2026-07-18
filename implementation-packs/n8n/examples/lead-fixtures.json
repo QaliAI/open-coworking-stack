@@ -1,0 +1,29 @@
+[
+  {
+    "case": "valid",
+    "source_id": "lead-test-001",
+    "name": "Ada Example",
+    "email": "ada@example.invalid",
+    "company": "Example Studio",
+    "inquiry_type": "tour",
+    "consent": true,
+    "expected": "one destination lead and one status notification"
+  },
+  {
+    "case": "duplicate",
+    "source_id": "lead-test-001",
+    "name": "Ada Example",
+    "email": "ada@example.invalid",
+    "inquiry_type": "tour",
+    "consent": true,
+    "expected": "link existing lead; no second create"
+  },
+  {
+    "case": "missing-email",
+    "source_id": "lead-test-002",
+    "name": "Missing Email",
+    "inquiry_type": "meeting-room",
+    "consent": true,
+    "expected": "exception queue; no destination write"
+  }
+]

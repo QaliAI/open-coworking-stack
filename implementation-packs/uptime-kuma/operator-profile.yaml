@@ -1,0 +1,20 @@
+schema_version: 1.0.0
+tool_id: uptime-kuma
+intended_outcome: actionable early warning for five critical coworking services
+deployment_boundary: independent staging monitor with one approved notification route
+accountable_owner: operations incident owner
+required_operators:
+  - technical operator for runtime, TLS, storage, updates, and recovery
+  - service owners with manual validation runbooks
+required_reviewers:
+  - security or network reviewer for targets, egress, and credentials
+  - communications reviewer for public status or outage text
+minimum_staffing: responder plus independent recovery or escalation contact
+prohibited_uses:
+  - unauthorized or broad network probing
+  - autonomous remediation or public incident declarations
+  - treating endpoint health as end-to-end workflow proof
+readiness_evidence:
+  - five approved monitor records and service runbooks
+  - controlled failure, recovery, and notification evidence
+  - isolated restore and post-restore notification evidence

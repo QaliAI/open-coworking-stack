@@ -1,0 +1,28 @@
+inbox: website-enquiries-pilot
+owner: CHANGE-ME
+agents:
+  - CHANGE-ME
+  - CHANGE-ME
+operating_hours: CHANGE-ME
+after_hours_message: CHANGE-ME
+urgent_contact_route: CHANGE-ME
+response_expectation: CHANGE-ME
+labels:
+  - tour
+  - membership
+  - event
+  - facilities
+  - other
+prohibited_data:
+  - payment-card-data
+  - door-access-credentials
+  - identity-documents
+attachment_policy: CHANGE-ME
+privacy_notice: CHANGE-ME
+retention_reference: CHANGE-ME
+sales_handoff_owner: CHANGE-ME
+facilities_handoff_owner: CHANGE-ME
+approvals:
+  inbox_owner: pending
+  privacy: pending
+  technical: pending

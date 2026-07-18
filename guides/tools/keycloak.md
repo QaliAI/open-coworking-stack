@@ -71,6 +71,20 @@ No integrations are catalog-verified. OIDC to one staging app is the only assume
 
 People own realm/client reviews, MFA policy, access approval, leaver timing, incident response, and break-glass use. Keycloak standardizes authentication and access changes; it does not decide who should have access.
 
+## Automation and approval boundaries
+
+Keycloak may authenticate enrolled identities, enforce approved authentication flows, issue protocol tokens/claims, expire sessions, and disable an account after an approved administrator action. It must not decide employment status, membership eligibility, role entitlement, physical access, disciplinary action, identity proofing exceptions, or emergency access. A manager approves staff entitlement; the identity owner approves roster/group mapping and leaver requests; the application owner approves client claims and fallback; security approves MFA, redirect URIs, secrets, flows, federation, and break-glass; the recovery owner approves restore/rollback; two named people review production realm changes where staffing permits.
+
+## Acceptance, operations, and failure handling
+
+In isolated staging, test valid login/logout, wrong password behavior, MFA/recovery if in scope, disabled-user denial, session termination, least-privilege claims, invalid redirect rejection, secret handling, application-local fallback, Keycloak/DB outage behavior, admin lockout recovery, break-glass audit, backup, clean restore, and rollback to the prior app login. Use test identities only. OIDC success with one app does not prove federation, other clients, HA, security, scale, or physical-access suitability.
+
+On identity outage, freeze realm/client changes, preserve time-correlated Keycloak, database, proxy, and application evidence under retention rules, and invoke only the application's approved fallback or break-glass path. Do not broadly bypass authorization. Reconcile every emergency access event and invalidate temporary credentials/sessions after recovery.
+
+## Professional help threshold
+
+Use an experienced identity/security engineer before production Internet exposure, federation to HR/directories/social providers, custom authentication flows, cryptographic key changes, multi-site HA, or migration of a critical application. Obtain privacy/legal advice for identity proofing, biometrics, employee monitoring, data residency/retention, or cross-border identity data. Physical-access and life-safety designs require the relevant access-control and safety professionals; this pilot excludes them.
+
 ## Operational checklist
 
 - [ ] Identity, security, and recovery owners named
@@ -91,3 +105,39 @@ Preserve the pilot application's previous authentication until acceptance. Roll 
 Snapshot verified **2026-07-17** from [Keycloak](https://www.keycloak.org/), the [official repository](https://github.com/keycloak/keycloak), and [documentation](https://www.keycloak.org/documentation).
 
 Unknown until designed and tested: version-specific deployment details, HA sizing, extension licenses, application compatibility, migration behavior, support arrangements, recovery objectives, and regulatory requirements.
+
+## Flagship requirement coverage (33 points)
+
+1. **Coworking purpose:** centralize staff login for one non-critical staging application.
+2. **Outcome:** consistent approved authentication and reversible joiner/leaver control.
+3. **Good fit:** technically operated stack with identity, application, and recovery ownership.
+4. **Non-fit:** no identity expertise, physical-access assumption, or intolerable IdP dependency.
+5. **Named owners:** manager, identity, application, security, privacy, technical, and recovery owners.
+6. **Prerequisites:** roster, role matrix, realm/client scope, MFA, fallback, and break-glass design.
+7. **Skills:** OIDC/OAuth, identity security, Keycloak, Linux, Postgres, TLS, and recovery.
+8. **License:** `Apache-2.0`; extensions and support have independent terms.
+9. **Cost model:** compute, database, proxy, setup, HA, upgrades, extensions, and support.
+10. **Official sources:** official site, repository, and documentation are linked and dated.
+11. **Evidence limit:** one staging client proves no federation, HA, scale, compliance, or physical access.
+12. **Data map:** identities, groups, credentials/MFA, claims, sessions, logs, clients, and keys.
+13. **Privacy:** minimize attributes/claims; approve retention, federation, and identity-data use.
+14. **Security:** admin separation, MFA, TLS, redirects, secrets, updates, keys, and break-glass.
+15. **Compliance:** identity/privacy and physical-access professional-help boundaries are explicit.
+16. **Allowed automation:** approved authentication, tokens/claims, sessions, and requested disablement.
+17. **Prohibited decisions:** status, eligibility, entitlement, discipline, proofing exceptions, and access.
+18. **Human approvals:** manager, identity, app, security, and recovery gates are explicit.
+19. **Smallest experiment:** one realm, one app, two test users, and one disablement.
+20. **Implementation:** inventory, stage, configure, test, document controls, restore, then decide.
+21. **Configuration baseline:** realm, client, redirect, claims, flows, roles, secrets, keys, and fallback.
+22. **Integrations:** only the tested staging OIDC client is in scope; none is catalog-verified.
+23. **Exceptions:** bad login, disabled user, outage, lockout, invalid redirect, and break-glass.
+24. **Acceptance tests:** authentication, authorization claims, outage, recovery, restore, and rollback.
+25. **Monitoring:** availability, database, failed login, admin event, certificate, backup, and updates.
+26. **Routine operations:** approved joiner/leaver, client review, patching, key/secret, and restore tests.
+27. **Backup:** database, realm/client config, keys, secrets, and external dependencies are covered.
+28. **Restore:** clean isolated restore verifies identities, client, claims, disablement, and admin recovery.
+29. **Upgrade:** read version-specific official guidance; stage database and client regressions first.
+30. **Rollback:** return the app to preserved prior authentication and reconcile emergency access.
+31. **Exit:** export config/role mapping and document every app's local/replacement login route.
+32. **Manual fallback:** only approved app-local or break-glass access; never broad authorization bypass.
+33. **Expert review and cadence:** identity/security review precedes production and material topology changes.

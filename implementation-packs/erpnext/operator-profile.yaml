@@ -1,0 +1,19 @@
+tool_id: erpnext
+pilot_scope: one synthetic customer, membership item, and invoice lifecycle
+required_owners:
+  - executive_sponsor
+  - qualified_finance_reviewer
+  - coworking_process_owner
+  - data_privacy_owner
+  - technical_recovery_owner
+required_skills:
+  - accounting and local tax requirements
+  - ERPNext and Frappe administration
+  - database and host operations
+  - data migration and reconciliation
+excluded_scope:
+  - production accounting
+  - live payment credentials
+  - HR and payroll
+  - member or building access
+readiness_gate: synthetic expected-results sheet approved by finance

@@ -1,0 +1,22 @@
+tool_id: stripe
+profile_status: fill-before-pilot
+mode: sandbox-only
+country_and_currency: unassigned
+authoritative_invoice_system: unassigned
+chosen_connector: unverified
+live_credentials_allowed: false
+owners:
+  finance: unassigned
+  stripe_account: unassigned
+  integration: unassigned
+  security: unassigned
+  disputes: unassigned
+  member_support: unassigned
+approvals_required:
+  - regional fee model
+  - PCI responsibility
+  - refund and dispute limits
+  - payout reconciliation
+  - account recovery
+  - live activation
+runtime_evidence: not-tested

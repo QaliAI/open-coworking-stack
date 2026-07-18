@@ -1,0 +1,19 @@
+tool_id: google-workspace
+pilot_scope: one staff shared-drive structure and one minimal tour form
+required_owners:
+  - account_owner
+  - domain_owner
+  - data_privacy_owner
+  - security_support_owner
+  - staff_access_approver
+  - tour_lead_owner
+required_skills:
+  - Google Workspace administration
+  - DNS and mail migration awareness
+  - privacy and records governance
+  - identity and incident recovery
+excluded_scope:
+  - production mail migration
+  - payment or identity-document collection
+  - automated prospect decisions
+readiness_gate: actual plan controls and prior-tool fallback recorded

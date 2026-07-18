@@ -1,0 +1,19 @@
+tool_id: metabase
+pack_status: reference-only
+reviewed_on: 2026-07-18
+pilot_outcome: 'Reproduce one approved occupancy metric without exposing member data or source writes'
+required_owners:
+  - metric_owner
+  - source_data_owner
+  - metabase_administrator
+  - privacy_owner
+minimum_skills:
+  - SQL and query-plan review
+  - source database role administration
+  - Metabase application database backup and restore
+  - metric validation and data-quality analysis
+pilot_connection: dedicated read-only reporting source
+write_features_allowed: false
+member_level_data_allowed: false
+production_gate: 'Independent math, denied access/write tests, freshness, and restore accepted'
+runtime_verified: false

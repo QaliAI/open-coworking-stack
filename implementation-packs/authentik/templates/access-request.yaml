@@ -1,0 +1,14 @@
+request_id: CHANGE-ME
+requested_for: staff-identifier-not-email
+application: pilot-app
+access_profile: CHANGE-ME
+business_reason: CHANGE-ME
+requested_by: manager-role
+approved_by: pending
+app_owner_review: pending
+privileged_access: false
+mfa_exception: false
+effective_from: CHANGE-ME
+expires_or_review_on: CHANGE-ME
+implementation_evidence: pending
+revocation_owner: identity-owner

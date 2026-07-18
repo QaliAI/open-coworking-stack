@@ -1,0 +1,19 @@
+tool_id: notion
+test_status: pending
+workspace_plan_verified_on: null
+pilot_pages_expected: 5
+pilot_pages_exported: null
+attachments_expected: null
+attachments_opened: null
+unauthorized_access_denied: null
+guest_limited_then_revoked: null
+public_links_found: null
+fallback_index_reconstructed: null
+known_export_losses: []
+evidence_location: null
+tested_on: null
+tester: null
+independent_reviewer: null
+operations_approval: null
+privacy_approval: null
+notes: Do not place credentials or personal data in this record.

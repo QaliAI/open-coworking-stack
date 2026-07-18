@@ -1,0 +1,20 @@
+tool_id: unifi-network
+site: REPLACE_ME
+controller_version: REPLACE_ME
+device_models_and_versions: []
+change_scope: REPLACE_ME
+official_sources_checked: []
+data_and_telemetry_decision: REPLACE_ME
+maintenance_window: REPLACE_ME
+incumbent_failback: REPLACE_ME
+stop_conditions: []
+required_test_evidence: []
+approvals:
+  network: PENDING
+  facilities: PENDING
+  privacy: PENDING
+  change: PENDING
+  communications: PENDING
+result: NOT_RUN
+rollback_result: NOT_RUN
+unknowns: []

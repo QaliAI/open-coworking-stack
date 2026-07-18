@@ -1,0 +1,23 @@
+tool_id: restic
+test_status: pending
+application_id: null
+application_version: null
+restic_version: null
+backend_type: null
+snapshot_id: null
+backup_exit_success: null
+failure_alert_received_by: null
+repository_check_mode: null
+repository_check_passed: null
+source_host_credentials_used_for_restore: null
+database_integrity_passed: null
+representative_records_passed: null
+application_started: null
+elapsed_recovery_minutes: null
+approved_recovery_minutes: null
+evidence_location: null
+tested_on: null
+tester: null
+witness: null
+application_owner_approval: null
+notes: Never include repository locations, passwords, or backend credentials here.

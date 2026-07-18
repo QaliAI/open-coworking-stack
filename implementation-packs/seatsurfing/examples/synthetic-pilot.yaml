@@ -1,0 +1,29 @@
+example_only: true
+runtime_evidence: none
+tool_id: seatsurfing
+floor: synthetic-floor-a
+desk_ids:
+  - A-01
+  - A-02
+  - A-03
+  - A-04
+  - A-05
+  - A-06
+  - A-07
+  - A-08
+  - A-09
+  - A-10
+  - A-11
+  - A-12
+  - A-13
+  - A-14
+  - A-15
+  - A-16
+  - A-17
+  - A-18
+  - A-19
+  - A-20
+paid_inventory: false
+membership_authority: external-synthetic-roster
+door_integration: none
+result: not-run

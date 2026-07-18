@@ -1,0 +1,22 @@
+tool_id: listmonk
+pack_status: reference-only
+reviewed_on: 2026-07-18
+pilot_outcome: 'Send one approved internal newsletter and prove suppression and recovery controls'
+required_owners:
+  - communications_owner
+  - privacy_owner
+  - technical_owner
+  - member_system_owner
+minimum_skills:
+  - PostgreSQL backup and restore
+  - TLS and reverse-proxy administration
+  - SMTP sender authentication and bounce operations
+  - consent and suppression handling
+pilot_data: synthetic records or consenting internal addresses only
+excluded_data:
+  - payment data
+  - door credentials
+  - identity documents
+  - health or dispute notes
+production_gate: 'Communications, privacy, and technical owners sign the pilot evidence'
+runtime_verified: false

@@ -2,90 +2,161 @@
 title: Seatsurfing for coworking desk booking
 tool_id: seatsurfing
 guide_status: full
-verified_on: 2026-07-17
+verified_on: 2026-07-18
 ---
 
 # Seatsurfing for coworking desk booking
 
-Seatsurfing provides self-hosted desk and space booking. A coworking operator should pilot one accurately mapped floor and 20 hot desks with a limited member group before treating occupancy metrics as layout evidence.
+This guide scopes Seatsurfing to 20 desks already included in an approved coworking group's entitlement. Official documentation says Seatsurfing has no accounting model and is intended for organizations providing free seats to employees; it is not a commercial desk-sales system. No runtime was tested.
 
-## Fit and non-fit
+## 1. Coworking outcome
 
-**Good fit:** a hot-desk operation replacing a whiteboard/spreadsheet, with fair-use rules, floor-plan ownership, privacy review, and a manual check-in fallback.
+Reduce hot-desk claim conflicts and produce a human-reviewed reservation signal for layout decisions. Seatsurfing augments reservations; it does not prove attendance, decide entitlement, bill members, or grant physical access.
 
-**Poor fit:** a billing, membership entitlement, or door-access replacement; an inaccurate map; or a rollout that exposes members' location history without a defined need and retention.
+## 2. Pilot scope
 
-## License and cost boundary
+Model one floor with 20 labeled desks, one approved pilot group, two weeks of reservations, staff-managed exceptions, a manual register, and a clean database restore. Exclude paid inventory, doors, member contracts, and surveillance.
 
-Seatsurfing is OSI-approved open source under `GPL-3.0-only`. Budget for compute/database/TLS, floor-plan and account setup, updates/backups/support, any identity or reporting extensions, and staff time to maintain spaces and fair-use rules. No managed service or hosting price is asserted by the catalog.
+## 3. Fit
 
-Record **software**, **hosting**, **setup**, **maintenance**, **plugins/extensions**, and **support** separately; mark each as applicable, not applicable, or unknown rather than assuming a zero cost.
+**Good fit:** desks are already included in membership; the operator is replacing a whiteboard/spreadsheet; and operations, facilities, community, privacy, roster, and technical owners are named.
 
-## Prerequisites and data map
+## 4. Non-fit and alternatives
 
-Assign booking, facilities, privacy, and technical owners. Define the 20 desks, hours, pilot users, booking/cancellation and no-show rules, accessibility handling, utilization definitions, and manual fallback.
+**Poor fit:** paid day passes/desks, credits/plans, invoicing/refunds, membership authority, door access, safety roll-call, inaccurate maps, or behavior/performance tracking. Use a coworking management platform when transactional inventory, billing, and access are required; retain the manual register during this pilot.
 
-| Data              | Source              | Seatsurfing use   | Exit/handoff                            |
-| ----------------- | ------------------- | ----------------- | --------------------------------------- |
-| Users             | Pilot member roster | Booking identity  | Membership system remains authoritative |
-| Locations/spaces  | Floor plan          | 20 desks          | Independent floor inventory             |
-| Bookings          | Member actions      | Reservations      | Front-desk exception list               |
-| Occupancy metrics | Booking records     | Layout experiment | Aggregated reviewed export              |
+## 5. Coworking use cases
 
-Bookings and accounts are personal data. Payment data is excluded.
+- Reserve already-entitled hot desks through a map/list.
+- Apply approved duration/count limits and designated-space approval.
+- Coordinate cancellations and front-desk exceptions.
+- Review aggregate reservation patterns with member feedback.
 
-## Smallest useful experiment
+Bookings must not be used as evidence that a member arrived, stayed, paid, or may enter a secured area.
 
-Using the [official docs](https://seatsurfing.io/docs/), model one floor with 20 hot desks, invite a pilot member group for two weeks, and export occupancy statistics. Compare booked versus observed use without covert surveillance and collect member feedback.
+## 6. Tasks reduced or augmented
 
-## Implementation sequence
+Seatsurfing can reduce manual desk claims, collision checking, and reservation-list preparation. It cannot maintain floor accuracy, decide fair use/accommodations/eligibility, interpret utilization, resolve disputes, reconcile members, or operate outage fallback.
 
-1. Approve the floor map, desk identifiers, pilot rules, and privacy notice.
-2. Review deployment and booking configuration in [official documentation](https://seatsurfing.io/docs/).
-3. Build staging with TLS, restricted administration, and test users.
-4. Validate the map onsite with facilities and community staff.
-5. Run the two-week pilot with a visible manual exception path.
-6. Review fairness, no-shows, accessibility, privacy, and metric interpretation.
-7. Complete export and restore before expanding floors or members.
+## 7. Human decisions and approvals
 
-## Security and privacy controls
+Membership staff approve eligible users; facilities approves map changes; operations approves rules; community staff resolve exceptions; privacy approves visibility/retention; technical operations approves deployment/recovery; and an independent reviewer signs access/restore tests.
 
-- Restrict admin and user access; keep the member system authoritative.
-- Minimize booking/location visibility and retain history only as approved.
-- Use TLS, supported updates, and protected backups.
-- Do not infer presence, performance, or behavior beyond the approved utilization purpose.
-- Provide transparent booking rules and a correction/deletion route.
-- Review identity or access-control connectors separately; none are verified here.
+## 8. Owners and RACI
 
-## Backup, export, and restore test
+Name accountable operations, facilities, community/support, privacy, membership-roster, technical/database, security, and recovery owners. No technical import should grant eligibility without the authoritative roster owner's approval.
 
-Back up database, configuration, maps/assets, and required application state following official guidance. Restore to clean staging and verify all 20 desks, pilot users, bookings, rules, and permissions. Export representative booking/occupancy data and confirm operations can interpret it without hidden application logic.
+## 9. Prerequisites
 
-## Integrations and manual handoffs
+Define 20 desk IDs/floor image rights, opening hours/timezone, eligible pilot users/groups, booking/cancellation/no-show rules, accessibility route, visibility/retention, support, manual fallback, recovery objectives, TLS/secrets/monitoring, and isolated staging.
 
-No membership, identity, access, or BI integration is catalog-verified. Community staff approve pilot users and handle conflicts; facilities maintains the map; front desk handles walk-ins and exceptions; privacy owners review location data; analysts interpret aggregate metrics.
+## 10. Skills and effort boundary
 
-## Human oversight
+The self-hosted pilot needs container/Linux, PostgreSQL, DNS/TLS, reverse-proxy, secret, monitoring/backup, map, privacy, and support skills. Map validation, identity testing, restore drills, and member support can exceed software setup. No deployment-time or production-size claim is verified.
 
-People set fair-use rules, resolve conflicts, support accessibility, protect location privacy, and interpret utilization. Seatsurfing augments desk claims and occupancy signals; it does not decide entitlement or staffing.
+## 11. Deployment choice
 
-## Operational checklist
+Official sources describe managed SaaS and self-hosted container hosting. This guide's implementation pack targets a self-hosted evaluation, not a managed-plan commitment. Verify current image/repository, plan/feature terms, support, and deployment requirements before choosing either route.
 
-- [ ] Booking, facilities, privacy, and technical owners named
-- [ ] 20-desk map validated onsite
-- [ ] Fair-use, cancellation, no-show, and accessibility rules approved
-- [ ] Booking visibility and retention minimized
-- [ ] Manual exception route available
-- [ ] Two-week feedback/metric review completed
-- [ ] Booking export verified
-- [ ] Clean restore passed
+## 12. Architecture and dependencies
 
-## Rollback and exit
+Map TLS proxy, Seatsurfing backend/admin/booking UI, supported PostgreSQL service, persistent database, floor assets, identity path if used, monitoring, offsite backup, and manual register. Official repository examples identify `POSTGRES_URL` and `CRYPT_KEY`; store secrets outside version control and replace bootstrap credentials before exposure.
 
-Keep the whiteboard/spreadsheet/manual process ready during the pilot. Roll back by stopping new bookings, exporting future reservations, notifying pilot members, and returning claims to the manual process. Before expansion, retain the independent floor/desk inventory and prove user, booking, and metric exports can move to a replacement.
+## 13. License and edition boundary
 
-## Verification and unknowns
+The catalog classifies the self-hosted backend as `GPL-3.0-only`; official sources also advertise SaaS plans. Re-check the active repository/license and every managed/self-hosted feature boundary. This guide does not establish entitlement, managed residency, support, or connector availability.
 
-Snapshot verified **2026-07-17** from [Seatsurfing](https://seatsurfing.io/), the [backend repository](https://github.com/seatsurfing/backend), and [documentation](https://seatsurfing.io/docs/).
+## 14. Total cost boundary
 
-Unknown until verified: current deployment requirements, export fidelity, identity/access integrations, mobile/client behavior, production sizing, support, managed offerings, and jurisdiction-specific location privacy requirements.
+Annual true cost = compute + PostgreSQL/storage + TLS/DNS + monitoring/backups + map/account/identity setup + updates/restores + booking administration/support + privacy review + migration/exit. For SaaS add current plan/user/support charges. Compare loaded labor with manual and commercial alternatives; do not claim savings before measurement.
+
+## 15. Data map
+
+| Data                   | Source           | Purpose                 | Authority                | Exit/fallback           |
+| ---------------------- | ---------------- | ----------------------- | ------------------------ | ----------------------- |
+| Eligible users/groups  | Membership staff | Booking identity/limits | Membership system        | Roster crosswalk        |
+| Areas/floor/spaces     | Facilities       | Navigation/inventory    | Desk register            | Image and register      |
+| Reservations           | Member actions   | Coordinate claims       | Seatsurfing during pilot | Future-booking register |
+| Utilization statistics | Reservations     | Layout experiment       | Human-reviewed analysis  | Aggregate report        |
+
+Payment data, contracts, door credentials, identity documents, diagnoses, and member-case notes are excluded.
+
+## 16. Privacy and retention
+
+Treat identity, group, reservation time, and inferred location as personal data. Minimize who can view bookings, use aggregate reporting, suppress individual performance inference, define correction/deletion and a short purpose-bound history, and align backup expiry. Verify SaaS contractual location/deletion separately if selected.
+
+## 17. Security baseline
+
+Require TLS, named least-privilege accounts, changed bootstrap credentials, protected `CRYPT_KEY`/database secrets, restricted administration, pinned supported images, monitored auth/service/database health, and encrypted restricted backups. Test ordinary-user, ineligible-user, disabled-user, and admin boundaries.
+
+## 18. Compliance and expert review
+
+Obtain privacy advice before identifiable location-history retention, accessibility expertise where rules affect accommodations, identity/security review before OAuth2/internet exposure, PostgreSQL/operator help before production migration/recovery, and a commercial coworking systems expert when billing/credits/access are required.
+
+## 19. Integration boundary
+
+No membership, identity, payment, access-control, calendar, notification, or BI integration is catalog-verified. Official docs describe OAuth2 and CalDAV capabilities, but local scope/failure must be tested. Import only an approved roster; prohibit writes from booking state to billing or doors.
+
+## 20. Configuration baseline
+
+Record application/database/image versions, external URL/TLS, secret references, initial/admin accounts, areas/floor assets/20 spaces, hours/timezone, booking limits/cancellation/approvals, user/group visibility, identity settings, retention, monitoring/backup, support route, and manual fallback. Store no secret values here.
+
+## 21. Smallest useful experiment
+
+In isolated staging, map 20 desks, test with synthetic admin/eligible/ineligible/disabled users, restore the complete state to clean infrastructure, then run a two-week pilot for one approved group while preserving manual booking.
+
+## 22. Implementation sequence
+
+1. Approve fit, owners, rules, privacy notice, map, and fallback.
+2. Verify current official self-hosting/release/license sources.
+3. Deploy pinned staging; replace credentials and protect secrets.
+4. Validate all desk labels onsite and run synthetic access/booking tests.
+5. Back up and restore before importing pilot identities.
+6. Run two weeks with daily exception/support review.
+7. Review accessibility, privacy, cost, metrics, recovery, and exit evidence.
+
+## 23. Migration and rollout
+
+Keep membership authority and manual booking unchanged through pilot; import only approved users; communicate rules/privacy/fallback; and expand one floor/group at a time. Freeze map/rule changes during acceptance and reconcile future reservations during each cutover.
+
+## 24. Required test plan
+
+Test all 20 labels, map/list selection, conflict prevention, booking/cancellation, configured duration/count and approval, timezone/mobile behavior, admin and unauthorized denial, disabled user, identity outage if used, manual fallback, backup age, clean database restore, future reservations, permissions, and human-readable aggregate reporting.
+
+## 25. Acceptance criteria
+
+All 20 digital IDs match physical desks; configured rules/cancellation/approval work; unauthorized/ineligible/disabled users are denied as designed; no billing/door dependency exists; fallback resolves claims; clean restore recovers areas/spaces/users/rules/future bookings/permissions; and owners accept privacy/support load. Any map/access mismatch blocks rollout.
+
+## 26. Success metrics
+
+Track booking conflicts, cancellations/no-shows under the approved definition, manual exceptions, accessibility/support cases, map defects, denied-access defects, booking/fallback completion, restore time, aggregate utilization, member feedback, administration labor, and true cost. Do not treat reservation rate as attendance or productivity.
+
+## 27. Monitoring and alerting
+
+Monitor backend/database health, failed logins, admin changes, storage/capacity, backup age, certificate expiry, notification/job failures if used, and release/security notices. Route each alert to named technical/community owners with a manual-booking escalation.
+
+## 28. Operating cadence
+
+During pilot, review exceptions/support daily. Monthly, review admins, eligible roster, maps, rules, retention, storage, and backups. Before every expansion/upgrade, repeat representative booking/access/restore tests; periodically rehearse manual fallback and clean recovery.
+
+## 29. Failure modes and response
+
+Plan for service/database outage, wrong map, double/incorrect claim, timezone error, lost/disabled identity, permission leak, notification failure, backup failure, and privacy incident. Pause affected inventory, use the manual register, preserve future bookings/logs, restrict access on exposure, and require human conflict/accommodation decisions.
+
+## 30. Backup procedure
+
+Create a consistent PostgreSQL backup plus secret-free deployment configuration, exact image versions, floor assets, and independent area/desk register in a restricted offsite location. Keep a readable future-reservation register during pilot. Because a supported business-data export is unverified, test any UI/API export before relying on it.
+
+## 31. Restore drill
+
+Deploy matching pinned application/database versions on clean isolated infrastructure, restore PostgreSQL/configuration/maps, inject secrets from the approved store, and verify 20 spaces, areas, users/groups, rules, future bookings, login, permissions, and timezone. Record counts, timing, tester, and witness; container startup alone does not pass. No runtime evidence exists yet.
+
+## 32. Upgrade, rollback, and exit
+
+Pin releases, read release notes, back up, test migrations/acceptance in staging, and schedule staffed change windows without combining identity/map/app changes. Roll back with prior image and pre-upgrade database validated in isolation, then reconcile change-window bookings. Exit by freezing reservations, extracting/reconciling future bookings, moving to manual/replacement service, retaining approved aggregate history, revoking identity/secrets/admins, and expiring personal backups under policy.
+
+## 33. Sources, evidence, and unknowns
+
+Reviewed **2026-07-18**: [getting started](https://seatsurfing.io/docs/), [features and accounting limitation](https://seatsurfing.io/docs/features), [self-hosted configuration](https://seatsurfing.io/docs/self-hosted/config), and [backend repository](https://github.com/seatsurfing/backend), which currently redirects to the active project.
+
+Evidence is documentation review only. Untested: runtime/image dependencies, PostgreSQL migration/restore, map/booking/rule behavior, mobile/timezone, identity/CalDAV, export/deletion, SaaS terms/location, peak load, notifications, support, cost, privacy compliance, and exit. Treat each as an open gate.
