@@ -1,0 +1,521 @@
+{
+  "$ref": "#/definitions/Tool",
+  "definitions": {
+    "Tool": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "minLength": 2,
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tagline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 40
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "deprecated", "needs-review"],
+          "default": "active"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "access-control",
+              "membership-crm",
+              "booking-scheduling",
+              "billing-payments",
+              "accounting",
+              "community-engagement",
+              "communication-chat",
+              "email-marketing",
+              "website-cms",
+              "forms-surveys",
+              "helpdesk-support",
+              "knowledge-base",
+              "event-management",
+              "mailroom-virtual-office",
+              "facility-operations",
+              "network-wifi",
+              "identity-sso",
+              "file-storage",
+              "password-secrets",
+              "automation-integration",
+              "analytics-bi",
+              "monitoring-observability",
+              "backup-recovery",
+              "video-conferencing",
+              "digital-signage",
+              "pos-retail",
+              "project-work-management",
+              "legal-contracts",
+              "hr-people",
+              "security-compliance",
+              "developer-platform",
+              "maps-wayfinding",
+              "iot-sensors",
+              "other"
+            ]
+          },
+          "minItems": 1
+        },
+        "secondary_categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tool/properties/categories/items"
+          },
+          "default": []
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "owner-operator",
+              "community-manager",
+              "sales-manager",
+              "operations-manager",
+              "marketing",
+              "virtual-office-mailroom",
+              "event-coordinator",
+              "multi-location-operator",
+              "franchisee",
+              "consultant-implementer",
+              "technical-operator",
+              "finance",
+              "facilities",
+              "member-end-user"
+            ]
+          },
+          "minItems": 1
+        },
+        "workflows": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "member-onboarding",
+              "member-offboarding",
+              "day-pass-checkin",
+              "tour-to-close",
+              "room-booking",
+              "desk-hot-desk",
+              "invoice-collections",
+              "access-provisioning",
+              "visitor-management",
+              "event-lifecycle",
+              "mail-package-handling",
+              "community-programming",
+              "incident-response",
+              "facility-maintenance",
+              "marketing-campaigns",
+              "reporting-kpis",
+              "multi-site-rollout",
+              "backup-restore-drill",
+              "vendor-offboarding",
+              "compliance-review"
+            ]
+          },
+          "minItems": 1
+        },
+        "problems": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "reduce-software-cost",
+              "replace-spreadsheets",
+              "self-host-for-data-control",
+              "improve-member-experience",
+              "automate-billing",
+              "secure-door-access",
+              "fill-meeting-rooms",
+              "grow-pipeline",
+              "run-events",
+              "operate-virtual-office",
+              "multi-location-consistency",
+              "reduce-manual-admin",
+              "improve-wifi-reliability",
+              "centralize-knowledge",
+              "measure-utilization",
+              "privacy-compliance",
+              "disaster-recovery",
+              "integrate-stack"
+            ]
+          },
+          "minItems": 1
+        },
+        "deployment": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "self-hosted",
+              "managed-saas",
+              "hybrid",
+              "desktop",
+              "mobile",
+              "hardware-appliance",
+              "browser-extension"
+            ]
+          },
+          "minItems": 1
+        },
+        "maturity": {
+          "type": "string",
+          "enum": ["experimental", "emerging", "stable", "mature", "legacy", "unknown"],
+          "default": "unknown"
+        },
+        "license": {
+          "type": "object",
+          "properties": {
+            "class": {
+              "type": "string",
+              "enum": [
+                "oss-osi-approved",
+                "open-core",
+                "source-available",
+                "fair-code",
+                "freemium-saas",
+                "free-saas",
+                "free-trial",
+                "proprietary",
+                "unknown-needs-review"
+              ]
+            },
+            "spdx": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "source_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "notes": {
+              "type": "string"
+            },
+            "verified_on": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          },
+          "required": ["class"],
+          "additionalProperties": false
+        },
+        "cost": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string",
+              "enum": [
+                "free-self-hosted",
+                "free-tier",
+                "freemium",
+                "one-time",
+                "subscription",
+                "usage-based",
+                "open-core-paid-features",
+                "hardware-plus-software",
+                "unknown"
+              ]
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            },
+            "free_tier_notes": {
+              "type": "string"
+            },
+            "self_host_cost_notes": {
+              "type": "string"
+            },
+            "currency_caveat": {
+              "type": "string",
+              "default": "Pricing changes frequently; re-check official pricing before budget decisions."
+            },
+            "pricing_url": {
+              "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+            },
+            "verified_on": {
+              "$ref": "#/definitions/Tool/properties/license/properties/verified_on"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": ["verified", "partially-verified", "unverified", "stale"],
+              "default": "partially-verified"
+            }
+          },
+          "required": ["model", "summary"],
+          "additionalProperties": false
+        },
+        "implementation": {
+          "type": "object",
+          "properties": {
+            "difficulty": {
+              "type": "string",
+              "enum": ["trivial", "easy", "moderate", "hard", "expert"]
+            },
+            "maintenance_burden": {
+              "type": "string",
+              "enum": ["low", "medium", "high", "unknown"],
+              "default": "unknown"
+            },
+            "skills_required": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "typical_time_to_first_value": {
+              "type": "string"
+            },
+            "smallest_useful_experiment": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": ["difficulty", "smallest_useful_experiment"],
+          "additionalProperties": false
+        },
+        "homepage": {
+          "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+        },
+        "repository": {
+          "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+        },
+        "documentation": {
+          "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "homepage",
+                  "docs",
+                  "repo",
+                  "pricing",
+                  "demo",
+                  "security",
+                  "status",
+                  "other"
+                ],
+                "default": "other"
+              }
+            },
+            "required": ["label", "url"],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "tasks_reduced_or_augmented": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "human_oversight_still_needed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "data_privacy": {
+          "type": "object",
+          "properties": {
+            "data_held": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "personal_data": {
+              "type": "boolean",
+              "default": true
+            },
+            "payment_data": {
+              "type": "boolean",
+              "default": false
+            },
+            "notes": {
+              "type": "string"
+            },
+            "privacy_url": {
+              "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+            }
+          },
+          "required": ["data_held"],
+          "additionalProperties": false
+        },
+        "risks": {
+          "type": "object",
+          "properties": {
+            "vendor_lock_in": {
+              "type": "string"
+            },
+            "security": {
+              "type": "string"
+            },
+            "compliance": {
+              "type": "string"
+            },
+            "licensing": {
+              "type": "string"
+            },
+            "operational": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "default": {}
+        },
+        "integrations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "direction": {
+                "type": "string",
+                "enum": ["inbound", "outbound", "bidirectional", "manual"],
+                "default": "bidirectional"
+              },
+              "method": {
+                "type": "string",
+                "enum": ["api", "webhook", "zapier-like", "csv", "sso", "plugin", "other"],
+                "default": "api"
+              },
+              "notes": {
+                "type": "string"
+              },
+              "verified": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": ["name"],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "related_tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "compose_pack": {
+          "type": "string"
+        },
+        "guide_status": {
+          "type": "string",
+          "enum": ["full", "stub", "planned", "none"],
+          "default": "stub"
+        },
+        "guide_path": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "verification": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/definitions/Tool/properties/cost/properties/confidence"
+            },
+            "last_reviewed": {
+              "$ref": "#/definitions/Tool/properties/license/properties/verified_on"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+              },
+              "minItems": 1
+            },
+            "notes": {
+              "type": "string"
+            },
+            "reviewer": {
+              "type": "string"
+            }
+          },
+          "required": ["status", "last_reviewed", "sources"],
+          "additionalProperties": false
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "rank_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 50
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "name",
+        "tagline",
+        "description",
+        "categories",
+        "roles",
+        "workflows",
+        "problems",
+        "deployment",
+        "license",
+        "cost",
+        "implementation",
+        "homepage",
+        "tasks_reduced_or_augmented",
+        "human_oversight_still_needed",
+        "data_privacy",
+        "verification"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,105 @@
+schema_version: 1.0.0
+id: jitsi-meet
+name: Jitsi Meet
+tagline: Open-source video meetings for tours, community events, and staff standups
+description: Jitsi Meet provides browser-based video conferencing. Operators self-host or use public
+  instances for virtual tours, community webinars, and internal meetings.
+status: active
+categories:
+  - video-conferencing
+  - community-engagement
+secondary_categories: []
+roles:
+  - community-manager
+  - event-coordinator
+  - sales-manager
+  - technical-operator
+workflows:
+  - tour-to-close
+  - event-lifecycle
+  - community-programming
+problems:
+  - improve-member-experience
+  - reduce-software-cost
+  - run-events
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/jitsi/jitsi-meet
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Self-host free; 8x8/JaaS and other hosts may charge. Bandwidth is the main self-host cost.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://jaas.8x8.vc/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Use a reputable hosted Jitsi or docker-jitsi-meet staging setup for one
+    virtual community event and collect feedback.
+homepage: https://jitsi.org/jitsi-meet/
+repository: https://github.com/jitsi/jitsi-meet
+documentation: https://jitsi.github.io/handbook/docs/intro
+links:
+  - label: Homepage
+    url: https://jitsi.org/jitsi-meet/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/jitsi/jitsi-meet
+    kind: repo
+  - label: Documentation
+    url: https://jitsi.github.io/handbook/docs/intro
+    kind: docs
+  - label: Pricing
+    url: https://jaas.8x8.vc/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Hosting video events without per-host SaaS fees
+  - Virtual tours
+human_oversight_still_needed:
+  - Moderation
+  - Recording consent
+  - Bandwidth planning
+data_privacy:
+  data_held:
+    - meeting names
+    - optional recordings
+    - participant media during calls
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://jitsi.org/jitsi-meet/
+    - https://github.com/jitsi/jitsi-meet
+    - https://jitsi.github.io/handbook/docs/intro
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 81

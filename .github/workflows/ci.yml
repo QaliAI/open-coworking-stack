@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type-check
+        run: pnpm typecheck
+
+      - name: Validate catalog
+        run: pnpm validate
+
+      - name: Generate derived artifacts
+        run: pnpm generate
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install Chromium
+        run: pnpm --filter @ocs/web exec playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: pnpm test:e2e
+        env:
+          PLAYWRIGHT_SKIP_BUILD: '1'
+
+      - name: Accessibility tests
+        run: pnpm test:a11y
+        env:
+          PLAYWRIGHT_SKIP_BUILD: '1'

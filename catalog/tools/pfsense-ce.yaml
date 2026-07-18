@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: pfsense-ce
+name: pfSense CE
+tagline: Popular open-source firewall distribution (CE vs Plus matters)
+description: pfSense Community Edition is a widely deployed firewall platform. Netgate’s Plus
+  offering is commercial—do not confuse editions when planning support.
+status: active
+categories:
+  - network-wifi
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - facility-maintenance
+  - incident-response
+problems:
+  - improve-wifi-reliability
+  - privacy-compliance
+deployment:
+  - self-hosted
+  - hardware-appliance
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/pfsense/pfsense
+  notes: CE licensing/distribution terms have evolved; verify current CE source and trademarks. Plus
+    is commercial.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: CE free; hardware and Netgate Plus/support paid.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Compare CE vs OPNsense in lab against your required features (captive portal, multi-WAN).
+homepage: https://www.pfsense.org/
+repository: https://github.com/pfsense/pfsense
+documentation: https://docs.netgate.com/pfsense/en/latest/
+links:
+  - label: Homepage
+    url: https://www.pfsense.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/pfsense/pfsense
+    kind: repo
+  - label: Documentation
+    url: https://docs.netgate.com/pfsense/en/latest/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Firewall/router
+  - VPN
+  - Traffic shaping
+human_oversight_still_needed:
+  - Edition confusion
+  - Misconfiguration risk
+data_privacy:
+  data_held:
+    - network logs
+    - configs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: CE licensing/distribution terms have evolved; verify current CE source and trademarks.
+    Plus is commercial.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.pfsense.org/
+    - https://github.com/pfsense/pfsense
+    - https://docs.netgate.com/pfsense/en/latest/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 74

@@ -1,0 +1,102 @@
+schema_version: 1.0.0
+id: nexudus
+name: Nexudus
+tagline: Commercial coworking management suite (proprietary)
+description: Nexudus is a proprietary coworking operations platform. Listed for comparison against
+  open/DIY stacks; evaluate contracts, APIs, and exit plans carefully.
+status: active
+categories:
+  - membership-crm
+  - booking-scheduling
+  - billing-payments
+  - access-control
+secondary_categories: []
+roles:
+  - owner-operator
+  - operations-manager
+  - community-manager
+  - multi-location-operator
+workflows:
+  - member-onboarding
+  - room-booking
+  - invoice-collections
+  - access-provisioning
+problems:
+  - automate-billing
+  - multi-location-consistency
+  - improve-member-experience
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: proprietary
+  name: Proprietary SaaS
+  source_url: https://www.nexudus.com/
+  verified_on: 2026-07-17
+cost:
+  model: subscription
+  summary: Paid SaaS; obtain current pricing from vendor. Do not rely on outdated third-party blog prices.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.nexudus.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Request a sandbox, import a subset of members, and test export completeness.
+homepage: https://www.nexudus.com/
+documentation: https://help.nexudus.com/
+links:
+  - label: Homepage
+    url: https://www.nexudus.com/
+    kind: homepage
+  - label: Documentation
+    url: https://help.nexudus.com/
+    kind: docs
+  - label: Pricing
+    url: https://www.nexudus.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - End-to-end coworking ops
+  - Member portal features
+human_oversight_still_needed:
+  - Vendor lock-in
+  - Integration limits
+  - Contract negotiation
+data_privacy:
+  data_held:
+    - members
+    - contracts
+    - bookings
+    - invoices
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/nexudus.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.nexudus.com/
+    - https://help.nexudus.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 68

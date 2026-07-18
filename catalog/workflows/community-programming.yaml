@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: community-programming
+name: Community programming
+description: Build a coworking community program from member needs, inclusive human facilitation, clear communications, and regular review rather than activity volume alone.
+primary_roles:
+  - community-manager
+  - event-coordinator
+  - member-end-user
+stages:
+  - id: listen-and-prioritize
+    name: Listen and prioritize
+    description: Community staff gather member input, notice participation barriers, and choose a balanced program with explicit judgment.
+    manual_tasks:
+      - Speak with members who may not respond to surveys or public polls
+      - Review inclusion, accessibility, timing, budget, and community fit
+    automation_opportunities:
+      - Collect optional ideas and availability preferences
+      - Group submissions for staff review without auto-selecting winners
+    suggested_tool_ids:
+      - formbricks
+      - rallly
+      - typeform
+    risks:
+      - Vocal or highly connected members can dominate the program
+      - Sensitive interests or availability data can be over-collected
+  - id: coordinate-and-invite
+    name: Coordinate and invite
+    description: A named owner confirms the facilitator, space, conduct expectations, and invitation language before publication.
+    manual_tasks:
+      - Brief facilitators on community standards and support needs
+      - Review invitations for clarity, accessibility, and appropriate audience
+    automation_opportunities:
+      - Publish an approved schedule and send reminders
+      - Track capacity while preserving a staff-managed exception path
+    suggested_tool_ids:
+      - listmonk
+      - mailchimp
+      - notion
+      - optix-app
+    risks:
+      - Repeated broad messaging can fatigue or exclude members
+  - id: facilitate-and-learn
+    name: Facilitate and learn
+    description: A person hosts or supervises the activity, handles conduct and access needs, and interprets participation and feedback afterward.
+    manual_tasks:
+      - Welcome participants and actively facilitate respectful inclusion
+      - Follow up on conduct concerns and unmet commitments
+    automation_opportunities:
+      - Support optional online participation for an approved format
+      - Send a brief optional feedback prompt
+    suggested_tool_ids:
+      - discord
+      - element-synapse
+      - jitsi-meet
+      - zoom
+    risks:
+      - Attendance counts alone can conceal exclusion or low-quality interactions
+success_metrics:
+  - Participation spread across member groups and time slots
+  - Percentage of activities with a named human facilitator
+  - Number and age of unresolved accessibility or conduct actions
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

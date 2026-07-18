@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: day-pass-checkin
+name: Day-pass check-in
+description: Move a day-pass guest from reservation or walk-in through payment, identity checks, orientation, safe access, and end-of-day closure.
+primary_roles:
+  - community-manager
+  - operations-manager
+  - member-end-user
+stages:
+  - id: reserve-or-sell
+    name: Reserve or sell the pass
+    description: Staff or the guest selects a valid date and pass type, with a human available for eligibility and pricing exceptions.
+    manual_tasks:
+      - Resolve capacity, eligibility, and discount exceptions
+      - Explain cancellation and house rules when clarification is needed
+    automation_opportunities:
+      - Record reservations and send confirmation details
+      - Present approved pass options and payment steps
+    suggested_tool_ids:
+      - cal-com
+      - easyappointments
+      - cobot
+      - stripe
+      - woocommerce
+    risks:
+      - Selling beyond practical capacity can harm the member experience
+      - Payment confirmation can be mistaken for identity verification
+  - id: arrival
+    name: Verify and welcome
+    description: On-site staff verify the reservation and person, issue time-bounded access, and give a concise safety and space orientation.
+    manual_tasks:
+      - Check identity only to the extent required by local policy
+      - Explain exits, restricted areas, Wi-Fi rules, and how to get help
+    automation_opportunities:
+      - Surface the reservation to staff before arrival
+      - Prepare a time-limited credential for staff approval
+    suggested_tool_ids:
+      - cobot
+      - optix-app
+      - seatsurfing
+    risks:
+      - Excessive identity collection creates unnecessary privacy exposure
+      - Unsupervised credential issuance can grant the wrong access
+  - id: close-day
+    name: Close the visit
+    description: Staff confirm the visit ended, recover reusable credentials, and record only operationally useful follow-up information.
+    manual_tasks:
+      - Recover loaned fobs or equipment
+      - Check for incidents, damage, or support needs
+    automation_opportunities:
+      - Remind staff about passes that have not been closed
+      - Send an optional feedback request after checkout
+    suggested_tool_ids:
+      - cobot
+      - optix-app
+    risks:
+      - Access that does not expire can remain usable after the paid period
+success_metrics:
+  - Median staffed check-in time
+  - Percentage of issued credentials disabled or recovered on time
+  - Day-pass capacity exceptions and turn-away rate
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

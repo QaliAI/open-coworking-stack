@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: mosquitto
+name: Eclipse Mosquitto
+tagline: MQTT broker for IoT messaging inside the building network
+description: Mosquitto is a lightweight MQTT broker. It underpins many sensor and access prototypes
+  in flexible workspaces when segmented properly on the network.
+status: active
+categories:
+  - iot-sensors
+  - network-wifi
+secondary_categories: []
+roles:
+  - technical-operator
+  - facilities
+workflows:
+  - facility-maintenance
+  - access-provisioning
+problems:
+  - integrate-stack
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: EPL-2.0
+  source_url: https://github.com/eclipse/mosquitto
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; network design and ACLs matter more than license cost.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Run Mosquitto on a VLAN-isolated host and publish/subscribe temperature readings from one sensor.
+homepage: https://mosquitto.org/
+repository: https://github.com/eclipse/mosquitto
+documentation: https://mosquitto.org/documentation/
+links:
+  - label: Homepage
+    url: https://mosquitto.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/eclipse/mosquitto
+    kind: repo
+  - label: Documentation
+    url: https://mosquitto.org/documentation/
+    kind: docs
+tasks_reduced_or_augmented:
+  - IoT message transport
+  - Decoupling sensors from apps
+human_oversight_still_needed:
+  - Authentication/ACL
+  - TLS on untrusted networks
+data_privacy:
+  data_held:
+    - MQTT topics/payloads
+    - connection logs
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/mosquitto.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://mosquitto.org/
+    - https://github.com/eclipse/mosquitto
+    - https://mosquitto.org/documentation/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 65

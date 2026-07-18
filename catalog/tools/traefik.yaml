@@ -1,0 +1,90 @@
+schema_version: 1.0.0
+id: traefik
+name: Traefik
+tagline: Cloud-native reverse proxy popular with Docker stacks
+description: Traefik auto-discovers container routes and handles certificates. Common front door for
+  Docker Compose-based operator stacks.
+status: active
+categories:
+  - developer-platform
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - multi-site-rollout
+problems:
+  - self-host-for-data-control
+  - integrate-stack
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/traefik/traefik
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: OSS free; Traefik enterprise offerings exist for large orgs.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Route two Docker services via Traefik labels with Let’s Encrypt staging certs.
+homepage: https://traefik.io/traefik/
+repository: https://github.com/traefik/traefik
+documentation: https://doc.traefik.io/traefik/
+links:
+  - label: Homepage
+    url: https://traefik.io/traefik/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/traefik/traefik
+    kind: repo
+  - label: Documentation
+    url: https://doc.traefik.io/traefik/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Container ingress
+  - Automated certificates
+human_oversight_still_needed:
+  - Dashboard exposure
+  - Middleware auth
+data_privacy:
+  data_held:
+    - routing config
+    - optional access logs
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://traefik.io/traefik/
+    - https://github.com/traefik/traefik
+    - https://doc.traefik.io/traefik/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 78

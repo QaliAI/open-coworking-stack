@@ -1,0 +1,97 @@
+schema_version: 1.0.0
+id: typeform
+name: Typeform
+tagline: Freemium forms for tours, feedback, and applications
+description: Typeform is a commercial form product with polished UX. Marketing teams use it for tour
+  requests when self-hosted forms are not ready.
+status: active
+categories:
+  - forms-surveys
+  - membership-crm
+secondary_categories: []
+roles:
+  - marketing
+  - sales-manager
+  - community-manager
+workflows:
+  - tour-to-close
+  - community-programming
+  - event-lifecycle
+problems:
+  - grow-pipeline
+  - improve-member-experience
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://www.typeform.com/
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Free tier with limits; paid plans for higher volume/features. Verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.typeform.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: trivial
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Replace one tour email thread with a Typeform + CRM notification for two
+    weeks; measure completion rate.
+homepage: https://www.typeform.com/
+documentation: https://www.typeform.com/help/
+links:
+  - label: Homepage
+    url: https://www.typeform.com/
+    kind: homepage
+  - label: Documentation
+    url: https://www.typeform.com/help/
+    kind: docs
+  - label: Pricing
+    url: https://www.typeform.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Tour request capture
+  - Event registration
+  - Surveys
+human_oversight_still_needed:
+  - Per-response costs at scale
+  - PII storage region
+  - Export
+data_privacy:
+  data_held:
+    - form responses
+    - file uploads if enabled
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.typeform.com/
+    - https://www.typeform.com/help/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 72

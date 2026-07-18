@@ -1,0 +1,62 @@
+schema_version: 1.0.0
+id: facility-maintenance
+name: Facility maintenance
+description: Capture, prioritize, perform, verify, and learn from coworking facility maintenance while keeping safety decisions and physical work with qualified people.
+primary_roles:
+  - facilities
+  - operations-manager
+  - community-manager
+stages:
+  - id: report-and-make-safe
+    name: Report and make safe
+    description: Staff validate the issue, protect people from immediate hazards, and record enough context for responsible triage.
+    manual_tasks:
+      - Inspect the condition and apply an appropriate physical safety measure
+      - Contact emergency or qualified services when local procedure requires it
+    automation_opportunities:
+      - Route member reports into a maintenance queue
+      - Alert designated staff when a report is marked urgent
+    suggested_tool_ids:
+      - freescout
+      - zammad
+      - airtable
+    risks:
+      - Automated priority labels can underestimate life-safety hazards
+  - id: assess-and-schedule
+    name: Assess and schedule
+    description: A qualified person determines scope, priority, access needs, member impact, and whether an external specialist is required.
+    manual_tasks:
+      - Diagnose the problem within personal competence and authority
+      - Approve vendor access, shutdown windows, and member communications
+    automation_opportunities:
+      - Track ownership, dependencies, parts, and planned dates
+      - Remind owners about overdue inspections and work orders
+    suggested_tool_ids:
+      - erpnext
+      - openproject
+      - plane
+      - baserow
+    risks:
+      - Scheduling convenience can take priority over safety or accessibility
+  - id: complete-and-verify
+    name: Complete and verify
+    description: Qualified people perform the work and an accountable staff member confirms safety, cleanliness, function, and documentation before closure.
+    manual_tasks:
+      - Carry out or supervise the physical repair
+      - Inspect the result and obtain required certificates or approvals
+    automation_opportunities:
+      - Attach completion evidence and update maintenance history
+      - Resume monitoring only after human sign-off
+    suggested_tool_ids:
+      - home-assistant
+      - grafana
+      - bookstack
+    risks:
+      - A closed ticket does not prove that a repair is safe or durable
+success_metrics:
+  - Median time to make safety-critical reports safe
+  - Percentage of completed work independently checked when policy requires it
+  - Repeat reports for the same asset within the local review period
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of safety procedures, policies, contractor rules, staffing, and tool fit before use.

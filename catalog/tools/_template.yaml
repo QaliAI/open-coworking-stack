@@ -1,0 +1,48 @@
+# Copy to <slug>.yaml and fill. See packages/schema for full field docs.
+schema_version: '1.0.0'
+id: your-tool-slug
+name: Your Tool
+tagline: One-line operator-focused summary
+description: >
+  At least forty characters describing coworking-relevant use.
+categories: [automation-integration]
+roles: [technical-operator]
+workflows: [member-onboarding]
+problems: [reduce-software-cost]
+deployment: [self-hosted]
+maturity: unknown
+license:
+  class: unknown-needs-review
+  verified_on: '2026-07-17'
+cost:
+  model: unknown
+  summary: Describe realistic run cost without inventing prices.
+  confidence: unverified
+implementation:
+  difficulty: moderate
+  maintenance_burden: unknown
+  skills_required: []
+  smallest_useful_experiment: Describe a one-week pilot.
+homepage: https://example.com
+tasks_reduced_or_augmented:
+  - Example repetitive task reduced
+human_oversight_still_needed:
+  - Example judgment call that remains human
+data_privacy:
+  data_held: [example]
+  personal_data: true
+  payment_data: false
+risks: {}
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/your-tool-slug.md
+tags: []
+verification:
+  status: unverified
+  last_reviewed: '2026-07-17'
+  sources:
+    - https://example.com
+  notes: What remains unknown
+featured: false
+rank_score: 50

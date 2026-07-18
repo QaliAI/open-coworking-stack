@@ -1,0 +1,58 @@
+schema_version: 1.0.0
+id: member-experience-lite
+name: Member Experience Lite
+tagline: Tours, rooms, chat, and feedback without a full IWMS
+description: 'Focuses on the member-facing journey: schedule tours, book rooms/desks, run community
+  chat, and collect feedback. Pairs with either DIY billing or a commercial membership system.'
+audience_roles:
+  - community-manager
+  - sales-manager
+  - event-coordinator
+  - operations-manager
+problems_solved:
+  - improve-member-experience
+  - fill-meeting-rooms
+  - grow-pipeline
+  - run-events
+workflows:
+  - tour-to-close
+  - room-booking
+  - desk-hot-desk
+  - community-programming
+  - event-lifecycle
+monthly_cash_budget_band: under-200
+self_host_heavy: true
+components:
+  - tool_id: cal-com
+    role_in_stack: Tour and meeting scheduling
+    required: true
+  - tool_id: seatsurfing
+    role_in_stack: Desk booking pilot
+    required: false
+  - tool_id: librebooking
+    role_in_stack: Meeting room resources
+    required: true
+  - tool_id: chatwoot
+    role_in_stack: Website chat / shared inbox
+    required: true
+  - tool_id: formbricks
+    role_in_stack: Member feedback
+    required: false
+  - tool_id: zulip
+    role_in_stack: Optional member/staff community
+    required: false
+  - tool_id: umami
+    role_in_stack: Marketing site analytics
+    required: false
+assumptions:
+  - You already have a website and payment path.
+  - Staff will actively moderate chat and honor booking rules.
+risks:
+  - Fragmented identity across tools without SSO.
+  - Double-booking if commercial platform also tracks rooms.
+getting_started:
+  - Start with Cal.com tours only for two weeks.
+  - Add room booking for three rooms with clear no-show policy.
+  - Introduce chat once response SLAs are defined.
+verification:
+  last_reviewed: 2026-07-17

@@ -1,0 +1,94 @@
+schema_version: 1.0.0
+id: coolify
+name: Coolify
+tagline: Self-hostable PaaS to deploy apps without a full K8s team
+description: Coolify aims to be a self-hosted Heroku/Vercel-like experience. Technical operators use
+  it to deploy internal tools and websites on their own VPS.
+status: active
+categories:
+  - developer-platform
+secondary_categories: []
+roles:
+  - technical-operator
+  - consultant-implementer
+workflows:
+  - multi-site-rollout
+  - backup-restore-drill
+problems:
+  - self-host-for-data-control
+  - reduce-software-cost
+  - integrate-stack
+deployment:
+  - self-hosted
+maturity: emerging
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/coollabsio/coolify
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Software free; VPS and managed DB costs remain. Cloud offering may exist—verify.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy a static site and one Node service via Coolify on a single VPS staging box.
+homepage: https://coolify.io/
+repository: https://github.com/coollabsio/coolify
+documentation: https://coolify.io/docs
+links:
+  - label: Homepage
+    url: https://coolify.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/coollabsio/coolify
+    kind: repo
+  - label: Documentation
+    url: https://coolify.io/docs
+    kind: docs
+tasks_reduced_or_augmented:
+  - App deployment automation
+  - Preview environments for internal tools
+human_oversight_still_needed:
+  - Single-box risk
+  - Secrets handling
+  - Upgrade discipline
+data_privacy:
+  data_held:
+    - app configs
+    - env secrets
+    - deployment logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://coolify.io/
+    - https://github.com/coollabsio/coolify
+    - https://coolify.io/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 76

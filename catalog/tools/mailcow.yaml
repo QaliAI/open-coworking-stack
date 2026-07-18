@@ -1,0 +1,95 @@
+schema_version: 1.0.0
+id: mailcow
+name: 'mailcow: dockerized'
+tagline: Full-featured mail server stack if you must self-host email
+description: mailcow packages a complete mail stack. Most coworking operators should prefer managed
+  email; self-host only with strong deliverability skills and monitoring.
+status: active
+categories:
+  - communication-chat
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - incident-response
+  - member-onboarding
+problems:
+  - self-host-for-data-control
+  - privacy-compliance
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-only
+  source_url: https://github.com/mailcow/mailcow-dockerized
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Software free; IP reputation, backups, and on-call time are expensive.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: expert
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Prefer a managed mailbox first. If self-hosting, run a lab domain for
+    staff-only mail before any member mail.
+homepage: https://mailcow.email/
+repository: https://github.com/mailcow/mailcow-dockerized
+documentation: https://docs.mailcow.email/
+links:
+  - label: Homepage
+    url: https://mailcow.email/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/mailcow/mailcow-dockerized
+    kind: repo
+  - label: Documentation
+    url: https://docs.mailcow.email/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Self-hosted mailboxes
+  - Full control of mail data
+human_oversight_still_needed:
+  - Deliverability
+  - Spam/abuse handling
+  - Security updates
+data_privacy:
+  data_held:
+    - email
+    - contacts
+    - DKIM keys
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/mailcow.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://mailcow.email/
+    - https://github.com/mailcow/mailcow-dockerized
+    - https://docs.mailcow.email/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 58

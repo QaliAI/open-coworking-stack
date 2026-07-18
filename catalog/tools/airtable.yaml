@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: airtable
+name: Airtable
+tagline: Freemium spreadsheet-database hybrid for ops trackers
+description: Airtable is a commercial spreadsheet-database. Many spaces run early CRM, event
+  trackers, and inventories here before migrating to self-hosted tools.
+status: active
+categories:
+  - project-work-management
+  - membership-crm
+secondary_categories: []
+roles:
+  - operations-manager
+  - community-manager
+  - event-coordinator
+  - sales-manager
+workflows:
+  - event-lifecycle
+  - tour-to-close
+  - facility-maintenance
+problems:
+  - replace-spreadsheets
+  - reduce-manual-admin
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://www.airtable.com/
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Free tier limited; paid per seat/workspace. Verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.airtable.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Track events for one quarter; schedule a forced export drill on day 30.
+homepage: https://www.airtable.com/
+documentation: https://support.airtable.com/
+links:
+  - label: Homepage
+    url: https://www.airtable.com/
+    kind: homepage
+  - label: Documentation
+    url: https://support.airtable.com/
+    kind: docs
+  - label: Pricing
+    url: https://www.airtable.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Lightweight bases for ops
+  - Kanban for tasks
+human_oversight_still_needed:
+  - Lock-in of automations
+  - Seat costs
+  - Attachment storage
+data_privacy:
+  data_held:
+    - records
+    - attachments
+    - automations logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.airtable.com/
+    - https://support.airtable.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 74

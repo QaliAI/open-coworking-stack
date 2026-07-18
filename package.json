@@ -1,0 +1,37 @@
+{
+  "name": "open-coworking-stack",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A practical, verified directory of free, open-source, source-available, freemium, and free-to-try technology for coworking and flexible-workspace operators.",
+  "type": "module",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm generate && pnpm --filter @ocs/web build",
+    "build:validators": "pnpm --filter @ocs/schema build && pnpm --filter @ocs/shared build && pnpm --filter @ocs/validators build",
+    "build:pipeline": "pnpm run build:validators && pnpm --filter @ocs/generators build",
+    "dev": "pnpm --filter @ocs/web dev",
+    "test": "pnpm run build:pipeline && pnpm -r run test",
+    "test:e2e": "pnpm --filter @ocs/web test:e2e",
+    "test:a11y": "pnpm --filter @ocs/web test:a11y",
+    "lint": "pnpm -r run lint && pnpm format:check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check . && markdownlint-cli2 \"**/*.{md,mdx}\" \"#**/node_modules/**\" \"#**/dist/**\" \"#**/.astro/**\" \"#apps/web/src/content/docs/**/generated/**\" \"#apps/web/src/content/docs/guides/tools/**\"",
+    "validate": "pnpm run build:validators && pnpm --filter @ocs/validators validate",
+    "generate": "pnpm run build:pipeline && pnpm --filter @ocs/schema generate && prettier --write \"catalog/schema/*.json\" && pnpm --filter @ocs/generators generate && prettier --write \"apps/web/src/content/docs/workflows/generated/*.md\"",
+    "check": "pnpm validate && pnpm generate && pnpm test && pnpm build",
+    "typecheck": "pnpm run build:pipeline && pnpm -r run typecheck",
+    "link-check": "lychee --config .lychee.toml --offline --include-fragments false \"./**/*.md\" \"./**/*.mdx\" \"./**/*.yml\" \"./**/*.yaml\" || lychee --config .lychee.toml \"./**/*.md\" \"./**/*.mdx\" \"./**/*.yml\" \"./**/*.yaml\"",
+    "freshness": "pnpm run build:validators && pnpm --filter @ocs/validators freshness"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "markdownlint-cli2": "^0.17.1",
+    "prettier": "^3.4.2",
+    "tsx": "4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

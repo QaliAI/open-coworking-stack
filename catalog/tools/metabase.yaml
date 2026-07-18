@@ -1,0 +1,103 @@
+schema_version: 1.0.0
+id: metabase
+name: Metabase
+tagline: Business intelligence on top of your operational databases
+description: Metabase lets non-engineers ask questions of SQL databases. Operators connect booking,
+  CRM, or billing replicas to build utilization and revenue dashboards.
+status: active
+categories:
+  - analytics-bi
+secondary_categories: []
+roles:
+  - owner-operator
+  - finance
+  - operations-manager
+  - technical-operator
+workflows:
+  - reporting-kpis
+  - compliance-review
+problems:
+  - measure-utilization
+  - replace-spreadsheets
+  - multi-location-consistency
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/metabase/metabase
+  notes: Open source core with paid pro/enterprise features.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Self-host open source free; Metabase Cloud and premium features paid.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.metabase.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Point Metabase at a read-only replica of booking data and build one occupancy dashboard.
+homepage: https://www.metabase.com/
+repository: https://github.com/metabase/metabase
+documentation: https://www.metabase.com/docs/latest/
+links:
+  - label: Homepage
+    url: https://www.metabase.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/metabase/metabase
+    kind: repo
+  - label: Documentation
+    url: https://www.metabase.com/docs/latest/
+    kind: docs
+  - label: Pricing
+    url: https://www.metabase.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Self-serve KPI dashboards
+  - Reducing ad-hoc SQL requests to technical staff
+human_oversight_still_needed:
+  - Read-only DB credentials
+  - Row-level data exposure
+  - Metric definitions
+data_privacy:
+  data_held:
+    - query results cache
+    - dashboard definitions
+    - user accounts
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Open source core with paid pro/enterprise features.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/metabase.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.metabase.com/
+    - https://github.com/metabase/metabase
+    - https://www.metabase.com/docs/latest/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 82

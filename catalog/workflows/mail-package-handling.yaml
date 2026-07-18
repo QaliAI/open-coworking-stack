@@ -1,0 +1,57 @@
+schema_version: 1.0.0
+id: mail-package-handling
+name: Mail and package handling
+description: Receive, secure, notify, release, and dispose of member mail and packages with human custody checks and locally approved privacy rules.
+primary_roles:
+  - virtual-office-mailroom
+  - operations-manager
+  - community-manager
+stages:
+  - id: receive
+    name: Receive and inspect
+    description: Authorized staff accept eligible items, check visible condition and recipient status, and apply the local exception policy.
+    manual_tasks:
+      - Confirm the recipient is eligible for the service
+      - Inspect for visible damage, prohibited items, or special handling labels
+    automation_opportunities:
+      - Create a timestamped intake record from staff-entered details
+      - Flag unmatched recipients for manual resolution
+    suggested_tool_ids:
+      - paperless-ngx
+    risks:
+      - Accepting restricted items can create safety or legal exposure
+      - Labels and package images contain personal information
+  - id: secure-and-notify
+    name: Secure and notify
+    description: Staff place the item in the correct controlled area and notify the intended recipient without exposing unnecessary details.
+    manual_tasks:
+      - Store items according to size, sensitivity, and handling requirements
+      - Resolve ambiguous names or delivery damage with the carrier or recipient
+    automation_opportunities:
+      - Send an approved notification after staff confirm storage
+      - Remind staff about items approaching the local holding limit
+    suggested_tool_ids:
+      - paperless-ngx
+      - stirling-pdf
+    risks:
+      - A notification sent to the wrong person can disclose mail metadata
+  - id: release-or-dispose
+    name: Release or dispose
+    description: Staff verify the collector, record release, and apply a documented return or disposal decision to unclaimed items.
+    manual_tasks:
+      - Verify recipient or delegate authority before handover
+      - Approve return, forwarding, or disposal under local rules
+    automation_opportunities:
+      - Surface collection history to authorized staff
+      - Produce an overdue-item list for human action
+    suggested_tool_ids:
+      - paperless-ngx
+    risks:
+      - Automated disposal decisions can destroy property or regulated correspondence
+success_metrics:
+  - Percentage of accepted items with complete custody records
+  - Median time from receipt to recipient notification
+  - Number of misreleased, missing, or improperly stored items
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

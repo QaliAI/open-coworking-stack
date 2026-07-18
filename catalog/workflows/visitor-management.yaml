@@ -1,0 +1,55 @@
+schema_version: 1.0.0
+id: visitor-management
+name: Visitor management
+description: Welcome coworking visitors safely with host accountability, proportionate data collection, temporary access, and a reliable manual fallback.
+primary_roles:
+  - community-manager
+  - operations-manager
+  - facilities
+stages:
+  - id: pre-register
+    name: Pre-register when appropriate
+    description: The host provides the minimum useful visit details and staff review special access, accessibility, or security needs.
+    manual_tasks:
+      - Confirm the host is responsible and available
+      - Review unusual group, delivery, accessibility, or after-hours requests
+    automation_opportunities:
+      - Send approved arrival instructions and a privacy notice
+      - Alert the host shortly before the expected arrival
+    suggested_tool_ids: []
+    risks:
+      - Collecting unnecessary visitor data increases privacy and security exposure
+  - id: check-in
+    name: Check in and orient
+    description: Staff verify the host relationship, explain relevant safety rules, and issue only the temporary access needed for the visit.
+    manual_tasks:
+      - Confirm the visitor with the host or approved list
+      - Explain exits, restricted areas, and who to contact for help
+    automation_opportunities:
+      - Present the expected-visitor record to reception staff
+      - Prepare a temporary badge or guest-network instruction for approval
+    suggested_tool_ids:
+      - opnsense
+      - unifi-network
+    risks:
+      - A pre-registration record is not proof that the arriving person is authorized
+      - Guest connectivity can expose internal networks if segmentation is wrong
+  - id: checkout
+    name: Check out and account for visitors
+    description: Staff or the host confirm departure, recover temporary property, and follow the local response process for exceptions.
+    manual_tasks:
+      - Recover badges, keys, or loaned equipment
+      - Investigate visitors not accounted for by the expected departure time
+    automation_opportunities:
+      - Remind the host about an open visit
+      - Produce an exception list rather than automatically escalating
+    suggested_tool_ids: []
+    risks:
+      - Automatic checkout can conceal a visitor who remains on site
+success_metrics:
+  - Percentage of visits with a confirmed responsible host
+  - Median staffed check-in time
+  - Number of temporary credentials not recovered or expired on time
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

@@ -1,0 +1,109 @@
+schema_version: 1.0.0
+id: chatwoot
+name: Chatwoot
+tagline: Open-source customer engagement for website chat and shared inboxes
+description: Chatwoot provides shared inboxes across chat, email, and social channels. Community and
+  sales teams use it to coordinate inbound enquiries without a single person owning a personal
+  inbox.
+status: active
+categories:
+  - helpdesk-support
+  - communication-chat
+  - community-engagement
+secondary_categories: []
+roles:
+  - community-manager
+  - sales-manager
+  - operations-manager
+workflows:
+  - tour-to-close
+  - member-onboarding
+  - incident-response
+problems:
+  - improve-member-experience
+  - grow-pipeline
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: MIT
+  source_url: https://github.com/chatwoot/chatwoot
+  notes: MIT core with commercial cloud and enterprise features.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Self-host free core; Chatwoot cloud is paid. Check official pricing for seats/channels.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.chatwoot.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Install Chatwoot, connect website widget on a staging page, and handle
+    enquiries for one week with two agents.
+homepage: https://www.chatwoot.com/
+repository: https://github.com/chatwoot/chatwoot
+documentation: https://www.chatwoot.com/docs
+links:
+  - label: Homepage
+    url: https://www.chatwoot.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/chatwoot/chatwoot
+    kind: repo
+  - label: Documentation
+    url: https://www.chatwoot.com/docs
+    kind: docs
+  - label: Pricing
+    url: https://www.chatwoot.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Shared handling of website chat
+  - Reducing lost emails in personal inboxes
+  - Labeling sales vs support conversations
+human_oversight_still_needed:
+  - SLA expectations
+  - PII in chat transcripts
+  - Handoff rules after hours
+data_privacy:
+  data_held:
+    - conversations
+    - contacts
+    - agent notes
+    - attachments
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: MIT core with commercial cloud and enterprise features.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/chatwoot.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.chatwoot.com/
+    - https://github.com/chatwoot/chatwoot
+    - https://www.chatwoot.com/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 86

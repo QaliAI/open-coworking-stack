@@ -1,0 +1,101 @@
+schema_version: 1.0.0
+id: posthog
+name: PostHog
+tagline: Product analytics for custom member portals and apps
+description: PostHog is an open-core product analytics suite. Teams building custom portals use it
+  for funnels, session replay (carefully), and feature flags.
+status: active
+categories:
+  - analytics-bi
+  - developer-platform
+secondary_categories: []
+roles:
+  - technical-operator
+  - marketing
+  - owner-operator
+workflows:
+  - reporting-kpis
+  - marketing-campaigns
+problems:
+  - measure-utilization
+  - improve-member-experience
+  - privacy-compliance
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: MIT
+  source_url: https://github.com/PostHog/posthog
+  notes: MIT core with paid cloud/enterprise features.
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Generous free cloud tier historically; self-host free. Verify current pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://posthog.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Instrument one custom booking flow with 5 key events; review funnel drop-off weekly.
+homepage: https://posthog.com/
+repository: https://github.com/PostHog/posthog
+documentation: https://posthog.com/docs
+links:
+  - label: Homepage
+    url: https://posthog.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/PostHog/posthog
+    kind: repo
+  - label: Documentation
+    url: https://posthog.com/docs
+    kind: docs
+  - label: Pricing
+    url: https://posthog.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Product analytics
+  - Feature flags for portals
+human_oversight_still_needed:
+  - Session replay privacy
+  - PII scrubbing
+data_privacy:
+  data_held:
+    - events
+    - person profiles
+    - recordings if enabled
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: MIT core with paid cloud/enterprise features.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://posthog.com/
+    - https://github.com/PostHog/posthog
+    - https://posthog.com/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 73

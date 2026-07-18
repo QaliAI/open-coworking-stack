@@ -1,0 +1,59 @@
+schema_version: 1.0.0
+id: commercial-hybrid
+name: Commercial Hybrid
+tagline: Vertical coworking SaaS plus open tools for cost control
+description: Use a purpose-built coworking platform for memberships/billing while surrounding it
+  with open tools for wiki, monitoring, automation, and analytics to reduce add-on spend.
+audience_roles:
+  - owner-operator
+  - operations-manager
+  - community-manager
+  - multi-location-operator
+  - finance
+problems_solved:
+  - automate-billing
+  - improve-member-experience
+  - integrate-stack
+  - reduce-software-cost
+workflows:
+  - member-onboarding
+  - invoice-collections
+  - room-booking
+  - access-provisioning
+  - reporting-kpis
+monthly_cash_budget_band: under-500
+self_host_heavy: false
+components:
+  - tool_id: cobot
+    role_in_stack: Memberships and billing system of record
+    required: true
+  - tool_id: stripe
+    role_in_stack: Payments
+    required: true
+  - tool_id: bookstack
+    role_in_stack: Internal SOPs
+    required: true
+  - tool_id: n8n
+    role_in_stack: Integration glue (license review required)
+    required: false
+  - tool_id: uptime-kuma
+    role_in_stack: Monitor public pages and portals
+    required: true
+  - tool_id: metabase
+    role_in_stack: Operational dashboards from exports/DB
+    required: false
+  - tool_id: google-workspace
+    role_in_stack: Staff email/docs
+    required: false
+assumptions:
+  - Budget exists for vertical SaaS.
+  - Data export tested quarterly.
+risks:
+  - Vendor lock-in on membership system of record.
+  - Automation license constraints with n8n.
+getting_started:
+  - Select vertical SaaS via pilot.
+  - Document system-of-record boundaries.
+  - Automate only 1–2 high-ROI syncs.
+verification:
+  last_reviewed: 2026-07-17

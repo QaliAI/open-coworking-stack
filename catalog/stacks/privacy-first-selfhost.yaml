@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: privacy-first-selfhost
+name: Privacy-First Self-Host
+tagline: Identity, files, analytics, and secrets under operator control
+description: 'For operators who prioritize data control: SSO, file sync, privacy-friendly analytics,
+  team chat, and secrets—with explicit backup and access review practices.'
+audience_roles:
+  - technical-operator
+  - owner-operator
+  - operations-manager
+problems_solved:
+  - self-host-for-data-control
+  - privacy-compliance
+  - secure-door-access
+  - centralize-knowledge
+workflows:
+  - access-provisioning
+  - member-offboarding
+  - compliance-review
+  - backup-restore-drill
+monthly_cash_budget_band: under-200
+self_host_heavy: true
+components:
+  - tool_id: authentik
+    role_in_stack: SSO / IdP
+    required: true
+  - tool_id: nextcloud
+    role_in_stack: Files and internal collab
+    required: true
+  - tool_id: vaultwarden
+    role_in_stack: Password vault
+    required: true
+  - tool_id: umami
+    role_in_stack: Privacy-friendly analytics
+    required: true
+  - tool_id: mattermost
+    role_in_stack: Staff messaging
+    required: false
+  - tool_id: wireguard
+    role_in_stack: Admin VPN
+    required: true
+  - tool_id: restic
+    role_in_stack: Backups
+    required: true
+assumptions:
+  - Technical operator available weekly.
+  - Legal counsel reviews privacy notices.
+risks:
+  - SSO outage blocks many apps—need break-glass accounts.
+  - Self-host compliance still requires policies, not only tools.
+getting_started:
+  - Deploy Authentik and protect one app.
+  - Move staff files to Nextcloud with backup.
+  - Enforce VPN for admin UIs.
+verification:
+  last_reviewed: 2026-07-17

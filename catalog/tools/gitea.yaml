@@ -1,0 +1,94 @@
+schema_version: 1.0.0
+id: gitea
+name: Gitea
+tagline: Lightweight self-hosted Git service for runbooks-as-code
+description: Gitea hosts Git repositories. Operators keep infrastructure-as-code, SOP markdown, and
+  automation scripts under version control privately.
+status: active
+categories:
+  - developer-platform
+  - knowledge-base
+secondary_categories: []
+roles:
+  - technical-operator
+  - consultant-implementer
+workflows:
+  - multi-site-rollout
+  - backup-restore-drill
+  - compliance-review
+problems:
+  - self-host-for-data-control
+  - centralize-knowledge
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/go-gitea/gitea
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; storage and backup matter.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Host infra Compose files and docs in a private Gitea repo with 2FA for all admins.
+homepage: https://about.gitea.com/
+repository: https://github.com/go-gitea/gitea
+documentation: https://docs.gitea.com/
+links:
+  - label: Homepage
+    url: https://about.gitea.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/go-gitea/gitea
+    kind: repo
+  - label: Documentation
+    url: https://docs.gitea.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Private git hosting
+  - Issue tracking for IT work
+human_oversight_still_needed:
+  - Access control
+  - Backup of repos
+data_privacy:
+  data_held:
+    - git data
+    - issues
+    - users
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://about.gitea.com/
+    - https://github.com/go-gitea/gitea
+    - https://docs.gitea.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 77

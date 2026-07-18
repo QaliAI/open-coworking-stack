@@ -1,0 +1,45 @@
+import { z } from 'zod';
+import { ProblemSchema, RoleSchema, WorkflowSchema } from './enums.js';
+import { IsoDateSchema } from './date.js';
+
+export const StackComponentSchema = z.object({
+  tool_id: z.string().min(1),
+  role_in_stack: z.string().min(1),
+  required: z.boolean().default(true),
+  notes: z.string().optional(),
+});
+
+export const StackSchema = z
+  .object({
+    schema_version: z.literal('1.0.0'),
+    id: z
+      .string()
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+      .min(2)
+      .max(64),
+    name: z.string().min(1),
+    tagline: z.string().min(1),
+    description: z.string().min(40),
+    audience_roles: z.array(RoleSchema).min(1),
+    problems_solved: z.array(ProblemSchema).min(1),
+    workflows: z.array(WorkflowSchema).min(1),
+    monthly_cash_budget_band: z.enum([
+      'near-zero',
+      'under-50',
+      'under-200',
+      'under-500',
+      'flexible',
+    ]),
+    self_host_heavy: z.boolean().default(false),
+    components: z.array(StackComponentSchema).min(2),
+    assumptions: z.array(z.string()).min(1),
+    risks: z.array(z.string()).min(1),
+    getting_started: z.array(z.string()).min(1),
+    verification: z.object({
+      last_reviewed: IsoDateSchema,
+      notes: z.string().optional(),
+    }),
+  })
+  .strict();
+
+export type Stack = z.infer<typeof StackSchema>;

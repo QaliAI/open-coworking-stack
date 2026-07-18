@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: firefly-iii
+name: Firefly III
+tagline: Personal/small-org finance manager for cashflow visibility
+description: Firefly III is a double-entry finance manager. Solo operators sometimes track space
+  cashflow here while accountants own official books.
+status: active
+categories:
+  - accounting
+secondary_categories: []
+roles:
+  - owner-operator
+  - finance
+workflows:
+  - reporting-kpis
+  - invoice-collections
+problems:
+  - replace-spreadsheets
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/firefly-iii/firefly-iii
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free self-hosted; not a replacement for statutory accounting software in many jurisdictions.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Import three months of business transactions and categorize membership vs facilities costs.
+homepage: https://www.firefly-iii.org/
+repository: https://github.com/firefly-iii/firefly-iii
+documentation: https://docs.firefly-iii.org/
+links:
+  - label: Homepage
+    url: https://www.firefly-iii.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/firefly-iii/firefly-iii
+    kind: repo
+  - label: Documentation
+    url: https://docs.firefly-iii.org/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Cashflow categorization
+  - Budget envelopes for ops
+human_oversight_still_needed:
+  - Not a substitute for accountant tools where required
+  - Data sensitivity
+data_privacy:
+  data_held:
+    - accounts
+    - transactions
+    - budgets
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/firefly-iii.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.firefly-iii.org/
+    - https://github.com/firefly-iii/firefly-iii
+    - https://docs.firefly-iii.org/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 68

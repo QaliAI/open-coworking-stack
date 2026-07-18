@@ -1,0 +1,118 @@
+schema_version: 1.0.0
+id: odoo-community
+name: Odoo Community
+tagline: Modular open-core ERP/CRM used by some flexible-workspace operators
+description: Odoo Community provides CRM, invoicing, website, and project modules under LGPL, with a
+  large proprietary Enterprise edition. Operators sometimes assemble membership-like processes with
+  careful module choices and partner support.
+status: active
+categories:
+  - membership-crm
+  - billing-payments
+  - website-cms
+  - accounting
+secondary_categories: []
+roles:
+  - owner-operator
+  - sales-manager
+  - finance
+  - consultant-implementer
+workflows:
+  - tour-to-close
+  - invoice-collections
+  - member-onboarding
+  - marketing-campaigns
+problems:
+  - grow-pipeline
+  - automate-billing
+  - replace-spreadsheets
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: LGPL-3.0-only
+  source_url: https://github.com/odoo/odoo
+  notes:
+    Community is LGPL; Enterprise is proprietary. Do not assume Community includes all marketing
+    screenshots.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary:
+    Community free to self-host; Odoo Online/Enterprise and many apps are paid. Implementation
+    partner costs often dominate.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.odoo.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Install Community with CRM + Invoicing only; run a fake pipeline of 10
+    leads before enabling more modules.
+homepage: https://www.odoo.com/
+repository: https://github.com/odoo/odoo
+documentation: https://www.odoo.com/documentation/
+links:
+  - label: Homepage
+    url: https://www.odoo.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/odoo/odoo
+    kind: repo
+  - label: Documentation
+    url: https://www.odoo.com/documentation/
+    kind: docs
+  - label: Pricing
+    url: https://www.odoo.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Tracking leads and membership opportunities
+  - Issuing invoices
+  - Basic website/CMS for smaller sites
+human_oversight_still_needed:
+  - Module sprawl control
+  - Community vs Enterprise feature gaps
+  - Accounting localization
+data_privacy:
+  data_held:
+    - CRM records
+    - invoices
+    - products
+    - website content
+    - users
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Community is LGPL; Enterprise is proprietary. Do not assume Community includes all
+    marketing screenshots.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/odoo-community.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.odoo.com/
+    - https://github.com/odoo/odoo
+    - https://www.odoo.com/documentation/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 82

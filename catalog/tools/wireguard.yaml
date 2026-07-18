@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: wireguard
+name: WireGuard
+tagline: Modern VPN for secure remote admin and multi-site links
+description: WireGuard is a simple, high-performance VPN protocol widely implemented. Technical
+  operators use it for admin access to on-prem systems and site-to-site links.
+status: active
+categories:
+  - network-wifi
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - multi-location-operator
+workflows:
+  - multi-site-rollout
+  - incident-response
+  - access-provisioning
+problems:
+  - multi-location-consistency
+  - secure-door-access
+  - privacy-compliance
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-2.0-only
+  source_url: https://www.wireguard.com/
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; endpoints and key management are operational work.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Create a VPN peer for one admin laptop to reach staging services only.
+homepage: https://www.wireguard.com/
+repository: https://git.zx2c4.com/wireguard-linux/
+documentation: https://www.wireguard.com/
+links:
+  - label: Homepage
+    url: https://www.wireguard.com/
+    kind: homepage
+  - label: Source repository
+    url: https://git.zx2c4.com/wireguard-linux/
+    kind: repo
+  - label: Documentation
+    url: https://www.wireguard.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Secure remote administration
+  - Site interconnect
+human_oversight_still_needed:
+  - Key rotation
+  - Device inventory
+  - Split-tunnel policy
+data_privacy:
+  data_held:
+    - public keys
+    - peer IPs
+    - handshake metadata
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.wireguard.com/
+    - https://git.zx2c4.com/wireguard-linux/
+    - https://www.wireguard.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 82

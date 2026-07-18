@@ -1,0 +1,95 @@
+schema_version: 1.0.0
+id: brevo
+name: Brevo
+tagline: Freemium email/SMS platform often used as SMTP for self-hosted apps
+description: Brevo (formerly Sendinblue) provides email marketing and transactional SMTP. Frequently
+  pairs with listmonk, Ghost, or CRMs as the delivery layer.
+status: active
+categories:
+  - email-marketing
+secondary_categories: []
+roles:
+  - marketing
+  - technical-operator
+  - community-manager
+workflows:
+  - marketing-campaigns
+  - member-onboarding
+problems:
+  - grow-pipeline
+  - integrate-stack
+  - reduce-software-cost
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://www.brevo.com/
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Free tier with daily limits historically; paid plans available. Verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.brevo.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Use as SMTP for listmonk transactional/campaign mail on a warmed domain.
+homepage: https://www.brevo.com/
+documentation: https://help.brevo.com/
+links:
+  - label: Homepage
+    url: https://www.brevo.com/
+    kind: homepage
+  - label: Documentation
+    url: https://help.brevo.com/
+    kind: docs
+  - label: Pricing
+    url: https://www.brevo.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - SMTP delivery
+  - Email campaigns
+  - Optional SMS
+human_oversight_still_needed:
+  - Sending limits
+  - SMS compliance
+  - Domain authentication
+data_privacy:
+  data_held:
+    - contacts
+    - email events
+    - templates
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.brevo.com/
+    - https://help.brevo.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 79

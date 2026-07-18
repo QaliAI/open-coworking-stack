@@ -1,0 +1,89 @@
+services:
+  db:
+    image: ${POSTGRES_IMAGE:?Set POSTGRES_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: ${PAPERLESS_DB_PASSWORD:?Set PAPERLESS_DB_PASSWORD}
+    volumes:
+      - paperless_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U paperless -d paperless']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  broker:
+    image: ${REDIS_IMAGE:?Set REDIS_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${PAPERLESS_REDIS_PASSWORD:?Set PAPERLESS_REDIS_PASSWORD}
+    command: ['sh', '-c', 'exec redis-server --requirepass "$$REDIS_PASSWORD"']
+    volumes:
+      - paperless_redis:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - backend
+
+  webserver:
+    image: ${PAPERLESS_IMAGE:?Set PAPERLESS_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      PAPERLESS_REDIS: redis://:${PAPERLESS_REDIS_PASSWORD:?Set PAPERLESS_REDIS_PASSWORD}@broker:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_DBNAME: paperless
+      PAPERLESS_DBUSER: paperless
+      PAPERLESS_DBPASS: ${PAPERLESS_DB_PASSWORD:?Set PAPERLESS_DB_PASSWORD}
+      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY:?Set PAPERLESS_SECRET_KEY}
+      PAPERLESS_ADMIN_USER: ${PAPERLESS_ADMIN_USER:?Set PAPERLESS_ADMIN_USER}
+      PAPERLESS_ADMIN_PASSWORD: ${PAPERLESS_ADMIN_PASSWORD:?Set PAPERLESS_ADMIN_PASSWORD}
+      PAPERLESS_URL: ${PAPERLESS_URL:-http://localhost:8000}
+      PAPERLESS_TIME_ZONE: ${PAPERLESS_TIME_ZONE:-UTC}
+      PAPERLESS_OCR_LANGUAGE: ${PAPERLESS_OCR_LANGUAGE:-eng}
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:${PAPERLESS_PORT:-8000}:8000'
+    volumes:
+      - paperless_data:/usr/src/paperless/data
+      - paperless_media:/usr/src/paperless/media
+      - paperless_export:/usr/src/paperless/export
+      - paperless_consume:/usr/src/paperless/consume
+    depends_on:
+      db:
+        condition: service_healthy
+      broker:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl --fail --silent --show-error --location --max-time 2 http://127.0.0.1:8000 >/dev/null',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 2m
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  paperless_data:
+  paperless_media:
+  paperless_export:
+  paperless_consume:
+  paperless_db:
+  paperless_redis:
+
+networks:
+  frontend:
+  backend:
+    internal: true

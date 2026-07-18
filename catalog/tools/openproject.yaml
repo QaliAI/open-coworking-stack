@@ -1,0 +1,101 @@
+schema_version: 1.0.0
+id: openproject
+name: OpenProject
+tagline: Classic open-source project management with timelines
+description: OpenProject supports work packages, Gantt charts, and documentation. Useful for larger
+  fit-out projects and multi-location rollouts.
+status: active
+categories:
+  - project-work-management
+secondary_categories: []
+roles:
+  - operations-manager
+  - facilities
+  - multi-location-operator
+  - consultant-implementer
+workflows:
+  - facility-maintenance
+  - multi-site-rollout
+problems:
+  - multi-location-consistency
+  - replace-spreadsheets
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: GPL-3.0-only
+  source_url: https://github.com/opf/openproject
+  notes: Community GPL; Enterprise is commercial.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Community free self-host; Enterprise paid. Verify pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.openproject.org/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Plan a small renovation with work packages and a public project wiki section for staff.
+homepage: https://www.openproject.org/
+repository: https://github.com/opf/openproject
+documentation: https://www.openproject.org/docs/
+links:
+  - label: Homepage
+    url: https://www.openproject.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/opf/openproject
+    kind: repo
+  - label: Documentation
+    url: https://www.openproject.org/docs/
+    kind: docs
+  - label: Pricing
+    url: https://www.openproject.org/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Structured project plans
+  - Stakeholder status reporting
+human_oversight_still_needed:
+  - Enterprise feature needs
+  - User training
+data_privacy:
+  data_held:
+    - projects
+    - work packages
+    - time entries
+    - wiki
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Community GPL; Enterprise is commercial.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.openproject.org/
+    - https://github.com/opf/openproject
+    - https://www.openproject.org/docs/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

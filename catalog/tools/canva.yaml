@@ -1,0 +1,97 @@
+schema_version: 1.0.0
+id: canva
+name: Canva
+tagline: Freemium design for non-designers producing space marketing
+description: Canva enables quick social graphics and posters. Community managers use it daily; brand
+  kit governance matters as teams grow.
+status: active
+categories:
+  - digital-signage
+  - community-engagement
+secondary_categories: []
+roles:
+  - community-manager
+  - marketing
+  - event-coordinator
+workflows:
+  - marketing-campaigns
+  - event-lifecycle
+  - community-programming
+problems:
+  - run-events
+  - grow-pipeline
+  - reduce-manual-admin
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://www.canva.com/
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Free tier available; Pro/Teams paid. Verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.canva.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: trivial
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Create templates for weekly social posts; measure time-to-publish vs starting from scratch.
+homepage: https://www.canva.com/
+documentation: https://www.canva.com/help/
+links:
+  - label: Homepage
+    url: https://www.canva.com/
+    kind: homepage
+  - label: Documentation
+    url: https://www.canva.com/help/
+    kind: docs
+  - label: Pricing
+    url: https://www.canva.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Social graphics
+  - Event posters
+  - Simple video
+human_oversight_still_needed:
+  - Brand consistency
+  - License of stock assets
+  - Account ownership
+data_privacy:
+  data_held:
+    - designs
+    - brand kits
+    - team members
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.canva.com/
+    - https://www.canva.com/help/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 80

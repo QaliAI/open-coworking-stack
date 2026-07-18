@@ -1,0 +1,119 @@
+schema_version: 1.0.0
+id: nextcloud
+name: Nextcloud
+tagline: Self-hosted files, calendars, Talk, and Forms for operator teams
+description: Nextcloud is a widely deployed self-hosted collaboration suite. Coworking operators use
+  it for internal file sharing, staff calendars, member document handoff, and lightweight forms
+  without sending every file to a consumer cloud drive.
+status: active
+categories:
+  - file-storage
+  - communication-chat
+  - forms-surveys
+secondary_categories: []
+roles:
+  - operations-manager
+  - technical-operator
+  - community-manager
+  - owner-operator
+workflows:
+  - member-onboarding
+  - community-programming
+  - backup-restore-drill
+problems:
+  - self-host-for-data-control
+  - centralize-knowledge
+  - reduce-software-cost
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/nextcloud/server
+  notes: Server is AGPL; enterprise features and some apps are commercial.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Community edition is free to self-host; enterprise support and some features are paid.
+    Hosted Nextcloud vendors charge subscriptions.
+  self_host_cost_notes: Budget VPS/CPU, object storage or disk, backups, and TLS certificates.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://nextcloud.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - linux
+    - docker
+    - storage
+    - backup
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy Nextcloud via Docker on a staging VPS, sync one ops shared
+    folder, and complete a backup/restore test with two staff accounts.
+homepage: https://nextcloud.com/
+repository: https://github.com/nextcloud/server
+documentation: https://docs.nextcloud.com/
+links:
+  - label: Homepage
+    url: https://nextcloud.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/nextcloud/server
+    kind: repo
+  - label: Documentation
+    url: https://docs.nextcloud.com/
+    kind: docs
+  - label: Pricing
+    url: https://nextcloud.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Centralizing staff SOPs and shared member templates
+  - Reducing email attachments for internal handoffs
+  - Coordinating staff calendars for tours and events
+human_oversight_still_needed:
+  - Access control reviews for member vs staff folders
+  - Backup verification and retention policy
+  - App enablement decisions (Talk, Forms, OnlyOffice connectors)
+data_privacy:
+  data_held:
+    - files
+    - calendars
+    - contacts
+    - user accounts
+    - form responses
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Server is AGPL; enterprise features and some apps are commercial.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+compose_pack: compose/nextcloud
+guide_status: full
+guide_path: guides/tools/nextcloud.md
+tags:
+  - files
+  - collaboration
+  - self-hosted
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://nextcloud.com/
+    - https://github.com/nextcloud/server
+    - https://docs.nextcloud.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 92

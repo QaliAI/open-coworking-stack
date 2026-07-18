@@ -1,0 +1,49 @@
+name: Security concern (catalog)
+description: Report a public, operator-relevant security concern about a listed upstream tool.
+title: '[Catalog security]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for already public information that affects catalog evaluation. Report undisclosed vulnerabilities to the upstream project. For vulnerabilities in this repository, follow SECURITY.md privately. Do not include exploit details, credentials, or member data.
+
+  - type: input
+    id: tool
+    attributes:
+      label: Catalog tool
+      placeholder: Tool name or catalog ID
+    validations:
+      required: true
+
+  - type: input
+    id: advisory
+    attributes:
+      label: Public primary source
+      description: Link an official advisory, CVE record, or upstream security notice.
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Coworking operator relevance
+      description: Explain affected deployment modes or versions and the catalog text that may need updating.
+    validations:
+      required: true
+
+  - type: textarea
+    id: remediation
+    attributes:
+      label: Public remediation guidance
+      description: Cite official upgrade or mitigation guidance without adding exploit instructions.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Disclosure checks
+      options:
+        - label: The concern and cited details are already public.
+          required: true
+        - label: I did not include exploit details, credentials, private data, or an undisclosed vulnerability.
+          required: true

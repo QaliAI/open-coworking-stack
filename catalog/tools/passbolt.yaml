@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+id: passbolt
+name: Passbolt
+tagline: Team password manager with open-source edition
+description: Passbolt focuses on team password sharing with audit trails. Ops teams manage shared
+  credentials for facilities and vendors.
+status: active
+categories:
+  - password-secrets
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+workflows:
+  - member-offboarding
+  - vendor-offboarding
+  - incident-response
+problems:
+  - privacy-compliance
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/passbolt/passbolt_api
+  notes: CE AGPL; Pro features commercial.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: CE free self-host; Pro/Cloud paid. Verify pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.passbolt.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Migrate 20 shared staff credentials into Passbolt CE and revoke one departing contractor.
+homepage: https://www.passbolt.com/
+repository: https://github.com/passbolt/passbolt_api
+documentation: https://www.passbolt.com/docs
+links:
+  - label: Homepage
+    url: https://www.passbolt.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/passbolt/passbolt_api
+    kind: repo
+  - label: Documentation
+    url: https://www.passbolt.com/docs
+    kind: docs
+  - label: Pricing
+    url: https://www.passbolt.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Team password sharing
+  - Access auditability
+human_oversight_still_needed:
+  - Browser extension trust
+  - Recovery procedures
+data_privacy:
+  data_held:
+    - encrypted secrets
+    - users
+    - audit logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: CE AGPL; Pro features commercial.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.passbolt.com/
+    - https://github.com/passbolt/passbolt_api
+    - https://www.passbolt.com/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 74

@@ -1,0 +1,101 @@
+schema_version: 1.0.0
+id: formbricks
+name: Formbricks
+tagline: Open-source surveys and experience management
+description: Formbricks helps collect product/experience surveys. Community managers gather NPS-like
+  feedback from members and event attendees.
+status: active
+categories:
+  - forms-surveys
+  - community-engagement
+secondary_categories: []
+roles:
+  - community-manager
+  - marketing
+  - owner-operator
+workflows:
+  - community-programming
+  - reporting-kpis
+  - event-lifecycle
+problems:
+  - improve-member-experience
+  - measure-utilization
+  - reduce-software-cost
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/formbricks/formbricks
+  notes: Open core with commercial features.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Self-host free core; cloud paid. Verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://formbricks.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Run a 5-question member satisfaction survey for one site for 30 days.
+homepage: https://formbricks.com/
+repository: https://github.com/formbricks/formbricks
+documentation: https://formbricks.com/docs
+links:
+  - label: Homepage
+    url: https://formbricks.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/formbricks/formbricks
+    kind: repo
+  - label: Documentation
+    url: https://formbricks.com/docs
+    kind: docs
+  - label: Pricing
+    url: https://formbricks.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Member feedback collection
+  - Event feedback forms
+human_oversight_still_needed:
+  - Survey fatigue
+  - Anonymity promises
+data_privacy:
+  data_held:
+    - responses
+    - user identifiers if linked
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Open core with commercial features.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://formbricks.com/
+    - https://github.com/formbricks/formbricks
+    - https://formbricks.com/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 72

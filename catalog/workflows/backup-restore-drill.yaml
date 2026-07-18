@@ -1,0 +1,59 @@
+schema_version: 1.0.0
+id: backup-restore-drill
+name: Backup and restore drill
+description: Prove that critical coworking data and configurations can be restored safely through scheduled, isolated drills with named human approval and evidence.
+primary_roles:
+  - technical-operator
+  - owner-operator
+  - operations-manager
+stages:
+  - id: scope-and-approve
+    name: Scope and approve the drill
+    description: System and data owners select a service, recovery objective, restore point, isolated destination, and stop conditions.
+    manual_tasks:
+      - Confirm data sensitivity, dependencies, owners, and acceptable test exposure
+      - Approve the test plan, isolation controls, and rollback or cleanup steps
+    automation_opportunities:
+      - Schedule drill reminders and collect required approvals
+      - Inventory recent backup records for owner review
+    suggested_tool_ids:
+      - restic
+      - borgbackup
+    risks:
+      - Testing with production destinations can overwrite live data or send messages
+  - id: restore-and-validate
+    name: Restore and validate
+    description: Technical staff restore into the approved isolated environment and owners verify usable records and representative coworking operations.
+    manual_tasks:
+      - Monitor the restore and stop if isolation or integrity is uncertain
+      - Validate representative member, booking, billing, and configuration records
+    automation_opportunities:
+      - Execute a reviewed restore procedure in the isolated target
+      - Capture timestamps, logs, checksums, and error output
+    suggested_tool_ids:
+      - restic
+      - borgbackup
+      - portainer-ce
+    risks:
+      - File restoration alone may not prove application consistency or usability
+  - id: clean-and-improve
+    name: Clean up and improve
+    description: Owners confirm test-data destruction, record measured recovery results, and assign corrective actions before closing the drill.
+    manual_tasks:
+      - Verify that restored sensitive data and temporary credentials are removed
+      - Review gaps and approve changes to recovery procedures or objectives
+    automation_opportunities:
+      - Track corrective actions and the next drill date
+      - Alert owners if expected backup signals disappear
+    suggested_tool_ids:
+      - uptime-kuma
+      - forgejo
+    risks:
+      - Retained test copies can become an unmonitored source of sensitive data
+success_metrics:
+  - Percentage of scoped restores completed within the approved recovery objective
+  - Percentage of representative records and functions verified by their owners
+  - Corrective actions completed before the next scheduled drill
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of recovery objectives, data handling, isolation, dependencies, staffing, and tool fit before use.

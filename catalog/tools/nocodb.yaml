@@ -1,0 +1,97 @@
+schema_version: 1.0.0
+id: nocodb
+name: NocoDB
+tagline: Turn SQL databases into smart spreadsheets
+description: NocoDB opens MySQL/Postgres tables with a spreadsheet UI and APIs. Useful when
+  operators already have data in SQL and need lighter UX for staff.
+status: active
+categories:
+  - developer-platform
+  - project-work-management
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+  - consultant-implementer
+workflows:
+  - reporting-kpis
+  - facility-maintenance
+problems:
+  - replace-spreadsheets
+  - integrate-stack
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/nocodb/nocodb
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free self-hosted; enterprise offerings may exist—verify officially.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Connect NocoDB to a staging Postgres with non-production data and grant
+    one ops user filtered views.
+homepage: https://nocodb.com/
+repository: https://github.com/nocodb/nocodb
+documentation: https://docs.nocodb.com/
+links:
+  - label: Homepage
+    url: https://nocodb.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/nocodb/nocodb
+    kind: repo
+  - label: Documentation
+    url: https://docs.nocodb.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Staff-friendly DB access
+  - Quick internal grids
+human_oversight_still_needed:
+  - Danger of live DB edits
+  - Permission model
+data_privacy:
+  data_held:
+    - connected DB contents
+    - view metadata
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/nocodb.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://nocodb.com/
+    - https://github.com/nocodb/nocodb
+    - https://docs.nocodb.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 68

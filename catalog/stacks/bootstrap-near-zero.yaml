@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: bootstrap-near-zero
+name: Bootstrap Near-Zero Cash Stack
+tagline: Self-host the minimum viable operator toolkit on one VPS
+description: 'A starting architecture for independent operators who can trade time for money:
+  reverse proxy, password vault, wiki, uptime monitoring, backups, and a simple CRM—before buying
+  vertical coworking SaaS.'
+audience_roles:
+  - owner-operator
+  - technical-operator
+  - operations-manager
+problems_solved:
+  - reduce-software-cost
+  - self-host-for-data-control
+  - replace-spreadsheets
+  - disaster-recovery
+workflows:
+  - member-onboarding
+  - tour-to-close
+  - backup-restore-drill
+  - incident-response
+monthly_cash_budget_band: under-50
+self_host_heavy: true
+components:
+  - tool_id: caddy
+    role_in_stack: TLS reverse proxy
+    required: true
+  - tool_id: vaultwarden
+    role_in_stack: Staff secrets
+    required: true
+  - tool_id: bookstack
+    role_in_stack: SOPs and member FAQ
+    required: true
+  - tool_id: uptime-kuma
+    role_in_stack: Uptime monitoring
+    required: true
+  - tool_id: restic
+    role_in_stack: Encrypted backups
+    required: true
+  - tool_id: espocrm
+    role_in_stack: Tour pipeline CRM
+    required: true
+  - tool_id: listmonk
+    role_in_stack: Member newsletter (with SMTP provider)
+    required: false
+  - tool_id: freescout
+    role_in_stack: Shared support inbox
+    required: false
+assumptions:
+  - At least one person can maintain Linux/Docker basics.
+  - Domain DNS and a small VPS (~€5–20/mo class) are available—exact prices unverified and regional.
+  - Payments still use a PSP like Stripe; this stack does not replace banking.
+risks:
+  - Single-VPS outage takes many tools offline—use offsite backups.
+  - Self-host time cost can exceed SaaS fees if unskilled.
+  - Email deliverability requires a commercial SMTP provider for most operators.
+getting_started:
+  - Buy/reserve a domain and VPS; configure DNS.
+  - Deploy Caddy + Vaultwarden + BookStack + Uptime Kuma via Compose packs.
+  - Prove restore from Restic before migrating real member PII.
+  - Add EspoCRM only after staff agree on pipeline stages.
+verification:
+  last_reviewed: 2026-07-17
+  notes: Reference architecture, not a turnkey product.

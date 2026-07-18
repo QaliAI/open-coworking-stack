@@ -1,0 +1,263 @@
+---
+import { readFile } from 'node:fs/promises';
+import {
+  licenseBadgeClass,
+  parseCatalogExport,
+  withBasePath,
+  type CatalogExport,
+} from '../utils/catalog';
+
+const dataUrl = new URL('../../public/data/catalog.json', import.meta.url);
+let catalog: CatalogExport;
+
+try {
+  const source = await readFile(dataUrl, 'utf8');
+  catalog = parseCatalogExport(JSON.parse(source));
+} catch (cause) {
+  const detail = cause instanceof Error ? cause.message : String(cause);
+  throw new Error(
+    `[DirectoryApp] Generated catalog data is missing or invalid (${detail}). Run pnpm generate before building the web app.`,
+    { cause },
+  );
+}
+
+const tools = catalog.tools;
+const categories = [...new Set(tools.flatMap((tool) => tool.categories))].sort();
+const licenses = [...new Set(tools.map((tool) => tool.license_class))].sort();
+const roles = [...new Set(tools.flatMap((tool) => tool.roles))].sort();
+const problems = [...new Set(tools.flatMap((tool) => tool.problems))].sort();
+const workflows = [...new Set(tools.flatMap((tool) => tool.workflows))].sort();
+const deployments = [...new Set(tools.flatMap((tool) => tool.deployment))].sort();
+const costs = [...new Set(tools.map((tool) => tool.cost_model))].sort();
+const verificationStatuses = [...new Set(tools.map((tool) => tool.verification_status))].sort();
+const guideStatuses = [...new Set(tools.map((tool) => tool.guide_status))].sort();
+const payload = JSON.stringify(tools).replaceAll('<', '\\u003c');
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="ocs-directory" data-ocs-directory>
+  <p class="ocs-count" aria-live="polite" aria-atomic="true">
+    Showing <span data-count>{tools.length}</span> of {tools.length} tools
+    {`(generated ${catalog.generated_at.slice(0, 10)})`}
+  </p>
+
+  <div class="ocs-filters" role="search" aria-label="Filter tools">
+    <label class="ocs-search-field">
+      Search
+      <input
+        type="search"
+        data-filter="q"
+        placeholder="Names, tags, workflows, or licenses"
+        autocomplete="off"
+      />
+    </label>
+    <label>
+      License class
+      <select data-filter="license">
+        <option value="">Any</option>
+        {licenses.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Category
+      <select data-filter="category">
+        <option value="">Any</option>
+        {categories.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Role
+      <select data-filter="role">
+        <option value="">Any</option>
+        {roles.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Problem
+      <select data-filter="problem">
+        <option value="">Any</option>
+        {problems.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Workflow
+      <select data-filter="workflow">
+        <option value="">Any</option>
+        {workflows.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Deployment
+      <select data-filter="deployment">
+        <option value="">Any</option>
+        {deployments.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Cost model
+      <select data-filter="cost">
+        <option value="">Any</option>
+        {costs.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Verification
+      <select data-filter="verification">
+        <option value="">Any</option>
+        {verificationStatuses.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      Guide
+      <select data-filter="guide">
+        <option value="">Any</option>
+        {guideStatuses.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <div class="ocs-filter-actions">
+      <button type="button" class="ocs-reset" data-reset>Reset filters</button>
+    </div>
+  </div>
+
+  <p class="ocs-no-results" data-no-results hidden>
+    No tools match these filters. Change a filter or reset all filters to see the full directory.
+  </p>
+
+  <div
+    class="ocs-table-wrap"
+    role="region"
+    aria-label="Filtered tool results. Scroll horizontally to view every column."
+    tabindex="0"
+  >
+    <table class="ocs-table">
+      <thead>
+        <tr>
+          <th scope="col">Tool</th>
+          <th scope="col">License</th>
+          <th scope="col">Categories</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Difficulty</th>
+          <th scope="col">Verification</th>
+          <th scope="col">Guide</th>
+        </tr>
+      </thead>
+      <tbody data-rows>
+        {
+          tools
+            .slice()
+            .sort((a, b) => b.rank_score - a.rank_score || a.name.localeCompare(b.name))
+            .map((tool) => (
+              <tr data-tool-id={tool.id}>
+                <td>
+                  <a href={withBasePath(`tools/generated/${tool.id}/`, base)}>
+                    <strong>{tool.name}</strong>
+                  </a>
+                  <div class="ocs-muted">{tool.tagline}</div>
+                </td>
+                <td>
+                  <span class={licenseBadgeClass(tool.license_class)}>{tool.license_class}</span>
+                  {tool.spdx ? <div class="ocs-muted">{tool.spdx}</div> : null}
+                </td>
+                <td>
+                  {tool.categories.map((category) => (
+                    <span class="ocs-badge">{category}</span>
+                  ))}
+                </td>
+                <td>{tool.cost_model}</td>
+                <td>{tool.difficulty}</td>
+                <td>{tool.verification_status}</td>
+                <td>{tool.guide_status}</td>
+              </tr>
+            ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <script type="application/json" data-tools set:html={payload} is:inline></script>
+</div>
+
+<script>
+  import {
+    directoryFilterKeys,
+    emptyDirectoryFilters,
+    matchesDirectoryTool,
+    parseDirectoryFilters,
+    serializeDirectoryFilters,
+    type CatalogTool,
+    type DirectoryFilters,
+  } from '../utils/catalog';
+
+  const root = document.querySelector<HTMLElement>('[data-ocs-directory]');
+  if (root && !root.dataset.ready) {
+    root.dataset.ready = 'true';
+    const payloadElement = root.querySelector<HTMLElement>('[data-tools]');
+    const tools = JSON.parse(payloadElement?.textContent ?? '[]') as CatalogTool[];
+    const rows = new Map(
+      Array.from(root.querySelectorAll<HTMLTableRowElement>('[data-tool-id]')).map((row) => [
+        row.dataset.toolId,
+        row,
+      ]),
+    );
+    const controls = Object.fromEntries(
+      directoryFilterKeys.map((key) => [
+        key,
+        root.querySelector<HTMLInputElement | HTMLSelectElement>(`[data-filter="${key}"]`),
+      ]),
+    ) as Record<string, HTMLInputElement | HTMLSelectElement | null>;
+    const count = root.querySelector<HTMLElement>('[data-count]');
+    const noResults = root.querySelector<HTMLElement>('[data-no-results]');
+    const reset = root.querySelector<HTMLButtonElement>('[data-reset]');
+
+    function readControls(): DirectoryFilters {
+      const filters = emptyDirectoryFilters();
+      for (const key of directoryFilterKeys) filters[key] = controls[key]?.value ?? '';
+      return filters;
+    }
+
+    function writeControls(filters: DirectoryFilters) {
+      for (const key of directoryFilterKeys) {
+        const control = controls[key];
+        if (!control) continue;
+        const hasValue =
+          control instanceof HTMLInputElement ||
+          Array.from((control as HTMLSelectElement).options).some(
+            (option) => option.value === filters[key],
+          );
+        control.value = hasValue ? filters[key] : '';
+      }
+    }
+
+    function applyFilters(updateUrl = true) {
+      const filters = readControls();
+      let visible = 0;
+      for (const tool of tools) {
+        const show = matchesDirectoryTool(tool, filters);
+        const row = rows.get(tool.id);
+        if (row) row.hidden = !show;
+        if (show) visible += 1;
+      }
+      if (count) count.textContent = String(visible);
+      if (noResults) noResults.hidden = visible !== 0;
+      if (updateUrl) {
+        const query = serializeDirectoryFilters(filters);
+        const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+        window.history.replaceState(window.history.state, '', nextUrl);
+      }
+    }
+
+    writeControls(parseDirectoryFilters(window.location.search));
+    applyFilters(false);
+
+    for (const key of directoryFilterKeys) {
+      const control = controls[key];
+      control?.addEventListener(control instanceof HTMLInputElement ? 'input' : 'change', () =>
+        applyFilters(),
+      );
+    }
+    reset?.addEventListener('click', () => {
+      writeControls(emptyDirectoryFilters());
+      applyFilters();
+      controls.q?.focus();
+    });
+  }
+</script>

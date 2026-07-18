@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: wikijs
+name: Wiki.js
+tagline: Modern self-hosted wiki with Git storage options
+description: Wiki.js is a flexible wiki platform. Operators store runbooks and member guides with
+  authentication integrations and optional Git-backed storage.
+status: active
+categories:
+  - knowledge-base
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+  - community-manager
+workflows:
+  - member-onboarding
+  - facility-maintenance
+problems:
+  - centralize-knowledge
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/requarks/wiki
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free self-hosted software; hosting and auth provider costs apply.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy Wiki.js with local auth, create Ops + Member FAQ spaces, publish 5 pages.
+homepage: https://js.wiki/
+repository: https://github.com/requarks/wiki
+documentation: https://docs.requarks.io/
+links:
+  - label: Homepage
+    url: https://js.wiki/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/requarks/wiki
+    kind: repo
+  - label: Documentation
+    url: https://docs.requarks.io/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Internal documentation
+  - Member FAQ publishing
+human_oversight_still_needed:
+  - Permission model
+  - Backup of storage backend
+data_privacy:
+  data_held:
+    - pages
+    - media
+    - users
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://js.wiki/
+    - https://github.com/requarks/wiki
+    - https://docs.requarks.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

@@ -1,0 +1,99 @@
+schema_version: 1.0.0
+id: sentry-oss
+name: Sentry (self-hosted / SaaS)
+tagline: Error monitoring for custom portals (open-core / freemium SaaS)
+description: Sentry captures application errors. Teams running custom member portals use SaaS free
+  tiers or self-host under current license terms—verify carefully as licensing has evolved.
+status: active
+categories:
+  - monitoring-observability
+  - developer-platform
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - incident-response
+problems:
+  - improve-member-experience
+  - disaster-recovery
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: source-available
+  name: FSL / BUSL lineage—verify current
+  source_url: https://github.com/getsentry/sentry
+  notes: Sentry’s license is not classic OSI open source for current versions. Treat as
+    source-available; prefer SaaS terms if unsure.
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: SaaS free tier with limits; paid plans. Self-host under license terms. Verify pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://sentry.io/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Enable SaaS free tier on a staging portal and fix the top 5 errors before launch.
+homepage: https://sentry.io/
+repository: https://github.com/getsentry/sentry
+documentation: https://docs.sentry.io/
+links:
+  - label: Homepage
+    url: https://sentry.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/getsentry/sentry
+    kind: repo
+  - label: Documentation
+    url: https://docs.sentry.io/
+    kind: docs
+  - label: Pricing
+    url: https://sentry.io/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Error tracking
+  - Release health
+human_oversight_still_needed:
+  - PII in stack traces
+  - License for self-host
+data_privacy:
+  data_held:
+    - error events
+    - stack traces
+    - user identifiers if sent
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Sentry’s license is not classic OSI open source for current versions. Treat as
+    source-available; prefer SaaS terms if unsure.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://sentry.io/
+    - https://github.com/getsentry/sentry
+    - https://docs.sentry.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 72

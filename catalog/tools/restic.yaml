@@ -1,0 +1,94 @@
+schema_version: 1.0.0
+id: restic
+name: Restic
+tagline: Encrypted backups for critical operator data
+description: Restic is a modern backup program with encryption and multiple storage backends. Every
+  self-hosted coworking stack should define backup jobs and restore drills.
+status: active
+categories:
+  - backup-recovery
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+  - owner-operator
+workflows:
+  - backup-restore-drill
+  - incident-response
+problems:
+  - disaster-recovery
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - desktop
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: BSD-2-Clause
+  source_url: https://github.com/restic/restic
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Software free; pay for backup target storage (S3-compatible, etc.).
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Backup one app’s data volume nightly for a week, then perform a full restore to a clean host.
+homepage: https://restic.net/
+repository: https://github.com/restic/restic
+documentation: https://restic.readthedocs.io/
+links:
+  - label: Homepage
+    url: https://restic.net/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/restic/restic
+    kind: repo
+  - label: Documentation
+    url: https://restic.readthedocs.io/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Encrypted backups
+  - Offsite copies
+human_oversight_still_needed:
+  - Key custody
+  - Restore testing cadence
+data_privacy:
+  data_held:
+    - encrypted backup snapshots
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/restic.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://restic.net/
+    - https://github.com/restic/restic
+    - https://restic.readthedocs.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 90

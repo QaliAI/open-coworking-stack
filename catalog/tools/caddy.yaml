@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: caddy
+name: Caddy
+tagline: Automatic HTTPS reverse proxy for self-hosted apps
+description: Caddy simplifies TLS termination and reverse proxying. Almost every self-hosted
+  coworking stack benefits from a hardened reverse proxy in front of apps.
+status: active
+categories:
+  - developer-platform
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - multi-site-rollout
+  - incident-response
+problems:
+  - self-host-for-data-control
+  - privacy-compliance
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/caddyserver/caddy
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; optional commercial support/licenses for some advanced features
+    historically—verify current.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Put Caddy in front of one staging app with automatic HTTPS and access logs disabled or rotated.
+homepage: https://caddyserver.com/
+repository: https://github.com/caddyserver/caddy
+documentation: https://caddyserver.com/docs/
+links:
+  - label: Homepage
+    url: https://caddyserver.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/caddyserver/caddy
+    kind: repo
+  - label: Documentation
+    url: https://caddyserver.com/docs/
+    kind: docs
+tasks_reduced_or_augmented:
+  - TLS termination
+  - Routing multiple apps on one host
+human_oversight_still_needed:
+  - Config reviews
+  - HTTP security headers
+data_privacy:
+  data_held:
+    - access logs if enabled
+    - certificates
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/caddy.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://caddyserver.com/
+    - https://github.com/caddyserver/caddy
+    - https://caddyserver.com/docs/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 84

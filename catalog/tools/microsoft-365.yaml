@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+id: microsoft-365
+name: Microsoft 365
+tagline: Commercial productivity suite alternative for staff collaboration
+description: Microsoft 365 is a proprietary productivity cloud. Multi-location operators and
+  enterprise-heavy portfolios often standardize here for email and compliance features.
+status: active
+categories:
+  - file-storage
+  - communication-chat
+  - security-compliance
+secondary_categories: []
+roles:
+  - owner-operator
+  - operations-manager
+  - multi-location-operator
+  - technical-operator
+workflows:
+  - member-onboarding
+  - compliance-review
+  - multi-site-rollout
+problems:
+  - multi-location-consistency
+  - privacy-compliance
+  - reduce-manual-admin
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: proprietary
+  name: Proprietary SaaS
+  source_url: https://www.microsoft.com/microsoft-365
+  verified_on: 2026-07-17
+cost:
+  model: subscription
+  summary: Per-user plans; verify official pricing for your region.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: If already licensed, enforce MFA and sharing defaults before buying new vertical tools.
+homepage: https://www.microsoft.com/microsoft-365
+documentation: https://learn.microsoft.com/microsoft-365/
+links:
+  - label: Homepage
+    url: https://www.microsoft.com/microsoft-365
+    kind: homepage
+  - label: Documentation
+    url: https://learn.microsoft.com/microsoft-365/
+    kind: docs
+  - label: Pricing
+    url: https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Email and files
+  - Teams chat
+  - Identity basics with Entra ID
+human_oversight_still_needed:
+  - License SKU sprawl
+  - SharePoint sprawl
+  - Guest access
+data_privacy:
+  data_held:
+    - email
+    - files
+    - chat
+    - identity
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.microsoft.com/microsoft-365
+    - https://learn.microsoft.com/microsoft-365/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 80

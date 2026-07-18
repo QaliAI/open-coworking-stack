@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: vendor-offboarding
+name: Vendor offboarding
+description: End a coworking vendor relationship while preserving service continuity, recovering data and property, revoking access, and confirming contractual closure.
+primary_roles:
+  - owner-operator
+  - operations-manager
+  - finance
+  - technical-operator
+stages:
+  - id: plan-exit
+    name: Plan the exit
+    description: Contract, service, data, finance, and operational owners agree the end date, obligations, replacement path, and fallback.
+    manual_tasks:
+      - Review notice, renewal, export, deletion, support, and return terms
+      - Identify affected members, staff, integrations, credentials, and physical assets
+    automation_opportunities:
+      - Build an owner-assigned exit checklist from the approved plan
+      - Remind owners about contractual and operational deadlines
+    suggested_tool_ids: []
+    risks:
+      - Cancellation before migration or export can interrupt member services
+  - id: transition
+    name: Transition service and records
+    description: Responsible people validate exports, move necessary operations, communicate approved changes, and retain a tested fallback where feasible.
+    manual_tasks:
+      - Verify exported records for completeness and usability
+      - Train affected staff and approve member-facing communications
+    automation_opportunities:
+      - Produce reconciliation reports between old and replacement records
+      - Track unresolved migration exceptions for human decisions
+    suggested_tool_ids: []
+    risks:
+      - A completed export may omit attachments, history, or relationships
+  - id: revoke-and-confirm
+    name: Revoke and confirm closure
+    description: Authorized staff remove vendor access and secrets, settle approved balances, recover assets, and obtain evidence of closure where available.
+    manual_tasks:
+      - Revoke accounts, integrations, keys, tokens, and physical access
+      - Confirm final charges, property return, data disposition, and open disputes
+    automation_opportunities:
+      - Surface vendor-owned or shared credentials for reviewer confirmation
+      - Schedule a post-exit check for residual access and charges
+    suggested_tool_ids:
+      - passbolt
+      - vaultwarden
+    risks:
+      - Shared or undocumented credentials can survive the formal end date
+      - Deletion requests can conflict with valid retention duties
+success_metrics:
+  - Vendor exits completed without unplanned member-facing interruption
+  - Residual vendor credentials or integrations found after closure
+  - Percentage of required exports verified by a named data owner
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of contracts, retention duties, policies, integrations, continuity plans, and tool fit before use.

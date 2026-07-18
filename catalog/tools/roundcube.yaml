@@ -1,0 +1,90 @@
+schema_version: 1.0.0
+id: roundcube
+name: Roundcube
+tagline: Browser webmail client for self-hosted mail stacks
+description: Roundcube is a classic webmail UI. It pairs with IMAP servers when operators self-host
+  mail for staff.
+status: active
+categories:
+  - communication-chat
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+workflows:
+  - incident-response
+problems:
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-or-later
+  source_url: https://github.com/roundcube/roundcubemail
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; requires IMAP backend.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy only after IMAP mailboxes exist; enable 2FA plugins if available.
+homepage: https://roundcube.net/
+repository: https://github.com/roundcube/roundcubemail
+documentation: https://github.com/roundcube/roundcubemail/wiki
+links:
+  - label: Homepage
+    url: https://roundcube.net/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/roundcube/roundcubemail
+    kind: repo
+  - label: Documentation
+    url: https://github.com/roundcube/roundcubemail/wiki
+    kind: docs
+tasks_reduced_or_augmented:
+  - Webmail access
+  - Staff mailbox UI
+human_oversight_still_needed:
+  - Plugin security
+  - Session hardening
+data_privacy:
+  data_held:
+    - mail via IMAP
+    - user prefs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/roundcube.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://roundcube.net/
+    - https://github.com/roundcube/roundcubemail
+    - https://github.com/roundcube/roundcubemail/wiki
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 55

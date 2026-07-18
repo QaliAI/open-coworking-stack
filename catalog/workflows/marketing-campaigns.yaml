@@ -1,0 +1,63 @@
+schema_version: 1.0.0
+id: marketing-campaigns
+name: Marketing campaigns
+description: Plan and run coworking marketing campaigns with truthful local claims, consent-aware outreach, human approval, and measured learning tied to qualified demand.
+primary_roles:
+  - marketing
+  - sales-manager
+  - owner-operator
+stages:
+  - id: brief-and-review
+    name: Brief and review
+    description: The team defines a specific audience, coworking need, offer, budget, evidence, and owner before creating campaign assets.
+    manual_tasks:
+      - Validate pricing, availability, testimonials, and local claims
+      - Review consent basis, audience exclusions, and brand implications
+    automation_opportunities:
+      - Maintain an approval checklist and asset status
+      - Assemble source material for human drafting and review
+    suggested_tool_ids:
+      - canva
+      - figma
+      - plane
+    risks:
+      - Unverified claims or stale availability can mislead prospects
+  - id: publish-and-send
+    name: Publish and send
+    description: Authorized people approve final content, destinations, segments, timing, and suppression rules before release.
+    manual_tasks:
+      - Proofread every public variant and test the response path
+      - Approve recipient segments and honor opt-outs and exclusions
+    automation_opportunities:
+      - Schedule approved content and email sequences
+      - Apply documented suppression and frequency rules
+    suggested_tool_ids:
+      - ghost
+      - wordpress
+      - listmonk
+      - mailchimp
+    risks:
+      - Incorrect segmentation can expose data or send unwanted communications
+  - id: measure-and-decide
+    name: Measure and decide
+    description: Marketing and sales review data quality, qualified enquiries, costs, and member impact before changing spend or messaging.
+    manual_tasks:
+      - Interpret attribution limits and review lead quality with sales
+      - Decide whether to continue, revise, pause, or retire the campaign
+    automation_opportunities:
+      - Aggregate approved campaign and website measures
+      - Flag large changes for investigation rather than automatic action
+    suggested_tool_ids:
+      - matomo
+      - plausible-ce
+      - google-analytics
+      - posthog
+    risks:
+      - Weak attribution can reward high-volume channels that produce poor-fit leads
+success_metrics:
+  - Qualified enquiries attributable under a documented method
+  - Campaign claims corrected after publication
+  - Consent, opt-out, or frequency complaints per campaign
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, consent requirements, claims, integrations, and tool fit before use.

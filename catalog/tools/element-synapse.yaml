@@ -1,0 +1,98 @@
+schema_version: 1.0.0
+id: element-synapse
+name: Element / Synapse
+tagline: Matrix-based secure messaging for staff and communities
+description: Synapse is a Matrix homeserver; Element is a common client. Privacy-conscious operators
+  experiment with Matrix for staff rooms or member communities.
+status: active
+categories:
+  - communication-chat
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - community-manager
+  - operations-manager
+workflows:
+  - incident-response
+  - community-programming
+problems:
+  - self-host-for-data-control
+  - privacy-compliance
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/element-hq/synapse
+  notes: Synapse AGPL; Element clients have their own licenses.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Self-host free; Element Matrix Services and other hosts are paid.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Use a managed Matrix host or small Synapse for one staff room before offering member communities.
+homepage: https://element.io/
+repository: https://github.com/element-hq/synapse
+documentation: https://element-hq.github.io/synapse/latest/
+links:
+  - label: Homepage
+    url: https://element.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/element-hq/synapse
+    kind: repo
+  - label: Documentation
+    url: https://element-hq.github.io/synapse/latest/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Encrypted staff rooms
+  - Federated community experiments
+human_oversight_still_needed:
+  - Moderation
+  - Federation policy
+  - Server resource use
+data_privacy:
+  data_held:
+    - messages
+    - media
+    - user accounts
+    - device keys
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Synapse AGPL; Element clients have their own licenses.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://element.io/
+    - https://github.com/element-hq/synapse
+    - https://element-hq.github.io/synapse/latest/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

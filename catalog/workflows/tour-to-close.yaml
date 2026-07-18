@@ -1,0 +1,62 @@
+schema_version: 1.0.0
+id: tour-to-close
+name: Tour to close
+description: Lead capture, tour scheduling, follow-up, proposal, and conversion to member—without
+  losing context between sales and community.
+primary_roles:
+  - sales-manager
+  - community-manager
+  - owner-operator
+stages:
+  - id: capture
+    name: Lead capture
+    description: Website or referral enquiry enters the pipeline.
+    manual_tasks:
+      - Qualify fit
+      - Spam filtering
+    automation_opportunities:
+      - Form to CRM
+      - Auto-reply
+    suggested_tool_ids:
+      - typeform
+      - espocrm
+      - chatwoot
+      - n8n
+    risks:
+      - Duplicate leads
+  - id: tour
+    name: Tour
+    description: Schedule and conduct tour (physical or virtual).
+    manual_tasks:
+      - Prepare space
+      - Listen for needs
+    automation_opportunities:
+      - Calendar booking links
+    suggested_tool_ids:
+      - cal-com
+      - easyappointments
+      - zoom
+      - jitsi-meet
+    risks:
+      - No-shows without reminders
+  - id: close
+    name: Proposal & close
+    description: Send offer, negotiate, win/loss reason coded.
+    manual_tasks:
+      - Pricing judgment
+      - Relationship building
+    automation_opportunities:
+      - Proposal templates
+      - Task reminders
+    suggested_tool_ids:
+      - espocrm
+      - twenty-crm
+      - docuseal
+    risks:
+      - Discounting without policy
+success_metrics:
+  - Lead→tour rate
+  - Tour→close rate
+  - Median response time
+verification:
+  last_reviewed: 2026-07-17

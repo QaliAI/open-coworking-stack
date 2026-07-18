@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+id: plausible-ce
+name: Plausible Community Edition
+tagline: Lightweight analytics with a strong privacy posture
+description: Plausible CE is the self-hosted community edition of Plausible Analytics. Operators who
+  want simple metrics without complex GA setups often evaluate CE or Plausible Cloud.
+status: active
+categories:
+  - analytics-bi
+secondary_categories: []
+roles:
+  - marketing
+  - technical-operator
+  - owner-operator
+workflows:
+  - marketing-campaigns
+  - reporting-kpis
+problems:
+  - privacy-compliance
+  - reduce-software-cost
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/plausible/analytics
+  notes: CE is AGPL self-hosted; Cloud is commercial SaaS.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Self-host CE free; Cloud is subscription. Check official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://plausible.io/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Run CE via official compose guidance and compare metrics to your current
+    analytics for one landing page.
+homepage: https://plausible.io/
+repository: https://github.com/plausible/analytics
+documentation: https://github.com/plausible/community-edition
+links:
+  - label: Homepage
+    url: https://plausible.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/plausible/analytics
+    kind: repo
+  - label: Documentation
+    url: https://github.com/plausible/community-edition
+    kind: docs
+  - label: Pricing
+    url: https://plausible.io/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Privacy-friendly traffic measurement
+  - Campaign UTM analysis
+human_oversight_still_needed:
+  - CE vs Cloud feature differences
+  - Update cadence
+data_privacy:
+  data_held:
+    - aggregated traffic stats
+    - custom events
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: CE is AGPL self-hosted; Cloud is commercial SaaS.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://plausible.io/
+    - https://github.com/plausible/analytics
+    - https://github.com/plausible/community-edition
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 79

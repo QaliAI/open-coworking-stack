@@ -1,0 +1,63 @@
+schema_version: 1.0.0
+id: compliance-review
+name: Compliance review
+description: Review a coworking operation against applicable obligations and internal controls using scoped evidence, accountable human judgment, and tracked remediation.
+primary_roles:
+  - owner-operator
+  - operations-manager
+  - technical-operator
+  - consultant-implementer
+stages:
+  - id: scope
+    name: Scope obligations and owners
+    description: Accountable leaders identify applicable jurisdictions, contracts, policies, systems, locations, data, and qualified advisers for the review.
+    manual_tasks:
+      - Confirm scope and obligations with appropriately qualified people
+      - Assign control, evidence, decision, and remediation owners
+    automation_opportunities:
+      - Maintain the review schedule and owner register
+      - Flag controls lacking current evidence or an accountable owner
+    suggested_tool_ids:
+      - docuseal
+      - paperless-ngx
+    risks:
+      - A generic checklist can miss local legal, lease, safety, or contractual duties
+  - id: examine
+    name: Examine controls and evidence
+    description: Reviewers test selected controls, interview staff, inspect physical practice, and record evidence limits rather than relying only on system settings.
+    manual_tasks:
+      - Sample real access, consent, retention, safety, and change practices
+      - Assess exceptions and determine whether specialist advice is needed
+    automation_opportunities:
+      - Assemble approved evidence and access-review extracts
+      - Highlight stale records or configuration differences for investigation
+    suggested_tool_ids:
+      - authentik
+      - keycloak
+      - gitea
+      - metabase
+    risks:
+      - Configuration evidence can differ from daily staff and member behavior
+      - Review files can concentrate sensitive operational and personal data
+  - id: remediate-and-sign-off
+    name: Remediate and sign off
+    description: Control owners correct findings, reviewers retest material changes, and accountable leadership accepts or escalates residual risk.
+    manual_tasks:
+      - Prioritize findings by actual risk and approve remediation plans
+      - Retest material controls and document residual-risk decisions
+    automation_opportunities:
+      - Track owners, due dates, dependencies, and review evidence
+      - Remind accountable people about overdue remediation
+    suggested_tool_ids:
+      - paperless-ngx
+      - stirling-pdf
+      - docuseal
+    risks:
+      - Closing tasks without retesting can create false assurance
+success_metrics:
+  - Percentage of in-scope controls with a named owner and current evidence
+  - High-risk findings open beyond the approved remediation date
+  - Percentage of material remediations independently retested
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern, not legal advice, and requires local review of applicable obligations, policies, evidence, staffing, and tool fit before use.

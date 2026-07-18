@@ -1,0 +1,36 @@
+#############################  Display  #############################
+verbose = "info"
+no_progress = true
+
+#############################  Runtime  #############################
+max_concurrency = 8
+timeout = 20
+max_retries = 2
+
+#############################  Requests  ############################
+user_agent = "open-coworking-stack-link-check/0.1"
+accept = ["200..=299", "403"]
+
+#############################  Exclusions  ##########################
+exclude = [
+  '^https?://localhost',
+  '^https?://127\\.0\\.0\\.1',
+  '^https?://0\\.0\\.0\\.0',
+  '^https?://example\\.',
+  '^mailto:',
+  # Rate-limited or auth-walled hosts that still validate offline structure
+  '^https://twitter\\.com',
+  '^https://x\\.com',
+]
+
+exclude_path = [
+  "node_modules",
+  "dist",
+  ".astro",
+  "pnpm-lock.yaml",
+  "apps/web/src/content/docs/tools/generated",
+  "apps/web/src/content/docs/stacks/generated",
+]
+
+scheme = ["https", "http", "file"]
+include_fragments = false

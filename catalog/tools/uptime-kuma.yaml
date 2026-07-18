@@ -1,0 +1,97 @@
+schema_version: 1.0.0
+id: uptime-kuma
+name: Uptime Kuma
+tagline: Friendly self-hosted uptime monitoring for member-facing services
+description: Uptime Kuma monitors HTTP endpoints, ports, and certificates. Operators track booking
+  pages, captive portals, and status of self-hosted apps with notifications.
+status: active
+categories:
+  - monitoring-observability
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+workflows:
+  - incident-response
+  - backup-restore-drill
+problems:
+  - improve-member-experience
+  - disaster-recovery
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/louislam/uptime-kuma
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; host on a small always-on node preferably separate from monitored systems.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: low
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Monitor five critical URLs (website, booking, Wi-Fi portal, CRM, payment
+    link) with Telegram/email alerts.
+homepage: https://uptime.kuma.pet/
+repository: https://github.com/louislam/uptime-kuma
+documentation: https://github.com/louislam/uptime-kuma/wiki
+links:
+  - label: Homepage
+    url: https://uptime.kuma.pet/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/louislam/uptime-kuma
+    kind: repo
+  - label: Documentation
+    url: https://github.com/louislam/uptime-kuma/wiki
+    kind: docs
+tasks_reduced_or_augmented:
+  - Detecting outages early
+  - Certificate expiry warnings
+human_oversight_still_needed:
+  - On-call ownership
+  - Public status page messaging
+data_privacy:
+  data_held:
+    - monitor configs
+    - heartbeat history
+    - notification settings
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+compose_pack: compose/uptime-kuma
+guide_status: full
+guide_path: guides/tools/uptime-kuma.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://uptime.kuma.pet/
+    - https://github.com/louislam/uptime-kuma
+    - https://github.com/louislam/uptime-kuma/wiki
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 88

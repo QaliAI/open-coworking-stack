@@ -1,0 +1,23 @@
+Open Coworking Stack
+====================
+
+Copyright (c) 2026 Open Coworking Stack contributors
+
+This repository contains:
+
+1. Original software (schemas, validators, generators, documentation website
+   application code) licensed under the MIT License (LICENSE-CODE).
+
+2. Original editorial content (guides, comparisons, workflows, architecture
+   notes) licensed under Creative Commons Attribution 4.0 International
+   (LICENSE-CONTENT).
+
+3. References to third-party software projects. Those projects are not
+   vendored here and remain under their own licenses. Metadata about third-party
+   projects is factual description for evaluation purposes and is not a grant
+   of rights to those projects.
+
+4. Third-party trademarks and product names used for identification only.
+   See TRADEMARKS.md.
+
+No endorsement by any third-party vendor is implied.

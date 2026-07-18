@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+id: outline
+name: Outline
+tagline: Beautiful team knowledge base (source-available license)
+description: Outline is a polished knowledge base popular with startups. License is Business Source
+  License—not OSI open source—so operators must read terms before production.
+status: active
+categories:
+  - knowledge-base
+secondary_categories: []
+roles:
+  - operations-manager
+  - community-manager
+  - technical-operator
+workflows:
+  - member-onboarding
+  - multi-site-rollout
+problems:
+  - centralize-knowledge
+  - multi-location-consistency
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: source-available
+  name: Business Source License 1.1
+  source_url: https://github.com/outline/outline
+  notes: BSL is not OSI open source. Review conversion terms and production restrictions.
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Self-host under BSL terms; Outline cloud is paid. Verify official pricing and license.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.getoutline.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Trial Outline cloud or self-host in staging; migrate 10 SOPs; decide if BSL terms are acceptable.
+homepage: https://www.getoutline.com/
+repository: https://github.com/outline/outline
+documentation: https://docs.getoutline.com/
+links:
+  - label: Homepage
+    url: https://www.getoutline.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/outline/outline
+    kind: repo
+  - label: Documentation
+    url: https://docs.getoutline.com/
+    kind: docs
+  - label: Pricing
+    url: https://www.getoutline.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Team docs with modern UX
+  - Structured collections for multi-site SOPs
+human_oversight_still_needed:
+  - License compliance
+  - SSO setup
+  - Export readiness
+data_privacy:
+  data_held:
+    - documents
+    - users
+    - permissions
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: BSL is not OSI open source. Review conversion terms and production restrictions.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.getoutline.com/
+    - https://github.com/outline/outline
+    - https://docs.getoutline.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 72

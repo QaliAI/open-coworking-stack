@@ -1,0 +1,105 @@
+schema_version: 1.0.0
+id: espocrm
+name: EspoCRM
+tagline: Self-hosted CRM for tour pipelines and B2B workspace sales
+description: EspoCRM is an open-source CRM suitable for sales pipelines, accounts, and activities.
+  Coworking sales teams use it to track tours, proposals, and enterprise desk deals without a heavy
+  ERP.
+status: active
+categories:
+  - membership-crm
+secondary_categories: []
+roles:
+  - sales-manager
+  - owner-operator
+  - community-manager
+workflows:
+  - tour-to-close
+  - member-onboarding
+  - reporting-kpis
+problems:
+  - grow-pipeline
+  - replace-spreadsheets
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: open-core
+  spdx: AGPL-3.0-or-later
+  source_url: https://github.com/espocrm/espocrm
+  notes: Advanced extensions may be commercial.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Core is free to self-host; extensions and cloud options may be paid.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.espocrm.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Create Lead → Tour → Opportunity stages and log 15 real enquiries for two weeks.
+homepage: https://www.espocrm.com/
+repository: https://github.com/espocrm/espocrm
+documentation: https://docs.espocrm.com/
+links:
+  - label: Homepage
+    url: https://www.espocrm.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/espocrm/espocrm
+    kind: repo
+  - label: Documentation
+    url: https://docs.espocrm.com/
+    kind: docs
+  - label: Pricing
+    url: https://www.espocrm.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Pipeline visibility for tours and proposals
+  - Follow-up task reminders
+  - Basic reporting on conversion
+human_oversight_still_needed:
+  - Stage definitions
+  - Data quality hygiene
+  - GDPR deletion requests
+data_privacy:
+  data_held:
+    - leads
+    - contacts
+    - accounts
+    - calls/meetings
+    - emails if integrated
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Advanced extensions may be commercial.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.espocrm.com/
+    - https://github.com/espocrm/espocrm
+    - https://docs.espocrm.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 81

@@ -1,0 +1,98 @@
+schema_version: 1.0.0
+id: frigate-nvr
+name: Frigate
+tagline: Local AI NVR for camera analytics with privacy-minded self-hosting
+description: Frigate is an open-source NVR with object detection. Operators may use it for perimeter
+  awareness—subject to privacy law, signage, and workplace monitoring rules.
+status: active
+categories:
+  - security-compliance
+  - iot-sensors
+  - facility-operations
+secondary_categories: []
+roles:
+  - facilities
+  - technical-operator
+  - operations-manager
+workflows:
+  - incident-response
+  - facility-maintenance
+  - compliance-review
+problems:
+  - privacy-compliance
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/blakeblackshear/frigate
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; cameras, GPU/coral accelerators, and storage are significant costs.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Pilot one exterior camera only with short retention; complete a privacy impact checklist first.
+homepage: https://frigate.video/
+repository: https://github.com/blakeblackshear/frigate
+documentation: https://docs.frigate.video/
+links:
+  - label: Homepage
+    url: https://frigate.video/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/blakeblackshear/frigate
+    kind: repo
+  - label: Documentation
+    url: https://docs.frigate.video/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Local video detection events
+  - Reducing cloud camera subscriptions
+human_oversight_still_needed:
+  - Legal basis for CCTV
+  - Retention limits
+  - Who can view feeds
+data_privacy:
+  data_held:
+    - video clips
+    - detection events
+    - camera configs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/frigate-nvr.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://frigate.video/
+    - https://github.com/blakeblackshear/frigate
+    - https://docs.frigate.video/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 68

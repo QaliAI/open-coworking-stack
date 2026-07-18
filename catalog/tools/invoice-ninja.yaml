@@ -1,0 +1,104 @@
+schema_version: 1.0.0
+id: invoice-ninja
+name: Invoice Ninja
+tagline: Invoicing and client portal with self-host option
+description: Invoice Ninja covers invoices, quotes, and payments integrations. Small operators may
+  use it before adopting a full ERP.
+status: active
+categories:
+  - billing-payments
+  - accounting
+secondary_categories: []
+roles:
+  - finance
+  - owner-operator
+  - operations-manager
+workflows:
+  - invoice-collections
+  - member-onboarding
+problems:
+  - automate-billing
+  - reduce-software-cost
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  name: Elastic License / freemium variants—verify current
+  source_url: https://github.com/invoiceninja/invoiceninja
+  notes: License has changed over versions; verify the version you deploy. Do not assume OSI open
+    source without checking.
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Hosted free tier historically offered; self-host available. Verify current pricing and license.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://invoiceninja.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Issue invoices for 10 members in staging with a test payment gateway.
+homepage: https://invoiceninja.com/
+repository: https://github.com/invoiceninja/invoiceninja
+documentation: https://invoiceninja.github.io/
+links:
+  - label: Homepage
+    url: https://invoiceninja.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/invoiceninja/invoiceninja
+    kind: repo
+  - label: Documentation
+    url: https://invoiceninja.github.io/
+    kind: docs
+  - label: Pricing
+    url: https://invoiceninja.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Recurring membership invoices
+  - Client portal for PDFs
+human_oversight_still_needed:
+  - License verification
+  - Tax configuration
+  - Payment reconciliation
+data_privacy:
+  data_held:
+    - clients
+    - invoices
+    - payments metadata
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing:
+    License has changed over versions; verify the version you deploy. Do not assume OSI open
+    source without checking.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://invoiceninja.com/
+    - https://github.com/invoiceninja/invoiceninja
+    - https://invoiceninja.github.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 74

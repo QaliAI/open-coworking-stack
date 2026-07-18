@@ -1,0 +1,59 @@
+schema_version: 1.0.0
+id: desk-hot-desk
+name: Desk and hot-desk use
+description: Allocate shared desks fairly from reservation through arrival and reset while keeping accessibility, capacity, and human exceptions visible.
+primary_roles:
+  - operations-manager
+  - community-manager
+  - member-end-user
+stages:
+  - id: publish-inventory
+    name: Publish usable desk inventory
+    description: Staff define bookable desks, hours, equipment, accessibility notes, and local policies based on the actual floor setup.
+    manual_tasks:
+      - Inspect desk condition and accessibility information
+      - Approve booking windows, quotas, and exception rules
+    automation_opportunities:
+      - Display approved desk inventory and availability
+      - Flag overlapping reservations for staff review
+    suggested_tool_ids:
+      - optix-app
+      - seatsurfing
+    risks:
+      - An inaccurate floor inventory can strand members or double-book desks
+  - id: reserve-and-arrive
+    name: Reserve and arrive
+    description: Members reserve an appropriate desk and staff remain available to resolve accessibility, occupancy, or booking conflicts.
+    manual_tasks:
+      - Resolve disputes and accommodation requests
+      - Help members when the assigned desk is unavailable or unsuitable
+    automation_opportunities:
+      - Confirm reservations and provide arrival instructions
+      - Release unused reservations under a locally approved policy
+    suggested_tool_ids:
+      - optix-app
+      - seatsurfing
+    risks:
+      - Automatic release can remove a valid reservation after a delayed arrival
+      - Location data can reveal sensitive attendance patterns
+  - id: checkout-and-reset
+    name: Check out and reset
+    description: The member checks out and staff confirm that the desk is ready before it returns to shared inventory.
+    manual_tasks:
+      - Inspect and physically reset desks that need attention
+      - Handle lost property and report damage
+    automation_opportunities:
+      - Prompt checkout near the reservation end
+      - Queue a reset task when a problem is reported
+    suggested_tool_ids:
+      - optix-app
+      - seatsurfing
+    risks:
+      - Treating a digital checkout as proof of physical readiness can hide issues
+success_metrics:
+  - Percentage of reservations fulfilled without reassignment
+  - Desk no-show rate under the approved local definition
+  - Median time to resolve desk condition reports
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

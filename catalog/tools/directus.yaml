@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+id: directus
+name: Directus
+tagline: Headless CMS/data platform (BSL source-available)
+description: Directus wraps SQL databases with APIs and an admin app. Useful for custom member
+  portals or content APIs—review BSL terms carefully.
+status: active
+categories:
+  - developer-platform
+  - website-cms
+secondary_categories: []
+roles:
+  - technical-operator
+  - consultant-implementer
+workflows:
+  - member-onboarding
+  - marketing-campaigns
+problems:
+  - integrate-stack
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: source-available
+  name: Business Source License 1.1
+  source_url: https://github.com/directus/directus
+  notes: Not OSI open source while under BSL.
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Self-host under BSL; cloud paid. Verify pricing and license conversion.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://directus.io/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Prototype a read-only content API for the marketing site from a staging database.
+homepage: https://directus.io/
+repository: https://github.com/directus/directus
+documentation: https://docs.directus.io/
+links:
+  - label: Homepage
+    url: https://directus.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/directus/directus
+    kind: repo
+  - label: Documentation
+    url: https://docs.directus.io/
+    kind: docs
+  - label: Pricing
+    url: https://directus.io/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Headless content management
+  - Internal data admin UI
+human_oversight_still_needed:
+  - BSL compliance
+  - API auth design
+data_privacy:
+  data_held:
+    - business data in connected DB
+    - files
+    - users
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Not OSI open source while under BSL.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/directus.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://directus.io/
+    - https://github.com/directus/directus
+    - https://docs.directus.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 66

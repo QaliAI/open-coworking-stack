@@ -1,0 +1,89 @@
+schema_version: 1.0.0
+id: borgbackup
+name: BorgBackup
+tagline: Deduplicating encrypted backups with strong ops pedigree
+description: BorgBackup is a mature deduplicating backup tool. Operators with Linux skills use it
+  for efficient on-site and off-site backups.
+status: active
+categories:
+  - backup-recovery
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - backup-restore-drill
+problems:
+  - disaster-recovery
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: BSD-3-Clause
+  source_url: https://github.com/borgbackup/borg
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; storage targets cost money.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Initialize a repo, back up /var/lib for one service, restore a single file successfully.
+homepage: https://www.borgbackup.org/
+repository: https://github.com/borgbackup/borg
+documentation: https://borgbackup.readthedocs.io/
+links:
+  - label: Homepage
+    url: https://www.borgbackup.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/borgbackup/borg
+    kind: repo
+  - label: Documentation
+    url: https://borgbackup.readthedocs.io/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Efficient encrypted backups
+  - Space-saving dedupe
+human_oversight_still_needed:
+  - Passphrase management
+  - Remote repo availability
+data_privacy:
+  data_held:
+    - encrypted archives
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/borgbackup.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.borgbackup.org/
+    - https://github.com/borgbackup/borg
+    - https://borgbackup.readthedocs.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 82

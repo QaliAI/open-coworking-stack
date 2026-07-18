@@ -1,0 +1,118 @@
+schema_version: 1.0.0
+id: erpnext
+name: ERPNext
+tagline: Full open-source ERP adaptable to memberships, invoicing, and inventory
+description: ERPNext is a comprehensive ERP. Coworking operators with technical partners sometimes
+  model memberships, invoices, assets, and procurement instead of paying for multiple SaaS vertical
+  tools—at the cost of implementation complexity.
+status: active
+categories:
+  - membership-crm
+  - billing-payments
+  - accounting
+  - facility-operations
+secondary_categories: []
+roles:
+  - owner-operator
+  - finance
+  - operations-manager
+  - consultant-implementer
+  - technical-operator
+workflows:
+  - member-onboarding
+  - invoice-collections
+  - facility-maintenance
+  - reporting-kpis
+problems:
+  - automate-billing
+  - replace-spreadsheets
+  - reduce-software-cost
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-only
+  source_url: https://github.com/frappe/erpnext
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Software is GPL; Frappe Cloud and partners sell hosting/implementation. Self-hosting
+    requires significant ops skill.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://frappe.io/erpnext/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: expert
+  maintenance_burden: high
+  skills_required:
+    - erp
+    - accounting
+    - linux
+    - frappe
+  typical_time_to_first_value: 2–8 weeks depending on scope
+  smallest_useful_experiment:
+    On a staging site, model one membership item, one invoice workflow, and
+    one customer—do not migrate production accounting until chart of accounts is reviewed.
+homepage: https://erpnext.com/
+repository: https://github.com/frappe/erpnext
+documentation: https://docs.erpnext.com/
+links:
+  - label: Homepage
+    url: https://erpnext.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/frappe/erpnext
+    kind: repo
+  - label: Documentation
+    url: https://docs.erpnext.com/
+    kind: docs
+  - label: Pricing
+    url: https://frappe.io/erpnext/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Consolidating invoicing and customer records
+  - Tracking assets and maintenance tickets
+  - Producing financial reports from one system
+human_oversight_still_needed:
+  - Accounting configuration by a qualified person
+  - Membership product design
+  - Data migration validation
+data_privacy:
+  data_held:
+    - customers
+    - invoices
+    - payments metadata
+    - inventory
+    - HR modules if enabled
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/erpnext.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://erpnext.com/
+    - https://github.com/frappe/erpnext
+    - https://docs.erpnext.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 85

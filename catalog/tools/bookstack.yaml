@@ -1,0 +1,103 @@
+schema_version: 1.0.0
+id: bookstack
+name: BookStack
+tagline: Simple wiki for SOPs, member FAQs, and multi-site runbooks
+description: BookStack is an opinionated wiki that organizes content into shelves, books, chapters,
+  and pages. Coworking teams use it for opening/closing checklists, emergency procedures, and
+  member-facing knowledge bases.
+status: active
+categories:
+  - knowledge-base
+secondary_categories: []
+roles:
+  - community-manager
+  - operations-manager
+  - multi-location-operator
+  - technical-operator
+workflows:
+  - member-onboarding
+  - incident-response
+  - facility-maintenance
+  - multi-site-rollout
+problems:
+  - centralize-knowledge
+  - multi-location-consistency
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/BookStackApp/BookStack
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; host on a small VPS with regular backups.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: low
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Install BookStack, create shelves for Ops / Community / Sales, and
+    migrate five living SOPs from Google Docs.
+homepage: https://www.bookstackapp.com/
+repository: https://github.com/BookStackApp/BookStack
+documentation: https://www.bookstackapp.com/docs/
+links:
+  - label: Homepage
+    url: https://www.bookstackapp.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/BookStackApp/BookStack
+    kind: repo
+  - label: Documentation
+    url: https://www.bookstackapp.com/docs/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Replacing scattered docs with searchable SOPs
+  - Onboarding new community managers faster
+  - Publishing member FAQ content
+human_oversight_still_needed:
+  - Content ownership
+  - Public vs private shelves
+  - Review cadence for safety procedures
+data_privacy:
+  data_held:
+    - pages
+    - attachments
+    - user accounts
+    - audit-ish activity
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/bookstack.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.bookstackapp.com/
+    - https://github.com/BookStackApp/BookStack
+    - https://www.bookstackapp.com/docs/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 87

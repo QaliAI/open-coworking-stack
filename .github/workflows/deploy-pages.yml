@@ -1,0 +1,85 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Resolve Pages base path
+        id: pages-base
+        env:
+          CONFIGURED_BASE_PATH: ${{ vars.PUBLIC_BASE_PATH }}
+        run: |
+          base_path="$CONFIGURED_BASE_PATH"
+          repository_name="${GITHUB_REPOSITORY#*/}"
+          if [ -z "$base_path" ] && [[ "$repository_name" != *.github.io ]]; then
+            base_path="/$repository_name"
+          fi
+          case "$base_path" in
+            ""|/*) ;;
+            *) echo "PUBLIC_BASE_PATH must be empty or start with /." >&2; exit 1 ;;
+          esac
+          echo "path=$base_path" >> "$GITHUB_OUTPUT"
+
+      - name: Validate catalog
+        run: pnpm validate
+
+      - name: Generate derived artifacts
+        run: pnpm generate
+
+      - name: Build site
+        env:
+          PUBLIC_BASE_PATH: ${{ steps.pages-base.outputs.path }}
+        run: pnpm --filter @ocs/web build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

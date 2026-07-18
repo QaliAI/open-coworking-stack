@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: pi-hole
+name: Pi-hole
+tagline: DNS-level blocking for guest and staff networks (use carefully)
+description: Pi-hole provides network-wide DNS blocking. Some operators experiment with it on staff
+  networks; guest Wi-Fi filtering must respect transparency and break fewer member workflows.
+status: active
+categories:
+  - network-wifi
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - facilities
+workflows:
+  - incident-response
+  - facility-maintenance
+problems:
+  - improve-wifi-reliability
+  - privacy-compliance
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: EUPL-1.2
+  source_url: https://github.com/pi-hole/pi-hole
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; typically runs on a small always-on host.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy on staff VLAN only first; measure false positives for 14 days
+    before any guest network use.
+homepage: https://pi-hole.net/
+repository: https://github.com/pi-hole/pi-hole
+documentation: https://docs.pi-hole.net/
+links:
+  - label: Homepage
+    url: https://pi-hole.net/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/pi-hole/pi-hole
+    kind: repo
+  - label: Documentation
+    url: https://docs.pi-hole.net/
+    kind: docs
+tasks_reduced_or_augmented:
+  - DNS-level ad/malware domain blocking
+  - DNS visibility for troubleshooting
+human_oversight_still_needed:
+  - Overblocking member tools
+  - Privacy of DNS logs
+  - Guest network policy
+data_privacy:
+  data_held:
+    - DNS queries
+    - client IPs
+    - blocklists
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/pi-hole.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://pi-hole.net/
+    - https://github.com/pi-hole/pi-hole
+    - https://docs.pi-hole.net/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 67

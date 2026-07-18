@@ -1,0 +1,94 @@
+schema_version: 1.0.0
+id: crater
+name: Crater
+tagline: Simple open-source invoicing for small operators
+description: Crater is a free invoicing app for freelancers and small businesses. Some micro-sites
+  use it for straightforward membership billing.
+status: active
+categories:
+  - billing-payments
+secondary_categories: []
+roles:
+  - finance
+  - owner-operator
+workflows:
+  - invoice-collections
+problems:
+  - automate-billing
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: legacy
+license:
+  class: oss-osi-approved
+  spdx: AAL
+  name: Attribution Assurance License
+  source_url: https://github.com/crater-invoice/crater
+  notes: Project activity may be slow—evaluate maintenance risk.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free self-host; maintenance risk may dominate.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Generate five invoices and a PDF export; assess whether maintenance risk is acceptable.
+homepage: https://craterapp.com/
+repository: https://github.com/crater-invoice/crater
+documentation: https://docs.craterapp.com/
+links:
+  - label: Homepage
+    url: https://craterapp.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/crater-invoice/crater
+    kind: repo
+  - label: Documentation
+    url: https://docs.craterapp.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Basic invoicing
+  - Expense tracking light
+human_oversight_still_needed:
+  - Project health
+  - Security updates
+data_privacy:
+  data_held:
+    - invoices
+    - clients
+    - expenses
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Project activity may be slow—evaluate maintenance risk.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/crater.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://craterapp.com/
+    - https://github.com/crater-invoice/crater
+    - https://docs.craterapp.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 55

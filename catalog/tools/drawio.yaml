@@ -1,0 +1,94 @@
+schema_version: 1.0.0
+id: drawio
+name: draw.io / diagrams.net
+tagline: Diagramming for floor plans, networks, and process maps
+description: diagrams.net (draw.io) is a widely used diagram editor. Operators document networks,
+  processes, and approximate floor layouts for staff.
+status: active
+categories:
+  - knowledge-base
+  - facility-operations
+secondary_categories: []
+roles:
+  - operations-manager
+  - technical-operator
+  - facilities
+workflows:
+  - facility-maintenance
+  - multi-site-rollout
+  - incident-response
+problems:
+  - centralize-knowledge
+  - multi-location-consistency
+deployment:
+  - self-hosted
+  - managed-saas
+  - desktop
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/jgraph/drawio
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software and free web app; optional desktop builds.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: trivial
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Draw your network and critical app dependencies; store the file in your wiki/repo.
+homepage: https://www.diagrams.net/
+repository: https://github.com/jgraph/drawio
+documentation: https://www.drawio.com/doc/
+links:
+  - label: Homepage
+    url: https://www.diagrams.net/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/jgraph/drawio
+    kind: repo
+  - label: Documentation
+    url: https://www.drawio.com/doc/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Architecture diagrams
+  - Process mapping
+human_oversight_still_needed:
+  - Accuracy of diagrams over time
+data_privacy:
+  data_held:
+    - diagram files
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.diagrams.net/
+    - https://github.com/jgraph/drawio
+    - https://www.drawio.com/doc/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 78

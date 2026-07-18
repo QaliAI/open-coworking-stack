@@ -1,0 +1,22 @@
+services:
+  uptime-kuma:
+    image: ${UPTIME_KUMA_IMAGE:?Set UPTIME_KUMA_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:${UPTIME_KUMA_PORT:-3001}:3001'
+    volumes:
+      - uptime_kuma_data:/app/data
+    healthcheck:
+      test: ['CMD', 'extra/healthcheck']
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 3m
+    networks:
+      - frontend
+
+volumes:
+  uptime_kuma_data:
+
+networks:
+  frontend:

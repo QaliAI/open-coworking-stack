@@ -1,0 +1,98 @@
+schema_version: 1.0.0
+id: documenso
+name: Documenso
+tagline: Community-focused open signing platform
+description: Documenso is an open-source DocuSign alternative community. Evaluate alongside DocuSeal
+  for membership paperwork workflows with legal counsel input.
+status: active
+categories:
+  - legal-contracts
+secondary_categories: []
+roles:
+  - owner-operator
+  - sales-manager
+  - technical-operator
+workflows:
+  - member-onboarding
+  - tour-to-close
+problems:
+  - reduce-software-cost
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: emerging
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/documenso/documenso
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Self-host free; hosted plans may exist—verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://documenso.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Self-host staging instance and run internal dual-control signing tests.
+homepage: https://documenso.com/
+repository: https://github.com/documenso/documenso
+documentation: https://docs.documenso.com/
+links:
+  - label: Homepage
+    url: https://documenso.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/documenso/documenso
+    kind: repo
+  - label: Documentation
+    url: https://docs.documenso.com/
+    kind: docs
+  - label: Pricing
+    url: https://documenso.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - E-signature collection
+  - Agreement audit trails
+human_oversight_still_needed:
+  - Jurisdiction legal review
+  - Product maturity
+data_privacy:
+  data_held:
+    - contracts
+    - signatures
+    - user accounts
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://documenso.com/
+    - https://github.com/documenso/documenso
+    - https://docs.documenso.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

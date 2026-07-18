@@ -1,0 +1,110 @@
+schema_version: 1.0.0
+id: officerd-saas
+name: OfficeRnD
+tagline: Commercial flexible workspace platform (freemium/paid SaaS)
+description: OfficeRnD is a commercial platform purpose-built for flexible workspaces. Included as a
+  comparison anchor so operators can weigh OSS stacks vs vertical SaaS—not as an open-source option.
+status: active
+categories:
+  - membership-crm
+  - booking-scheduling
+  - billing-payments
+  - access-control
+secondary_categories: []
+roles:
+  - owner-operator
+  - community-manager
+  - operations-manager
+  - sales-manager
+  - multi-location-operator
+workflows:
+  - member-onboarding
+  - room-booking
+  - invoice-collections
+  - access-provisioning
+  - tour-to-close
+problems:
+  - automate-billing
+  - fill-meeting-rooms
+  - improve-member-experience
+  - multi-location-consistency
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://www.officernd.com/
+  notes: Not open source. Verify current packaging and free trial terms on official site.
+  verified_on: 2026-07-17
+cost:
+  model: subscription
+  summary: Commercial subscription based on resources/locations; public list prices change—check
+    official pricing or sales.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.officernd.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Run a time-boxed pilot on one site with real room bookings; export data
+    before committing annually.
+homepage: https://www.officernd.com/
+documentation: https://help.officernd.com/
+links:
+  - label: Homepage
+    url: https://www.officernd.com/
+    kind: homepage
+  - label: Documentation
+    url: https://help.officernd.com/
+    kind: docs
+  - label: Pricing
+    url: https://www.officernd.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Membership plans
+  - Resource booking
+  - Invoicing workflows
+  - Integrations to access vendors
+human_oversight_still_needed:
+  - Contract term
+  - Data export
+  - Total cost vs DIY stack
+data_privacy:
+  data_held:
+    - members
+    - bookings
+    - invoices
+    - access mappings
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Not open source. Verify current packaging and free trial terms on official site.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.officernd.com/
+    - https://help.officernd.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

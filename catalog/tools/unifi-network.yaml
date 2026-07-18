@@ -1,0 +1,101 @@
+schema_version: 1.0.0
+id: unifi-network
+name: UniFi Network
+tagline: Free controller software for UniFi networking hardware (proprietary ecosystem)
+description: UniFi Network Application manages UniFi hardware. Popular in coworking build-outs for
+  guest/staff Wi-Fi segmentation. Software is free to download; hardware and some features are
+  commercial; source is not OSI open source.
+status: active
+categories:
+  - network-wifi
+  - facility-operations
+secondary_categories: []
+roles:
+  - technical-operator
+  - facilities
+  - operations-manager
+workflows:
+  - facility-maintenance
+  - incident-response
+  - visitor-management
+problems:
+  - improve-wifi-reliability
+  - secure-door-access
+  - multi-location-consistency
+deployment:
+  - self-hosted
+  - hardware-appliance
+  - managed-saas
+maturity: stable
+license:
+  class: proprietary
+  name: Proprietary free-to-use controller
+  source_url: https://ui.com/download/software/unifi-controller
+  notes: Not open source. Tied to Ubiquiti hardware ecosystem.
+  verified_on: 2026-07-17
+cost:
+  model: hardware-plus-software
+  summary: Controller software free; APs/switches/gateways are paid hardware. Optional UniFi Hosting
+    may be paid.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Segment guest vs staff SSIDs with bandwidth limits and content policies
+    appropriate to your venue.
+homepage: https://ui.com/wi-fi
+documentation: https://help.ui.com/
+links:
+  - label: Homepage
+    url: https://ui.com/wi-fi
+    kind: homepage
+  - label: Documentation
+    url: https://help.ui.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Wi-Fi management
+  - VLAN segmentation
+  - Client insights
+human_oversight_still_needed:
+  - Vendor ecosystem lock-in
+  - Controller backups
+  - Firmware discipline
+data_privacy:
+  data_held:
+    - client connections
+    - device configs
+    - optional client fingerprints
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Not open source. Tied to Ubiquiti hardware ecosystem.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/unifi-network.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://ui.com/wi-fi
+    - https://help.ui.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 85

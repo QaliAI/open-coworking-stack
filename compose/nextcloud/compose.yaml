@@ -1,0 +1,99 @@
+services:
+  db:
+    image: ${POSTGRES_IMAGE:?Set POSTGRES_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${NEXTCLOUD_DB_PASSWORD:?Set NEXTCLOUD_DB_PASSWORD}
+    volumes:
+      - nextcloud_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U nextcloud -d nextcloud']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  redis:
+    image: ${REDIS_IMAGE:?Set REDIS_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}
+    command: ['sh', '-c', 'exec redis-server --requirepass "$$REDIS_PASSWORD"']
+    volumes:
+      - nextcloud_redis:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - backend
+
+  app:
+    image: ${NEXTCLOUD_IMAGE:?Set NEXTCLOUD_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${NEXTCLOUD_DB_PASSWORD:?Set NEXTCLOUD_DB_PASSWORD}
+      REDIS_HOST: redis
+      REDIS_HOST_PASSWORD: ${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}
+      NEXTCLOUD_ADMIN_USER: ${NEXTCLOUD_ADMIN_USER:?Set NEXTCLOUD_ADMIN_USER}
+      NEXTCLOUD_ADMIN_PASSWORD: ${NEXTCLOUD_ADMIN_PASSWORD:?Set NEXTCLOUD_ADMIN_PASSWORD}
+      NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_TRUSTED_DOMAINS:-localhost}
+      OVERWRITEPROTOCOL: ${NEXTCLOUD_OVERWRITE_PROTOCOL:-http}
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:${NEXTCLOUD_PORT:-8080}:80'
+    volumes:
+      - nextcloud_app:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test:
+        ['CMD-SHELL', 'curl --fail --silent --show-error http://127.0.0.1/status.php >/dev/null']
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 2m
+    networks:
+      - frontend
+      - backend
+
+  cron:
+    image: ${NEXTCLOUD_IMAGE:?Set NEXTCLOUD_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    entrypoint: /cron.sh
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${NEXTCLOUD_DB_PASSWORD:?Set NEXTCLOUD_DB_PASSWORD}
+      REDIS_HOST: redis
+      REDIS_HOST_PASSWORD: ${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}
+    volumes:
+      - nextcloud_app:/var/www/html
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  nextcloud_app:
+  nextcloud_db:
+  nextcloud_redis:
+
+networks:
+  frontend:
+  backend:
+    internal: true

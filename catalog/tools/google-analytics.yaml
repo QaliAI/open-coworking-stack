@@ -1,0 +1,90 @@
+schema_version: 1.0.0
+id: google-analytics
+name: Google Analytics
+tagline: Free web analytics with significant privacy considerations
+description: Google Analytics 4 is free proprietary analytics. Still common on marketing sites;
+  privacy-sensitive operators may prefer Umami/Plausible/Matomo.
+status: active
+categories:
+  - analytics-bi
+secondary_categories: []
+roles:
+  - marketing
+  - owner-operator
+workflows:
+  - marketing-campaigns
+  - reporting-kpis
+  - compliance-review
+problems:
+  - grow-pipeline
+  - measure-utilization
+  - privacy-compliance
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: free-saas
+  name: Proprietary SaaS
+  source_url: https://analytics.google.com/
+  verified_on: 2026-07-17
+cost:
+  model: free-tier
+  summary: Free for standard use; Google Analytics 360 is enterprise paid. Verify terms.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: If used, configure consent mode appropriate to your jurisdiction and
+    define 3 conversion events only.
+homepage: https://analytics.google.com/
+documentation: https://support.google.com/analytics/
+links:
+  - label: Homepage
+    url: https://analytics.google.com/
+    kind: homepage
+  - label: Documentation
+    url: https://support.google.com/analytics/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Traffic analysis
+  - Conversion tracking
+human_oversight_still_needed:
+  - Privacy compliance
+  - Data sharing with Google
+  - Cookie consent
+data_privacy:
+  data_held:
+    - event streams
+    - user pseudonymous identifiers
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://analytics.google.com/
+    - https://support.google.com/analytics/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

@@ -1,0 +1,223 @@
+:root {
+  --ocs-forest: #0f3d2e;
+  --ocs-moss: #1f6b4a;
+  --ocs-sand: #f4efe6;
+  --ocs-ink: #14201b;
+  --ocs-accent: #c45c26;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d8efe4;
+  --sl-color-accent: var(--ocs-moss);
+  --sl-color-accent-high: var(--ocs-forest);
+  --sl-color-bg: #fbfaf7;
+  --sl-color-bg-nav: var(--ocs-sand);
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #173f31;
+  --sl-color-accent: #74c69d;
+  --sl-color-accent-high: #d8efe4;
+  --sl-color-bg: #101713;
+  --sl-color-bg-nav: #17221d;
+}
+
+.ocs-hero {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem 0 0.5rem;
+}
+
+.ocs-hero h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--sl-color-accent-high);
+}
+
+.ocs-hero p.lead {
+  font-size: 1.125rem;
+  max-width: 52rem;
+}
+
+.ocs-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 1.25rem 0;
+}
+
+.ocs-card {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  background: var(--sl-color-bg-nav);
+}
+
+.ocs-card h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.ocs-muted {
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.ocs-filters {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin: 1rem 0 1.25rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--sl-color-bg-nav, var(--ocs-sand));
+  border: 1px solid var(--sl-color-gray-5);
+}
+
+.ocs-filters label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ocs-filters input,
+.ocs-filters select {
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--sl-color-gray-4);
+  background: var(--sl-color-bg);
+  color: var(--sl-color-text);
+}
+
+.ocs-search-field {
+  grid-column: span 2;
+}
+
+.ocs-filter-actions {
+  display: flex;
+  align-items: end;
+}
+
+.ocs-reset {
+  width: 100%;
+  min-height: 2.15rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--sl-color-text-accent);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ocs-reset:hover {
+  background: var(--sl-color-accent-low);
+}
+
+.ocs-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--sl-color-gray-5);
+  background: var(--sl-color-bg);
+}
+
+.ocs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.ocs-table th,
+.ocs-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ocs-table th {
+  background: var(--sl-color-bg-nav);
+  color: var(--sl-color-text);
+  position: sticky;
+  top: 0;
+}
+
+.ocs-badge {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+  margin: 0.1rem 0.15rem 0.1rem 0;
+  white-space: nowrap;
+}
+
+.ocs-badge.license-oss {
+  background: #d9f2e5;
+}
+.ocs-badge.license-source {
+  background: #fff0d6;
+}
+.ocs-badge.license-saas {
+  background: #e7e9ff;
+}
+.ocs-badge.license-prop {
+  background: #fde2e2;
+}
+
+.ocs-count {
+  font-weight: 600;
+  margin: 0.5rem 0 1rem;
+}
+
+.ocs-no-results {
+  padding: 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 10px;
+  background: var(--sl-color-bg-nav);
+}
+
+.ocs-filters input:focus-visible,
+.ocs-filters select:focus-visible,
+.ocs-reset:focus-visible,
+.ocs-table-wrap:focus-visible,
+.ocs-directory a:focus-visible {
+  outline: 3px solid var(--sl-color-accent-high);
+  outline-offset: 3px;
+}
+
+:root[data-theme='dark'] .ocs-badge.license-oss {
+  background: #174b32;
+  color: #c9f5dc;
+}
+
+:root[data-theme='dark'] .ocs-badge.license-source {
+  background: #513b17;
+  color: #ffe4ad;
+}
+
+:root[data-theme='dark'] .ocs-badge.license-saas {
+  background: #30345f;
+  color: #e1e3ff;
+}
+
+:root[data-theme='dark'] .ocs-badge.license-prop {
+  background: #572b2b;
+  color: #ffd4d4;
+}
+
+@media (max-width: 35rem) {
+  .ocs-search-field {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}

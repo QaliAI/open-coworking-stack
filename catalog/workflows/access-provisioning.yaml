@@ -1,0 +1,62 @@
+schema_version: 1.0.0
+id: access-provisioning
+name: Access provisioning
+description: Grant and maintain least-privilege access to coworking spaces and systems only after authorized human review of identity, role, site, and dates.
+primary_roles:
+  - operations-manager
+  - technical-operator
+  - community-manager
+stages:
+  - id: authorize
+    name: Authorize the request
+    description: An accountable staff member verifies the person, business need, locations, hours, and start and end dates.
+    manual_tasks:
+      - Verify the requester and approving authority
+      - Choose the minimum access needed for the approved period
+    automation_opportunities:
+      - Route requests to the correct approver
+      - Flag missing dates or unusually broad access
+    suggested_tool_ids: []
+    risks:
+      - Informal approval can grant access without clear accountability
+  - id: provision
+    name: Provision approved access
+    description: Technical or operations staff create approved identities and credentials, then test the result without broadening scope.
+    manual_tasks:
+      - Review generated group and door assignments before activation
+      - Test a representative login or entry path
+    automation_opportunities:
+      - Prepare account and group changes from an approved request
+      - Record provisioning outcomes and exceptions
+    suggested_tool_ids:
+      - authentik
+      - keycloak
+      - kanidm
+      - nexudus
+      - officerd-saas
+    risks:
+      - Incorrect mappings can expose restricted systems or areas
+      - A successful system update does not prove physical access is safe
+  - id: review-and-expire
+    name: Review and expire access
+    description: Named owners periodically confirm that access is still justified and remove it promptly when the approved period ends.
+    manual_tasks:
+      - Review exceptions and access that lacks an owner or end date
+      - Confirm revocation across physical and digital systems
+    automation_opportunities:
+      - Notify owners before access expires
+      - Generate a stale-access list for human review
+    suggested_tool_ids:
+      - authentik
+      - keycloak
+      - home-assistant
+      - nexudus
+    risks:
+      - Dormant credentials can persist if systems are not reconciled
+success_metrics:
+  - Median time from approval to tested access
+  - Percentage of active credentials with an owner and review date
+  - Number of access exceptions found during periodic review
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

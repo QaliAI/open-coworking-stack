@@ -1,0 +1,98 @@
+schema_version: 1.0.0
+id: stripe
+name: Stripe
+tagline: Payments infrastructure (proprietary) commonly paired with open tools
+description: Stripe is a commercial payments platform widely used by flexible-workspace software.
+  Included because almost every billing stack integrates with a PSP; it is not open source.
+status: active
+categories:
+  - billing-payments
+secondary_categories: []
+roles:
+  - finance
+  - owner-operator
+  - technical-operator
+workflows:
+  - invoice-collections
+  - member-onboarding
+  - day-pass-checkin
+problems:
+  - automate-billing
+  - integrate-stack
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: proprietary
+  name: Proprietary SaaS
+  source_url: https://stripe.com/
+  notes: Not open source. Listed for integration reality checks.
+  verified_on: 2026-07-17
+cost:
+  model: usage-based
+  summary: Pay-as-you-go payment processing fees; no meaningful free production payments. Verify
+    current fee schedule.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://stripe.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Process 5 test-mode invoices from your invoicing tool; map fee impact into membership pricing.
+homepage: https://stripe.com/
+documentation: https://stripe.com/docs
+links:
+  - label: Homepage
+    url: https://stripe.com/
+    kind: homepage
+  - label: Documentation
+    url: https://stripe.com/docs
+    kind: docs
+  - label: Pricing
+    url: https://stripe.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Card payments
+  - Subscription billing primitives
+  - Payout reconciliation inputs
+human_oversight_still_needed:
+  - Fee modeling
+  - Chargeback handling
+  - PCI scope via proper integration
+data_privacy:
+  data_held:
+    - payment metadata
+    - customer email
+    - billing details
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Not open source. Listed for integration reality checks.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/stripe.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://stripe.com/
+    - https://stripe.com/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 88

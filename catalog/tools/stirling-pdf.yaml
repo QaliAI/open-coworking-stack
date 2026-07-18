@@ -1,0 +1,95 @@
+schema_version: 1.0.0
+id: stirling-pdf
+name: Stirling PDF
+tagline: Self-hosted PDF toolkit for admin paperwork
+description: Stirling PDF provides browser tools to merge, split, OCR, and convert PDFs. Admin teams
+  process membership paperwork without uploading sensitive PDFs to random websites.
+status: active
+categories:
+  - file-storage
+  - facility-operations
+secondary_categories: []
+roles:
+  - operations-manager
+  - virtual-office-mailroom
+  - finance
+workflows:
+  - member-onboarding
+  - mail-package-handling
+  - compliance-review
+problems:
+  - self-host-for-data-control
+  - operate-virtual-office
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/Stirling-Tools/Stirling-PDF
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; host on internal network preferably.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy internally and process 10 redacted sample PDFs; forbid internet exposure without auth.
+homepage: https://www.stirlingpdf.com/
+repository: https://github.com/Stirling-Tools/Stirling-PDF
+documentation: https://docs.stirlingpdf.com/
+links:
+  - label: Homepage
+    url: https://www.stirlingpdf.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/Stirling-Tools/Stirling-PDF
+    kind: repo
+  - label: Documentation
+    url: https://docs.stirlingpdf.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - PDF merge/split
+  - OCR of scans
+  - Avoiding untrusted online PDF tools
+human_oversight_still_needed:
+  - Must not be public unauthenticated
+  - Data retention on server
+data_privacy:
+  data_held:
+    - temporary PDF processing files
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.stirlingpdf.com/
+    - https://github.com/Stirling-Tools/Stirling-PDF
+    - https://docs.stirlingpdf.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 75

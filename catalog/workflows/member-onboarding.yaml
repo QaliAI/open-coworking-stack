@@ -1,0 +1,78 @@
+schema_version: 1.0.0
+id: member-onboarding
+name: Member onboarding
+description: 'From signed agreement to first successful day on site: accounts, access, billing
+  start, orientation, and welcome communications.'
+primary_roles:
+  - community-manager
+  - operations-manager
+  - sales-manager
+  - finance
+stages:
+  - id: agreement
+    name: Agreement & identity
+    description: Collect signed terms and verify who the member is.
+    manual_tasks:
+      - Review special terms
+      - Verify company admin contacts
+    automation_opportunities:
+      - E-sign templates
+      - CRM stage updates
+    suggested_tool_ids:
+      - docuseal
+      - documenso
+      - espocrm
+      - cobot
+    risks:
+      - Invalid e-sign assumptions by jurisdiction
+  - id: provision
+    name: Provision access & services
+    description: Create portal users, Wi-Fi, door access, locker, and mailing details.
+    manual_tasks:
+      - Hand over keys/fobs if used
+      - Show emergency exits
+    automation_opportunities:
+      - IdP account creation
+      - Checklist tickets
+    suggested_tool_ids:
+      - keycloak
+      - authentik
+      - freescout
+      - bookstack
+    risks:
+      - Orphaned access if offboarding not linked
+  - id: billing-start
+    name: Billing start
+    description: First invoice or subscription start aligned to move-in date.
+    manual_tasks:
+      - Proration decisions
+      - Deposit handling
+    automation_opportunities:
+      - Recurring invoice generation
+    suggested_tool_ids:
+      - stripe
+      - invoice-ninja
+      - erpnext
+      - cobot
+    risks:
+      - Failed payment without human follow-up
+  - id: welcome
+    name: Welcome & orientation
+    description: Community intro, norms, and how to get help.
+    manual_tasks:
+      - Personal welcome
+      - Introduce to community
+    automation_opportunities:
+      - Welcome email sequences
+    suggested_tool_ids:
+      - listmonk
+      - chatwoot
+      - notion
+    risks:
+      - Over-automation feels cold
+success_metrics:
+  - Time from signature to usable access
+  - First-week support ticket volume
+  - Failed payment rate on first invoice
+verification:
+  last_reviewed: 2026-07-17

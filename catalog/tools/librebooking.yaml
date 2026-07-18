@@ -1,0 +1,103 @@
+schema_version: 1.0.0
+id: librebooking
+name: LibreBooking
+tagline: Resource scheduling fork for rooms, equipment, and shared assets
+description: LibreBooking is an open-source resource reservation system (community continuation of
+  Booked Scheduler concepts). Operators schedule meeting rooms, phone booths, AV kits, and event
+  spaces with quotas and blackout dates.
+status: active
+categories:
+  - booking-scheduling
+  - event-management
+secondary_categories: []
+roles:
+  - operations-manager
+  - community-manager
+  - event-coordinator
+workflows:
+  - room-booking
+  - event-lifecycle
+  - facility-maintenance
+problems:
+  - fill-meeting-rooms
+  - replace-spreadsheets
+  - improve-member-experience
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-only
+  source_url: https://github.com/LibreBooking/app
+  notes: Verify LICENSE in the active repository fork you deploy.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software with self-hosting costs only.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Configure three meeting rooms with business-hour rules and run bookings
+    for one week with staff as fake members.
+homepage: https://librebooking.org/
+repository: https://github.com/LibreBooking/app
+documentation: https://github.com/LibreBooking/app/wiki
+links:
+  - label: Homepage
+    url: https://librebooking.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/LibreBooking/app
+    kind: repo
+  - label: Documentation
+    url: https://github.com/LibreBooking/app/wiki
+    kind: docs
+tasks_reduced_or_augmented:
+  - Room reservation without commercial workplace suites
+  - Equipment checkout tracking
+  - Blackout windows for cleaning and events
+human_oversight_still_needed:
+  - Conflict resolution
+  - No-show policy enforcement
+  - Access to reservation PII
+data_privacy:
+  data_held:
+    - reservations
+    - resources
+    - users
+    - announcements
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Verify LICENSE in the active repository fork you deploy.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://librebooking.org/
+    - https://github.com/LibreBooking/app
+    - https://github.com/LibreBooking/app/wiki
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 80

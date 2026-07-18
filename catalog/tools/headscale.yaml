@@ -1,0 +1,95 @@
+schema_version: 1.0.0
+id: headscale
+name: Headscale
+tagline: Self-hosted control server compatible with Tailscale clients
+description: Headscale implements an open-source control server for the Tailscale client ecosystem.
+  Teams wanting WireGuard mesh convenience with self-hosted coordination evaluate Headscale
+  carefully against Tailscale SaaS terms.
+status: active
+categories:
+  - network-wifi
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - multi-location-operator
+workflows:
+  - multi-site-rollout
+  - access-provisioning
+problems:
+  - self-host-for-data-control
+  - multi-location-consistency
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: BSD-3-Clause
+  source_url: https://github.com/juanfont/headscale
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free control server; clients are Tailscale’s. Review Tailscale client terms for your use.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Connect three admin devices in a staging tailnet and access one internal dashboard.
+homepage: https://github.com/juanfont/headscale
+repository: https://github.com/juanfont/headscale
+documentation: https://headscale.net/
+links:
+  - label: Homepage
+    url: https://github.com/juanfont/headscale
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/juanfont/headscale
+    kind: repo
+  - label: Documentation
+    url: https://headscale.net/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Mesh VPN coordination
+  - Reducing public exposure of admin UIs
+human_oversight_still_needed:
+  - Client license/terms
+  - ACL design
+  - Key/node lifecycle
+data_privacy:
+  data_held:
+    - node registrations
+    - user identities
+    - ACL policies
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://github.com/juanfont/headscale
+    - https://github.com/juanfont/headscale
+    - https://headscale.net/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 74

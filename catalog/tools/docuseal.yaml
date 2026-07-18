@@ -1,0 +1,105 @@
+schema_version: 1.0.0
+id: docuseal
+name: DocuSeal
+tagline: Open-source document signing for membership agreements
+description: DocuSeal provides self-hosted e-signature workflows. Operators use it for membership
+  agreements and vendor contracts when SaaS e-sign pricing is painful—after legal review of e-sign
+  validity in their jurisdiction.
+status: active
+categories:
+  - legal-contracts
+  - membership-crm
+secondary_categories: []
+roles:
+  - owner-operator
+  - sales-manager
+  - operations-manager
+  - technical-operator
+workflows:
+  - member-onboarding
+  - tour-to-close
+  - compliance-review
+problems:
+  - reduce-software-cost
+  - self-host-for-data-control
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/docusealco/docuseal
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Self-host free; cloud offering exists—verify pricing officially.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.docuseal.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Create one membership agreement template and complete five test signatures with staff accounts.
+homepage: https://www.docuseal.com/
+repository: https://github.com/docusealco/docuseal
+documentation: https://www.docuseal.com/docs
+links:
+  - label: Homepage
+    url: https://www.docuseal.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/docusealco/docuseal
+    kind: repo
+  - label: Documentation
+    url: https://www.docuseal.com/docs
+    kind: docs
+  - label: Pricing
+    url: https://www.docuseal.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Collecting signed membership agreements
+  - Reducing printing and scanning
+human_oversight_still_needed:
+  - Legal validity of e-sign in your jurisdiction
+  - Template version control
+  - Identity verification rigor
+data_privacy:
+  data_held:
+    - documents
+    - signatures
+    - signer emails
+    - audit trails
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.docuseal.com/
+    - https://github.com/docusealco/docuseal
+    - https://www.docuseal.com/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 79

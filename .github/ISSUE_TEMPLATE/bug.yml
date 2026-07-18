@@ -1,0 +1,63 @@
+name: Bug report
+description: Report a reproducible problem in the catalog tooling or documentation site.
+title: '[Bug]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not use this form for exploitable vulnerabilities. Follow SECURITY.md and use a private channel.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Catalog validation or generation
+        - Documentation content
+        - Documentation site
+        - CI or repository automation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Run ...
+        2. Open ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Node.js version, pnpm version, and browser when relevant.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output
+      description: Remove credentials, tokens, private data, and unrelated logs.
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: This report does not disclose an exploitable vulnerability or secret.
+          required: true
+        - label: I searched existing issues for the same problem.
+          required: true

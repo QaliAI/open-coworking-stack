@@ -1,0 +1,503 @@
+import { mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import type { Stack, Tool, WorkflowDef } from '@ocs/schema';
+
+export interface CatalogExport {
+  schema_version: '1.0.0';
+  generated_at: string;
+  tool_count: number;
+  stack_count: number;
+  workflow_count: number;
+  tools: Array<{
+    id: string;
+    name: string;
+    tagline: string;
+    categories: Tool['categories'];
+    roles: Tool['roles'];
+    workflows: Tool['workflows'];
+    problems: Tool['problems'];
+    deployment: Tool['deployment'];
+    license_class: Tool['license']['class'];
+    spdx: string | null;
+    cost_model: Tool['cost']['model'];
+    difficulty: Tool['implementation']['difficulty'];
+    guide_status: Tool['guide_status'];
+    featured: boolean;
+    rank_score: number;
+    homepage: string;
+    verification_status: Tool['verification']['status'];
+    last_reviewed: string;
+  }>;
+  stacks: Array<{
+    id: string;
+    name: string;
+    tagline: string;
+    budget: Stack['monthly_cash_budget_band'];
+    components: string[];
+  }>;
+  workflows: Array<{
+    id: string;
+    name: string;
+    description: string;
+    primary_roles: WorkflowDef['primary_roles'];
+    stages: Array<{ id: string; name: string; suggested_tool_ids: string[] }>;
+    last_reviewed: string;
+  }>;
+}
+
+function escapeMd(s: string): string {
+  return s.replace(/\|/g, '\\|');
+}
+
+function toolDoc(tool: Tool, guideRoute: string | null): string {
+  const license = [tool.license.class, tool.license.spdx ? `(\`${tool.license.spdx}\`)` : '']
+    .filter(Boolean)
+    .join(' ');
+
+  return `---
+title: ${JSON.stringify(tool.name)}
+description: ${JSON.stringify(tool.tagline)}
+editUrl: false
+---
+
+import { Aside, Badge } from '@astrojs/starlight/components';
+
+${tool.tagline}
+
+<Badge text="${tool.license.class}" variant="note" />
+<Badge text="${tool.guide_status} guide" variant="caution" />
+${tool.featured ? '<Badge text="featured" variant="success" />' : ''}
+
+## Overview
+
+${tool.description}
+
+## At a glance
+
+| Field | Value |
+| --- | --- |
+| Categories | ${tool.categories.map((c) => `\`${c}\``).join(', ')} |
+| Deployment | ${tool.deployment.map((d) => `\`${d}\``).join(', ')} |
+| License class | ${license} |
+| Cost model | \`${tool.cost.model}\` |
+| Implementation difficulty | \`${tool.implementation.difficulty}\` |
+| Maintenance burden | \`${tool.implementation.maintenance_burden}\` |
+| Maturity | \`${tool.maturity}\` |
+| Verification | \`${tool.verification.status}\` (${tool.verification.last_reviewed}) |
+
+## Cost reality
+
+${tool.cost.summary}
+
+${tool.cost.free_tier_notes ? `**Free tier notes:** ${tool.cost.free_tier_notes}` : ''}
+
+${tool.cost.self_host_cost_notes ? `**Self-host notes:** ${tool.cost.self_host_cost_notes}` : ''}
+
+> ${tool.cost.currency_caveat}
+
+${tool.cost.pricing_url ? `[Official pricing](${tool.cost.pricing_url})` : ''}
+
+## Tasks reduced or augmented
+
+Software does **not** replace community or ops staff. It may reduce or augment:
+
+${tool.tasks_reduced_or_augmented.map((t) => `- ${t}`).join('\n')}
+
+### Human oversight still needed
+
+${tool.human_oversight_still_needed.map((t) => `- ${t}`).join('\n')}
+
+## Data held
+
+${tool.data_privacy.data_held.map((d) => `- ${d}`).join('\n')}
+
+- Personal data: **${tool.data_privacy.personal_data ? 'yes' : 'no / limited'}**
+- Payment data: **${tool.data_privacy.payment_data ? 'yes / possible' : 'no / not primary'}**
+
+${tool.data_privacy.notes ? `\n${tool.data_privacy.notes}\n` : ''}
+${tool.data_privacy.privacy_url ? `[Privacy policy](${tool.data_privacy.privacy_url})\n` : ''}
+
+## Risks
+
+| Area | Notes |
+| --- | --- |
+| Vendor lock-in | ${escapeMd(tool.risks.vendor_lock_in ?? 'See verification notes.')} |
+| Security | ${escapeMd(tool.risks.security ?? 'Follow upstream security advisories.')} |
+| Compliance | ${escapeMd(tool.risks.compliance ?? 'Operator remains responsible for local obligations.')} |
+| Licensing | ${escapeMd(tool.risks.licensing ?? tool.license.notes ?? 'Re-check license terms before production.')} |
+| Operational | ${escapeMd(tool.risks.operational ?? 'Plan backups, updates, and access control.')} |
+
+## Coworking fit
+
+**Roles:** ${tool.roles.map((r) => `\`${r}\``).join(', ')}
+
+**Workflows:** ${tool.workflows.map((w) => `\`${w}\``).join(', ')}
+
+**Problems:** ${tool.problems.map((p) => `\`${p}\``).join(', ')}
+
+## Smallest useful experiment
+
+${tool.implementation.smallest_useful_experiment}
+
+${tool.implementation.typical_time_to_first_value ? `**Typical time to first value:** ${tool.implementation.typical_time_to_first_value}` : ''}
+
+## Links
+
+- [Homepage](${tool.homepage})
+${tool.repository ? `- [Repository](${tool.repository})` : ''}
+${tool.documentation ? `- [Documentation](${tool.documentation})` : ''}
+${tool.links.map((l) => `- [${l.label}](${l.url})`).join('\n')}
+
+## Implementation guide
+
+${
+  guideRoute
+    ? `See the [human-written implementation guide](${guideRoute}).`
+    : 'A routable implementation guide is not currently published.'
+}
+
+${tool.compose_pack ? `**Compose pack:** \`${tool.compose_pack}\`` : ''}
+
+## Verification
+
+- Status: \`${tool.verification.status}\`
+- Last reviewed: \`${tool.verification.last_reviewed}\`
+- Sources:
+${tool.verification.sources.map((s) => `  - ${s}`).join('\n')}
+${tool.verification.notes ? `\n${tool.verification.notes}\n` : ''}
+
+<Aside type="caution">
+Always re-check official project pages before production decisions. Metadata can become stale.
+</Aside>
+`;
+}
+
+function stackDoc(stack: Stack): string {
+  return `---
+title: ${JSON.stringify(stack.name)}
+description: ${JSON.stringify(stack.tagline)}
+editUrl: false
+---
+
+${stack.tagline}
+
+${stack.description}
+
+## Budget band
+
+\`${stack.monthly_cash_budget_band}\`${stack.self_host_heavy ? ' · self-host heavy' : ''}
+
+## Components
+
+| Tool | Role in stack | Required |
+| --- | --- | --- |
+${stack.components
+  .map(
+    (c) =>
+      `| [${c.tool_id}](../../../tools/generated/${c.tool_id}/) | ${escapeMd(c.role_in_stack)} | ${c.required ? 'yes' : 'optional'} |`,
+  )
+  .join('\n')}
+
+## Assumptions
+
+${stack.assumptions.map((a) => `- ${a}`).join('\n')}
+
+## Risks
+
+${stack.risks.map((r) => `- ${r}`).join('\n')}
+
+## Getting started
+
+${stack.getting_started.map((s, i) => `${i + 1}. ${s}`).join('\n')}
+
+## Audience
+
+**Roles:** ${stack.audience_roles.map((r) => `\`${r}\``).join(', ')}
+
+**Problems:** ${stack.problems_solved.map((p) => `\`${p}\``).join(', ')}
+
+**Workflows:** ${stack.workflows.map((w) => `\`${w}\``).join(', ')}
+
+_Last reviewed: ${stack.verification.last_reviewed}_
+`;
+}
+
+function indexTools(tools: Tool[]): string {
+  const sorted = [...tools].sort((a, b) => a.name.localeCompare(b.name));
+  return `---
+title: Tool directory
+description: Machine-generated index of catalog tools for coworking operators.
+editUrl: false
+---
+
+This page is generated from \`catalog/tools/*.yaml\`. Prefer filters on the [interactive directory](../../directory/) when browsing.
+
+| Tool | License class | Categories | Guide |
+| --- | --- | --- | --- |
+${sorted
+  .map(
+    (t) =>
+      `| [${escapeMd(t.name)}](./${t.id}/) | \`${t.license.class}\` | ${t.categories.map((c) => `\`${c}\``).join(', ')} | \`${t.guide_status}\` |`,
+  )
+  .join('\n')}
+`;
+}
+
+function workflowDoc(workflow: WorkflowDef): string {
+  return `---
+title: ${JSON.stringify(workflow.name)}
+description: ${JSON.stringify(workflow.description)}
+editUrl: false
+---
+
+${workflow.description}
+
+**Primary roles:** ${workflow.primary_roles.map((role) => `\`${role}\``).join(', ')}
+
+## Stages
+
+${workflow.stages
+  .map(
+    (stage, index) => `### ${index + 1}. ${stage.name}
+
+${stage.description}
+
+#### Manual tasks
+
+${stage.manual_tasks.length > 0 ? stage.manual_tasks.map((task) => `- ${task}`).join('\n') : '- None documented.'}
+
+#### Automation opportunities
+
+${stage.automation_opportunities.length > 0 ? stage.automation_opportunities.map((item) => `- ${item}`).join('\n') : '- None documented.'}
+
+#### Suggested tools
+
+${
+  stage.suggested_tool_ids.length > 0
+    ? stage.suggested_tool_ids
+        .map((toolId) => `- [${toolId}](../../../tools/generated/${toolId}/)`)
+        .join('\n')
+    : '- None documented.'
+}
+
+#### Risks
+
+${stage.risks.length > 0 ? stage.risks.map((risk) => `- ${risk}`).join('\n') : '- None documented.'}`,
+  )
+  .join('\n\n')}
+
+## Success metrics
+
+${workflow.success_metrics.map((metric) => `- ${metric}`).join('\n')}
+
+Last reviewed: ${workflow.verification.last_reviewed}
+`;
+}
+
+async function findGuideRoute(repoRoot: string, tool: Tool): Promise<string | null> {
+  if (!tool.guide_path) return null;
+
+  const relativePath = tool.guide_path.replace(/\\/g, '/');
+  if (!relativePath.endsWith('.md') && !relativePath.endsWith('.mdx')) return null;
+
+  const candidate = path.resolve(repoRoot, ...relativePath.split('/'));
+  if (!candidate.startsWith(`${path.resolve(repoRoot)}${path.sep}`)) return null;
+
+  try {
+    if (!(await stat(candidate)).isFile()) return null;
+  } catch {
+    return null;
+  }
+
+  return `../../../${relativePath.replace(/\.(?:md|mdx)$/, '')}/`;
+}
+
+async function publishGuides(repoRoot: string, guidesOut: string): Promise<void> {
+  const guidesSource = path.join(repoRoot, 'guides/tools');
+  let entries;
+  try {
+    entries = await readdir(guidesSource, { withFileTypes: true });
+  } catch {
+    return;
+  }
+
+  for (const entry of entries
+    .filter((item) => item.isFile() && /\.mdx?$/.test(item.name))
+    .sort((a, b) => a.name.localeCompare(b.name))) {
+    const source = await readFile(path.join(guidesSource, entry.name), 'utf8');
+    // Starlight renders the frontmatter title as the page H1.
+    const published = source.replace(/\n# [^\n]+\n\n?/, '\n');
+    await writeFile(path.join(guidesOut, entry.name), published, 'utf8');
+  }
+}
+
+async function publishIntegrationRecipes(repoRoot: string, integrationsOut: string): Promise<void> {
+  const sourceDirectory = path.join(repoRoot, 'docs/integrations');
+  let entries;
+  try {
+    entries = await readdir(sourceDirectory, { withFileTypes: true });
+  } catch {
+    return;
+  }
+
+  for (const entry of entries
+    .filter((item) => item.isFile() && item.name.endsWith('.md'))
+    .sort((a, b) => a.name.localeCompare(b.name))) {
+    const source = await readFile(path.join(sourceDirectory, entry.name), 'utf8');
+    const title = source.match(/^# (.+)$/m)?.[1] ?? 'Integration recipe';
+    const body = source.replace(/^# [^\n]+\n\n?/, '');
+    const published = `---
+title: ${JSON.stringify(title)}
+description: Vendor-neutral coworking integration pattern with explicit human controls.
+editUrl: false
+---
+
+${body}`;
+    const outputName = entry.name === 'README.md' ? 'index.md' : entry.name;
+    await writeFile(path.join(integrationsOut, outputName), published, 'utf8');
+  }
+}
+
+function csvCell(value: string): string {
+  return `"${value.replace(/"/g, '""')}"`;
+}
+
+function toolsCsv(tools: Tool[]): string {
+  const rows = [
+    [
+      'id',
+      'name',
+      'tagline',
+      'categories',
+      'roles',
+      'workflows',
+      'license_class',
+      'cost_model',
+      'homepage',
+      'verification_status',
+      'last_reviewed',
+    ],
+    ...tools.map((tool) => [
+      tool.id,
+      tool.name,
+      tool.tagline,
+      tool.categories.join(';'),
+      tool.roles.join(';'),
+      tool.workflows.join(';'),
+      tool.license.class,
+      tool.cost.model,
+      tool.homepage,
+      tool.verification.status,
+      tool.verification.last_reviewed,
+    ]),
+  ];
+  return `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`;
+}
+
+async function writeJson(filePath: string, value: unknown): Promise<void> {
+  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+}
+
+export async function generateDerivedDocs(
+  repoRoot: string,
+  tools: Tool[],
+  stacks: Stack[],
+  workflows: WorkflowDef[],
+): Promise<void> {
+  const toolsOut = path.join(repoRoot, 'apps/web/src/content/docs/tools/generated');
+  const stacksOut = path.join(repoRoot, 'apps/web/src/content/docs/stacks/generated');
+  const workflowsOut = path.join(repoRoot, 'apps/web/src/content/docs/workflows/generated');
+  const guidesOut = path.join(repoRoot, 'apps/web/src/content/docs/guides/tools');
+  const integrationsOut = path.join(repoRoot, 'apps/web/src/content/docs/integrations/generated');
+  const dataOut = path.join(repoRoot, 'apps/web/public/data');
+
+  await Promise.all(
+    [toolsOut, stacksOut, workflowsOut, guidesOut, integrationsOut, dataOut].map((directory) =>
+      rm(directory, { recursive: true, force: true }),
+    ),
+  );
+  await mkdir(toolsOut, { recursive: true });
+  await mkdir(stacksOut, { recursive: true });
+  await mkdir(workflowsOut, { recursive: true });
+  await mkdir(guidesOut, { recursive: true });
+  await mkdir(integrationsOut, { recursive: true });
+  await mkdir(dataOut, { recursive: true });
+
+  await publishGuides(repoRoot, guidesOut);
+  await publishIntegrationRecipes(repoRoot, integrationsOut);
+
+  const sortedTools = [...tools].sort((a, b) => a.id.localeCompare(b.id));
+  const sortedStacks = [...stacks].sort((a, b) => a.id.localeCompare(b.id));
+  const sortedWorkflows = [...workflows].sort((a, b) => a.id.localeCompare(b.id));
+
+  for (const tool of sortedTools) {
+    const guideRoute = await findGuideRoute(repoRoot, tool);
+    await writeFile(path.join(toolsOut, `${tool.id}.mdx`), toolDoc(tool, guideRoute), 'utf8');
+  }
+  await writeFile(path.join(toolsOut, 'index.md'), indexTools(sortedTools), 'utf8');
+
+  for (const stack of sortedStacks) {
+    await writeFile(path.join(stacksOut, `${stack.id}.md`), stackDoc(stack), 'utf8');
+  }
+
+  for (const workflow of sortedWorkflows) {
+    await writeFile(path.join(workflowsOut, `${workflow.id}.md`), workflowDoc(workflow), 'utf8');
+  }
+
+  const toolExport = sortedTools.map((tool) => ({
+    id: tool.id,
+    name: tool.name,
+    tagline: tool.tagline,
+    categories: tool.categories,
+    roles: tool.roles,
+    workflows: tool.workflows,
+    problems: tool.problems,
+    deployment: tool.deployment,
+    license_class: tool.license.class,
+    spdx: tool.license.spdx ?? null,
+    cost_model: tool.cost.model,
+    difficulty: tool.implementation.difficulty,
+    guide_status: tool.guide_status,
+    featured: tool.featured,
+    rank_score: tool.rank_score,
+    homepage: tool.homepage,
+    verification_status: tool.verification.status,
+    last_reviewed: tool.verification.last_reviewed,
+  }));
+  const stackExport = sortedStacks.map((stack) => ({
+    id: stack.id,
+    name: stack.name,
+    tagline: stack.tagline,
+    budget: stack.monthly_cash_budget_band,
+    components: stack.components.map((component) => component.tool_id),
+  }));
+  const workflowExport = sortedWorkflows.map((workflow) => ({
+    id: workflow.id,
+    name: workflow.name,
+    description: workflow.description,
+    primary_roles: workflow.primary_roles,
+    stages: workflow.stages.map((stage) => ({
+      id: stage.id,
+      name: stage.name,
+      suggested_tool_ids: stage.suggested_tool_ids,
+    })),
+    last_reviewed: workflow.verification.last_reviewed,
+  }));
+
+  const exportPayload: CatalogExport = {
+    schema_version: '1.0.0',
+    generated_at: new Date().toISOString(),
+    tool_count: toolExport.length,
+    stack_count: stackExport.length,
+    workflow_count: workflowExport.length,
+    tools: toolExport,
+    stacks: stackExport,
+    workflows: workflowExport,
+  };
+
+  await writeJson(path.join(dataOut, 'catalog.json'), exportPayload);
+  await writeJson(path.join(dataOut, 'tools.json'), toolExport);
+  await writeJson(path.join(dataOut, 'stacks.json'), stackExport);
+  await writeJson(path.join(dataOut, 'workflows.json'), workflowExport);
+  await writeFile(path.join(dataOut, 'tools.csv'), toolsCsv(sortedTools), 'utf8');
+}

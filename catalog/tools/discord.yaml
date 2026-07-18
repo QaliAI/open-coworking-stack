@@ -1,0 +1,91 @@
+schema_version: 1.0.0
+id: discord
+name: Discord
+tagline: Free community chat platform used by some spaces for members
+description: Discord is a freemium community platform. Some coworking brands host member communities
+  here; moderation and brand control differ from self-hosted chat.
+status: active
+categories:
+  - community-engagement
+  - communication-chat
+secondary_categories: []
+roles:
+  - community-manager
+  - event-coordinator
+  - marketing
+workflows:
+  - community-programming
+  - event-lifecycle
+problems:
+  - improve-member-experience
+  - run-events
+  - reduce-software-cost
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://discord.com/
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Free to use; Nitro and Server Boosts optional. Verify current commercial terms for brands.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Run a 60-day member community pilot with clear code of conduct and two moderators.
+homepage: https://discord.com/
+documentation: https://support.discord.com/
+links:
+  - label: Homepage
+    url: https://discord.com/
+    kind: homepage
+  - label: Documentation
+    url: https://support.discord.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Member community chat
+  - Event voice stages
+human_oversight_still_needed:
+  - Moderation labor
+  - Brand safety
+  - Data control limits
+data_privacy:
+  data_held:
+    - messages
+    - voice metadata
+    - user handles
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://discord.com/
+    - https://support.discord.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

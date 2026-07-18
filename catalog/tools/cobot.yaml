@@ -1,0 +1,106 @@
+schema_version: 1.0.0
+id: cobot
+name: Cobot
+tagline: Coworking management SaaS popular with independent spaces
+description: Cobot is a commercial coworking management tool focused on memberships, check-ins, and
+  billing. Useful baseline for what vertical SaaS covers versus an assembled OSS stack.
+status: active
+categories:
+  - membership-crm
+  - billing-payments
+  - booking-scheduling
+secondary_categories: []
+roles:
+  - owner-operator
+  - community-manager
+  - operations-manager
+  - finance
+workflows:
+  - member-onboarding
+  - day-pass-checkin
+  - invoice-collections
+  - room-booking
+problems:
+  - automate-billing
+  - reduce-manual-admin
+  - improve-member-experience
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: freemium-saas
+  name: Proprietary SaaS
+  source_url: https://www.cobot.me/
+  notes:
+    Confirm free tier/trial terms on official site; classification may be free-trial depending on
+    current packaging.
+  verified_on: 2026-07-17
+cost:
+  model: subscription
+  summary: Paid plans by space size/features—verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.cobot.me/en/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Trial with 20 members max; time how long invoicing and check-in take
+    versus your spreadsheet process.
+homepage: https://www.cobot.me/
+documentation: https://www.cobot.me/en/help
+links:
+  - label: Homepage
+    url: https://www.cobot.me/
+    kind: homepage
+  - label: Documentation
+    url: https://www.cobot.me/en/help
+    kind: docs
+  - label: Pricing
+    url: https://www.cobot.me/en/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Membership admin
+  - Check-ins
+  - Invoicing
+human_oversight_still_needed:
+  - Export quality
+  - Local payment methods
+  - Long-term pricing
+data_privacy:
+  data_held:
+    - members
+    - plans
+    - invoices
+    - check-ins
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm free tier/trial terms on official site; classification may be free-trial
+    depending on current packaging.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.cobot.me/
+    - https://www.cobot.me/en/help
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 72

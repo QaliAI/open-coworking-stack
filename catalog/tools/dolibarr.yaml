@@ -1,0 +1,99 @@
+schema_version: 1.0.0
+id: dolibarr
+name: Dolibarr
+tagline: Modular ERP/CRM for SMEs including memberships module ecosystem
+description: Dolibarr is a modular open-source ERP/CRM. Associations and small spaces sometimes use
+  membership and donation modules as a low-cost admin backbone.
+status: active
+categories:
+  - membership-crm
+  - billing-payments
+  - accounting
+secondary_categories: []
+roles:
+  - owner-operator
+  - finance
+  - operations-manager
+workflows:
+  - member-onboarding
+  - invoice-collections
+  - reporting-kpis
+problems:
+  - reduce-software-cost
+  - replace-spreadsheets
+  - automate-billing
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-or-later
+  source_url: https://github.com/Dolibarr/dolibarr
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; optional partner hosting/support.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Enable third-party and invoice modules; model one membership product end-to-end in staging.
+homepage: https://www.dolibarr.org/
+repository: https://github.com/Dolibarr/dolibarr
+documentation: https://wiki.dolibarr.org/
+links:
+  - label: Homepage
+    url: https://www.dolibarr.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/Dolibarr/dolibarr
+    kind: repo
+  - label: Documentation
+    url: https://wiki.dolibarr.org/
+    kind: docs
+tasks_reduced_or_augmented:
+  - SME admin suite
+  - Invoicing and basic CRM
+human_oversight_still_needed:
+  - Module quality variance
+  - Accounting setup
+data_privacy:
+  data_held:
+    - third parties
+    - invoices
+    - products
+    - users
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.dolibarr.org/
+    - https://github.com/Dolibarr/dolibarr
+    - https://wiki.dolibarr.org/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 72

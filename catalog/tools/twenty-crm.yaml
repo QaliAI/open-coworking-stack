@@ -1,0 +1,103 @@
+schema_version: 1.0.0
+id: twenty-crm
+name: Twenty
+tagline: Modern open-source CRM alternative for lightweight sales teams
+description: Twenty is a modern open-source CRM aiming at a Notion-like UX. Early-adopter operators
+  use it for simple pipelines when Salesforce-like complexity is unnecessary.
+status: active
+categories:
+  - membership-crm
+secondary_categories: []
+roles:
+  - sales-manager
+  - owner-operator
+  - technical-operator
+workflows:
+  - tour-to-close
+  - reporting-kpis
+problems:
+  - grow-pipeline
+  - replace-spreadsheets
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: emerging
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/twentyhq/twenty
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Self-host free; cloud offering may have paid plans—verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://twenty.com/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Self-host or use trial cloud; import 50 contacts; run weekly sales
+    standup from the pipeline view.
+homepage: https://twenty.com/
+repository: https://github.com/twentyhq/twenty
+documentation: https://docs.twenty.com/
+links:
+  - label: Homepage
+    url: https://twenty.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/twentyhq/twenty
+    kind: repo
+  - label: Documentation
+    url: https://docs.twenty.com/
+    kind: docs
+  - label: Pricing
+    url: https://twenty.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Tracking opportunities
+  - Centralizing contact notes
+  - Reducing spreadsheet CRM drift
+human_oversight_still_needed:
+  - Product maturity risk
+  - Migration path if requirements grow
+  - Access control
+data_privacy:
+  data_held:
+    - people
+    - companies
+    - opportunities
+    - notes
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://twenty.com/
+    - https://github.com/twentyhq/twenty
+    - https://docs.twenty.com/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 78

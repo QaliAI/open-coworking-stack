@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: node-red
+name: Node-RED
+tagline: Flow-based automation for IoT and lightweight integrations
+description: Node-RED wires devices and APIs with visual flows. Facilities and tech operators
+  prototype sensor alerts and webhook bridges quickly.
+status: active
+categories:
+  - automation-integration
+  - iot-sensors
+secondary_categories: []
+roles:
+  - technical-operator
+  - facilities
+workflows:
+  - facility-maintenance
+  - incident-response
+problems:
+  - integrate-stack
+  - measure-utilization
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/node-red/node-red
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; runs on modest hardware including SBCs.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: 'Create a flow: sensor threshold → staff chat notification for one meeting room.'
+homepage: https://nodered.org/
+repository: https://github.com/node-red/node-red
+documentation: https://nodered.org/docs/
+links:
+  - label: Homepage
+    url: https://nodered.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/node-red/node-red
+    kind: repo
+  - label: Documentation
+    url: https://nodered.org/docs/
+    kind: docs
+tasks_reduced_or_augmented:
+  - IoT glue logic
+  - Webhook transformations
+human_oversight_still_needed:
+  - Flow sprawl
+  - Credential storage in flows
+data_privacy:
+  data_held:
+    - flow definitions
+    - runtime messages
+    - credentials
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://nodered.org/
+    - https://github.com/node-red/node-red
+    - https://nodered.org/docs/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 70

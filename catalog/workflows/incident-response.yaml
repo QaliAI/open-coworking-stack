@@ -1,0 +1,66 @@
+schema_version: 1.0.0
+id: incident-response
+name: Incident response
+description: Detect, assess, contain, communicate, and learn from coworking technology or facility incidents under named human command and safety procedures.
+primary_roles:
+  - operations-manager
+  - technical-operator
+  - facilities
+  - owner-operator
+stages:
+  - id: detect-and-triage
+    name: Detect and triage
+    description: Staff validate an alert or report, assess member and life-safety impact, and assign a responsible incident lead.
+    manual_tasks:
+      - Confirm the incident through an independent observation where safe
+      - Set severity, incident lead, and emergency escalation based on local policy
+    automation_opportunities:
+      - Consolidate alerts and open a timestamped incident record
+      - Notify the on-call person through an approved route
+    suggested_tool_ids:
+      - uptime-kuma
+      - grafana
+      - prometheus
+      - freescout
+    risks:
+      - Alert noise can delay recognition of a real emergency
+      - Technical dashboards must not replace emergency services or physical checks
+  - id: contain-and-communicate
+    name: Contain and communicate
+    description: The incident lead approves containment, coordinates responders, and issues factual updates suited to affected members and staff.
+    manual_tasks:
+      - Approve disruptive containment or service shutdown decisions
+      - Check on affected people and maintain an accessible manual fallback
+    automation_opportunities:
+      - Maintain a shared timeline and responder channel
+      - Distribute human-approved status updates to defined audiences
+    suggested_tool_ids:
+      - mattermost
+      - slack
+      - zulip
+      - zammad
+    risks:
+      - Premature or overbroad messages can create confusion or expose sensitive details
+  - id: recover-and-review
+    name: Recover and review
+    description: Responsible staff validate safe restoration, monitor recurrence, and conduct a blameless review with assigned corrective actions.
+    manual_tasks:
+      - Verify service and physical conditions before declaring recovery
+      - Lead the review and assign owners and due dates to corrective actions
+    automation_opportunities:
+      - Capture timeline evidence and action-item reminders
+      - Monitor agreed recovery indicators after restoration
+    suggested_tool_ids:
+      - bookstack
+      - grafana
+      - sentry-oss
+      - uptime-kuma
+    risks:
+      - Restoring a system without checking member impact can leave hidden failures
+success_metrics:
+  - Median time to assign a human incident lead
+  - Median time to a verified safe recovery by severity
+  - Percentage of corrective actions completed by their reviewed due dates
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of emergency procedures, policies, integrations, staffing, and tool fit before use.

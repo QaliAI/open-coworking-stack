@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: listserv-alternative-postfix
+name: Postfix
+tagline: Industry-standard MTA component (not a full mailbox product)
+description: Postfix is a mail transfer agent used inside many stacks. Listed so operators
+  understand the building block behind mailcow and outbound relays—not as a turnkey member email
+  product.
+status: active
+categories:
+  - developer-platform
+  - communication-chat
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - incident-response
+problems:
+  - self-host-for-data-control
+  - integrate-stack
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: IPL-1.0
+  name: IBM Public License / Eclipse variants depending on package—verify distro package
+  source_url: http://www.postfix.org/
+  notes: Verify license for the package you install from your distribution.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software component; not a complete mail solution alone.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Use only as part of a maintained stack (e.g., mailcow) unless you are an experienced mail admin.
+homepage: http://www.postfix.org/
+repository: https://github.com/vdukhovni/postfix
+documentation: http://www.postfix.org/documentation.html
+links:
+  - label: Homepage
+    url: http://www.postfix.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/vdukhovni/postfix
+    kind: repo
+  - label: Documentation
+    url: http://www.postfix.org/documentation.html
+    kind: docs
+tasks_reduced_or_augmented:
+  - SMTP transport building block
+human_oversight_still_needed:
+  - Easy to misconfigure open relays
+  - Deliverability expertise required
+data_privacy:
+  data_held:
+    - mail queues
+    - logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Verify license for the package you install from your distribution.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/listserv-alternative-postfix.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - http://www.postfix.org/
+    - https://github.com/vdukhovni/postfix
+    - http://www.postfix.org/documentation.html
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 50

@@ -1,0 +1,104 @@
+schema_version: 1.0.0
+id: seatsurfing
+name: Seatsurfing
+tagline: Open-source desk and space booking for hybrid offices and coworking floors
+description: Seatsurfing helps organizations book desks and spaces. Flexible-workspace operators
+  evaluate it for hot-desk maps, presence planning, and utilization experiments without a full
+  commercial workplace suite.
+status: active
+categories:
+  - booking-scheduling
+  - facility-operations
+secondary_categories: []
+roles:
+  - operations-manager
+  - community-manager
+  - facilities
+  - technical-operator
+workflows:
+  - desk-hot-desk
+  - day-pass-checkin
+  - reporting-kpis
+problems:
+  - measure-utilization
+  - improve-member-experience
+  - replace-spreadsheets
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-only
+  source_url: https://github.com/seatsurfing/backend
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free self-hosted software; operator provides hosting and support.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Model one floor with 20 hot desks, invite a pilot member group for two
+    weeks, and export occupancy stats.
+homepage: https://seatsurfing.io/
+repository: https://github.com/seatsurfing/backend
+documentation: https://seatsurfing.io/docs/
+links:
+  - label: Homepage
+    url: https://seatsurfing.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/seatsurfing/backend
+    kind: repo
+  - label: Documentation
+    url: https://seatsurfing.io/docs/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Replacing whiteboard/spreadsheet desk claims
+  - Collecting utilization signals for layout changes
+  - Coordinating hybrid attendance peaks
+human_oversight_still_needed:
+  - Floor plan accuracy
+  - Fair-use rules
+  - Member privacy for location data
+data_privacy:
+  data_held:
+    - bookings
+    - locations/spaces
+    - user accounts
+    - occupancy metrics
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/seatsurfing.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://seatsurfing.io/
+    - https://github.com/seatsurfing/backend
+    - https://seatsurfing.io/docs/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 84

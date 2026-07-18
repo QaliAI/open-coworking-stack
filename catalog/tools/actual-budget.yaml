@@ -1,0 +1,92 @@
+schema_version: 1.0.0
+id: actual-budget
+name: Actual Budget
+tagline: Local-first budgeting for small operator finances
+description: Actual is a privacy-focused budgeting app with self-host sync server options. Solo
+  operators may use it for personal/business envelope budgeting—not full multi-entity accounting.
+status: active
+categories:
+  - accounting
+secondary_categories: []
+roles:
+  - owner-operator
+  - finance
+workflows:
+  - reporting-kpis
+problems:
+  - replace-spreadsheets
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - desktop
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/actualbudget/actual
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; optional hosted community options vary.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Track one month of space expenses with envelope budgets.
+homepage: https://actualbudget.org/
+repository: https://github.com/actualbudget/actual
+documentation: https://actualbudget.org/docs
+links:
+  - label: Homepage
+    url: https://actualbudget.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/actualbudget/actual
+    kind: repo
+  - label: Documentation
+    url: https://actualbudget.org/docs
+    kind: docs
+tasks_reduced_or_augmented:
+  - Expense discipline
+  - Simple budget planning
+human_oversight_still_needed:
+  - Scope limits vs accounting systems
+data_privacy:
+  data_held:
+    - accounts
+    - transactions
+    - budgets
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/actual-budget.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://actualbudget.org/
+    - https://github.com/actualbudget/actual
+    - https://actualbudget.org/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 64

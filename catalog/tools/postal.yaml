@@ -1,0 +1,95 @@
+schema_version: 1.0.0
+id: postal
+name: Postal
+tagline: Self-hosted mail delivery platform for application email
+description: Postal is a mail delivery platform for sending application email. Teams with strong ops
+  skills use it instead of commercial ESP—at significant reputation risk if misconfigured.
+status: active
+categories:
+  - email-marketing
+  - developer-platform
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - marketing-campaigns
+  - member-onboarding
+problems:
+  - self-host-for-data-control
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/postalserver/postal
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; warm-up, IPs, and compliance work dominate cost.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: expert
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: 'Only after SPF/DKIM/DMARC mastery: send transactional mail for one
+    staging app to internal addresses.'
+homepage: https://docs.postalserver.io/
+repository: https://github.com/postalserver/postal
+documentation: https://docs.postalserver.io/
+links:
+  - label: Homepage
+    url: https://docs.postalserver.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/postalserver/postal
+    kind: repo
+  - label: Documentation
+    url: https://docs.postalserver.io/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Transactional email sending
+  - Message tracking
+human_oversight_still_needed:
+  - IP reputation
+  - Bounce handling
+  - Legal sending requirements
+data_privacy:
+  data_held:
+    - messages
+    - server endpoints
+    - webhooks
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/postal.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://docs.postalserver.io/
+    - https://github.com/postalserver/postal
+    - https://docs.postalserver.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 57

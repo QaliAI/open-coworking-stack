@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: crowdsec
+name: CrowdSec
+tagline: Collaborative security engine for blocking abusive traffic
+description: CrowdSec detects and blocks abusive behavior with shared signals. Operators harden
+  public login pages and reverse proxies against credential stuffing.
+status: active
+categories:
+  - security-compliance
+  - monitoring-observability
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - incident-response
+  - compliance-review
+problems:
+  - privacy-compliance
+  - secure-door-access
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/crowdsecurity/crowdsec
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Software free; console/cloud features may be paid—verify pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.crowdsec.net/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Protect the reverse proxy in front of admin logins and review false positives for a week.
+homepage: https://www.crowdsec.net/
+repository: https://github.com/crowdsecurity/crowdsec
+documentation: https://docs.crowdsec.net/
+links:
+  - label: Homepage
+    url: https://www.crowdsec.net/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/crowdsecurity/crowdsec
+    kind: repo
+  - label: Documentation
+    url: https://docs.crowdsec.net/
+    kind: docs
+  - label: Pricing
+    url: https://www.crowdsec.net/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Brute-force mitigation
+  - Log-based detection
+human_oversight_still_needed:
+  - False positives
+  - Signal sharing preferences
+data_privacy:
+  data_held:
+    - security signals
+    - IPs
+    - scenario matches
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.crowdsec.net/
+    - https://github.com/crowdsecurity/crowdsec
+    - https://docs.crowdsec.net/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 71

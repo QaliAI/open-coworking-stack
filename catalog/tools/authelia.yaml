@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: authelia
+name: Authelia
+tagline: Authentication and authorization companion for reverse proxies
+description: Authelia provides SSO and 2FA in front of reverse-proxied apps. Popular in homelab and
+  small business self-hosted stacks protecting admin UIs.
+status: active
+categories:
+  - identity-sso
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - access-provisioning
+  - compliance-review
+problems:
+  - secure-door-access
+  - self-host-for-data-control
+  - privacy-compliance
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/authelia/authelia
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; pairs with Traefik/NGINX/Caddy.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Protect Portainer and Uptime Kuma with Authelia + 2FA for admin users only.
+homepage: https://www.authelia.com/
+repository: https://github.com/authelia/authelia
+documentation: https://www.authelia.com/overview/prologue/introduction/
+links:
+  - label: Homepage
+    url: https://www.authelia.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/authelia/authelia
+    kind: repo
+  - label: Documentation
+    url: https://www.authelia.com/overview/prologue/introduction/
+    kind: docs
+tasks_reduced_or_augmented:
+  - SSO portal for internal apps
+  - 2FA enforcement
+human_oversight_still_needed:
+  - Config complexity
+  - Bypass path risks
+data_privacy:
+  data_held:
+    - users
+    - sessions
+    - auth logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.authelia.com/
+    - https://github.com/authelia/authelia
+    - https://www.authelia.com/overview/prologue/introduction/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 79

@@ -1,0 +1,111 @@
+schema_version: 1.0.0
+id: keycloak
+name: Keycloak
+tagline: Open-source identity and access management for staff and member apps
+description: Keycloak provides SSO, identity brokering, and user federation. Technical operators use
+  it to centralize login for internal tools (helpdesk, wiki, booking) and reduce password sprawl
+  across the coworking stack.
+status: active
+categories:
+  - identity-sso
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+  - multi-location-operator
+workflows:
+  - member-onboarding
+  - member-offboarding
+  - access-provisioning
+  - compliance-review
+problems:
+  - secure-door-access
+  - integrate-stack
+  - privacy-compliance
+  - multi-location-consistency
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/keycloak/keycloak
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Software is free; cost is infrastructure, HA design, and operator skill.
+  self_host_cost_notes: Production typically needs Postgres, reverse proxy TLS, and backup of realm exports.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - identity
+    - oauth-oidc
+    - linux
+    - postgres
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Stand up Keycloak with one realm, connect a single staging app via OIDC,
+    and practice disabling a test user.
+homepage: https://www.keycloak.org/
+repository: https://github.com/keycloak/keycloak
+documentation: https://www.keycloak.org/documentation
+links:
+  - label: Homepage
+    url: https://www.keycloak.org/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/keycloak/keycloak
+    kind: repo
+  - label: Documentation
+    url: https://www.keycloak.org/documentation
+    kind: docs
+tasks_reduced_or_augmented:
+  - Reducing duplicate user accounts across internal tools
+  - Standardizing joiners/leavers access changes
+  - Enabling SSO for staff applications
+human_oversight_still_needed:
+  - Realm and client configuration reviews
+  - MFA policy decisions
+  - Break-glass admin procedures
+data_privacy:
+  data_held:
+    - user identities
+    - credentials/hashes
+    - group membership
+    - session metadata
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/keycloak.md
+tags:
+  - sso
+  - oidc
+  - iam
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.keycloak.org/
+    - https://github.com/keycloak/keycloak
+    - https://www.keycloak.org/documentation
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 90

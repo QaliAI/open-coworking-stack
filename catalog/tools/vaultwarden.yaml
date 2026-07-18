@@ -1,0 +1,105 @@
+schema_version: 1.0.0
+id: vaultwarden
+name: Vaultwarden
+tagline: Lightweight Bitwarden-compatible password server for staff secrets
+description: Vaultwarden is an unofficial Bitwarden-compatible server written in Rust. Operators use
+  it to host a shared password vault for staff credentials (Wi-Fi admin, vendor portals, door
+  software) without individual consumer password-manager sprawl.
+status: active
+categories:
+  - password-secrets
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+  - owner-operator
+workflows:
+  - incident-response
+  - member-offboarding
+  - vendor-offboarding
+problems:
+  - privacy-compliance
+  - self-host-for-data-control
+  - reduce-software-cost
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/dani-garcia/vaultwarden
+  notes: Unofficial Bitwarden-compatible implementation; not the official Bitwarden server.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free self-hosted software. Official Bitwarden cloud is a separate product with its own pricing.
+  self_host_cost_notes: Tiny resource footprint; prioritize encrypted backups and admin MFA.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: easy
+  maintenance_burden: low
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment:
+    Run Vaultwarden on a private network, create an organization collection
+    for “Facilities,” and rotate one shared Wi-Fi admin password through it.
+homepage: https://github.com/dani-garcia/vaultwarden
+repository: https://github.com/dani-garcia/vaultwarden
+documentation: https://github.com/dani-garcia/vaultwarden/wiki
+links:
+  - label: Homepage
+    url: https://github.com/dani-garcia/vaultwarden
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/dani-garcia/vaultwarden
+    kind: repo
+  - label: Documentation
+    url: https://github.com/dani-garcia/vaultwarden/wiki
+    kind: docs
+tasks_reduced_or_augmented:
+  - Reducing shared spreadsheet passwords
+  - Organizing vendor portal credentials
+  - Supporting staff offboarding by revoking vault access
+human_oversight_still_needed:
+  - Who can access organization collections
+  - Emergency access procedures
+  - Backup encryption key custody
+data_privacy:
+  data_held:
+    - encrypted vault items
+    - user accounts
+    - organization membership
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Unofficial Bitwarden-compatible implementation; not the official Bitwarden server.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+compose_pack: compose/vaultwarden
+guide_status: full
+guide_path: guides/tools/vaultwarden.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://github.com/dani-garcia/vaultwarden
+    - https://github.com/dani-garcia/vaultwarden
+    - https://github.com/dani-garcia/vaultwarden/wiki
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 88

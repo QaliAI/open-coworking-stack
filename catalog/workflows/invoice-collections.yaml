@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: invoice-collections
+name: Invoice collections
+description: Issue accurate coworking invoices, monitor payment status, and resolve overdue balances with documented human judgment and respectful escalation.
+primary_roles:
+  - finance
+  - operations-manager
+  - owner-operator
+stages:
+  - id: review-and-issue
+    name: Review and issue invoices
+    description: Finance verifies membership terms, usage, credits, taxes, and billing contacts before an invoice is finalized.
+    manual_tasks:
+      - Review exceptions, credits, deposits, and tax treatment
+      - Approve corrections before sending the invoice
+    automation_opportunities:
+      - Draft recurring invoices from approved account data
+      - Flag unusual amounts or missing billing details
+    suggested_tool_ids:
+      - cobot
+      - erpnext
+      - invoice-ninja
+      - stripe
+    risks:
+      - Incorrect source data can create repeat billing errors at scale
+  - id: reconcile
+    name: Reconcile payments
+    description: Finance matches received funds, failed attempts, credits, and disputed items to the correct member account.
+    manual_tasks:
+      - Investigate unmatched or partial payments
+      - Decide how to handle chargebacks and disputes
+    automation_opportunities:
+      - Import payment status for finance review
+      - Produce an exception queue for unmatched transactions
+    suggested_tool_ids:
+      - erpnext
+      - invoice-ninja
+      - stripe
+      - n8n
+    risks:
+      - Integration delays can trigger outreach for an invoice already paid
+  - id: follow-up
+    name: Follow up on overdue balances
+    description: A designated person reviews account context and applies the approved communication and escalation policy.
+    manual_tasks:
+      - Contact the member and listen for billing or hardship issues
+      - Approve payment arrangements, service restrictions, or escalation
+    automation_opportunities:
+      - Schedule policy-based reminders with a staff pause option
+      - Escalate disputed or high-risk accounts to a named reviewer
+    suggested_tool_ids:
+      - crater
+      - invoice-ninja
+      - dolibarr
+      - officerd-saas
+    risks:
+      - Aggressive automated reminders can damage relationships or breach local rules
+success_metrics:
+  - Invoice correction rate after issue
+  - Median days to resolve overdue undisputed balances
+  - Percentage of payment exceptions reviewed by a person within policy
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

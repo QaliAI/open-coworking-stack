@@ -1,0 +1,108 @@
+schema_version: 1.0.0
+id: authentik
+name: Authentik
+tagline: Flexible identity provider with flows suited to smaller self-hosted stacks
+description: Authentik is an open-source identity provider popular in self-hosted environments.
+  Coworking tech operators use it as a lighter-weight alternative to full enterprise IAM when
+  exposing internal tools to staff.
+status: active
+categories:
+  - identity-sso
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+  - operations-manager
+workflows:
+  - access-provisioning
+  - member-offboarding
+  - compliance-review
+problems:
+  - integrate-stack
+  - secure-door-access
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-only
+  source_url: https://github.com/goauthentik/authentik
+  notes: Confirm current LICENSE file for enterprise components.
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary:
+    Open-source software; infrastructure and maintenance are operator costs. Commercial support
+    may be offered by the vendor.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://goauthentik.io/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy Authentik with Docker Compose, protect one internal app with a
+    proxy provider, and enroll two staff users with MFA.
+homepage: https://goauthentik.io/
+repository: https://github.com/goauthentik/authentik
+documentation: https://docs.goauthentik.io/
+links:
+  - label: Homepage
+    url: https://goauthentik.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/goauthentik/authentik
+    kind: repo
+  - label: Documentation
+    url: https://docs.goauthentik.io/
+    kind: docs
+  - label: Pricing
+    url: https://goauthentik.io/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Fronting internal apps with SSO
+  - Reducing shared passwords for ops tools
+  - Automating deprovisioning for departing staff
+human_oversight_still_needed:
+  - Flow design
+  - MFA enforcement
+  - Application access reviews
+data_privacy:
+  data_held:
+    - identities
+    - MFA factors
+    - application access policies
+    - logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm current LICENSE file for enterprise components.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/authentik.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://goauthentik.io/
+    - https://github.com/goauthentik/authentik
+    - https://docs.goauthentik.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 86

@@ -1,0 +1,43 @@
+schema_version: 1.0.0
+id: room-booking
+name: Room booking
+description: Members or staff reserve meeting rooms with rules for duration, cleanup, and no-shows.
+primary_roles:
+  - operations-manager
+  - community-manager
+  - event-coordinator
+stages:
+  - id: request
+    name: Request / book
+    description: Select room and time under policy constraints.
+    manual_tasks:
+      - Handle exceptions
+    automation_opportunities:
+      - Resource calendar
+      - Quotas
+    suggested_tool_ids:
+      - librebooking
+      - cal-com
+      - seatsurfing
+      - cobot
+    risks:
+      - Double booking across systems
+  - id: fulfill
+    name: Fulfill & reset
+    description: Room ready, AV works, cleaned after.
+    manual_tasks:
+      - Physical reset
+      - AV troubleshooting
+    automation_opportunities:
+      - IoT presence signals
+    suggested_tool_ids:
+      - home-assistant
+      - freescout
+    risks:
+      - Sensors misread occupancy
+success_metrics:
+  - Utilization %
+  - No-show rate
+  - Ticket rate per booking
+verification:
+  last_reviewed: 2026-07-17

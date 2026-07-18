@@ -1,0 +1,63 @@
+schema_version: 1.0.0
+id: reporting-kpis
+name: Reporting and KPIs
+description: Produce decision-ready coworking reports from defined sources while preserving human ownership of definitions, data quality, interpretation, and access.
+primary_roles:
+  - owner-operator
+  - finance
+  - operations-manager
+  - multi-location-operator
+stages:
+  - id: define
+    name: Define measures and owners
+    description: Leaders document each decision, metric definition, source, owner, audience, cadence, and acceptable data limitation.
+    manual_tasks:
+      - Agree definitions for occupancy, utilization, revenue, churn, and other local KPIs
+      - Approve who may see member-level and financial detail
+    automation_opportunities:
+      - Maintain a shared metric dictionary and review schedule
+      - Flag definitions or owners that are missing or overdue for review
+    suggested_tool_ids:
+      - bookstack
+      - notion
+    risks:
+      - Different definitions can make site or period comparisons misleading
+  - id: prepare-and-check
+    name: Prepare and check data
+    description: Responsible staff reconcile source records, investigate anomalies, and approve transformations before publication.
+    manual_tasks:
+      - Reconcile totals against authoritative operational and finance records
+      - Investigate missing, duplicated, or unexpectedly changed data
+    automation_opportunities:
+      - Refresh approved extracts and repeatable transformations
+      - Produce a data-quality exception list for owners
+    suggested_tool_ids:
+      - activepieces
+      - erpnext
+      - seatsurfing
+      - nocodb
+    risks:
+      - A successful refresh can still contain incomplete or wrongly mapped data
+  - id: review-and-act
+    name: Review and act
+    description: Authorized people interpret trends with operating context, record decisions, and avoid exposing unnecessary member-level information.
+    manual_tasks:
+      - Review caveats and local events before drawing conclusions
+      - Assign and follow up on actions rather than treating dashboards as decisions
+    automation_opportunities:
+      - Publish role-appropriate dashboards from approved data
+      - Alert owners to threshold changes for investigation
+    suggested_tool_ids:
+      - metabase
+      - grafana
+      - plausible-ce
+      - actual-budget
+    risks:
+      - Targets can encourage harmful behavior when context and safeguards are absent
+success_metrics:
+  - Percentage of reported KPIs with an owner and current definition
+  - Reconciliation exceptions unresolved at publication time
+  - Percentage of review actions assigned and completed by the agreed date
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of definitions, privacy, policies, source systems, and tool fit before use.

@@ -1,0 +1,104 @@
+schema_version: 1.0.0
+id: woocommerce
+name: WooCommerce
+tagline: WordPress e-commerce plugin for day passes and merch
+description: WooCommerce extends WordPress into e-commerce. Common path for spaces already on
+  WordPress to sell passes, credits, or merchandise.
+status: active
+categories:
+  - pos-retail
+  - billing-payments
+  - website-cms
+secondary_categories: []
+roles:
+  - marketing
+  - owner-operator
+  - finance
+workflows:
+  - day-pass-checkin
+  - event-lifecycle
+  - marketing-campaigns
+problems:
+  - automate-billing
+  - grow-pipeline
+  - run-events
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-or-later
+  source_url: https://github.com/woocommerce/woocommerce
+  verified_on: 2026-07-17
+cost:
+  model: freemium
+  summary: Plugin free; premium extensions, hosting, and payment fees apply.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://woocommerce.com/pricing/
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Create a day-pass product with a unique SKU and fulfill by emailing
+    access instructions manually at first.
+homepage: https://woocommerce.com/
+repository: https://github.com/woocommerce/woocommerce
+documentation: https://woocommerce.com/documentation/
+links:
+  - label: Homepage
+    url: https://woocommerce.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/woocommerce/woocommerce
+    kind: repo
+  - label: Documentation
+    url: https://woocommerce.com/documentation/
+    kind: docs
+  - label: Pricing
+    url: https://woocommerce.com/pricing/
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Selling products/passes online
+  - Coupon campaigns
+human_oversight_still_needed:
+  - Plugin bloat
+  - Security updates
+  - Tax configuration
+data_privacy:
+  data_held:
+    - orders
+    - customers
+    - products
+  personal_data: true
+  payment_data: true
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://woocommerce.com/
+    - https://github.com/woocommerce/woocommerce
+    - https://woocommerce.com/documentation/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 76

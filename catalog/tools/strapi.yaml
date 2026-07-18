@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+id: strapi
+name: Strapi
+tagline: Open-source headless CMS for marketing and portal content
+description: Strapi is a popular Node headless CMS. Web teams manage structured content for
+  coworking marketing sites and resource libraries.
+status: active
+categories:
+  - website-cms
+  - developer-platform
+secondary_categories: []
+roles:
+  - marketing
+  - technical-operator
+workflows:
+  - marketing-campaigns
+  - community-programming
+problems:
+  - grow-pipeline
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: open-core
+  spdx: MIT
+  source_url: https://github.com/strapi/strapi
+  notes: MIT core with enterprise features.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Self-host free; Cloud/enterprise paid. Verify official pricing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://strapi.io/pricing-self-hosted
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Model Room, Event, and Blog content types and deliver JSON to a static site.
+homepage: https://strapi.io/
+repository: https://github.com/strapi/strapi
+documentation: https://docs.strapi.io/
+links:
+  - label: Homepage
+    url: https://strapi.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/strapi/strapi
+    kind: repo
+  - label: Documentation
+    url: https://docs.strapi.io/
+    kind: docs
+  - label: Pricing
+    url: https://strapi.io/pricing-self-hosted
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Structured web content
+  - API-driven marketing sites
+human_oversight_still_needed:
+  - Plugin choices
+  - Role permissions
+data_privacy:
+  data_held:
+    - content entries
+    - media
+    - users
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: MIT core with enterprise features.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/strapi.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://strapi.io/
+    - https://github.com/strapi/strapi
+    - https://docs.strapi.io/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 69

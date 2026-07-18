@@ -1,0 +1,67 @@
+name: Add a tool
+description: Propose a coworking-relevant tool for the catalog.
+title: '[Tool]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Provide official sources and leave uncertain claims unverified. A request does not guarantee inclusion or ranking.
+
+  - type: input
+    id: name
+    attributes:
+      label: Tool name
+      placeholder: Official product or project name
+    validations:
+      required: true
+
+  - type: input
+    id: homepage
+    attributes:
+      label: Official homepage
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Official source repository
+      description: Leave blank if the tool is proprietary or no official repository is published.
+      placeholder: https://...
+
+  - type: textarea
+    id: coworking-fit
+    attributes:
+      label: Coworking use case
+      description: Identify the operator role, workflow, and problem this tool supports.
+    validations:
+      required: true
+
+  - type: textarea
+    id: licensing
+    attributes:
+      label: Licensing and pricing evidence
+      description: Link official license and pricing or free-tier sources. State what remains unverified.
+    validations:
+      required: true
+
+  - type: textarea
+    id: data
+    attributes:
+      label: Data and security considerations
+      description: Describe data held, human oversight, and material privacy or operational risks.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I used official sources where available and did not invent facts.
+          required: true
+        - label: I disclosed any affiliation with this tool or vendor.
+          required: true
+        - label: I did not include credentials, private member data, or franchise-specific data.
+          required: true

@@ -1,0 +1,90 @@
+schema_version: 1.0.0
+id: prometheus
+name: Prometheus
+tagline: Metrics collection backbone for infrastructure observability
+description: Prometheus scrapes and stores time-series metrics. It underpins many self-hosted
+  monitoring stacks for multi-site operators running their own servers.
+status: active
+categories:
+  - monitoring-observability
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - incident-response
+  - multi-site-rollout
+problems:
+  - improve-wifi-reliability
+  - disaster-recovery
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: Apache-2.0
+  source_url: https://github.com/prometheus/prometheus
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; storage and ops expertise are the real costs.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Scrape node metrics from one VPS for 7 days and graph them in Grafana.
+homepage: https://prometheus.io/
+repository: https://github.com/prometheus/prometheus
+documentation: https://prometheus.io/docs/introduction/overview/
+links:
+  - label: Homepage
+    url: https://prometheus.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/prometheus/prometheus
+    kind: repo
+  - label: Documentation
+    url: https://prometheus.io/docs/introduction/overview/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Collecting infrastructure metrics
+  - Powering alerts
+human_oversight_still_needed:
+  - Retention sizing
+  - Alert rule quality
+data_privacy:
+  data_held:
+    - time-series metrics
+    - alert state
+  personal_data: false
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: planned
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://prometheus.io/
+    - https://github.com/prometheus/prometheus
+    - https://prometheus.io/docs/introduction/overview/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 75

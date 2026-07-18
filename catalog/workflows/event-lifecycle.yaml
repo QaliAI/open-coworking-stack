@@ -1,0 +1,76 @@
+schema_version: 1.0.0
+id: event-lifecycle
+name: Event lifecycle
+description: Plan, promote, deliver, and review coworking events with clear ownership for capacity, accessibility, safety, member impact, and follow-up.
+primary_roles:
+  - event-coordinator
+  - community-manager
+  - marketing
+stages:
+  - id: approve-and-plan
+    name: Approve and plan
+    description: Staff define the event purpose, owner, budget, audience, room plan, accessibility needs, and operational limits.
+    manual_tasks:
+      - Approve the event owner, budget, and success criteria
+      - Review safety, accessibility, noise, staffing, and member disruption
+    automation_opportunities:
+      - Maintain a planning checklist and decision log
+      - Flag schedule or room conflicts for staff resolution
+    suggested_tool_ids:
+      - airtable
+      - cal-com
+      - librebooking
+    risks:
+      - Attendance goals can override safe capacity or normal member needs
+  - id: publish-and-register
+    name: Publish and register
+    description: The event team reviews public details, opens proportionate registration, and responds personally to special requirements.
+    manual_tasks:
+      - Proofread claims, pricing, accessibility details, and cancellation terms
+      - Respond to accommodation and sensitive attendee questions
+    automation_opportunities:
+      - Collect registrations and send approved reminders
+      - Maintain a capacity and waitlist view for the event owner
+    suggested_tool_ids:
+      - typeform
+      - listmonk
+      - mailchimp
+      - woocommerce
+    risks:
+      - Public forms can collect more personal data than delivery requires
+  - id: deliver
+    name: Deliver the event
+    description: Named staff prepare the venue, welcome attendees, monitor conditions, and retain authority to pause or change the event.
+    manual_tasks:
+      - Complete a physical venue and equipment check
+      - Manage check-in, safeguarding, incidents, and attendee support
+    automation_opportunities:
+      - Provide the current attendee list to authorized staff
+      - Support a remote session where the approved format requires it
+    suggested_tool_ids:
+      - bigbluebutton
+      - jitsi-meet
+      - zoom
+    risks:
+      - Registration totals may not reflect actual occupancy or support needs
+  - id: close-and-learn
+    name: Close and learn
+    description: Staff reconcile event commitments, restore the space, review feedback, and decide what should change next time.
+    manual_tasks:
+      - Inspect and reset the venue
+      - Review incidents, feedback, costs, and follow-up commitments
+    automation_opportunities:
+      - Send an optional feedback request
+      - Summarize registration and attendance records for human interpretation
+    suggested_tool_ids:
+      - formbricks
+      - airtable
+    risks:
+      - Feedback from a small group can be treated as representative without review
+success_metrics:
+  - Percentage of events delivered within approved capacity and budget
+  - Attendance rate using a documented local definition
+  - Number of unresolved safety, accessibility, or follow-up actions
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

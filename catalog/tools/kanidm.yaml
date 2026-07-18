@@ -1,0 +1,93 @@
+schema_version: 1.0.0
+id: kanidm
+name: Kanidm
+tagline: Modern identity management platform written in Rust
+description: Kanidm is a modern identity platform aiming at simplicity and security. Advanced
+  operators evaluate it as an alternative identity store for staff systems.
+status: active
+categories:
+  - identity-sso
+  - security-compliance
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - access-provisioning
+  - member-offboarding
+problems:
+  - self-host-for-data-control
+  - privacy-compliance
+deployment:
+  - self-hosted
+maturity: emerging
+license:
+  class: oss-osi-approved
+  spdx: MPL-2.0
+  source_url: https://github.com/kanidm/kanidm
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: Free software; emerging ecosystem means more DIY integration.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Lab deploy with two admin users and OIDC to one test app.
+homepage: https://kanidm.com/
+repository: https://github.com/kanidm/kanidm
+documentation: https://kanidm.github.io/kanidm/stable/
+links:
+  - label: Homepage
+    url: https://kanidm.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/kanidm/kanidm
+    kind: repo
+  - label: Documentation
+    url: https://kanidm.github.io/kanidm/stable/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Modern IDM experiments
+  - Staff identity store
+human_oversight_still_needed:
+  - Ecosystem maturity
+  - Migration effort
+data_privacy:
+  data_held:
+    - identities
+    - credentials
+    - groups
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/kanidm.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://kanidm.com/
+    - https://github.com/kanidm/kanidm
+    - https://kanidm.github.io/kanidm/stable/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 63

@@ -1,0 +1,63 @@
+schema_version: 1.0.0
+id: multi-site-rollout
+name: Multi-site rollout
+description: Introduce a coworking process or technology across locations through local discovery, controlled pilots, human readiness checks, and reversible deployment.
+primary_roles:
+  - multi-location-operator
+  - operations-manager
+  - technical-operator
+  - consultant-implementer
+stages:
+  - id: baseline-and-design
+    name: Baseline and design
+    description: Central and local owners compare site realities, define the shared minimum, and document justified local differences.
+    manual_tasks:
+      - Interview local staff and inspect site infrastructure and operating constraints
+      - Approve standards, exceptions, ownership, support, and rollback criteria
+    automation_opportunities:
+      - Maintain versioned templates and a site-readiness checklist
+      - Compare submitted site configurations for human review
+    suggested_tool_ids:
+      - bookstack
+      - outline
+      - drawio
+    risks:
+      - Central assumptions can ignore lease, network, staffing, or legal differences
+  - id: pilot
+    name: Pilot at a representative site
+    description: A named team tests the rollout with real users at limited scope and retains a practical manual or previous-system fallback.
+    manual_tasks:
+      - Train pilot staff and observe member-facing work directly
+      - Decide whether evidence supports proceeding, revising, or stopping
+    automation_opportunities:
+      - Track pilot issues, decisions, and readiness evidence
+      - Monitor agreed technical indicators during the pilot
+    suggested_tool_ids:
+      - openproject
+      - plane
+      - prometheus
+    risks:
+      - A technically successful pilot may not prove operational readiness elsewhere
+  - id: deploy-and-stabilize
+    name: Deploy and stabilize
+    description: Local leads approve each cutover, central support monitors outcomes, and deviations are resolved before the next rollout wave.
+    manual_tasks:
+      - Confirm local training, data, hardware, support, and rollback readiness
+      - Authorize each cutover and review post-launch member impact
+    automation_opportunities:
+      - Apply reviewed configuration templates consistently
+      - Aggregate site health and open exceptions for the rollout team
+    suggested_tool_ids:
+      - portainer-ce
+      - wireguard
+      - headscale
+      - caddy
+    risks:
+      - Simultaneous cutovers can exceed support capacity and spread configuration errors
+success_metrics:
+  - Percentage of sites passing a signed readiness review before cutover
+  - Rollbacks and unresolved exceptions per rollout wave
+  - Time for each site to reach agreed stable operating measures
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of site conditions, policies, integrations, staffing, rollback plans, and tool fit before use.

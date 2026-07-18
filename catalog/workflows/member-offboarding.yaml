@@ -1,0 +1,58 @@
+schema_version: 1.0.0
+id: member-offboarding
+name: Member offboarding
+description: Close a coworking membership cleanly while settling obligations, recovering property, revoking access, and preserving an appropriate human farewell.
+primary_roles:
+  - community-manager
+  - operations-manager
+  - finance
+stages:
+  - id: confirm-exit
+    name: Confirm exit terms
+    description: A staff member confirms the final date, notice terms, balances, and any member-specific exceptions.
+    manual_tasks:
+      - Review the agreement and approved exceptions
+      - Confirm the forwarding contact and final day with the member
+    automation_opportunities:
+      - Prepare a staff checklist from the confirmed exit date
+      - Remind responsible staff about unresolved items
+    suggested_tool_ids: []
+    risks:
+      - An incorrect end date can interrupt service or create an avoidable charge
+  - id: recover-and-settle
+    name: Recover property and settle account
+    description: Staff recover physical credentials and workspace property, inspect the space, and approve the final account position.
+    manual_tasks:
+      - Collect keys, fobs, equipment, and stored items
+      - Review damage, deposits, credits, and outstanding charges
+    automation_opportunities:
+      - Track completion of property-return tasks
+      - Flag open account items for finance review
+    suggested_tool_ids: []
+    risks:
+      - Automated charges without review can mishandle disputes or deposits
+  - id: revoke-and-close
+    name: Revoke access and close records
+    description: Authorized staff remove digital and physical access, retain required records, and close with a personal acknowledgement.
+    manual_tasks:
+      - Verify access revocation across every applicable system
+      - Send a personal farewell and handle any final questions
+    automation_opportunities:
+      - Queue account-disable tasks after staff approval
+      - Produce an exception list for accounts that remain active
+    suggested_tool_ids:
+      - authentik
+      - keycloak
+      - kanidm
+      - passbolt
+      - vaultwarden
+    risks:
+      - Missed accounts or shared credentials can leave unauthorized access
+      - Deleting records too early can breach retention obligations
+success_metrics:
+  - Percentage of offboardings completed by the confirmed final date
+  - Number of active credentials found after closure
+  - Median time to resolve final balance disputes
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is an operational reference pattern requiring local review of policies, integrations, legal obligations, staffing, and tool fit before use.

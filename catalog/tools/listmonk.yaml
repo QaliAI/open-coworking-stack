@@ -1,0 +1,104 @@
+schema_version: 1.0.0
+id: listmonk
+name: listmonk
+tagline: Self-hosted newsletter and mailing-list manager
+description: listmonk is a high-performance self-hosted newsletter app. Marketing and community
+  teams use it for member updates, event announcements, and segmented campaigns without per-contact
+  SaaS fees at small scale.
+status: active
+categories:
+  - email-marketing
+  - community-engagement
+secondary_categories: []
+roles:
+  - marketing
+  - community-manager
+  - event-coordinator
+  - technical-operator
+workflows:
+  - marketing-campaigns
+  - community-programming
+  - event-lifecycle
+problems:
+  - reduce-software-cost
+  - self-host-for-data-control
+  - grow-pipeline
+deployment:
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  source_url: https://github.com/knadh/listmonk
+  verified_on: 2026-07-17
+cost:
+  model: free-self-hosted
+  summary: App is free; you pay for SMTP delivery (transactional email provider) and server.
+  self_host_cost_notes: Deliverability depends on domain auth (SPF/DKIM/DMARC) and provider reputation.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Deploy listmonk, connect a transactional SMTP provider, and send a
+    campaign to a consenting internal list of staff + advisors.
+homepage: https://listmonk.app/
+repository: https://github.com/knadh/listmonk
+documentation: https://listmonk.app/docs/
+links:
+  - label: Homepage
+    url: https://listmonk.app/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/knadh/listmonk
+    kind: repo
+  - label: Documentation
+    url: https://listmonk.app/docs/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Sending member newsletters
+  - Segmenting event invites
+  - Reducing reliance on expensive ESP tiers for small lists
+human_oversight_still_needed:
+  - Consent and unsubscribe compliance
+  - SMTP reputation monitoring
+  - Content approval for member communications
+data_privacy:
+  data_held:
+    - subscribers
+    - campaigns
+    - click/open metrics
+    - templates
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Confirm license fits commercial coworking use.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: full
+guide_path: guides/tools/listmonk.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://listmonk.app/
+    - https://github.com/knadh/listmonk
+    - https://listmonk.app/docs/
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: true
+rank_score: 89

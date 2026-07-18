@@ -1,0 +1,87 @@
+---
+title: Open Coworking Stack
+description: A practical, verified directory of free, open-source, source-available, freemium, and free-to-try technology for coworking and flexible-workspace operators.
+template: splash
+hero:
+  tagline: Assemble a low-cost technology stack without expensive implementation mistakes.
+  actions:
+    - text: Browse the directory
+      link: ./directory/
+      icon: right-arrow
+      variant: primary
+    - text: Reference stacks
+      link: ./stacks/generated/bootstrap-near-zero/
+      icon: open-book
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Why this exists
+
+Coworking operators are flooded with SaaS demos, “awesome lists,” and vendor PDFs. Few resources carefully separate **OSI open source** from **source-available**, **open-core**, **freemium SaaS**, and **free trials**—or explain what a small space can actually run without a full-time platform team.
+
+Open Coworking Stack is a **documentation-first, Git-versioned catalog** with:
+
+- verified-where-possible metadata (and honest `unverified` gaps);
+- coworking workflows, roles, and problems—not generic IT categories alone;
+- implementation guides and Docker Compose starter packs where licensing permits;
+- comparison pages and low-cost reference stacks.
+
+## Start by your job
+
+<CardGrid>
+  <LinkCard
+    title="Community manager"
+    href="./navigation/by-role/#community-manager"
+    description="Onboarding, events, shared inboxes, feedback."
+  />
+  <LinkCard
+    title="Owner / operator"
+    href="./navigation/by-role/#owner-operator"
+    description="Cost control, billing, risk, stack choices."
+  />
+  <LinkCard
+    title="Technical operator"
+    href="./navigation/by-role/#technical-operator"
+    description="Self-host, SSO, backups, monitoring."
+  />
+  <LinkCard
+    title="Sales manager"
+    href="./navigation/by-role/#sales-manager"
+    description="Tours, CRM, proposals, follow-up."
+  />
+</CardGrid>
+
+## Start by the problem
+
+<CardGrid>
+  <Card title="Cut software cost" icon="approve-check">
+    See tools tagged `reduce-software-cost` and the [near-zero
+    stack](./stacks/generated/bootstrap-near-zero/).
+  </Card>
+  <Card title="Self-host for control" icon="seti:lock">
+    Prefer OSS/self-host entries and the [privacy-first
+    stack](./stacks/generated/privacy-first-selfhost/).
+  </Card>
+  <Card title="Fill rooms & desks" icon="calendar">
+    Compare booking tools on the [comparisons page](./comparisons/).
+  </Card>
+  <Card title="Ship a pilot this week" icon="rocket">
+    Every tool lists a **smallest useful experiment**—try before you commit.
+  </Card>
+</CardGrid>
+
+## Critical boundaries
+
+1. **We do not vendor upstream projects.** Official repos stay authoritative.
+2. **We do not mislabel licenses.** Source-visible ≠ open source.
+3. **We do not invent pricing or star counts.** Missing facts stay `unverified`.
+4. **Software does not replace staff.** It may reduce or augment tasks with human oversight.
+
+## Next steps
+
+1. Read [How to use this project](./start/how-to-use/).
+2. Skim [Evaluation criteria](./start/evaluation-criteria/) and [License classes](./start/license-classes/).
+3. Open the [interactive directory](./directory/).
+4. Pick a [reference stack](./stacks/generated/bootstrap-near-zero/) and run one experiment.

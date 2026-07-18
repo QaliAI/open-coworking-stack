@@ -1,0 +1,106 @@
+schema_version: 1.0.0
+id: vault-hashicorp
+name: HashiCorp Vault
+tagline: Secrets management for advanced technical operators
+description: Vault manages secrets, encryption keys, and dynamic credentials. Appropriate when a
+  technical operator runs multiple services and needs stronger secret hygiene than a password
+  manager alone.
+status: active
+categories:
+  - password-secrets
+  - security-compliance
+  - developer-platform
+secondary_categories: []
+roles:
+  - technical-operator
+workflows:
+  - access-provisioning
+  - incident-response
+  - compliance-review
+problems:
+  - privacy-compliance
+  - self-host-for-data-control
+  - secure-door-access
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: source-available
+  name: Business Source License 1.1
+  source_url: https://github.com/hashicorp/vault
+  notes: Vault is BSL, not OSI open source. Review terms; OpenBao is a related community fork to
+    evaluate separately.
+  verified_on: 2026-07-17
+cost:
+  model: open-core-paid-features
+  summary: Self-host under BSL terms; HCP Vault is commercial. Verify current licensing.
+  currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
+    budget decisions.
+  pricing_url: https://www.hashicorp.com/products/vault/pricing
+  verified_on: 2026-07-17
+  confidence: partially-verified
+implementation:
+  difficulty: expert
+  maintenance_burden: medium
+  skills_required:
+    - basic-linux
+    - dns-tls
+  typical_time_to_first_value: 1–3 days
+  smallest_useful_experiment: Only adopt after password manager basics exist; prototype KV secrets for staging apps first.
+homepage: https://www.vaultproject.io/
+repository: https://github.com/hashicorp/vault
+documentation: https://developer.hashicorp.com/vault/docs
+links:
+  - label: Homepage
+    url: https://www.vaultproject.io/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/hashicorp/vault
+    kind: repo
+  - label: Documentation
+    url: https://developer.hashicorp.com/vault/docs
+    kind: docs
+  - label: Pricing
+    url: https://www.hashicorp.com/products/vault/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Central secrets for apps
+  - Dynamic credential patterns
+human_oversight_still_needed:
+  - Operational complexity
+  - Unseal key ceremony
+  - License compliance
+data_privacy:
+  data_held:
+    - secrets
+    - auth methods
+    - audit logs
+  personal_data: true
+  payment_data: false
+risks:
+  vendor_lock_in: Evaluate export formats and API completeness before deep customization.
+  security: Apply updates promptly; restrict admin access; enable TLS.
+  compliance: Operator remains responsible for privacy and local regulatory obligations.
+  licensing: Vault is BSL, not OSI open source. Review terms; OpenBao is a related community fork to
+    evaluate separately.
+  operational: Plan backups, monitoring, and a restore drill before production use.
+integrations: []
+related_tools: []
+guide_status: stub
+guide_path: guides/tools/vault-hashicorp.md
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-07-17
+  sources:
+    - https://www.vaultproject.io/
+    - https://github.com/hashicorp/vault
+    - https://developer.hashicorp.com/vault/docs
+  notes:
+    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
+    text, and feature claims before production decisions. Star counts and free-tier numeric limits
+    intentionally omitted unless verified at review time.
+  reviewer: seed-catalog
+featured: false
+rank_score: 68
