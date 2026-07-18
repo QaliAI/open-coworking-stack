@@ -57,6 +57,23 @@ tasks_reduced_or_augmented:
 human_oversight_still_needed:
   - Passphrase management
   - Remote repo availability
+task_fits:
+  - task_id: perform-backup-restore-tests
+    relationship: infrastructure
+    automation_level: partially automated
+    what_manual_process_it_can_replace: Re-copying unchanged service data for every backup and manually locating files in dated backup folders during a restore test.
+    what_it_takes_off_the_team: Creates deduplicated encrypted archives and provides archive listing, checking, and extraction commands for a controlled restore drill.
+    role_assisted: it-security-administrator
+    what_remains_human: Prepare an application-consistent source, control keys and restored personal data, select the recovery point, and have the business owner verify restored usability and integrity.
+    prerequisites:
+      - An approved source manifest and application-consistency procedure
+      - Independently recoverable repository credentials and encryption keys
+      - An isolated restore target with owner-approved validation checks
+    failure_consequence: A successful archive job can still produce unusable or incomplete recovery data; failed key custody or unsafe restoration can cause permanent loss or expose personal data.
+    pilot_metric: One representative service restores on a clean isolated host within the measured objective and passes every owner-approved integrity check.
+    evidence:
+      - https://borgbackup.readthedocs.io/
+    confidence: medium
 data_privacy:
   data_held:
     - encrypted archives
@@ -85,5 +102,19 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://www.borgbackup.org/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/borgbackup/borg
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://borgbackup.readthedocs.io/
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed editorially; no runtime or operator evidence is retained.
 featured: false
 rank_score: 82

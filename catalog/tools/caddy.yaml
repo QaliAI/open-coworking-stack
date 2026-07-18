@@ -60,6 +60,29 @@ tasks_reduced_or_augmented:
 human_oversight_still_needed:
   - Config reviews
   - HTTP security headers
+task_fits:
+  - task_id: triage-network-connectivity
+    relationship: infrastructure
+    automation_level: assisted
+    what_manual_process_it_can_replace: Manual process reduced is checking separate proxy and TLS
+      endpoints for each approved web application during initial connectivity triage.
+    what_it_takes_off_the_team: Human work reduced is repetitive inspection of routing, HTTPS, and
+      proxy evidence at multiple application front doors.
+    role_assisted: it-security-administrator
+    what_remains_human: A human must identify the affected scope, interpret device, upstream, and
+      security signals, and approve configuration changes. Prohibited isolation, security-response,
+      and service-restoration decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is an approved Caddy configuration with documented upstreams and rollback.
+      - Prerequisite is monitoring or retained diagnostic evidence that does not expose unnecessary
+        personal data.
+    failure_consequence: Failure can misroute traffic, hide an upstream fault, or interrupt every
+      application behind the proxy; the operator must use the tested rollback and escalation path.
+    pilot_metric: Metric is the share of synthetic proxy or TLS faults correctly scoped before a
+      configuration change, plus median time to a human-approved next step.
+    evidence:
+      - https://caddyserver.com/docs/
+    confidence: low
 data_privacy:
   data_held:
     - access logs if enabled
@@ -89,5 +112,18 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: docs
+      source: https://caddyserver.com/docs/
+      verified_on: 2026-07-17
+      notes: Official documentation covers reverse proxying, automatic HTTPS, logging, monitoring,
+        and troubleshooting.
+    - kind: repository
+      source: https://github.com/caddyserver/caddy
+      verified_on: 2026-07-17
+      notes: Official source repository used to verify project identity and license metadata.
 featured: true
 rank_score: 84

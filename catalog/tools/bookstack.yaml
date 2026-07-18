@@ -68,6 +68,39 @@ human_oversight_still_needed:
   - Content ownership
   - Public vs private shelves
   - Review cadence for safety procedures
+task_fits:
+  - task_id: maintain-operating-procedures
+    relationship: system of record
+    automation_level: assisted
+    what_manual_process_it_can_replace: Maintaining several current-looking procedure copies across shared documents, printed binders, and chat history.
+    what_it_takes_off_the_team: Gives approved procedures a structured, searchable publishing location with pages, attachments, and access controls.
+    role_assisted: general-manager
+    what_remains_human: Reconcile frontline reality with policy, obtain specialist approval for controlled topics, assign owners and review dates, and retire superseded guidance.
+    prerequisites:
+      - An inventory of authoritative source procedures and owners
+      - Approved content classification and role permissions
+      - A review cadence and offline fallback for critical procedures
+    failure_consequence: Stale, conflicting, or wrongly exposed guidance can cause unsafe work, privacy disclosure, or inconsistent member service until a human owner withdraws and corrects it.
+    pilot_metric: Five pilot procedures have an accountable owner and review date, are found by intended staff, and are denied to unauthorized users without defects.
+    evidence:
+      - https://www.bookstackapp.com/docs/
+    confidence: medium
+  - task_id: conduct-member-orientation
+    relationship: assistant
+    automation_level: manual support
+    what_manual_process_it_can_replace: Emailing an unversioned member handbook and searching scattered documents during orientation.
+    what_it_takes_off_the_team: Provides one reviewed reference for approved FAQs, space guidance, and follow-up material used during orientation.
+    role_assisted: community-manager
+    what_remains_human: Deliver the orientation, adapt it to accessibility and support needs, check understanding, answer questions, and escalate alternate safety arrangements.
+    prerequisites:
+      - Approved member-facing content separated from staff-only notes
+      - Named content owners and review dates
+      - A tested offline route for emergency information
+    failure_consequence: Treating a page view as completed orientation can leave a member unaware of help or emergency routes, while bad permissions can expose internal information.
+    pilot_metric: Each pilot member can identify the approved help and emergency routes after a staff-led orientation, with all follow-up needs assigned.
+    evidence:
+      - https://www.bookstackapp.com/docs/
+    confidence: low
 data_privacy:
   data_held:
     - pages
@@ -99,5 +132,19 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://www.bookstackapp.com/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/BookStackApp/BookStack
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://www.bookstackapp.com/docs/
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed editorially; no runtime or operator evidence is retained.
 featured: true
 rank_score: 87

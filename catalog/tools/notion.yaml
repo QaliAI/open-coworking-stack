@@ -65,6 +65,30 @@ human_oversight_still_needed:
   - Permissions sprawl
   - Export fidelity
   - Guest sharing
+task_fits:
+  - task_id: maintain-operating-procedures
+    relationship: system of record
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Scattered SOP files, printed binders, and instructions buried in chat history.
+    what_it_takes_off_the_team:
+      Centralizes approved procedure pages, ownership, links, and review status for easier retrieval.
+    role_assisted: general-manager
+    what_remains_human:
+      Process owners must verify real-world steps and exceptions, approve changes, control sharing,
+      and confirm staff can use normal and fallback paths.
+    prerequisites:
+      - Named procedure owners and a documented review cadence
+      - Role-based permissions and a tested export fallback
+    failure_consequence:
+      Stale, conflicting, or over-shared guidance can cause unsafe or inconsistent service and expose
+      sensitive operating information.
+    pilot_metric:
+      Percentage of pilot procedures with an accountable owner, current approval, and successful
+      staff retrieval test.
+    evidence:
+      - https://www.notion.so/help
+    confidence: medium
 data_privacy:
   data_held:
     - pages
@@ -90,10 +114,27 @@ verification:
   sources:
     - https://www.notion.so/
     - https://www.notion.so/help
+    - https://www.notion.so/pricing
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
-  reviewer: seed-catalog
+    Editorial review used official product, help, and pricing pages only. Task fit is a conservative
+    documentation-based assessment; workspace behavior, export recovery, and operator outcomes remain
+    untested.
+  reviewer: catalog-editorial-review
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: commercial-benchmark
+  evidence:
+    - kind: homepage
+      source: https://www.notion.so/
+      verified_on: 2026-07-17
+      notes: Official product page reviewed for product identity and scope.
+    - kind: docs
+      source: https://www.notion.so/help
+      verified_on: 2026-07-17
+      notes: Official help center reviewed for documented workspace capabilities.
+    - kind: pricing
+      source: https://www.notion.so/pricing
+      verified_on: 2026-07-17
+      notes: Official pricing page reviewed without recording volatile plan limits.
 featured: false
 rank_score: 83

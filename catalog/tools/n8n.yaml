@@ -73,6 +73,51 @@ human_oversight_still_needed:
   - License compliance for commercial use
   - Credential storage in workflows
   - Failure handling when APIs change
+task_fits:
+  - task_id: coordinate-member-onboarding
+    relationship: integration layer
+    automation_level: partially automated
+    what_manual_process_it_can_replace: Re-keying approved onboarding details into repeated internal
+      handoff messages and separately reminding each owner of standard steps.
+    what_it_takes_off_the_team: Runs a configured onboarding sequence from an approved trigger, routes
+      standard work to owners, and records workflow failures for follow-up.
+    role_assisted: community-manager
+    what_remains_human: Functional owners approve each provisioned service, staff interpret
+      nonstandard terms, and the general manager accepts material readiness exceptions.
+    prerequisites:
+      - Authoritative approved agreement and confirmed start-date trigger
+      - Least-privilege credentials for every configured system
+      - Named exception owner, failure alerts, fallback checklist, and tested duplicate handling
+    failure_consequence: A stale trigger, mapping error, or silent failed step can omit a service,
+      use unapproved sales notes, or leave the team unaware of a changed start date.
+    pilot_metric: Percentage of pilot onboardings with usable approved services by the agreed start;
+      all workflow failures and readiness exceptions visible and owned before arrival.
+    evidence:
+      - https://n8n.io/
+      - https://docs.n8n.io/
+    confidence: low
+  - task_id: manage-pipeline-follow-up
+    relationship: integration layer
+    automation_level: assisted
+    what_manual_process_it_can_replace: Copying opportunity status into reminder lists and sending
+      internal prompts for due next actions.
+    what_it_takes_off_the_team: Moves approved workflow data between configured steps and prompts the
+      responsible person when a dated next action is due.
+    role_assisted: sales-leasing-manager
+    what_remains_human: Sales staff read recent responses, choose the useful message and channel,
+      honor objections, and decide when to pause or close; a sales manager approves exceptional outreach.
+    prerequisites:
+      - Consent-aware authoritative opportunity status and next-action date
+      - Explicit field mappings, least-privilege credentials, and duplicate controls
+      - Failure alert, reconciliation queue, and manual fallback owned by sales operations
+    failure_consequence: Stale status, duplicate execution, or a missed opt-out can prompt irrelevant
+      or unwelcome outreach and corrupt the opportunity history.
+    pilot_metric: Percentage of active opportunities with a meaningful dated next action, with opt-outs
+      honored and every failed or duplicate workflow reconciled.
+    evidence:
+      - https://n8n.io/
+      - https://docs.n8n.io/
+    confidence: low
 data_privacy:
   data_held:
     - workflow definitions
@@ -106,5 +151,18 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: low
+  tier: evaluated
+  evidence:
+    - kind: repository
+      source: https://github.com/n8n-io/n8n
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://docs.n8n.io/
+      verified_on: 2026-07-17
+    - kind: pricing
+      source: https://n8n.io/pricing/
+      verified_on: 2026-07-17
 featured: true
 rank_score: 90

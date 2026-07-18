@@ -69,6 +69,53 @@ human_oversight_still_needed:
   - Floor plan accuracy
   - Fair-use rules
   - Member privacy for location data
+task_fits:
+  - task_id: manage-desk-assignments
+    relationship: system of record
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Printed floor maps, whiteboard claims, and spreadsheet lists for ordinary hot-desk requests.
+    what_it_takes_off_the_team:
+      Presents configured desks and records member reservations against current availability.
+    role_assisted: community-coordinator-front-desk
+    what_remains_human:
+      Staff must verify entitlement and actual desk readiness, handle accessibility needs, and fairly
+      approve overrides or resolve competing constraints.
+    prerequisites:
+      - Accurate floor plan, desk attributes, and out-of-service status
+      - Documented eligibility, accessibility, privacy, and override rules
+    failure_consequence:
+      An inaccurate map or unchecked assignment can double-book a desk, deny a usable accommodation,
+      expose member presence, or leave a member without the workspace promised.
+    pilot_metric:
+      Percentage of pilot reservations matching entitlement and physically usable desk state, with
+      conflicts and accessibility exceptions separately reviewed.
+    evidence:
+      - https://seatsurfing.io/docs/
+    confidence: low
+  - task_id: analyze-space-utilization
+    relationship: reporting layer
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Manually compiling desk reservation counts from calendars, sign-in sheets, and spreadsheets.
+    what_it_takes_off_the_team:
+      Provides booking-based occupancy signals from the configured desk and space inventory.
+    role_assisted: operations-facilities-manager
+    what_remains_human:
+      Operations staff must check booking data against observed use, aggregate it to protect privacy,
+      explain local context, and approve any layout or capacity decision.
+    prerequisites:
+      - Consistent pilot booking use and current inventory status
+      - Privacy-safe aggregation rules and an agreed physical spot-check method
+    failure_consequence:
+      Treating incomplete bookings as actual occupancy can drive poor capacity changes and turn a
+      planning tool into disproportionate monitoring of individual members.
+    pilot_metric:
+      Difference between aggregated booking signals and approved physical spot checks, reported with
+      missing-data and privacy limitations.
+    evidence:
+      - https://seatsurfing.io/docs/
+    confidence: low
 data_privacy:
   data_held:
     - bookings
@@ -96,9 +143,28 @@ verification:
     - https://github.com/seatsurfing/backend
     - https://seatsurfing.io/docs/
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
-  reviewer: seed-catalog
+    Editorial review used the official site, repository, and documentation only. Floor-plan behavior,
+    booking accuracy, utilization validity, privacy controls, and operator outcomes remain untested.
+  reviewer: catalog-editorial-review
+  completeness: editorially-reviewed
+  confidence: low
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://seatsurfing.io/
+      verified_on: 2026-07-17
+      notes: Official project site reviewed for product identity and scope.
+    - kind: repository
+      source: https://github.com/seatsurfing/backend
+      verified_on: 2026-07-17
+      notes: Official backend source repository reviewed.
+    - kind: license
+      source: https://github.com/seatsurfing/backend
+      verified_on: 2026-07-17
+      notes: Repository license metadata reviewed for GPL-3.0-only.
+    - kind: docs
+      source: https://seatsurfing.io/docs/
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed for documented booking and space capabilities.
 featured: true
 rank_score: 84

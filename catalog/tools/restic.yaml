@@ -62,6 +62,33 @@ tasks_reduced_or_augmented:
 human_oversight_still_needed:
   - Key custody
   - Restore testing cadence
+task_fits:
+  - task_id: perform-backup-restore-tests
+    relationship: infrastructure
+    automation_level: partially automated
+    what_manual_process_it_can_replace:
+      Ad hoc file copies and backup checks that stop at a successful job message or downloaded file.
+    what_it_takes_off_the_team:
+      Creates encrypted snapshots and provides repository checking and restore commands for a
+      repeatable recovery exercise.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Administrators must protect keys, isolate restored data, define representative scenarios, and
+      have business owners verify integrity and usability before accepting the result.
+    prerequisites:
+      - Documented backup scope, retention, recovery objectives, and offsite target
+      - Separately protected credentials and a clean restore environment
+    failure_consequence:
+      Missing keys, corrupt or incomplete snapshots, or an unvalidated restore can leave critical
+      coworking records unrecoverable during an incident while successful-job signals create false
+      confidence.
+    pilot_metric:
+      Percentage of representative restore checks completed successfully within the approved recovery
+      objective, with every failed dependency assigned for remediation.
+    evidence:
+      - https://restic.readthedocs.io/
+      - https://github.com/restic/restic
+    confidence: medium
 data_privacy:
   data_held:
     - encrypted backup snapshots
@@ -86,9 +113,28 @@ verification:
     - https://github.com/restic/restic
     - https://restic.readthedocs.io/
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
-  reviewer: seed-catalog
+    Editorial review used the official site, repository, and documentation only. Backup execution,
+    restore integrity, target compatibility, recovery time, and operator outcomes remain untested.
+  reviewer: catalog-editorial-review
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://restic.net/
+      verified_on: 2026-07-17
+      notes: Official project site reviewed for product identity and scope.
+    - kind: repository
+      source: https://github.com/restic/restic
+      verified_on: 2026-07-17
+      notes: Official source repository reviewed.
+    - kind: license
+      source: https://github.com/restic/restic
+      verified_on: 2026-07-17
+      notes: Repository license metadata reviewed for BSD-2-Clause.
+    - kind: docs
+      source: https://restic.readthedocs.io/
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed for documented backup and restore capabilities.
 featured: true
 rank_score: 90

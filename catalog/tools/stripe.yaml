@@ -65,6 +65,55 @@ human_oversight_still_needed:
   - Fee modeling
   - Chargeback handling
   - PCI scope via proper integration
+task_fits:
+  - task_id: generate-recurring-invoices
+    relationship: partial automation
+    automation_level: partially automated
+    what_manual_process_it_can_replace:
+      Copying prior invoices and manually recreating an approved recurring billing schedule.
+    what_it_takes_off_the_team:
+      Creates repeated invoice and subscription billing records from configured products, customers,
+      and billing terms.
+    role_assisted: finance-billing-administrator
+    what_remains_human:
+      Finance staff must approve source terms, taxes, credits, and effective changes; review control
+      totals and exceptions; and decide whether an invoice is safe to finalize or send.
+    prerequisites:
+      - Approved agreements, products, tax treatment, and change cut-off controls
+      - Tested customer and ledger mappings with restricted production permissions
+    failure_consequence:
+      Incorrect configuration can systematically overcharge or undercharge members, apply the wrong
+      tax treatment, create accounting rework, and damage member trust across an entire billing run.
+    pilot_metric:
+      Percentage of test-mode invoices agreeing to approved terms and control totals before posting,
+      with all exceptions reviewed by finance.
+    evidence:
+      - https://stripe.com/docs
+    confidence: medium
+  - task_id: reconcile-payments
+    relationship: reporting layer
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Manually gathering processor payment, payout, fee, refund, and dispute records for reconciliation.
+    what_it_takes_off_the_team:
+      Provides structured processor-side transaction and settlement records for matching against the
+      billing system and ledger.
+    role_assisted: finance-billing-administrator
+    what_remains_human:
+      Finance staff must investigate ambiguous matches, timing differences, fees, refunds, and
+      chargebacks, while an independent reviewer approves material manual postings and close evidence.
+    prerequisites:
+      - Stable transaction identifiers and documented processor-to-ledger mappings
+      - Segregated posting and review permissions with an owned exception queue
+    failure_consequence:
+      Unreviewed or incorrect matches can misstate cash and receivables, conceal duplicate or missing
+      transactions, and leave member balances or financial reports wrong.
+    pilot_metric:
+      Percentage of test settlements matched to ledger control totals, with unmatched and disputed
+      items aged and assigned rather than auto-cleared.
+    evidence:
+      - https://stripe.com/docs
+    confidence: medium
 data_privacy:
   data_held:
     - payment metadata
@@ -89,10 +138,26 @@ verification:
   sources:
     - https://stripe.com/
     - https://stripe.com/docs
+    - https://stripe.com/pricing
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
-  reviewer: seed-catalog
+    Editorial review used official product, documentation, and pricing pages only. Payment execution,
+    accounting mappings, fee outcomes, compliance scope, and operator results remain untested.
+  reviewer: catalog-editorial-review
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: commercial-benchmark
+  evidence:
+    - kind: homepage
+      source: https://stripe.com/
+      verified_on: 2026-07-17
+      notes: Official product page reviewed for product identity and scope.
+    - kind: docs
+      source: https://stripe.com/docs
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed for documented billing and payment capabilities.
+    - kind: pricing
+      source: https://stripe.com/pricing
+      verified_on: 2026-07-17
+      notes: Official pricing page reviewed without recording volatile fee amounts.
 featured: true
 rank_score: 88

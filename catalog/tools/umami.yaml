@@ -67,6 +67,32 @@ tasks_reduced_or_augmented:
 human_oversight_still_needed:
   - Cookie/consent policy alignment
   - Access to analytics dashboards
+task_fits:
+  - task_id: analyze-campaign-performance
+    relationship: reporting layer
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Manually copying basic website pageview and event counts into an ad hoc campaign report.
+    what_it_takes_off_the_team:
+      Collects and presents website traffic and configured event evidence for campaign review.
+    role_assisted: marketing-manager
+    what_remains_human:
+      Validate tracking and consent, reconcile web evidence with spend and qualified outcomes,
+      explain attribution limits, and approve any campaign change.
+    prerequisites:
+      - An approved measurement and consent plan
+      - Tested campaign parameters and events on the relevant pages
+      - Restricted analytics access and an agreed retention policy
+    failure_consequence:
+      Missing, duplicated, or misconfigured events can produce a confident but false campaign
+      conclusion.
+    pilot_metric:
+      Each pilot campaign review uses validated web metrics and records attribution and data-quality
+      caveats before a decision.
+    evidence:
+      - https://umami.is/
+      - https://umami.is/docs
+    confidence: medium
 data_privacy:
   data_held:
     - pageviews
@@ -93,9 +119,25 @@ verification:
     - https://github.com/umami-software/umami
     - https://umami.is/docs
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
+    Editorial evaluation based on the listed official product, repository, documentation, and
+    pricing pages. Task fit has not been implementation-tested and does not establish end-to-end
+    campaign attribution.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://umami.is/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/umami-software/umami
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://umami.is/docs
+      verified_on: 2026-07-17
+    - kind: pricing
+      source: https://umami.is/pricing
+      verified_on: 2026-07-17
 featured: true
 rank_score: 84
