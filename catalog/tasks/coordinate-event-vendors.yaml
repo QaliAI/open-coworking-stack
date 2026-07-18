@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: coordinate-event-vendors
+name: Coordinate event vendors
+description: Confirm vendor scope, arrival, access, insurance or qualification evidence, technical dependencies, conduct expectations, and closeout duties before site access.
+business_area: events
+primary_role: event-manager
+supporting_roles: [operations-facilities-manager, finance-billing-administrator]
+frequency: event-driven
+trigger: An approved event depends on an external supplier or contractor.
+inputs: [Approved vendor scope, Site access and safety requirements, Contract and evidence status]
+outputs: [Confirmed vendor plan, Access request and briefing, Exceptions requiring owner decision]
+current_manual_methods: [Email attachment collection, Contact list, Verbal loading instructions]
+common_failure_modes:
+  [Expired evidence is accepted, Vendor arrival conflicts with secure or member areas]
+human_judgment_required:
+  [
+    Assess whether evidence and competence match the work,
+    Resolve operational conflicts and substitutions,
+  ]
+approval_points: [Event and facilities owners approve vendor readiness and nonstandard access]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Vendors meet readiness conditions before arrival,
+    Vendor-caused delays and control exceptions are reduced,
+  ]
+related_workflows: [event-lifecycle, vendor-offboarding, access-provisioning]

@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: coordinate-member-onboarding
+name: Coordinate member onboarding
+description: Orchestrate the signed member's billing, account, access, space, orientation, and welcome dependencies with a human owner checking exceptions before the first day.
+business_area: member-service
+primary_role: community-manager
+supporting_roles: [sales-leasing-manager, finance-billing-administrator, it-security-administrator]
+frequency: event-driven
+trigger: An authorized agreement is signed and the start date is confirmed.
+inputs: [Approved agreement, Member and company contacts, Product and start-date requirements]
+outputs:
+  [Owned onboarding checklist, Ready services, Recorded orientation and unresolved exceptions]
+current_manual_methods: [Email chain, Copied checklist, Separate account creation by each team]
+common_failure_modes:
+  [A changed start date does not reach all owners, Access is created from unapproved sales notes]
+human_judgment_required:
+  [
+    Interpret nonstandard terms and member needs,
+    Decide whether unresolved dependencies permit a safe start,
+  ]
+approval_points:
+  [
+    Functional owners approve their provisioned service; general manager accepts material readiness exceptions,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Members have usable approved services by agreed start,
+    Exceptions are visible and owned before arrival,
+  ]
+related_workflows: [member-onboarding, access-provisioning]

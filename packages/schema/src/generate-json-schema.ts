@@ -6,11 +6,15 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 import { StackSchema } from './stack.js';
 import { ToolSchema } from './tool.js';
 import { WorkflowDefSchema } from './workflow.js';
+import { RoleRecordSchema } from './role.js';
+import { TaskRecordSchema } from './task.js';
 
 const MIRRORS = [
   ['stack.schema.json', 'Stack', StackSchema],
   ['tool.schema.json', 'Tool', ToolSchema],
   ['workflow.schema.json', 'Workflow', WorkflowDefSchema],
+  ['role.schema.json', 'Role', RoleRecordSchema],
+  ['task.schema.json', 'Task', TaskRecordSchema],
 ] as const;
 
 export async function generateJsonSchemaMirrors(repoRoot: string): Promise<void> {

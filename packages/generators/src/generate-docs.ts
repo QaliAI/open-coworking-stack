@@ -1,6 +1,6 @@
 import { mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { Stack, Tool, WorkflowDef } from '@ocs/schema';
+import type { RoleRecord, Stack, TaskRecord, Tool, WorkflowDef } from '@ocs/schema';
 
 export interface CatalogExport {
   schema_version: '1.0.0';
@@ -8,6 +8,8 @@ export interface CatalogExport {
   tool_count: number;
   stack_count: number;
   workflow_count: number;
+  task_count: number;
+  role_count: number;
   tools: Array<{
     id: string;
     name: string;
@@ -27,6 +29,19 @@ export interface CatalogExport {
     homepage: string;
     verification_status: Tool['verification']['status'];
     last_reviewed: string;
+    verification_completeness: Tool['verification']['completeness'];
+    verification_confidence: Tool['verification']['confidence'];
+    verification_tier: Tool['verification']['tier'];
+    task_fits: Array<{
+      task_id: string;
+      relationship: string;
+      automation_level: string;
+      role_assisted: string;
+      manual_process: string;
+      human_work: string;
+      failure_consequence: string;
+      pilot_metric: string;
+    }>;
   }>;
   stacks: Array<{
     id: string;
@@ -43,6 +58,8 @@ export interface CatalogExport {
     stages: Array<{ id: string; name: string; suggested_tool_ids: string[] }>;
     last_reviewed: string;
   }>;
+  tasks: TaskRecord[];
+  roles: RoleRecord[];
 }
 
 function escapeMd(s: string): string {
@@ -83,7 +100,10 @@ ${tool.description}
 | Implementation difficulty | \`${tool.implementation.difficulty}\` |
 | Maintenance burden | \`${tool.implementation.maintenance_burden}\` |
 | Maturity | \`${tool.maturity}\` |
-| Verification | \`${tool.verification.status}\` (${tool.verification.last_reviewed}) |
+| Freshness status | \`${tool.verification.status}\` (${tool.verification.last_reviewed}) |
+| Completeness | \`${tool.verification.completeness}\` |
+| Confidence | \`${tool.verification.confidence}\` |
+| Directory tier | \`${tool.verification.tier}\` |
 
 ## Cost reality
 
@@ -106,6 +126,28 @@ ${tool.tasks_reduced_or_augmented.map((t) => `- ${t}`).join('\n')}
 ### Human oversight still needed
 
 ${tool.human_oversight_still_needed.map((t) => `- ${t}`).join('\n')}
+
+## Manual process this can replace
+
+${
+  tool.task_fits.length > 0
+    ? tool.task_fits
+        .map(
+          (fit) => `### ${fit.task_id}
+
+- **Relationship:** ${fit.relationship}
+- **Automation level:** ${fit.automation_level}
+- **Manual process this can replace:** ${fit.what_manual_process_it_can_replace}
+- **Tasks it can reduce:** ${fit.what_it_takes_off_the_team}
+- **Role it assists:** ${fit.role_assisted}
+- **What still requires a person:** ${fit.what_remains_human}
+- **What happens if it fails:** ${fit.failure_consequence}
+- **How to measure the pilot:** ${fit.pilot_metric}
+- **Confidence:** ${fit.confidence}`,
+        )
+        .join('\n\n')
+    : 'Structured task-fit review has not been completed for this tool. Treat the free-text examples above as evaluation prompts, not replacement claims.'
+}
 
 ## Data held
 
@@ -161,6 +203,9 @@ ${tool.compose_pack ? `**Compose pack:** \`${tool.compose_pack}\`` : ''}
 ## Verification
 
 - Status: \`${tool.verification.status}\`
+- Completeness: \`${tool.verification.completeness}\`
+- Confidence: \`${tool.verification.confidence}\`
+- Tier: \`${tool.verification.tier}\`
 - Last reviewed: \`${tool.verification.last_reviewed}\`
 - Sources:
 ${tool.verification.sources.map((s) => `  - ${s}`).join('\n')}
@@ -169,6 +214,99 @@ ${tool.verification.notes ? `\n${tool.verification.notes}\n` : ''}
 <Aside type="caution">
 Always re-check official project pages before production decisions. Metadata can become stale.
 </Aside>
+`;
+}
+
+function taskDoc(task: TaskRecord): string {
+  return `---
+title: ${JSON.stringify(task.name)}
+description: ${JSON.stringify(task.description)}
+editUrl: false
+---
+
+${task.description}
+
+| Field | Value |
+| --- | --- |
+| Business area | ${task.business_area} |
+| Primary role | [${task.primary_role}](../../roles/generated/${task.primary_role}/) |
+| Frequency | ${task.frequency} |
+| Privacy sensitivity | ${task.privacy_sensitivity} |
+| Security sensitivity | ${task.security_sensitivity} |
+| Compliance review | ${task.compliance_review_needed ? 'needed' : 'not normally required'} |
+
+## Trigger and handoff
+
+**Trigger:** ${task.trigger}
+
+**Inputs**
+
+${task.inputs.map((item) => `- ${item}`).join('\n')}
+
+**Outputs**
+
+${task.outputs.map((item) => `- ${item}`).join('\n')}
+
+## Current manual methods
+
+${task.current_manual_methods.map((item) => `- ${item}`).join('\n')}
+
+## Human judgment and approvals
+
+${task.human_judgment_required.map((item) => `- ${item}`).join('\n')}
+
+${task.approval_points.map((item) => `- Approval: ${item}`).join('\n')}
+
+## Failure modes
+
+${task.common_failure_modes.map((item) => `- ${item}`).join('\n')}
+
+## Success metrics
+
+${task.success_metrics.map((item) => `- ${item}`).join('\n')}
+`;
+}
+
+function roleDoc(role: RoleRecord): string {
+  const section = (title: string, values: string[]) =>
+    `## ${title}\n\n${values.map((value) => `- ${value}`).join('\n')}`;
+  return `---
+title: ${JSON.stringify(role.name)}
+description: ${JSON.stringify(role.description)}
+editUrl: false
+---
+
+${role.description}
+
+${section('Responsibilities', role.responsibilities)}
+
+${section('Daily tasks', role.daily_tasks)}
+
+${section('Weekly tasks', role.weekly_tasks)}
+
+${section('Monthly tasks', role.monthly_tasks)}
+
+${section('Revenue-impacting work', role.revenue_impacting_work)}
+
+${section('Member-experience work', role.member_experience_work)}
+
+${section('Repetitive administrative work', role.repetitive_administrative_work)}
+
+${section('Dangerous tasks to automate blindly', role.dangerous_to_automate_blindly)}
+
+## Stack choices
+
+- **Easiest hosted:** [${role.easiest_hosted_stack}](../../stacks/generated/${role.easiest_hosted_stack}/)
+- **Hybrid:** [${role.hybrid_stack}](../../stacks/generated/${role.hybrid_stack}/)
+- **Self-hosted:** [${role.self_hosted_stack}](../../stacks/generated/${role.self_hosted_stack}/)
+
+${section('KPIs', role.kpis)}
+
+${section('30-day improvement plan', role.improvement_plan_30_day)}
+
+**Implementation owner:** ${role.implementation_owner}
+
+${section('When to get expert help', role.expert_help_triggers)}
 `;
 }
 
@@ -403,6 +541,8 @@ export async function generateDerivedDocs(
   tools: Tool[],
   stacks: Stack[],
   workflows: WorkflowDef[],
+  tasks: TaskRecord[] = [],
+  roles: RoleRecord[] = [],
 ): Promise<void> {
   const toolsOut = path.join(repoRoot, 'apps/web/src/content/docs/tools/generated');
   const stacksOut = path.join(repoRoot, 'apps/web/src/content/docs/stacks/generated');
@@ -410,11 +550,20 @@ export async function generateDerivedDocs(
   const guidesOut = path.join(repoRoot, 'apps/web/src/content/docs/guides/tools');
   const integrationsOut = path.join(repoRoot, 'apps/web/src/content/docs/integrations/generated');
   const dataOut = path.join(repoRoot, 'apps/web/public/data');
+  const tasksOut = path.join(repoRoot, 'apps/web/src/content/docs/tasks/generated');
+  const rolesOut = path.join(repoRoot, 'apps/web/src/content/docs/roles/generated');
 
   await Promise.all(
-    [toolsOut, stacksOut, workflowsOut, guidesOut, integrationsOut, dataOut].map((directory) =>
-      rm(directory, { recursive: true, force: true }),
-    ),
+    [
+      toolsOut,
+      stacksOut,
+      workflowsOut,
+      guidesOut,
+      integrationsOut,
+      tasksOut,
+      rolesOut,
+      dataOut,
+    ].map((directory) => rm(directory, { recursive: true, force: true })),
   );
   await mkdir(toolsOut, { recursive: true });
   await mkdir(stacksOut, { recursive: true });
@@ -422,6 +571,8 @@ export async function generateDerivedDocs(
   await mkdir(guidesOut, { recursive: true });
   await mkdir(integrationsOut, { recursive: true });
   await mkdir(dataOut, { recursive: true });
+  await mkdir(tasksOut, { recursive: true });
+  await mkdir(rolesOut, { recursive: true });
 
   await publishGuides(repoRoot, guidesOut);
   await publishIntegrationRecipes(repoRoot, integrationsOut);
@@ -429,6 +580,8 @@ export async function generateDerivedDocs(
   const sortedTools = [...tools].sort((a, b) => a.id.localeCompare(b.id));
   const sortedStacks = [...stacks].sort((a, b) => a.id.localeCompare(b.id));
   const sortedWorkflows = [...workflows].sort((a, b) => a.id.localeCompare(b.id));
+  const sortedTasks = [...tasks].sort((a, b) => a.id.localeCompare(b.id));
+  const sortedRoles = [...roles].sort((a, b) => a.id.localeCompare(b.id));
 
   for (const tool of sortedTools) {
     const guideRoute = await findGuideRoute(repoRoot, tool);
@@ -442,6 +595,12 @@ export async function generateDerivedDocs(
 
   for (const workflow of sortedWorkflows) {
     await writeFile(path.join(workflowsOut, `${workflow.id}.md`), workflowDoc(workflow), 'utf8');
+  }
+  for (const task of sortedTasks) {
+    await writeFile(path.join(tasksOut, `${task.id}.md`), taskDoc(task), 'utf8');
+  }
+  for (const role of sortedRoles) {
+    await writeFile(path.join(rolesOut, `${role.id}.md`), roleDoc(role), 'utf8');
   }
 
   const toolExport = sortedTools.map((tool) => ({
@@ -463,6 +622,19 @@ export async function generateDerivedDocs(
     homepage: tool.homepage,
     verification_status: tool.verification.status,
     last_reviewed: tool.verification.last_reviewed,
+    verification_completeness: tool.verification.completeness,
+    verification_confidence: tool.verification.confidence,
+    verification_tier: tool.verification.tier,
+    task_fits: tool.task_fits.map((fit) => ({
+      task_id: fit.task_id,
+      relationship: fit.relationship,
+      automation_level: fit.automation_level,
+      role_assisted: fit.role_assisted,
+      manual_process: fit.what_manual_process_it_can_replace,
+      human_work: fit.what_remains_human,
+      failure_consequence: fit.failure_consequence,
+      pilot_metric: fit.pilot_metric,
+    })),
   }));
   const stackExport = sortedStacks.map((stack) => ({
     id: stack.id,
@@ -486,18 +658,24 @@ export async function generateDerivedDocs(
 
   const exportPayload: CatalogExport = {
     schema_version: '1.0.0',
-    generated_at: new Date().toISOString(),
+    generated_at: `${[...tools.map((tool) => tool.verification.last_reviewed), '1970-01-01'].sort().at(-1)}T00:00:00.000Z`,
     tool_count: toolExport.length,
     stack_count: stackExport.length,
     workflow_count: workflowExport.length,
+    task_count: sortedTasks.length,
+    role_count: sortedRoles.length,
     tools: toolExport,
     stacks: stackExport,
     workflows: workflowExport,
+    tasks: sortedTasks,
+    roles: sortedRoles,
   };
 
   await writeJson(path.join(dataOut, 'catalog.json'), exportPayload);
   await writeJson(path.join(dataOut, 'tools.json'), toolExport);
   await writeJson(path.join(dataOut, 'stacks.json'), stackExport);
   await writeJson(path.join(dataOut, 'workflows.json'), workflowExport);
+  await writeJson(path.join(dataOut, 'tasks.json'), sortedTasks);
+  await writeJson(path.join(dataOut, 'roles.json'), sortedRoles);
   await writeFile(path.join(dataOut, 'tools.csv'), toolsCsv(sortedTools), 'utf8');
 }

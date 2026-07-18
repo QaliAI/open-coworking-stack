@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: review-financial-controls
+name: Review financial controls
+description: Test whether approvals, reconciliations, access, evidence, segregation, exception handling, and monitoring operate as intended rather than confirming that a policy exists.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [owner-operator, it-security-administrator]
+frequency: quarterly
+trigger: Scheduled control review, material process change, or financial incident.
+inputs:
+  [Control register and owners, Representative transaction evidence, Access and exception records]
+outputs: [Test results and limitations, Remediation owners and dates, Accepted residual risk]
+current_manual_methods: [Policy read-through, Annual accountant request, Informal spot check]
+common_failure_modes:
+  [
+    Control design is reviewed without execution evidence,
+    Same person prepares and validates their own sample,
+  ]
+human_judgment_required:
+  [
+    Select risk-based samples and assess evidence quality,
+    Evaluate compensating controls and practical remediation,
+  ]
+approval_points: [Independent authorized reviewer accepts findings and residual risk]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Controls have current operating evidence,
+    Material findings close or receive explicit risk acceptance,
+  ]
+related_workflows: [compliance-review, reporting-kpis]

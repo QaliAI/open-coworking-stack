@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+id: plan-preventive-maintenance
+name: Plan preventive maintenance
+description: Build a risk-ranked schedule from verified assets, manufacturer and qualified guidance, statutory duties, failure history, site use, and workable service windows.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [owner-operator]
+frequency: annual
+trigger: Annual planning cycle or a material asset, duty, or failure-pattern change.
+inputs: [Asset register, Required and recommended maintenance, Failure and utilization history]
+outputs: [Funded risk-based schedule, Named competent owners, Planned disruption and fallback needs]
+current_manual_methods: [Last year's calendar, Vendor reminder, Reactive repairs]
+common_failure_modes:
+  [
+    Missing assets inherit no maintenance,
+    Every vendor recommendation is accepted without criticality review,
+  ]
+human_judgment_required:
+  [
+    Prioritize by credible risk and consequence,
+    Balance lifecycle,
+    disruption,
+    competence,
+    and budget,
+  ]
+approval_points:
+  [Duty holders approve regulated scope; business owner approves budget and accepted residual risk]
+privacy_sensitivity: low
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Critical assets have current owned plans,
+    Preventive work reduces avoidable failure without hiding deferred risk,
+  ]
+related_workflows: [facility-maintenance, reporting-kpis]

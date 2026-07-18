@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+id: process-mail-forwarding
+name: Process mail forwarding
+description: Validate an authorized forwarding request, destination, item scope, service method, restrictions, and charge approval before transferring custody to the carrier.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [finance-billing-administrator]
+frequency: event-driven
+trigger: An authorized client requests scheduled or one-time forwarding of eligible items.
+inputs: [Authorized instruction, Destination and eligible item list, Carrier and charge information]
+outputs:
+  [Packed and tracked dispatch, Updated custody chain, Exception or failed-delivery follow-up]
+current_manual_methods: [Email address copy, Handwritten label, Receipt stored separately]
+common_failure_modes: [Stale destination is reused, Restricted or wrong item is included]
+human_judgment_required:
+  [
+    Resolve ambiguous scope or destination changes,
+    Select safe handling for unusual,
+    international,
+    or damaged items,
+  ]
+approval_points:
+  [
+    Client or authorized contact confirms destination and charges; manager approves restricted exceptions,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Dispatches match authorized destination and item scope,
+    Tracking and custody evidence remain linked,
+  ]
+related_workflows: [mail-package-handling, invoice-collections]

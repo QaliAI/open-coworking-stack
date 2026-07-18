@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: manage-facilities-vendors
+name: Manage facilities vendors
+description: Maintain current vendor scope, competence, insurance or required evidence, access, performance, incidents, and exit obligations for people working on the site.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [finance-billing-administrator, it-security-administrator]
+frequency: monthly
+trigger: Scheduled vendor review, new engagement, material change, incident, or contract end.
+inputs: [Contract and scope, Qualification and access evidence, Work-order and performance history]
+outputs:
+  [Approved status and conditions, Corrective action or replacement decision, Offboarding actions]
+current_manual_methods: [Supplier folder, Invoice review, Relationship-based renewal]
+common_failure_modes:
+  [Expired evidence is unnoticed, System and key access remains after contract end]
+human_judgment_required:
+  [
+    Assess competence and performance beyond document presence,
+    Decide proportionate correction,
+    suspension,
+    or exit,
+  ]
+approval_points:
+  [Facilities and commercial owners approve engagement; security owner approves access]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Active vendors meet current evidence and access conditions,
+    Performance actions close by agreed dates,
+  ]
+related_workflows: [facility-maintenance, vendor-offboarding, compliance-review]

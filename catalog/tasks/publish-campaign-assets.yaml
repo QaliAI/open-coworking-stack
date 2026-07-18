@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: publish-campaign-assets
+name: Publish campaign assets
+description: Release approved content to the intended audience and channel with final checks for version, timing, links, consent, accessibility, offer state, and rollback.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [it-security-administrator]
+frequency: event-driven
+trigger: Content, claims, audience, and schedule have all received required approval.
+inputs: [Approved final assets, Approved audience and schedule, Channel and rollback checklist]
+outputs: [Published or scheduled assets, Publication evidence, Corrected failure or paused release]
+current_manual_methods: [Direct social posting, Email send button, Manual website edit]
+common_failure_modes:
+  [Wrong draft or audience is selected, Expired offer publishes from a recurring schedule]
+human_judgment_required:
+  [
+    Perform final audience-view review,
+    Decide whether changing context warrants pausing an approved release,
+  ]
+approval_points:
+  [
+    Named publisher confirms final checklist; incident owner approves correction during a sensitive event,
+  ]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Published assets match approved version and audience,
+    Errors are contained through a tested correction path,
+  ]
+related_workflows: [marketing-campaigns, incident-response]

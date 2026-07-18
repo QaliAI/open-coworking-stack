@@ -1,0 +1,41 @@
+schema_version: 1.0.0
+id: review-nonstandard-deal-terms
+name: Review nonstandard deal terms
+description: Evaluate proposed commercial, operational, billing, data, and access exceptions with accountable functional owners before any person or system represents them as agreed.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [owner-operator, finance-billing-administrator, operations-facilities-manager]
+frequency: event-driven
+trigger: A proposal departs from approved product, pricing, term, service, or risk guardrails.
+inputs:
+  [
+    Requested exception and rationale,
+    Standard terms and authority limits,
+    Operational and financial impact,
+  ]
+outputs: [Approved, revised, or declined exception, Named conditions and expiry, Decision evidence]
+current_manual_methods: [Private message approval, Verbal promise, Discount entered before review]
+common_failure_modes:
+  [Only price impact is reviewed, Temporary exception becomes an undocumented permanent entitlement]
+human_judgment_required:
+  [
+    Balance relationship value,
+    precedent,
+    feasibility,
+    fairness,
+    and risk,
+    Identify expert review needs,
+  ]
+approval_points:
+  [
+    Each affected functional owner approves within authority; owner or legal reviewer handles material exceptions,
+  ]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Nonstandard terms have complete authorized evidence,
+    Delivery teams receive all accepted conditions,
+  ]
+related_workflows: [tour-to-close, compliance-review]

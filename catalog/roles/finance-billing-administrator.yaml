@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: finance-billing-administrator
+name: Finance and billing administrator
+description: Maintains accurate billing, collections, reconciliation, and close evidence while ensuring exceptions, refunds, write-offs, and member disputes receive authorized human review.
+responsibilities:
+  - Keep member terms, invoices, payments, credits, and ledger records complete and reconciled.
+  - Operate segregation of duties and preserve approval evidence for financial exceptions.
+  - Communicate billing issues clearly and route hardship or disputes appropriately.
+daily_tasks:
+  - Review payment exceptions, unapplied receipts, billing questions, and approved refunds.
+  - Reconcile material integration failures before records are treated as complete.
+weekly_tasks:
+  - Review aging, collection actions, disputed balances, and upcoming billing changes.
+  - Sample invoices and adjustments against approved agreements and evidence.
+monthly_tasks:
+  - Complete reconciliations, close schedules, control reviews, and decision-ready reporting.
+  - Review recurring exception causes with sales and operations owners.
+revenue_impacting_work:
+  - Invoice accurately and collect fairly while preserving viable member relationships.
+  - Identify leakage from missing charges, failed changes, credits, or unreconciled payments.
+member_experience_work:
+  - Explain charges and remedies in plain language with access to the underlying evidence.
+  - Pause standard collection actions when a dispute or vulnerable circumstance needs review.
+repetitive_administrative_work:
+  - Recurring invoice preparation, matching receipts, aging reports, and close checklists.
+  - Routing exceptions and assembling approved supporting evidence.
+dangerous_to_automate_blindly:
+  - Refunds, write-offs, collection escalation, tax treatment, or dispute outcomes.
+  - Posting unmatched transactions or changing contractual billing terms from inferred data.
+recommended_task_ids:
+  - generate-recurring-invoices
+  - review-billing-exceptions
+  - reconcile-payments
+  - follow-up-overdue-invoices
+  - review-financial-controls
+easiest_hosted_stack: Hosted accounting and coworking billing with payment reconciliation, approval workflows, and restricted financial reporting.
+hybrid_stack: Hosted payment and member billing connected to a controlled ledger, exception queue, and reconciled reporting layer.
+self_hosted_stack: Self-hosted invoicing, accounting, document, and workflow systems with qualified accounting, security, backup, and upgrade ownership.
+suggested_workflows:
+  - invoice-collections
+  - reporting-kpis
+  - member-onboarding
+  - compliance-review
+kpis:
+  - Invoices correct first time and billing exceptions resolved with approval evidence.
+  - Reconciled cash, unapplied receipts, aging, disputes, and collection promises kept.
+  - Close completed with documented outstanding items and reviewer sign-off.
+improvement_plan_30_day:
+  - Map agreement-to-invoice-to-cash controls and assign source ownership.
+  - Classify billing exceptions and define approval thresholds and dispute pauses.
+  - Pilot reconciliation suggestions with a human reviewer and retained evidence.
+  - Review one close cycle for duplicate entry, unsupported adjustments, and unclear handoffs.
+implementation_owner: Finance and billing administrator, with an authorized financial controller or owner approving material exceptions.
+expert_help_triggers:
+  - Tax, revenue recognition, debt collection, insolvency, refund law, or segregation duties are unclear.
+  - Payment data, bank connectivity, or ledger migration changes security or audit boundaries.

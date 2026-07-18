@@ -1,12 +1,16 @@
 import path from 'node:path';
-import { stat } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import {
   ToolSchema,
   StackSchema,
   WorkflowDefSchema,
+  RoleRecordSchema,
+  TaskRecordSchema,
   type Tool,
   type Stack,
   type WorkflowDef,
+  type RoleRecord,
+  type TaskRecord,
 } from '@ocs/schema';
 import { listYamlFiles, loadYamlFile } from '@ocs/shared';
 
@@ -20,7 +24,17 @@ export interface CatalogSnapshot {
   tools: Tool[];
   stacks: Stack[];
   workflows: WorkflowDef[];
+  tasks: TaskRecord[];
+  roles: RoleRecord[];
   issues: ValidationIssue[];
+}
+
+async function directoryExists(directory: string): Promise<boolean> {
+  try {
+    return (await stat(directory)).isDirectory();
+  } catch {
+    return false;
+  }
 }
 
 function reportDuplicates(
@@ -43,6 +57,8 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
   const toolsDir = path.join(repoRoot, 'catalog', 'tools');
   const stacksDir = path.join(repoRoot, 'catalog', 'stacks');
   const workflowsDir = path.join(repoRoot, 'catalog', 'workflows');
+  const tasksDir = path.join(repoRoot, 'catalog', 'tasks');
+  const rolesDir = path.join(repoRoot, 'catalog', 'roles');
 
   const tools: Tool[] = [];
   const toolSources: Array<{ tool: Tool; file: string }> = [];
@@ -310,6 +326,197 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
     }
   }
 
+  const roles: RoleRecord[] = [];
+  const roleIds = new Set<string>();
+  if (await directoryExists(rolesDir)) {
+    for (const file of await listYamlFiles(rolesDir)) {
+      const rel = path.relative(repoRoot, file);
+      const parsed = RoleRecordSchema.safeParse(await loadYamlFile<unknown>(file));
+      if (!parsed.success) {
+        for (const err of parsed.error.issues) {
+          issues.push({
+            file: rel,
+            level: 'error',
+            message: `${err.path.join('.') || '(root)'}: ${err.message}`,
+          });
+        }
+        continue;
+      }
+      const role = parsed.data;
+      const base = path.basename(file, '.yaml');
+      if (base !== role.id)
+        issues.push({
+          file: rel,
+          level: 'error',
+          message: `filename slug "${base}" must match id "${role.id}"`,
+        });
+      if (roleIds.has(role.id))
+        issues.push({ file: rel, level: 'error', message: `duplicate role id "${role.id}"` });
+      roleIds.add(role.id);
+      roles.push(role);
+    }
+    if (roles.length < 14) {
+      issues.push({
+        file: 'catalog/roles',
+        level: 'error',
+        message: `expected at least 14 roles, found ${roles.length}`,
+      });
+    }
+  }
+
+  const tasks: TaskRecord[] = [];
+  const taskIds = new Set<string>();
+  if (await directoryExists(tasksDir)) {
+    for (const file of await listYamlFiles(tasksDir)) {
+      const rel = path.relative(repoRoot, file);
+      const parsed = TaskRecordSchema.safeParse(await loadYamlFile<unknown>(file));
+      if (!parsed.success) {
+        for (const err of parsed.error.issues) {
+          issues.push({
+            file: rel,
+            level: 'error',
+            message: `${err.path.join('.') || '(root)'}: ${err.message}`,
+          });
+        }
+        continue;
+      }
+      const task = parsed.data;
+      const base = path.basename(file, '.yaml');
+      if (base !== task.id)
+        issues.push({
+          file: rel,
+          level: 'error',
+          message: `filename slug "${base}" must match id "${task.id}"`,
+        });
+      if (taskIds.has(task.id))
+        issues.push({ file: rel, level: 'error', message: `duplicate task id "${task.id}"` });
+      taskIds.add(task.id);
+      if (!roleIds.has(task.primary_role))
+        issues.push({
+          file: rel,
+          level: 'error',
+          message: `primary_role references unknown role "${task.primary_role}"`,
+        });
+      for (const role of task.supporting_roles) {
+        if (!roleIds.has(role))
+          issues.push({
+            file: rel,
+            level: 'error',
+            message: `supporting_roles references unknown role "${role}"`,
+          });
+      }
+      tasks.push(task);
+    }
+    if (tasks.length < 100) {
+      issues.push({
+        file: 'catalog/tasks',
+        level: 'error',
+        message: `expected at least 100 tasks, found ${tasks.length}`,
+      });
+    }
+  }
+
+  for (const { tool, file } of toolSources) {
+    reportDuplicates(
+      tool.task_fits.map((fit) => fit.task_id),
+      'task_fits.task_id',
+      file,
+      issues,
+    );
+    for (const fit of tool.task_fits) {
+      if (!taskIds.has(fit.task_id))
+        issues.push({
+          file,
+          level: 'error',
+          message: `task_fits references unknown task id "${fit.task_id}"`,
+        });
+      if (
+        fit.automation_level === 'low-risk fully automated' &&
+        /eligibility|identity-approval|legal-compliance|refund|physical-safety|emergency-access|financial-exception|member-dispute|employment-decision/.test(
+          fit.task_id,
+        )
+      ) {
+        issues.push({
+          file,
+          level: 'error',
+          message: `task "${fit.task_id}" must not be labeled low-risk fully automated`,
+        });
+      }
+    }
+  }
+
+  const packsRoot = path.join(repoRoot, 'implementation-packs');
+  if (await directoryExists(packsRoot)) {
+    const requiredPackFiles = [
+      'README.md',
+      'SKILL.md',
+      'operator-profile.yaml',
+      'coworking-use-cases.md',
+      'data-map.md',
+      'configuration-checklist.md',
+      'pilot-plan.md',
+      'security-review.md',
+      'backup-restore.md',
+      'upgrade-rollback.md',
+      'exit-strategy.md',
+    ];
+    const packDirectories = (await readdir(packsRoot, { withFileTypes: true })).filter((entry) =>
+      entry.isDirectory(),
+    );
+    for (const pack of packDirectories) {
+      const packPath = path.join(packsRoot, pack.name);
+      for (const requiredFile of requiredPackFiles) {
+        try {
+          await stat(path.join(packPath, requiredFile));
+        } catch {
+          issues.push({
+            file: path.relative(repoRoot, packPath),
+            level: 'error',
+            message: `implementation pack missing ${requiredFile}`,
+          });
+        }
+      }
+      for (const requiredDirectory of ['recipes', 'templates', 'examples']) {
+        if (!(await directoryExists(path.join(packPath, requiredDirectory)))) {
+          issues.push({
+            file: path.relative(repoRoot, packPath),
+            level: 'error',
+            message: `implementation pack missing ${requiredDirectory}/`,
+          });
+        }
+      }
+      try {
+        const skill = await readFile(path.join(packPath, 'SKILL.md'), 'utf8');
+        for (const heading of [
+          'Coworking purpose',
+          'Allowed automation',
+          'Prohibited decisions',
+          'Source verification',
+          'Data boundaries',
+          'Human approvals',
+          'Required tests',
+          'Backup and rollback',
+          'Expert review',
+        ]) {
+          if (!skill.includes(`## ${heading}`))
+            issues.push({
+              file: path.relative(repoRoot, path.join(packPath, 'SKILL.md')),
+              level: 'error',
+              message: `SKILL.md missing heading "${heading}"`,
+            });
+        }
+      } catch {
+        // The missing file is reported above.
+      }
+    }
+    if (packDirectories.length < 20)
+      issues.push({
+        file: 'implementation-packs',
+        level: 'error',
+        message: `expected at least 20 implementation packs, found ${packDirectories.length}`,
+      });
+  }
+
   if (tools.length < 75) {
     issues.push({
       file: 'catalog/tools',
@@ -327,5 +534,5 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
     });
   }
 
-  return { tools, stacks, workflows, issues };
+  return { tools, stacks, workflows, tasks, roles, issues };
 }

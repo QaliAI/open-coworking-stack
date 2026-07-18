@@ -1,0 +1,41 @@
+schema_version: 1.0.0
+id: process-approved-refunds
+name: Process approved refunds
+description: Execute a separately authorized refund against the correct payer, transaction, method, amount, and reason, then reconcile financial and member records.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [general-manager]
+frequency: event-driven
+trigger: An authorized refund decision and sufficient transaction evidence are received.
+inputs: [Approved refund decision, Original transaction and payer, Method and accounting treatment]
+outputs:
+  [
+    Processed refund or controlled failure,
+    Member confirmation,
+    Reconciled ledger and invoice status,
+  ]
+current_manual_methods: [Payment dashboard action, Finance email approval, Separate credit note]
+common_failure_modes:
+  [Refund goes to wrong transaction or amount, Payment action is not reflected in ledger]
+human_judgment_required:
+  [
+    Validate evidence,
+    authorization,
+    and unusual destination requests,
+    Investigate processor failures or partial-settlement context,
+  ]
+approval_points:
+  [
+    Authorized person approves refund; separate operator executes and reviewer reconciles where required,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Refunds match approval and original payment evidence,
+    Processor,
+    invoice,
+    and ledger records reconcile,
+  ]
+related_workflows: [invoice-collections, incident-response]

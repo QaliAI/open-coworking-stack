@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+id: manage-unclaimed-mail
+name: Manage unclaimed mail
+description: Review aging items against client status, handling instructions, retention rules, and contact attempts before an authorized person decides return, forwarding, continued storage, or disposition.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [general-manager]
+frequency: weekly
+trigger: An item reaches an aging threshold or the recipient service ends.
+inputs: [Aging custody list, Client status and instructions, Contact attempts and retention policy]
+outputs:
+  [Approved next action, Updated custody and contact record, Escalated legal or disputed item]
+current_manual_methods: [Shelf inspection, Repeated reminder, Bulk disposal day]
+common_failure_modes:
+  [
+    Items are disposed from age alone,
+    Former-client instructions conflict with legal or contract duties,
+  ]
+human_judgment_required:
+  [Interpret status, item type, dispute, and duty, Decide when expert or client review is needed]
+approval_points: [Manager approves return or disposition; specialist reviews legal-process items]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Aging items have documented authorized actions,
+    No disposition occurs solely from an automated threshold,
+  ]
+related_workflows: [mail-package-handling, member-offboarding, compliance-review]

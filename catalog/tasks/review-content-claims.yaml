@@ -1,0 +1,39 @@
+schema_version: 1.0.0
+id: review-content-claims
+name: Review marketing content claims
+description: Verify every material feature, availability, comparison, outcome, offer, testimonial, and urgency claim against current authoritative evidence before approval.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles:
+  [sales-leasing-manager, operations-facilities-manager, finance-billing-administrator]
+frequency: per-interaction
+trigger: Campaign or public content reaches factual approval or a source fact changes.
+inputs:
+  [
+    Review-ready content,
+    Claim source and effective dates,
+    Current inventory,
+    terms,
+    and service evidence,
+  ]
+outputs: [Approved, corrected, or rejected claims, Source-linked approval, Expiry or recheck date]
+current_manual_methods:
+  [Proofread by marketing, Ask in group chat, Assume old webpage remains correct]
+common_failure_modes:
+  [Grammatically polished claim is factually wrong, Qualifier disappears in shorter channel version]
+human_judgment_required:
+  [
+    Assess overall impression as well as literal wording,
+    Decide whether evidence supports a reasonable audience interpretation,
+  ]
+approval_points:
+  [Accountable source owner approves each material claim; legal expert reviews regulated ambiguity]
+privacy_sensitivity: low
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Published material claims retain current source evidence,
+    Corrections caused by unsupported claims decline,
+  ]
+related_workflows: [marketing-campaigns, compliance-review]

@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: event-manager
+name: Event manager
+description: Turns an approved event purpose into a safe, accessible, and commercially controlled delivery plan, with tools supporting coordination rather than deciding fit or live safety responses.
+responsibilities:
+  - Assess event fit, capacity, accessibility, staffing, vendors, and operational conflicts.
+  - Maintain the run of show, decision rights, attendee communications, and closeout record.
+  - Protect members and neighbors from unmanaged disruption.
+daily_tasks:
+  - Review event requests, dependencies, registrations, vendor actions, and emerging risks.
+  - Coordinate changes with facilities, front desk, community, and event owners.
+weekly_tasks:
+  - Hold readiness reviews for upcoming events and closeout reviews for completed events.
+  - Reconcile inventory conflicts, staffing coverage, and required approvals.
+monthly_tasks:
+  - Assess program mix, contribution, incidents, accessibility feedback, and repeat demand.
+  - Update templates and supplier expectations from observed delivery failures.
+revenue_impacting_work:
+  - Qualify event opportunities and protect margin by surfacing full delivery requirements.
+  - Build repeatable programs that support member value and appropriate external demand.
+member_experience_work:
+  - Balance event energy with member access, noise, privacy, and shared-space expectations.
+  - Design accessible registration, arrival, participation, and issue-reporting routes.
+repetitive_administrative_work:
+  - Registration exports, reminders, checklists, vendor status chasing, and closeout compilation.
+  - Reusing approved run-of-show, briefing, and attendee communication templates.
+dangerous_to_automate_blindly:
+  - Capacity, alcohol, security, accessibility, safeguarding, or emergency decisions.
+  - Accepting event terms or vendors without checking insurance, authority, and site constraints.
+recommended_task_ids:
+  - assess-event-fit-and-risk
+  - build-event-run-of-show
+  - coordinate-event-vendors
+  - operate-event-day
+  - close-out-events
+easiest_hosted_stack: Hosted event registration and coworking booking with shared run-of-show templates, vendor records, and incident escalation.
+hybrid_stack: Hosted registration connected to controlled operations checklists, room inventory, communications, and outcome reporting.
+self_hosted_stack: Self-hosted registration, forms, ticketing, knowledge base, and automation with payment, privacy, and reliability owners.
+suggested_workflows:
+  - event-lifecycle
+  - room-booking
+  - visitor-management
+  - incident-response
+kpis:
+  - Events delivered with required readiness approvals completed on time.
+  - Attendee and member experience, incidents, and accessibility issues by event type.
+  - Event contribution measured with complete delivery costs and stated assumptions.
+improvement_plan_30_day:
+  - Define event intake evidence, risk tiers, and approval owners.
+  - Build one source-linked run of show with clear live decision rights.
+  - Pilot automated reminders only for confirmed dependencies and retain manual escalation.
+  - Hold a cross-functional closeout and update the template from actual delivery evidence.
+implementation_owner: Event manager, with general management retaining approval for material safety, contract, and disruption risks.
+expert_help_triggers:
+  - Alcohol, food safety, licensing, insurance, safeguarding, accessibility, or crowd controls apply.
+  - An event changes evacuation, security, network, payment, or personal-data requirements.

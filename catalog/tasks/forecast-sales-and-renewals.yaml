@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: forecast-sales-and-renewals
+name: Forecast sales and renewals
+description: Produce a probability-aware view of prospective and renewing revenue from current evidence, capacity, decision dates, and stated assumptions for human planning decisions.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [owner-operator, finance-billing-administrator, multi-location-operator]
+frequency: weekly
+trigger: Scheduled operating forecast review or a material pipeline or capacity change.
+inputs: [Qualified pipeline, Renewal conversations, Inventory and historical outcome data]
+outputs: [Versioned forecast with assumptions, Capacity and cash implications, Named evidence gaps]
+current_manual_methods: [Weighted spreadsheet, Representative intuition, Last period copied forward]
+common_failure_modes:
+  [Stale stages create false confidence, Forecast ignores operational capacity and churn context]
+human_judgment_required:
+  [
+    Assess evidence quality and scenario uncertainty,
+    Explain changes without treating probabilities as commitments,
+  ]
+approval_points:
+  [Sales owner signs forecast; finance and operations approve planning assumptions they own]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [Forecast error tracked by horizon and cause, Material assumptions and changes are explicit]
+related_workflows: [reporting-kpis, tour-to-close]

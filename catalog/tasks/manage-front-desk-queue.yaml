@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: manage-front-desk-queue
+name: Manage the front desk queue
+description: Sequence arrivals and service requests by safety, accessibility, appointment, and wait context while keeping a visible human route for needs that do not fit standard categories.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [general-manager]
+frequency: continuous
+trigger: Two or more people or channels need reception support at the same time.
+inputs: [Waiting requests, Appointment context, Current staffing and service priorities]
+outputs: [Communicated service order, Escalated urgent needs, Wait-time observations]
+current_manual_methods:
+  [First-come verbal queue, Separate inbox and physical line, Ad hoc interruption]
+common_failure_modes:
+  [
+    Quiet or remote requests are overlooked,
+    Apparent urgency displaces a safety or accessibility need,
+  ]
+human_judgment_required:
+  [
+    Recognize urgency and vulnerability not captured by queue fields,
+    Explain prioritization respectfully,
+  ]
+approval_points: [Duty manager authorizes temporary service closure or staff reallocation]
+privacy_sensitivity: medium
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [
+    Urgent needs identified and handled promptly,
+    Waits communicated and abandoned requests followed up,
+  ]
+related_workflows: [visitor-management, day-pass-checkin]

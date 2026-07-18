@@ -1,0 +1,39 @@
+schema_version: 1.0.0
+id: qualify-inbound-leads
+name: Qualify inbound leads
+description: Establish the prospect's expressed workspace need, timing, authority, budget approach, and service constraints using fair criteria and an explainable human fit decision.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [marketing-manager]
+frequency: per-interaction
+trigger: A prospective member submits an inquiry or is referred with permission.
+inputs:
+  [
+    Prospect-provided requirements,
+    Current products and constraints,
+    Approved qualification criteria,
+  ]
+outputs:
+  [
+    Qualified next step or explained outcome,
+    Consent-aware prospect record,
+    Unresolved fit questions,
+  ]
+current_manual_methods: [Free-form call notes, Personal intuition, Automatic lead score]
+common_failure_modes:
+  [Proxy data produces unfair prioritization, Staff infer requirements instead of asking]
+human_judgment_required:
+  [
+    Assess fit from expressed needs and evidence,
+    Recognize when an alternative or accommodation should be discussed,
+  ]
+approval_points: [Sales manager approves disqualification where criteria or evidence are ambiguous]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Qualified leads meet documented evidence criteria,
+    Prospects receive a timely and clear next step,
+  ]
+related_workflows: [tour-to-close, marketing-campaigns]

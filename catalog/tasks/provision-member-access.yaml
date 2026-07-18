@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: provision-member-access
+name: Provision member access
+description: Create time, site, zone, network, and printing entitlements only from approved membership and identity evidence, with an accountable owner reviewing exceptions.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [community-manager, community-coordinator-front-desk]
+frequency: event-driven
+trigger: An approved member, worker, or service account requires access for a confirmed start.
+inputs: [Approved identity and entitlement, Start and end dates, Site and service requirements]
+outputs: [Least-privilege access, Provisioning evidence, Failed or exceptional items]
+current_manual_methods:
+  [Separate door and Wi-Fi setup, Shared temporary credentials, Email instruction]
+common_failure_modes:
+  [
+    Sales note is treated as authorization,
+    End date is omitted or permissions are copied from a broader user,
+  ]
+human_judgment_required:
+  [
+    Interpret nonstandard entitlement and segregation needs,
+    Decide whether unresolved identity evidence blocks activation,
+  ]
+approval_points:
+  [Service owner approves entitlement; security owner approves privileged or nonstandard access]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Access matches approved need and dates, Provisioning exceptions are visible before first use]
+related_workflows: [access-provisioning, member-onboarding]

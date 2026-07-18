@@ -1,0 +1,23 @@
+schema_version: 1.0.0
+id: conduct-member-orientation
+name: Conduct member orientation
+description: Give new members a practical, accessible introduction to the space, help routes, emergency information, community norms, privacy choices, and service constraints.
+business_area: member-service
+primary_role: community-manager
+supporting_roles: [community-coordinator-front-desk, operations-facilities-manager]
+frequency: per-interaction
+trigger: A member begins service or needs orientation after a material site or policy change.
+inputs: [Current orientation guide, Member product and access, Accessibility or support requests]
+outputs: [Completed orientation record, Answered questions, Assigned follow-up needs]
+current_manual_methods:
+  [Unstructured tour, Emailed handbook, Assumption that company admin briefed everyone]
+common_failure_modes:
+  [Emergency information is skipped, Completion is recorded without understanding]
+human_judgment_required:
+  [Adapt pace and format to the member, Notice confusion or an unmet accessibility need]
+approval_points: [Facilities or duty owner approves any alternate safety arrangement]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics: [Members can identify help and emergency routes, Follow-up needs receive an owner]
+related_workflows: [member-onboarding]

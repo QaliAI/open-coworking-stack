@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: operations-facilities-manager
+name: Operations and facilities manager
+description: Keeps spaces safe, ready, comfortable, and maintainable through risk-based inspections and accountable work orders, with qualified people deciding technical and life-safety actions.
+responsibilities:
+  - Maintain site readiness, preventive maintenance, statutory checks, and supplier coordination.
+  - Triage defects by safety and service impact and verify work before closure.
+  - Keep asset, procedure, and emergency information current and accessible.
+daily_tasks:
+  - Perform readiness and safety walks and review open critical maintenance items.
+  - Coordinate repairs, cleaning, environmental comfort, and space change impacts.
+weekly_tasks:
+  - Review overdue work, repeat defects, parts or vendor dependencies, and planned disruptions.
+  - Inspect samples of completed work and communicate member-facing impacts.
+monthly_tasks:
+  - Review preventive maintenance, asset risk, utility patterns, and supplier performance.
+  - Test an operational fallback or emergency dependency with the responsible teams.
+revenue_impacting_work:
+  - Protect sellable inventory and prevent avoidable downtime or unplanned capacity loss.
+  - Scope facility commitments before sales or event teams promise them.
+member_experience_work:
+  - Maintain clean, functional, accessible, and comfortable spaces with timely updates.
+  - Prioritize impacts using member context as well as technical severity.
+repetitive_administrative_work:
+  - Work-order routing, preventive reminders, meter capture, supplier updates, and closure reports.
+  - Publishing approved disruption notices and readiness checklists.
+dangerous_to_automate_blindly:
+  - Life-safety, electrical, structural, environmental, accessibility, or evacuation decisions.
+  - Closing work from vendor status alone without inspection where consequences are material.
+recommended_task_ids:
+  - perform-opening-safety-walk
+  - triage-maintenance-requests
+  - dispatch-maintenance-work
+  - inspect-life-safety-equipment
+  - plan-preventive-maintenance
+easiest_hosted_stack: Hosted maintenance system, asset register, supplier portal, sensor dashboards, and controlled emergency procedures.
+hybrid_stack: Hosted work orders connected to local building controls, asset records, procedures, and member communications through reviewed interfaces.
+self_hosted_stack: Self-hosted maintenance, asset, monitoring, and knowledge systems with resilient local access and named patching and backup owners.
+suggested_workflows:
+  - facility-maintenance
+  - incident-response
+  - vendor-offboarding
+  - room-booking
+kpis:
+  - Safety-critical work acknowledged, controlled, and verified within approved targets.
+  - Repeat defects, inventory downtime, and preventive work completed by risk tier.
+  - Member-reported cleanliness, comfort, accessibility, and disruption clarity.
+improvement_plan_30_day:
+  - Build a risk-ranked asset and recurring-check register from verified source records.
+  - Define triage, isolation, approval, communication, and closure evidence for work orders.
+  - Pilot mobile issue capture for one asset group without auto-closing or auto-dispatching risk.
+  - Review repeat failures with technicians, staff, and affected members before changing plans.
+implementation_owner: Operations and facilities manager, with qualified contractors and statutory duty holders retaining technical authority.
+expert_help_triggers:
+  - Life safety, hazardous materials, structural, electrical, HVAC, water, or accessibility risks arise.
+  - Building controls or sensors will be remotely accessible or connected to other networks.

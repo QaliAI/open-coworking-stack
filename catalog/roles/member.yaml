@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: member
+name: Member
+description: Uses the workspace and its services, provides informed preferences and feedback, and retains clear routes to human help, correction, appeal, accessibility support, and privacy choices.
+responsibilities:
+  - Use shared resources within agreed terms and report hazards or service issues promptly.
+  - Keep authorized contacts and access credentials accurate and secure.
+  - Respect community norms, other members, staff, visitors, and confidential information.
+daily_tasks:
+  - Reserve and use space responsibly and seek human support when circumstances differ from standard flows.
+  - Protect access credentials and report loss, misuse, hazards, or significant service failures.
+weekly_tasks:
+  - Review upcoming bookings, events, visitors, or service needs that require coordination.
+  - Update staff on unresolved issues rather than relying only on repeated automated requests.
+monthly_tasks:
+  - Review account, contact, billing, consent, and access details for material changes.
+  - Offer specific feedback through the available listening route when useful.
+revenue_impacting_work:
+  - Communicate changing workspace needs so staff can discuss suitable options and constraints.
+  - Provide informed renewal feedback rather than being treated as a predicted score.
+member_experience_work:
+  - Participate by choice and help maintain an inclusive, safe shared environment.
+  - Request accommodations, clarification, or service recovery from an accountable person.
+repetitive_administrative_work:
+  - Entering standard booking, visitor, billing-contact, and service-request details.
+  - Confirming recurring preferences where a clear correction path remains available.
+dangerous_to_automate_blindly:
+  - Access denial, account sanctions, billing disputes, or complaint outcomes without human review.
+  - Inferring behavior, relationships, eligibility, or sentiment from presence and usage data.
+recommended_task_ids:
+  - manage-room-bookings
+  - check-in-visitors
+  - capture-member-feedback
+  - resolve-member-account-questions
+  - triage-network-connectivity
+easiest_hosted_stack: Member portal for bookings, billing, visitors, help, and preferences with a visible human support and appeal route.
+hybrid_stack: Hosted member portal backed by staff-owned service queues and locally controlled access and facility procedures.
+self_hosted_stack: Self-hosted member portal and support channels operated with accessible alternatives, security maintenance, and tested recovery.
+suggested_workflows:
+  - room-booking
+  - visitor-management
+  - community-programming
+  - invoice-collections
+kpis:
+  - Member can complete common tasks and reach an accountable person when the standard path fails.
+  - Corrections, complaints, accommodations, and billing questions resolved with clear explanations.
+  - Privacy and communication preferences applied consistently across relevant systems.
+improvement_plan_30_day:
+  - Identify the three highest-friction member journeys from direct member and staff evidence.
+  - Verify each journey has plain-language instructions, accessible alternatives, and a human fallback.
+  - Pilot one reduced-step journey with volunteers and record exceptions rather than hiding them.
+  - Review outcomes with affected members before broader release.
+implementation_owner: General manager or designated service owner, with participating members consulted on usability and impact.
+expert_help_triggers:
+  - Accessibility, discrimination, harassment, privacy, contract, or consumer-rights concerns arise.
+  - A digital-only process prevents a member from accessing an essential service or appeal.

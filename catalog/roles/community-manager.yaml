@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: community-manager
+name: Community manager
+description: Builds trusted member relationships and useful connections through deliberate listening, facilitation, and service recovery supported by data that never substitutes for informed human judgment.
+responsibilities:
+  - Understand member goals, participation preferences, and service friction with appropriate consent.
+  - Design inclusive community rhythms and connect people where mutual value is plausible.
+  - Resolve conflict fairly and escalate safety, legal, or contractual concerns.
+daily_tasks:
+  - Welcome members, monitor service themes, and make considered introductions.
+  - Follow up on sensitive or unresolved experience issues with the right context.
+weekly_tasks:
+  - Review upcoming programming, participation barriers, and members at renewal risk.
+  - Hold listening conversations and translate patterns into owned improvements.
+monthly_tasks:
+  - Assess community health using qualitative context alongside participation indicators.
+  - Review channel norms, consent practices, and inclusion across member groups.
+revenue_impacting_work:
+  - Improve retention through useful relationships, service recovery, and early risk detection.
+  - Inform programming and product changes from validated member needs.
+member_experience_work:
+  - Facilitate belonging without forcing participation or exposing private member information.
+  - Mediate disagreements and distinguish discomfort, policy breach, and safety risk.
+repetitive_administrative_work:
+  - Scheduling welcomes, maintaining opt-in interest records, and summarizing feedback themes.
+  - Publishing recurring program reminders and tracking agreed follow-up actions.
+dangerous_to_automate_blindly:
+  - Inferring member sentiment, compatibility, churn, or misconduct from activity data alone.
+  - Sending introductions or sensitive outreach without consent and relational context.
+recommended_task_ids:
+  - welcome-new-members
+  - make-member-introductions
+  - facilitate-member-connections
+  - manage-community-conflicts
+  - measure-community-health
+easiest_hosted_stack: Hosted member platform, opt-in community directory, event calendar, and feedback system with explicit visibility controls.
+hybrid_stack: Hosted member records and communications connected to a controlled research repository and action tracker.
+self_hosted_stack: Self-hosted CRM, community forum, forms, calendar, and analytics with moderation and privacy ownership.
+suggested_workflows:
+  - community-programming
+  - member-onboarding
+  - member-offboarding
+  - event-lifecycle
+kpis:
+  - Member-reported belonging, usefulness, and confidence in getting help.
+  - Agreed service-recovery actions completed and recurrence reduced.
+  - Opt-in participation breadth without treating activity volume as belonging.
+improvement_plan_30_day:
+  - Interview a varied member sample and document needs, exclusions, and consent boundaries.
+  - Define a human-reviewed method for introductions and renewal-risk outreach.
+  - Pilot one small program tied to a validated need rather than generic engagement.
+  - Review outcomes with participants and nonparticipants before repeating or scaling.
+implementation_owner: Community manager, supported by the general manager for policy and escalation decisions.
+expert_help_triggers:
+  - Harassment, discrimination, safeguarding, mental-health crisis, or legal dispute is alleged.
+  - Profiling or sensitive personal data is proposed for segmentation or matching.

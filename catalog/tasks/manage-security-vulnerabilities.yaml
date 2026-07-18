@@ -1,0 +1,48 @@
+schema_version: 1.0.0
+id: manage-security-vulnerabilities
+name: Manage security vulnerabilities
+description: Validate reported weaknesses, affected assets, exploitability, exposure, business criticality, vendor guidance, and safe remediation options before prioritizing and changing systems.
+business_area: security-continuity
+primary_role: it-security-administrator
+supporting_roles: [owner-operator, consultant-implementer]
+frequency: weekly
+trigger: A scanner, vendor, researcher, or incident identifies a potential vulnerability.
+inputs:
+  [
+    Vulnerability evidence,
+    Accurate asset and exposure context,
+    Remediation,
+    mitigation,
+    and rollback information,
+  ]
+outputs:
+  [
+    Risk-informed priority and owner,
+    Tested remediation or mitigation,
+    Accepted residual risk and review date,
+  ]
+current_manual_methods:
+  [Scanner severity queue, Patch everything immediately, Annual penetration test list]
+common_failure_modes:
+  [
+    Score replaces exposure analysis,
+    Patch disrupts service or does not address actual configuration,
+  ]
+human_judgment_required:
+  [
+    Assess credible attack path and consequence,
+    Balance remediation urgency,
+    safety,
+    continuity,
+    and testability,
+  ]
+approval_points: [Technical owner approves change; business owner accepts material residual risk]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Internet-exposed and critical risks meet approved response targets,
+    Remediation is verified rather than inferred from deployment,
+  ]
+related_workflows: [incident-response, compliance-review]

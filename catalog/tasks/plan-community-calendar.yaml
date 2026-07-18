@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: plan-community-calendar
+name: Plan the community calendar
+description: Build a balanced program from validated member needs, operating capacity, inclusion considerations, and prior evidence instead of filling dates with generic engagement activity.
+business_area: community
+primary_role: community-manager
+supporting_roles: [event-manager, general-manager]
+frequency: monthly
+trigger: The next community programming period reaches its planning date.
+inputs: [Member listening evidence, Space and staff capacity, Prior program outcomes]
+outputs:
+  [
+    Approved calendar with purpose and owner,
+    Participation and accessibility plan,
+    Evaluation questions,
+  ]
+current_manual_methods:
+  [Recurring events copied forward, Staff brainstorming, Availability-first scheduling]
+common_failure_modes:
+  [Vocal participants dominate the calendar, Program conflicts with member work needs]
+human_judgment_required:
+  [Balance varied needs and nonparticipation, Decide which ideas merit a small experiment]
+approval_points:
+  [
+    Community manager approves program; event or general manager approves material risk and resource needs,
+  ]
+privacy_sensitivity: medium
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [Programs trace to a stated member need, Calendar is feasible and accessible before publication]
+related_workflows: [community-programming, event-lifecycle]

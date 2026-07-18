@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+id: triage-member-requests
+name: Triage member requests
+description: Capture the member's desired outcome, assess urgency and sensitivity, and route the request to an accountable owner with enough context to avoid unnecessary repetition.
+business_area: member-service
+primary_role: community-coordinator-front-desk
+supporting_roles: [community-manager, general-manager]
+frequency: continuous
+trigger: A member raises a question, request, complaint, or service problem through any supported channel.
+inputs: [Member account context, Member-provided description, Service ownership and severity rules]
+outputs: [Categorized request, Named owner and response target, Immediate escalation where required]
+current_manual_methods: [Shared inbox, Direct messages, Verbal promises]
+common_failure_modes:
+  [
+    Request is routed by keyword but misses urgency,
+    Member repeats sensitive facts to multiple staff,
+  ]
+human_judgment_required:
+  [
+    Recognize safety,
+    accessibility,
+    vulnerability,
+    or relationship context,
+    Clarify the actual outcome sought,
+  ]
+approval_points:
+  [Duty manager accepts high-severity escalation and any service workaround outside policy]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [
+    Requests reach the correct owner first time,
+    Members receive a clear acknowledgment and next step,
+  ]
+related_workflows: [member-onboarding, incident-response]

@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: publish-availability
+name: Publish space availability
+description: Present current bookable or sellable availability from an authoritative inventory while withholding tentative, unsafe, restricted, or operationally unready capacity.
+business_area: space-inventory
+primary_role: sales-leasing-manager
+supporting_roles: [operations-facilities-manager, multi-location-operator]
+frequency: continuous
+trigger: Inventory, booking, maintenance, or allocation status changes.
+inputs:
+  [Authoritative inventory, Confirmed reservations and holds, Readiness and restriction status]
+outputs: [Current channel-appropriate availability, Exception queue for conflicting status]
+current_manual_methods:
+  [Daily spreadsheet export, Manual website update, Staff availability message]
+common_failure_modes:
+  [Stale cache offers occupied space, Maintenance hold is overwritten by a sales update]
+human_judgment_required:
+  [
+    Resolve conflicting claims and tentative holds,
+    Decide what can be represented accurately by channel,
+  ]
+approval_points: [Inventory owner approves release of held or restricted capacity]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [
+    Availability conflicts detected before commitment,
+    Published status reconciles to authoritative inventory,
+  ]
+related_workflows: [desk-hot-desk, tour-to-close]

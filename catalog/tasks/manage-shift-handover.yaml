@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: manage-shift-handover
+name: Manage shift handover
+description: Transfer unresolved work, relevant context, and immediate risks between operators in a structured briefing while excluding gossip and unnecessary personal information.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [general-manager, community-manager]
+frequency: daily
+trigger: A service shift changes ownership or the duty manager changes.
+inputs: [Open actions, Incident status, Expected arrivals and service changes]
+outputs: [Acknowledged handover, Assigned next actions, Escalation list]
+current_manual_methods: [Chat messages, Verbal updates, Free-form notebook entries]
+common_failure_modes:
+  [No clear owner is named, Sensitive context is copied more broadly than needed]
+human_judgment_required:
+  [
+    Distinguish actionable context from unnecessary detail,
+    Escalate time-critical or safety-relevant items,
+  ]
+approval_points:
+  [Receiving operator confirms ownership; duty manager accepts critical unresolved risks]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: false
+success_metrics:
+  [Handover actions acknowledged before transfer, Repeat fact-finding caused by missing context]
+related_workflows: [incident-response, visitor-management]

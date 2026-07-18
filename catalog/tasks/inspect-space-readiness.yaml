@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: inspect-space-readiness
+name: Inspect space readiness
+description: Verify a desk, office, room, or event area is clean, functional, safely configured, accessible as promised, and equipped before its next committed use.
+business_area: space-inventory
+primary_role: operations-facilities-manager
+supporting_roles: [community-coordinator-front-desk, event-manager]
+frequency: daily
+trigger: Scheduled readiness round or a space approaches a committed use after turnover or work.
+inputs: [Upcoming use and setup, Readiness standard, Open maintenance and cleaning records]
+outputs: [Verified ready status, Isolated or blocked inventory, Assigned corrective work]
+current_manual_methods: [Visual walk-through, Cleaner sign-off, Assumption from no open ticket]
+common_failure_modes:
+  [Status is updated without physical check, Cosmetic readiness hides equipment or access failure]
+human_judgment_required:
+  [
+    Assess whether observed condition meets the promised use,
+    Decide if a workaround is safe and acceptable,
+  ]
+approval_points:
+  [
+    Qualified owner approves return after safety-critical work; duty manager approves a member-facing workaround,
+  ]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Committed spaces pass readiness before use,
+    Defects block availability until appropriately verified,
+  ]
+related_workflows: [room-booking, facility-maintenance]

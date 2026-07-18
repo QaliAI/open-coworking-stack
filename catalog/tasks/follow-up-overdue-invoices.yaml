@@ -1,0 +1,47 @@
+schema_version: 1.0.0
+id: follow-up-overdue-invoices
+name: Follow up overdue invoices
+description: Review account, dispute, contact, payment promise, and member context before sending proportionate collection communication or escalating under approved policy.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [community-manager, general-manager]
+frequency: weekly
+trigger: An unpaid invoice reaches an approved aging or promise date.
+inputs:
+  [
+    Aging and contact record,
+    Disputes and payment promises,
+    Collection authority and communication preference,
+  ]
+outputs:
+  [Context-appropriate follow-up, Updated promise or dispute status, Authorized escalation or pause]
+current_manual_methods: [Bulk overdue email, Phone list, Informal front-desk reminder]
+common_failure_modes:
+  [
+    Automation contacts a member with an active dispute,
+    Escalation ignores a kept partial-payment agreement,
+  ]
+human_judgment_required:
+  [
+    Assess fairness,
+    vulnerability,
+    relationship,
+    and evidence,
+    Choose a respectful channel and next step,
+  ]
+approval_points:
+  [
+    Authorized manager approves service restriction,
+    external collection,
+    write-off,
+    or legal escalation,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Follow-up respects disputes and promises,
+    Aging reduces without avoidable complaints or unsupported escalation,
+  ]
+related_workflows: [invoice-collections]

@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: coordinate-member-offboarding
+name: Coordinate member offboarding
+description: Confirm authorized end terms and coordinate billing, bookings, access, property, mail, data, and departure communication with explicit owners and exception review.
+business_area: member-service
+primary_role: community-manager
+supporting_roles:
+  [finance-billing-administrator, it-security-administrator, virtual-office-mailroom-manager]
+frequency: event-driven
+trigger: A valid notice, termination decision, or agreed service end is recorded.
+inputs: [Approved end date and terms, Active services and access, Property and balance status]
+outputs:
+  [Completed offboarding checklist, Revoked or transferred services, Documented open obligations]
+current_manual_methods:
+  [Forwarded cancellation email, Calendar reminder, Separate departmental lists]
+common_failure_modes:
+  [One service remains active, Disputed end terms trigger premature access removal]
+human_judgment_required:
+  [Interpret exceptions and disputes, Plan a respectful departure and necessary continuity]
+approval_points: [Authorized manager confirms end terms; each control owner confirms completion]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Services end on the authorized date, Open obligations and disputes remain visible and owned]
+related_workflows: [member-offboarding, access-provisioning, mail-package-handling]

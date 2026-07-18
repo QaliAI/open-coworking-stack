@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: reconcile-payments
+name: Reconcile payments
+description: Match settled payment evidence to invoices and ledger entries, investigate unmatched or duplicate transactions, and preserve reviewer evidence before close.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [owner-operator]
+frequency: daily
+trigger: New bank or payment settlement data becomes available or a reconciliation difference appears.
+inputs: [Bank and processor settlements, Open receivables, Ledger and refund records]
+outputs: [Matched and posted receipts, Unapplied or disputed queue, Reconciliation evidence]
+current_manual_methods: [Bank statement spreadsheet, Reference matching, Manual ledger posting]
+common_failure_modes:
+  [Similar amount is matched without reliable reference, Fees or chargebacks are omitted]
+human_judgment_required:
+  [
+    Evaluate ambiguous matches and timing differences,
+    Decide whether evidence supports posting or requires inquiry,
+  ]
+approval_points:
+  [Independent reviewer approves material manual matches and reconciliation completion]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Settled funds reconcile to ledger control totals, Unapplied items age visibly with owners]
+related_workflows: [invoice-collections, reporting-kpis]

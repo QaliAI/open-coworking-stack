@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+id: receive-and-log-mail
+name: Receive and log mail
+description: Accept eligible mail and packages, match them to an active handling profile, record custody, and secure them without inspecting contents beyond policy and safety needs.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: continuous
+trigger: A carrier or person presents an item for a virtual-office client or member.
+inputs:
+  [Physical item and carrier evidence, Active recipient profiles, Prohibited and exception rules]
+outputs:
+  [Time-stamped custody record, Secure storage location, Unmatched or suspicious-item escalation]
+current_manual_methods: [Paper log, Spreadsheet, Initials on package]
+common_failure_modes:
+  [Item is matched to a similar name, Storage location is omitted during a busy delivery]
+human_judgment_required:
+  [
+    Resolve uncertain recipient matches,
+    Identify damage,
+    tampering,
+    danger,
+    or prohibited-item concerns,
+  ]
+approval_points: [Duty manager decides nonstandard acceptance, isolation, or refusal]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Accepted items have complete custody and location records,
+    Uncertain items are isolated without misassignment,
+  ]
+related_workflows: [mail-package-handling, incident-response]

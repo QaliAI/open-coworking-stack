@@ -25,7 +25,7 @@ async function main(): Promise<void> {
     }
 
     console.log(
-      `\nTools: ${result.tools.length} | Stacks: ${result.stacks.length} | Workflows: ${result.workflows.length}`,
+      `\nTools: ${result.tools.length} | Stacks: ${result.stacks.length} | Workflows: ${result.workflows.length} | Tasks: ${result.tasks.length} | Roles: ${result.roles.length}`,
     );
     console.log(`Errors: ${errors.length} | Warnings: ${warnings.length}`);
 

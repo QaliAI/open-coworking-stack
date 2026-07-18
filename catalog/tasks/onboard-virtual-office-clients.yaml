@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+id: onboard-virtual-office-clients
+name: Onboard virtual office clients
+description: Establish an approved virtual-office client's authorized entities, contacts, mail instructions, identity evidence, start date, and service limits before accepting mail.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [sales-leasing-manager, finance-billing-administrator]
+frequency: event-driven
+trigger: An approved virtual-office agreement is signed and ready for operational setup.
+inputs:
+  [
+    Approved agreement and entity details,
+    Required identity or authorization evidence,
+    Mail and notification instructions,
+  ]
+outputs:
+  [
+    Active verified client record,
+    Approved handling profile,
+    Outstanding conditions blocking service,
+  ]
+current_manual_methods: [Email attachments, Paper identity copy, Notes in mailbox spreadsheet]
+common_failure_modes:
+  [Trading name is not linked to the authorized entity, Mail is accepted before checks complete]
+human_judgment_required:
+  [Assess ambiguous entity and authority evidence, Explain service boundaries and escalation needs]
+approval_points:
+  [Authorized compliance or operations owner approves eligibility and unresolved exceptions]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Active clients have complete approved handling instructions,
+    Mail acceptance begins only after required checks,
+  ]
+related_workflows: [member-onboarding, mail-package-handling, compliance-review]

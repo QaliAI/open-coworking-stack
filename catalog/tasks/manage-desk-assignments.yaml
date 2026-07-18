@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+id: manage-desk-assignments
+name: Manage desk assignments
+description: Allocate eligible members to suitable desks using current entitlement, accessibility, team, equipment, and adjacency needs with a human decision for competing constraints.
+business_area: space-inventory
+primary_role: community-coordinator-front-desk
+supporting_roles: [community-manager, operations-facilities-manager]
+frequency: per-interaction
+trigger: A member requests a desk or an existing assignment needs authorized change.
+inputs:
+  [
+    Member entitlement and stated needs,
+    Available desk attributes,
+    Current assignments and restrictions,
+  ]
+outputs: [Confirmed assignment, Communicated conditions, Escalated conflict or accommodation need]
+current_manual_methods: [Printed floor map, Visual choice on arrival, Spreadsheet seat list]
+common_failure_modes:
+  [
+    System assigns an inaccessible or unavailable desk,
+    Preferences are treated as permanent entitlement,
+  ]
+human_judgment_required:
+  [Balance legitimate competing needs fairly, Resolve accessibility and team-placement constraints]
+approval_points: [Community or operations owner approves overrides and protected desk changes]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Assignments match entitlement and usable desk state,
+    Conflicts and accommodation needs receive timely review,
+  ]
+related_workflows: [desk-hot-desk, member-onboarding]

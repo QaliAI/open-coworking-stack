@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+id: revoke-departing-access
+name: Revoke departing access
+description: Remove or transfer physical, network, printing, application, and privileged access at the authorized time while preserving necessary records and continuity.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [community-manager, virtual-office-mailroom-manager]
+frequency: event-driven
+trigger: An approved offboarding, role change, credential loss, or security action requires revocation.
+inputs:
+  [
+    Authorized scope and effective time,
+    Current access inventory,
+    Continuity and evidence requirements,
+  ]
+outputs: [Revoked credentials and sessions, Confirmed residual-access review, Escalated failures]
+current_manual_methods: [Departmental checklist, Badge collection, Manual account search]
+common_failure_modes:
+  [Hidden account or shared credential survives, Disputed departure causes premature revocation]
+human_judgment_required:
+  [
+    Coordinate timing with safety,
+    contract,
+    and continuity context,
+    Investigate unmatched identities or failed revocations,
+  ]
+approval_points:
+  [Authorized business owner confirms timing; security owner approves emergency revocation]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Known access is removed at the authorized time,
+    Residual and shared access is explicitly reviewed,
+  ]
+related_workflows: [member-offboarding, access-provisioning, incident-response]

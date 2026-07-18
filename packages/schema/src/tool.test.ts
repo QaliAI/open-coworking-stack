@@ -62,4 +62,23 @@ describe('ToolSchema', () => {
       }),
     ).toThrow('Date must not be in the future');
   });
+
+  it('keeps freshness, completeness, confidence, and tier independent', () => {
+    const parsed = ToolSchema.parse({
+      ...sample,
+      verification: {
+        ...sample.verification,
+        status: 'verified',
+        completeness: 'partial',
+        confidence: 'low',
+        tier: 'research-backlog',
+      },
+    });
+    expect(parsed.verification).toMatchObject({
+      status: 'verified',
+      completeness: 'partial',
+      confidence: 'low',
+      tier: 'research-backlog',
+    });
+  });
 });

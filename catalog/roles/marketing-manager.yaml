@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: marketing-manager
+name: Marketing manager
+description: Creates evidence-based demand and clear market communication, using automation for controlled production and measurement while people approve claims, audiences, consent, and brand context.
+responsibilities:
+  - Maintain positioning, audience understanding, campaign plans, and approved claims.
+  - Protect consent, suppression, accessibility, and channel-specific communication standards.
+  - Connect campaign measurement to qualified demand rather than superficial reach alone.
+daily_tasks:
+  - Review active campaign exceptions, inquiries, public listings, and scheduled content.
+  - Correct inaccurate claims or availability information with the responsible operator.
+weekly_tasks:
+  - Plan and review content, audience selections, experiments, and sales feedback.
+  - Inspect campaign delivery and suppression behavior before interpreting performance.
+monthly_tasks:
+  - Analyze channel contribution, message quality, audience fatigue, and consent health.
+  - Refresh assumptions from prospect, member, and sales evidence.
+revenue_impacting_work:
+  - Generate qualified demand with specific, truthful propositions and useful local content.
+  - Improve conversion by aligning public information with inventory and service reality.
+member_experience_work:
+  - Keep member communications relevant, accessible, and respectful of preferences.
+  - Obtain permission before using member stories, images, or identifying details.
+repetitive_administrative_work:
+  - Campaign assembly, approved asset resizing, scheduling, tagging, and report preparation.
+  - Listing consistency checks and consent-safe audience synchronization.
+dangerous_to_automate_blindly:
+  - Publishing generated claims, testimonials, images, or offers without factual review.
+  - Building sensitive or inferred audiences without a lawful, fair, documented purpose.
+recommended_task_ids:
+  - plan-marketing-campaigns
+  - produce-campaign-content
+  - review-content-claims
+  - analyze-campaign-performance
+  - maintain-consent-and-suppression
+easiest_hosted_stack: Hosted email and content tools, consent-aware CRM, analytics, and an approved asset and claims library.
+hybrid_stack: Hosted campaign delivery connected to controlled content, consent, and analytics stores through observable workflows.
+self_hosted_stack: Self-hosted mailing, CRM, analytics, forms, and asset management with deliverability and privacy expertise assigned.
+suggested_workflows:
+  - marketing-campaigns
+  - tour-to-close
+  - community-programming
+  - reporting-kpis
+kpis:
+  - Qualified inquiries and signed outcomes attributable within documented limitations.
+  - Campaign error, complaint, unsubscribe, and suppression-failure rates.
+  - Public listings and active claims verified by their accountable owners.
+improvement_plan_30_day:
+  - Inventory active claims, audiences, consent sources, and suppression paths.
+  - Choose one audience need and create a campaign with a measurable operational outcome.
+  - Add human approval for factual claims, audience selection, and publication readiness.
+  - Review results with sales and operations before changing spend or scaling production.
+implementation_owner: Marketing manager, with product, operations, and privacy owners approving relevant claims and data use.
+expert_help_triggers:
+  - Consent, cookies, tracking, testimonials, promotions, or advertising rules are unclear.
+  - Deliverability, domain reputation, or personal-data sharing crosses organizational boundaries.

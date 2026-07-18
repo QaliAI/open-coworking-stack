@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: maintain-audience-segments
+name: Maintain marketing audience segments
+description: Define useful communication audiences from documented, consent-compatible facts and business purpose, excluding sensitive inferences and reviewing membership before activation.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [sales-leasing-manager, community-manager]
+frequency: monthly
+trigger: A campaign need, consent change, data-source change, or scheduled segment review.
+inputs:
+  [Approved audience purpose, Current consent and suppression data, Permitted source attributes]
+outputs: [Documented segment definition, Reviewed audience membership, Exclusions and expiry]
+current_manual_methods: [CRM filter, Uploaded spreadsheet, Broad member list]
+common_failure_modes:
+  [Stale attributes keep people in audience, Proxy criteria infer sensitive traits]
+human_judgment_required:
+  [
+    Assess relevance,
+    fairness,
+    and reasonable expectation,
+    Identify groups too small or sensitive to target,
+  ]
+approval_points: [Marketing and privacy owners approve purpose, data, and activation]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Active segments have current purpose and owner,
+    Consent and suppression changes apply before send,
+  ]
+related_workflows: [marketing-campaigns, compliance-review]

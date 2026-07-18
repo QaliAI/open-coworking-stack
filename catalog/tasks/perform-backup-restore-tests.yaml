@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+id: perform-backup-restore-tests
+name: Perform backup restore tests
+description: Restore representative data and configuration into an isolated environment, verify usability and integrity with business owners, and record demonstrated recovery limits.
+business_area: security-continuity
+primary_role: it-security-administrator
+supporting_roles: [general-manager, finance-billing-administrator]
+frequency: quarterly
+trigger: Scheduled recovery test, major system change, or backup control concern.
+inputs:
+  [
+    Approved recovery scenario,
+    Backup inventory and credentials,
+    Recovery objectives and validation checks,
+  ]
+outputs:
+  [
+    Demonstrated restore evidence,
+    Measured recovery and data loss,
+    Corrective actions and accepted limitations,
+  ]
+current_manual_methods: [Successful-job email, File download spot check, Vendor assurance]
+common_failure_modes:
+  [
+    Backup exists but keys or dependencies are missing,
+    Technical restore is not usable by the business,
+  ]
+human_judgment_required:
+  [
+    Control sensitive restored data and test risk,
+    Decide whether recovered state meets operational and integrity needs,
+  ]
+approval_points: [System and business owners approve test scope and accept recovery result]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Representative recovery objectives are demonstrated,
+    Failed dependencies receive owned remediation and retest,
+  ]
+related_workflows: [backup-restore-drill, incident-response]

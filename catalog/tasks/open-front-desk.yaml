@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: open-front-desk
+name: Open the front desk
+description: Prepare reception for safe service by checking the handover, public-area readiness, expected arrivals, service channels, and unresolved exceptions before opening.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [general-manager, operations-facilities-manager]
+frequency: daily
+trigger: Scheduled start of the staffed reception period.
+inputs: [Prior shift handover, Expected visitor and booking list, Site readiness checklist]
+outputs: [Signed opening check, Escalated readiness exceptions, Updated reception priorities]
+current_manual_methods:
+  [Paper opening checklist, Verbal handover, Separate booking and visitor screens]
+common_failure_modes:
+  [Critical handover detail is missed, Checklist is completed without inspecting the space]
+human_judgment_required:
+  [Decide whether an exception prevents safe opening, Prioritize issues by likely member impact]
+approval_points: [Duty manager approves opening with an unresolved high-risk exception]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Reception opens on time with critical checks evidenced,
+    Readiness exceptions have an owner and target,
+  ]
+related_workflows: [visitor-management, incident-response]

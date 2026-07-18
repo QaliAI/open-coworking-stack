@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: check-in-visitors
+name: Check in visitors
+description: Verify a visitor has an appropriate host and purpose, provide site and emergency information, and create only the minimum attendance record required by policy.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [member, it-security-administrator]
+frequency: per-interaction
+trigger: A visitor arrives or requests entry to a member or event area.
+inputs: [Visitor-provided details, Host confirmation, Approved visitor policy]
+outputs: [Authorized check-in or explained refusal, Host notification, Current visitor record]
+current_manual_methods: [Sign-in sheet, Host phone call, Handwritten badge]
+common_failure_modes:
+  [Similar names are treated as authorization, Visitor presence is retained indefinitely]
+human_judgment_required:
+  [Resolve identity or host discrepancies, Recognize safeguarding and accessibility needs]
+approval_points:
+  [Host or authorized staff approves unregistered arrival; security owner approves exceptions]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Authorized arrivals checked in without avoidable delay,
+    Visitor records meet retention and completeness rules,
+  ]
+related_workflows: [visitor-management]

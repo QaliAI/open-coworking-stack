@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: onboard-operations-staff
+name: Onboard operations staff
+description: Coordinate authorized employment or engagement details, role access, safety training, service practice, supervision, equipment, and probation support before independent duties.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [it-security-administrator, operations-facilities-manager]
+frequency: event-driven
+trigger: An authorized employee or contractor start and role are confirmed.
+inputs:
+  [Approved role and start, Required policy and training, Access, equipment, and supervision needs]
+outputs: [Owned onboarding plan, Verified readiness by duty, Outstanding restrictions and support]
+current_manual_methods: [Generic induction, Email checklist, Immediate shadowing]
+common_failure_modes:
+  [Account access precedes authorization, Checklist completion is mistaken for practical competence]
+human_judgment_required:
+  [
+    Assess readiness through observation and questions,
+    Adapt support without making sensitive assumptions,
+  ]
+approval_points:
+  [Manager approves independent duty; control owners approve access and safety competence]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    New staff perform assigned duties with verified support and competence,
+    Outstanding restrictions remain visible,
+  ]
+related_workflows: [access-provisioning, compliance-review]

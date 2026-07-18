@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: generate-recurring-invoices
+name: Generate recurring invoices
+description: Prepare recurring member invoices from approved agreements, effective changes, usage, taxes, credits, and billing dates, then review exceptions before posting or sending.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [sales-leasing-manager]
+frequency: monthly
+trigger: The controlled billing cycle reaches its preparation and posting dates.
+inputs: [Approved agreements and changes, Billable usage and credits, Tax and invoice configuration]
+outputs: [Reviewed and posted invoices, Exception queue, Reconciliation control totals]
+current_manual_methods: [Copied prior invoice, Spreadsheet import, Manual usage entry]
+common_failure_modes:
+  [Term change misses the billing cut-off, Successful batch hides an incorrect mapping]
+human_judgment_required:
+  [
+    Review unusual changes,
+    prorations,
+    and evidence,
+    Decide whether exceptions should pause an invoice,
+  ]
+approval_points: [Finance owner approves batch controls and material exceptions before posting]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Invoices agree to approved terms and evidence,
+    Preventable corrections and unreviewed exceptions decline,
+  ]
+related_workflows: [invoice-collections, member-onboarding]

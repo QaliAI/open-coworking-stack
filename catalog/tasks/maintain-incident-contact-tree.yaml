@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: maintain-incident-contact-tree
+name: Maintain the incident contact tree
+description: Keep current primary, alternate, supplier, property, emergency, legal, and leadership contacts with roles, availability assumptions, secure access, and tested escalation routes.
+business_area: security-continuity
+primary_role: general-manager
+supporting_roles: [it-security-administrator, operations-facilities-manager]
+frequency: monthly
+trigger: Scheduled review, staff or supplier change, or failed escalation attempt.
+inputs:
+  [Current role ownership, Contact and availability confirmation, Incident scenario requirements]
+outputs: [Approved current contact tree, Identified coverage gaps, Tested escalation evidence]
+current_manual_methods: [Printed phone list, Personal contacts, Old incident-plan appendix]
+common_failure_modes:
+  [Departed person remains primary contact, Contact list exists only in an unavailable system]
+human_judgment_required:
+  [
+    Assess whether coverage and authority are sufficient,
+    Decide safe distribution and offline availability,
+  ]
+approval_points:
+  [General manager approves business contacts; security owner approves storage and access]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Critical roles have confirmed primary and alternate contacts,
+    Contact path is usable during a representative outage,
+  ]
+related_workflows: [incident-response, backup-restore-drill]

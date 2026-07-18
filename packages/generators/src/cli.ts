@@ -16,9 +16,16 @@ async function main(): Promise<void> {
     throw new Error(`Cannot generate: ${errors.length} validation error(s)`);
   }
 
-  await generateDerivedDocs(repoRoot, catalog.tools, catalog.stacks, catalog.workflows);
+  await generateDerivedDocs(
+    repoRoot,
+    catalog.tools,
+    catalog.stacks,
+    catalog.workflows,
+    catalog.tasks,
+    catalog.roles,
+  );
   console.log(
-    `Generated docs for ${catalog.tools.length} tools, ${catalog.stacks.length} stacks, and ${catalog.workflows.length} workflows`,
+    `Generated docs for ${catalog.tools.length} tools, ${catalog.stacks.length} stacks, ${catalog.workflows.length} workflows, ${catalog.tasks.length} tasks, and ${catalog.roles.length} roles`,
   );
 }
 

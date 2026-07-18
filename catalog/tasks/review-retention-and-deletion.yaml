@@ -1,0 +1,35 @@
+schema_version: 1.0.0
+id: review-retention-and-deletion
+name: Review retention and deletion
+description: Verify defined record categories, purposes, legal or operational holds, storage locations, owners, deletion behavior, and restoration implications before approving disposal.
+business_area: security-continuity
+primary_role: it-security-administrator
+supporting_roles: [general-manager, consultant-implementer]
+frequency: annual
+trigger: Scheduled retention review, new data flow, service exit, or deletion request affecting multiple systems.
+inputs:
+  [Data and system inventory, Approved retention rules and holds, Backup and integration behavior]
+outputs:
+  [Approved retention schedule changes, Controlled deletion actions, Exceptions and residual copies]
+current_manual_methods: [Old policy table, Manual folder cleanup, Vendor default retention]
+common_failure_modes:
+  [Live record is deleted but exports persist, Automated age rule deletes evidence under hold]
+human_judgment_required:
+  [
+    Interpret purpose,
+    duty,
+    dispute,
+    and technical reality,
+    Decide proportionate treatment of backups and derived records,
+  ]
+approval_points:
+  [Record owner and qualified privacy or legal reviewer approve rules and material deletion]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Record categories have current owners and executable rules,
+    Deletion evidence states known residual locations and limits,
+  ]
+related_workflows: [compliance-review, vendor-offboarding, backup-restore-drill]

@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: measure-community-health
+name: Measure community health
+description: Review qualitative trust, belonging, connection, conflict, and participation evidence with explicit limitations rather than reducing community quality to attendance or message counts.
+business_area: community
+primary_role: community-manager
+supporting_roles: [general-manager, owner-operator]
+frequency: quarterly
+trigger: Scheduled community review or a significant change in membership or service design.
+inputs: [Listening themes, Opt-in participation data, Service recovery and conflict patterns]
+outputs: [Contextual health assessment, Inclusion gaps, Prioritized community experiments]
+current_manual_methods: [Event attendance totals, Online activity count, Manager intuition]
+common_failure_modes:
+  [Inactive members are labeled disengaged, Small groups are exposed in segmented reports]
+human_judgment_required:
+  [Interpret conflicting and sparse evidence, Select improvements without coercing participation]
+approval_points: [Community and general managers approve findings and data access]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Assessment includes evidence caveats and direct member voice,
+    Actions address stated needs and observed exclusions,
+  ]
+related_workflows: [community-programming, reporting-kpis]

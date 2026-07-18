@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: general-manager
+name: General manager
+description: Converts business goals into a reliable daily operating system, coordinating functional owners while retaining human control over exceptions, priorities, and member outcomes.
+responsibilities:
+  - Maintain service standards, staffing coverage, escalation paths, and cross-functional rhythm.
+  - Turn performance signals into assigned operational improvements rather than passive reports.
+  - Ensure procedures are usable, current, and proportionate to local risk.
+daily_tasks:
+  - Review the shift handover, site readiness, unresolved member issues, and safety exceptions.
+  - Rebalance work when demand, staffing, or facility conditions differ from plan.
+weekly_tasks:
+  - Lead an operating review covering pipeline, members, events, facilities, finance, and risks.
+  - Inspect a sample of completed work for service quality and control adherence.
+monthly_tasks:
+  - Review workload, supplier performance, recurring failure modes, and procedure changes.
+  - Test whether dashboards reconcile to source systems and lead to owned actions.
+revenue_impacting_work:
+  - Coordinate capacity, sales commitments, service delivery, and renewal risks.
+  - Approve operational feasibility before nonstandard member or event commitments are made.
+member_experience_work:
+  - Resolve cross-team service failures and communicate fair, practical remedies.
+  - Protect consistency while allowing staff to use judgment for individual circumstances.
+repetitive_administrative_work:
+  - Compiling handovers, overdue actions, readiness checks, and weekly status reports.
+  - Routing standard requests to the correct owner and following up on stale work.
+dangerous_to_automate_blindly:
+  - Prioritizing incidents solely by ticket labels when safety or vulnerability may be hidden.
+  - Issuing disciplinary, access, refund, or contract decisions without hearing relevant people.
+recommended_task_ids:
+  - manage-shift-handover
+  - audit-front-desk-service
+  - review-member-service-trends
+  - inspect-space-readiness
+  - maintain-operating-procedures
+easiest_hosted_stack: Hosted coworking operations suite plus ticketing, shared procedures, scheduling, and a concise exception dashboard.
+hybrid_stack: Hosted booking and billing with a controlled knowledge base, workflow queue, and locally owned reporting model.
+self_hosted_stack: Self-hosted service desk, knowledge base, scheduling, automation, and analytics with documented support and recovery duties.
+suggested_workflows:
+  - reporting-kpis
+  - facility-maintenance
+  - member-onboarding
+  - incident-response
+kpis:
+  - Opening readiness and critical handover items resolved before service impact.
+  - Member requests resolved within service targets, segmented by severity and cause.
+  - Repeat operational failures with completed corrective actions.
+improvement_plan_30_day:
+  - Map the daily control loop from opening check through handover and escalation.
+  - Define severity, owner, response target, and approval needs for common exceptions.
+  - Replace one duplicate status report with a source-linked exception view.
+  - Run a retrospective with frontline staff and adjust the procedure from observed friction.
+implementation_owner: General manager, with functional managers accountable for their queues and controls.
+expert_help_triggers:
+  - A recurring failure could affect life safety, employment duties, privacy, or contractual rights.
+  - Cross-system data cannot be reconciled or an integration obscures accountable approval.

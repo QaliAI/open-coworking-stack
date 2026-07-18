@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+id: support-member-printing
+name: Support member printing
+description: Help members submit and release print jobs safely, diagnose entitlement or device issues, and prevent staff from viewing document contents unless the member explicitly requests necessary assistance.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [community-coordinator-front-desk, member]
+frequency: per-interaction
+trigger: A member cannot print, release, scan, or account for an approved print service.
+inputs:
+  [
+    Member-described issue and consent,
+    Print entitlement and queue status,
+    Device and service health,
+  ]
+outputs: [Resolved or routed support case, Canceled duplicate or exposed jobs, Member guidance]
+current_manual_methods: [Staff handles member laptop, Shared printer code, Queue restart]
+common_failure_modes:
+  [Confidential job prints unattended, Troubleshooting exposes document contents or credentials]
+human_judgment_required:
+  [
+    Choose the least intrusive diagnostic path,
+    Recognize privacy,
+    billing,
+    or device-security implications,
+  ]
+approval_points:
+  [Member approves device or document access; administrator approves queue or configuration changes]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Support resolves the issue without unnecessary content access,
+    Abandoned and duplicate jobs are controlled,
+  ]
+related_workflows: [access-provisioning, incident-response]

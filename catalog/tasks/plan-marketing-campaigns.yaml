@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+id: plan-marketing-campaigns
+name: Plan marketing campaigns
+description: Define the customer need, truthful proposition, approved audience, channel, operational capacity, measurement limits, and stop criteria before producing campaign assets.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [sales-leasing-manager, operations-facilities-manager]
+frequency: monthly
+trigger: An approved marketing priority enters campaign planning.
+inputs: [Validated audience need, Current offer and capacity, Prior channel and sales evidence]
+outputs: [Campaign brief and decision rights, Measurement and consent plan, Production schedule]
+current_manual_methods: [Content calendar, Channel-first brainstorming, Reuse last promotion]
+common_failure_modes:
+  [
+    Campaign promises capacity operations cannot deliver,
+    Objective is reach rather than customer action,
+  ]
+human_judgment_required:
+  [
+    Select a credible proposition and audience,
+    Balance evidence,
+    brand,
+    timing,
+    and operational constraints,
+  ]
+approval_points:
+  [Marketing, commercial, and operations owners approve claims, audience, offer, and capacity]
+privacy_sensitivity: medium
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Campaign has an approved customer and operational outcome,
+    Claims and audience are verified before production,
+  ]
+related_workflows: [marketing-campaigns, tour-to-close]

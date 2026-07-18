@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: dispatch-maintenance-work
+name: Dispatch maintenance work
+description: Assign approved work to a competent internal or external person with scope, access, isolation, communication, evidence, and completion expectations.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: event-driven
+trigger: A triaged work order is ready for planned or urgent execution.
+inputs:
+  [
+    Approved work scope and priority,
+    Competence and vendor status,
+    Site access and member-impact context,
+  ]
+outputs: [Accepted assignment, Access and disruption plan, Escalated resource or safety issue]
+current_manual_methods: [Phone call to usual contractor, Email description, Untracked key handoff]
+common_failure_modes:
+  [Assignee lacks required competence, Work begins without isolation or member communication]
+human_judgment_required:
+  [Match competence and response to actual risk, Coordinate safe access and operational timing]
+approval_points:
+  [Facilities owner approves assignee and scope; duty holder approves permits or isolations]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Work starts with accepted scope and controls,
+    Dispatch exceptions are resolved before unsafe activity,
+  ]
+related_workflows: [facility-maintenance, access-provisioning]

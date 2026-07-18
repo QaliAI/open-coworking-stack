@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+id: conduct-performance-conversations
+name: Conduct performance conversations
+description: Discuss observed outcomes, expectations, context, support, and next steps directly with the staff member using verified evidence and a fair route to respond and correct records.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [owner-operator]
+frequency: quarterly
+trigger: Scheduled development review or a documented performance concern requiring conversation.
+inputs:
+  [Role expectations, Specific observed evidence, Prior commitments, support, and staff perspective]
+outputs:
+  [
+    Shared record of discussion,
+    Agreed development or correction actions,
+    Formal escalation if authorized,
+  ]
+current_manual_methods: [Annual appraisal form, Manager recollection, Metric leaderboard]
+common_failure_modes:
+  [
+    Recent event outweighs representative evidence,
+    Automated metric is treated as proof of conduct or capability,
+  ]
+human_judgment_required:
+  [
+    Evaluate evidence quality,
+    context,
+    fairness,
+    and support needs,
+    Hear disagreement and correct unsupported records,
+  ]
+approval_points:
+  [Manager and staff member acknowledge record; formal action follows authorized people process]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Conversations use specific verified evidence and clear expectations,
+    Agreed support and review actions occur on time,
+  ]
+related_workflows: [compliance-review, reporting-kpis]

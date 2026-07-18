@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: review-member-service-trends
+name: Review member service trends
+description: Combine request, complaint, recovery, and qualitative evidence to identify service causes and priorities while checking data quality and avoiding staff or member profiling.
+business_area: member-service
+primary_role: general-manager
+supporting_roles: [community-manager, community-coordinator-front-desk]
+frequency: monthly
+trigger: Scheduled service review or a material increase in unresolved member issues.
+inputs: [Service queue data, Feedback themes, Recovery actions and operating context]
+outputs: [Reviewed trends and caveats, Prioritized corrective actions, Updated service assumptions]
+current_manual_methods:
+  [Ticket count spreadsheet, Anecdotal team meeting, Latest complaint drives priority]
+common_failure_modes:
+  [Duplicate contacts inflate issue volume, Resolution speed hides repeated reopening]
+human_judgment_required:
+  [
+    Interpret trends with operational context,
+    Choose action based on impact and feasibility rather than count alone,
+  ]
+approval_points: [General manager approves priorities and policy changes]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [Priority themes have evidence and owners, Corrective actions reduce repeat contacts or impact]
+related_workflows: [reporting-kpis, community-programming]

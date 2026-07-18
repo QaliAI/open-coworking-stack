@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: run-business-continuity-exercises
+name: Run business continuity exercises
+description: Exercise a realistic service disruption with cross-functional participants to test safety, member support, manual fallbacks, decisions, communications, and restoration priorities.
+business_area: security-continuity
+primary_role: general-manager
+supporting_roles: [owner-operator, it-security-administrator, operations-facilities-manager]
+frequency: annual
+trigger: Approved exercise schedule or a material change in critical dependencies.
+inputs:
+  [Risk-based scenario, Current continuity procedures, Participants, injects, and stop criteria]
+outputs: [Observed decision and fallback evidence, Capability gaps, Prioritized corrective actions]
+current_manual_methods: [Plan read-through, Fire drill only, Lessons assumed from real outage]
+common_failure_modes:
+  [
+    Scenario is disclosed and rehearsed to pass,
+    Exercise tests technology but not member and staff operations,
+  ]
+human_judgment_required:
+  [
+    Adapt scenario safely to participant actions,
+    Evaluate decision quality and workable service minimums,
+  ]
+approval_points: [Exercise director and safety owner approve scenario, scope, and stop conditions]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Critical fallbacks and decisions are demonstrated under realistic constraints,
+    Actions close and are retested,
+  ]
+related_workflows: [incident-response, backup-restore-drill]

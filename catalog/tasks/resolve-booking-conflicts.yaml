@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: resolve-booking-conflicts
+name: Resolve booking conflicts
+description: Investigate competing reservations or inventory discrepancies, protect legitimate needs, and agree a fair alternative with affected people before changing confirmed access.
+business_area: space-inventory
+primary_role: general-manager
+supporting_roles: [community-coordinator-front-desk, event-manager]
+frequency: event-driven
+trigger: Two valid claims overlap or a confirmed space becomes unavailable.
+inputs:
+  [Booking audit history, Entitlements and confirmations, Current alternatives and member context]
+outputs:
+  [Explained resolution, Updated authoritative bookings, Service-recovery or root-cause action]
+current_manual_methods:
+  [First person to arrive keeps room, Manager searches calendars, Complimentary credit]
+common_failure_modes:
+  [Latest system record is assumed correct, Change is made without contacting all affected parties]
+human_judgment_required:
+  [Assess evidence, impact, accessibility, and commitments, Negotiate a proportionate alternative]
+approval_points: [Duty manager approves displacement and any compensation]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [Affected people receive a usable resolution, Root cause is identified for preventable conflicts]
+related_workflows: [room-booking, incident-response]

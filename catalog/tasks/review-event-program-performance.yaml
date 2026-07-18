@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: review-event-program-performance
+name: Review event program performance
+description: Assess event purpose, experience, inclusion, incidents, operational effort, contribution, and repeat value using reconciled evidence and explicit interpretation.
+business_area: events
+primary_role: event-manager
+supporting_roles: [community-manager, owner-operator, finance-billing-administrator]
+frequency: monthly
+trigger: Scheduled program review after event closeout records are available.
+inputs:
+  [
+    Event outcomes and feedback,
+    Complete cost and effort evidence,
+    Incident and accessibility observations,
+  ]
+outputs: [Program findings with caveats, Repeat, revise, or stop decisions, Assigned improvements]
+current_manual_methods: [Attendance ranking, Revenue total, Anecdotal organizer feedback]
+common_failure_modes:
+  [
+    High attendance hides poor member impact,
+    Staff time and disruption are omitted from contribution,
+  ]
+human_judgment_required:
+  [Interpret mixed outcomes against event purpose, Decide whether and how to repeat an event]
+approval_points: [Event and business owners approve program and resource changes]
+privacy_sensitivity: medium
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [Decisions reference complete purpose and impact evidence, Repeat events implement agreed lessons]
+related_workflows: [event-lifecycle, reporting-kpis]

@@ -1,0 +1,39 @@
+schema_version: 1.0.0
+id: manage-pipeline-follow-up
+name: Manage sales pipeline follow-up
+description: Maintain a relevant, consent-respecting next action for each active opportunity and stop or change outreach when evidence shows it is no longer useful or welcome.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [marketing-manager]
+frequency: daily
+trigger: An active opportunity reaches its next-action date or receives a new response.
+inputs:
+  [
+    Opportunity history,
+    Prospect communication preference,
+    Agreed next action and current availability,
+  ]
+outputs:
+  [Completed relevant follow-up, Updated next step or closed status, Escalated operational question]
+current_manual_methods: [Personal reminders, Bulk email sequence, Stale CRM task list]
+common_failure_modes:
+  [
+    Automated messages ignore a recent response,
+    Activity is recorded without advancing understanding,
+  ]
+human_judgment_required:
+  [
+    Choose a useful message and channel from context,
+    Decide when to pause or close rather than chase,
+  ]
+approval_points:
+  [Sales manager approves exceptional outreach after an objection or formal complaint]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Active opportunities have a meaningful dated next action,
+    Opt-outs and closure decisions are honored,
+  ]
+related_workflows: [tour-to-close, marketing-campaigns]

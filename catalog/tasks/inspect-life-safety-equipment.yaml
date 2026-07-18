@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: inspect-life-safety-equipment
+name: Inspect life-safety equipment
+description: Perform assigned visual or functional checks on emergency and life-safety equipment within competence, preserving statutory service ownership and escalating any doubt immediately.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [general-manager]
+frequency: monthly
+trigger: Scheduled inspection, post-incident check, or reported equipment disturbance.
+inputs:
+  [Approved inspection scope, Equipment register and prior records, Qualified service requirements]
+outputs: [Observed-condition record, Immediate control or isolation, Qualified service request]
+current_manual_methods: [Paper log, Sticker-date review, Vendor visit only]
+common_failure_modes:
+  [Unqualified staff perform technical certification, Missing item is marked not applicable]
+human_judgment_required:
+  [
+    Recognize limits of competence and abnormal condition,
+    Decide immediate occupancy or compensating controls with duty holders,
+  ]
+approval_points:
+  [Qualified duty holder approves technical return to service and compensating arrangements]
+privacy_sensitivity: low
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Checks occur at required cadence with observed evidence,
+    Defects receive immediate control and qualified ownership,
+  ]
+related_workflows: [facility-maintenance, compliance-review, incident-response]

@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: consultant-implementer
+name: Consultant and implementer
+description: Helps operators modernize bounded workflows through discovery, configuration, migration, training, and evidence-based handover without retaining hidden control or overstating tool capability.
+responsibilities:
+  - Translate operator outcomes, constraints, and risks into the smallest viable implementation.
+  - Make data flows, assumptions, approvals, limitations, and ownership visible.
+  - Leave maintainable documentation, trained owners, test evidence, and exit options.
+daily_tasks:
+  - Resolve implementation questions against approved requirements and record consequential decisions.
+  - Test configurations with realistic roles, exceptions, and failure conditions.
+weekly_tasks:
+  - Demonstrate working increments to operators and update risks, decisions, and adoption plans.
+  - Review scope against the intended operational outcome and remove unnecessary complexity.
+monthly_tasks:
+  - Assess control effectiveness, support demand, data quality, and benefits after release.
+  - Hand over administrative knowledge and verify client-owned recovery access.
+revenue_impacting_work:
+  - Reduce implementation risk and accelerate useful adoption without creating avoidable dependency.
+  - Connect investment decisions to measurable operational and member outcomes.
+member_experience_work:
+  - Include frontline and member journey evidence before changing service workflows.
+  - Design fallbacks so people can still receive help when systems or assumptions fail.
+repetitive_administrative_work:
+  - Test evidence capture, migration reconciliation, configuration inventories, and action tracking.
+  - Generating draft documentation from verified configurations for owner review.
+dangerous_to_automate_blindly:
+  - Migrating, deleting, deduplicating, or reclassifying production records without owner sign-off.
+  - Configuring legal, financial, identity, safety, or employment decisions from generic templates.
+recommended_task_ids:
+  - maintain-operating-procedures
+  - review-retention-and-deletion
+  - perform-backup-restore-tests
+  - review-financial-controls
+  - audit-front-desk-service
+easiest_hosted_stack: Client-owned hosted services configured through documented least-privilege accounts, sandboxes, exports, and approval records.
+hybrid_stack: Hosted operational systems integrated with client-controlled data, knowledge, workflow, and monitoring components.
+self_hosted_stack: Client-owned self-hosted services deployed with reproducible configuration, recovery tests, observability, and named maintainers.
+suggested_workflows:
+  - multi-site-rollout
+  - compliance-review
+  - backup-restore-drill
+  - reporting-kpis
+kpis:
+  - Acceptance criteria demonstrated with normal, exception, and recovery scenarios.
+  - Reconciled migration results and unresolved exceptions accepted by accountable owners.
+  - Client administrators able to operate, recover, and exit without consultant-only access.
+improvement_plan_30_day:
+  - Observe the workflow and define outcome, baseline, boundaries, owners, and stop conditions.
+  - Prototype with representative non-production data and judgment-heavy exceptions.
+  - Pilot with a small user group, parallel checks, and a documented fallback.
+  - Transfer ownership only after reconciliation, recovery, training, and risk acceptance.
+implementation_owner: Client-appointed product owner, with the consultant accountable for transparent delivery and handover.
+expert_help_triggers:
+  - The change touches regulated decisions, active incidents, unsafe systems, or material financial records.
+  - No competent client owner can accept risk, administer the result, or execute recovery.

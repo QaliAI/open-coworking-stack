@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: prepare-tour-briefs
+name: Prepare prospect tour briefs
+description: Assemble verified prospect needs, relevant product availability, site constraints, and open questions so the host can conduct discovery without exposing irrelevant personal details.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [community-coordinator-front-desk, operations-facilities-manager]
+frequency: per-interaction
+trigger: A prospect tour is confirmed and due for host preparation.
+inputs: [Qualification notes, Current inventory and product facts, Site changes and approved claims]
+outputs: [Concise tour brief, Verification questions, Flagged constraints or approvals]
+current_manual_methods: [Reading the full CRM timeline, Memory, Generic tour script]
+common_failure_modes:
+  [Stale inventory is presented, Sensitive notes are included without service need]
+human_judgment_required:
+  [
+    Choose relevant context and discovery questions,
+    Identify claims requiring operational confirmation,
+  ]
+approval_points: [Operations owner confirms nonstandard facility or capacity claims]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [Host has current need and inventory context, Tour commitments require no factual correction]
+related_workflows: [tour-to-close]

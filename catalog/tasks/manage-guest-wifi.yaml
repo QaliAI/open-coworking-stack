@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: manage-guest-wifi
+name: Manage guest Wi-Fi
+description: Provide appropriately isolated, time-bounded guest connectivity with clear acceptable-use information and a supported path for legitimate device or accessibility exceptions.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [community-coordinator-front-desk]
+frequency: continuous
+trigger: A visitor, event attendee, or day-pass user needs approved network access.
+inputs:
+  [Guest entitlement or event context, Network availability, Approved access and retention settings]
+outputs: [Isolated guest access, Expiry and support information, Escalated exception]
+current_manual_methods: [Shared password on sign, Staff-created voucher, Main network access]
+common_failure_modes: [Credential never expires, Guest traffic reaches member or building systems]
+human_judgment_required:
+  [
+    Resolve devices that cannot use the standard flow,
+    Distinguish support issue from suspicious behavior,
+  ]
+approval_points: [Security owner approves isolation, retention, and nonstandard device access]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Guest sessions use approved isolation and expiry,
+    Support exceptions do not bypass network boundaries,
+  ]
+related_workflows: [visitor-management, day-pass-checkin, access-provisioning]

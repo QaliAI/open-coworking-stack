@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: maintain-space-inventory
+name: Maintain space inventory
+description: Keep desks, offices, rooms, capacities, amenities, restrictions, and service status aligned with the physical site and approved commercial definitions.
+business_area: space-inventory
+primary_role: operations-facilities-manager
+supporting_roles: [sales-leasing-manager, general-manager]
+frequency: continuous
+trigger: A physical, product, capacity, or service-status change affects sellable or bookable space.
+inputs: [Approved floor and product records, Physical inspection, Maintenance and allocation status]
+outputs: [Authoritative inventory update, Effective date and owner, Downstream correction actions]
+current_manual_methods: [Separate floor plan and spreadsheet, Manual updates in several calendars]
+common_failure_modes:
+  [
+    Physical change reaches only one system,
+    Capacity is changed without safety or accessibility review,
+  ]
+human_judgment_required:
+  [
+    Determine commercial and member impact of the change,
+    Resolve conflicts between records and observed reality,
+  ]
+approval_points:
+  [Facilities approves physical facts; commercial owner approves product representation]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Published inventory matches sampled physical reality,
+    Changes propagate to affected bookings and offers,
+  ]
+related_workflows: [room-booking, facility-maintenance]

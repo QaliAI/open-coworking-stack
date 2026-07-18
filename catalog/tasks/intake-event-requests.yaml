@@ -1,0 +1,23 @@
+schema_version: 1.0.0
+id: intake-event-requests
+name: Intake event requests
+description: Capture an event's purpose, audience, timing, space, services, accessibility, commercial terms, and risk signals before availability is represented as approval.
+business_area: events
+primary_role: event-manager
+supporting_roles: [sales-leasing-manager, community-manager]
+frequency: per-interaction
+trigger: A member, partner, prospect, or internal owner proposes an event.
+inputs: [Requester-provided event details, Current event policy, Preliminary space availability]
+outputs: [Complete event brief, Missing evidence and owner, Routed fit and risk assessment]
+current_manual_methods: [Email inquiry, Generic booking form, Verbal hold on a room]
+common_failure_modes:
+  [Room hold is mistaken for approval, Accessibility or production needs emerge late]
+human_judgment_required:
+  [Clarify the true format and likely impacts, Identify sensitive or specialist review needs]
+approval_points: [Event manager confirms brief completeness before assessment]
+privacy_sensitivity: medium
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [Requests contain required decision evidence, No event is confirmed from availability alone]
+related_workflows: [event-lifecycle, room-booking]

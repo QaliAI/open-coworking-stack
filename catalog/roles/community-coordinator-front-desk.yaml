@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: community-coordinator-front-desk
+name: Community coordinator and front desk
+description: Operates the human welcome point for members and visitors, using structured queues and records to improve consistency without reducing hospitality to scripted transactions.
+responsibilities:
+  - Maintain a safe, informed, and welcoming reception experience.
+  - Triage requests accurately, protect personal information, and escalate exceptions promptly.
+  - Keep handovers and shared service records concise enough for the next person to act.
+daily_tasks:
+  - Open the front desk, inspect public areas, and review expected visitors and unresolved items.
+  - Check in people, answer practical questions, receive deliveries, and record exceptions.
+weekly_tasks:
+  - Review recurring questions, queue delays, lost-property items, and incomplete handovers.
+  - Update approved quick-reference guidance with the responsible manager.
+monthly_tasks:
+  - Sample visitor, day-pass, and service records for accuracy and unnecessary personal data.
+  - Recommend one service or information improvement based on observed demand.
+revenue_impacting_work:
+  - Deliver reliable day-pass and tour arrivals and capture qualified interest with consent.
+  - Surface product confusion or unmet demand to sales and management.
+member_experience_work:
+  - Recognize when a person needs empathy, discretion, accessibility support, or escalation.
+  - Make warm introductions and explain policies in context rather than reciting scripts.
+repetitive_administrative_work:
+  - Visitor pre-registration checks, routine notifications, handover formatting, and FAQ retrieval.
+  - Logging mail, lost property, and standard service requests into owned queues.
+dangerous_to_automate_blindly:
+  - Identity, access, safeguarding, harassment, emergency, or vulnerable-person decisions.
+  - Sharing visitor or member presence information without verifying authority and purpose.
+recommended_task_ids:
+  - open-front-desk
+  - check-in-visitors
+  - issue-day-passes
+  - triage-member-requests
+  - manage-shift-handover
+easiest_hosted_stack: Hosted visitor management, coworking platform, shared inbox, and searchable reception handbook with least-privilege access.
+hybrid_stack: Hosted booking and visitor tools feeding a controlled service queue and locally maintained operating handbook.
+self_hosted_stack: Self-hosted visitor log, service desk, knowledge base, and notification automation with retention and access controls.
+suggested_workflows:
+  - visitor-management
+  - day-pass-checkin
+  - member-onboarding
+  - mail-package-handling
+kpis:
+  - Median arrival wait and percentage of exceptions escalated to the correct owner.
+  - Handover actions completed without repeat fact-finding.
+  - Member feedback on welcome, clarity, and practical help.
+improvement_plan_30_day:
+  - Observe one week of arrivals and classify demand, delays, and judgment-heavy exceptions.
+  - Create a short service queue with clear owners and privacy-safe required fields.
+  - Pilot pre-arrival information for one visitor type while retaining a staffed fallback.
+  - Review the pilot with frontline staff and remove fields or steps that do not aid service.
+implementation_owner: General manager or community manager, with front-desk staff shaping the workable procedure.
+expert_help_triggers:
+  - Identity verification, accessibility, safeguarding, surveillance, or data retention is involved.
+  - Visitor controls must integrate with physical access or emergency procedures.

@@ -1,0 +1,38 @@
+schema_version: 1.0.0
+id: review-privileged-access
+name: Review privileged access
+description: Confirm each administrative, emergency, supplier, and shared capability has a current named purpose, accountable owner, appropriate authentication, and removal or remediation action.
+business_area: security-continuity
+primary_role: it-security-administrator
+supporting_roles: [owner-operator, general-manager]
+frequency: quarterly
+trigger: Scheduled access review, role change, incident, or material system change.
+inputs:
+  [
+    Administrative account and role inventory,
+    Current owner attestations,
+    Authentication and usage evidence,
+  ]
+outputs:
+  [Reapproved or removed privilege, Unresolved ownership and control findings, Review sign-off]
+current_manual_methods: [Admin portal screenshots, Manager memory, Annual account list]
+common_failure_modes:
+  [Owner approves their own unnecessary privilege, Hidden API keys and supplier access are omitted]
+human_judgment_required:
+  [
+    Assess genuine operational and emergency need,
+    Evaluate compensating controls and continuity risk,
+  ]
+approval_points:
+  [
+    Independent system or business owner approves retained privilege; security owner verifies remediation,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Privileged capabilities have current named owners and need,
+    Orphaned and excessive access closes by target,
+  ]
+related_workflows: [access-provisioning, compliance-review, vendor-offboarding]

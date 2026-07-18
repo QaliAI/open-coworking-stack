@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: perform-opening-safety-walk
+name: Perform the opening safety walk
+description: Physically inspect defined public, work, utility, access, and emergency areas before normal use and isolate or escalate hazards rather than merely completing a checklist.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [community-coordinator-front-desk, general-manager]
+frequency: daily
+trigger: Before the site opens or after an event likely to change site condition.
+inputs: [Current risk-based route, Prior defects and work, Site and weather context]
+outputs: [Completed observed-condition record, Isolated hazards, Assigned corrective actions]
+current_manual_methods: [Paper checklist, Visual sweep, Verbal report]
+common_failure_modes:
+  [Route becomes a tick-box habit, Temporary obstruction is moved without examining cause]
+human_judgment_required:
+  [
+    Recognize novel hazards and interacting conditions,
+    Decide whether areas can open,
+    need controls,
+    or require closure,
+  ]
+approval_points: [Duty or qualified owner approves opening with unresolved material hazard]
+privacy_sensitivity: low
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Material hazards controlled before exposure,
+    Walk evidence identifies observations and actions rather than checks alone,
+  ]
+related_workflows: [facility-maintenance, incident-response]

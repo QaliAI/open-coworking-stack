@@ -1,0 +1,23 @@
+schema_version: 1.0.0
+id: build-event-run-of-show
+name: Build the event run of show
+description: Turn the approved event into a timed, owned operating plan covering setup, arrivals, program, transitions, contingencies, communications, and safe close.
+business_area: events
+primary_role: event-manager
+supporting_roles: [community-coordinator-front-desk, operations-facilities-manager]
+frequency: event-driven
+trigger: An event is approved and its delivery details are sufficiently confirmed.
+inputs: [Approved event brief and controls, Supplier and speaker requirements, Site operating plan]
+outputs: [Versioned run of show, Contact and decision matrix, Contingency and briefing actions]
+current_manual_methods: [Personal spreadsheet, Email chain, Generic checklist]
+common_failure_modes:
+  [Conflicting copies circulate, Schedule lists activity but not decision ownership]
+human_judgment_required:
+  [Sequence dependencies realistically, Define when live leaders should pause, adapt, or stop]
+approval_points: [Event lead and site duty manager approve final plan and material changes]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: false
+success_metrics:
+  [Critical dependencies have owners and confirmation, Delivery team uses one current approved plan]
+related_workflows: [event-lifecycle, incident-response]
