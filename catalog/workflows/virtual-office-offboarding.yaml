@@ -1,0 +1,129 @@
+schema_version: 1.0.0
+id: virtual-office-offboarding
+name: Virtual-office offboarding
+description: Close a virtual-office service with verified dates, address-use instructions, held-mail decisions, access removal, retention, and accountable confirmation.
+objective: End service cleanly without losing mail, extending unauthorized address use, or deleting required evidence prematurely.
+responsible_role: Virtual-office and mailroom manager
+trigger: An authorized cancellation, expiry, nonrenewal, compliance decision, or service transfer is approved.
+inputs:
+  [
+    approved end decision,
+    agreement,
+    effective date,
+    held mail,
+    address-use obligations,
+    contacts,
+    balances,
+    retention rules,
+  ]
+outputs:
+  [
+    approved closure plan,
+    final mail disposition,
+    revoked service access,
+    retained evidence,
+    closure confirmation,
+  ]
+source_of_truth: The authorized end decision, agreement, and signed closure checklist are authoritative.
+systems_involved:
+  [
+    client register,
+    agreement store,
+    mail custody register,
+    billing record,
+    identity and communication systems,
+  ]
+automation_steps:
+  [
+    create date-based tasks,
+    surface held items and active contacts,
+    prepare approved notices and access actions,
+  ]
+human_approval_points:
+  [
+    Staff approve timing,
+    final mail handling,
+    member communications,
+    access revocation,
+    balances,
+    and closure.,
+  ]
+failure_exception_paths:
+  [
+    Escalate disputed termination,
+    unresolved compliance,
+    legal hold,
+    undelivered mail,
+    active address misuse,
+    or unpaid balances.,
+  ]
+privacy_risks:
+  [
+    Closure combines identity,
+    business address,
+    mail,
+    contract,
+    billing,
+    and compliance information.,
+  ]
+security_risks:
+  [
+    Residual portal access,
+    contacts,
+    forwarding rules,
+    or mailroom permissions can expose future correspondence.,
+  ]
+measurable_kpis:
+  [
+    closures completed by approved date,
+    held items unresolved,
+    residual access or address-use exceptions,
+  ]
+test_cases:
+  [
+    Close a standard service,
+    preserve legal-hold records,
+    resolve held mail,
+    revoke all contacts,
+    handle a dispute.,
+  ]
+manual_fallback:
+  [
+    Use the controlled closure checklist,
+    inventory mail and access,
+    obtain decisions,
+    and dual-check completion.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop automated closure actions,
+    restore only mistakenly removed approved access,
+    preserve custody and evidence,
+    continue manually.,
+  ]
+primary_roles: [virtual-office-mailroom, operations-manager, finance, owner-operator]
+stages:
+  - id: plan-close-verify
+    name: Plan, close, and verify
+    description: Coordinate final service, mail, access, and record decisions and require signed closure verification.
+    manual_tasks:
+      [review terms and disputes, decide mail disposition, revoke access, verify and sign closure]
+    automation_opportunities: [create dated tasks and surface unresolved items]
+    suggested_tool_ids: [paperless-ngx, openproject]
+    risks:
+      [
+        Automated closure can discard mail,
+        breach retention,
+        or end service before an authorized date.,
+      ]
+success_metrics:
+  [
+    Service ends on the approved basis with mail,
+    access,
+    address use,
+    balances,
+    and records accounted for.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review contract, postal, address-use, compliance, retention, billing, and dispute requirements locally.

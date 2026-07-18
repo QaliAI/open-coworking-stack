@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: local-partnership-outreach
+name: Local partnership outreach
+description: Research and contact relevant local organizations with a specific coworking partnership proposal and respectful, accountable follow-up.
+objective: Build mutually useful local relationships without bulk spam, invented personalization, or unauthorized commitments.
+responsible_role: Marketing manager
+trigger: Staff approve a named local partnership objective and target profile.
+inputs:
+  [
+    approved objective,
+    public organization information,
+    contact basis,
+    proposal,
+    owner,
+    outreach limits,
+  ]
+outputs: [reviewed target record, approved outreach, response, next action or stop status]
+source_of_truth: The reviewed partnership pipeline and communication history are authoritative.
+systems_involved: [partnership pipeline, research notes, approved communication channel]
+automation_steps:
+  [create review tasks, check duplicate outreach, prepare a factual draft, schedule one follow-up]
+human_approval_points:
+  [Staff verify relevance and contact basis and approve wording, commitments, and follow-up.]
+failure_exception_paths:
+  [Stop on opt-out, wrong contact, conflict, reputational concern, or unclear authority.]
+privacy_risks: [Research notes can over-collect personal details about local contacts.]
+security_risks:
+  [Impersonation, malicious replies, attachments, and payment requests can create fraud risk.]
+measurable_kpis: [outreach with documented relevance, opt-outs honored, duplicate-contact rate]
+test_cases:
+  [
+    Contact a relevant organization,
+    suppress a duplicate,
+    honor opt-out,
+    escalate a suspicious reply.,
+  ]
+manual_fallback:
+  [
+    Research each organization,
+    obtain manager approval,
+    contact personally,
+    and record the response.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop queued outreach,
+    preserve opt-outs and history,
+    disable drafts,
+    return to one-by-one approval.,
+  ]
+primary_roles: [marketing, owner-operator]
+stages:
+  - id: research-and-contact
+    name: Research and contact
+    description: Verify relevance and authority before personalized human-approved outreach.
+    manual_tasks: [assess mutual fit, verify contact route, approve proposal and commitments]
+    automation_opportunities: [check duplicates and prepare a factual draft]
+    suggested_tool_ids: [espocrm, monica-crm]
+    risks: [Automated prospecting can become spam or create false claims of local familiarity.]
+success_metrics:
+  [Outreach is specific and permission-aware, stop requests and commitments are recorded.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review communication law, local norms, authority, and anti-fraud procedures.

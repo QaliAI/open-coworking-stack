@@ -1,0 +1,67 @@
+schema_version: 1.0.0
+id: campaign-attribution
+name: Campaign attribution
+description: Relate coworking campaign activity to qualified enquiries and outcomes using documented definitions, consent-aware data, and explicit uncertainty.
+objective: Support marketing decisions without claiming certainty that the available data cannot establish.
+responsible_role: Marketing manager
+trigger: A scheduled campaign performance review or material tracking change occurs.
+inputs:
+  [
+    campaign identifiers,
+    consented analytics,
+    lead-source records,
+    qualified outcomes,
+    cost data,
+    attribution rules,
+  ]
+outputs: [reconciled attribution report, data-quality exceptions, caveats, human decision record]
+source_of_truth: Reviewed sales outcomes and the documented attribution model are authoritative for reporting.
+systems_involved: [analytics system, sales pipeline, campaign register, reporting workspace]
+automation_steps:
+  [join approved identifiers, apply documented rules, produce exception and unmatched lists]
+human_approval_points:
+  [Marketing and sales approve definitions, data corrections, interpretation, and spend decisions.]
+failure_exception_paths:
+  [
+    Report unknown rather than infer identity or source when consent,
+    identifiers,
+    or data quality are insufficient.,
+  ]
+privacy_risks: [Cross-system identifiers can enable intrusive tracking or reidentification.]
+security_risks:
+  [Analytics exports can expose prospect behavior, contact details, and commercial performance.]
+measurable_kpis:
+  [outcomes with supported source, unmatched rate, attribution corrections, consent exceptions]
+test_cases:
+  [
+    Attribute a supported conversion,
+    leave an unknown source,
+    detect duplicate identifiers,
+    remove nonconsented data.,
+  ]
+manual_fallback:
+  [
+    Reconcile campaign and sales records from approved exports and document assumptions and unknowns.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automated joins,
+    quarantine derived reports,
+    preserve source records,
+    revert to reviewed aggregate analysis.,
+  ]
+primary_roles: [marketing, sales-manager, owner-operator]
+stages:
+  - id: reconcile-and-interpret
+    name: Reconcile and interpret
+    description: Apply the documented model and require people to interpret caveats and data quality.
+    manual_tasks:
+      [review definitions and exceptions, validate outcomes, approve interpretation and action]
+    automation_opportunities: [apply repeatable rules and produce unmatched records]
+    suggested_tool_ids: [plausible-ce, espocrm]
+    risks: [Last-touch or incomplete tracking can falsely credit a campaign and misdirect spending.]
+success_metrics:
+  [Attribution is reproducible, caveated, consent-aware, and reconciled to reviewed sales outcomes.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Document tracking consent, definitions, retention, and known attribution limits.

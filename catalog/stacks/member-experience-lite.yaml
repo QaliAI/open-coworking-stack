@@ -1,58 +1,92 @@
 schema_version: 1.0.0
 id: member-experience-lite
-name: Member Experience Lite
-tagline: Tours, rooms, chat, and feedback without a full IWMS
-description: 'Focuses on the member-facing journey: schedule tours, book rooms/desks, run community
-  chat, and collect feedback. Pairs with either DIY billing or a commercial membership system.'
-audience_roles:
-  - community-manager
-  - sales-manager
-  - event-coordinator
-  - operations-manager
-problems_solved:
-  - improve-member-experience
-  - fill-meeting-rooms
-  - grow-pipeline
-  - run-events
-workflows:
-  - tour-to-close
-  - room-booking
-  - desk-hot-desk
-  - community-programming
-  - event-lifecycle
+name: Community and Member Experience
+tagline: Coordinate tours, communication, booking, and feedback around human hosts
+description: A member-facing layer for tours, room and desk discovery, support, community discussion, and feedback without claiming that software replaces active community staff.
+audience_roles: [community-manager, sales-manager, event-coordinator, operations-manager]
+problems_solved: [improve-member-experience, fill-meeting-rooms, grow-pipeline, run-events]
+workflows: [tour-to-close, room-booking, desk-hot-desk, community-programming, event-lifecycle]
 monthly_cash_budget_band: under-200
 self_host_heavy: true
+operator_profile: A hospitality-led operator that already has a payment path and wants a deliberate, moderated member experience layer.
+number_of_locations: One location or a small group with separate resource calendars.
+team_size: Two to ten staff with daily host coverage and a named community owner.
+products_offered: [tours, coworking memberships, desks, meeting rooms, community events]
+technical_skill_required: Moderate for self-hosting and integrations; low for trained daily users.
+tasks_covered: [tour-scheduling, room-request-management, desk-booking-pilot, shared-member-support, member-feedback, community-discussion]
+tasks_not_covered: [membership-billing, payment-processing, door-access-control, safeguarding-judgment, conflict-resolution, staffed-hosting]
+systems_of_record:
+  - The existing membership or billing platform remains the member record.
+  - LibreBooking is the room reservation record during the pilot.
+  - Chatwoot is the support conversation record.
 components:
   - tool_id: cal-com
-    role_in_stack: Tour and meeting scheduling
+    role_in_stack: Tour and host appointment scheduling
     required: true
   - tool_id: seatsurfing
-    role_in_stack: Desk booking pilot
+    role_in_stack: Optional desk booking pilot
     required: false
   - tool_id: librebooking
-    role_in_stack: Meeting room resources
+    role_in_stack: Meeting room reservation record
     required: true
   - tool_id: chatwoot
-    role_in_stack: Website chat / shared inbox
+    role_in_stack: Shared website and member support inbox
     required: true
   - tool_id: formbricks
-    role_in_stack: Member feedback
+    role_in_stack: Optional consented member feedback
     required: false
   - tool_id: zulip
-    role_in_stack: Optional member/staff community
+    role_in_stack: Optional moderated community discussion
     required: false
   - tool_id: umami
-    role_in_stack: Marketing site analytics
+    role_in_stack: Optional privacy-aware website analytics
     required: false
+data_flow:
+  - Prospects choose a tour slot in Cal.com and staff record sales outcomes in the existing CRM.
+  - Members request resources in one designated booking tool to avoid double booking.
+  - Support themes and aggregate feedback inform programming; raw private messages are not broadly exported.
+implementation_order: [define-member-journey, select-booking-authority, pilot-tour-scheduling, configure-support-sla, pilot-one-room, add-feedback, consider-community-chat]
+cost_assumptions:
+  monthly_cash: Edit for hosting, optional managed plans, domains, delivery services, and support coverage.
+  setup_labor: Allow time for resource rules, templates, privacy review, staff scripts, and member testing.
+  maintenance_labor: Schedule daily inbox and booking checks plus monthly content, account, and moderation review.
+  messaging_email_sms: Email and SMS reminders may create usage charges; collect consent and set quiet-hour rules.
+  hosting_storage: Self-hosted components require maintained hosting and backups; attachments can increase storage needs.
+  notes:
+    - The budget band is a planning target, not a price guarantee.
+    - Staff hospitality and moderation time remain essential.
+  pricing_sources: []
+human_owners: [community-manager for experience and moderation, operations-manager for booking rules, sales-manager for tour follow-up, technical-operator for hosting]
+security_boundaries:
+  - Do not expose member directories or conversation history by default.
+  - Keep one booking authority per resource and restrict calendar administration.
+  - Escalate safety, harassment, refunds, and access decisions to humans.
+backup_and_recovery:
+  - Back up booking, support, and configuration data where exports are available.
+  - Keep printed room schedules and an outage contact route for the current day.
+  - Test restoring one service and its identity mapping each quarter.
 assumptions:
-  - You already have a website and payment path.
-  - Staff will actively moderate chat and honor booking rules.
+  - A website, payment route, and membership record already exist.
+  - Staff actively moderate communication and honor response commitments.
 risks:
-  - Fragmented identity across tools without SSO.
-  - Double-booking if commercial platform also tracks rooms.
-getting_started:
-  - Start with Cal.com tours only for two weeks.
-  - Add room booking for three rooms with clear no-show policy.
-  - Introduce chat once response SLAs are defined.
+  - Multiple identities and calendars can confuse members.
+  - Unstaffed channels can reduce trust rather than improve experience.
+getting_started: [map-member-touchpoints, pilot-tours, publish-response-hours, pilot-one-room, collect-staff-feedback, invite-small-member-cohort]
+pilot_plan:
+  - Run tours and one room for two weeks with staff and invited members.
+  - Log double bookings, unanswered contacts, and accessibility barriers.
+rollout_30_day:
+  - Publish booking, no-show, support, privacy, and moderation rules.
+  - Add resources only after the prior resource meets service targets.
+maturity_90_day:
+  - Review member feedback, response times, no-shows, account access, and tool overlap.
+  - Retire channels that staff cannot consistently support.
+exit_strategy:
+  - Export future reservations, support history, and approved community content.
+  - Notify members of channel changes and delete data beyond retention needs.
+commercial_fallback:
+  - Move booking and communication into the existing coworking platform if fragmentation persists.
+  - Use a managed support or booking service when self-host maintenance threatens service quality.
 verification:
-  last_reviewed: 2026-07-17
+  last_reviewed: 2026-07-18
+  notes: Human hosting, moderation, and safety escalation remain outside automation.

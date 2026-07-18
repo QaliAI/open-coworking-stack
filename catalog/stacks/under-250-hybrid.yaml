@@ -1,0 +1,86 @@
+schema_version: 1.0.0
+id: under-250-hybrid
+name: Under-$250 Hybrid
+tagline: Buy the coworking core and self-host only stable supporting capabilities
+description: A hybrid planning stack that allocates most cash to a dedicated operations platform and payment processor while keeping documentation, feedback, and monitoring portable.
+audience_roles: [owner-operator, operations-manager, finance, technical-operator]
+problems_solved: [automate-billing, improve-member-experience, integrate-stack, reduce-software-cost]
+workflows: [member-onboarding, room-booking, invoice-collections, reporting-kpis]
+monthly_cash_budget_band: under-500
+self_host_heavy: false
+operator_profile: A small established operator willing to pay for the core workflow while controlling selected support systems.
+number_of_locations: One location, or two very small locations after a successful pilot.
+team_size: Two to eight staff with shared operations and finance coverage.
+products_offered: [memberships, day passes, desks, meeting rooms]
+technical_skill_required: Moderate; SaaS configuration plus maintenance of a few low-complexity services.
+tasks_covered: [membership-administration, recurring-billing, booking, payment-collection, sop-publishing, feedback-collection, service-monitoring]
+tasks_not_covered: [statutory-accounting, tax-filing, custom-access-hardware, staffed-support, legal-review, complex-data-warehouse]
+systems_of_record:
+  - OfficeRnD is the member, product, booking, and billing workflow record.
+  - Stripe is the payment transaction record.
+  - BookStack is the internal procedure record.
+components:
+  - tool_id: officerd-saas
+    role_in_stack: Hosted coworking operations authority
+    required: true
+  - tool_id: stripe
+    role_in_stack: Payment processing authority
+    required: true
+  - tool_id: bookstack
+    role_in_stack: Portable SOP library
+    required: true
+  - tool_id: formbricks
+    role_in_stack: Optional member feedback collection
+    required: false
+  - tool_id: uptime-kuma
+    role_in_stack: Portal and public endpoint monitoring
+    required: true
+data_flow:
+  - Staff maintain member and booking facts in OfficeRnD and send payments to Stripe.
+  - Feedback is reviewed in aggregate and action items are documented without copying sensitive responses broadly.
+  - Monitoring reports availability only and does not ingest member records.
+implementation_order: [verify-current-quotes, define-core-authority, configure-products, connect-payments, document-sops, test-export, add-monitoring, pilot-feedback]
+cost_assumptions:
+  monthly_cash: Editable target below 250 in the operator's currency; confirm SaaS tier, payment fees, hosting, backups, taxes, and optional tools.
+  setup_labor: Include configuration, data cleanup, migration rehearsal, staff training, and acceptance testing.
+  maintenance_labor: Reserve weekly exception handling and monthly exports, permissions, patches, and budget review.
+  messaging_email_sms: Include vendor and external delivery charges at realistic volumes; SMS remains optional.
+  hosting_storage: Supporting tools need a small maintained host and separate backups; verify SaaS export retention.
+  notes:
+    - The schema band is broader than the internal 250 planning target.
+    - If the core quote consumes the ceiling, remove optional tools rather than omit controls.
+  pricing_sources: []
+human_owners: [operations-manager for core configuration, finance for payment reconciliation, technical-operator for support tools, owner-operator for budget]
+security_boundaries:
+  - Keep card handling in Stripe and restrict exports to approved staff.
+  - Do not let feedback or monitoring become shadow member records.
+  - Require human approval for refunds, access changes, and member termination.
+backup_and_recovery:
+  - Schedule and test core platform exports.
+  - Back up BookStack and Formbricks to storage outside their host.
+  - Maintain manual check-in and current-day booking procedures.
+assumptions:
+  - A current vendor quote can fit the local target at actual member volume.
+  - The team can maintain a small supporting host.
+risks:
+  - Member or location growth may move the core platform outside the target.
+  - Hybrid identity and ownership can create gaps between vendors.
+getting_started: [request-current-quotes, map-workflows, configure-sandbox, test-payments-and-exports, measure-support-labor]
+pilot_plan:
+  - Pilot one product, one room, and a small member cohort.
+  - Test failed payment, cancellation, export, outage, and restore procedures.
+rollout_30_day:
+  - Migrate active members in reconciled batches.
+  - Publish ownership and exception queues for each system.
+maturity_90_day:
+  - Compare actual cash and labor with the target.
+  - Review exports, restore evidence, permissions, and member friction.
+exit_strategy:
+  - Keep field-mapped member, booking, invoice, and payment exports.
+  - Remove integrations and credentials in a documented offboarding sequence.
+commercial_fallback:
+  - Use native SaaS documentation or feedback capabilities if self-host labor grows.
+  - Rebid the core platform or adopt the flexible-budget stack if the target is no longer realistic.
+verification:
+  last_reviewed: 2026-07-18
+  notes: No claim is made that current vendor pricing fits every operator below 250.

@@ -1,0 +1,63 @@
+schema_version: 1.0.0
+id: member-feedback
+name: Member feedback
+description: Collect optional coworking member feedback, protect confidentiality, route urgent concerns, and close the loop through accountable human review.
+objective: Turn proportionate member input into visible service learning and assigned action.
+responsible_role: Community manager
+trigger: A scheduled feedback point occurs or a member chooses to submit feedback.
+inputs: [feedback response, consent choices, optional contact details, location and service context]
+outputs: [reviewed feedback record, assigned action, acknowledgement or follow-up, trend summary]
+source_of_truth: The access-controlled feedback register with reviewed actions is authoritative.
+systems_involved: [survey form, feedback register, support or action queue]
+automation_steps:
+  [record responses, acknowledge receipt, flag urgent terms for prompt human review, group themes]
+human_approval_points:
+  [Staff review urgent flags, interpret themes, approve follow-up, and decide actions.]
+failure_exception_paths:
+  [
+    Route safety,
+    harassment,
+    discrimination,
+    privacy,
+    or security reports to their controlled escalation paths.,
+  ]
+privacy_risks: [Free text can contain sensitive allegations, identities, or reidentifiable details.]
+security_risks: [Anonymous forms can be abused and feedback access can expose complainants.]
+measurable_kpis:
+  [feedback reviewed within policy, actions assigned and closed, confidentiality incidents]
+test_cases:
+  [
+    Submit routine feedback,
+    submit anonymously,
+    route a safety concern,
+    honor no-follow-up preference.,
+  ]
+manual_fallback:
+  [
+    Offer a private conversation or controlled written form and log agreed actions with restricted access.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automated collection and flags,
+    export open actions securely,
+    publish an alternate contact path,
+    review manually.,
+  ]
+primary_roles: [community-manager, owner-operator, member-end-user]
+stages:
+  - id: collect-review-act
+    name: Collect, review, and act
+    description: Gather optional feedback and place interpretation and response with responsible people.
+    manual_tasks: [review context, protect confidentiality, approve response and action]
+    automation_opportunities: [collect responses and flag possible urgent concerns]
+    suggested_tool_ids: [formbricks, freescout]
+    risks: [Theme summaries can erase serious individual issues or expose identities.]
+success_metrics:
+  [
+    Feedback receives accountable review,
+    urgent concerns follow the correct path,
+    agreed actions are tracked.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review anonymity promises, access, retention, and escalation behavior locally.

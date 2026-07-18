@@ -1,0 +1,55 @@
+schema_version: 1.0.0
+id: member-welcome-sequence
+name: Member welcome sequence
+description: Deliver a paced coworking welcome sequence with verified service information and visible opportunities for personal staff support.
+objective: Help a new member understand essential services, norms, and support without replacing a human welcome.
+responsible_role: Community manager
+trigger: Staff approve a new member and confirmed start date for welcome communications.
+inputs:
+  [member name, approved start date, plan, location, contact preference, approved welcome content]
+outputs: [scheduled welcome steps, delivery status, replies and support tasks]
+source_of_truth: The reviewed membership record is authoritative for status, plan, and start date.
+systems_involved: [membership system, approved knowledge base, communication channel]
+automation_steps:
+  [schedule approved messages, suppress inactive records, record delivery, route replies to staff]
+human_approval_points:
+  [Staff verify membership facts and personally handle questions, exceptions, and sensitive needs.]
+failure_exception_paths:
+  [
+    Pause messages and alert the owner when membership status changes,
+    content conflicts,
+    or delivery fails.,
+  ]
+privacy_risks: [Messages can expose membership, location, schedule, or accessibility information.]
+security_risks:
+  [Compromised templates or links can redirect members or expose account setup details.]
+measurable_kpis:
+  [welcome steps delivered as approved, replies answered, messages sent after status change]
+test_cases:
+  [Start a standard sequence, cancel before start, handle a reply, simulate failed delivery.]
+manual_fallback:
+  [
+    Use the approved welcome checklist and contact the member personally at each essential milestone.,
+  ]
+rollback_disable_procedure:
+  [
+    Pause queued messages,
+    preserve delivery history,
+    notify owners,
+    continue the welcome checklist manually.,
+  ]
+primary_roles: [community-manager, operations-manager]
+stages:
+  - id: welcome-and-support
+    name: Welcome and support
+    description: Send approved, timely orientation content while keeping a named person available.
+    manual_tasks: [verify member facts, provide a personal welcome, answer questions]
+    automation_opportunities: [schedule approved content and route replies]
+    suggested_tool_ids: [cobot, listmonk]
+    risks:
+      [A generic sequence can feel impersonal or communicate services the member does not have.]
+success_metrics:
+  [Members receive accurate essentials and can reach a responsible person throughout onboarding.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review sequence timing, content, preferences, and service facts locally.

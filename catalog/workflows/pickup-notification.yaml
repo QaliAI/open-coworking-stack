@@ -1,0 +1,75 @@
+schema_version: 1.0.0
+id: pickup-notification
+name: Pickup notification
+description: Notify the correct virtual-office client that accepted mail is ready for collection without revealing unnecessary sender, item, or location details.
+objective: Prompt timely collection through an approved route while keeping custody and identity checks intact.
+responsible_role: Virtual-office and mailroom manager
+trigger: Mailroom staff confirm an accepted item is securely stored and eligible for pickup notification.
+inputs:
+  [
+    client identifier,
+    verified notification contact,
+    item identifier,
+    storage status,
+    collection instructions,
+  ]
+outputs: [approved notification, delivery status, reply or exception task, pickup-pending status]
+source_of_truth: The mail custody register and current authorized contact record are authoritative.
+systems_involved: [mail custody register, client register, approved communication channel]
+automation_steps:
+  [
+    prepare a minimal notification,
+    send only after storage confirmation,
+    record delivery and reminders,
+  ]
+human_approval_points:
+  [Staff confirm item assignment, storage, recipient contact, and any follow-up or exception.]
+failure_exception_paths:
+  [
+    Hold and investigate mismatched recipients,
+    failed delivery,
+    inactive service,
+    disputed items,
+    or changed contacts.,
+  ]
+privacy_risks: [Notifications can reveal that a person or business receives mail at the location.]
+security_risks:
+  [Compromised contacts or spoofed replies can support unauthorized collection attempts.]
+measurable_kpis:
+  [
+    notifications sent after storage confirmation,
+    delivery failures resolved,
+    wrong-recipient incidents,
+  ]
+test_cases:
+  [
+    Notify a valid contact,
+    suppress an inactive client,
+    handle a bounce,
+    reject a changed unverified contact.,
+  ]
+manual_fallback:
+  [Verify the authorized contact and send a minimal message or make a call, then log delivery.]
+rollback_disable_procedure:
+  [
+    Stop queued notifications,
+    preserve delivery records,
+    audit recent recipients,
+    use manually verified contact.,
+  ]
+primary_roles: [virtual-office-mailroom]
+stages:
+  - id: verify-and-notify
+    name: Verify and notify
+    description: Confirm custody and recipient details before sending a minimal collection notice.
+    manual_tasks:
+      [verify item assignment and storage, approve recipient and exceptions, handle replies]
+    automation_opportunities: [prepare and deliver a minimal approved notice]
+    suggested_tool_ids: [baserow, listmonk]
+    risks:
+      [A fast notification sent from an incorrect match can disclose confidential mail metadata.]
+success_metrics:
+  [Notifications go only to current authorized contacts after physical storage is confirmed.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Test contact changes, bounces, item matching, message minimization, and collection instructions.

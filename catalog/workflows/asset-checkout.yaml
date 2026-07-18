@@ -1,0 +1,51 @@
+schema_version: 1.0.0
+id: asset-checkout
+name: Asset checkout
+description: Lend coworking equipment through identity, entitlement, condition, custody, due-date, return, and exception checks owned by staff.
+objective: Make shared assets available while preserving safety, accountability, condition, and fair access.
+responsible_role: Operations manager
+trigger: An eligible user requests an available tracked asset.
+inputs: [requester identity, entitlement, asset record, condition, due date, approved terms]
+outputs: [approved custody record, handover evidence, reminders, returned or exception status]
+source_of_truth: The reviewed asset register and signed or acknowledged custody record are authoritative.
+systems_involved: [asset register, membership or identity system, communication channel]
+automation_steps:
+  [check recorded availability, create a provisional custody record, schedule due reminders]
+human_approval_points:
+  [Staff inspect the asset, verify the user, approve handover, and inspect return.]
+failure_exception_paths:
+  [Escalate damage, loss, unsafe condition, disputed custody, or overdue return to the asset owner.]
+privacy_risks: [Custody history can reveal user activity and should not be broadly visible.]
+security_risks: [Devices can retain credentials, data, malware, or access tokens between borrowers.]
+measurable_kpis:
+  [assets with complete custody history, overdue rate, damage or data-remanence incidents]
+test_cases:
+  [
+    Check out an available asset,
+    reject unavailable inventory,
+    record damage,
+    sanitize a returned device.,
+  ]
+manual_fallback:
+  [Use a controlled paper custody form, inspect the asset, and reconcile the register later.]
+rollback_disable_procedure:
+  [
+    Stop new automated checkouts,
+    preserve current custody records,
+    inventory active loans,
+    use controlled forms.,
+  ]
+primary_roles: [operations-manager, community-manager, facilities]
+stages:
+  - id: handover-and-return
+    name: Handover and return
+    description: Verify people and condition at both custody transitions and record accountable decisions.
+    manual_tasks: [verify entitlement, inspect and hand over, inspect and sanitize on return]
+    automation_opportunities: [track custody and schedule reminders]
+    suggested_tool_ids: [baserow, erpnext]
+    risks: [A checkout record alone does not prove physical condition, safe use, or data removal.]
+success_metrics:
+  [Every tracked asset has known custody, verified condition, and completed return handling.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Define safety checks, sanitation, data removal, loss, and dispute procedures by asset type.

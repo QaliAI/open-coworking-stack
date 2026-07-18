@@ -1,0 +1,52 @@
+schema_version: 1.0.0
+id: lost-lead-reason-capture
+name: Lost-lead reason capture
+description: Record a reviewed reason when a coworking opportunity closes without conversion while separating fact, prospect feedback, and staff interpretation.
+objective: Create useful learning without blaming prospects or collecting excessive subjective notes.
+responsible_role: Sales manager
+trigger: Authorized staff propose closing an opportunity as lost.
+inputs: [opportunity history, prospect feedback, approved reason taxonomy, staff context]
+outputs: [reviewed lost status, reason code, bounded note, possible improvement action]
+source_of_truth: The reviewed closed opportunity in the sales pipeline is authoritative.
+systems_involved: [sales pipeline, reason taxonomy, reporting system]
+automation_steps:
+  [require a reason before closure, present approved codes, flag free-text or unusual entries]
+human_approval_points:
+  [Sales staff confirm closure and distinguish known facts from interpretation.]
+failure_exception_paths:
+  [Use unknown or deferred review when evidence is absent rather than inventing a reason.]
+privacy_risks:
+  [Free-text reasons can contain sensitive traits, opinions, or unnecessary personal details.]
+security_risks: [Pipeline exports can expose prospect feedback and commercial decisions.]
+measurable_kpis:
+  [lost records with reviewed reason, unknown-reason rate, free-text privacy corrections]
+test_cases:
+  [
+    Close with direct feedback,
+    close with unknown reason,
+    reject prohibited free text,
+    reopen an opportunity.,
+  ]
+manual_fallback:
+  [Use the approved reason list during pipeline review and record only necessary evidence.]
+rollback_disable_procedure:
+  [
+    Disable enforced coding,
+    preserve reviewed history,
+    export pending closures,
+    use manager-reviewed manual coding.,
+  ]
+primary_roles: [sales-manager, owner-operator]
+stages:
+  - id: classify-and-review
+    name: Classify and review
+    description: Let sales staff select a supported reason and record uncertainty before closure.
+    manual_tasks: [review evidence, choose a reason, remove inappropriate detail, approve closure]
+    automation_opportunities: [present taxonomy and flag missing or sensitive entries]
+    suggested_tool_ids: [espocrm]
+    risks: [Poor reason codes can turn assumptions into misleading strategy data.]
+success_metrics:
+  [Reasons are supported and privacy-bounded, unknown remains available when evidence is weak.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review the reason taxonomy for fairness, usefulness, and data minimization.

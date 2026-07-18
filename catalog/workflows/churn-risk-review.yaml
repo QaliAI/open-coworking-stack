@@ -1,0 +1,67 @@
+schema_version: 1.0.0
+id: churn-risk-review
+name: Churn-risk review
+description: Review limited service signals for possible member dissatisfaction while avoiding opaque scoring, surveillance, or automatic retention pressure.
+objective: Help staff identify support needs and relationship risks through contextual human review.
+responsible_role: Community manager
+trigger: A documented service signal or scheduled account review indicates possible retention risk.
+inputs:
+  [
+    member-raised concerns,
+    support history,
+    approved service signals,
+    agreement timing,
+    account owner context,
+  ]
+outputs: [reviewed risk status, support action, owner, follow-up date]
+source_of_truth: The member relationship record containing reviewed facts and actions is authoritative.
+systems_involved: [membership system, support queue, relationship notes]
+automation_steps:
+  [surface approved signals, group related open issues, create a private review task]
+human_approval_points:
+  [Staff interpret context and approve outreach, remedies, concessions, or no action.]
+failure_exception_paths:
+  [
+    Escalate safety,
+    discrimination,
+    harassment,
+    billing dispute,
+    or accessibility issues through their specialist paths.,
+  ]
+privacy_risks:
+  [Behavioral inference can become intrusive profiling or expose sensitive circumstances.]
+security_risks: [Risk labels and support history require tightly limited access.]
+measurable_kpis:
+  [reviews completed on time, actions resolved, false or unsupported risk labels removed]
+test_cases:
+  [
+    Review a member-raised concern,
+    reject an unsupported score,
+    route a billing dispute,
+    record no action.,
+  ]
+manual_fallback: [Use scheduled account reviews and member conversations without automated scoring.]
+rollback_disable_procedure:
+  [
+    Disable signal aggregation,
+    remove unsupported pending labels,
+    preserve reviewed issues,
+    continue human account review.,
+  ]
+primary_roles: [community-manager, sales-manager, owner-operator]
+stages:
+  - id: contextual-review
+    name: Contextual review
+    description: Examine approved signals with relationship context and decide whether supportive human action is warranted.
+    manual_tasks: [validate facts, speak with relevant staff or member, approve support action]
+    automation_opportunities: [surface open issues and schedule review without deciding risk]
+    suggested_tool_ids: [cobot, freescout]
+    risks: [A score can stigmatize a member and substitute inference for conversation.]
+success_metrics:
+  [
+    Risk records are explainable and reviewed,
+    support actions address member needs rather than pressure retention.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Use only proportionate approved signals and review privacy, fairness, and member impact locally.

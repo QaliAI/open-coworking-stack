@@ -1,0 +1,69 @@
+schema_version: 1.0.0
+id: google-business-profile-review
+name: Google Business Profile review
+description: Periodically review each coworking location profile for accurate public facts, controlled access, current media, and unresolved notices.
+objective: Keep location information accurate and account ownership secure through documented human review.
+responsible_role: Marketing manager
+trigger: A scheduled profile review is due or a material location fact changes.
+inputs:
+  [approved location facts, public profile content, account roles, recent changes, public notices]
+outputs: [reviewed discrepancy list, approved corrections, access action, completion evidence]
+source_of_truth: The operator-approved location facts register is authoritative over public profile content.
+systems_involved: [location facts register, Google Business Profile, account-access register]
+automation_steps:
+  [schedule reviews, capture a comparison checklist, flag missing owner or stale fields]
+human_approval_points:
+  [Authorized staff approve edits, ownership changes, public claims, and incident response.]
+failure_exception_paths:
+  [
+    Escalate unauthorized edits,
+    suspension,
+    duplicate profiles,
+    ownership disputes,
+    or suspected compromise.,
+  ]
+privacy_risks:
+  [Photos, reviews, and public questions can expose staff, members, or visitor information.]
+security_risks:
+  [Weak account controls can allow profile takeover, fraudulent edits, or malicious links.]
+measurable_kpis:
+  [profiles reviewed on schedule, factual discrepancies open, accounts with current owners]
+test_cases:
+  [
+    Correct changed hours,
+    find an unknown owner,
+    flag an unauthorized edit,
+    review a duplicate profile.,
+  ]
+manual_fallback:
+  [
+    Use the approved location checklist,
+    inspect the public profile,
+    and record corrections and evidence manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop automated comparison,
+    preserve evidence,
+    restrict account access,
+    revert unapproved edits where possible,
+    review manually.,
+  ]
+primary_roles: [marketing, owner-operator]
+stages:
+  - id: inspect-and-correct
+    name: Inspect and correct
+    description: Compare public profile facts and account access against controlled internal records.
+    manual_tasks: [verify public facts, review account owners, approve edits and escalation]
+    automation_opportunities: [schedule the review and flag possible discrepancies]
+    suggested_tool_ids: [baserow, openproject]
+    risks: [Automated comparisons can miss nuanced inaccuracies or overwrite valid platform data.]
+success_metrics:
+  [
+    Location facts are current,
+    account ownership is controlled,
+    suspicious changes receive prompt review.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Platform features and policies change; verify current Google guidance directly before action.

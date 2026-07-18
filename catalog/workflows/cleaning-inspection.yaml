@@ -1,0 +1,58 @@
+schema_version: 1.0.0
+id: cleaning-inspection
+name: Cleaning inspection
+description: Inspect coworking cleanliness and hygiene against an approved location checklist with respectful staff or vendor follow-up and safety escalation.
+objective: Confirm spaces are ready for use and correct missed or unsafe conditions through accountable physical inspection.
+responsible_role: Facilities manager
+trigger: A scheduled inspection is due or a cleaning concern is reported.
+inputs:
+  [
+    location checklist,
+    schedule,
+    reported concerns,
+    accessibility and safety requirements,
+    service scope,
+  ]
+outputs: [inspection record, evidence, correction task, verified closure]
+source_of_truth: The signed inspection record and verified correction evidence are authoritative.
+systems_involved: [facilities checklist, work queue, vendor communication channel]
+automation_steps:
+  [schedule inspections, present location checklist, assign failed items, remind owners]
+human_approval_points: [Staff physically inspect conditions and approve closure or escalation.]
+failure_exception_paths:
+  [
+    Restrict unsafe areas and escalate biohazards,
+    pests,
+    chemical issues,
+    or repeated vendor failures.,
+  ]
+privacy_risks: [Photos can capture members, screens, documents, belongings, or access patterns.]
+security_risks:
+  [Cleaning vendors may have physical access to restricted areas, keys, or confidential material.]
+measurable_kpis:
+  [inspections completed, failed items closed after reinspection, repeat failures by area]
+test_cases:
+  [Pass a clean area, fail and reinspect, escalate a biohazard, reject a privacy-invasive photo.]
+manual_fallback:
+  [Use a printed controlled checklist, inspect physically, assign corrections, and sign closure.]
+rollback_disable_procedure:
+  [
+    Disable digital scheduling,
+    preserve open findings,
+    distribute controlled checklists,
+    reconcile results later.,
+  ]
+primary_roles: [facilities, operations-manager]
+stages:
+  - id: inspect-correct-verify
+    name: Inspect, correct, and verify
+    description: Observe actual conditions and require reinspection before failed items close.
+    manual_tasks: [inspect the space, make safe, assign correction, reinspect and approve]
+    automation_opportunities: [schedule checks and track correction tasks]
+    suggested_tool_ids: [openproject, baserow]
+    risks: [Checklist completion or photos can substitute for a meaningful physical inspection.]
+success_metrics:
+  [Spaces meet reviewed standards and failed items close only after accountable verification.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Tailor checklists to local hygiene, safety, accessibility, privacy, and vendor requirements.

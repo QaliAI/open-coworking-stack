@@ -1,0 +1,57 @@
+schema_version: 1.0.0
+id: wifi-user-provisioning
+name: Wi-Fi user provisioning
+description: Provision time-bounded coworking Wi-Fi access from verified entitlements with segmented networks, unique credentials, and tested revocation.
+objective: Provide appropriate connectivity without shared-secret sprawl or access to protected networks.
+responsible_role: Technical operator
+trigger: An authorized member, guest, or staff network entitlement starts or changes.
+inputs:
+  [
+    verified identity,
+    entitlement,
+    user type,
+    location,
+    start and end dates,
+    approved network policy,
+  ]
+outputs: [approved network credential or identity, tested connectivity, expiry and audit record]
+source_of_truth: The reviewed identity and entitlement record is authoritative.
+systems_involved: [identity or membership system, network controller, support queue]
+automation_steps:
+  [prepare least-privilege network assignment, apply approved dates, record result, schedule expiry]
+human_approval_points:
+  [Staff approve identity, network segment, duration, exceptions, and any elevated access.]
+failure_exception_paths:
+  [
+    Provide a controlled temporary path after verification and escalate segmentation or identity-system failures.,
+  ]
+privacy_risks: [Network logs can reveal devices, locations, times, and browsing-related metadata.]
+security_risks:
+  [Wrong segment, shared credentials, weak isolation, or failed expiry can expose systems.]
+measurable_kpis:
+  [time from approval to tested access, credentials expired on time, segmentation exceptions]
+test_cases:
+  [Provision a member, provision an expiring guest, deny an unapproved segment, verify revocation.]
+manual_fallback:
+  [Verify identity and issue a short-lived guest credential from the approved isolated pool.]
+rollback_disable_procedure:
+  [
+    Stop automated provisioning,
+    revoke recent changes,
+    verify segmentation,
+    issue controlled temporary access manually.,
+  ]
+primary_roles: [technical-operator, operations-manager]
+stages:
+  - id: authorize-provision-expire
+    name: Authorize, provision, and expire
+    description: Apply a reviewed network entitlement and verify connectivity and end-of-access behavior.
+    manual_tasks: [verify identity and scope, approve exceptions, test connection and revocation]
+    automation_opportunities: [create time-bounded assignments and record outcomes]
+    suggested_tool_ids: [unifi-network, authentik]
+    risks: [Successful connection does not prove network isolation or timely revocation.]
+success_metrics:
+  [Every network identity is owned, appropriately segmented, and expires with its entitlement.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Test segmentation, captive access, logging, expiry, and outage fallback at each location.

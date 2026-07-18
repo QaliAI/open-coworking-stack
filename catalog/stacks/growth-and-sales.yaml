@@ -1,0 +1,86 @@
+schema_version: 1.0.0
+id: growth-and-sales
+name: Growth and Sales
+tagline: Connect local demand, tours, follow-up, campaigns, and conversion reporting
+description: A governed growth stack for capturing prospects, scheduling tours, handling conversations, nurturing consented leads, and reviewing conversion without automating human sales judgment.
+audience_roles: [sales-manager, marketing, owner-operator, community-manager]
+problems_solved: [grow-pipeline, reduce-manual-admin, replace-spreadsheets, measure-utilization]
+workflows: [tour-to-close, marketing-campaigns, reporting-kpis, member-onboarding]
+monthly_cash_budget_band: under-200
+self_host_heavy: true
+operator_profile: An operator with repeatable products, named sales ownership, and enough lead volume to justify a disciplined pipeline.
+number_of_locations: One to five locations with location attribution on every opportunity.
+team_size: Two to fifteen sales, marketing, and community users.
+products_offered: [memberships, private offices, day passes, meeting rooms, event enquiries]
+technical_skill_required: Moderate; CRM administration, consent handling, integrations, hosting, and reporting.
+tasks_covered: [lead-capture, tour-scheduling, pipeline-follow-up, shared-sales-inbox, consented-lead-nurture, conversion-reporting]
+tasks_not_covered: [sales-negotiation, pricing-approval, contract-legal-review, payment-processing, member-onboarding-judgment, advertising-platform-management]
+systems_of_record:
+  - Twenty CRM is the lead, company, activity, and opportunity record.
+  - Cal.com is the appointment schedule, not the sales outcome record.
+  - Mautic is the campaign and consent execution record.
+components:
+  - tool_id: twenty-crm
+    role_in_stack: Sales pipeline authority
+    required: true
+  - tool_id: cal-com
+    role_in_stack: Tour and sales appointment scheduling
+    required: true
+  - tool_id: chatwoot
+    role_in_stack: Shared prospect conversation inbox
+    required: true
+  - tool_id: mautic
+    role_in_stack: Optional consented lead nurture
+    required: false
+  - tool_id: metabase
+    role_in_stack: Read-only conversion reporting
+    required: false
+data_flow:
+  - Website and inbox leads are qualified by staff before creation or update in Twenty CRM.
+  - Cal.com appointments link to CRM opportunities; staff record attendance and outcome in the CRM.
+  - Only consented contacts enter Mautic, and aggregate CRM exports feed Metabase read-only.
+implementation_order: [define-funnel-and-consent, configure-crm, connect-tour-calendar, configure-shared-inbox, establish-data-quality-review, pilot-nurture, add-reporting]
+cost_assumptions:
+  monthly_cash: Edit for hosting, mailboxes, email delivery, domains, backups, and any managed plans.
+  setup_labor: Include pipeline design, data cleanup, templates, consent review, integration tests, and staff training.
+  maintenance_labor: Reserve daily lead ownership and weekly pipeline, bounce, consent, and reporting review.
+  messaging_email_sms: Campaign email is volume and reputation sensitive; SMS is excluded until consent and usage funding are approved.
+  hosting_storage: CRM, inbox, automation, and reporting storage grow with messages and attachments and need backups.
+  notes:
+    - Conversion depends on product, service, and human follow-up, not software alone.
+    - Start without optional automation until data quality is stable.
+  pricing_sources: []
+human_owners: [sales-manager for pipeline, marketing for consented campaigns, community-manager for tour experience, technical-operator for integrations]
+security_boundaries:
+  - Restrict bulk exports and separate marketing consent from sales interest.
+  - Do not store payment card data or unnecessary sensitive notes in the CRM.
+  - Human owners approve campaign sends, discounts, contracts, and lost reasons.
+backup_and_recovery:
+  - Export CRM opportunities, activities, and consent status on a tested schedule.
+  - Back up self-hosted databases, templates, and attachments separately.
+  - Keep a manual lead contact queue for outages.
+assumptions:
+  - The team agrees on products, stages, ownership, and response targets.
+  - Marketing has a lawful contact and consent process.
+risks:
+  - Poor integration can duplicate contacts or suppress valid consent changes.
+  - Automation can amplify irrelevant or noncompliant messaging.
+getting_started: [define-funnel, clean-small-contact-set, pilot-one-location, measure-response-and-conversion, add-automation-last]
+pilot_plan:
+  - Process twenty leads through enquiry, tour, follow-up, and outcome.
+  - Audit every handoff, consent state, duplicate, and missed response.
+rollout_30_day:
+  - Train all users on stage definitions and required fields.
+  - Add one reviewed campaign only after unsubscribe handling is proven.
+maturity_90_day:
+  - Review conversion by source and location without using vanity metrics.
+  - Remove stale data, unused fields, and automations without owners.
+exit_strategy:
+  - Export contacts, companies, opportunities, activities, consent, and templates.
+  - Disable forms and automations before revoking delivery credentials.
+commercial_fallback:
+  - Move CRM or campaign delivery to a managed service if maintenance harms response time.
+  - Use the coworking platform's native sales module when it provides a cleaner member handoff.
+verification:
+  last_reviewed: 2026-07-18
+  notes: Campaign legality, deliverability, and conversion assumptions require local validation.

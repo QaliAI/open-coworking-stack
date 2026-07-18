@@ -1,0 +1,101 @@
+schema_version: 1.0.0
+id: mail-receipt
+name: Mail receipt
+description: Accept and record eligible virtual-office mail with recipient verification, condition checks, secure custody, and a controlled exception path.
+objective: Establish an accurate chain of custody for every accepted mail item without opening or exposing it unnecessarily.
+responsible_role: Virtual-office and mailroom manager
+trigger: A carrier or courier presents an item addressed to the location.
+inputs:
+  [
+    visible addressee and sender details,
+    delivery time,
+    item type and condition,
+    active-client register,
+    handling policy,
+  ]
+outputs:
+  [
+    accepted custody record and storage location,
+    refused or exception record,
+    notification-ready event,
+  ]
+source_of_truth: The timestamped mail custody register is authoritative for accepted items.
+systems_involved: [active-client register, mail custody register, secure storage process]
+automation_steps:
+  [
+    match visible recipient text to active records,
+    create a provisional receipt,
+    flag unmatched or restricted items,
+  ]
+human_approval_points:
+  [
+    Mailroom staff inspect visible condition and approve acceptance,
+    refusal,
+    storage,
+    or escalation.,
+  ]
+failure_exception_paths:
+  [
+    Isolate and escalate damaged,
+    suspicious,
+    restricted,
+    legal-service,
+    cash,
+    unmatched,
+    or unsafe items under policy.,
+  ]
+privacy_risks:
+  [Envelope and label data reveals identity, address, correspondents, and service relationships.]
+security_risks:
+  [
+    Suspicious packages,
+    forged labels,
+    custody gaps,
+    and unauthorized storage access can harm people or expose mail.,
+  ]
+measurable_kpis:
+  [accepted items with complete custody record, unmatched-item age, custody discrepancies]
+test_cases:
+  [
+    Receive standard mail,
+    reject an inactive addressee,
+    isolate a damaged item,
+    handle an ambiguous match.,
+  ]
+manual_fallback:
+  [
+    Use the controlled paper receipt log,
+    label and secure the item,
+    and reconcile digitally after recovery.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop automated matching,
+    preserve existing custody records,
+    switch to numbered manual logs,
+    reconcile with dual checking.,
+  ]
+primary_roles: [virtual-office-mailroom, operations-manager]
+stages:
+  - id: inspect-record-secure
+    name: Inspect, record, and secure
+    description: Let trained staff decide acceptance and establish custody before any notification or handling request.
+    manual_tasks:
+      [
+        inspect visible condition,
+        verify recipient status,
+        approve acceptance,
+        place in secure storage,
+      ]
+    automation_opportunities: [suggest recipient matches and prepare a receipt record]
+    suggested_tool_ids: [paperless-ngx, baserow]
+    risks: [An automated name match can assign confidential mail to the wrong client.]
+success_metrics:
+  [
+    Every accepted item has verified recipient status,
+    known custody,
+    and an auditable storage location.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Train staff on prohibited items, legal service, safety, privacy, retention, and custody exceptions.

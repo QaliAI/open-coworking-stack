@@ -1,0 +1,66 @@
+schema_version: 1.0.0
+id: event-promotion
+name: Event promotion
+description: Promote an approved coworking event using accurate capacity, access, pricing, accessibility, and cancellation information.
+objective: Reach an appropriate audience without overselling the event or creating unsafe demand.
+responsible_role: Marketing manager
+trigger: The event owner approves the event brief and promotion window.
+inputs:
+  [
+    approved event brief,
+    capacity,
+    audience,
+    pricing,
+    accessibility facts,
+    registration link,
+    consent-based channels,
+  ]
+outputs: [approved promotion package, publication schedule, response and correction tasks]
+source_of_truth: The event owner's current approved event record is authoritative.
+systems_involved: [event record, content workspace, communication channels, registration system]
+automation_steps:
+  [
+    populate approved facts,
+    check links and dates,
+    schedule approved variants,
+    monitor delivery failures,
+  ]
+human_approval_points:
+  [Event and marketing owners approve claims, audience, frequency, channels, and changes.]
+failure_exception_paths:
+  [Pause promotion when capacity, pricing, venue, safety, or event status changes.]
+privacy_risks:
+  [
+    Audience lists and registration responses can reveal interests,
+    attendance,
+    and accessibility needs.,
+  ]
+security_risks: [Fake registration links or compromised publishing accounts can defraud attendees.]
+measurable_kpis:
+  [promotions using current event facts, corrections, registrations within approved capacity]
+test_cases:
+  [Promote an approved event, stop at capacity, update a venue change, reject an unsafe link.]
+manual_fallback:
+  [Use approved event facts and publish individually after checking capacity and status.]
+rollback_disable_procedure:
+  [
+    Cancel scheduled promotion,
+    correct controlled channels,
+    preserve logs,
+    notify the event owner,
+    publish manually.,
+  ]
+primary_roles: [marketing, event-coordinator]
+stages:
+  - id: prepare-and-promote
+    name: Prepare and promote
+    description: Build channel variants from current approved facts and retain event-owner control.
+    manual_tasks: [verify event facts, approve audience and content, monitor capacity and changes]
+    automation_opportunities: [check dates and links and schedule approved variants]
+    suggested_tool_ids: [canva, listmonk]
+    risks: [Promotion can continue after capacity, venue, or safety conditions change.]
+success_metrics:
+  [Public information matches the event record and promotion pauses when conditions require it.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Coordinate with event ownership, registration, accessibility, safety, and cancellation processes.

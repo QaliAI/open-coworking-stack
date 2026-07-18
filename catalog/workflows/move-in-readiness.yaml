@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: move-in-readiness
+name: Move-in readiness
+description: Coordinate the people, space, access, billing, safety, and service checks required before a coworking member moves in.
+objective: Confirm the member can begin safely and use the agreed services on the approved start date.
+responsible_role: Operations manager
+trigger: A signed and approved membership receives a confirmed move-in date.
+inputs: [agreement, start date, space assignment, access needs, billing status, service requests]
+outputs: [owner-assigned readiness checklist, exception list, human go or hold decision]
+source_of_truth: The reviewed move-in checklist linked to the current agreement is authoritative.
+systems_involved:
+  [membership system, work queue, access system, billing record, facilities checklist]
+automation_steps:
+  [create tasks from approved scope, track dependencies, flag overdue or failed checks]
+human_approval_points:
+  [Operations staff inspect the space and approve readiness or a documented hold.]
+failure_exception_paths:
+  [
+    Escalate safety,
+    access,
+    billing,
+    or facilities blockers and agree a member-facing recovery plan.,
+  ]
+privacy_risks:
+  [Readiness records may include identity, accessibility, billing, and company information.]
+security_risks: [Premature account or credential creation can grant access before authorization.]
+measurable_kpis: [moves approved before start, first-day blockers, unresolved readiness exceptions]
+test_cases:
+  [
+    Complete a standard move-in,
+    hold for failed access,
+    flag an unsafe space,
+    change the start date.,
+  ]
+manual_fallback:
+  [Use a printed controlled checklist, call each owner, inspect the space, and record the decision.]
+rollback_disable_procedure:
+  [
+    Stop automatic task creation,
+    revoke premature access,
+    preserve evidence,
+    use the controlled checklist.,
+  ]
+primary_roles: [operations-manager, community-manager, facilities]
+stages:
+  - id: prepare-and-approve
+    name: Prepare and approve
+    description: Complete assigned readiness checks and obtain an accountable go or hold decision.
+    manual_tasks: [inspect the space, test access and services, resolve blockers, approve readiness]
+    automation_opportunities: [create tasks and surface incomplete dependencies]
+    suggested_tool_ids: [openproject, cobot]
+    risks: [A completed digital checklist does not prove the physical space is safe or usable.]
+success_metrics: [Every move-in has a named readiness approver and no hidden critical blocker.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Local safety, access, billing, and facilities checks determine actual readiness.

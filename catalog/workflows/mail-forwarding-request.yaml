@@ -1,0 +1,72 @@
+schema_version: 1.0.0
+id: mail-forwarding-request
+name: Mail forwarding request
+description: Process an authenticated virtual-office mail forwarding request with item, address, carrier, cost, custody, and delivery-risk review.
+objective: Send the correct items to an approved destination while preserving custody and client authorization.
+responsible_role: Virtual-office and mailroom manager
+trigger: An authorized client contact requests forwarding of identified held mail.
+inputs:
+  [
+    authenticated requester,
+    item identifiers,
+    approved address,
+    delivery method,
+    cost authorization,
+    special handling,
+  ]
+outputs: [approved dispatch, custody transfer, tracking or receipt, cost and exception record]
+source_of_truth: The authenticated request and mail custody register are authoritative.
+systems_involved: [client register, mail custody register, dispatch process, billing review]
+automation_steps:
+  [
+    validate request completeness,
+    prepare a picking list and label draft,
+    record dispatch milestones,
+  ]
+human_approval_points:
+  [Staff verify requester, items, address, packaging, carrier, cost, and physical handover.]
+failure_exception_paths:
+  [
+    Hold for changed addresses,
+    insufficient authorization,
+    restricted items,
+    excessive cost,
+    loss,
+    damage,
+    or failed delivery.,
+  ]
+privacy_risks:
+  [Forwarding addresses and mail metadata expose identity, location, and business relationships.]
+security_risks: [Account takeover or address manipulation can redirect confidential mail.]
+measurable_kpis: [dispatches with dual-checked item and address, delivery exceptions, custody gaps]
+test_cases:
+  [Forward approved items, reject an unknown address, catch an item mismatch, handle carrier loss.]
+manual_fallback:
+  [
+    Authenticate the requester,
+    use a dual-checked dispatch form,
+    package and hand over physically,
+    and retain receipt.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop automated labels and dispatch,
+    quarantine pending parcels,
+    verify all uncollected handovers,
+    resume dual-checked forms.,
+  ]
+primary_roles: [virtual-office-mailroom, finance]
+stages:
+  - id: authorize-dispatch-track
+    name: Authorize, dispatch, and track
+    description: Verify the request and physical items before controlled custody transfer to the carrier.
+    manual_tasks:
+      [authenticate requester, match items and address, approve cost, package and verify handover]
+    automation_opportunities: [prepare picking and label data and record milestones]
+    suggested_tool_ids: [baserow, paperless-ngx]
+    risks: [A valid-looking address change can redirect confidential correspondence to an attacker.]
+success_metrics:
+  [Every dispatch has verified authority, item and address checks, and complete custody evidence.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review carrier, insurance, customs, restricted-item, address-change, cost, and loss procedures.

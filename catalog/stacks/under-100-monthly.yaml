@@ -1,0 +1,89 @@
+schema_version: 1.0.0
+id: under-100-monthly
+name: Under-$100 Monthly
+tagline: Keep a small operator toolkit below a planning ceiling through selective self-hosting
+description: A budget-target architecture combining a simple public site, lightweight CRM, scheduling, invoicing, email, and monitoring while explicitly counting hosting and labor.
+audience_roles: [owner-operator, sales-manager, finance, technical-operator]
+problems_solved: [reduce-software-cost, grow-pipeline, replace-spreadsheets, reduce-manual-admin]
+workflows: [tour-to-close, invoice-collections, marketing-campaigns, incident-response]
+monthly_cash_budget_band: under-200
+self_host_heavy: true
+operator_profile: A small operator with modest volume, some technical capacity, and a hard internal target for recurring tool cash.
+number_of_locations: One location.
+team_size: One to four staff with a named maintainer.
+products_offered: [memberships, day passes, meeting rooms]
+technical_skill_required: Moderate to high; hosting, updates, email configuration, backups, and data exports.
+tasks_covered: [website-publishing, lead-tracking, tour-scheduling, invoice-issuing, email-campaigns, service-monitoring]
+tasks_not_covered: [automated-recurring-billing, payment-processing, door-access-control, statutory-accounting, sms-campaigns, round-the-clock-support]
+systems_of_record:
+  - Twenty CRM is the prospect and relationship record.
+  - Invoice Ninja is the operational invoice record, subject to accountant approval.
+  - WordPress is the public content record.
+components:
+  - tool_id: wordpress
+    role_in_stack: Public website and landing pages
+    required: true
+  - tool_id: twenty-crm
+    role_in_stack: Lead and relationship record
+    required: true
+  - tool_id: cal-com
+    role_in_stack: Tour scheduling
+    required: true
+  - tool_id: invoice-ninja
+    role_in_stack: Invoice preparation and status tracking
+    required: true
+  - tool_id: brevo
+    role_in_stack: Optional consented email delivery
+    required: false
+  - tool_id: uptime-kuma
+    role_in_stack: Public service monitoring
+    required: true
+data_flow:
+  - Website prospects schedule a tour and staff qualify them in Twenty CRM.
+  - Approved customer and invoice facts move manually to Invoice Ninja to keep reconciliation visible.
+  - Consented contacts may be exported to Brevo; unsubscribe status must return to the contact record.
+implementation_order: [set-budget-ledger, deploy-website, configure-crm, add-tour-scheduling, configure-invoices, test-exports, add-monitoring, pilot-email]
+cost_assumptions:
+  monthly_cash: Editable target below 100 in the operator's currency; include every host, domain, mailbox, backup, delivery, and paid add-on before approval.
+  setup_labor: Expect several implementation sessions and record labor separately from recurring cash.
+  maintenance_labor: Reserve weekly updates and reconciliation plus monthly backup and account review.
+  messaging_email_sms: Email volume and deliverability can break the target; SMS is excluded unless separately funded.
+  hosting_storage: Consolidation may reduce cash but increases failure impact; offsite backup remains mandatory.
+  notes:
+    - The schema budget band is broader than this stack's internal planning target.
+    - Remove optional tools before compromising backup or security controls.
+  pricing_sources: []
+human_owners: [owner-operator for budget and process, sales-manager for CRM quality, finance for invoice reconciliation, technical-operator for hosting]
+security_boundaries:
+  - Keep card data outside the stack and minimize prospect exports.
+  - Separate website administration from finance permissions.
+  - Human staff approve invoices, campaign sends, and record deletion.
+backup_and_recovery:
+  - Back up site, CRM, invoice, and configuration data outside the primary host.
+  - Export contacts and open invoices monthly in portable formats.
+  - Test a website and database restore quarterly.
+assumptions:
+  - Low usage and selective self-hosting can meet the operator's local target.
+  - Manual handoffs are acceptable at current volume.
+risks:
+  - Delivery, storage, tax, or currency changes can exceed the target.
+  - Manual duplication can create stale customer or invoice records.
+getting_started: [record-current-spend, define-source-records, pilot-with-test-data, verify-backups, measure-maintenance-time]
+pilot_plan:
+  - Track ten test or real prospects through tour and invoice preparation.
+  - Record all cash and staff time during the pilot.
+rollout_30_day:
+  - Move only active records and reconcile invoices with finance.
+  - Publish an approved update and backup calendar.
+maturity_90_day:
+  - Recalculate total cost and remove unused services.
+  - Audit consent, permissions, duplicate contacts, and restore evidence.
+exit_strategy:
+  - Export content, contacts, schedules, and invoices in documented formats.
+  - Keep an import map for a hosted CRM and invoicing service.
+commercial_fallback:
+  - Move the highest-maintenance component to a managed plan first.
+  - Adopt a hosted small-business suite if labor consistently defeats the cash target.
+verification:
+  last_reviewed: 2026-07-18
+  notes: The under-100 target is editable and must be checked against local quotes and taxes.

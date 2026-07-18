@@ -1,0 +1,50 @@
+schema_version: 1.0.0
+id: referral-tracking
+name: Referral tracking
+description: Track member or partner referrals with consent-aware attribution and human review of eligibility, rewards, and disputes.
+objective: Recognize valid referrals fairly without exposing prospect data or auto-issuing disputed rewards.
+responsible_role: Sales manager
+trigger: A prospect or referrer identifies an eligible referral relationship.
+inputs: [prospect record, referrer identity, permission, referral date, approved program rules]
+outputs: [reviewed attribution, eligibility status, reward review task, dispute record]
+source_of_truth: The reviewed referral record linked to the sales opportunity is authoritative.
+systems_involved: [sales pipeline, referral register, finance review queue]
+automation_steps:
+  [link possible records, flag duplicates and timing conflicts, calculate provisional eligibility]
+human_approval_points: [Staff approve attribution, eligibility, reward, and dispute resolution.]
+failure_exception_paths:
+  [Hold disputed, duplicate, late, or permission-deficient referrals for manager review.]
+privacy_risks: [Referrers should not receive unnecessary prospect status or contact details.]
+security_risks: [Fraudulent referral claims or altered identifiers can cause improper rewards.]
+measurable_kpis:
+  [referrals with permission recorded, disputed attribution rate, approved rewards reconciled]
+test_cases:
+  [
+    Record a valid referral,
+    detect duplicate referrers,
+    reject missing permission,
+    handle a disputed reward.,
+  ]
+manual_fallback:
+  [Maintain a reviewed referral register and reconcile approved rewards with finance.]
+rollback_disable_procedure:
+  [
+    Disable automatic linking and provisional calculations,
+    preserve claims,
+    audit pending rewards,
+    use manual review.,
+  ]
+primary_roles: [sales-manager, finance]
+stages:
+  - id: attribute-and-approve
+    name: Attribute and approve
+    description: Validate referral evidence and let authorized staff decide attribution and reward eligibility.
+    manual_tasks: [verify permission and timing, resolve conflicts, approve any reward]
+    automation_opportunities: [surface possible links and calculate provisional eligibility]
+    suggested_tool_ids: [espocrm, baserow]
+    risks: [Automatic attribution can disclose prospect activity or reward the wrong party.]
+success_metrics:
+  [Referral decisions are evidence-based, disputes and pending rewards remain visible.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Program, tax, privacy, and reward rules require local review.

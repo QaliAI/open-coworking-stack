@@ -1,0 +1,50 @@
+schema_version: 1.0.0
+id: speed-to-lead-alert
+name: Speed-to-lead alert
+description: Alert an accountable salesperson when an eligible new enquiry awaits attention while avoiding automatic pressure or outreach.
+objective: Make response delays visible so a person can prioritize timely, appropriate contact.
+responsible_role: Sales manager
+trigger: An eligible lead remains unassigned or uncontacted beyond the locally approved interval.
+inputs: [lead timestamp, owner, contact status, business hours, priority rules]
+outputs: [staff alert, acknowledged owner, response timestamp]
+source_of_truth: The sales pipeline contact history is authoritative.
+systems_involved: [sales pipeline, staff alert channel]
+automation_steps:
+  [calculate elapsed staffed time, suppress closed or contacted leads, notify the assigned queue]
+human_approval_points: [A salesperson decides whether, when, and how to contact the prospect.]
+failure_exception_paths:
+  [Escalate an unacknowledged alert to the duty manager and expose alert delivery failures.]
+privacy_risks: [Alerts can expose prospect identity or enquiry details to an overbroad audience.]
+security_risks:
+  [Forged events or weak alert-channel access can disclose data or create disruptive noise.]
+measurable_kpis: [median staffed response time, alerts acknowledged within target, false-alert rate]
+test_cases:
+  [
+    Trigger inside and outside staffed hours,
+    mark a lead contacted,
+    simulate alert failure,
+    test an unassigned lead.,
+  ]
+manual_fallback:
+  [Review the new-lead queue at scheduled intervals and record owner and response time manually.]
+rollback_disable_procedure:
+  [
+    Disable alert rules,
+    retain pipeline timestamps,
+    notify sales staff,
+    resume scheduled queue checks.,
+  ]
+primary_roles: [sales-manager, owner-operator]
+stages:
+  - id: alert-and-acknowledge
+    name: Alert and acknowledge
+    description: Identify an overdue eligible lead and obtain acknowledgement from a responsible person.
+    manual_tasks: [confirm urgency, choose the contact approach, record the outcome]
+    automation_opportunities: [measure staffed elapsed time, route and escalate an alert]
+    suggested_tool_ids: [espocrm, n8n]
+    risks: [An alert target can reward rushed or inappropriate prospect contact.]
+success_metrics:
+  [Eligible leads receive timely human review, alert failures and false positives remain visible.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Response targets and escalation routes require local staffing and consent review.

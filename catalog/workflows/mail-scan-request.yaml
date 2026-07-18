@@ -1,0 +1,92 @@
+schema_version: 1.0.0
+id: mail-scan-request
+name: Mail scan request
+description: Fulfill an authorized virtual-office mail scan request with item matching, opening permission, secure capture, delivery verification, and deletion controls.
+objective: Deliver only the requested authorized mail content to the correct recipient while preserving custody and confidentiality.
+responsible_role: Virtual-office and mailroom manager
+trigger: An authorized client contact requests scanning of a specific received mail item.
+inputs:
+  [
+    authenticated requester,
+    item identifier,
+    service entitlement,
+    opening authority,
+    delivery route,
+    retention policy,
+  ]
+outputs: [approved request, scan file, verified secure delivery, custody and deletion record]
+source_of_truth: The mail custody register and authenticated request record are authoritative.
+systems_involved:
+  [client register, mail custody register, scanning station, secure document delivery]
+automation_steps:
+  [
+    validate request fields,
+    prepare a staff task,
+    apply approved file naming,
+    record delivery and retention dates,
+  ]
+human_approval_points:
+  [Staff verify requester, item, authority, page completeness, recipient, and final delivery.]
+failure_exception_paths:
+  [
+    Stop for wrong item,
+    unclear authority,
+    legal restrictions,
+    sensitive contents,
+    scan defects,
+    or failed secure delivery.,
+  ]
+privacy_risks:
+  [
+    Scanned mail can contain highly sensitive personal,
+    legal,
+    medical,
+    financial,
+    or business information.,
+  ]
+security_risks:
+  [
+    Scanning devices,
+    temporary files,
+    email delivery,
+    and misaddressing can expose complete document contents.,
+  ]
+measurable_kpis:
+  [scans delivered to verified recipients, quality rework, misdelivery or retention exceptions]
+test_cases:
+  [
+    Scan an authorized item,
+    reject an unauthorized requester,
+    catch missing pages,
+    recover from delivery failure.,
+  ]
+manual_fallback:
+  [
+    Verify the request and item with dual checking,
+    scan on the approved device,
+    deliver securely,
+    and log actions.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automated tasks and delivery,
+    quarantine pending scans,
+    remove unsafe temporary copies,
+    use dual-checked manual handling.,
+  ]
+primary_roles: [virtual-office-mailroom]
+stages:
+  - id: authorize-scan-deliver
+    name: Authorize, scan, and deliver
+    description: Verify authority and item identity before controlled capture and recipient-confirmed delivery.
+    manual_tasks:
+      [authenticate requester, match item, inspect scan quality, verify recipient, approve deletion]
+    automation_opportunities: [prepare the task and enforce approved retention reminders]
+    suggested_tool_ids: [paperless-ngx, stirling-pdf]
+    risks:
+      [One wrong item or recipient can expose the complete contents of confidential correspondence.]
+success_metrics:
+  [Every scan is authorized, complete, securely delivered, and retained only under approved policy.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Confirm opening authority, scanning security, delivery encryption, retention, and local legal limits.

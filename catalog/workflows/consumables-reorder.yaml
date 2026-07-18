@@ -1,0 +1,69 @@
+schema_version: 1.0.0
+id: consumables-reorder
+name: Consumables reorder
+description: Review coworking consumable levels and prepare timely replenishment while retaining human control of quantities, vendors, budget, and substitutions.
+objective: Avoid service disruption and waste through visible stock and approved purchasing decisions.
+responsible_role: Operations manager
+trigger: A reviewed count or usage signal reaches the approved replenishment threshold.
+inputs:
+  [
+    physical stock count,
+    usage history,
+    reorder threshold,
+    approved specification,
+    budget,
+    vendor terms,
+  ]
+outputs: [reviewed purchase request, approved order, expected delivery, stock update]
+source_of_truth: The physically reconciled inventory and approved purchase record are authoritative.
+systems_involved: [inventory register, purchasing queue, finance approval]
+automation_steps:
+  [flag threshold crossings, calculate a provisional quantity, prepare a purchase request]
+human_approval_points:
+  [Staff verify physical stock and approve specification, quantity, vendor, price, and order.]
+failure_exception_paths:
+  [
+    Escalate urgent shortages,
+    price changes,
+    unsafe substitutions,
+    delayed delivery,
+    or count discrepancies.,
+  ]
+privacy_risks: [Purchasing records can include staff contact and delivery information.]
+security_risks:
+  [
+    Fraudulent vendor changes,
+    invoice manipulation,
+    or compromised purchasing accounts can redirect funds.,
+  ]
+measurable_kpis: [stockouts, emergency orders, count variance, waste from expired or excess stock]
+test_cases:
+  [
+    Reorder at threshold,
+    reject a bad count,
+    flag a price change,
+    prevent an unapproved substitution.,
+  ]
+manual_fallback:
+  [Perform physical counts, use the approved purchase form, and obtain budget-holder sign-off.]
+rollback_disable_procedure:
+  [
+    Disable reorder suggestions,
+    cancel unapproved requests,
+    reconcile stock,
+    resume manual counts and purchasing.,
+  ]
+primary_roles: [operations-manager, finance, facilities]
+stages:
+  - id: count-and-approve
+    name: Count and approve
+    description: Verify actual stock and let authorized staff approve a bounded purchase.
+    manual_tasks: [count stock, assess usage and alternatives, approve vendor and spend]
+    automation_opportunities: [flag thresholds and prepare a provisional request]
+    suggested_tool_ids: [erpnext, baserow]
+    risks: [Bad counts or thresholds can automate waste, shortages, or inappropriate substitutions.]
+success_metrics:
+  [Essential stock remains available and purchases reconcile to verified need and approval.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Verify specifications, storage, safety, budgets, vendor identity, and approval limits locally.

@@ -1,0 +1,66 @@
+schema_version: 1.0.0
+id: newsletter-production
+name: Newsletter production
+description: Produce a coworking newsletter from an approved brief through factual, accessible, consent-aware review and controlled distribution.
+objective: Send a useful newsletter to the correct audience with verified content and a tested response path.
+responsible_role: Marketing manager
+trigger: The approved newsletter calendar reaches a production milestone.
+inputs:
+  [
+    brief,
+    approved stories and offers,
+    source facts,
+    assets and consent,
+    recipient segment,
+    suppression list,
+  ]
+outputs: [approved newsletter version, test-send evidence, distribution status, correction record]
+source_of_truth: The approved newsletter version and consent-aware recipient list are authoritative.
+systems_involved: [content workspace, asset store, email delivery system, consent register]
+automation_steps:
+  [assemble approved modules, check links and required fields, send a test, apply suppression rules]
+human_approval_points:
+  [Marketing staff approve final content, claims, segment, sender, links, and send time.]
+failure_exception_paths:
+  [
+    Stop sending for broken links,
+    stale claims,
+    wrong segment,
+    missing consent,
+    or abnormal delivery behavior.,
+  ]
+privacy_risks:
+  [Incorrect segmentation or recipient fields can expose identities and membership information.]
+security_risks:
+  [Unsafe links, spoofed sender settings, or compromised mailing credentials can harm recipients.]
+measurable_kpis:
+  [newsletters with test approval, suppression failures, factual corrections after send]
+test_cases:
+  [Send a test edition, suppress an opted-out address, catch a broken link, stop a wrong segment.]
+manual_fallback:
+  [
+    Build from approved sources,
+    verify a controlled recipient list,
+    obtain sign-off,
+    and send through the approved channel.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop active sends where supported,
+    disable automation,
+    preserve logs and opt-outs,
+    correct affected recipients manually.,
+  ]
+primary_roles: [marketing, community-manager]
+stages:
+  - id: produce-approve-send
+    name: Produce, approve, and send
+    description: Assemble verified content and require final human approval of the exact message and audience.
+    manual_tasks: [edit content, verify facts and consent, review test, approve audience and send]
+    automation_opportunities: [check links and apply reviewed suppression rules]
+    suggested_tool_ids: [listmonk, canva]
+    risks: [A technically successful send can still reach the wrong people with inaccurate content.]
+success_metrics: [The approved edition reaches the approved audience and opt-outs remain effective.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Verify consent, sender authentication, segmentation, accessibility, and stop procedures locally.

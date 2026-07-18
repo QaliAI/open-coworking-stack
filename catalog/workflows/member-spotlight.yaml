@@ -1,0 +1,61 @@
+schema_version: 1.0.0
+id: member-spotlight
+name: Member spotlight
+description: Create an optional coworking member spotlight with informed consent, member-controlled facts, accessible assets, and final approval.
+objective: Share an accurate member story that benefits the participant without coercion or unintended disclosure.
+responsible_role: Marketing manager
+trigger: A member voluntarily agrees to consider a spotlight under the approved process.
+inputs:
+  [member consent, interview material, member-approved facts, assets, channel and duration choices]
+outputs: [approved story, consent scope, publication record, correction or withdrawal task]
+source_of_truth: The member-approved final version and recorded consent scope are authoritative.
+systems_involved: [content workspace, consent record, asset store, publishing channel]
+automation_steps:
+  [track consent and review milestones, prepare transcription or layout for human editing]
+human_approval_points:
+  [The member and marketing reviewer approve the exact final content, assets, channels, and timing.]
+failure_exception_paths:
+  [
+    Pause publication for uncertain consent,
+    factual dispute,
+    sensitive disclosure,
+    or withdrawal request.,
+  ]
+privacy_risks:
+  [Stories can expose identity, workplace, clients, finances, location, or personal history.]
+security_risks:
+  [Shared drafts and assets can leak unpublished or commercially sensitive information.]
+measurable_kpis:
+  [spotlights with final member approval, correction requests, withdrawal response time]
+test_cases:
+  [
+    Publish with scoped consent,
+    remove an unapproved fact,
+    honor withdrawal,
+    limit publication channels.,
+  ]
+manual_fallback:
+  [Interview personally, exchange a controlled draft, record exact approval, and publish manually.]
+rollback_disable_procedure:
+  [
+    Stop queued publication,
+    remove content where controlled,
+    preserve consent history,
+    notify the member and channel owners.,
+  ]
+primary_roles: [marketing, community-manager, member-end-user]
+stages:
+  - id: consent-create-approve
+    name: Consent, create, and approve
+    description: Co-create the story and obtain member approval of the exact publication package.
+    manual_tasks:
+      [conduct the interview, edit sensitively, verify facts, obtain final member approval]
+    automation_opportunities: [track approval milestones and prepare draft assets]
+    suggested_tool_ids: [canva, paperless-ngx]
+    risks:
+      [Initial participation does not equal consent for every detail, channel, or future reuse.]
+success_metrics:
+  [Every spotlight reflects scoped current consent and an exact member-approved version.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Participation must be optional and withdrawal and correction handling must be clear.

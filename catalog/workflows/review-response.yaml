@@ -1,0 +1,74 @@
+schema_version: 1.0.0
+id: review-response
+name: Review response
+description: Respond to public coworking reviews with factual, privacy-safe, respectful language and a private path for resolving service concerns.
+objective: Acknowledge feedback without exposing customer status, arguing publicly, or making unsupported promises.
+responsible_role: Community manager
+trigger: A new public review or a material update to an existing review is identified.
+inputs:
+  [public review text, approved response policy, verified public facts, internal escalation status]
+outputs: [approved public response, private follow-up task, moderation or escalation record]
+source_of_truth: The public review and approved final response record are authoritative for publication.
+systems_involved: [public review platform, response approval queue, support escalation path]
+automation_steps:
+  [
+    create a review task,
+    detect possible sensitive or urgent content,
+    prepare a neutral acknowledgement draft,
+  ]
+human_approval_points:
+  [Authorized staff verify facts and approve every public response and private follow-up.]
+failure_exception_paths:
+  [
+    Escalate threats,
+    discrimination,
+    safety,
+    legal claims,
+    privacy exposure,
+    or platform abuse before responding.,
+  ]
+privacy_risks:
+  [Confirming that a reviewer is a member can disclose a relationship or sensitive incident.]
+security_risks:
+  [
+    Malicious links,
+    impersonation,
+    or compromised profile access can misdirect staff or publish false responses.,
+  ]
+measurable_kpis:
+  [responses with approval, privacy corrections, escalated reviews handled under policy]
+test_cases:
+  [
+    Answer positive feedback,
+    respond without confirming membership,
+    escalate a threat,
+    handle a factual dispute.,
+  ]
+manual_fallback:
+  [
+    Monitor reviews,
+    assess context with the responsible manager,
+    approve wording,
+    and publish from a secured account.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable response drafting or posting,
+    remove an unsafe response where possible,
+    preserve evidence,
+    require manual approval.,
+  ]
+primary_roles: [community-manager, marketing, owner-operator]
+stages:
+  - id: assess-and-respond
+    name: Assess and respond
+    description: Review the public content and approve a proportionate response that protects privacy.
+    manual_tasks: [verify safe public facts, choose escalation, approve exact response wording]
+    automation_opportunities: [open a task and prepare a neutral draft]
+    suggested_tool_ids: [freescout, openproject]
+    risks: [A polished draft can still reveal private facts or inflame a dispute.]
+success_metrics:
+  [Responses are approved, privacy-safe, and connected to real internal follow-up where needed.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review platform policy, privacy, moderation, safety, and legal escalation requirements.

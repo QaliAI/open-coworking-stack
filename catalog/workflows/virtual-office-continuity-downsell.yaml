@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: virtual-office-continuity-downsell
+name: Virtual-office continuity or downsell
+description: Review whether an exiting or reducing workspace member needs a compliant virtual-office continuity option or a simpler plan.
+objective: Preserve appropriate business continuity without pressure, hidden renewal, or unsuitable regulated service.
+responsible_role: Sales manager
+trigger: A member requests cancellation, reduction, relocation, or continuity for an eligible business address service.
+inputs:
+  [
+    member request,
+    current agreement,
+    service eligibility,
+    compliance status,
+    mail needs,
+    approved plans,
+  ]
+outputs: [reviewed continuity options, compliance decision, accepted declined or offboarding path]
+source_of_truth: The reviewed service agreement and virtual-office client record are authoritative.
+systems_involved: [membership system, virtual-office register, agreement store, sales pipeline]
+automation_steps:
+  [open a review task, surface approved eligible options, flag compliance or contract exceptions]
+human_approval_points:
+  [Staff approve eligibility, compliance outcome, terms, pricing, and the member-facing offer.]
+failure_exception_paths:
+  [
+    Route ineligible or unresolved compliance cases to offboarding without continuing service automatically.,
+  ]
+privacy_risks: [Address, identity, mail, and business-status information is sensitive.]
+security_risks: [Unauthorized service continuation can enable address misuse or mail exposure.]
+measurable_kpis:
+  [cases reviewed before service change, compliance exceptions resolved, declined offers honored]
+test_cases:
+  [
+    Offer an eligible continuity plan,
+    reject ineligible service,
+    handle a decline,
+    route an unresolved compliance case.,
+  ]
+manual_fallback:
+  [Review the agreement, eligibility, and member request manually and document the approved path.]
+rollback_disable_procedure:
+  [
+    Disable option suggestions,
+    stop unapproved plan changes,
+    preserve requests,
+    route all cases to staff review.,
+  ]
+primary_roles: [sales-manager, virtual-office-mailroom, owner-operator]
+stages:
+  - id: review-and-decide
+    name: Review and decide
+    description: Assess continuity need and eligibility before a person presents or declines an option.
+    manual_tasks: [confirm member intent, review compliance and terms, approve the proposed path]
+    automation_opportunities: [surface eligible approved plans and unresolved checks]
+    suggested_tool_ids: [cobot, paperless-ngx]
+    risks: [Commercial retention pressure can override compliance or the member's stated intent.]
+success_metrics:
+  [
+    Service changes are consented and eligible,
+    rejected or declined options proceed cleanly to offboarding.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Virtual-office eligibility, address use, contracts, and compliance require local qualified review.

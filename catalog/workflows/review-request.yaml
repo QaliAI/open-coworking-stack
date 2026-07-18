@@ -1,0 +1,64 @@
+schema_version: 1.0.0
+id: review-request
+name: Review request
+description: Invite eligible coworking members to leave an honest public review without incentives, selective suppression, pressure, or scripted sentiment.
+objective: Request authentic voluntary feedback fairly while giving service concerns a separate human support path.
+responsible_role: Marketing manager
+trigger: A documented neutral eligibility event occurs under the approved review-request policy.
+inputs:
+  [
+    member eligibility,
+    contact preference,
+    request history,
+    approved wording,
+    public review destination,
+  ]
+outputs: [approved request, delivery status, opt-out status, support handoff when requested]
+source_of_truth: The communication record and approved eligibility policy are authoritative.
+systems_involved: [membership system, communication channel, review-request register]
+automation_steps:
+  [check neutral eligibility and frequency, prepare approved wording, record delivery and opt-out]
+human_approval_points:
+  [Staff approve policy, wording, exceptions, and any response to member concerns.]
+failure_exception_paths:
+  [Suppress requests during open sensitive disputes and route replies asking for help to a person.]
+privacy_risks:
+  [Eligibility logic can expose membership status or profile members by inferred satisfaction.]
+security_risks: [Unverified review links or compromised messaging accounts can redirect members.]
+measurable_kpis:
+  [requests meeting neutral eligibility, opt-out complaints, requests sent during exclusions]
+test_cases:
+  [
+    Send to an eligible member,
+    suppress a recent request,
+    handle an opt-out,
+    exclude an open sensitive dispute.,
+  ]
+manual_fallback:
+  [Use a periodically reviewed neutral list and send approved invitations individually.]
+rollback_disable_procedure:
+  [
+    Stop queued requests,
+    preserve opt-outs,
+    audit recent eligibility,
+    return to manager-reviewed sending.,
+  ]
+primary_roles: [marketing, community-manager]
+stages:
+  - id: check-and-invite
+    name: Check and invite
+    description: Apply neutral reviewed criteria and send a voluntary request with a support contact.
+    manual_tasks: [approve criteria and wording, review exclusions, handle replies]
+    automation_opportunities: [check frequency and prepare an approved invitation]
+    suggested_tool_ids: [cobot, listmonk]
+    risks:
+      [Selecting only presumed happy members can distort public feedback and breach platform rules.]
+success_metrics:
+  [
+    Requests follow neutral criteria,
+    opt-outs are honored,
+    no member is pressured for positive sentiment.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Check current review-platform policies and local communication requirements before use.

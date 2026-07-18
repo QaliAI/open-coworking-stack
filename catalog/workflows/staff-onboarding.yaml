@@ -1,0 +1,81 @@
+schema_version: 1.0.0
+id: staff-onboarding
+name: Staff onboarding
+description: Prepare a coworking staff member for safe, role-appropriate work through verified employment status, training, least privilege, and human supervision.
+objective: Give the new staff member only the knowledge, tools, and access approved for their role and start date.
+responsible_role: Operations manager
+trigger: An authorized hiring owner confirms a staff member, role, manager, location, and start date.
+inputs:
+  [
+    verified staff identity,
+    role,
+    manager,
+    start date,
+    required training,
+    approved access profile,
+    equipment,
+  ]
+outputs: [owner-assigned checklist, trained staff record, tested access, issued asset custody]
+source_of_truth: The authorized staff record and approved role-access profile are authoritative.
+systems_involved: [staff register, identity system, knowledge base, work queue, asset register]
+automation_steps:
+  [
+    create tasks from the approved role,
+    prepare least-privilege accounts,
+    schedule training and expiry reviews,
+  ]
+human_approval_points:
+  [
+    Manager verifies identity,
+    approves access and equipment,
+    assesses training,
+    and signs readiness.,
+  ]
+failure_exception_paths:
+  [
+    Hold access and unsupervised duties when authorization,
+    training,
+    equipment,
+    or safeguarding checks are incomplete.,
+  ]
+privacy_risks:
+  [
+    Staff records contain identity,
+    employment,
+    training,
+    and potentially sensitive screening information.,
+  ]
+security_risks:
+  [Template roles can overgrant access or expose member, finance, access, and security systems.]
+measurable_kpis: [staff ready by start date, access exceptions, mandatory training verified]
+test_cases:
+  [Onboard a standard role, hold missing approval, reject excessive access, change start date.]
+manual_fallback:
+  [
+    Use a controlled onboarding checklist,
+    obtain written approvals,
+    create accounts manually,
+    and test each access path.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop automatic account tasks,
+    disable premature access,
+    inventory issued assets,
+    continue from controlled checklist.,
+  ]
+primary_roles: [operations-manager, technical-operator, owner-operator]
+stages:
+  - id: authorize-prepare-verify
+    name: Authorize, prepare, and verify
+    description: Complete role-specific preparation and require the manager to approve readiness.
+    manual_tasks:
+      [verify identity and role, deliver training, approve and test access, sign readiness]
+    automation_opportunities: [create approved tasks and prepare least-privilege accounts]
+    suggested_tool_ids: [authentik, bookstack]
+    risks: [Completing tasks does not prove competence, understanding, or appropriate access.]
+success_metrics:
+  [New staff start with verified training, accountable supervision, and no excessive access.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Employment, safeguarding, training, accessibility, and role-access rules vary locally.

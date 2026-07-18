@@ -1,56 +1,92 @@
 schema_version: 1.0.0
 id: privacy-first-selfhost
-name: Privacy-First Self-Host
-tagline: Identity, files, analytics, and secrets under operator control
-description: 'For operators who prioritize data control: SSO, file sync, privacy-friendly analytics,
-  team chat, and secrets—with explicit backup and access review practices.'
-audience_roles:
-  - technical-operator
-  - owner-operator
-  - operations-manager
-problems_solved:
-  - self-host-for-data-control
-  - privacy-compliance
-  - secure-door-access
-  - centralize-knowledge
-workflows:
-  - access-provisioning
-  - member-offboarding
-  - compliance-review
-  - backup-restore-drill
+name: Secure Infrastructure and Business Continuity
+tagline: Protect identity, files, credentials, networks, monitoring, and recovery
+description: A defense-in-depth operating baseline that keeps administrative access controlled, services observable, and critical records recoverable with explicit human incident ownership.
+audience_roles: [technical-operator, owner-operator, operations-manager, facilities]
+problems_solved: [self-host-for-data-control, privacy-compliance, improve-wifi-reliability, disaster-recovery]
+workflows: [access-provisioning, member-offboarding, incident-response, compliance-review, backup-restore-drill]
 monthly_cash_budget_band: under-200
 self_host_heavy: true
+operator_profile: A privacy-conscious operator with a named technical maintainer and management support for drills, patching, and access review.
+number_of_locations: One to three locations with documented network and data boundaries.
+team_size: Three or more staff, including technical and incident decision owners.
+products_offered: [secure staff operations, member connectivity, internal file collaboration, recoverable digital services]
+technical_skill_required: High; identity, network segmentation, patching, monitoring, encryption, and recovery competence are required.
+tasks_covered: [staff-single-sign-on, staff-file-storage, credential-management, admin-network-access, service-monitoring, encrypted-backup, access-review]
+tasks_not_covered: [legal-certification, penetration-testing, emergency-services, physical-security-response, employee-screening, risk-acceptance]
+systems_of_record:
+  - Authentik is the staff application identity authority.
+  - Nextcloud is the approved internal file record.
+  - Vaultwarden is the credential record, with controlled break-glass material outside the service.
 components:
   - tool_id: authentik
-    role_in_stack: SSO / IdP
+    role_in_stack: Staff identity provider and SSO policy point
     required: true
   - tool_id: nextcloud
-    role_in_stack: Files and internal collab
+    role_in_stack: Controlled internal file collaboration
     required: true
   - tool_id: vaultwarden
-    role_in_stack: Password vault
+    role_in_stack: Staff credential vault
     required: true
   - tool_id: umami
-    role_in_stack: Privacy-friendly analytics
+    role_in_stack: Optional privacy-aware site analytics
     required: true
   - tool_id: mattermost
-    role_in_stack: Staff messaging
+    role_in_stack: Optional staff incident communication
     required: false
   - tool_id: wireguard
-    role_in_stack: Admin VPN
+    role_in_stack: Restricted administrative network path
     required: true
   - tool_id: restic
-    role_in_stack: Backups
+    role_in_stack: Encrypted backup and recovery copies
     required: true
+data_flow:
+  - Authentik grants staff application sessions from role assignments; break-glass access stays independent.
+  - Staff files remain in Nextcloud and flow to encrypted, separate recovery storage through Restic.
+  - Monitoring and incident messages contain minimum necessary operational data, not broad member records.
+implementation_order: [inventory-assets-and-owners, define-network-boundaries, deploy-vaultwarden, deploy-authentik, protect-one-service, configure-wireguard, migrate-files, configure-backups, prove-recovery, add-monitoring]
+cost_assumptions:
+  monthly_cash: Edit for hosts, separate backup storage, domains, monitoring delivery, network equipment, and specialist support.
+  setup_labor: Expect substantial architecture, migration, hardening, documentation, and recovery-test effort.
+  maintenance_labor: Reserve weekly patch and alert review, monthly access review, and quarterly recovery exercises.
+  messaging_email_sms: Incident notifications may use paid email or SMS; keep an independent contact path.
+  hosting_storage: Use separate failure domains for primary data and backups and plan storage growth and retention.
+  notes:
+    - Self-hosting changes control and responsibility; it does not itself establish compliance.
+    - Obtain local security and legal advice for regulated data.
+  pricing_sources: []
+human_owners: [technical-operator for controls and recovery, owner-operator for risk acceptance, operations-manager for joiner-leaver accuracy, facilities for site incidents]
+security_boundaries:
+  - Separate public, member, staff, administrative, and backup access paths.
+  - Maintain least privilege, multifactor authentication where supported, and independent break-glass access.
+  - Keep payment card and unnecessary identity documents outside this stack.
+backup_and_recovery:
+  - Maintain encrypted versioned copies outside the primary account and physical location.
+  - Test item restores monthly and full service recovery quarterly.
+  - Record recovery objectives, dependencies, results, and corrective owners.
 assumptions:
-  - Technical operator available weekly.
-  - Legal counsel reviews privacy notices.
+  - A technical operator is available every week and during incidents.
+  - Management funds separate recovery storage and staff drills.
 risks:
-  - SSO outage blocks many apps—need break-glass accounts.
-  - Self-host compliance still requires policies, not only tools.
-getting_started:
-  - Deploy Authentik and protect one app.
-  - Move staff files to Nextcloud with backup.
-  - Enforce VPN for admin UIs.
+  - Identity failure can block multiple applications without break-glass paths.
+  - Misconfiguration or delayed patching can erase expected privacy benefits.
+getting_started: [inventory-critical-services, classify-data, assign-incident-roles, protect-one-service, build-backups, run-first-recovery-drill]
+pilot_plan:
+  - Protect one low-risk staff service and back up a test file set.
+  - Simulate identity unavailability and restore to an isolated environment.
+rollout_30_day:
+  - Enroll staff in controlled phases and document every exception.
+  - Establish alert routing, patch cadence, and joiner-leaver checks.
+maturity_90_day:
+  - Complete a cross-role incident and recovery exercise.
+  - Review privileged access, retained data, network rules, and unresolved findings.
+exit_strategy:
+  - Export identities, files, vault items, and configuration in protected portable formats.
+  - Revoke trust relationships, rotate credentials, and verify retained recovery copies.
+commercial_fallback:
+  - Move identity, files, or backup to managed services if skilled coverage cannot be sustained.
+  - Contract an independent security and recovery specialist for unresolved high-impact risks.
 verification:
-  last_reviewed: 2026-07-17
+  last_reviewed: 2026-07-18
+  notes: This architecture supports controls but does not claim legal compliance or certification.

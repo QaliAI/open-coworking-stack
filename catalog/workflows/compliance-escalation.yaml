@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: compliance-escalation
+name: Compliance escalation
+description: Escalate a virtual-office or mailroom compliance concern to authorized qualified review while preserving service safety, evidence, confidentiality, and due process.
+objective: Obtain a timely accountable decision without frontline staff improvising legal conclusions or tipping off inappropriate parties.
+responsible_role: Virtual-office and mailroom manager
+trigger: Staff identify a documented compliance exception, suspicious pattern, required review, or unresolved identity issue.
+inputs:
+  [
+    bounded factual concern,
+    client and service record,
+    relevant evidence,
+    applicable internal policy,
+    urgency,
+  ]
+outputs:
+  [restricted case, assigned qualified reviewer, interim controls, documented decision and actions]
+source_of_truth: The access-controlled escalation case and authorized decision record are authoritative.
+systems_involved:
+  [client register, restricted case queue, controlled evidence store, incident communication path]
+automation_steps:
+  [
+    create a restricted case,
+    preserve timestamps and evidence references,
+    notify only authorized reviewers,
+  ]
+human_approval_points:
+  [
+    Qualified authorized people approve interim restrictions,
+    investigation,
+    reporting,
+    service action,
+    and closure.,
+  ]
+failure_exception_paths:
+  [
+    Use emergency,
+    law-enforcement,
+    legal-counsel,
+    safeguarding,
+    or security paths only as locally approved and necessary.,
+  ]
+privacy_risks:
+  [
+    Cases can contain identity,
+    ownership,
+    financial,
+    correspondence,
+    allegation,
+    and investigation data.,
+  ]
+security_risks:
+  [
+    Overbroad access,
+    evidence alteration,
+    retaliation,
+    or unauthorized disclosure can compromise people and investigations.,
+  ]
+measurable_kpis:
+  [time to authorized reviewer, cases with complete decision rationale, unauthorized disclosures]
+test_cases:
+  [
+    Escalate an identity conflict,
+    restrict case access,
+    preserve uncertain evidence,
+    reject an unauthorized reviewer.,
+  ]
+manual_fallback:
+  [Use the sealed controlled escalation form and contact the named authorized reviewer directly.]
+rollback_disable_procedure:
+  [
+    Disable automated notifications,
+    verify case access,
+    preserve immutable evidence references,
+    use direct controlled escalation.,
+  ]
+primary_roles: [virtual-office-mailroom, owner-operator, operations-manager]
+stages:
+  - id: restrict-and-review
+    name: Restrict and review
+    description: Record facts in a limited-access case and transfer decisions to authorized qualified people.
+    manual_tasks:
+      [make immediate safety assessment, preserve evidence, approve interim and final actions]
+    automation_opportunities: [open a restricted case and notify named reviewers]
+    suggested_tool_ids: [paperless-ngx, openproject]
+    risks:
+      [Automated suspicion scores or broad alerts can create unfair action and unlawful disclosure.]
+success_metrics:
+  [
+    Concerns receive timely qualified review,
+    evidence and confidentiality are preserved,
+    decisions are documented.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: This is not legal advice; define qualified reviewers, reporting duties, confidentiality, and emergency routes locally.

@@ -1,0 +1,55 @@
+schema_version: 1.0.0
+id: agreement-signature-follow-up
+name: Agreement-signature follow-up
+description: Track an unsigned coworking agreement and prompt appropriate human follow-up without treating delivery or e-sign events as legal advice.
+objective: Resolve unsigned agreements with accurate status, clear help, and documented staff judgment.
+responsible_role: Sales manager
+trigger: An approved agreement remains unsigned beyond the reviewed follow-up date.
+inputs: [agreement version, recipient, delivery status, expiry date, negotiation notes]
+outputs: [review task, approved reminder or correction, signed declined or expired status]
+source_of_truth: The controlled agreement record and completed signature evidence are authoritative.
+systems_involved: [agreement system, sales pipeline, communication channel]
+automation_steps:
+  [check current signature status, open a task, prepare a neutral reminder, record delivery]
+human_approval_points:
+  [Staff verify the agreement version and approve reminders, amendments, expiry, or withdrawal.]
+failure_exception_paths:
+  [Pause follow-up for disputed terms, wrong recipients, failed delivery, or requested amendments.]
+privacy_risks: [Agreements contain identity, contact, company, and commercial information.]
+security_risks: [Spoofed signature links or excessive document permissions can expose contracts.]
+measurable_kpis:
+  [unsigned agreements reviewed on time, delivery failures resolved, incorrect-version incidents]
+test_cases:
+  [
+    Remind an unsigned agreement,
+    suppress a signed agreement,
+    flag an expired version,
+    handle disputed terms.,
+  ]
+manual_fallback:
+  [
+    Review the controlled agreement register,
+    contact the recipient appropriately,
+    and update status manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automatic checks and reminders,
+    cancel queued messages,
+    preserve audit evidence,
+    return to register review.,
+  ]
+primary_roles: [sales-manager, owner-operator]
+stages:
+  - id: verify-and-follow-up
+    name: Verify and follow up
+    description: Confirm the agreement is current and unsigned before a person approves the next action.
+    manual_tasks: [review terms and recipient, resolve questions, approve reminder or expiry]
+    automation_opportunities: [check status and prepare a neutral reminder]
+    suggested_tool_ids: [docuseal, espocrm]
+    risks: [An automated reminder can pressure a recipient or reference superseded terms.]
+success_metrics:
+  [Only current unsigned agreements enter follow-up, exceptions reach an accountable person.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Local legal, signature, retention, and communication requirements require qualified review.

@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: renewal-reminder
+name: Renewal reminder
+description: Prompt staff and eligible members before a coworking agreement renewal date with verified terms and a clear human contact path.
+objective: Prevent accidental lapses or surprises while keeping renewal and pricing decisions human-controlled.
+responsible_role: Sales manager
+trigger: A current agreement enters its locally approved renewal review window.
+inputs:
+  [agreement end date, notice period, current plan, approved terms, contact preference, open issues]
+outputs: [staff review task, approved member notice, renewal decision status]
+source_of_truth: The controlled current agreement and reviewed membership record are authoritative.
+systems_involved: [agreement store, membership system, sales pipeline, communication channel]
+automation_steps:
+  [identify approaching dates, suppress resolved records, prepare a review task and factual notice]
+human_approval_points:
+  [Staff verify terms and approve pricing, notice, renewal, nonrenewal, or negotiation.]
+failure_exception_paths:
+  [Escalate missing agreements, disputed dates, open complaints, or failed delivery to the owner.]
+privacy_risks: [Renewal communications reveal membership and commercial information.]
+security_risks: [Incorrect permissions or recipients can expose contracts and pricing.]
+measurable_kpis:
+  [renewals reviewed before notice deadline, correction rate, failed notices resolved]
+test_cases:
+  [
+    Review a standard renewal,
+    suppress a completed renewal,
+    flag missing terms,
+    handle failed delivery.,
+  ]
+manual_fallback:
+  [
+    Review the agreement expiry register,
+    verify each record,
+    and contact members through approved channels.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable scheduled notices,
+    cancel queued messages,
+    preserve dates and decisions,
+    resume manual expiry review.,
+  ]
+primary_roles: [sales-manager, community-manager, owner-operator]
+stages:
+  - id: verify-and-remind
+    name: Verify and remind
+    description: Confirm agreement facts and obtain staff approval before any renewal communication.
+    manual_tasks: [review terms and relationship context, approve commercial position and notice]
+    automation_opportunities: [surface approaching dates and prepare factual notices]
+    suggested_tool_ids: [cobot, docuseal]
+    risks: [Stale terms or dates can create misleading or legally significant notices.]
+success_metrics:
+  [Renewals receive timely review, notices use verified terms, exceptions have accountable owners.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Notice periods, renewal rights, and communications require local contractual review.
