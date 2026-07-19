@@ -1,0 +1,114 @@
+# FABRICATED DEMONSTRATION DATA — not a production-ready deployment.
+# This is a reference prototype for the Near-Zero Cash Technical Self-Host stack.
+# Adapt secrets, image pins, ports, volumes, and networking before staging.
+
+services:
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2-alpine}
+    restart: unless-stopped
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:80:80'
+      - '${BIND_ADDRESS:-127.0.0.1}:443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+      - caddy_logs:/var/log/caddy
+    networks:
+      - frontend
+
+  vaultwarden:
+    image: ${VAULTWARDEN_IMAGE:?Set VAULTWARDEN_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${VAULTWARDEN_DOMAIN:-https://vaultwarden.coworking.test}
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN:?Set VAULTWARDEN_ADMIN_TOKEN}
+      SIGNUPS_ALLOWED: 'false'
+      INVITATIONS_ALLOWED: 'true'
+      SHOW_PASSWORD_HINT: 'false'
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8082:80'
+    volumes:
+      - vaultwarden_data:/data
+    healthcheck:
+      test: ['CMD', '/healthcheck.sh']
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - frontend
+      - backend
+
+  bookstack-db:
+    image: ${BOOKSTACK_DB_IMAGE:-mariadb:11-lts}
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BOOKSTACK_DB_ROOT_PASSWORD:?Set BOOKSTACK_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: bookstack
+      MYSQL_USER: bookstack
+      MYSQL_PASSWORD: ${BOOKSTACK_DB_PASSWORD:?Set BOOKSTACK_DB_PASSWORD}
+    volumes:
+      - bookstack_db:/var/lib/mysql
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -u root -p$$MYSQL_ROOT_PASSWORD | grep -q alive']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  bookstack:
+    image: ${BOOKSTACK_IMAGE:?Set BOOKSTACK_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      APP_URL: ${BOOKSTACK_URL:-https://sops.coworking.test}
+      DB_HOST: bookstack-db
+      DB_PORT: 3306
+      DB_DATABASE: bookstack
+      DB_USERNAME: bookstack
+      DB_PASSWORD: ${BOOKSTACK_DB_PASSWORD:?Set BOOKSTACK_DB_PASSWORD}
+      STORAGE_TYPE: local_secure
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8085:80'
+    volumes:
+      - bookstack_uploads:/var/www/bookstack/public/uploads
+      - bookstack_storage:/var/www/bookstack/storage
+    depends_on:
+      bookstack-db:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  uptime-kuma:
+    image: ${UPTIME_KUMA_IMAGE:?Set UPTIME_KUMA_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:3001:3001'
+    volumes:
+      - uptime_kuma_data:/app/data
+    healthcheck:
+      test: ['CMD', 'extra/healthcheck']
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 3m
+    networks:
+      - frontend
+
+volumes:
+  caddy_data:
+  caddy_config:
+  caddy_logs:
+  vaultwarden_data:
+  bookstack_db:
+  bookstack_uploads:
+  bookstack_storage:
+  uptime_kuma_data:
+
+networks:
+  frontend:
+  backend:
+    internal: true

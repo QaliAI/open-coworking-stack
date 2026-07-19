@@ -1,0 +1,122 @@
+# FABRICATED DEMONSTRATION — sample document-type taxonomy for Paperless-ngx.
+# Intended as a starting point for a coworking operator's mailroom workflow.
+# Adapt names, matching rules, and permissions to your real operation.
+
+document_types:
+  - name: Member Agreement
+    matching:
+      match: '(?:membership|member.?agreement|contract|signed).*(?:term|monthly|annual)'
+      match_type: regex
+    assign_tags: [member, legal]
+    assign_correspondent: null
+
+  - name: Invoice — Member Dues
+    matching:
+      match: '(?:invoice|receipt|statement).*(?:membership|dues|coworking|desk|office)'
+      match_type: regex
+    assign_tags: [member, billing]
+    assign_correspondent: null
+
+  - name: Invoice — Event/Meeting Room
+    matching:
+      match: '(?:invoice|receipt|statement).*(?:event|meeting.?room|conference)'
+      match_type: regex
+    assign_tags: [event, billing]
+    assign_correspondent: null
+
+  - name: Vendor Invoice
+    matching:
+      match: '(?:invoice|bill|statement).*(?:supply|cleaning|maintenance|it|services)'
+      match_type: regex
+    assign_tags: [vendor, billing]
+    assign_correspondent: null
+
+  - name: Mail — Forwarded
+    matching:
+      match: 'MAIL.*FORWARD|FORWARDED.*MAIL'
+      match_type: regex
+    assign_tags: [member, mailroom, forwarded]
+    assign_correspondent: null
+
+  - name: Mail — Received Parcel
+    matching:
+      match: '(?:parcel|package|delivery|shipment|UPS|FedEx|USPS)'
+      match_type: regex
+    assign_tags: [member, mailroom, parcel]
+    assign_correspondent: null
+
+  - name: Lease / Rent
+    matching:
+      match: '(?:lease|rent|tenant|landlord).*(?:agreement|addendum|renewal)'
+      match_type: regex
+    assign_tags: [legal, facility]
+    assign_correspondent: null
+
+  - name: Insurance Certificate
+    matching:
+      match: '(?:certificate|policy|endorsement).*(?:insurance|liability|property)'
+      match_type: regex
+    assign_tags: [legal, insurance]
+    assign_correspondent: null
+
+  - name: Permit / License
+    matching:
+      match: '(?:permit|license|certificate|inspection).*(?:business|health|fire|building)'
+      match_type: regex
+    assign_tags: [legal, compliance]
+    assign_correspondent: null
+
+  - name: Payroll / HR
+    matching:
+      match: '(?:payroll|timesheet|w2|1099|paystub|benefits|hr)'
+      match_type: regex
+    assign_tags: [admin, hr]
+    assign_correspondent: null
+
+  - name: Bank Statement
+    matching:
+      match: '(?:statement|transaction).*(?:bank|credit.?union|checking)'
+      match_type: regex
+    assign_tags: [finance, reconciliation]
+    assign_correspondent: null
+
+  - name: Tax Document
+    matching:
+      match: '(?:tax|irs|1099|w-?9|w-?2|property.?tax)'
+      match_type: regex
+    assign_tags: [finance, tax]
+    assign_correspondent: null
+
+  - name: Utility Bill
+    matching:
+      match: '(?:bill|statement|invoice).*(?:electric|power|gas|water|sewer|trash|internet)'
+      match_type: regex
+    assign_tags: [facility, billing, utilities]
+    assign_correspondent: null
+
+  - name: Maintenance / Repair Record
+    matching:
+      match: '(?:invoice|receipt|work.?order|estimate).*(?:repair|maintenance|plumb|electrical|hvac)'
+      match_type: regex
+    assign_tags: [facility, maintenance]
+    assign_correspondent: null
+
+  - name: Insurance Claim
+    matching:
+      match: '(?:claim|adjuster|settlement|damage).*(?:insurance)'
+      match_type: regex
+    assign_tags: [legal, insurance, claims]
+    assign_correspondent: null
+
+  - name: Member Correspondence
+    matching:
+      match: '(?:letter|notice|correspondence).*(?:member|tenant|occupant)'
+      match_type: regex
+    assign_tags: [member, correspondence]
+    assign_correspondent: null
+
+# Suggested tags for coworking operations:
+# member, billing, legal, facility, vendor, event, mailroom,
+# forwarded, parcel, finance, reconciliation, tax, utilities,
+# maintenance, insurance, claims, hr, admin, correspondence,
+# compliance, archived, pending-review
