@@ -190,6 +190,8 @@ function moneyScale(input: StackBuilderInput): number {
 
 function costsFor(track: StackTrackId, input: StackBuilderInput): CostAssumptions {
   const scale = moneyScale(input);
+  // All cost values are fabricated demonstration data. They are not sourced,
+  // quoted, or verified prices. Operators must replace with actual quotes.
   const defaults: Record<StackTrackId, CostAssumptions> = {
     hosted: {
       setupServices: 800,
@@ -465,7 +467,7 @@ ${list(track.gaps)}
 ### Systems of record
 ${list(track.systemsOfRecord)}
 
-### Editable cost assumptions (${input.currency})
+### Editable cost assumptions (${input.currency}) — fabricated demonstration data
 - Setup services: ${cost.setupServices}
 - Monthly subscriptions: ${cost.subscriptions}
 - Monthly hosting: ${cost.hosting}
@@ -475,6 +477,9 @@ ${list(track.systemsOfRecord)}
 - Setup labor hours: ${cost.setupLaborHours}
 - Monthly labor hours: ${cost.monthlyLaborHours}
 ${list(track.costNotes)}
+
+> **These costs are fabricated.** All numbers are unsourced examples. Replace every value with
+> actual quotes, invoices, or internal estimates before using this plan.
 
 ### Labor and expertise
 ${track.labor}

@@ -143,6 +143,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
           <textarea name="constraints" rows="3" placeholder="Residency, procurement, accessibility, contract, or staffing constraints"></textarea>
         </label>
       </div>
+      <p class="privacy-warning"><strong>Do not enter</strong> credentials, member personal data, payment details, access codes, or confidential contracts. This data stays in your browser but the exported plan will contain your text.</p>
     </fieldset>
 
     <div class="form-actions">
@@ -198,8 +199,8 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
             </details>
 
             <details open>
-              <summary>Editable ROI/TCO assumptions</summary>
-              <p class="hint">Directional estimates only. Replace every value with a quote or internal assumption.</p>
+              <summary>Editable cost assumptions</summary>
+              <p class="hint"><strong>Fabricated demonstration data.</strong> All numbers are examples — not sourced quotes, estimates, or verified prices. Replace every value with actual quotes or internal figures before using this plan. Prices change; review dates are not shown for individual cost rows.</p>
               <div class="cost-grid">
                 {costFields.map(([key, label, unit]) => (
                   <label>
