@@ -88,7 +88,8 @@ task_fits:
     what_it_takes_off_the_team: Provides one permission-controlled location for procedure files,
       supporting material, and review evidence used by staff.
     role_assisted: general-manager
-    what_remains_human: The accountable process owner approves content and resolves conflicting copies;
+    what_remains_human:
+      The accountable process owner approves content and resolves conflicting copies;
       safety, legal, financial, and security specialists approve controls in their domains.
     prerequisites:
       - Approved folder, naming, ownership, and review conventions
@@ -96,7 +97,8 @@ task_fits:
       - Backup, restore, retention, and obsolete-copy removal procedures
     failure_consequence: Incorrect permissions or an apparently current obsolete file can expose
       sensitive procedures or cause staff to follow unsafe or inconsistent guidance.
-    pilot_metric: Percentage of critical procedures with a current owner and review evidence; sampled
+    pilot_metric:
+      Percentage of critical procedures with a current owner and review evidence; sampled
       staff can find and execute the normal, exception, and fallback paths.
     evidence:
       - https://nextcloud.com/
@@ -105,9 +107,11 @@ task_fits:
   - task_id: manage-training-records
     relationship: system of record
     automation_level: assisted
-    what_manual_process_it_can_replace: Storing certificates in separate folders while tracking review
+    what_manual_process_it_can_replace:
+      Storing certificates in separate folders while tracking review
       and expiry dates in personal calendars or spreadsheets.
-    what_it_takes_off_the_team: Centralizes approved training evidence and the shared review calendar
+    what_it_takes_off_the_team:
+      Centralizes approved training evidence and the shared review calendar
       used to identify records due for manager attention.
     role_assisted: general-manager
     what_remains_human: A qualified assessor or manager evaluates practical competence, decides
@@ -116,7 +120,8 @@ task_fits:
       - Approved role requirements, evidence fields, expiry rules, and record owner
       - Restricted personnel-data access and retention policy
       - Manager-owned review calendar plus a manual check for missed or changed dates
-    failure_consequence: An expired record can go unnoticed, attendance can be mistaken for competence,
+    failure_consequence:
+      An expired record can go unnoticed, attendance can be mistaken for competence,
       or personnel evidence can be disclosed to an unauthorized user.
     pilot_metric: Percentage of assigned duties mapped to current competence evidence; expiry and
       restriction actions completed before unsafe assignment.

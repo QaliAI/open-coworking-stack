@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 ERPNext is a broad ERP that can model customers, invoices, assets, inventory, and other processes. For coworking, the safe experiment is one membership item, one customer, and one invoice workflow in staging, not a production accounting migration.
 
+**Manual tasks reduced:** approved record entry, invoice preparation, and routine status reporting within a configured pilot. Finance staff still approve accounting treatment, corrections, refunds, exceptions, and posted records.
+
 ## Fit and non-fit
 
 **Good fit:** an operator with ERP, accounting, Linux, and Frappe expertise who wants to evaluate consolidation and can fund process design and validation.

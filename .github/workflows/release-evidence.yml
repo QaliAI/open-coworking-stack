@@ -1,0 +1,55 @@
+name: Release Evidence (not a release)
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  build-evidence:
+    name: Build unsigned release evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out requested ref
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run release checks and build
+        run: pnpm check
+
+      - name: Generate SBOM, dependency-license inventory, and checksums
+        run: pnpm release:evidence
+
+      - name: Upload unsigned evidence bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-release-evidence-${{ github.sha }}
+          path: |
+            apps/web/dist/
+            release-artifacts/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Summarize evidence boundary
+        run: |
+          echo '### Release evidence' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This run built unsigned, unpublished evidence. Checksums provide integrity checks, not identity or provenance signing.' >> "$GITHUB_STEP_SUMMARY"

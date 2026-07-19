@@ -13,8 +13,24 @@ number_of_locations: One to five locations with location attribution on every op
 team_size: Two to fifteen sales, marketing, and community users.
 products_offered: [memberships, private offices, day passes, meeting rooms, event enquiries]
 technical_skill_required: Moderate; CRM administration, consent handling, integrations, hosting, and reporting.
-tasks_covered: [lead-capture, tour-scheduling, pipeline-follow-up, shared-sales-inbox, consented-lead-nurture, conversion-reporting]
-tasks_not_covered: [sales-negotiation, pricing-approval, contract-legal-review, payment-processing, member-onboarding-judgment, advertising-platform-management]
+tasks_covered:
+  [
+    lead-capture,
+    tour-scheduling,
+    pipeline-follow-up,
+    shared-sales-inbox,
+    consented-lead-nurture,
+    conversion-reporting,
+  ]
+tasks_not_covered:
+  [
+    sales-negotiation,
+    pricing-approval,
+    contract-legal-review,
+    payment-processing,
+    member-onboarding-judgment,
+    advertising-platform-management,
+  ]
 systems_of_record:
   - Twenty CRM is the lead, company, activity, and opportunity record.
   - Cal.com is the appointment schedule, not the sales outcome record.
@@ -39,7 +55,16 @@ data_flow:
   - Website and inbox leads are qualified by staff before creation or update in Twenty CRM.
   - Cal.com appointments link to CRM opportunities; staff record attendance and outcome in the CRM.
   - Only consented contacts enter Mautic, and aggregate CRM exports feed Metabase read-only.
-implementation_order: [define-funnel-and-consent, configure-crm, connect-tour-calendar, configure-shared-inbox, establish-data-quality-review, pilot-nurture, add-reporting]
+implementation_order:
+  [
+    define-funnel-and-consent,
+    configure-crm,
+    connect-tour-calendar,
+    configure-shared-inbox,
+    establish-data-quality-review,
+    pilot-nurture,
+    add-reporting,
+  ]
 cost_assumptions:
   monthly_cash: Edit for hosting, mailboxes, email delivery, domains, backups, and any managed plans.
   setup_labor: Include pipeline design, data cleanup, templates, consent review, integration tests, and staff training.
@@ -50,7 +75,13 @@ cost_assumptions:
     - Conversion depends on product, service, and human follow-up, not software alone.
     - Start without optional automation until data quality is stable.
   pricing_sources: []
-human_owners: [sales-manager for pipeline, marketing for consented campaigns, community-manager for tour experience, technical-operator for integrations]
+human_owners:
+  [
+    sales-manager for pipeline,
+    marketing for consented campaigns,
+    community-manager for tour experience,
+    technical-operator for integrations,
+  ]
 security_boundaries:
   - Restrict bulk exports and separate marketing consent from sales interest.
   - Do not store payment card data or unnecessary sensitive notes in the CRM.
@@ -65,7 +96,14 @@ assumptions:
 risks:
   - Poor integration can duplicate contacts or suppress valid consent changes.
   - Automation can amplify irrelevant or noncompliant messaging.
-getting_started: [define-funnel, clean-small-contact-set, pilot-one-location, measure-response-and-conversion, add-automation-last]
+getting_started:
+  [
+    define-funnel,
+    clean-small-contact-set,
+    pilot-one-location,
+    measure-response-and-conversion,
+    add-automation-last,
+  ]
 pilot_plan:
   - Process twenty leads through enquiry, tour, follow-up, and outcome.
   - Audit every handoff, consent state, duplicate, and missed response.

@@ -86,9 +86,11 @@ task_fits:
         review interval, and fallback copy.
       - Prerequisite is an approved data classification, sharing, retention, export, and offboarding
         policy configured and tested by administrators.
-    failure_consequence: Failure can expose sensitive procedures or leave staff following an obsolete
+    failure_consequence:
+      Failure can expose sensitive procedures or leave staff following an obsolete
       copy; remove unsafe sharing and use the approved fallback while a human reconciles versions.
-    pilot_metric: Metric is the percentage of critical procedures with one named owner, current review
+    pilot_metric:
+      Metric is the percentage of critical procedures with one named owner, current review
       evidence, approved access, and a successful staff retrieval test.
     evidence:
       - https://support.google.com/a/
@@ -96,12 +98,14 @@ task_fits:
   - task_id: coordinate-member-onboarding
     relationship: assistant
     automation_level: assisted
-    what_manual_process_it_can_replace: Manual process reduced is coordinating an approved onboarding
+    what_manual_process_it_can_replace:
+      Manual process reduced is coordinating an approved onboarding
       checklist through separate email threads, local files, and unowned calendar reminders.
     what_it_takes_off_the_team: Human work reduced is collecting approved intake details, sharing an
       owned checklist, scheduling orientation, and tracking unresolved actions in Workspace documents.
     role_assisted: community-manager
-    what_remains_human: Humans must verify agreement authorization and identity, interpret nonstandard
+    what_remains_human:
+      Humans must verify agreement authorization and identity, interpret nonstandard
       needs, approve each service, and decide readiness. Prohibited billing, physical-access,
       entitlement, identity, and exception decisions can never be fully automated.
     prerequisites:

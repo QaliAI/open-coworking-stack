@@ -3,7 +3,8 @@ title: Contribute
 description: How to contribute tools, guides, and fixes.
 ---
 
-See the repository [CONTRIBUTING.md](https://github.com/open-coworking-stack/open-coworking-stack/blob/main/CONTRIBUTING.md).
+The full requirements are in `CONTRIBUTING.md` at the repository root. This private release candidate
+does not publish a public source URL.
 
 Quick path:
 

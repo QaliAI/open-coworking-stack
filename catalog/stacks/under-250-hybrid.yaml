@@ -4,7 +4,8 @@ name: Under-$250 Hybrid
 tagline: Buy the coworking core and self-host only stable supporting capabilities
 description: A hybrid planning stack that allocates most cash to a dedicated operations platform and payment processor while keeping documentation, feedback, and monitoring portable.
 audience_roles: [owner-operator, operations-manager, finance, technical-operator]
-problems_solved: [automate-billing, improve-member-experience, integrate-stack, reduce-software-cost]
+problems_solved:
+  [automate-billing, improve-member-experience, integrate-stack, reduce-software-cost]
 workflows: [member-onboarding, room-booking, invoice-collections, reporting-kpis]
 monthly_cash_budget_band: under-500
 self_host_heavy: false
@@ -13,8 +14,25 @@ number_of_locations: One location, or two very small locations after a successfu
 team_size: Two to eight staff with shared operations and finance coverage.
 products_offered: [memberships, day passes, desks, meeting rooms]
 technical_skill_required: Moderate; SaaS configuration plus maintenance of a few low-complexity services.
-tasks_covered: [membership-administration, recurring-billing, booking, payment-collection, sop-publishing, feedback-collection, service-monitoring]
-tasks_not_covered: [statutory-accounting, tax-filing, custom-access-hardware, staffed-support, legal-review, complex-data-warehouse]
+tasks_covered:
+  [
+    membership-administration,
+    recurring-billing,
+    booking,
+    payment-collection,
+    sop-publishing,
+    feedback-collection,
+    service-monitoring,
+  ]
+tasks_not_covered:
+  [
+    statutory-accounting,
+    tax-filing,
+    custom-access-hardware,
+    staffed-support,
+    legal-review,
+    complex-data-warehouse,
+  ]
 systems_of_record:
   - OfficeRnD is the member, product, booking, and billing workflow record.
   - Stripe is the payment transaction record.
@@ -39,7 +57,17 @@ data_flow:
   - Staff maintain member and booking facts in OfficeRnD and send payments to Stripe.
   - Feedback is reviewed in aggregate and action items are documented without copying sensitive responses broadly.
   - Monitoring reports availability only and does not ingest member records.
-implementation_order: [verify-current-quotes, define-core-authority, configure-products, connect-payments, document-sops, test-export, add-monitoring, pilot-feedback]
+implementation_order:
+  [
+    verify-current-quotes,
+    define-core-authority,
+    configure-products,
+    connect-payments,
+    document-sops,
+    test-export,
+    add-monitoring,
+    pilot-feedback,
+  ]
 cost_assumptions:
   monthly_cash: Editable target below 250 in the operator's currency; confirm SaaS tier, payment fees, hosting, backups, taxes, and optional tools.
   setup_labor: Include configuration, data cleanup, migration rehearsal, staff training, and acceptance testing.
@@ -50,7 +78,13 @@ cost_assumptions:
     - The schema band is broader than the internal 250 planning target.
     - If the core quote consumes the ceiling, remove optional tools rather than omit controls.
   pricing_sources: []
-human_owners: [operations-manager for core configuration, finance for payment reconciliation, technical-operator for support tools, owner-operator for budget]
+human_owners:
+  [
+    operations-manager for core configuration,
+    finance for payment reconciliation,
+    technical-operator for support tools,
+    owner-operator for budget,
+  ]
 security_boundaries:
   - Keep card handling in Stripe and restrict exports to approved staff.
   - Do not let feedback or monitoring become shadow member records.
@@ -65,7 +99,14 @@ assumptions:
 risks:
   - Member or location growth may move the core platform outside the target.
   - Hybrid identity and ownership can create gaps between vendors.
-getting_started: [request-current-quotes, map-workflows, configure-sandbox, test-payments-and-exports, measure-support-labor]
+getting_started:
+  [
+    request-current-quotes,
+    map-workflows,
+    configure-sandbox,
+    test-payments-and-exports,
+    measure-support-labor,
+  ]
 pilot_plan:
   - Pilot one product, one room, and a small member cohort.
   - Test failed payment, cancellation, export, outage, and restore procedures.

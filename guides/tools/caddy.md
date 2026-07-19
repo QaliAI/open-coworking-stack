@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 Caddy is a reverse proxy with automatic HTTPS. In a coworking stack, use it first in front of one staging application, with deliberate access-log handling and a tested route back to the prior proxy.
 
+**Manual tasks reduced:** approved certificate renewal and repeatable routing configuration. A person still owns DNS changes, public exposure, application authorization, incident diagnosis, and rollback.
+
 ## Fit and non-fit
 
 **Good fit:** a technically operated self-hosted service needing TLS termination and routing, with DNS control, configuration review, and monitoring.

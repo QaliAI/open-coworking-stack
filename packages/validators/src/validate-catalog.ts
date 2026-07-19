@@ -150,6 +150,48 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
           } else {
             try {
               await stat(guideFile);
+              if (tool.guide_status === 'full') {
+                const guide = await readFile(guideFile, 'utf8');
+                const levelTwoHeadings = guide.match(/^## /gm)?.length ?? 0;
+                const hasCoverageChecklist =
+                  /^## Flagship requirement coverage/m.test(guide) && /^33\. /m.test(guide);
+                if (levelTwoHeadings < 33 && !hasCoverageChecklist) {
+                  issues.push({
+                    file: rel,
+                    level: 'error',
+                    message: `full guide requires 33 substantive sections or a 33-point coverage checklist, found ${levelTwoHeadings} H2 sections`,
+                  });
+                }
+                const requiredGuideConcepts = [
+                  'fit',
+                  'tasks',
+                  'human',
+                  'cost',
+                  'data map',
+                  'integration',
+                  'failure',
+                  'security',
+                  'privacy',
+                  'backup',
+                  'restore',
+                  'upgrade',
+                  'rollback',
+                  'exit',
+                  'sources',
+                  'review',
+                  'expert',
+                ];
+                const normalizedGuide = guide.toLowerCase();
+                for (const concept of requiredGuideConcepts) {
+                  if (!normalizedGuide.includes(concept)) {
+                    issues.push({
+                      file: rel,
+                      level: 'error',
+                      message: `full guide is missing required concept "${concept}"`,
+                    });
+                  }
+                }
+              }
             } catch {
               issues.push({
                 file: rel,

@@ -1,0 +1,29 @@
+---
+title: ROI/TCO Estimator
+description: Estimate capacity value, total operating cost, payback, and a transparent sensitivity range without promising software savings.
+sidebar:
+  badge:
+    text: New
+    variant: tip
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import RoiCalculator from '../../components/RoiCalculator.astro';
+
+<Aside type="caution" title="Time value is not automatically cash savings">
+  Use measured workflow volume and time. Capacity that becomes available has value only when it can
+  be redirected to useful work; it is not a staffing reduction or guaranteed financial return.
+</Aside>
+
+This browser-only estimator shows the assumptions and formulas needed for an operator conversation.
+Use the low/base/high range, then validate it with a bounded pilot and actual invoices and time samples.
+
+<RoiCalculator />
+
+## Formula boundaries
+
+- Potential hours redirected = adopted task volume × positive minutes difference ÷ 60.
+- Gross labor capacity value = potential hours redirected × loaded hourly labor cost.
+- Monthly operating cost includes software/hosting, other cash cost, and maintenance labor.
+- Net estimates subtract operating and setup costs; they do not assert that cash will be saved.
+- Payback is not shown when the estimated monthly net value is zero or negative.

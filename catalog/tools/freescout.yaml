@@ -85,7 +85,8 @@ task_fits:
       - Prerequisite is an approved mailbox, accountable staff roster, assignment and response rules,
         and an urgent fallback channel.
       - Prerequisite is approved access, attachment, prohibited-data, retention, and deletion policy.
-    failure_consequence: Failure can leave a member request unowned, expose sensitive email, or delay
+    failure_consequence:
+      Failure can leave a member request unowned, expose sensitive email, or delay
       an urgent case; staff must monitor the source mailbox and use the fallback contact path.
     pilot_metric: Metric is correct first-owner assignment, time to human acknowledgment, unassigned
       request age, and urgent cases missed during a synthetic pilot.
@@ -95,9 +96,11 @@ task_fits:
   - task_id: triage-maintenance-requests
     relationship: partial automation
     automation_level: assisted
-    what_manual_process_it_can_replace: Manual process reduced is receiving facilities reports through
+    what_manual_process_it_can_replace:
+      Manual process reduced is receiving facilities reports through
       scattered email, chat, and verbal channels without a shared owner or thread.
-    what_it_takes_off_the_team: Human work reduced is collecting messages in one queue, preserving the
+    what_it_takes_off_the_team:
+      Human work reduced is collecting messages in one queue, preserving the
       conversation, and assigning routine follow-up to a named operator.
     role_assisted: operations-facilities-manager
     what_remains_human: A competent human must assess credible safety exposure, set priority, choose
@@ -107,7 +110,8 @@ task_fits:
       - Prerequisite is an approved facilities mailbox with location, asset, urgency, and contact
         fields plus a named duty owner.
       - Prerequisite is an emergency bypass and escalation route tested outside FreeScout.
-    failure_consequence: Failure can fragment duplicate reports or delay control of a safety-critical
+    failure_consequence:
+      Failure can fragment duplicate reports or delay control of a safety-critical
       defect; the duty owner must retain a separately tested emergency reporting path.
     pilot_metric: Metric is correct human priority and owner on synthetic requests, duplicate rate,
       and time until safety-critical reports reach the duty owner.
@@ -161,7 +165,8 @@ verification:
     - kind: pricing
       source: https://freescout.net/modules/
       verified_on: 2026-07-17
-      notes: Official modules page documents optional modules; module requirements and prices must be
+      notes:
+        Official modules page documents optional modules; module requirements and prices must be
         rechecked before purchase.
 featured: true
 rank_score: 83

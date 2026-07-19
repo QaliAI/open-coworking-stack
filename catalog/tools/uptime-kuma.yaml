@@ -66,10 +66,8 @@ task_fits:
   - task_id: triage-network-connectivity
     relationship: infrastructure
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Repeated manual checks of configured HTTP endpoints, ports, and certificates after a report.
-    what_it_takes_off_the_team:
-      Supplies check results, alert timing, and heartbeat history for monitored services.
+    what_manual_process_it_can_replace: Repeated manual checks of configured HTTP endpoints, ports, and certificates after a report.
+    what_it_takes_off_the_team: Supplies check results, alert timing, and heartbeat history for monitored services.
     role_assisted: it-security-administrator
     what_remains_human:
       Validate each alert, establish affected users and locations, distinguish network from

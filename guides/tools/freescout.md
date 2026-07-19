@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 FreeScout is a self-hosted shared mailbox/help desk. A coworking operator can route one `support@` alias through it for 14 days to evaluate assignment, canned replies, escalation, and visibility across community and operations staff.
 
+**Manual tasks reduced:** assigning, labeling, and tracking routine shared-mailbox conversations. Staff still interpret requests, protect sensitive data, approve consequential replies, and resolve member disputes.
+
 ## Fit and non-fit
 
 **Good fit:** a smaller site needing shared handling of member IT/facilities email with explicit closure and vendor escalation ownership.

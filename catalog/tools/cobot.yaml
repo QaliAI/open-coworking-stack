@@ -53,13 +53,13 @@ implementation:
   smallest_useful_experiment: Trial with 20 members max; time how long invoicing and check-in take
     versus your spreadsheet process.
 homepage: https://www.cobot.me/
-documentation: https://www.cobot.me/en/help
+documentation: https://www.cobot.me/support
 links:
   - label: Homepage
     url: https://www.cobot.me/
     kind: homepage
   - label: Documentation
-    url: https://www.cobot.me/en/help
+    url: https://www.cobot.me/support
     kind: docs
   - label: Pricing
     url: https://www.cobot.me/en/pricing
@@ -96,7 +96,7 @@ verification:
   last_reviewed: 2026-07-17
   sources:
     - https://www.cobot.me/
-    - https://www.cobot.me/en/help
+    - https://www.cobot.me/support
   notes:
     Seed entry compiled from official project sites and repositories. Re-verify pricing, license
     text, and feature claims before production decisions. Star counts and free-tier numeric limits

@@ -71,10 +71,8 @@ task_fits:
   - task_id: analyze-campaign-performance
     relationship: reporting layer
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Manually copying basic website pageview and event counts into an ad hoc campaign report.
-    what_it_takes_off_the_team:
-      Collects and presents website traffic and configured event evidence for campaign review.
+    what_manual_process_it_can_replace: Manually copying basic website pageview and event counts into an ad hoc campaign report.
+    what_it_takes_off_the_team: Collects and presents website traffic and configured event evidence for campaign review.
     role_assisted: marketing-manager
     what_remains_human:
       Validate tracking and consent, reconcile web evidence with spend and qualified outcomes,
@@ -118,8 +116,7 @@ verification:
     - https://umami.is/
     - https://github.com/umami-software/umami
     - https://umami.is/docs
-  notes:
-    Editorial evaluation based on the listed official product, repository, documentation, and
+  notes: Editorial evaluation based on the listed official product, repository, documentation, and
     pricing pages. Task fit has not been implementation-tested and does not establish end-to-end
     campaign attribution.
   reviewer: seed-catalog

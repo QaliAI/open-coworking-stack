@@ -1,7 +1,8 @@
 # Roadmap
 
-Checked items mean that the named artifact exists in the current working tree. They do not imply a
-successful hosted CI run, a live deployment, or independent verification of every catalog claim.
+Checked items mean that the named artifact exists or the specifically named verification has occurred.
+They do not imply a live deployment, release approval, runtime verification, or independent
+verification of every catalog claim.
 
 ## v0.1 — Foundation (current)
 
@@ -15,8 +16,13 @@ successful hosted CI run, a live deployment, or independent verification of ever
 - [x] Initial comparison page and four catalog-backed reference stacks
 - [x] Five validated Docker Compose starter packs with security and restore guidance
 - [x] Astro + Starlight documentation site source with Pagefind provided by Starlight
-- [ ] Reproducible clean-checkout install and full site build verified in hosted CI
+- [x] Reproducible clean-checkout install and full site build verified in initial hosted `main` CI
 - [x] GitHub Actions definitions for CI, Pages deployment, link checking, and freshness
+- [x] Release-process baseline with changelog, readiness gates, preview/launch checklists, and rollback
+- [x] Unsigned SBOM, dependency-license, checksum, and advisory reference-image scan automation
+- [ ] Release candidate passes the complete current workflow suite
+- [ ] Authorized protected preview and rollback rehearsal
+- [ ] Public launch authorization and deployment (Pages currently not enabled/configured)
 - [x] Issue forms, pull request template, Dependabot, and community policy documents
 - [x] ADR index, template, and Git-first content-model decision
 - [x] Definitions for all 20 workflow taxonomy values and three integration recipes

@@ -160,6 +160,163 @@
           },
           "minItems": 1
         },
+        "operator_profile": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "number_of_locations": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "team_size": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "products_offered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "technical_skill_required": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "tasks_covered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "tasks_not_covered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "systems_of_record": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "data_flow": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "implementation_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "cost_assumptions": {
+          "type": "object",
+          "properties": {
+            "monthly_cash": {
+              "type": "string"
+            },
+            "setup_labor": {
+              "type": "string"
+            },
+            "maintenance_labor": {
+              "type": "string"
+            },
+            "messaging_email_sms": {
+              "type": "string"
+            },
+            "hosting_storage": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "pricing_sources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "default": []
+            }
+          },
+          "required": [
+            "monthly_cash",
+            "setup_labor",
+            "maintenance_labor",
+            "messaging_email_sms",
+            "hosting_storage"
+          ],
+          "additionalProperties": false
+        },
+        "human_owners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "security_boundaries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "backup_and_recovery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "pilot_plan": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "rollout_30_day": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "maturity_90_day": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "exit_strategy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "commercial_fallback": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
         "verification": {
           "type": "object",
           "properties": {

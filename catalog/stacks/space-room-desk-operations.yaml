@@ -4,7 +4,8 @@ name: Space Room and Desk Operations
 tagline: Keep resource availability, site signals, and staff response clearly owned
 description: An operations stack for desk and room reservations, network visibility, basic site automation, and service monitoring with manual safety and facilities response retained.
 audience_roles: [operations-manager, facilities, community-manager, technical-operator]
-problems_solved: [fill-meeting-rooms, measure-utilization, improve-wifi-reliability, reduce-manual-admin]
+problems_solved:
+  [fill-meeting-rooms, measure-utilization, improve-wifi-reliability, reduce-manual-admin]
 workflows: [room-booking, desk-hot-desk, facility-maintenance, incident-response]
 monthly_cash_budget_band: under-200
 self_host_heavy: true
@@ -13,8 +14,24 @@ number_of_locations: One to three locations, each with explicit resource and net
 team_size: Three to twenty staff across hosts, facilities, and technical support.
 products_offered: [hot desks, dedicated desks, meeting rooms, private offices]
 technical_skill_required: Moderate to high; resource administration, networking, IoT isolation, monitoring, and backups.
-tasks_covered: [desk-booking, room-booking, availability-publishing, network-observability, basic-site-automation, outage-alerting]
-tasks_not_covered: [life-safety-control, emergency-response, building-code-compliance, maintenance-repair, cleaning, access-authorization-judgment]
+tasks_covered:
+  [
+    desk-booking,
+    room-booking,
+    availability-publishing,
+    network-observability,
+    basic-site-automation,
+    outage-alerting,
+  ]
+tasks_not_covered:
+  [
+    life-safety-control,
+    emergency-response,
+    building-code-compliance,
+    maintenance-repair,
+    cleaning,
+    access-authorization-judgment,
+  ]
 systems_of_record:
   - Seatsurfing is the desk reservation record.
   - LibreBooking is the room reservation record.
@@ -39,7 +56,17 @@ data_flow:
   - Staff publish desks and rooms in their designated booking authorities and resolve exceptions manually.
   - Network and service telemetry alerts technical owners without becoming a member activity record.
   - Home Assistant may consume non-sensitive site signals but must not control life-safety systems.
-implementation_order: [inventory-resources, choose-booking-authorities, define-policies, pilot-one-room-and-desk-zone, baseline-network, add-monitoring, isolate-iot, pilot-non-safety-automation]
+implementation_order:
+  [
+    inventory-resources,
+    choose-booking-authorities,
+    define-policies,
+    pilot-one-room-and-desk-zone,
+    baseline-network,
+    add-monitoring,
+    isolate-iot,
+    pilot-non-safety-automation,
+  ]
 cost_assumptions:
   monthly_cash: Edit for booking hosting or plans, network support, monitoring delivery, backups, and replacement hardware reserves.
   setup_labor: Include resource cleanup, floor validation, network mapping, policy design, signage, and staff testing.
@@ -50,7 +77,13 @@ cost_assumptions:
     - Hardware purchase and cabling are outside the monthly software planning band.
     - Automation must fail safely and preserve manual control.
   pricing_sources: []
-human_owners: [operations-manager for inventory and policy, community-manager for exceptions, facilities for site response, technical-operator for network and hosting]
+human_owners:
+  [
+    operations-manager for inventory and policy,
+    community-manager for exceptions,
+    facilities for site response,
+    technical-operator for network and hosting,
+  ]
 security_boundaries:
   - Separate member, staff, administrative, and IoT networks.
   - Limit location and usage telemetry to operational necessity.
@@ -65,7 +98,15 @@ assumptions:
 risks:
   - Split calendars can cause double booking and member conflict.
   - Poorly isolated IoT or network administration can expand security impact.
-getting_started: [audit-inventory, label-resources, pilot-small-zone, publish-booking-rules, baseline-alerts, document-manual-mode]
+getting_started:
+  [
+    audit-inventory,
+    label-resources,
+    pilot-small-zone,
+    publish-booking-rules,
+    baseline-alerts,
+    document-manual-mode,
+  ]
 pilot_plan:
   - Run one room and one desk zone for two weeks.
   - Test no-show, conflict, network outage, and manual check-in procedures.

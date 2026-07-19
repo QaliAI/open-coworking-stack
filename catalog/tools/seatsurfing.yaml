@@ -73,10 +73,8 @@ task_fits:
   - task_id: manage-desk-assignments
     relationship: system of record
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Printed floor maps, whiteboard claims, and spreadsheet lists for ordinary hot-desk requests.
-    what_it_takes_off_the_team:
-      Presents configured desks and records member reservations against current availability.
+    what_manual_process_it_can_replace: Printed floor maps, whiteboard claims, and spreadsheet lists for ordinary hot-desk requests.
+    what_it_takes_off_the_team: Presents configured desks and records member reservations against current availability.
     role_assisted: community-coordinator-front-desk
     what_remains_human:
       Staff must verify entitlement and actual desk readiness, handle accessibility needs, and fairly
@@ -96,10 +94,8 @@ task_fits:
   - task_id: analyze-space-utilization
     relationship: reporting layer
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Manually compiling desk reservation counts from calendars, sign-in sheets, and spreadsheets.
-    what_it_takes_off_the_team:
-      Provides booking-based occupancy signals from the configured desk and space inventory.
+    what_manual_process_it_can_replace: Manually compiling desk reservation counts from calendars, sign-in sheets, and spreadsheets.
+    what_it_takes_off_the_team: Provides booking-based occupancy signals from the configured desk and space inventory.
     role_assisted: operations-facilities-manager
     what_remains_human:
       Operations staff must check booking data against observed use, aggregate it to protect privacy,

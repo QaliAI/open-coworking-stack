@@ -73,8 +73,7 @@ task_fits:
   - task_id: receive-and-log-mail
     relationship: assistant
     automation_level: manual support
-    what_manual_process_it_can_replace:
-      Paper archive indexes and unsearchable scan folders created after staff physically accept an item.
+    what_manual_process_it_can_replace: Paper archive indexes and unsearchable scan folders created after staff physically accept an item.
     what_it_takes_off_the_team:
       Ingests document images and produces OCR text, searchable metadata, and tags for the retained
       digital record.
@@ -98,10 +97,8 @@ task_fits:
   - task_id: review-retention-and-deletion
     relationship: system of record
     automation_level: manual support
-    what_manual_process_it_can_replace:
-      Searching paper files and shared-drive folders to identify records for a scheduled retention review.
-    what_it_takes_off_the_team:
-      Makes retained document images, OCR text, correspondents, and tags searchable for an owned review.
+    what_manual_process_it_can_replace: Searching paper files and shared-drive folders to identify records for a scheduled retention review.
+    what_it_takes_off_the_team: Makes retained document images, OCR text, correspondents, and tags searchable for an owned review.
     role_assisted: it-security-administrator
     what_remains_human:
       Record owners and qualified reviewers must interpret purpose, holds, legal duties, backup effects,
@@ -145,8 +142,7 @@ verification:
     - https://docs.paperless-ngx.com/
     - https://github.com/paperless-ngx/paperless-ngx
     - https://docs.paperless-ngx.com/
-  notes:
-    Editorial review used the official documentation and repository only. OCR quality, access
+  notes: Editorial review used the official documentation and repository only. OCR quality, access
     segregation, retention behavior, backup and export recovery, and operator outcomes remain untested.
   reviewer: catalog-editorial-review
   completeness: editorially-reviewed

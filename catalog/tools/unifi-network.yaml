@@ -72,10 +72,8 @@ task_fits:
   - task_id: manage-guest-wifi
     relationship: infrastructure
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Configuring each access point independently and relying on one unsegmented Wi-Fi network.
-    what_it_takes_off_the_team:
-      Provides one place to configure UniFi Wi-Fi networks and inspect connected-client context.
+    what_manual_process_it_can_replace: Configuring each access point independently and relying on one unsegmented Wi-Fi network.
+    what_it_takes_off_the_team: Provides one place to configure UniFi Wi-Fi networks and inspect connected-client context.
     role_assisted: it-security-administrator
     what_remains_human:
       Approve isolation, retention, and access policy; validate the configured boundaries; authorize
@@ -97,10 +95,8 @@ task_fits:
   - task_id: triage-network-connectivity
     relationship: infrastructure
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Inspecting individual UniFi devices before establishing basic client and network context.
-    what_it_takes_off_the_team:
-      Centralizes UniFi device, network, and connected-client context for initial investigation.
+    what_manual_process_it_can_replace: Inspecting individual UniFi devices before establishing basic client and network context.
+    what_it_takes_off_the_team: Centralizes UniFi device, network, and connected-client context for initial investigation.
     role_assisted: it-security-administrator
     what_remains_human:
       Distinguish device, radio, configuration, upstream, and security causes; minimize member-device

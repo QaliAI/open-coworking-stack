@@ -13,8 +13,24 @@ number_of_locations: One location or a small group with separate resource calend
 team_size: Two to ten staff with daily host coverage and a named community owner.
 products_offered: [tours, coworking memberships, desks, meeting rooms, community events]
 technical_skill_required: Moderate for self-hosting and integrations; low for trained daily users.
-tasks_covered: [tour-scheduling, room-request-management, desk-booking-pilot, shared-member-support, member-feedback, community-discussion]
-tasks_not_covered: [membership-billing, payment-processing, door-access-control, safeguarding-judgment, conflict-resolution, staffed-hosting]
+tasks_covered:
+  [
+    tour-scheduling,
+    room-request-management,
+    desk-booking-pilot,
+    shared-member-support,
+    member-feedback,
+    community-discussion,
+  ]
+tasks_not_covered:
+  [
+    membership-billing,
+    payment-processing,
+    door-access-control,
+    safeguarding-judgment,
+    conflict-resolution,
+    staffed-hosting,
+  ]
 systems_of_record:
   - The existing membership or billing platform remains the member record.
   - LibreBooking is the room reservation record during the pilot.
@@ -45,7 +61,16 @@ data_flow:
   - Prospects choose a tour slot in Cal.com and staff record sales outcomes in the existing CRM.
   - Members request resources in one designated booking tool to avoid double booking.
   - Support themes and aggregate feedback inform programming; raw private messages are not broadly exported.
-implementation_order: [define-member-journey, select-booking-authority, pilot-tour-scheduling, configure-support-sla, pilot-one-room, add-feedback, consider-community-chat]
+implementation_order:
+  [
+    define-member-journey,
+    select-booking-authority,
+    pilot-tour-scheduling,
+    configure-support-sla,
+    pilot-one-room,
+    add-feedback,
+    consider-community-chat,
+  ]
 cost_assumptions:
   monthly_cash: Edit for hosting, optional managed plans, domains, delivery services, and support coverage.
   setup_labor: Allow time for resource rules, templates, privacy review, staff scripts, and member testing.
@@ -56,7 +81,13 @@ cost_assumptions:
     - The budget band is a planning target, not a price guarantee.
     - Staff hospitality and moderation time remain essential.
   pricing_sources: []
-human_owners: [community-manager for experience and moderation, operations-manager for booking rules, sales-manager for tour follow-up, technical-operator for hosting]
+human_owners:
+  [
+    community-manager for experience and moderation,
+    operations-manager for booking rules,
+    sales-manager for tour follow-up,
+    technical-operator for hosting,
+  ]
 security_boundaries:
   - Do not expose member directories or conversation history by default.
   - Keep one booking authority per resource and restrict calendar administration.
@@ -71,7 +102,15 @@ assumptions:
 risks:
   - Multiple identities and calendars can confuse members.
   - Unstaffed channels can reduce trust rather than improve experience.
-getting_started: [map-member-touchpoints, pilot-tours, publish-response-hours, pilot-one-room, collect-staff-feedback, invite-small-member-cohort]
+getting_started:
+  [
+    map-member-touchpoints,
+    pilot-tours,
+    publish-response-hours,
+    pilot-one-room,
+    collect-staff-feedback,
+    invite-small-member-cohort,
+  ]
 pilot_plan:
   - Run tours and one room for two weeks with staff and invited members.
   - Log double bookings, unanswered contacts, and accessibility barriers.

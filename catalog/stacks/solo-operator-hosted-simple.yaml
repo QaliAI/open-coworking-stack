@@ -13,8 +13,24 @@ number_of_locations: One location.
 team_size: One primary operator with one documented emergency delegate.
 products_offered: [memberships, day passes, meeting rooms]
 technical_skill_required: Low; vendor administration, exports, account security, and basic website editing.
-tasks_covered: [membership-administration, payment-collection, tour-scheduling, staff-email, simple-marketing-content, member-communication]
-tasks_not_covered: [statutory-accounting, tax-filing, physical-access-response, staffed-cover, legal-review, vendor-outage-resolution]
+tasks_covered:
+  [
+    membership-administration,
+    payment-collection,
+    tour-scheduling,
+    staff-email,
+    simple-marketing-content,
+    member-communication,
+  ]
+tasks_not_covered:
+  [
+    statutory-accounting,
+    tax-filing,
+    physical-access-response,
+    staffed-cover,
+    legal-review,
+    vendor-outage-resolution,
+  ]
 systems_of_record:
   - Cobot is the member, product, booking, and billing workflow record.
   - Stripe is the payment transaction record.
@@ -39,7 +55,17 @@ data_flow:
   - The operator enters membership facts once in Cobot and directs payments to Stripe.
   - Tour requests enter the operator calendar; accepted prospects are created in Cobot by a human.
   - Financial summaries flow to the external accountant without sharing unnecessary member data.
-implementation_order: [choose-membership-authority, configure-products, connect-payments, secure-staff-account, test-onboarding, test-refund, publish-tour-route, document-outage-process]
+implementation_order:
+  [
+    choose-membership-authority,
+    configure-products,
+    connect-payments,
+    secure-staff-account,
+    test-onboarding,
+    test-refund,
+    publish-tour-route,
+    document-outage-process,
+  ]
 cost_assumptions:
   monthly_cash: Edit using current official quotes for the chosen plans, payment volume, domain, and optional scheduling or design tools.
   setup_labor: A few structured configuration and testing sessions plus accountant and staff review.
@@ -50,7 +76,12 @@ cost_assumptions:
     - Simplicity is more important than maximizing free tiers.
     - A relief operator still needs documented access and procedures.
   pricing_sources: []
-human_owners: [owner-operator for operations and vendors, external-accountant for statutory records, emergency-delegate for continuity]
+human_owners:
+  [
+    owner-operator for operations and vendors,
+    external-accountant for statutory records,
+    emergency-delegate for continuity,
+  ]
 security_boundaries:
   - Keep card data with Stripe and grant the accountant minimum necessary access.
   - Use multifactor authentication and separate owner and delegate accounts.
@@ -65,7 +96,14 @@ assumptions:
 risks:
   - The owner is a people and process single point of failure.
   - SaaS outages or account suspension can interrupt most workflows.
-getting_started: [list-products-and-policies, configure-test-account, process-test-payment, export-test-data, document-delegate-access]
+getting_started:
+  [
+    list-products-and-policies,
+    configure-test-account,
+    process-test-payment,
+    export-test-data,
+    document-delegate-access,
+  ]
 pilot_plan:
   - Onboard one test member and process payment, booking, cancellation, and refund.
   - Have the emergency delegate follow the outage runbook without owner assistance.

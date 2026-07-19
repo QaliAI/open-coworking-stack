@@ -15,7 +15,10 @@ apps/web/src/content/docs/stacks/generated/
 apps/web/src/content/docs/workflows/generated/
 apps/web/src/content/docs/guides/tools/
 apps/web/src/content/docs/integrations/generated/
+apps/web/src/content/docs/tasks/generated/
+apps/web/src/content/docs/roles/generated/
 apps/web/public/data/
+release-artifacts/
 
 # Environment
 .env

@@ -23,6 +23,8 @@ export interface CatalogExport {
     spdx: string | null;
     cost_model: Tool['cost']['model'];
     difficulty: Tool['implementation']['difficulty'];
+    maintenance_burden: Tool['implementation']['maintenance_burden'];
+    skills_required: Tool['implementation']['skills_required'];
     guide_status: Tool['guide_status'];
     featured: boolean;
     rank_score: number;
@@ -616,6 +618,8 @@ export async function generateDerivedDocs(
     spdx: tool.license.spdx ?? null,
     cost_model: tool.cost.model,
     difficulty: tool.implementation.difficulty,
+    maintenance_burden: tool.implementation.maintenance_burden,
+    skills_required: tool.implementation.skills_required,
     guide_status: tool.guide_status,
     featured: tool.featured,
     rank_score: tool.rank_score,

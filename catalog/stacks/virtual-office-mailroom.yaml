@@ -4,17 +4,35 @@ name: Virtual Office and Mailroom
 tagline: Track customer authority, mail events, documents, and exceptions with custody controls
 description: A virtual-office operating pattern for customer records, mail and package events, secure document handling, signatures, and support while preserving physical custody and human verification.
 audience_roles: [virtual-office-mailroom, operations-manager, owner-operator, finance]
-problems_solved: [operate-virtual-office, reduce-manual-admin, privacy-compliance, centralize-knowledge]
+problems_solved:
+  [operate-virtual-office, reduce-manual-admin, privacy-compliance, centralize-knowledge]
 workflows: [mail-package-handling, member-onboarding, member-offboarding, compliance-review]
 monthly_cash_budget_band: under-500
 self_host_heavy: false
 operator_profile: An operator offering legitimate address and mail services with trained staff, documented custody, and local legal review.
 number_of_locations: One or more staffed receiving locations with location-specific logs.
 team_size: Two or more trained staff so custody and exception handling are not dependent on one person.
-products_offered: [business-address-service, mail-receipt, package-notification, document-scanning, mail-forwarding]
+products_offered:
+  [business-address-service, mail-receipt, package-notification, document-scanning, mail-forwarding]
 technical_skill_required: Moderate; SaaS administration, scanner security, retention, exports, and access review.
-tasks_covered: [customer-record-management, mail-event-logging, package-notification, approved-document-scanning, signature-workflow, support-case-tracking]
-tasks_not_covered: [identity-legal-judgment, prohibited-mail-screening, physical-custody, carrier-liability, regulatory-advice, suspicious-activity-decision]
+tasks_covered:
+  [
+    customer-record-management,
+    mail-event-logging,
+    package-notification,
+    approved-document-scanning,
+    signature-workflow,
+    support-case-tracking,
+  ]
+tasks_not_covered:
+  [
+    identity-legal-judgment,
+    prohibited-mail-screening,
+    physical-custody,
+    carrier-liability,
+    regulatory-advice,
+    suspicious-activity-decision,
+  ]
 systems_of_record:
   - OfficeRnD is the customer, product, and service status record.
   - Paperless-ngx is the approved scanned-document record when scanning is authorized.
@@ -39,7 +57,17 @@ data_flow:
   - Staff verify service status before logging a physical mail event against the customer record.
   - Authorized items are scanned to Paperless-ngx and linked by reference, not copied into broad inboxes.
   - Notifications contain minimum necessary information and customer instructions return through Zammad.
-implementation_order: [obtain-local-legal-review, define-custody-policy, configure-customer-products, configure-mail-event-fields, secure-scanning, configure-signatures, configure-support, test-retention-and-export]
+implementation_order:
+  [
+    obtain-local-legal-review,
+    define-custody-policy,
+    configure-customer-products,
+    configure-mail-event-fields,
+    secure-scanning,
+    configure-signatures,
+    configure-support,
+    test-retention-and-export,
+  ]
 cost_assumptions:
   monthly_cash: Edit for core platform, scanning storage, signature volume, support hosting, delivery, postage, and secure destruction.
   setup_labor: Include legal and process review, customer migration, custody design, templates, scanner hardening, and staff drills.
@@ -50,7 +78,13 @@ cost_assumptions:
     - Postage, labor, secure storage, and destruction are material operating costs.
     - Local virtual-office and mail regulations must drive configuration.
   pricing_sources: []
-human_owners: [mailroom-lead for custody, operations-manager for service records, owner-operator for legal risk, technical-operator for document security]
+human_owners:
+  [
+    mailroom-lead for custody,
+    operations-manager for service records,
+    owner-operator for legal risk,
+    technical-operator for document security,
+  ]
 security_boundaries:
   - Separate physical custody from digital authorization and require staff identity on each event.
   - Restrict scanned documents by role and prohibit casual forwarding through personal accounts.
@@ -65,7 +99,15 @@ assumptions:
 risks:
   - Misdelivery or unauthorized scanning can create serious privacy and custody harm.
   - Digital records cannot compensate for weak physical chain of custody.
-getting_started: [review-legal-duties, map-custody, pilot-internal-mail, test-notifications, test-customer-export, train-two-staff]
+getting_started:
+  [
+    review-legal-duties,
+    map-custody,
+    pilot-internal-mail,
+    test-notifications,
+    test-customer-export,
+    train-two-staff,
+  ]
 pilot_plan:
   - Process internal test letters and packages through receipt, scan, notification, release, and destruction.
   - Reconcile every physical item to a digital event and exception owner.

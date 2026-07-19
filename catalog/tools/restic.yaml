@@ -66,8 +66,7 @@ task_fits:
   - task_id: perform-backup-restore-tests
     relationship: infrastructure
     automation_level: partially automated
-    what_manual_process_it_can_replace:
-      Ad hoc file copies and backup checks that stop at a successful job message or downloaded file.
+    what_manual_process_it_can_replace: Ad hoc file copies and backup checks that stop at a successful job message or downloaded file.
     what_it_takes_off_the_team:
       Creates encrypted snapshots and provides repository checking and restore commands for a
       repeatable recovery exercise.

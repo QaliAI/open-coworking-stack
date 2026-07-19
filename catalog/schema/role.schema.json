@@ -1,0 +1,186 @@
+{
+  "$ref": "#/definitions/Role",
+  "definitions": {
+    "Role": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "enum": [
+            "owner-operator",
+            "general-manager",
+            "community-coordinator-front-desk",
+            "community-manager",
+            "sales-leasing-manager",
+            "marketing-manager",
+            "event-manager",
+            "virtual-office-mailroom-manager",
+            "operations-facilities-manager",
+            "finance-billing-administrator",
+            "it-security-administrator",
+            "multi-location-operator",
+            "consultant-implementer",
+            "member"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 40
+        },
+        "responsibilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "daily_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "weekly_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "monthly_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "revenue_impacting_work": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "member_experience_work": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "repetitive_administrative_work": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "dangerous_to_automate_blindly": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "recommended_task_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "easiest_hosted_stack": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hybrid_stack": {
+          "type": "string",
+          "minLength": 1
+        },
+        "self_hosted_stack": {
+          "type": "string",
+          "minLength": 1
+        },
+        "suggested_workflows": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "kpis": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "improvement_plan_30_day": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "implementation_owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expert_help_triggers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "name",
+        "description",
+        "responsibilities",
+        "daily_tasks",
+        "weekly_tasks",
+        "monthly_tasks",
+        "revenue_impacting_work",
+        "member_experience_work",
+        "repetitive_administrative_work",
+        "dangerous_to_automate_blindly",
+        "recommended_task_ids",
+        "easiest_hosted_stack",
+        "hybrid_stack",
+        "self_hosted_stack",
+        "suggested_workflows",
+        "kpis",
+        "improvement_plan_30_day",
+        "implementation_owner",
+        "expert_help_triggers"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

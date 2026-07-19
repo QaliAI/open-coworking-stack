@@ -74,10 +74,8 @@ task_fits:
   - task_id: review-privileged-access
     relationship: assistant
     automation_level: manual support
-    what_manual_process_it_can_replace:
-      Reviewing shared passwords and their recipients from an unstructured spreadsheet or document.
-    what_it_takes_off_the_team:
-      Keeps Vaultwarden organization membership and shared collection access in one reviewable place.
+    what_manual_process_it_can_replace: Reviewing shared passwords and their recipients from an unstructured spreadsheet or document.
+    what_it_takes_off_the_team: Keeps Vaultwarden organization membership and shared collection access in one reviewable place.
     role_assisted: it-security-administrator
     what_remains_human:
       Inventory privileged capabilities outside the vault, verify named need and authentication,
@@ -99,10 +97,8 @@ task_fits:
   - task_id: revoke-departing-access
     relationship: infrastructure
     automation_level: manual support
-    what_manual_process_it_can_replace:
-      Removing a departing user separately from each shared password document or distribution list.
-    what_it_takes_off_the_team:
-      Provides a central place to remove the user's access to Vaultwarden organization collections.
+    what_manual_process_it_can_replace: Removing a departing user separately from each shared password document or distribution list.
+    what_it_takes_off_the_team: Provides a central place to remove the user's access to Vaultwarden organization collections.
     role_assisted: it-security-administrator
     what_remains_human:
       Confirm authorized timing, preserve emergency continuity, revoke every downstream account and

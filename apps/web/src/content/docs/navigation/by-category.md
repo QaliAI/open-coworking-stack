@@ -5,6 +5,9 @@ description: Category-based entry points covering the complete coworking technol
 
 Choose a category to open the directory with that filter applied. Categories describe a tool's primary function; use role, workflow, cost, and verification filters to narrow the result further.
 
+Other operator paths: [lifecycle](../by-lifecycle/), [business model](../by-business-model/),
+[technical ability](../by-technical-ability/), and [budget](../by-budget/).
+
 ## Member and commercial operations
 
 - [Access control](../../directory/?category=access-control) (`access-control`)

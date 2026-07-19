@@ -70,8 +70,7 @@ task_fits:
   - task_id: publish-campaign-assets
     relationship: partial automation
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Editing server files directly to publish approved campaign content on the marketing website.
+    what_manual_process_it_can_replace: Editing server files directly to publish approved campaign content on the marketing website.
     what_it_takes_off_the_team:
       Provides an administrative editor and publishing workflow for the website portion of a
       campaign.

@@ -15,6 +15,12 @@ const site =
 const hasGeneratedWorkflows = existsSync(
   new URL('./src/content/docs/workflows/generated', import.meta.url),
 );
+const hasGeneratedTasks = existsSync(
+  new URL('./src/content/docs/tasks/generated', import.meta.url),
+);
+const hasGeneratedRoles = existsSync(
+  new URL('./src/content/docs/roles/generated', import.meta.url),
+);
 
 export default defineConfig({
   site,
@@ -52,7 +58,24 @@ export default defineConfig({
             { label: 'By category', slug: 'navigation/by-category' },
             { label: 'By role', slug: 'navigation/by-role' },
             { label: 'By problem', slug: 'navigation/by-problem' },
-            { label: 'Comparisons', slug: 'comparisons' },
+            ...(hasGeneratedTasks
+              ? [{ label: 'Operator tasks', autogenerate: { directory: 'tasks/generated' } }]
+              : []),
+            ...(hasGeneratedRoles
+              ? [{ label: 'Operator roles', autogenerate: { directory: 'roles/generated' } }]
+              : []),
+            { label: 'Comparison index', slug: 'comparisons' },
+          ],
+        },
+        {
+          label: 'Decision paths',
+          items: [
+            { label: 'Stack Builder', slug: 'stack-builder' },
+            { label: 'ROI/TCO estimator', slug: 'roi-calculator' },
+            { label: 'By lifecycle', slug: 'navigation/by-lifecycle' },
+            { label: 'By business model', slug: 'navigation/by-business-model' },
+            { label: 'By technical ability', slug: 'navigation/by-technical-ability' },
+            { label: 'By budget', slug: 'navigation/by-budget' },
           ],
         },
         {

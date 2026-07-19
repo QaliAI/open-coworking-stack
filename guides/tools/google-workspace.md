@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 Google Workspace is proprietary managed SaaS for email, files, calendars, and forms. A coworking operator can begin by standardizing staff shared drives and one tour request form rather than adding unrelated SaaS or migrating all member data.
 
+**Manual tasks reduced:** distributing approved forms, schedules, files, and internal notifications. People still approve access, retention, legal holds, member decisions, and sensitive communications.
+
 ## Fit and non-fit
 
 **Good fit:** a staff team needing managed email and collaboration with clear shared-drive ownership, link-sharing rules, and account offboarding.

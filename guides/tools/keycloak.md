@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 Keycloak centralizes identity, SSO, brokering, and federation for internal tools. A coworking operator should begin with one staging application and staff identities, not door access or a whole member estate.
 
+**Manual tasks reduced:** applying approved sign-in and session policies across a bounded staff application pilot. People still approve identity, privileges, emergency access, terminations, and security exceptions.
+
 ## Fit and non-fit
 
 **Good fit:** a technically operated self-hosted stack with duplicate staff accounts across a wiki, help desk, or booking tool and a need for consistent joiner/leaver controls.

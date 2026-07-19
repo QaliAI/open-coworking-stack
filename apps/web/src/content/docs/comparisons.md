@@ -1,68 +1,45 @@
 ---
-title: Comparisons
-description: Side-by-side comparisons for common coworking technology choices.
+title: Operator comparison library
+description: Evidence-conscious comparisons for common coworking technology decisions.
 ---
 
-Comparisons are directional aids, not lab benchmarks. Always re-check licenses and pricing.
+Use these pages to shortlist an operating model, not to skip a pilot. `Partial` means official
+material supports only part of the decision; `not established` means this library has not verified
+the claim. Prices, free limits, and edition-specific entitlements are intentionally omitted.
 
-## Knowledge bases
+## Coworking platform strategy
 
-| Tool      | License class           | Best when                    | Watch-outs            |
-| --------- | ----------------------- | ---------------------------- | --------------------- |
-| BookStack | oss-osi-approved (MIT)  | SOPs with simple structure   | Less “Notion-like” UX |
-| Wiki.js   | oss-osi-approved (AGPL) | Flexible wiki + auth options | More setup surface    |
-| Outline   | source-available (BSL)  | Polished team wiki           | Not OSI OSS; read BSL |
-| Notion    | freemium-saas           | Fast adoption, low ops       | Export/lock-in        |
+- [Dedicated coworking SaaS vs hybrid vs modular self-host](./comparisons/dedicated-coworking-saas-vs-hybrid-vs-modular-self-host/)
+- [OfficeRnD vs Nexudus vs Cobot vs Optix](./comparisons/officernd-vs-nexudus-vs-cobot-vs-optix/)
+- [Commercial platform capability benchmark](./comparisons/commercial-platform-capability-benchmark/)
 
-## Scheduling & rooms
+## Operator applications
 
-| Tool              | License class    | Best when                 | Watch-outs                                |
-| ----------------- | ---------------- | ------------------------- | ----------------------------------------- |
-| Cal.com           | open-core        | Tours + calendar sync     | Self-host complexity; cloud paid features |
-| LibreBooking      | oss-osi-approved | Classic resource booking  | UX dated vs SaaS                          |
-| Seatsurfing       | oss-osi-approved | Desk maps / hybrid pilots | Not a full membership suite               |
-| Easy!Appointments | oss-osi-approved | Simple tour slots         | Limited enterprise features               |
+- [Cal.com/Cal.diy vs Easy!Appointments vs LibreBooking vs Seatsurfing](./comparisons/calcom-vs-easyappointments-vs-librebooking-vs-seatsurfing/)
+- [Twenty vs EspoCRM vs SuiteCRM vs HubSpot free CRM](./comparisons/twenty-vs-espocrm-vs-suitecrm-vs-hubspot/)
+- [Chatwoot vs FreeScout vs Zammad vs LibreDesk](./comparisons/chatwoot-vs-freescout-vs-zammad-vs-libredesk/)
+- [BookStack vs Docmost vs Wiki.js vs Outline vs Notion](./comparisons/bookstack-vs-docmost-vs-wikijs-vs-outline-vs-notion/)
+- [Listmonk vs Brevo vs MailerLite vs Mautic](./comparisons/listmonk-vs-brevo-vs-mailerlite-vs-mautic/)
+- [Postiz vs Mixpost vs commercial schedulers](./comparisons/postiz-vs-mixpost-vs-commercial-schedulers/)
+- [Formbricks vs LimeSurvey vs Tally](./comparisons/formbricks-vs-limesurvey-vs-tally/)
+- [Paperless-ngx vs Docspell](./comparisons/paperless-ngx-vs-docspell/)
+- [Documenso vs DocuSeal](./comparisons/documenso-vs-docuseal/)
+- [Self-hosted PBX vs hosted phone](./comparisons/self-hosted-pbx-vs-hosted-phone/)
 
-## Team chat
+## Data, automation, and AI
 
-| Tool            | License class    | Best when             | Watch-outs                       |
-| --------------- | ---------------- | --------------------- | -------------------------------- |
-| Zulip           | oss-osi-approved | Topic-heavy ops chat  | Learning curve                   |
-| Mattermost      | open-core        | Slack-like self-host  | Edition feature gaps             |
-| Rocket.Chat     | open-core        | Omnichannel ambitions | Heavier ops                      |
-| Slack / Discord | freemium-saas    | Instant community     | History limits / moderation load |
+- [n8n vs Activepieces vs Node-RED](./comparisons/n8n-vs-activepieces-vs-node-red/)
+- [NocoDB vs Baserow vs Directus](./comparisons/nocodb-vs-baserow-vs-directus/)
+- [Metabase vs Superset vs Grafana](./comparisons/metabase-vs-superset-vs-grafana/)
+- [Matomo vs Plausible vs Umami vs Google Analytics](./comparisons/matomo-vs-plausible-vs-umami-vs-google-analytics/)
+- [Open WebUI vs AnythingLLM vs Onyx](./comparisons/open-webui-vs-anythingllm-vs-onyx/)
+- [Dify vs Flowise vs Langflow](./comparisons/dify-vs-flowise-vs-langflow/)
 
-## Analytics
+## Security and infrastructure
 
-| Tool             | License class    | Best when                     | Watch-outs              |
-| ---------------- | ---------------- | ----------------------------- | ----------------------- |
-| Umami            | oss-osi-approved | Simple privacy-friendly stats | Fewer GA-like reports   |
-| Plausible CE     | open-core        | Lightweight analytics         | CE vs Cloud differences |
-| Matomo           | open-core        | Deep on-prem analytics        | Heavier                 |
-| Google Analytics | free-saas        | Default marketing analytics   | Privacy review required |
+- [Vaultwarden vs Passbolt](./comparisons/vaultwarden-vs-passbolt/)
+- [Authentik vs Keycloak vs Authelia](./comparisons/authentik-vs-keycloak-vs-authelia/)
+- [PacketFence vs FreeRADIUS vs managed network access](./comparisons/packetfence-vs-freeradius-vs-managed-network-access/)
 
-## CRM
-
-| Tool                                    | License class        | Best when                      | Watch-outs    |
-| --------------------------------------- | -------------------- | ------------------------------ | ------------- |
-| EspoCRM                                 | open-core            | Self-host sales pipeline       | UX training   |
-| Twenty                                  | oss-osi-approved     | Modern lightweight CRM         | Maturity      |
-| SuiteCRM                                | oss-osi-approved     | Heavy customization            | Legacy UX     |
-| Vertical SaaS (Cobot/OfficeRnD/Nexudus) | freemium/proprietary | Memberships + billing together | Lock-in; cost |
-
-## Automation
-
-| Tool         | License class          | Best when            | Watch-outs                     |
-| ------------ | ---------------------- | -------------------- | ------------------------------ |
-| Activepieces | oss-osi-approved (MIT) | OSS-first automation | Ecosystem size                 |
-| n8n          | fair-code              | Rich integrations    | License fit for commercial use |
-| Node-RED     | oss-osi-approved       | IoT/event glue       | Not a full iPaaS               |
-
-## Identity
-
-| Tool                      | License class    | Best when              | Watch-outs          |
-| ------------------------- | ---------------- | ---------------------- | ------------------- |
-| Authentik                 | oss-osi-approved | Friendly self-host IdP | Still real IAM work |
-| Keycloak                  | oss-osi-approved | Enterprise patterns    | Complexity          |
-| Authelia                  | oss-osi-approved | Proxy auth + 2FA       | App compatibility   |
-| Google/Microsoft identity | proprietary      | Already in suite       | Vendor dependency   |
+All pages were verified on **2026-07-18** against the official sources they list. Verification is a
+dated editorial review, not a warranty or a production certification.

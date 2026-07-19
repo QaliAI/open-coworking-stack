@@ -13,8 +13,24 @@ number_of_locations: One location.
 team_size: One to four staff with a named maintainer.
 products_offered: [memberships, day passes, meeting rooms]
 technical_skill_required: Moderate to high; hosting, updates, email configuration, backups, and data exports.
-tasks_covered: [website-publishing, lead-tracking, tour-scheduling, invoice-issuing, email-campaigns, service-monitoring]
-tasks_not_covered: [automated-recurring-billing, payment-processing, door-access-control, statutory-accounting, sms-campaigns, round-the-clock-support]
+tasks_covered:
+  [
+    website-publishing,
+    lead-tracking,
+    tour-scheduling,
+    invoice-issuing,
+    email-campaigns,
+    service-monitoring,
+  ]
+tasks_not_covered:
+  [
+    automated-recurring-billing,
+    payment-processing,
+    door-access-control,
+    statutory-accounting,
+    sms-campaigns,
+    round-the-clock-support,
+  ]
 systems_of_record:
   - Twenty CRM is the prospect and relationship record.
   - Invoice Ninja is the operational invoice record, subject to accountant approval.
@@ -42,7 +58,17 @@ data_flow:
   - Website prospects schedule a tour and staff qualify them in Twenty CRM.
   - Approved customer and invoice facts move manually to Invoice Ninja to keep reconciliation visible.
   - Consented contacts may be exported to Brevo; unsubscribe status must return to the contact record.
-implementation_order: [set-budget-ledger, deploy-website, configure-crm, add-tour-scheduling, configure-invoices, test-exports, add-monitoring, pilot-email]
+implementation_order:
+  [
+    set-budget-ledger,
+    deploy-website,
+    configure-crm,
+    add-tour-scheduling,
+    configure-invoices,
+    test-exports,
+    add-monitoring,
+    pilot-email,
+  ]
 cost_assumptions:
   monthly_cash: Editable target below 100 in the operator's currency; include every host, domain, mailbox, backup, delivery, and paid add-on before approval.
   setup_labor: Expect several implementation sessions and record labor separately from recurring cash.
@@ -53,7 +79,13 @@ cost_assumptions:
     - The schema budget band is broader than this stack's internal planning target.
     - Remove optional tools before compromising backup or security controls.
   pricing_sources: []
-human_owners: [owner-operator for budget and process, sales-manager for CRM quality, finance for invoice reconciliation, technical-operator for hosting]
+human_owners:
+  [
+    owner-operator for budget and process,
+    sales-manager for CRM quality,
+    finance for invoice reconciliation,
+    technical-operator for hosting,
+  ]
 security_boundaries:
   - Keep card data outside the stack and minimize prospect exports.
   - Separate website administration from finance permissions.
@@ -68,7 +100,14 @@ assumptions:
 risks:
   - Delivery, storage, tax, or currency changes can exceed the target.
   - Manual duplication can create stale customer or invoice records.
-getting_started: [record-current-spend, define-source-records, pilot-with-test-data, verify-backups, measure-maintenance-time]
+getting_started:
+  [
+    record-current-spend,
+    define-source-records,
+    pilot-with-test-data,
+    verify-backups,
+    measure-maintenance-time,
+  ]
 pilot_plan:
   - Track ten test or real prospects through tour and invoice preparation.
   - Record all cash and staff time during the pilot.

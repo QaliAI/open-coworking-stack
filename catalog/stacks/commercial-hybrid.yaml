@@ -3,9 +3,12 @@ id: commercial-hybrid
 name: Dedicated Coworking SaaS Plus Open Tools
 tagline: Keep core membership operations in vertical SaaS and control the surrounding layer
 description: A dedicated coworking platform remains the membership and billing authority while open tools provide documentation, monitoring, automation, and operator-controlled reporting.
-audience_roles: [owner-operator, operations-manager, community-manager, multi-location-operator, finance]
-problems_solved: [automate-billing, improve-member-experience, integrate-stack, reduce-software-cost]
-workflows: [member-onboarding, invoice-collections, room-booking, access-provisioning, reporting-kpis]
+audience_roles:
+  [owner-operator, operations-manager, community-manager, multi-location-operator, finance]
+problems_solved:
+  [automate-billing, improve-member-experience, integrate-stack, reduce-software-cost]
+workflows:
+  [member-onboarding, invoice-collections, room-booking, access-provisioning, reporting-kpis]
 monthly_cash_budget_band: flexible
 self_host_heavy: false
 operator_profile: An operator that values mature coworking workflows but wants portable documentation, visible integrations, and tested exports.
@@ -13,8 +16,23 @@ number_of_locations: One to several locations using one governed membership reco
 team_size: Three or more staff with operations, finance, and technical/vendor ownership assigned.
 products_offered: [memberships, day passes, desks, meeting rooms, add-on services]
 technical_skill_required: Moderate; SaaS administration, export testing, webhook hygiene, and basic self-host operations.
-tasks_covered: [membership-administration, recurring-billing, room-booking, member-onboarding, operational-reporting, integration-monitoring]
-tasks_not_covered: [statutory-accounting, payment-dispute-judgment, physical-security-response, member-support-judgment, legal-compliance-review]
+tasks_covered:
+  [
+    membership-administration,
+    recurring-billing,
+    room-booking,
+    member-onboarding,
+    operational-reporting,
+    integration-monitoring,
+  ]
+tasks_not_covered:
+  [
+    statutory-accounting,
+    payment-dispute-judgment,
+    physical-security-response,
+    member-support-judgment,
+    legal-compliance-review,
+  ]
 systems_of_record:
   - Cobot is the membership, plan, entitlement, and invoice workflow record.
   - Stripe is the payment transaction record.
@@ -46,7 +64,17 @@ data_flow:
   - Staff create membership facts in Cobot and send payment requests to Stripe.
   - Approved exports feed Metabase without writing changes back to source systems.
   - n8n may copy minimum necessary events between tools with retries and human exception review.
-implementation_order: [define-system-boundaries, configure-cobot-sandbox, connect-stripe, document-sops, test-exports, add-monitoring, pilot-one-integration, add-reporting]
+implementation_order:
+  [
+    define-system-boundaries,
+    configure-cobot-sandbox,
+    connect-stripe,
+    document-sops,
+    test-exports,
+    add-monitoring,
+    pilot-one-integration,
+    add-reporting,
+  ]
 cost_assumptions:
   monthly_cash: Edit with current vendor quotes; includes vertical SaaS, payment processing, staff suite, hosting, and optional integrations.
   setup_labor: Budget process mapping, configuration, migration rehearsal, staff training, and acceptance testing.
@@ -57,7 +85,13 @@ cost_assumptions:
     - No budget ceiling is promised because location, member, and transaction variables differ.
     - Obtain official quotes before approving the stack.
   pricing_sources: []
-human_owners: [operations-manager for membership configuration, finance for reconciliation, technical-operator for integrations, owner-operator for vendor risk]
+human_owners:
+  [
+    operations-manager for membership configuration,
+    finance for reconciliation,
+    technical-operator for integrations,
+    owner-operator for vendor risk,
+  ]
 security_boundaries:
   - Stripe handles card data; do not copy card details into other tools.
   - Limit integration credentials to minimum scopes and keep a kill switch.
@@ -72,7 +106,15 @@ assumptions:
 risks:
   - Core workflow continuity depends on a commercial vendor.
   - Unowned integrations can silently create inconsistent records.
-getting_started: [map-current-workflows, pilot-with-one-product, test-payment-and-refund, test-complete-export, train-staff, schedule-vendor-review]
+getting_started:
+  [
+    map-current-workflows,
+    pilot-with-one-product,
+    test-payment-and-refund,
+    test-complete-export,
+    train-staff,
+    schedule-vendor-review,
+  ]
 pilot_plan:
   - Pilot one membership product and one room with a small staff cohort.
   - Exercise onboarding, failed payment, refund, export, and outage procedures.

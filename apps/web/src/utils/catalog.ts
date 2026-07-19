@@ -17,6 +17,23 @@ export interface CatalogTool {
   homepage: string;
   verification_status: string;
   last_reviewed: string;
+  verification_completeness?: string;
+  verification_confidence?: string;
+  verification_tier?: string;
+  maintenance_burden?: string;
+  skills_required?: string[];
+  task_fits?: CatalogTaskFit[];
+}
+
+export interface CatalogTaskFit {
+  task_id: string;
+  relationship: string;
+  automation_level: string;
+  role_assisted: string;
+  manual_process: string;
+  human_work: string;
+  failure_consequence: string;
+  pilot_metric: string;
 }
 
 export interface CatalogExport {
@@ -25,6 +42,8 @@ export interface CatalogExport {
   tool_count: number;
   stack_count: number;
   workflow_count: number;
+  task_count: number;
+  role_count: number;
   tools: CatalogTool[];
   stacks: Array<{
     id: string;
@@ -41,6 +60,8 @@ export interface CatalogExport {
     stages: Array<{ id: string; name: string; suggested_tool_ids: string[] }>;
     last_reviewed: string;
   }>;
+  tasks: unknown[];
+  roles: unknown[];
 }
 
 export const directoryFilterKeys = [
@@ -53,6 +74,10 @@ export const directoryFilterKeys = [
   'deployment',
   'cost',
   'verification',
+  'tier',
+  'completeness',
+  'confidence',
+  'difficulty',
   'guide',
 ] as const;
 
@@ -91,12 +116,24 @@ export function matchesDirectoryTool(tool: CatalogTool, filters: DirectoryFilter
     tool.difficulty,
     tool.guide_status,
     tool.verification_status,
+    tool.verification_tier ?? '',
+    tool.verification_completeness ?? '',
+    tool.verification_confidence ?? '',
     tool.homepage,
     ...tool.categories,
     ...tool.roles,
     ...tool.workflows,
     ...tool.problems,
     ...tool.deployment,
+    ...(tool.task_fits ?? []).flatMap((fit) => [
+      fit.task_id,
+      fit.relationship,
+      fit.automation_level,
+      fit.role_assisted,
+      fit.manual_process,
+      fit.human_work,
+      fit.pilot_metric,
+    ]),
   ]
     .join(' ')
     .toLowerCase();
@@ -105,12 +142,18 @@ export function matchesDirectoryTool(tool: CatalogTool, filters: DirectoryFilter
     (!query || searchable.includes(query)) &&
     (!filters.license || tool.license_class === filters.license) &&
     (!filters.category || tool.categories.includes(filters.category)) &&
-    (!filters.role || tool.roles.includes(filters.role)) &&
+    (!filters.role ||
+      tool.roles.includes(filters.role) ||
+      (tool.task_fits ?? []).some((fit) => fit.role_assisted === filters.role)) &&
     (!filters.problem || tool.problems.includes(filters.problem)) &&
     (!filters.workflow || tool.workflows.includes(filters.workflow)) &&
     (!filters.deployment || tool.deployment.includes(filters.deployment)) &&
     (!filters.cost || tool.cost_model === filters.cost) &&
     (!filters.verification || tool.verification_status === filters.verification) &&
+    (!filters.tier || tool.verification_tier === filters.tier) &&
+    (!filters.completeness || tool.verification_completeness === filters.completeness) &&
+    (!filters.confidence || tool.verification_confidence === filters.confidence) &&
+    (!filters.difficulty || tool.difficulty === filters.difficulty) &&
     (!filters.guide || tool.guide_status === filters.guide)
   );
 }
@@ -139,6 +182,14 @@ export function parseCatalogExport(value: unknown): CatalogExport {
   if (!Array.isArray(value.workflows)) throw new Error('workflows must be an array');
   if (!Number.isInteger(value.workflow_count) || value.workflow_count !== value.workflows.length) {
     throw new Error('workflow_count must match workflows.length');
+  }
+  if (!Array.isArray(value.tasks)) throw new Error('tasks must be an array');
+  if (!Number.isInteger(value.task_count) || value.task_count !== value.tasks.length) {
+    throw new Error('task_count must match tasks.length');
+  }
+  if (!Array.isArray(value.roles)) throw new Error('roles must be an array');
+  if (!Number.isInteger(value.role_count) || value.role_count !== value.roles.length) {
+    throw new Error('role_count must match roles.length');
   }
 
   value.tools.forEach((tool, index) => validateTool(tool, index));
@@ -176,7 +227,15 @@ function validateTool(value: unknown, index: number): asserts value is CatalogTo
     !(value.spdx === null || typeof value.spdx === 'string') ||
     typeof value.featured !== 'boolean' ||
     typeof value.rank_score !== 'number' ||
-    !Number.isFinite(value.rank_score)
+    !Number.isFinite(value.rank_score) ||
+    !hasOptionalStrings(value, [
+      'verification_completeness',
+      'verification_confidence',
+      'verification_tier',
+      'maintenance_burden',
+    ]) ||
+    !(value.skills_required === undefined || isStringArray(value.skills_required)) ||
+    !(value.task_fits === undefined || isTaskFitArray(value.task_fits))
   ) {
     throw new Error(`tools[${index}] has an invalid shape`);
   }
@@ -192,6 +251,53 @@ function isStringArray(value: unknown): value is string[] {
 
 function hasStrings(value: Record<string, unknown>, fields: string[]): boolean {
   return fields.every((field) => typeof value[field] === 'string');
+}
+
+function hasOptionalStrings(value: Record<string, unknown>, fields: string[]): boolean {
+  return fields.every((field) => value[field] === undefined || typeof value[field] === 'string');
+}
+
+function isTaskFitArray(value: unknown): value is CatalogTaskFit[] {
+  const fields = [
+    'task_id',
+    'relationship',
+    'automation_level',
+    'role_assisted',
+    'manual_process',
+    'human_work',
+    'failure_consequence',
+    'pilot_metric',
+  ];
+  return Array.isArray(value) && value.every((fit) => isRecord(fit) && hasStrings(fit, fields));
+}
+
+const readableLabelOverrides: Record<string, string> = {
+  'oss-osi-approved': 'Open source (OSI-approved)',
+  'freemium-saas': 'Freemium SaaS',
+  'free-saas': 'Free SaaS',
+  'managed-saas': 'Managed SaaS',
+  'free-self-hosted': 'Free when self-hosted',
+  'partially-verified': 'Partially verified',
+  'verified-core': 'Verified Core',
+  'research-backlog': 'Research backlog',
+  'commercial-benchmark': 'Commercial benchmark',
+  'historical-archived': 'Historical / archived',
+  'avoid-new-deployment': 'Avoid for new deployments',
+  oss: 'Open source',
+  saas: 'SaaS',
+};
+
+export function readableLabel(value: string): string {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized) return 'Not recorded';
+  if (readableLabelOverrides[normalized]) return readableLabelOverrides[normalized];
+  return normalized
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map(
+      (word) => readableLabelOverrides[word] ?? `${word[0]?.toUpperCase() ?? ''}${word.slice(1)}`,
+    )
+    .join(' ');
 }
 
 export function licenseBadgeClass(licenseClass: string): string {

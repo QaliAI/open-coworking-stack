@@ -351,6 +351,117 @@
           },
           "minItems": 1
         },
+        "task_fits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "task_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                "minLength": 2,
+                "maxLength": 80
+              },
+              "relationship": {
+                "type": "string",
+                "enum": [
+                  "direct functional substitute",
+                  "partial automation",
+                  "assistant",
+                  "system of record",
+                  "integration layer",
+                  "reporting layer",
+                  "infrastructure",
+                  "unsuitable as replacement"
+                ]
+              },
+              "automation_level": {
+                "type": "string",
+                "enum": [
+                  "manual support",
+                  "assisted",
+                  "partially automated",
+                  "mostly automated with review",
+                  "low-risk fully automated"
+                ]
+              },
+              "what_manual_process_it_can_replace": {
+                "type": "string",
+                "minLength": 1
+              },
+              "what_it_takes_off_the_team": {
+                "type": "string",
+                "minLength": 1
+              },
+              "role_assisted": {
+                "type": "string",
+                "enum": [
+                  "owner-operator",
+                  "general-manager",
+                  "community-coordinator-front-desk",
+                  "community-manager",
+                  "sales-leasing-manager",
+                  "marketing-manager",
+                  "event-manager",
+                  "virtual-office-mailroom-manager",
+                  "operations-facilities-manager",
+                  "finance-billing-administrator",
+                  "it-security-administrator",
+                  "multi-location-operator",
+                  "consultant-implementer",
+                  "member"
+                ]
+              },
+              "what_remains_human": {
+                "type": "string",
+                "minLength": 1
+              },
+              "prerequisites": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "failure_consequence": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pilot_metric": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+                },
+                "minItems": 1
+              },
+              "confidence": {
+                "type": "string",
+                "enum": ["high", "medium", "low", "unknown"]
+              }
+            },
+            "required": [
+              "task_id",
+              "relationship",
+              "automation_level",
+              "what_manual_process_it_can_replace",
+              "what_it_takes_off_the_team",
+              "role_assisted",
+              "what_remains_human",
+              "prerequisites",
+              "failure_consequence",
+              "pilot_metric",
+              "evidence",
+              "confidence"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
         "data_privacy": {
           "type": "object",
           "properties": {
@@ -478,6 +589,76 @@
             },
             "reviewer": {
               "type": "string"
+            },
+            "completeness": {
+              "type": "string",
+              "enum": [
+                "unresearched",
+                "partial",
+                "metadata-verified",
+                "editorially-reviewed",
+                "implementation-tested",
+                "production-evaluated"
+              ],
+              "default": "partial"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": ["high", "medium", "low", "unknown"],
+              "default": "low"
+            },
+            "tier": {
+              "type": "string",
+              "enum": [
+                "verified-core",
+                "evaluated",
+                "research-backlog",
+                "historical-archived",
+                "commercial-benchmark",
+                "avoid-new-deployment"
+              ],
+              "default": "research-backlog"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "homepage",
+                      "repository",
+                      "license",
+                      "pricing",
+                      "free-limits",
+                      "maintenance",
+                      "release",
+                      "docs",
+                      "docker",
+                      "api",
+                      "webhooks",
+                      "backup-export",
+                      "security",
+                      "integrations",
+                      "runtime-tests",
+                      "operator-review"
+                    ]
+                  },
+                  "source": {
+                    "$ref": "#/definitions/Tool/properties/license/properties/source_url"
+                  },
+                  "verified_on": {
+                    "$ref": "#/definitions/Tool/properties/license/properties/verified_on"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": ["kind", "source", "verified_on"],
+                "additionalProperties": false
+              },
+              "default": []
             }
           },
           "required": ["status", "last_reviewed", "sources"],

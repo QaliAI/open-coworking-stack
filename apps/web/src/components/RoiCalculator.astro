@@ -1,0 +1,153 @@
+---
+import { calculateRoi, defaultRoiInput } from '../utils/roi-calculator';
+
+const initial = calculateRoi(defaultRoiInput);
+---
+
+<div class="roi" data-roi-calculator>
+  <div class="layout">
+    <form data-roi-form>
+      <fieldset>
+        <legend>Workflow assumptions</legend>
+        <label>Tasks per month <input name="tasksPerMonth" type="number" min="0" step="1" value="300" required /></label>
+        <label>Minutes per task today <input name="minutesPerTaskToday" type="number" min="0" step="0.1" value="8" required /></label>
+        <label>Minutes per task with tool <input name="minutesPerTaskWithTool" type="number" min="0" step="0.1" value="4" required /></label>
+        <label>Expected adoption <span><input name="adoptionPercent" type="range" min="0" max="100" step="5" value="70" data-adoption /> <output data-adoption-output>70%</output></span></label>
+      </fieldset>
+      <fieldset>
+        <legend>Cost assumptions</legend>
+        <label>Loaded hourly labor cost <input name="loadedHourlyLaborCost" type="number" min="0" step="0.01" value="30" required /></label>
+        <label>One-time setup cost <input name="oneTimeSetupCost" type="number" min="0" step="0.01" value="1500" required /></label>
+        <label>Monthly software and hosting cost <input name="monthlySoftwareHostingCost" type="number" min="0" step="0.01" value="250" required /></label>
+        <label>Monthly maintenance hours <input name="monthlyMaintenanceHours" type="number" min="0" step="0.1" value="4" required /></label>
+        <label>Other monthly cash cost <input name="monthlyOtherCashCost" type="number" min="0" step="0.01" value="25" required /></label>
+      </fieldset>
+      <button type="submit">Recalculate estimate</button>
+    </form>
+
+    <section class="output" aria-labelledby="roi-output-heading" aria-live="polite">
+      <p class="eyebrow">Base case</p>
+      <h2 id="roi-output-heading">Estimated capacity and cost</h2>
+      <div class="metrics">
+        <div><span>Hours potentially redirected/month</span><strong data-base="hoursPotentiallyRedirected">{initial.base.hoursPotentiallyRedirected}</strong></div>
+        <div><span>Gross labor capacity value/month</span><strong data-base="grossLaborCapacityValue">{initial.base.grossLaborCapacityValue.toLocaleString()}</strong></div>
+        <div><span>Total monthly operating cost</span><strong data-base="monthlyOperatingCost">{initial.base.monthlyOperatingCost.toLocaleString()}</strong></div>
+        <div><span>Estimated net monthly value</span><strong data-base="estimatedNetMonthlyValue">{initial.base.estimatedNetMonthlyValue.toLocaleString()}</strong></div>
+        <div><span>First-year net estimate</span><strong data-base="firstYearNetEstimate">{initial.base.firstYearNetEstimate.toLocaleString()}</strong></div>
+        <div><span>Estimated payback period</span><strong data-base="paybackMonths">{initial.base.paybackMonths} months</strong></div>
+        <div><span>First-year ROI estimate</span><strong data-base="firstYearRoiPercent">{initial.base.firstYearRoiPercent}%</strong></div>
+      </div>
+
+      <h3>Sensitivity range</h3>
+      <p class="hint">Low uses 80% of task volume and time difference; high uses 120% of each. Adoption stays at your entered assumption.</p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="ROI sensitivity results. Scroll horizontally to see every column.">
+        <table>
+          <thead><tr><th scope="col">Case</th><th scope="col">Hours redirected</th><th scope="col">Monthly net estimate</th><th scope="col">First-year net estimate</th><th scope="col">Payback</th></tr></thead>
+          <tbody data-cases>
+            {initial.cases.map((item) => <tr><th scope="row">{item.name}</th><td>{item.hoursPotentiallyRedirected}</td><td>{item.estimatedNetMonthlyValue.toLocaleString()}</td><td>{item.firstYearNetEstimate.toLocaleString()}</td><td>{item.paybackMonths === null ? 'No payback in model' : `${item.paybackMonths} months`}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <aside class="disclaimer" aria-label="Estimator limitations">
+    <strong>No savings promise.</strong> This directional model values time that may be available for other work; it is not cash savings unless staffing cost actually changes. Results depend on adoption, measured task time, workflow quality, implementation, maintenance, exceptions, and demand. Exclude time that cannot realistically be redirected. Verify assumptions with a small pilot. This is not financial, accounting, tax, employment, or procurement advice, and software does not replace human oversight.
+  </aside>
+</div>
+
+<script>
+  import { calculateRoi, type RoiInput } from '../utils/roi-calculator';
+
+  const root = document.querySelector<HTMLElement>('[data-roi-calculator]');
+  if (root && !root.dataset.ready) {
+    root.dataset.ready = 'true';
+    const form = root.querySelector<HTMLFormElement>('[data-roi-form]');
+    const range = root.querySelector<HTMLInputElement>('[data-adoption]');
+    const rangeOutput = root.querySelector<HTMLOutputElement>('[data-adoption-output]');
+    const number = (data: FormData, key: keyof RoiInput) => Number(data.get(key) ?? 0);
+
+    function render() {
+      if (!form) return;
+      const data = new FormData(form);
+      const input: RoiInput = {
+        tasksPerMonth: number(data, 'tasksPerMonth'),
+        minutesPerTaskToday: number(data, 'minutesPerTaskToday'),
+        minutesPerTaskWithTool: number(data, 'minutesPerTaskWithTool'),
+        adoptionPercent: number(data, 'adoptionPercent'),
+        loadedHourlyLaborCost: number(data, 'loadedHourlyLaborCost'),
+        oneTimeSetupCost: number(data, 'oneTimeSetupCost'),
+        monthlySoftwareHostingCost: number(data, 'monthlySoftwareHostingCost'),
+        monthlyMaintenanceHours: number(data, 'monthlyMaintenanceHours'),
+        monthlyOtherCashCost: number(data, 'monthlyOtherCashCost'),
+      };
+      const result = calculateRoi(input);
+      const values: Record<string, string> = {
+        hoursPotentiallyRedirected: String(result.base.hoursPotentiallyRedirected),
+        grossLaborCapacityValue: result.base.grossLaborCapacityValue.toLocaleString(),
+        monthlyOperatingCost: result.base.monthlyOperatingCost.toLocaleString(),
+        estimatedNetMonthlyValue: result.base.estimatedNetMonthlyValue.toLocaleString(),
+        firstYearNetEstimate: result.base.firstYearNetEstimate.toLocaleString(),
+        paybackMonths: result.base.paybackMonths === null ? 'No payback in model' : `${result.base.paybackMonths} months`,
+        firstYearRoiPercent: result.base.firstYearRoiPercent === null ? 'Not applicable' : `${result.base.firstYearRoiPercent}%`,
+      };
+      for (const [key, value] of Object.entries(values)) {
+        const output = root?.querySelector<HTMLElement>(`[data-base="${key}"]`);
+        if (output) output.textContent = value;
+      }
+      const body = root?.querySelector<HTMLTableSectionElement>('[data-cases]');
+      if (body) body.replaceChildren(...result.cases.map((item) => {
+        const row = document.createElement('tr');
+        const heading = document.createElement('th');
+        heading.scope = 'row';
+        heading.textContent = item.name;
+        const cells = [
+          String(item.hoursPotentiallyRedirected),
+          item.estimatedNetMonthlyValue.toLocaleString(),
+          item.firstYearNetEstimate.toLocaleString(),
+          item.paybackMonths === null ? 'No payback in model' : `${item.paybackMonths} months`,
+        ].map((value) => {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          return cell;
+        });
+        row.append(heading, ...cells);
+        return row;
+      }));
+    }
+
+    form?.addEventListener('submit', (event) => { event.preventDefault(); render(); });
+    form?.addEventListener('input', render);
+    range?.addEventListener('input', () => { if (rangeOutput) rangeOutput.value = `${range.value}%`; });
+  }
+</script>
+
+<style>
+  .roi { --ink: #17251f; --line: #cad8d0; color: var(--ink); }
+  .layout { display: grid; gap: 1.25rem; grid-template-columns: minmax(15rem, .7fr) minmax(0, 1.3fr); }
+  form { align-self: start; background: #f6f9f7; border: 1px solid var(--line); padding: 1rem; }
+  fieldset { border: 0; border-top: 2px solid #39745a; display: grid; gap: .75rem; margin: 0 0 1rem; padding: .8rem 0 0; }
+  legend { font-weight: 800; padding-right: .5rem; }
+  label { display: grid; font-size: .85rem; font-weight: 650; gap: .3rem; }
+  label span { align-items: center; display: flex; gap: .5rem; }
+  input, button { font: inherit; }
+  input[type="number"] { border: 1px solid #82978c; border-radius: .2rem; min-width: 0; padding: .6rem; }
+  input[type="range"] { flex: 1; }
+  button { background: #173f31; border: 0; border-radius: .2rem; color: white; cursor: pointer; font-weight: 750; padding: .7rem .9rem; width: 100%; }
+  input:focus-visible, button:focus-visible, .table-wrap:focus-visible { outline: 3px solid #e9a23b; outline-offset: 2px; }
+  .output { min-width: 0; }
+  .eyebrow { color: #39745a; font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin: 0; text-transform: uppercase; }
+  .output h2 { margin-top: .15rem; }
+  .metrics { display: grid; gap: .55rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .metrics div { background: #f6f9f7; border-left: 4px solid #39745a; display: grid; gap: .35rem; padding: .75rem; }
+  .metrics span { color: #50635a; font-size: .75rem; }
+  .metrics strong { font-size: 1.2rem; }
+  .hint { color: #50635a; font-size: .82rem; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; font-size: .82rem; min-width: 38rem; width: 100%; }
+  th, td { border-bottom: 1px solid var(--line); padding: .55rem; text-align: left; }
+  thead { background: #edf4ef; }
+  .disclaimer { background: #fff7e6; border-left: 5px solid #b57416; font-size: .88rem; margin-top: 1.25rem; padding: 1rem; }
+  @media (max-width: 44rem) { .layout { grid-template-columns: 1fr; } }
+  @media (max-width: 320px) { form { padding: .7rem; } .metrics { grid-template-columns: 1fr; } }
+</style>

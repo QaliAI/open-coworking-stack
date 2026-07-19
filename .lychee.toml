@@ -9,28 +9,41 @@ max_retries = 2
 
 #############################  Requests  ############################
 user_agent = "open-coworking-stack-link-check/0.1"
-accept = ["200..=299", "403"]
+# Some official vendor sites deny automated requests (403) or rate-limit them (429). Both statuses
+# are reviewed as documented connectivity exceptions, not evidence that a claim is correct.
+accept = ["200..=299", "403", "429"]
 
 #############################  Exclusions  ##########################
 exclude = [
   '^https?://localhost',
-  '^https?://127\\.0\\.0\\.1',
-  '^https?://0\\.0\\.0\\.0',
-  '^https?://example\\.',
+  '^https?://127\.0\.0\.1',
+  '^https?://0\.0\.0\.0',
+  '^https?://example\.',
   '^mailto:',
-  # Rate-limited or auth-walled hosts that still validate offline structure
-  '^https://twitter\\.com',
-  '^https://x\\.com',
+  # Auth-walled social hosts are intentionally omitted from external HTTP checks.
+  '^https://twitter\.com',
+  '^https://x\.com',
+  # The official LibreBooking homepage was unreachable on 2026-07-18; repository and wiki links are
+  # still checked. Revisit this exception during the next evidence review.
+  '^https://librebooking\.org/',
 ]
 
 exclude_path = [
+  ".git",
+  ".lychee",
+  "release-artifacts",
   "node_modules",
   "dist",
   ".astro",
   "pnpm-lock.yaml",
-  "apps/web/src/content/docs/tools/generated",
-  "apps/web/src/content/docs/stacks/generated",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]tools[/\\\\]generated",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]stacks[/\\\\]generated",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]workflows[/\\\\]generated",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]guides[/\\\\]tools",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]integrations[/\\\\]generated",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]roles[/\\\\]generated",
+  "apps[/\\\\]web[/\\\\]src[/\\\\]content[/\\\\]docs[/\\\\]tasks[/\\\\]generated",
 ]
 
-scheme = ["https", "http", "file"]
-include_fragments = false
+scheme = ["https", "http"]
+include_fragments = "none"

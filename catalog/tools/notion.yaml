@@ -69,10 +69,8 @@ task_fits:
   - task_id: maintain-operating-procedures
     relationship: system of record
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Scattered SOP files, printed binders, and instructions buried in chat history.
-    what_it_takes_off_the_team:
-      Centralizes approved procedure pages, ownership, links, and review status for easier retrieval.
+    what_manual_process_it_can_replace: Scattered SOP files, printed binders, and instructions buried in chat history.
+    what_it_takes_off_the_team: Centralizes approved procedure pages, ownership, links, and review status for easier retrieval.
     role_assisted: general-manager
     what_remains_human:
       Process owners must verify real-world steps and exceptions, approve changes, control sharing,

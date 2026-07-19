@@ -79,10 +79,12 @@ task_fits:
     automation_level: partially automated
     what_manual_process_it_can_replace: Manual process reduced is creating a separate identity and
       copying the same approved application roles in each connected account store.
-    what_it_takes_off_the_team: Human work reduced is repeated identity creation, credential handling,
+    what_it_takes_off_the_team:
+      Human work reduced is repeated identity creation, credential handling,
       and standard role assignment within the tested Keycloak scope.
     role_assisted: it-security-administrator
-    what_remains_human: Humans must verify identity and authorization, approve least privilege, review
+    what_remains_human:
+      Humans must verify identity and authorization, approve least privilege, review
       nonstandard roles, and confirm downstream results. Prohibited entitlement, privileged-access,
       identity-evidence, and exception decisions can never be fully automated.
     prerequisites:
@@ -100,9 +102,11 @@ task_fits:
   - task_id: revoke-departing-access
     relationship: integration layer
     automation_level: partially automated
-    what_manual_process_it_can_replace: Manual process reduced is searching Keycloak-managed identities,
+    what_manual_process_it_can_replace:
+      Manual process reduced is searching Keycloak-managed identities,
       roles, and sessions separately before applying an approved revocation.
-    what_it_takes_off_the_team: Human work reduced is repeated account disabling, session termination,
+    what_it_takes_off_the_team:
+      Human work reduced is repeated account disabling, session termination,
       and standard role removal inside the verified Keycloak boundary.
     role_assisted: it-security-administrator
     what_remains_human: Humans must authorize scope and timing, protect continuity and evidence,
@@ -125,10 +129,12 @@ task_fits:
     automation_level: assisted
     what_manual_process_it_can_replace: Manual process reduced is assembling realm administrators,
       client roles, groups, and privileged assignments from separate screenshots for review.
-    what_it_takes_off_the_team: Human work reduced is locating Keycloak-held role and identity records
+    what_it_takes_off_the_team:
+      Human work reduced is locating Keycloak-held role and identity records
       and preparing a consistent in-scope access inventory.
     role_assisted: it-security-administrator
-    what_remains_human: An independent human must attest business need, examine hidden credentials and
+    what_remains_human:
+      An independent human must attest business need, examine hidden credentials and
       access outside Keycloak, approve retained privilege, and verify remediation. Prohibited need,
       risk-acceptance, compensating-control, and removal decisions can never be fully automated.
     prerequisites:
@@ -136,7 +142,8 @@ task_fits:
         break-glass inventory with named owners.
       - Prerequisite is an independent review process that also covers privileges and credentials not
         represented in Keycloak.
-    failure_consequence: Failure can omit external or inherited privilege and create false assurance;
+    failure_consequence:
+      Failure can omit external or inherited privilege and create false assurance;
       keep findings open until an independent reviewer reconciles all authoritative systems.
     pilot_metric: Metric is in-scope privileged assignments with current owner and approved need,
       orphaned or excessive access found, remediation age, and sampled inventory omissions.

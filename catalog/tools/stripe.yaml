@@ -69,8 +69,7 @@ task_fits:
   - task_id: generate-recurring-invoices
     relationship: partial automation
     automation_level: partially automated
-    what_manual_process_it_can_replace:
-      Copying prior invoices and manually recreating an approved recurring billing schedule.
+    what_manual_process_it_can_replace: Copying prior invoices and manually recreating an approved recurring billing schedule.
     what_it_takes_off_the_team:
       Creates repeated invoice and subscription billing records from configured products, customers,
       and billing terms.
@@ -93,8 +92,7 @@ task_fits:
   - task_id: reconcile-payments
     relationship: reporting layer
     automation_level: assisted
-    what_manual_process_it_can_replace:
-      Manually gathering processor payment, payout, fee, refund, and dispute records for reconciliation.
+    what_manual_process_it_can_replace: Manually gathering processor payment, payout, fee, refund, and dispute records for reconciliation.
     what_it_takes_off_the_team:
       Provides structured processor-side transaction and settlement records for matching against the
       billing system and ledger.

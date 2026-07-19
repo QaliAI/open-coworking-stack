@@ -100,7 +100,8 @@ task_fits:
     what_it_takes_off_the_team: Records email subscription state and applies that state when staff
       prepare sends within the tool.
     role_assisted: marketing-manager
-    what_remains_human: Privacy or marketing owners resolve identity and purpose ambiguity, reconcile
+    what_remains_human:
+      Privacy or marketing owners resolve identity and purpose ambiguity, reconcile
       other channels, and approve exceptional reactivation.
     prerequisites:
       - Approved consent, suppression, and reactivation policy
@@ -128,9 +129,11 @@ task_fits:
       - Approved final content, audience, and schedule
       - Configured SMTP delivery with domain authentication and test delivery completed
       - Documented pause, correction, and unsubscribe handling process
-    failure_consequence: Selecting the wrong draft or audience can expose member data, breach consent,
+    failure_consequence:
+      Selecting the wrong draft or audience can expose member data, breach consent,
       or publish an expired or inaccurate offer.
-    pilot_metric: Percentage of pilot sends matching the approved version and audience, with delivery
+    pilot_metric:
+      Percentage of pilot sends matching the approved version and audience, with delivery
       failures and corrections recorded and resolved.
     evidence:
       - https://listmonk.app/

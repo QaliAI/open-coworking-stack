@@ -3,18 +3,39 @@ id: multi-location-operator
 name: Multi-Location Operator
 tagline: Standardize core records while preserving accountable local operations
 description: A governed multi-site architecture for shared memberships, payments, reporting, procedures, network standards, and rollout controls without erasing local ownership or exceptions.
-audience_roles: [multi-location-operator, operations-manager, finance, facilities, technical-operator]
-problems_solved: [multi-location-consistency, integrate-stack, measure-utilization, disaster-recovery]
-workflows: [multi-site-rollout, reporting-kpis, member-onboarding, access-provisioning, backup-restore-drill]
+audience_roles:
+  [multi-location-operator, operations-manager, finance, facilities, technical-operator]
+problems_solved:
+  [multi-location-consistency, integrate-stack, measure-utilization, disaster-recovery]
+workflows:
+  [multi-site-rollout, reporting-kpis, member-onboarding, access-provisioning, backup-restore-drill]
 monthly_cash_budget_band: flexible
 self_host_heavy: false
 operator_profile: An established operator adding or governing several sites with central standards and named local accountable leads.
 number_of_locations: Three or more locations, introduced to the stack in controlled waves.
 team_size: Ten or more staff with central operations, finance, technical, and local site roles.
-products_offered: [multi-site-memberships, local-memberships, day-passes, desks, meeting-rooms, private-offices]
+products_offered:
+  [multi-site-memberships, local-memberships, day-passes, desks, meeting-rooms, private-offices]
 technical_skill_required: Moderate to high; enterprise SaaS administration, integrations, reporting, networks, migration, and continuity.
-tasks_covered: [shared-membership-administration, cross-site-booking, centralized-payments, location-reporting, sop-standardization, network-baselining, rollout-governance]
-tasks_not_covered: [local-staffing, lease-management, statutory-consolidation, physical-emergency-response, local-regulatory-judgment, culture-and-community-leadership]
+tasks_covered:
+  [
+    shared-membership-administration,
+    cross-site-booking,
+    centralized-payments,
+    location-reporting,
+    sop-standardization,
+    network-baselining,
+    rollout-governance,
+  ]
+tasks_not_covered:
+  [
+    local-staffing,
+    lease-management,
+    statutory-consolidation,
+    physical-emergency-response,
+    local-regulatory-judgment,
+    culture-and-community-leadership,
+  ]
 systems_of_record:
   - Nexudus is the shared member, product, entitlement, and booking authority.
   - Stripe is the payment transaction authority where configured.
@@ -42,7 +63,17 @@ data_flow:
   - Locations maintain member and booking facts in Nexudus using centrally governed products and location codes.
   - Stripe transactions reconcile to the finance process; read-only approved exports feed Metabase.
   - Central SOPs publish through BookStack and local leads record approved exceptions with owners and review dates.
-implementation_order: [define-global-and-local-ownership, standardize-location-codes, clean-core-data, configure-pilot-site, test-payments-and-exports, publish-sops, baseline-monitoring, migrate-wave-by-wave]
+implementation_order:
+  [
+    define-global-and-local-ownership,
+    standardize-location-codes,
+    clean-core-data,
+    configure-pilot-site,
+    test-payments-and-exports,
+    publish-sops,
+    baseline-monitoring,
+    migrate-wave-by-wave,
+  ]
 cost_assumptions:
   monthly_cash: Edit with current quotes by location, users, members, transactions, reporting, network support, hosting, and backup needs.
   setup_labor: Budget discovery per site, standard design, data cleanup, integration, migration rehearsal, training, and travel.
@@ -53,7 +84,14 @@ cost_assumptions:
     - Shared software does not remove local operational accountability.
     - Evaluate total cost by location and workflow rather than one headline subscription.
   pricing_sources: []
-human_owners: [central-operations for standards, local-site-leads for execution, finance for reconciliation, technical-operator for integrations, owner-operator for vendor risk]
+human_owners:
+  [
+    central-operations for standards,
+    local-site-leads for execution,
+    finance for reconciliation,
+    technical-operator for integrations,
+    owner-operator for vendor risk,
+  ]
 security_boundaries:
   - Apply location-scoped least privilege and tightly control cross-site exports.
   - Separate central administration, local operations, member, network, and reporting access.
@@ -68,7 +106,15 @@ assumptions:
 risks:
   - Central misconfiguration can propagate errors across every location.
   - Excessive standardization can hide important local legal or service differences.
-getting_started: [inventory-site-variation, choose-pilot-location, define-canonical-fields, test-full-export, run-pilot, review-before-next-wave]
+getting_started:
+  [
+    inventory-site-variation,
+    choose-pilot-location,
+    define-canonical-fields,
+    test-full-export,
+    run-pilot,
+    review-before-next-wave,
+  ]
 pilot_plan:
   - Use one representative location and a limited product set.
   - Test cross-site entitlement, booking, payment, reporting, outage, and local exception handling.

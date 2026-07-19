@@ -33,7 +33,7 @@ cost:
   summary: Self-host CE free; Cloud is subscription. Check official pricing.
   currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
     budget decisions.
-  pricing_url: https://plausible.io/pricing
+  pricing_url: https://plausible.io/#pricing
   verified_on: 2026-07-17
   confidence: partially-verified
 implementation:
@@ -60,7 +60,7 @@ links:
     url: https://github.com/plausible/community-edition
     kind: docs
   - label: Pricing
-    url: https://plausible.io/pricing
+    url: https://plausible.io/#pricing
     kind: pricing
 tasks_reduced_or_augmented:
   - Privacy-friendly traffic measurement

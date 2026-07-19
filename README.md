@@ -8,9 +8,11 @@ This repository is a directory and implementation resource, not a hosted SaaS pr
 of the projects it describes. Upstream software remains in its official repositories and under its own
 license.
 
-> Repository status: this checkout currently has no commits and no configured Git remote. No public
-> repository or documentation URL is asserted to be live. The workflows in `.github/workflows/` become
-> operational after the project is committed, hosted, and configured on GitHub.
+> Repository status (2026-07-18): `QaliAI/open-coworking-stack` exists as a private GitHub repository
+> with `main` as its default branch, and `origin` is configured in this checkout. Hosted CI passed for
+> the initial `main` commit. No public repository, release, or documentation URL is asserted to be live.
+> GitHub Pages is not enabled/configured for the private repository, so the preserved Pages workflow
+> currently stops at `actions/configure-pages` without deploying.
 
 ## Architecture
 
@@ -94,22 +96,24 @@ pnpm --filter @ocs/web preview
 
 Run commands from the repository root.
 
-| Command             | Purpose                                                        |
-| ------------------- | -------------------------------------------------------------- |
-| `pnpm dev`          | Start the documentation site development server                |
-| `pnpm format`       | Write Prettier formatting changes                              |
-| `pnpm format:check` | Check Prettier and Markdown formatting without modifying files |
-| `pnpm lint`         | Run workspace lint scripts, Prettier checks, and Markdownlint  |
-| `pnpm typecheck`    | Type-check every workspace package                             |
-| `pnpm validate`     | Validate catalog YAML and business rules                       |
-| `pnpm generate`     | Generate derived site documents and JSON exports               |
-| `pnpm test`         | Run workspace Vitest suites                                    |
-| `pnpm test:e2e`     | Build, preview, and run focused Chromium browser tests         |
-| `pnpm test:a11y`    | Build, preview, and run serious/critical axe checks            |
-| `pnpm build`        | Build packages and the documentation site                      |
-| `pnpm check`        | Run validation, generation, tests, and build                   |
-| `pnpm freshness`    | Report records whose verification review is stale              |
-| `pnpm link-check`   | Check repository links; requires the Lychee binary on `PATH`   |
+| Command                      | Purpose                                                        |
+| ---------------------------- | -------------------------------------------------------------- |
+| `pnpm dev`                   | Start the documentation site development server                |
+| `pnpm format`                | Write Prettier formatting changes                              |
+| `pnpm format:check`          | Check Prettier and Markdown formatting without modifying files |
+| `pnpm lint`                  | Run workspace lint scripts, Prettier checks, and Markdownlint  |
+| `pnpm typecheck`             | Type-check every workspace package                             |
+| `pnpm validate`              | Validate catalog YAML and business rules                       |
+| `pnpm generate`              | Generate derived site documents and JSON exports               |
+| `pnpm test`                  | Run workspace Vitest suites                                    |
+| `pnpm test:e2e`              | Build, preview, and run focused Chromium browser tests         |
+| `pnpm test:a11y`             | Build, preview, and run serious/critical axe checks            |
+| `pnpm build`                 | Build packages and the documentation site                      |
+| `pnpm check`                 | Run validation, generation, tests, and build                   |
+| `pnpm freshness`             | Report records whose verification review is stale              |
+| `pnpm link-check`            | Download checksum-verified Lychee 0.24.2; check external links |
+| `pnpm release:evidence`      | Generate unsigned SBOM, license inventory, and checksums       |
+| `pnpm scan:reference-images` | Run an advisory scan of Compose reference image tags           |
 
 Install the local Chromium test browser once with
 `pnpm --filter @ocs/web exec playwright install chromium`. Playwright builds and previews the static
@@ -117,17 +121,22 @@ site for local browser runs. CI reuses its preceding production build.
 
 The CI workflow runs formatting checks, lint, type-checking, validation, generation, unit tests, the
 production build, browser tests, and accessibility tests as separate steps so failures are
-attributable.
+attributable. Release evidence and reference-image scans run in separately labeled workflows because
+neither is a deployment or runtime certification.
 
 ## GitHub Pages
 
-`.github/workflows/deploy-pages.yml` is prepared for GitHub Pages, but this checkout is not connected
-to GitHub and no deployment has run. To activate it after establishing a repository:
+`.github/workflows/deploy-pages.yml` is preserved for GitHub Pages. The hosted run for commit
+`e107548` failed before the build at `actions/configure-pages`: GitHub's Pages API returned `404`
+because Pages is not enabled/configured for the private repository. This is a repository/account
+configuration blocker, not evidence of a site build failure. No Pages deployment occurred.
 
-1. Make `main` the hosted default branch and push the repository.
-2. In the repository Pages settings, choose **GitHub Actions** as the source.
+If the repository owner later authorizes Pages:
+
+1. Confirm the chosen GitHub plan and private-repository Pages availability.
+2. In repository Pages settings, enable Pages with **GitHub Actions** as the source.
 3. Ensure Actions has permission to deploy Pages.
-4. Push to `main` or manually dispatch the **Deploy Pages** workflow.
+4. Manually dispatch the workflow for an approved ref before enabling push-driven publication.
 
 The workflow derives `PUBLIC_BASE_PATH` as `/<repository-name>` for normal project Pages and as an
 empty path for a repository named `<owner>.github.io`. Set a repository Actions variable named
@@ -137,6 +146,21 @@ reported by GitHub after a successful run.
 
 See the site [deployment options](apps/web/src/content/docs/guides/deployment-options.md) for Pages,
 Vercel, and Netlify build settings.
+
+## Release Engineering
+
+- [`CHANGELOG.md`](CHANGELOG.md) records unreleased changes; no version tag or release is claimed.
+- [`docs/project/RELEASE_PROCESS.md`](docs/project/RELEASE_PROCESS.md) defines evidence and approvals.
+- [`docs/project/RELEASE_READINESS.md`](docs/project/RELEASE_READINESS.md) records current blockers.
+- [`docs/project/PRIVATE_PREVIEW_CHECKLIST.md`](docs/project/PRIVATE_PREVIEW_CHECKLIST.md) keeps preview
+  access deliberate.
+- [`docs/project/PUBLIC_LAUNCH_CHECKLIST.md`](docs/project/PUBLIC_LAUNCH_CHECKLIST.md) gates publication.
+- [`docs/project/ROLLBACK.md`](docs/project/ROLLBACK.md) covers static-site rollback.
+
+The release-evidence workflow uploads unsigned build evidence for 14 days. SHA-256 checksums establish
+file integrity only; this repository does not currently claim artifact signing or provenance.
+SBOM and reference-image commands require a running Docker engine for their pinned Syft and Trivy
+containers.
 
 ## Contributing
 

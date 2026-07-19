@@ -2,6 +2,9 @@
 
 ## Takeover baseline
 
+This section is a historical snapshot of the takeover starting state, not the current repository
+state.
+
 - Takeover date: 2026-07-18
 - Branch: `master` (unborn branch)
 - Starting commit: none; the repository has no commits or `HEAD`
@@ -30,7 +33,7 @@ which authorship or generated drift can be determined.
 Important files to preserve include `scripts/seed-catalog.mts`, all `catalog/**/*.yaml`, all editorial
 pages under `apps/web/src/content/docs`, and the existing package/schema/validator/generator source.
 
-## Requirement assessment
+## Historical requirement assessment at takeover
 
 | Area                                | State                    | Evidence                                                                                            |
 | ----------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------- |
@@ -88,12 +91,12 @@ pages under `apps/web/src/content/docs`, and the existing package/schema/validat
 6. Add CI, repository templates, meaningful tests, and link/freshness automation.
 7. Run the full validation matrix and write `CONTINUATION_REPORT.md` without overstating completion.
 
-## Known uncertainties and external verification
+## Historical uncertainties and external verification at takeover
 
 - The absent master prompt prevents comparison with any requirements not repeated in the takeover
   request. Existing architecture and the takeover request are the working specification.
-- There is no Git history, remote, or confirmed GitHub organization/repository, so published URLs,
-  default branch naming, and deployment target cannot be verified.
+- At takeover there was no Git history, remote, or confirmed GitHub organization/repository, so
+  published URLs, default branch naming, and deployment target could not be verified then.
 - All 116 volatile tool records are only partially verified. Their common 2026-07-17 review date and
   seed boilerplate do not prove independent license, pricing, maintenance, or feature verification.
 - Network-dependent source and link verification remains required; unsupported claims will not be
@@ -110,6 +113,7 @@ the documentation platform.
 
 Local formatting, lint, typecheck, catalog validation, generation, unit tests, production build,
 Chromium smoke tests, axe checks, freshness checks, frozen installation, and Compose parsing pass.
-Local Lychee execution remains unavailable because the binary is not installed; the official Lychee
-GitHub Action is configured for scheduled execution. No hosted workflow or deployment can be verified
-until the unborn repository is committed and connected to a remote.
+The repository is now hosted privately at `QaliAI/open-coworking-stack` with default branch `main` and
+an `origin` remote. Hosted CI passed for initial commit `e107548`. The initial Pages run failed before
+build because Pages is not enabled/configured for the private repository; no deployment occurred. A
+checksum-verified Lychee download wrapper now replaces the undeclared global binary requirement.

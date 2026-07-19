@@ -87,7 +87,8 @@ task_fits:
     automation_level: manual support
     what_manual_process_it_can_replace: Keeping free-form prospect notes and qualification questions
       across personal spreadsheets and email threads.
-    what_it_takes_off_the_team: Keeps prospect-provided requirements, open questions, and the approved
+    what_it_takes_off_the_team:
+      Keeps prospect-provided requirements, open questions, and the approved
       next step together in a Community CRM record.
     role_assisted: sales-leasing-manager
     what_remains_human: Sales staff establish expressed needs and make an explainable fit decision;
@@ -96,7 +97,8 @@ task_fits:
       - Community CRM capability verified in staging for the selected Odoo version
       - Approved fair qualification criteria and consent-aware data fields
       - Role-based access, retention rules, and a route for accommodations or alternatives
-    failure_consequence: Unstructured or proxy data can produce unfair prioritization, expose prospect
+    failure_consequence:
+      Unstructured or proxy data can produce unfair prioritization, expose prospect
       details, or make an unsupported disqualification look authoritative.
     pilot_metric: Percentage of pilot records meeting documented evidence criteria and receiving a
       timely clear next step; ambiguous disqualifications retain manager approval.
@@ -107,9 +109,11 @@ task_fits:
   - task_id: manage-pipeline-follow-up
     relationship: system of record
     automation_level: assisted
-    what_manual_process_it_can_replace: Maintaining separate personal reminders and a stale spreadsheet
+    what_manual_process_it_can_replace:
+      Maintaining separate personal reminders and a stale spreadsheet
       of opportunity stages and next actions.
-    what_it_takes_off_the_team: Keeps the opportunity history, current stage, responsible person, and
+    what_it_takes_off_the_team:
+      Keeps the opportunity history, current stage, responsible person, and
       dated next action in one Community CRM record for staff review.
     role_assisted: sales-leasing-manager
     what_remains_human: Sales staff interpret responses, choose a relevant message and channel, and
@@ -118,9 +122,11 @@ task_fits:
       - Community CRM fields and activity behavior verified in staging for the selected Odoo version
       - Consent-aware contact policy, stage definitions, and named record owners
       - Routine stale-record review, access controls, and manual follow-up fallback
-    failure_consequence: Stale stages, missed responses, or incorrect contact preferences can trigger
+    failure_consequence:
+      Stale stages, missed responses, or incorrect contact preferences can trigger
       irrelevant follow-up and leave the pipeline materially misleading.
-    pilot_metric: Percentage of active opportunities with a meaningful dated next action, with opt-outs
+    pilot_metric:
+      Percentage of active opportunities with a meaningful dated next action, with opt-outs
       and closure decisions honored and stale records reviewed.
     evidence:
       - https://www.odoo.com/

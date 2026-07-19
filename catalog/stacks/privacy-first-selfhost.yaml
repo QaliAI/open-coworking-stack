@@ -4,17 +4,48 @@ name: Secure Infrastructure and Business Continuity
 tagline: Protect identity, files, credentials, networks, monitoring, and recovery
 description: A defense-in-depth operating baseline that keeps administrative access controlled, services observable, and critical records recoverable with explicit human incident ownership.
 audience_roles: [technical-operator, owner-operator, operations-manager, facilities]
-problems_solved: [self-host-for-data-control, privacy-compliance, improve-wifi-reliability, disaster-recovery]
-workflows: [access-provisioning, member-offboarding, incident-response, compliance-review, backup-restore-drill]
+problems_solved:
+  [self-host-for-data-control, privacy-compliance, improve-wifi-reliability, disaster-recovery]
+workflows:
+  [
+    access-provisioning,
+    member-offboarding,
+    incident-response,
+    compliance-review,
+    backup-restore-drill,
+  ]
 monthly_cash_budget_band: under-200
 self_host_heavy: true
 operator_profile: A privacy-conscious operator with a named technical maintainer and management support for drills, patching, and access review.
 number_of_locations: One to three locations with documented network and data boundaries.
 team_size: Three or more staff, including technical and incident decision owners.
-products_offered: [secure staff operations, member connectivity, internal file collaboration, recoverable digital services]
+products_offered:
+  [
+    secure staff operations,
+    member connectivity,
+    internal file collaboration,
+    recoverable digital services,
+  ]
 technical_skill_required: High; identity, network segmentation, patching, monitoring, encryption, and recovery competence are required.
-tasks_covered: [staff-single-sign-on, staff-file-storage, credential-management, admin-network-access, service-monitoring, encrypted-backup, access-review]
-tasks_not_covered: [legal-certification, penetration-testing, emergency-services, physical-security-response, employee-screening, risk-acceptance]
+tasks_covered:
+  [
+    staff-single-sign-on,
+    staff-file-storage,
+    credential-management,
+    admin-network-access,
+    service-monitoring,
+    encrypted-backup,
+    access-review,
+  ]
+tasks_not_covered:
+  [
+    legal-certification,
+    penetration-testing,
+    emergency-services,
+    physical-security-response,
+    employee-screening,
+    risk-acceptance,
+  ]
 systems_of_record:
   - Authentik is the staff application identity authority.
   - Nextcloud is the approved internal file record.
@@ -45,7 +76,19 @@ data_flow:
   - Authentik grants staff application sessions from role assignments; break-glass access stays independent.
   - Staff files remain in Nextcloud and flow to encrypted, separate recovery storage through Restic.
   - Monitoring and incident messages contain minimum necessary operational data, not broad member records.
-implementation_order: [inventory-assets-and-owners, define-network-boundaries, deploy-vaultwarden, deploy-authentik, protect-one-service, configure-wireguard, migrate-files, configure-backups, prove-recovery, add-monitoring]
+implementation_order:
+  [
+    inventory-assets-and-owners,
+    define-network-boundaries,
+    deploy-vaultwarden,
+    deploy-authentik,
+    protect-one-service,
+    configure-wireguard,
+    migrate-files,
+    configure-backups,
+    prove-recovery,
+    add-monitoring,
+  ]
 cost_assumptions:
   monthly_cash: Edit for hosts, separate backup storage, domains, monitoring delivery, network equipment, and specialist support.
   setup_labor: Expect substantial architecture, migration, hardening, documentation, and recovery-test effort.
@@ -56,7 +99,13 @@ cost_assumptions:
     - Self-hosting changes control and responsibility; it does not itself establish compliance.
     - Obtain local security and legal advice for regulated data.
   pricing_sources: []
-human_owners: [technical-operator for controls and recovery, owner-operator for risk acceptance, operations-manager for joiner-leaver accuracy, facilities for site incidents]
+human_owners:
+  [
+    technical-operator for controls and recovery,
+    owner-operator for risk acceptance,
+    operations-manager for joiner-leaver accuracy,
+    facilities for site incidents,
+  ]
 security_boundaries:
   - Separate public, member, staff, administrative, and backup access paths.
   - Maintain least privilege, multifactor authentication where supported, and independent break-glass access.
@@ -71,7 +120,15 @@ assumptions:
 risks:
   - Identity failure can block multiple applications without break-glass paths.
   - Misconfiguration or delayed patching can erase expected privacy benefits.
-getting_started: [inventory-critical-services, classify-data, assign-incident-roles, protect-one-service, build-backups, run-first-recovery-drill]
+getting_started:
+  [
+    inventory-critical-services,
+    classify-data,
+    assign-incident-roles,
+    protect-one-service,
+    build-backups,
+    run-first-recovery-drill,
+  ]
 pilot_plan:
   - Protect one low-risk staff service and back up a test file set.
   - Simulate identity unavailability and restore to an isolated environment.

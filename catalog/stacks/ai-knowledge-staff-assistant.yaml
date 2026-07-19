@@ -11,10 +11,28 @@ self_host_heavy: true
 operator_profile: An operator with stable written procedures that wants supervised drafting and retrieval before considering higher-risk automation.
 number_of_locations: One to many locations sharing approved core procedures with local exceptions.
 team_size: Five or more staff with knowledge, privacy, security, and workflow owners.
-products_offered: [staff-sop-search, assisted-response-drafts, onboarding-checklists, internal-incident-guidance]
+products_offered:
+  [staff-sop-search, assisted-response-drafts, onboarding-checklists, internal-incident-guidance]
 technical_skill_required: High; knowledge governance, integrations, secrets, evaluation, privacy, logging, and incident response.
-tasks_covered: [sop-search, response-drafting, checklist-suggestion, knowledge-gap-reporting, approved-workflow-routing, staff-feedback-capture]
-tasks_not_covered: [autonomous-member-messaging, legal-advice, safety-decisions, refunds, door-access-decisions, employee-discipline, final-policy-approval]
+tasks_covered:
+  [
+    sop-search,
+    response-drafting,
+    checklist-suggestion,
+    knowledge-gap-reporting,
+    approved-workflow-routing,
+    staff-feedback-capture,
+  ]
+tasks_not_covered:
+  [
+    autonomous-member-messaging,
+    legal-advice,
+    safety-decisions,
+    refunds,
+    door-access-decisions,
+    employee-discipline,
+    final-policy-approval,
+  ]
 systems_of_record:
   - BookStack is the approved procedure and policy record.
   - Chatwoot remains the support conversation record.
@@ -40,7 +58,18 @@ data_flow:
   - Approved BookStack pages are selected for retrieval through a separately reviewed indexing and model service.
   - n8n sends minimum necessary context and returns a draft to staff in Chatwoot without automatic delivery.
   - Staff approve, edit, reject, and report outputs; decisions and source corrections return to human-owned records.
-implementation_order: [inventory-and-approve-knowledge, classify-prohibited-data, select-separate-model-processor, document-data-terms, configure-secrets, build-read-only-prototype, create-evaluation-set, pilot-drafts, add-approval-gates]
+implementation_order:
+  [
+    inventory-and-approve-knowledge,
+    classify-prohibited-data,
+    select-separate-model-processor,
+    document-data-terms,
+    configure-secrets,
+    build-read-only-prototype,
+    create-evaluation-set,
+    pilot-drafts,
+    add-approval-gates,
+  ]
 cost_assumptions:
   monthly_cash: Edit for knowledge hosting, orchestration, secrets, backups, and separately approved model or inference usage.
   setup_labor: Expect significant curation, privacy and security review, integration work, evaluation design, and staff training.
@@ -51,7 +80,14 @@ cost_assumptions:
     - No AI model tool currently forms part of this catalog stack; selection is an explicit procurement boundary.
     - Staff time for review and source maintenance is a core cost.
   pricing_sources: []
-human_owners: [knowledge-owner for sources, operations-manager for workflow, privacy-owner for data use, technical-operator for integration, frontline-staff for final responses]
+human_owners:
+  [
+    knowledge-owner for sources,
+    operations-manager for workflow,
+    privacy-owner for data use,
+    technical-operator for integration,
+    frontline-staff for final responses,
+  ]
 security_boundaries:
   - Exclude payment card data, credentials, identity documents, health data, and unrestricted private conversations from prompts.
   - Keep model credentials in OpenBao and restrict retrieval to approved sources.
@@ -66,7 +102,14 @@ assumptions:
 risks:
   - Plausible but wrong drafts can cause harm if staff over-trust them.
   - Retrieval, logs, or model providers can expose confidential information.
-getting_started: [curate-ten-sops, define-prohibited-uses, build-twenty-case-evaluation, prototype-read-only, pilot-with-expert-staff]
+getting_started:
+  [
+    curate-ten-sops,
+    define-prohibited-uses,
+    build-twenty-case-evaluation,
+    prototype-read-only,
+    pilot-with-expert-staff,
+  ]
 pilot_plan:
   - Use a fixed evaluation set and a small expert cohort for internal drafts only.
   - Record source coverage, edits, unsafe outputs, time saved or added, and staff confidence.
