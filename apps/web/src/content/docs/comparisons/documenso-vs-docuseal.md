@@ -1,6 +1,7 @@
 ---
 title: Documenso vs DocuSeal
 description: Compare electronic-signature platforms without making legal-validity assumptions.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

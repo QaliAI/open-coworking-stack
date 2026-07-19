@@ -1,6 +1,7 @@
 ---
 title: Open WebUI vs AnythingLLM vs Onyx
 description: Compare AI chat and knowledge interfaces for internal operator assistance.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

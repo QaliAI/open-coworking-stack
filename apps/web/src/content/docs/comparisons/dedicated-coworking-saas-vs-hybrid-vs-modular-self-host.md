@@ -1,6 +1,7 @@
 ---
 title: Dedicated coworking SaaS vs hybrid vs modular self-host
 description: Choose an operating architecture before comparing individual products.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

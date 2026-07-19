@@ -1,6 +1,7 @@
 ---
 title: PacketFence vs FreeRADIUS vs managed network access
 description: Compare network access control building blocks and managed services.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

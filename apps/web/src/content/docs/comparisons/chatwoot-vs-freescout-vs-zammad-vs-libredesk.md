@@ -1,6 +1,7 @@
 ---
 title: Chatwoot vs FreeScout vs Zammad vs LibreDesk
 description: Compare shared inbox and support-desk options for member service.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

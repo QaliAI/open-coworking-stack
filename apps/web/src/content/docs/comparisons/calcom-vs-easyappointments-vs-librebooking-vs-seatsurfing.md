@@ -1,6 +1,7 @@
 ---
 title: Cal.com/Cal.diy vs Easy!Appointments vs LibreBooking vs Seatsurfing
 description: Compare scheduling and resource-booking tools for tours, rooms, and desks.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

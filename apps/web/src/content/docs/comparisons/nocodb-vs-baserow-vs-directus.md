@@ -1,6 +1,7 @@
 ---
 title: NocoDB vs Baserow vs Directus
 description: Compare operator-facing data applications and headless data platforms.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

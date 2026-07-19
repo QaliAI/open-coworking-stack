@@ -1,6 +1,7 @@
 ---
 title: BookStack vs Docmost vs Wiki.js vs Outline vs Notion
 description: Compare knowledge bases for SOPs, site playbooks, and team documentation.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

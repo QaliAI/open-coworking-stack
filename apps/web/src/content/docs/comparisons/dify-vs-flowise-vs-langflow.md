@@ -1,6 +1,7 @@
 ---
 title: Dify vs Flowise vs Langflow
 description: Compare visual AI application and workflow builders for controlled experiments.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

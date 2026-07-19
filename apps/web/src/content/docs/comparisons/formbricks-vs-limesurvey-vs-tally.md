@@ -1,6 +1,7 @@
 ---
 title: Formbricks vs LimeSurvey vs Tally
 description: Compare survey and form tools for member feedback and operational intake.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

@@ -1,6 +1,7 @@
 ---
 title: Self-hosted PBX vs hosted phone
 description: Compare business telephony operating models for front desks and sales teams.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

@@ -1,6 +1,7 @@
 ---
 title: OfficeRnD vs Nexudus vs Cobot vs Optix
 description: A conservative shortlist comparison of dedicated coworking SaaS platforms.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

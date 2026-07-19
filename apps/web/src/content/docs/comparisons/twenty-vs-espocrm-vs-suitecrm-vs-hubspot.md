@@ -1,6 +1,7 @@
 ---
 title: Twenty vs EspoCRM vs SuiteCRM vs HubSpot free CRM
 description: Compare general CRM options without assuming they replace a coworking platform.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

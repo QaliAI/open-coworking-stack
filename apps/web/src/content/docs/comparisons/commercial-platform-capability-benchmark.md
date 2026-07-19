@@ -1,6 +1,7 @@
 ---
 title: Commercial platform capability benchmark
 description: An evidence worksheet for comparing coworking SaaS capabilities without inventing plan entitlements.
+page_classification: Due-diligence worksheet
 ---
 
 This benchmark covers the complete operator capability surface used in this library. It is not a

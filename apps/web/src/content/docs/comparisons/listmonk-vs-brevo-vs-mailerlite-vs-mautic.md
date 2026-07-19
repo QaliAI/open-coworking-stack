@@ -1,6 +1,7 @@
 ---
 title: Listmonk vs Brevo vs MailerLite vs Mautic
 description: Compare member and prospect email tools with deliverability and consent in view.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions
