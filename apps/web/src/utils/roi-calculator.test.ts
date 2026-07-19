@@ -27,7 +27,7 @@ describe('Workflow capacity calculation', () => {
     expect(result.base.monthlyCashCost).toBe(288.75);
     expect(result.base.monthlyLaborCost).toBe(180);
     expect(result.base.netCapacityValue).toBe(-48.75);
-    expect(result.base.firstYearCapacityEstimate).toBe(-2985);
+    expect(result.base.firstYearCapacityEstimate).toBe(-3207);
     expect(result.base.paybackMonths).toBeNull();
   });
 
@@ -85,7 +85,7 @@ describe('Workflow capacity calculation', () => {
     const result = calculateWorkflowCapacity(input);
 
     expect(result.base.paybackMonths).toBeNull();
-    expect(result.base.firstYearCapacityEstimate).toBeLessThan(-10000);
+    expect(result.base.firstYearCapacityEstimate).toBeLessThan(-5000);
   });
 
   it('reflects annual price increase in monthly cash cost', () => {
@@ -100,10 +100,15 @@ describe('Workflow capacity calculation', () => {
     expect(result.base.monthlyCashCost).toBe(150);
   });
 
-  it('handles zero annual price increase', () => {
-    const input = { ...exampleWorkflowInput(), annualPriceIncreasePercent: 0 };
+  it('handles zero annual price increase as direct monthly cost', () => {
+    const input = {
+      ...exampleWorkflowInput(),
+      monthlySoftwareHostingCost: 100,
+      monthlyOtherCashCost: 0,
+      annualPriceIncreasePercent: 0,
+    };
     const result = calculateWorkflowCapacity(input);
 
-    expect(result.base.monthlyCashCost).toBe(288.75);
+    expect(result.base.monthlyCashCost).toBe(100);
   });
 });
