@@ -92,6 +92,29 @@ describe('stack recommendation scenarios', () => {
     expect(selfHosted?.reasoning).toContain('Do not self-host');
   });
 
+  it('enriches tools with catalog lookup when provided', () => {
+    const catalog = { cobot: { homepage: 'https://cobot.me', license_class: 'saas' } };
+    const result = recommendStack(
+      scenario({ priorities: ['members-billing'] }),
+      catalog,
+    );
+    const tools = result.tracks[0].tools;
+    expect(tools[0].catalogId).toBe('cobot');
+    expect(tools[0].catalogEntry?.homepage).toBe('https://cobot.me');
+    expect(tools[0].catalogEntry?.license_class).toBe('saas');
+  });
+
+  it('falls back gracefully when catalog lookup is missing', () => {
+    const result = recommendStack(
+      scenario({ priorities: ['members-billing'] }),
+      undefined,
+    );
+    const tools = result.tracks[0].tools;
+    expect(tools[0].catalogEntry).toBeUndefined();
+    expect(tools[0].catalogId).toBe('cobot');
+    expect(tools[0].name).toBe('Cobot');
+  });
+
   it('normalizes an empty outcome selection and invalid numeric values deterministically', () => {
     const result = recommendStack(
       scenario({ priorities: [], sites: 0, activeMembers: Number.NaN, staffUsers: -2 }),

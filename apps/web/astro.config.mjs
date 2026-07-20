@@ -28,6 +28,10 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Open Coworking Stack',
+      logo: {
+        src: '/logo.svg',
+        alt: 'Open Coworking Stack logo',
+      },
       description:
         'A practical, verified directory of free, open-source, source-available, freemium, and free-to-try technology for coworking operators.',
       social: repositoryUrl ? { github: repositoryUrl } : undefined,
@@ -64,7 +68,7 @@ export default defineConfig({
             ...(hasGeneratedRoles
               ? [{ label: 'Operator roles', autogenerate: { directory: 'roles/generated' } }]
               : []),
-            { label: 'Comparison index', slug: 'comparisons' },
+            { label: 'Comparison index', slug: 'comparisons/index' },
           ],
         },
         {
@@ -80,6 +84,7 @@ export default defineConfig({
         },
         {
           label: 'Reference stacks',
+          collapsed: true,
           autogenerate: { directory: 'stacks' },
         },
         {
@@ -92,6 +97,7 @@ export default defineConfig({
               ? [
                   {
                     label: 'Generated workflows',
+                    collapsed: true,
                     autogenerate: { directory: 'workflows/generated' },
                   },
                 ]
@@ -107,22 +113,26 @@ export default defineConfig({
             { label: 'Privacy checklist', slug: 'guides/privacy-checklist' },
             { label: 'Deployment options', slug: 'guides/deployment-options' },
             { label: 'Starter packs', slug: 'guides/starter-packs' },
-            {
-              label: 'Tool guides',
-              autogenerate: { directory: 'guides/tools' },
-            },
+              {
+                label: 'Tool guides',
+                collapsed: true,
+                autogenerate: { directory: 'guides/tools' },
+              },
           ],
         },
         {
           label: 'Integration recipes',
+          collapsed: true,
           autogenerate: { directory: 'integrations/generated' },
         },
         {
           label: 'Operations',
+          collapsed: true,
           autogenerate: { directory: 'ops' },
         },
         {
           label: 'Architecture',
+          collapsed: true,
           autogenerate: { directory: 'architecture' },
         },
         {
