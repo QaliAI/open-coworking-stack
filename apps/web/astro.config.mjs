@@ -71,7 +71,7 @@ export default defineConfig({
           label: 'Decision paths',
           items: [
             { label: 'Stack Builder', slug: 'stack-builder' },
-            { label: 'ROI/TCO estimator', slug: 'roi-calculator' },
+            { label: 'Capacity & payback estimator', slug: 'roi-calculator' },
             { label: 'By lifecycle', slug: 'navigation/by-lifecycle' },
             { label: 'By business model', slug: 'navigation/by-business-model' },
             { label: 'By technical ability', slug: 'navigation/by-technical-ability' },

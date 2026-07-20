@@ -10,7 +10,7 @@ const routes = [
   ['task', '/tasks/generated/manage-room-bookings/', 'Manage room bookings'],
   ['role', '/roles/generated/owner-operator/', 'Owner-operator'],
   ['stack builder', '/stack-builder/', 'Stack Builder'],
-  ['ROI estimator', '/roi-calculator/', 'ROI/TCO Estimator'],
+  ['capacity estimator', '/roi-calculator/', 'Workflow Capacity and Payback Estimator'],
   ['lifecycle path', '/navigation/by-lifecycle/', 'Navigate by lifecycle'],
   ['business model path', '/navigation/by-business-model/', 'Navigate by business model'],
   ['technical ability path', '/navigation/by-technical-ability/', 'Navigate by technical ability'],

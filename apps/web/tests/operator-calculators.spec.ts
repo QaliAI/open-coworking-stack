@@ -27,14 +27,18 @@ test('stack builder blocks self-hosting for a nontechnical operator and exports 
   await expect(page.locator('html')).toHaveAttribute('data-printed', 'true');
 });
 
-test('ROI calculator updates without presenting savings as guaranteed', async ({ page }) => {
+test('capacity estimator starts empty and shows no savings promise', async ({ page }) => {
   await page.goto('/roi-calculator/');
 
-  await expect(page.getByRole('heading', { level: 1, name: 'ROI/TCO Estimator' })).toBeVisible();
-  await page.getByLabel('Tasks per month').fill('600');
-  await page.getByRole('button', { name: 'Recalculate estimate' }).click();
-  await expect(page.locator('[data-base="hoursPotentiallyRedirected"]')).toHaveText('28');
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Workflow Capacity and Payback Estimator' }),
+  ).toBeVisible();
   await expect(page.getByText('No savings promise.')).toBeVisible();
+  await expect(page.locator('[data-base="hoursRedirected"]')).toHaveText('0');
+
+  await page.getByRole('button', { name: 'Load example (fabricated)' }).click();
+  await page.getByRole('button', { name: 'Calculate' }).click();
+  await expect(page.locator('[data-base="hoursRedirected"]')).toHaveText('14');
 });
 
 test('operator tools remain usable at 320px', async ({ page }) => {
