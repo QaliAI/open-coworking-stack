@@ -50,6 +50,13 @@ The example tags were registry-verified on 2026-07-18 but tags are mutable. Repl
 values with verified `tag@sha256:digest` references before production. Review release notes and
 database requirements, back up, and test the new images against restored data before changing pins.
 
+## Sample coworking document taxonomy
+
+The `sample-taxonomy/` directory contains a **fabricated demonstration** document-type taxonomy
+for coworking operations (16 document types with regex matching, plus suggested tags). This is
+not an importable Paperless-ngx configuration; adapt the types, matching rules, tags, and
+correspondents to your actual mailroom workflow before applying.
+
 ## Official documentation
 
 - [Setup](https://docs.paperless-ngx.com/setup/)

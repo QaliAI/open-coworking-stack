@@ -1,0 +1,200 @@
+# FABRICATED DEMONSTRATION DATA — not a production-ready deployment.
+# Reference prototype for the Community and Member Experience stack.
+# Adapt secrets, image pins, ports, volumes, and networking before staging.
+
+services:
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2-alpine}
+    restart: unless-stopped
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:80:80'
+      - '${BIND_ADDRESS:-127.0.0.1}:443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+      - caddy_logs:/var/log/caddy
+    networks:
+      - frontend
+
+  calcom-db:
+    image: ${CALCOM_DB_IMAGE:-postgres:16-alpine}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: calcom
+      POSTGRES_USER: calcom
+      POSTGRES_PASSWORD: ${CALCOM_DB_PASSWORD:?Set CALCOM_DB_PASSWORD}
+    volumes:
+      - calcom_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U calcom -d calcom']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  calcom:
+    image: ${CALCOM_IMAGE:?Set CALCOM_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://calcom:${CALCOM_DB_PASSWORD:?Set CALCOM_DB_PASSWORD}@calcom-db:5432/calcom
+      NEXTAUTH_URL: ${CALCOM_URL:-https://scheduling.coworking.test}
+      NEXTAUTH_SECRET: ${CALCOM_NEXTAUTH_SECRET:?Set CALCOM_NEXTAUTH_SECRET}
+      CALENDSO_ENCRYPTION_KEY: ${CALCOM_ENCRYPTION_KEY:?Set CALCOM_ENCRYPTION_KEY}
+      NODE_ENV: production
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8086:3000'
+    depends_on:
+      calcom-db:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  librebooking-db:
+    image: ${LIBREBOOKING_DB_IMAGE:-mariadb:11-lts}
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${LIBREBOOKING_DB_ROOT_PASSWORD:?Set LIBREBOOKING_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: librebooking
+      MYSQL_USER: librebooking
+      MYSQL_PASSWORD: ${LIBREBOOKING_DB_PASSWORD:?Set LIBREBOOKING_DB_PASSWORD}
+    volumes:
+      - librebooking_db:/var/lib/mysql
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -u root -p$$MYSQL_ROOT_PASSWORD | grep -q alive']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  librebooking:
+    image: ${LIBREBOOKING_IMAGE:?Set LIBREBOOKING_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      DB_HOST: librebooking-db
+      DB_PORT: 3306
+      DB_NAME: librebooking
+      DB_USER: librebooking
+      DB_PASSWORD: ${LIBREBOOKING_DB_PASSWORD:?Set LIBREBOOKING_DB_PASSWORD}
+      INSTALL_URL: ${LIBREBOOKING_URL:-https://booking.coworking.test}
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8084:80'
+    depends_on:
+      librebooking-db:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  chatwoot-db:
+    image: ${CHATWOOT_DB_IMAGE:-postgres:16-alpine}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chatwoot
+      POSTGRES_USER: chatwoot
+      POSTGRES_PASSWORD: ${CHATWOOT_DB_PASSWORD:?Set CHATWOOT_DB_PASSWORD}
+    volumes:
+      - chatwoot_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U chatwoot -d chatwoot']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  chatwoot-redis:
+    image: ${CHATWOOT_REDIS_IMAGE:-redis:7-alpine}
+    restart: unless-stopped
+    command: ['redis-server', '--requirepass', '${CHATWOOT_REDIS_PASSWORD:?Set CHATWOOT_REDIS_PASSWORD}']
+    volumes:
+      - chatwoot_redis:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'REDISCLI_AUTH=$$CHATWOOT_REDIS_PASSWORD redis-cli ping | grep -q PONG']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - backend
+
+  chatwoot:
+    image: ${CHATWOOT_IMAGE:?Set CHATWOOT_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: chatwoot-db
+      POSTGRES_DATABASE: chatwoot
+      POSTGRES_USERNAME: chatwoot
+      POSTGRES_PASSWORD: ${CHATWOOT_DB_PASSWORD:?Set CHATWOOT_DB_PASSWORD}
+      REDIS_URL: redis://:${CHATWOOT_REDIS_PASSWORD:?Set CHATWOOT_REDIS_PASSWORD}@chatwoot-redis:6379
+      SECRET_KEY_BASE: ${CHATWOOT_SECRET_KEY:?Set CHATWOOT_SECRET_KEY}
+      FRONTEND_URL: ${CHATWOOT_URL:-https://chat.coworking.test}
+      INSTALLATION_ENV: docker
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8087:3000'
+    depends_on:
+      chatwoot-db:
+        condition: service_healthy
+      chatwoot-redis:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  formbricks-db:
+    image: ${FORMBRICKS_DB_IMAGE:-postgres:16-alpine}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: formbricks
+      POSTGRES_USER: formbricks
+      POSTGRES_PASSWORD: ${FORMBRICKS_DB_PASSWORD:?Set FORMBRICKS_DB_PASSWORD}
+    volumes:
+      - formbricks_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U formbricks -d formbricks']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  formbricks:
+    image: ${FORMBRICKS_IMAGE:?Set FORMBRICKS_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://formbricks:${FORMBRICKS_DB_PASSWORD:?Set FORMBRICKS_DB_PASSWORD}@formbricks-db:5432/formbricks
+      NEXTAUTH_URL: ${FORMBRICKS_URL:-https://feedback.coworking.test}
+      NEXTAUTH_SECRET: ${FORMBRICKS_SECRET:?Set FORMBRICKS_SECRET}
+      ENCRYPTION_KEY: ${FORMBRICKS_ENCRYPTION_KEY:?Set FORMBRICKS_ENCRYPTION_KEY}
+      MAIL_FROM: ${FORMBRICKS_MAIL_FROM:-noreply@coworking.test}
+      SMTP_HOST: ${FORMBRICKS_SMTP_HOST:-mail}
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8083:3000'
+    depends_on:
+      formbricks-db:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  caddy_data:
+  caddy_config:
+  caddy_logs:
+  calcom_db:
+  librebooking_db:
+  chatwoot_db:
+  chatwoot_redis:
+  formbricks_db:
+
+networks:
+  frontend:
+  backend:
+    internal: true

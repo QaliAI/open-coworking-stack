@@ -1,0 +1,191 @@
+# FABRICATED DEMONSTRATION — sample Caddy reverse-proxy configuration.
+# Replace example domains, email, and IP ranges with your real values.
+# Place this file in a stack compose directory as Caddyfile (no extension).
+
+{
+  email admin@coworking.test
+  # Production: replace with your real admin email for Let's Encrypt certificates.
+
+  # Staging: uncomment the following to use the staging CA and avoid rate limits.
+  # acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# Internal DNS names for loopback testing (no TLS)
+# Map these in your hosts file or local DNS for testing:
+# 127.0.0.1  sops.coworking.test  vaultwarden.coworking.test  status.coworking.test
+
+(trusted_networks) {
+  @private remote_ip 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 127.0.0.0/8
+  # Production: add your corporate VPN ranges and tailnet subnets.
+}
+
+# BookStack — SOP documentation
+sops.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy bookstack:80 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+    header_up X-Forwarded-For {remote_host}
+  }
+
+  log {
+    output file /var/log/caddy/sops.coworking.test.log
+  }
+}
+
+# Vaultwarden — password/secret vault
+vaultwarden.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy vaultwarden:80 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/vaultwarden.coworking.test.log
+  }
+}
+
+# Uptime Kuma — monitoring dashboard
+status.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy uptime-kuma:3001 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/status.coworking.test.log
+  }
+}
+
+# Nextcloud — file sync and sharing
+nextcloud.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy nextcloud:80 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+    header_up X-Forwarded-For {remote_host}
+  }
+
+  log {
+    output file /var/log/caddy/nextcloud.coworking.test.log
+  }
+}
+
+# Authentik — identity provider
+auth.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy authentik-server:9000 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+    header_up X-Forwarded-For {remote_host}
+  }
+
+  log {
+    output file /var/log/caddy/auth.coworking.test.log
+  }
+}
+
+# Cal.com — scheduling
+scheduling.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy calcom:3000 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/scheduling.coworking.test.log
+  }
+}
+
+# Chatwoot — support inbox
+chat.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy chatwoot:3000 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/chat.coworking.test.log
+  }
+}
+
+# Formbricks — feedback surveys
+feedback.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy formbricks:3000 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/feedback.coworking.test.log
+  }
+}
+
+# LibreBooking — room and desk booking
+booking.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy librebooking:80 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/booking.coworking.test.log
+  }
+}
+
+# Paperless-ngx — document management
+docs.coworking.test {
+  import trusted_networks
+
+  encode zstd gzip
+
+  reverse_proxy webserver:8000 {
+    header_up X-Forwarded-Host {host}
+    header_up X-Forwarded-Proto https
+  }
+
+  log {
+    output file /var/log/caddy/docs.coworking.test.log
+  }
+}
+
+# Health endpoint — used by Uptime Kuma or external monitors
+health.coworking.test {
+  respond "ok" 200
+  log {
+    output discard
+  }
+}
