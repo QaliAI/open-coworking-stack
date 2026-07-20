@@ -1,2 +1,27 @@
-# Placeholder only. No GitHub account or team is configured as an owner in this repository.
-# Replace these comments with verified owners after a remote and maintainer identities are established.
+# The repository is owned by the maintainer team.
+# Replace `@org/maintainers` with the actual GitHub team or individual accounts
+# after a remote and maintainer identities are established.
+
+* @org/maintainers
+
+# Packages — individual or subteam review recommended
+/packages/schema/   @org/maintainers
+/packages/shared/   @org/maintainers
+/packages/validators/   @org/maintainers
+/packages/generators/   @org/maintainers
+
+# App
+/apps/web/  @org/maintainers
+
+# Core content
+/catalog/   @org/maintainers
+/stacks/    @org/maintainers
+/guides/    @org/maintainers
+
+# Infrastructure
+/.github/   @org/maintainers
+/compose/   @org/maintainers
+/scripts/   @org/maintainers
+
+# Documentation
+/docs/  @org/maintainers
