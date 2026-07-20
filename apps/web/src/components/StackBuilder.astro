@@ -1,12 +1,36 @@
 ---
+import { readFile } from 'node:fs/promises';
 import {
   defaultStackBuilderInput,
   recommendStack,
+  type CatalogLookup,
   type CostAssumptions,
   type StackPriority,
 } from '../utils/stack-builder';
 
-const initial = recommendStack(defaultStackBuilderInput);
+const catalogUrl = new URL('../../public/data/catalog.json', import.meta.url);
+let catalog: CatalogLookup = {};
+try {
+  const source = JSON.parse(await readFile(catalogUrl, 'utf8'));
+  if (source.tools) {
+    catalog = Object.fromEntries(
+      source.tools.map((tool: Record<string, unknown>) => [
+        tool.id as string,
+        {
+          homepage: tool.homepage as string | undefined,
+          license_class: tool.license_class as string | undefined,
+          spdx: tool.spdx as string | undefined,
+          guide_status: tool.guide_status as string | undefined,
+          verification_status: tool.verification_status as string | undefined,
+        },
+      ]),
+    );
+  }
+} catch {
+  // Catalog not generated; recommendation works from curated data alone
+}
+
+const initial = recommendStack(defaultStackBuilderInput, catalog);
 const priorityOptions: Array<[StackPriority, string, string]> = [
   ['members-billing', 'Members and billing', 'Membership, invoices, and payment follow-up'],
   ['rooms-desks', 'Rooms and desks', 'Availability and booking'],
@@ -26,6 +50,8 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
   ['monthlyLaborHours', 'Maintenance and admin labor', 'hours/month'],
 ];
 ---
+
+<script is:inline type="application/json" data-catalog>{JSON.stringify(catalog)}</script>
 
 <div class="builder" data-stack-builder>
   <form data-builder-form>
@@ -182,7 +208,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
             <details open>
               <summary>Tools and alternatives</summary>
               <h4>Tools</h4>
-              <ul data-tools>{track.tools.map((tool) => <li><strong>{tool.name}:</strong> {tool.purpose}</li>)}</ul>
+              <ul data-tools>{track.tools.map((tool) => <li><strong>{tool.name}:</strong> {tool.purpose}{tool.catalogEntry?.homepage ? <span class="catalog-ref"> — <a href={tool.catalogEntry.homepage}>{tool.catalogEntry.license_class ?? 'site'}</a></span> : ''}</li>)}</ul>
               <h4>Alternatives</h4>
               <ul data-alternatives>{track.alternatives.map((item) => <li>{item}</li>)}</ul>
             </details>
@@ -198,8 +224,8 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
             </details>
 
             <details open>
-              <summary>Editable ROI/TCO assumptions</summary>
-              <p class="hint">Directional estimates only. Replace every value with a quote or internal assumption.</p>
+              <summary>Editable cost assumptions (fabricated demonstration data)</summary>
+              <p class="hint">Fabricated demonstration data — directional estimates only. Replace every value with a quote or internal assumption.</p>
               <div class="cost-grid">
                 {costFields.map(([key, label, unit]) => (
                   <label>
@@ -246,6 +272,10 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
     type TechnicalCapacity,
   } from '../utils/stack-builder';
 
+  const catalogScript = document.querySelector<HTMLScriptElement>('script[data-catalog]');
+  let catalog: Record<string, { homepage?: string; license_class?: string; spdx?: string }> = {};
+  try { if (catalogScript?.textContent) catalog = JSON.parse(catalogScript.textContent); } catch { /* ok */ }
+
   const root = document.querySelector<HTMLElement>('[data-stack-builder]');
   if (root && !root.dataset.ready) {
     root.dataset.ready = 'true';
@@ -281,7 +311,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
       };
     }
 
-    function replaceList(container: Element | null, items: Array<string | { name: string; purpose: string }>) {
+    function replaceList(container: Element | null, items: Array<string | { name: string; purpose: string; catalogEntry?: { homepage?: string; license_class?: string } }>) {
       if (!container) return;
       container.replaceChildren(
         ...items.map((item) => {
@@ -291,6 +321,13 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
             const strong = document.createElement('strong');
             strong.textContent = `${item.name}:`;
             li.append(strong, ` ${item.purpose}`);
+            if (item.catalogEntry?.homepage) {
+              const link = document.createElement('a');
+              link.href = item.catalogEntry.homepage;
+              link.textContent = item.catalogEntry.license_class ?? 'site';
+              link.className = 'catalog-ref';
+              li.append(' — ', link);
+            }
           }
           return li;
         }),
@@ -366,13 +403,13 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
       event.preventDefault();
       const input = readInput();
       if (!input) return;
-      render(recommendStack(input));
+      render(recommendStack(input, catalog));
       root?.querySelector<HTMLElement>('#stack-results-heading')?.focus({ preventScroll: true });
       root?.querySelector<HTMLElement>('.results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     form?.addEventListener('reset', () => window.setTimeout(() => {
       const input = readInput();
-      if (input) render(recommendStack(input));
+      if (input) render(recommendStack(input, catalog));
     }));
     root.addEventListener('input', (event) => {
       const target = event.target;
@@ -393,7 +430,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
     root.querySelector<HTMLButtonElement>('[data-print]')?.addEventListener('click', () => window.print());
 
     const initialInput = readInput();
-    if (initialInput) render(recommendStack(initialInput));
+    if (initialInput) render(recommendStack(initialInput, catalog));
   }
 </script>
 
@@ -447,6 +484,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
   .cost-grid label small { font-weight: 400; }
   .cost-grid input { padding: .45rem; }
   .cost-total { border-top: 1px dashed #82978c; font-size: .84rem; font-weight: 700; padding-top: .65rem; }
+  .catalog-ref { font-size: .72rem; font-weight: 500; text-decoration: underline; text-underline-offset: .15em; }
   .boundary { border-top: 1px solid var(--line); margin-top: 1.2rem; padding-top: .9rem; }
   @media (max-width: 72rem) { .track-grid { grid-template-columns: 1fr; } }
   @media (max-width: 44rem) {

@@ -35,9 +35,19 @@ export interface StackBuilderInput {
 
 export type StackTrackId = 'hosted' | 'hybrid' | 'self-hosted';
 
+export interface CatalogToolInfo {
+  homepage?: string;
+  license_class?: string;
+  spdx?: string;
+  guide_status?: string;
+  verification_status?: string;
+}
+
 export interface StackTool {
   name: string;
   purpose: string;
+  catalogId?: string;
+  catalogEntry?: CatalogToolInfo;
 }
 
 export interface CostAssumptions {
@@ -102,6 +112,8 @@ export const defaultStackBuilderInput: StackBuilderInput = {
   constraints: '',
 };
 
+export type CatalogLookup = Record<string, CatalogToolInfo>;
+
 const priorityLabels: Record<StackPriority, string> = {
   'members-billing': 'Membership, invoices, and payment follow-up',
   'rooms-desks': 'Room and desk availability and booking',
@@ -111,39 +123,48 @@ const priorityLabels: Record<StackPriority, string> = {
   'automation-reporting': 'Approved handoffs and management reporting',
 };
 
-const toolChoices: Record<StackTrackId, Record<StackPriority, StackTool>> = {
+interface ToolChoice {
+  name: string;
+  purpose: string;
+  catalogId: string;
+}
+
+const toolChoices: Record<StackTrackId, Record<StackPriority, ToolChoice>> = {
   hosted: {
-    'members-billing': { name: 'Cobot', purpose: 'Membership, contracts, invoicing, and booking' },
-    'rooms-desks': { name: 'Cobot', purpose: 'Member-facing room and resource booking' },
-    'sales-tours': { name: 'Cal.com Cloud', purpose: 'Tour scheduling with staff calendars' },
-    'community-comms': { name: 'Brevo', purpose: 'Permissioned operational email and segments' },
-    'knowledge-sops': { name: 'Notion', purpose: 'Hosted procedures and handoff notes' },
+    'members-billing': { catalogId: 'cobot', name: 'Cobot', purpose: 'Membership, contracts, invoicing, and booking' },
+    'rooms-desks': { catalogId: 'cobot', name: 'Cobot', purpose: 'Member-facing room and resource booking' },
+    'sales-tours': { catalogId: 'cal-com', name: 'Cal.com Cloud', purpose: 'Tour scheduling with staff calendars' },
+    'community-comms': { catalogId: 'brevo', name: 'Brevo', purpose: 'Permissioned operational email and segments' },
+    'knowledge-sops': { catalogId: 'notion', name: 'Notion', purpose: 'Hosted procedures and handoff notes' },
     'automation-reporting': {
+      catalogId: 'activepieces',
       name: 'Activepieces Cloud',
       purpose: 'Small, reviewed system handoffs',
     },
   },
   hybrid: {
-    'members-billing': { name: 'Cobot', purpose: 'Hosted financial and member system of record' },
-    'rooms-desks': { name: 'Seatsurfing', purpose: 'Controlled desk and room booking layer' },
-    'sales-tours': { name: 'Cal.com', purpose: 'Managed or supported tour scheduling' },
-    'community-comms': { name: 'Chatwoot', purpose: 'Shared inbox with a named human owner' },
-    'knowledge-sops': { name: 'BookStack', purpose: 'Portable operating procedures' },
+    'members-billing': { catalogId: 'cobot', name: 'Cobot', purpose: 'Hosted financial and member system of record' },
+    'rooms-desks': { catalogId: 'seatsurfing', name: 'Seatsurfing', purpose: 'Controlled desk and room booking layer' },
+    'sales-tours': { catalogId: 'cal-com', name: 'Cal.com', purpose: 'Managed or supported tour scheduling' },
+    'community-comms': { catalogId: 'chatwoot', name: 'Chatwoot', purpose: 'Shared inbox with a named human owner' },
+    'knowledge-sops': { catalogId: 'bookstack', name: 'BookStack', purpose: 'Portable operating procedures' },
     'automation-reporting': {
+      catalogId: 'activepieces',
       name: 'Activepieces',
       purpose: 'Operator-controlled approved handoffs',
     },
   },
   'self-hosted': {
     'members-billing': {
+      catalogId: 'erpnext',
       name: 'ERPNext',
       purpose: 'Member and invoice records with qualified finance review',
     },
-    'rooms-desks': { name: 'Seatsurfing', purpose: 'Self-hosted desk and room booking' },
-    'sales-tours': { name: 'Cal.com', purpose: 'Self-hosted scheduling and calendar handoff' },
-    'community-comms': { name: 'Chatwoot', purpose: 'Self-hosted shared inbox' },
-    'knowledge-sops': { name: 'BookStack', purpose: 'Self-hosted procedures and runbooks' },
-    'automation-reporting': { name: 'Activepieces', purpose: 'Self-hosted, reviewed automation' },
+    'rooms-desks': { catalogId: 'seatsurfing', name: 'Seatsurfing', purpose: 'Self-hosted desk and room booking' },
+    'sales-tours': { catalogId: 'cal-com', name: 'Cal.com', purpose: 'Self-hosted scheduling and calendar handoff' },
+    'community-comms': { catalogId: 'chatwoot', name: 'Chatwoot', purpose: 'Self-hosted shared inbox' },
+    'knowledge-sops': { catalogId: 'bookstack', name: 'BookStack', purpose: 'Self-hosted procedures and runbooks' },
+    'automation-reporting': { catalogId: 'activepieces', name: 'Activepieces', purpose: 'Self-hosted, reviewed automation' },
   },
 };
 
@@ -174,10 +195,20 @@ const alternatives: Record<StackTrackId, Record<StackPriority, string>> = {
   },
 };
 
-function uniqueTools(track: StackTrackId, priorities: StackPriority[]): StackTool[] {
-  const selected = priorities.map((priority) => toolChoices[track][priority]);
+function enrichTool(tool: ToolChoice, catalog: CatalogLookup | undefined): StackTool {
+  const entry = catalog?.[tool.catalogId];
+  return {
+    name: tool.name,
+    purpose: tool.purpose,
+    catalogId: tool.catalogId,
+    catalogEntry: entry,
+  };
+}
+
+function uniqueTools(track: StackTrackId, priorities: StackPriority[], catalog: CatalogLookup | undefined): StackTool[] {
+  const selected = priorities.map((priority) => enrichTool(toolChoices[track][priority], catalog));
   return selected.filter(
-    (tool, index) => selected.findIndex(({ name }) => name === tool.name) === index,
+    (tool, index) => selected.findIndex(({ catalogId }) => catalogId === tool.catalogId) === index,
   );
 }
 
@@ -242,6 +273,7 @@ function buildTrack(
   id: StackTrackId,
   input: StackBuilderInput,
   recommendedTrack: StackTrackId,
+  catalog: CatalogLookup | undefined,
 ): StackTrack {
   const labels: Record<StackTrackId, [string, string]> = {
     hosted: ['Hosted', 'easiest'],
@@ -379,7 +411,7 @@ function buildTrack(
         ? 'recommended'
         : 'viable',
     reasoning: specific.reasoning,
-    tools: uniqueTools(id, input.priorities),
+    tools: uniqueTools(id, input.priorities, catalog),
     alternatives: selectedAlternatives,
     coveredTasks: input.priorities.map((priority) => priorityLabels[priority]),
     gaps: [...specific.gaps, ...commonGaps],
@@ -418,7 +450,7 @@ export function normalizeStackBuilderInput(input: StackBuilderInput): StackBuild
   };
 }
 
-export function recommendStack(rawInput: StackBuilderInput): StackRecommendation {
+export function recommendStack(rawInput: StackBuilderInput, catalog?: CatalogLookup): StackRecommendation {
   const input = normalizeStackBuilderInput(rawInput);
   const recommendedTrack = selectRecommendation(input);
   const doNotSelfHost = input.technicalCapacity === 'none';
@@ -432,13 +464,25 @@ export function recommendStack(rawInput: StackBuilderInput): StackRecommendation
       : 'Treat this as a shortlist for a bounded pilot, not procurement or production approval. Verify current pricing, licensing, privacy, security, exports, and integrations.',
     input,
     tracks: (['hosted', 'hybrid', 'self-hosted'] as const).map((id) =>
-      buildTrack(id, input, recommendedTrack),
+      buildTrack(id, input, recommendedTrack, catalog),
     ),
   };
 }
 
 function list(items: string[]): string {
   return items.map((item) => `- ${item}`).join('\n');
+}
+
+function toolLine(tool: StackTool): string {
+  let line = `${tool.name}: ${tool.purpose}`;
+  if (tool.catalogEntry) {
+    const entry = tool.catalogEntry;
+    if (entry.homepage) line += ` (${entry.homepage})`;
+    if (entry.license_class) line += ` [${entry.license_class}]`;
+  } else if (tool.catalogId) {
+    line += ` (catalog ID: ${tool.catalogId} — not found in generated catalog; verify tool metadata)`;
+  }
+  return line;
 }
 
 export function stackRecommendationToMarkdown(result: StackRecommendation): string {
@@ -451,7 +495,7 @@ export function stackRecommendationToMarkdown(result: StackRecommendation): stri
 ${track.reasoning}
 
 ### Tools
-${list(track.tools.map((tool) => `${tool.name}: ${tool.purpose}`))}
+${list(track.tools.map(toolLine))}
 
 ### Alternatives
 ${list(track.alternatives)}
@@ -465,7 +509,7 @@ ${list(track.gaps)}
 ### Systems of record
 ${list(track.systemsOfRecord)}
 
-### Editable cost assumptions (${input.currency})
+### Editable cost assumptions (${input.currency}) (fabricated demonstration data)
 - Setup services: ${cost.setupServices}
 - Monthly subscriptions: ${cost.subscriptions}
 - Monthly hosting: ${cost.hosting}
