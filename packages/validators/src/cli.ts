@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { validateCatalog } from './validate-catalog.js';
+import { validateCatalog, contentQualityReport } from './validate-catalog.js';
 import { checkFreshness, freshnessShouldFail } from './freshness.js';
 
 function resolveRepoRoot(): string {
@@ -11,7 +11,7 @@ function resolveRepoRoot(): string {
 }
 
 async function main(): Promise<void> {
-  const [command = 'validate', thresholdArgument] = process.argv.slice(2);
+  const [command = 'validate', ...commandArgs] = process.argv.slice(2);
   const repoRoot = resolveRepoRoot();
 
   if (command === 'validate') {
@@ -36,7 +36,7 @@ async function main(): Promise<void> {
   }
 
   if (command === 'freshness') {
-    const thresholdDays = thresholdArgument === undefined ? 180 : Number(thresholdArgument);
+    const thresholdDays = commandArgs[0] === undefined ? 180 : Number(commandArgs[0]);
     if (!Number.isInteger(thresholdDays) || thresholdDays < 0) {
       throw new Error('Usage: ocs-validate freshness [non-negative-threshold-days]');
     }
@@ -54,7 +54,20 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.error(`Unknown command: ${command}. Use validate | freshness [threshold-days]`);
+  if (command === 'quality-report') {
+    const issues = await contentQualityReport(repoRoot);
+    if (issues.length === 0) {
+      console.log('Content quality report: 0 issues found.');
+      return;
+    }
+    console.log(`Content quality report: ${issues.length} issue(s) found.\n`);
+    for (const issue of issues) {
+      console.log(`- ${issue.file}: ${issue.message}`);
+    }
+    return;
+  }
+
+  console.error(`Unknown command: ${command}. Use validate | freshness [threshold-days] | quality-report`);
   process.exitCode = 1;
 }
 

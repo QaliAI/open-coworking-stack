@@ -1,6 +1,7 @@
 ---
 title: Paperless-ngx vs Docspell
 description: Compare self-hosted document ingestion, filing, and retrieval.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

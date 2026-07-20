@@ -191,6 +191,35 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
                     });
                   }
                 }
+                const placeholderMarkers =
+                  /\b(TODO|FIXME|HACK|XXX|PLACEHOLDER|TO DO)\b/i;
+                const placeholderMatches = guide.match(placeholderMarkers);
+                if (placeholderMatches) {
+                  issues.push({
+                    file: rel,
+                    level: 'warning',
+                    message: `full guide contains placeholder markers: ${[...new Set(placeholderMatches.map((m) => m.toUpperCase()))].join(', ')}`,
+                  });
+                }
+                const lines = guide.split('\n');
+                const nonEmptyLines = lines.filter((l) => l.trim().length > 0);
+                const boilerplateSentences = [
+                  /^this guide covers/i,
+                  /^this document describes/i,
+                  /^(please )?refer to/i,
+                  /^(contact|consult|review|check) (the )?(official|vendor|tool)/i,
+                ];
+                const boilerplateCount = nonEmptyLines.filter((l) =>
+                  boilerplateSentences.some((bs) => bs.test(l.trim())),
+                ).length;
+                if (boilerplateCount / nonEmptyLines.length > 0.3 && nonEmptyLines.length > 20) {
+                  issues.push({
+                    file: rel,
+                    level: 'warning',
+                    message: `full guide has high boilerplate ratio: ${Math.round(boilerplateCount / nonEmptyLines.length * 100)}% boilerplate (${boilerplateCount}/${nonEmptyLines.length} non-empty lines)`,
+                  });
+                }
+
               }
             } catch {
               issues.push({
@@ -577,4 +606,89 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
   }
 
   return { tools, stacks, workflows, tasks, roles, issues };
+}
+
+export interface ContentQualityIssue {
+  file: string;
+  message: string;
+}
+
+export async function contentQualityReport(repoRoot: string): Promise<ContentQualityIssue[]> {
+  const report: ContentQualityIssue[] = [];
+  const toolsDir = path.join(repoRoot, 'catalog', 'tools');
+
+  for (const file of await listYamlFiles(toolsDir)) {
+    const raw = await loadYamlFile<Record<string, unknown>>(file);
+    if (!raw || typeof raw.id !== 'string' || raw.guide_status !== 'full' || typeof raw.guide_path !== 'string') {
+      continue;
+    }
+    const guidePath: string = raw.guide_path;
+    const toolId: string = raw.id;
+    const guideFile = path.resolve(repoRoot, guidePath);
+    try {
+      const guide = await readFile(guideFile, 'utf8');
+
+      const placeholderMatch = guide.match(/\b(TODO|FIXME|HACK|XXX|PLACEHOLDER|TO DO)\b/i);
+      if (placeholderMatch) {
+        const markers = [...new Set(placeholderMatch.map((m) => m.toUpperCase()))];
+        report.push({ file: guidePath, message: `guide "${toolId}" has placeholder markers: ${markers.join(', ')}` });
+      }
+
+      const sourceAttributionCount = (guide.match(/\[(.+?)\]\(https?:\/\/.+?\)/g) || []).length;
+      if (sourceAttributionCount === 0) {
+        report.push({ file: guidePath, message: `guide "${toolId}" has no source URL attributions` });
+      }
+
+      const sectionRegex = /^##\s+(.+)/gm;
+      const sections: Array<{ name: string; lineCount: number }> = [];
+      let lastIndex = 0;
+      let lastName = 'preamble';
+      while (true) {
+        const secMatch = sectionRegex.exec(guide);
+        if (secMatch === null) break;
+        const sectionName = secMatch[1]!.trim();
+        sections.push({ name: lastName, lineCount: secMatch.index - lastIndex });
+        lastIndex = secMatch.index;
+        lastName = sectionName;
+      }
+      sections.push({ name: lastName, lineCount: guide.length - lastIndex });
+
+      const shortSections = sections.filter((s) => s.lineCount < 80 && s.name !== 'preamble');
+      if (shortSections.length > 0) {
+        report.push({ file: guidePath, message: `guide "${toolId}" has ${shortSections.length} short section(s): ${shortSections.map((s) => `"${s.name}"`).join(', ')}` });
+      }
+
+      const lineCandidates = guide.match(/^.{40,}$/gm) || [];
+      const seen = new Set<string>();
+      let duplicateCount = 0;
+      for (const line of lineCandidates) {
+        if (seen.has(line)) duplicateCount++;
+        seen.add(line);
+      }
+      if (duplicateCount > 3) {
+        report.push({ file: guidePath, message: `guide "${toolId}" has ${duplicateCount} repeated lines` });
+      }
+    } catch {
+      report.push({ file: guidePath, message: `guide "${toolId}" could not be read for quality analysis` });
+    }
+  }
+
+  const comparisonsDir = path.join(repoRoot, 'apps', 'web', 'src', 'content', 'docs', 'comparisons');
+  try {
+    const comparisonFiles = (await readdir(comparisonsDir, { withFileTypes: true }))
+      .filter((e) => e.isFile() && e.name.endsWith('.md'));
+    for (const file of comparisonFiles) {
+      const content = await readFile(path.join(comparisonsDir, file.name), 'utf8');
+      if (!content.includes('page_classification:')) {
+        report.push({
+          file: `comparisons/${file.name}`,
+          message: `comparison page "${file.name}" is missing page_classification frontmatter`,
+        });
+      }
+    }
+  } catch {
+    // comparisons directory may not exist
+  }
+
+  return report;
 }

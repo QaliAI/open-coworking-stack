@@ -1,6 +1,7 @@
 ---
 title: Postiz vs Mixpost vs commercial schedulers
 description: Compare self-hosted and managed social publishing control planes.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

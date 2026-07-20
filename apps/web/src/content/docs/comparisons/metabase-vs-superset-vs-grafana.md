@@ -1,6 +1,7 @@
 ---
 title: Metabase vs Superset vs Grafana
 description: Compare business intelligence and operational observability tools.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

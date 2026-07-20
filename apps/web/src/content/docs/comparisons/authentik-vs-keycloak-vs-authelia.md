@@ -1,6 +1,7 @@
 ---
 title: Authentik vs Keycloak vs Authelia
 description: Compare identity provider and authentication-gateway approaches.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

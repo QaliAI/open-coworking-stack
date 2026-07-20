@@ -1,6 +1,7 @@
 ---
 title: n8n vs Activepieces vs Node-RED
 description: Compare workflow automation and event-flow tools for bounded operator tasks.
+page_classification: Directional shortlist
 ---
 
 ## Shared dimensions

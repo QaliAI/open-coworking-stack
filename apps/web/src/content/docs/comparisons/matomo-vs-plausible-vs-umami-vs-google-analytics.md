@@ -1,6 +1,7 @@
 ---
 title: Matomo vs Plausible vs Umami vs Google Analytics
 description: Compare web analytics choices for coworking marketing sites.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions

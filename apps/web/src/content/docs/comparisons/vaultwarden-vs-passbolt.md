@@ -1,6 +1,7 @@
 ---
 title: Vaultwarden vs Passbolt
 description: Compare self-hosted credential management options for coworking teams.
+page_classification: Due-diligence worksheet
 ---
 
 ## Shared dimensions
