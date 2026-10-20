@@ -9,12 +9,12 @@ maps to running services.
 
 ## Services
 
-| Service      | Internal hostname    | Default port | Notes                    |
-| ------------ | -------------------- | ------------ | ------------------------ |
-| Caddy        | `caddy`              | 80 / 443     | Reverse proxy + TLS      |
-| Vaultwarden  | `vaultwarden`        | 8082         | Password/secret vault    |
-| BookStack    | `bookstack`          | 8085         | SOP documentation        |
-| Uptime Kuma  | `uptime-kuma`        | 3001         | Uptime monitoring        |
+| Service     | Internal hostname | Default port | Notes                 |
+| ----------- | ----------------- | ------------ | --------------------- |
+| Caddy       | `caddy`           | 80 / 443     | Reverse proxy + TLS   |
+| Vaultwarden | `vaultwarden`     | 8082         | Password/secret vault |
+| BookStack   | `bookstack`       | 8085         | SOP documentation     |
+| Uptime Kuma | `uptime-kuma`     | 3001         | Uptime monitoring     |
 
 ## Configure
 

@@ -32,7 +32,7 @@ jobs:
               "500": "L",
               "1000": "XL"
             }
-          ignore_labels: "size/"
+          ignore_labels: 'size/'
 
   paths:
     name: Label by changed paths

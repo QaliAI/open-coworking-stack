@@ -67,7 +67,9 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.error(`Unknown command: ${command}. Use validate | freshness [threshold-days] | quality-report`);
+  console.error(
+    `Unknown command: ${command}. Use validate | freshness [threshold-days] | quality-report`,
+  );
   process.exitCode = 1;
 }
 

@@ -104,18 +104,10 @@
   ],
   "connections": {
     "Weekly Invoice Check (Cron)": {
-      "main": [
-        [
-          { "node": "Fetch Overdue Invoices from CRM", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Fetch Overdue Invoices from CRM", "type": "main", "index": 0 }]]
     },
     "Fetch Overdue Invoices from CRM": {
-      "main": [
-        [
-          { "node": "Split by Overdue Bracket", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Split by Overdue Bracket", "type": "main", "index": 0 }]]
     },
     "Split by Overdue Bracket": {
       "main": [
@@ -124,9 +116,7 @@
           { "node": "Send 14-Day Overdue Notice", "type": "main", "index": 0 },
           { "node": "Escalate 30+ Day Overdue", "type": "main", "index": 0 }
         ],
-        [
-          { "node": "Log Check Result", "type": "main", "index": 0 }
-        ]
+        [{ "node": "Log Check Result", "type": "main", "index": 0 }]
       ]
     }
   },

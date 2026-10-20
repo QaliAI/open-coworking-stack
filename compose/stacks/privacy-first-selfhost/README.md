@@ -9,14 +9,14 @@ individual single-tool packs in `compose/`. Matches the `privacy-first-selfhost`
 
 ## Services
 
-| Service          | Internal hostname   | Default port | Notes                         |
-| ---------------- | ------------------- | ------------ | ----------------------------- |
-| Caddy            | `caddy`             | 80 / 443     | Reverse proxy + TLS           |
-| Authentik server | `authentik-server`  | 8088         | SSO / identity provider       |
-| Authentik worker | `authentik-worker`  | —            | Background tasks (no port)    |
-| Nextcloud        | `nextcloud`         | 8080         | File sync and sharing         |
-| Vaultwarden      | `vaultwarden`       | 8082         | Password/secret vault         |
-| Uptime Kuma      | `uptime-kuma`       | 3001         | Uptime monitoring             |
+| Service          | Internal hostname  | Default port | Notes                      |
+| ---------------- | ------------------ | ------------ | -------------------------- |
+| Caddy            | `caddy`            | 80 / 443     | Reverse proxy + TLS        |
+| Authentik server | `authentik-server` | 8088         | SSO / identity provider    |
+| Authentik worker | `authentik-worker` | —            | Background tasks (no port) |
+| Nextcloud        | `nextcloud`        | 8080         | File sync and sharing      |
+| Vaultwarden      | `vaultwarden`      | 8082         | Password/secret vault      |
+| Uptime Kuma      | `uptime-kuma`      | 3001         | Uptime monitoring          |
 
 ## Configure
 

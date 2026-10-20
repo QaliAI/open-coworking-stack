@@ -112,7 +112,8 @@ services:
   chatwoot-redis:
     image: ${CHATWOOT_REDIS_IMAGE:-redis:7-alpine}
     restart: unless-stopped
-    command: ['redis-server', '--requirepass', '${CHATWOOT_REDIS_PASSWORD:?Set CHATWOOT_REDIS_PASSWORD}']
+    command:
+      ['redis-server', '--requirepass', '${CHATWOOT_REDIS_PASSWORD:?Set CHATWOOT_REDIS_PASSWORD}']
     volumes:
       - chatwoot_redis:/data
     healthcheck:

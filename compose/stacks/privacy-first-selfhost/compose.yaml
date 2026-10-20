@@ -118,7 +118,8 @@ services:
   nextcloud-redis:
     image: ${NEXTCLOUD_REDIS_IMAGE:-redis:7-alpine}
     restart: unless-stopped
-    command: ['redis-server', '--requirepass', '${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}']
+    command:
+      ['redis-server', '--requirepass', '${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}']
     volumes:
       - nextcloud_redis:/data
     healthcheck:

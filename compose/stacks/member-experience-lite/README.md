@@ -8,13 +8,13 @@ Chatwoot (support inbox), Formbricks (surveys), and Caddy (reverse proxy). Match
 
 ## Services
 
-| Service       | Internal hostname | Default port | Notes                          |
-| ------------- | ----------------- | ------------ | ------------------------------ |
-| Caddy         | `caddy`           | 80 / 443     | Reverse proxy + TLS            |
-| Cal.com       | `calcom`          | 8086         | Scheduling (tours, events)     |
-| LibreBooking  | `librebooking`    | 8084         | Room and desk booking          |
-| Chatwoot      | `chatwoot`        | 8087         | Shared support inbox           |
-| Formbricks    | `formbricks`      | 8083         | Member feedback surveys        |
+| Service      | Internal hostname | Default port | Notes                      |
+| ------------ | ----------------- | ------------ | -------------------------- |
+| Caddy        | `caddy`           | 80 / 443     | Reverse proxy + TLS        |
+| Cal.com      | `calcom`          | 8086         | Scheduling (tours, events) |
+| LibreBooking | `librebooking`    | 8084         | Room and desk booking      |
+| Chatwoot     | `chatwoot`        | 8087         | Shared support inbox       |
+| Formbricks   | `formbricks`      | 8083         | Member feedback surveys    |
 
 ## Configure
 

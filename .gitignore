@@ -48,3 +48,6 @@ tmp/
 # Optional lock alternatives
 package-lock.json
 yarn.lock
+
+# Vercel local link
+.vercel/

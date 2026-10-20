@@ -78,8 +78,15 @@
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
-            { "name": "name", "value": "=Tour follow-up: {{ $json.body.firstName }} {{ $json.body.lastName }}" },
-            { "name": "message", "value": "={{ \"Tour completed for \" + $json.body.firstName + \" \" + $json.body.lastName + \". Follow up within 24 hours. Tour date: \" + $json.body.tourDate }}", "assigneeId": "" }
+            {
+              "name": "name",
+              "value": "=Tour follow-up: {{ $json.body.firstName }} {{ $json.body.lastName }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ \"Tour completed for \" + $json.body.firstName + \" \" + $json.body.lastName + \". Follow up within 24 hours. Tour date: \" + $json.body.tourDate }}",
+              "assigneeId": ""
+            }
           ]
         }
       }
@@ -119,46 +126,22 @@
   ],
   "connections": {
     "Webhook - Tour Booked": {
-      "main": [
-        [
-          { "node": "Add/Update Lead in CRM", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Add/Update Lead in CRM", "type": "main", "index": 0 }]]
     },
     "Add/Update Lead in CRM": {
-      "main": [
-        [
-          { "node": "Send Tour Confirmation Email", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Send Tour Confirmation Email", "type": "main", "index": 0 }]]
     },
     "Send Tour Confirmation Email": {
-      "main": [
-        [
-          { "node": "Wait for Tour Date", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Wait for Tour Date", "type": "main", "index": 0 }]]
     },
     "Wait for Tour Date": {
-      "main": [
-        [
-          { "node": "Trigger Follow-up Sequence", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Trigger Follow-up Sequence", "type": "main", "index": 0 }]]
     },
     "Trigger Follow-up Sequence": {
-      "main": [
-        [
-          { "node": "Wait 3 days no-close check", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Wait 3 days no-close check", "type": "main", "index": 0 }]]
     },
     "Wait 3 days no-close check": {
-      "main": [
-        [
-          { "node": "Send Feedback Survey (no-close)", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Send Feedback Survey (no-close)", "type": "main", "index": 0 }]]
     }
   },
   "settings": {

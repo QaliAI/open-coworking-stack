@@ -50,8 +50,14 @@
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
-            { "name": "name", "value": "=Welcome: {{ $json.body.firstName }} {{ $json.body.lastName }}" },
-            { "name": "message", "value": "={{ \"New member \" + $json.body.firstName + \" signed up for \" + $json.body.plan + \". Send welcome email, tour confirmation, and access instructions.\" }}" },
+            {
+              "name": "name",
+              "value": "=Welcome: {{ $json.body.firstName }} {{ $json.body.lastName }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ \"New member \" + $json.body.firstName + \" signed up for \" + $json.body.plan + \". Send welcome email, tour confirmation, and access instructions.\" }}"
+            },
             { "name": "assigneeId", "value": "" }
           ]
         }
@@ -72,9 +78,15 @@
         "bodyParameters": {
           "parameters": [
             { "name": "email", "value": "={{ $json.body.email }}" },
-            { "name": "name", "value": "={{ $json.body.firstName + \" \" + $json.body.lastName }}" },
+            {
+              "name": "name",
+              "value": "={{ $json.body.firstName + \" \" + $json.body.lastName }}"
+            },
             { "name": "eventTypeId", "value": "={{ $env.ORIENTATION_EVENT_TYPE_ID }}" },
-            { "name": "start", "value": "={{ $now.plus(2, 'days').format('yyyy-MM-dd') + 'T10:00:00Z' }}" }
+            {
+              "name": "start",
+              "value": "={{ $now.plus(2, 'days').format('yyyy-MM-dd') + 'T10:00:00Z' }}"
+            }
           ]
         }
       }
@@ -127,46 +139,22 @@
   ],
   "connections": {
     "Webhook - New Member Signed": {
-      "main": [
-        [
-          { "node": "Find or Create CRM Contact", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Find or Create CRM Contact", "type": "main", "index": 0 }]]
     },
     "Find or Create CRM Contact": {
-      "main": [
-        [
-          { "node": "Create Welcome Task in Support", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Create Welcome Task in Support", "type": "main", "index": 0 }]]
     },
     "Create Welcome Task in Support": {
-      "main": [
-        [
-          { "node": "Schedule Orientation via Cal.com", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Schedule Orientation via Cal.com", "type": "main", "index": 0 }]]
     },
     "Schedule Orientation via Cal.com": {
-      "main": [
-        [
-          { "node": "Notify Team via Slack", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Notify Team via Slack", "type": "main", "index": 0 }]]
     },
     "Notify Team via Slack": {
-      "main": [
-        [
-          { "node": "Wait 7 days then check-in", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Wait 7 days then check-in", "type": "main", "index": 0 }]]
     },
     "Wait 7 days then check-in": {
-      "main": [
-        [
-          { "node": "Send 7-Day Check-in Survey", "type": "main", "index": 0 }
-        ]
-      ]
+      "main": [[{ "node": "Send 7-Day Check-in Survey", "type": "main", "index": 0 }]]
     }
   },
   "settings": {

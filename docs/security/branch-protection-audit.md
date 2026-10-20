@@ -11,13 +11,13 @@ No committed or repository-level branch protection rules exist for any branch.
 
 ## Risks
 
-| Risk | Impact |
-|------|--------|
-| Force-push to `main` | History rewrite, lost CI/CD artifacts |
-| Direct push without PR | Bypass CI, lint, typecheck, validate gates |
-| No required reviews | Single-person releases with no independent verification |
+| Risk                    | Impact                                                     |
+| ----------------------- | ---------------------------------------------------------- |
+| Force-push to `main`    | History rewrite, lost CI/CD artifacts                      |
+| Direct push without PR  | Bypass CI, lint, typecheck, validate gates                 |
+| No required reviews     | Single-person releases with no independent verification    |
 | No stale-branch cleanup | Accumulated stale feature branches with unverified content |
-| No signed commits | Inability to verify author identity or provenance |
+| No signed commits       | Inability to verify author identity or provenance          |
 
 ## Recommended rules
 
@@ -36,24 +36,24 @@ Apply these in repository Settings > Branches > Add rule for `main`:
 
 ### Strongly recommended
 
-6. **Include administrators** — applies rules to all accounts
-7. **Restrict push** to designated deploy accounts or teams
-8. **Require signed commits** — enables commit verification via GPG/SSH
-9. **Lock branch** — prevents deletion once created
+1. **Include administrators** — applies rules to all accounts
+2. **Restrict push** to designated deploy accounts or teams
+3. **Require signed commits** — enables commit verification via GPG/SSH
+4. **Lock branch** — prevents deletion once created
 
 ### Recommended for `release/*` branches
 
-10. **Same rules as `main`** — release branches are short-lived but should not accept direct pushes
-11. **Require linear history** — squash merge only, no merge commits in release lines
+1. **Same rules as `main`** — release branches are short-lived but should not accept direct pushes
+2. **Require linear history** — squash merge only, no merge commits in release lines
 
 ## Patterns not available in GitHub UI
 
-| Control | Approach |
-|---------|----------|
-| Prevent large PRs | Use `labeler.yml` `size/XL` -> manual review gate |
-| Block WIP PRs | Use `semantic-pr.yml` and reject titles starting with `wip:` |
-| Enforce conventional commits | Already configured in `semantic-pr.yml` |
-| Prevent dependency confusion | GitHub dependency review (enable in repo settings) |
+| Control                      | Approach                                                     |
+| ---------------------------- | ------------------------------------------------------------ |
+| Prevent large PRs            | Use `labeler.yml` `size/XL` -> manual review gate            |
+| Block WIP PRs                | Use `semantic-pr.yml` and reject titles starting with `wip:` |
+| Enforce conventional commits | Already configured in `semantic-pr.yml`                      |
+| Prevent dependency confusion | GitHub dependency review (enable in repo settings)           |
 
 ## Implementation order
 

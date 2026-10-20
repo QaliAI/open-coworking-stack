@@ -160,18 +160,17 @@ function calculateCase(
 
   const trainingCost = input.trainingHoursPerUser * input.usersToTrain * effectiveHourlyRate;
   const migrationCost = input.oneTimeMigrationHours * effectiveHourlyRate;
-  const contingencyAmount = (input.oneTimeSetupCost + trainingCost + migrationCost) * (input.contingencyPercent / 100);
-  const totalOneTimeCost = input.oneTimeSetupCost + trainingCost + migrationCost + contingencyAmount;
+  const contingencyAmount =
+    (input.oneTimeSetupCost + trainingCost + migrationCost) * (input.contingencyPercent / 100);
+  const totalOneTimeCost =
+    input.oneTimeSetupCost + trainingCost + migrationCost + contingencyAmount;
   const firstYearCapacityEstimate = netCapacityValue * 12 - totalOneTimeCost;
 
-  const paybackMonths =
-    netCapacityValue > 0 ? totalOneTimeCost / netCapacityValue : null;
+  const paybackMonths = netCapacityValue > 0 ? totalOneTimeCost / netCapacityValue : null;
 
   const firstYearCost = totalOneTimeCost + monthlyOperatingCost * 12;
   const firstYearReturnPercent =
-    firstYearCost > 0
-      ? ((grossCapacityValue * 12 - firstYearCost) / firstYearCost) * 100
-      : null;
+    firstYearCost > 0 ? ((grossCapacityValue * 12 - firstYearCost) / firstYearCost) * 100 : null;
 
   return {
     name,
@@ -184,7 +183,8 @@ function calculateCase(
     netCapacityValue: round(netCapacityValue),
     firstYearCapacityEstimate: round(firstYearCapacityEstimate),
     paybackMonths: paybackMonths === null ? null : round(paybackMonths, 1),
-    firstYearReturnPercent: firstYearReturnPercent === null ? null : round(firstYearReturnPercent, 1),
+    firstYearReturnPercent:
+      firstYearReturnPercent === null ? null : round(firstYearReturnPercent, 1),
   };
 }
 
