@@ -50,12 +50,20 @@ const personaRoutes: Record<string, [string, string, string][]> = {
     ['runtime validation', '/ops/runtime-validation/', 'Compose runtime validation'],
   ],
   'finance-billing': [
-    ['invoice collections workflow', '/workflows/generated/invoice-collections/', 'Invoice collections'],
+    [
+      'invoice collections workflow',
+      '/workflows/generated/invoice-collections/',
+      'Invoice collections',
+    ],
     ['cost model', '/ops/cost-model/', 'Cost model thinking'],
-    ['ROI calculator', '/roi-calculator/', 'ROI/TCO Estimator'],
+    ['capacity estimator', '/roi-calculator/', 'Workflow Capacity and Payback Estimator'],
   ],
   'virtual-office': [
-    ['virtual office stack', '/stacks/generated/virtual-office-mailroom/', 'Virtual Office and Mailroom'],
+    [
+      'virtual office stack',
+      '/stacks/generated/virtual-office-mailroom/',
+      'Virtual Office and Mailroom',
+    ],
     ['data portability', '/ops/data-portability/', 'Coworking data and portability'],
   ],
   'it-security': [

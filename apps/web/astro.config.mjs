@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { existsSync } from 'node:fs';
+import rehypeAccessibleContent from './src/plugins/rehype-accessible-content.mjs';
 
 const base = process.env.PUBLIC_BASE_PATH || '';
 const githubRepository = process.env.GITHUB_REPOSITORY;
@@ -24,12 +25,15 @@ const hasGeneratedRoles = existsSync(
 
 export default defineConfig({
   site,
+  markdown: {
+    rehypePlugins: [rehypeAccessibleContent],
+  },
   base: base || undefined,
   integrations: [
     starlight({
       title: 'Open Coworking Stack',
       logo: {
-        src: '/logo.svg',
+        src: './src/assets/logo.svg',
         alt: 'Open Coworking Stack logo',
       },
       description:
@@ -47,6 +51,7 @@ export default defineConfig({
         {
           label: 'Start here',
           items: [
+            { label: 'Operator pathway (begin here)', slug: 'start/start-here' },
             { label: 'Introduction', slug: 'index' },
             { label: 'How to use this project', slug: 'start/how-to-use' },
             { label: 'Evaluation criteria', slug: 'start/evaluation-criteria' },
@@ -68,7 +73,7 @@ export default defineConfig({
             ...(hasGeneratedRoles
               ? [{ label: 'Operator roles', autogenerate: { directory: 'roles/generated' } }]
               : []),
-            { label: 'Comparison index', slug: 'comparisons/index' },
+            { label: 'Comparison index', slug: 'comparisons' },
           ],
         },
         {
@@ -113,11 +118,11 @@ export default defineConfig({
             { label: 'Privacy checklist', slug: 'guides/privacy-checklist' },
             { label: 'Deployment options', slug: 'guides/deployment-options' },
             { label: 'Starter packs', slug: 'guides/starter-packs' },
-              {
-                label: 'Tool guides',
-                collapsed: true,
-                autogenerate: { directory: 'guides/tools' },
-              },
+            {
+              label: 'Tool guides',
+              collapsed: true,
+              autogenerate: { directory: 'guides/tools' },
+            },
           ],
         },
         {

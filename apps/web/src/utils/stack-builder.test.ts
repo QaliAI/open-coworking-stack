@@ -3,6 +3,7 @@ import {
   defaultStackBuilderInput,
   recommendStack,
   stackRecommendationToMarkdown,
+  toolLinks,
   type StackBuilderInput,
 } from './stack-builder';
 
@@ -94,10 +95,7 @@ describe('stack recommendation scenarios', () => {
 
   it('enriches tools with catalog lookup when provided', () => {
     const catalog = { cobot: { homepage: 'https://cobot.me', license_class: 'saas' } };
-    const result = recommendStack(
-      scenario({ priorities: ['members-billing'] }),
-      catalog,
-    );
+    const result = recommendStack(scenario({ priorities: ['members-billing'] }), catalog);
     const tools = result.tracks[0].tools;
     expect(tools[0].catalogId).toBe('cobot');
     expect(tools[0].catalogEntry?.homepage).toBe('https://cobot.me');
@@ -105,10 +103,7 @@ describe('stack recommendation scenarios', () => {
   });
 
   it('falls back gracefully when catalog lookup is missing', () => {
-    const result = recommendStack(
-      scenario({ priorities: ['members-billing'] }),
-      undefined,
-    );
+    const result = recommendStack(scenario({ priorities: ['members-billing'] }), undefined);
     const tools = result.tracks[0].tools;
     expect(tools[0].catalogEntry).toBeUndefined();
     expect(tools[0].catalogId).toBe('cobot');
@@ -151,5 +146,23 @@ describe('stack Markdown export', () => {
     ]) {
       expect(markdown).toContain(`### ${heading}`);
     }
+  });
+});
+
+describe('toolLinks', () => {
+  it('always links the in-site record and honors the base path', () => {
+    expect(toolLinks('bookstack', undefined, '/').recordUrl).toBe('/tools/generated/bookstack/');
+    expect(toolLinks('bookstack', undefined, '/open-coworking-stack').recordUrl).toBe(
+      '/open-coworking-stack/tools/generated/bookstack/',
+    );
+  });
+
+  it('links install guides only when a guide exists and labels stubs honestly', () => {
+    expect(toolLinks('cobot', { guide_status: 'planned' }).guideUrl).toBeUndefined();
+    expect(toolLinks('bookstack', { guide_status: 'full' })).toMatchObject({
+      guideUrl: '/guides/tools/bookstack/',
+      guideLabel: 'Install guide',
+    });
+    expect(toolLinks('caddy', { guide_status: 'stub' }).guideLabel).toBe('Install guide (stub)');
   });
 });

@@ -131,11 +131,31 @@ interface ToolChoice {
 
 const toolChoices: Record<StackTrackId, Record<StackPriority, ToolChoice>> = {
   hosted: {
-    'members-billing': { catalogId: 'cobot', name: 'Cobot', purpose: 'Membership, contracts, invoicing, and booking' },
-    'rooms-desks': { catalogId: 'cobot', name: 'Cobot', purpose: 'Member-facing room and resource booking' },
-    'sales-tours': { catalogId: 'cal-com', name: 'Cal.com Cloud', purpose: 'Tour scheduling with staff calendars' },
-    'community-comms': { catalogId: 'brevo', name: 'Brevo', purpose: 'Permissioned operational email and segments' },
-    'knowledge-sops': { catalogId: 'notion', name: 'Notion', purpose: 'Hosted procedures and handoff notes' },
+    'members-billing': {
+      catalogId: 'cobot',
+      name: 'Cobot',
+      purpose: 'Membership, contracts, invoicing, and booking',
+    },
+    'rooms-desks': {
+      catalogId: 'cobot',
+      name: 'Cobot',
+      purpose: 'Member-facing room and resource booking',
+    },
+    'sales-tours': {
+      catalogId: 'cal-com',
+      name: 'Cal.com Cloud',
+      purpose: 'Tour scheduling with staff calendars',
+    },
+    'community-comms': {
+      catalogId: 'brevo',
+      name: 'Brevo',
+      purpose: 'Permissioned operational email and segments',
+    },
+    'knowledge-sops': {
+      catalogId: 'notion',
+      name: 'Notion',
+      purpose: 'Hosted procedures and handoff notes',
+    },
     'automation-reporting': {
       catalogId: 'activepieces',
       name: 'Activepieces Cloud',
@@ -143,11 +163,31 @@ const toolChoices: Record<StackTrackId, Record<StackPriority, ToolChoice>> = {
     },
   },
   hybrid: {
-    'members-billing': { catalogId: 'cobot', name: 'Cobot', purpose: 'Hosted financial and member system of record' },
-    'rooms-desks': { catalogId: 'seatsurfing', name: 'Seatsurfing', purpose: 'Controlled desk and room booking layer' },
-    'sales-tours': { catalogId: 'cal-com', name: 'Cal.com', purpose: 'Managed or supported tour scheduling' },
-    'community-comms': { catalogId: 'chatwoot', name: 'Chatwoot', purpose: 'Shared inbox with a named human owner' },
-    'knowledge-sops': { catalogId: 'bookstack', name: 'BookStack', purpose: 'Portable operating procedures' },
+    'members-billing': {
+      catalogId: 'cobot',
+      name: 'Cobot',
+      purpose: 'Hosted financial and member system of record',
+    },
+    'rooms-desks': {
+      catalogId: 'seatsurfing',
+      name: 'Seatsurfing',
+      purpose: 'Controlled desk and room booking layer',
+    },
+    'sales-tours': {
+      catalogId: 'cal-com',
+      name: 'Cal.com',
+      purpose: 'Managed or supported tour scheduling',
+    },
+    'community-comms': {
+      catalogId: 'chatwoot',
+      name: 'Chatwoot',
+      purpose: 'Shared inbox with a named human owner',
+    },
+    'knowledge-sops': {
+      catalogId: 'bookstack',
+      name: 'BookStack',
+      purpose: 'Portable operating procedures',
+    },
     'automation-reporting': {
       catalogId: 'activepieces',
       name: 'Activepieces',
@@ -160,11 +200,31 @@ const toolChoices: Record<StackTrackId, Record<StackPriority, ToolChoice>> = {
       name: 'ERPNext',
       purpose: 'Member and invoice records with qualified finance review',
     },
-    'rooms-desks': { catalogId: 'seatsurfing', name: 'Seatsurfing', purpose: 'Self-hosted desk and room booking' },
-    'sales-tours': { catalogId: 'cal-com', name: 'Cal.com', purpose: 'Self-hosted scheduling and calendar handoff' },
-    'community-comms': { catalogId: 'chatwoot', name: 'Chatwoot', purpose: 'Self-hosted shared inbox' },
-    'knowledge-sops': { catalogId: 'bookstack', name: 'BookStack', purpose: 'Self-hosted procedures and runbooks' },
-    'automation-reporting': { catalogId: 'activepieces', name: 'Activepieces', purpose: 'Self-hosted, reviewed automation' },
+    'rooms-desks': {
+      catalogId: 'seatsurfing',
+      name: 'Seatsurfing',
+      purpose: 'Self-hosted desk and room booking',
+    },
+    'sales-tours': {
+      catalogId: 'cal-com',
+      name: 'Cal.com',
+      purpose: 'Self-hosted scheduling and calendar handoff',
+    },
+    'community-comms': {
+      catalogId: 'chatwoot',
+      name: 'Chatwoot',
+      purpose: 'Self-hosted shared inbox',
+    },
+    'knowledge-sops': {
+      catalogId: 'bookstack',
+      name: 'BookStack',
+      purpose: 'Self-hosted procedures and runbooks',
+    },
+    'automation-reporting': {
+      catalogId: 'activepieces',
+      name: 'Activepieces',
+      purpose: 'Self-hosted, reviewed automation',
+    },
   },
 };
 
@@ -195,6 +255,30 @@ const alternatives: Record<StackTrackId, Record<StackPriority, string>> = {
   },
 };
 
+export interface ToolLinks {
+  recordUrl: string;
+  guideUrl?: string;
+  guideLabel?: string;
+}
+
+/** In-site links for a catalog tool. `base` is the site base path (e.g. "/" or "/repo/"). */
+export function toolLinks(
+  catalogId: string,
+  entry: { guide_status?: string } | undefined,
+  base = '/',
+): ToolLinks {
+  const root = base.endsWith('/') ? base : `${base}/`;
+  const links: ToolLinks = { recordUrl: `${root}tools/generated/${catalogId}/` };
+  if (entry?.guide_status === 'full') {
+    links.guideUrl = `${root}guides/tools/${catalogId}/`;
+    links.guideLabel = 'Install guide';
+  } else if (entry?.guide_status === 'stub') {
+    links.guideUrl = `${root}guides/tools/${catalogId}/`;
+    links.guideLabel = 'Install guide (stub)';
+  }
+  return links;
+}
+
 function enrichTool(tool: ToolChoice, catalog: CatalogLookup | undefined): StackTool {
   const entry = catalog?.[tool.catalogId];
   return {
@@ -205,7 +289,11 @@ function enrichTool(tool: ToolChoice, catalog: CatalogLookup | undefined): Stack
   };
 }
 
-function uniqueTools(track: StackTrackId, priorities: StackPriority[], catalog: CatalogLookup | undefined): StackTool[] {
+function uniqueTools(
+  track: StackTrackId,
+  priorities: StackPriority[],
+  catalog: CatalogLookup | undefined,
+): StackTool[] {
   const selected = priorities.map((priority) => enrichTool(toolChoices[track][priority], catalog));
   return selected.filter(
     (tool, index) => selected.findIndex(({ catalogId }) => catalogId === tool.catalogId) === index,
@@ -452,7 +540,10 @@ export function normalizeStackBuilderInput(input: StackBuilderInput): StackBuild
   };
 }
 
-export function recommendStack(rawInput: StackBuilderInput, catalog?: CatalogLookup): StackRecommendation {
+export function recommendStack(
+  rawInput: StackBuilderInput,
+  catalog?: CatalogLookup,
+): StackRecommendation {
   const input = normalizeStackBuilderInput(rawInput);
   const recommendedTrack = selectRecommendation(input);
   const doNotSelfHost = input.technicalCapacity === 'none';

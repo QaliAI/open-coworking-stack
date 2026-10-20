@@ -1,35 +1,30 @@
 ---
-import { readFile } from 'node:fs/promises';
+import catalogSource from '../../public/data/catalog.json';
 import {
   defaultStackBuilderInput,
   recommendStack,
+  toolLinks,
   type CatalogLookup,
   type CostAssumptions,
   type StackPriority,
 } from '../utils/stack-builder';
 
-const catalogUrl = new URL('../../public/data/catalog.json', import.meta.url);
-let catalog: CatalogLookup = {};
-try {
-  const source = JSON.parse(await readFile(catalogUrl, 'utf8'));
-  if (source.tools) {
-    catalog = Object.fromEntries(
-      source.tools.map((tool: Record<string, unknown>) => [
-        tool.id as string,
-        {
-          homepage: tool.homepage as string | undefined,
-          license_class: tool.license_class as string | undefined,
-          spdx: tool.spdx as string | undefined,
-          guide_status: tool.guide_status as string | undefined,
-          verification_status: tool.verification_status as string | undefined,
-        },
-      ]),
-    );
-  }
-} catch {
-  // Catalog not generated; recommendation works from curated data alone
-}
+// Static import: reading this file by path breaks once the component is bundled for production,
+// which silently dropped all catalog enrichment (license labels, install-guide links).
+const catalog: CatalogLookup = Object.fromEntries(
+  (catalogSource.tools as Array<Record<string, unknown>>).map((tool) => [
+    tool.id as string,
+    {
+      homepage: tool.homepage as string | undefined,
+      license_class: tool.license_class as string | undefined,
+      spdx: tool.spdx as string | undefined,
+      guide_status: tool.guide_status as string | undefined,
+      verification_status: tool.verification_status as string | undefined,
+    },
+  ]),
+);
 
+const base = import.meta.env.BASE_URL;
 const initial = recommendStack(defaultStackBuilderInput, catalog);
 const priorityOptions: Array<[StackPriority, string, string]> = [
   ['members-billing', 'Members and billing', 'Membership, invoices, and payment follow-up'],
@@ -51,9 +46,9 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
 ];
 ---
 
-<script is:inline type="application/json" data-catalog>{JSON.stringify(catalog)}</script>
+<script is:inline type="application/json" data-catalog set:html={JSON.stringify(catalog).replace(/</g, '\\u003c')} />
 
-<div class="builder" data-stack-builder>
+<div class="builder" data-stack-builder data-base={base}>
   <form data-builder-form>
     <fieldset>
       <legend>1. Your operation</legend>
@@ -209,7 +204,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
             <details open>
               <summary>Tools and alternatives</summary>
               <h4>Tools</h4>
-              <ul data-tools>{track.tools.map((tool) => <li><strong>{tool.name}:</strong> {tool.purpose}{tool.catalogEntry?.homepage ? <span class="catalog-ref"> — <a href={tool.catalogEntry.homepage}>{tool.catalogEntry.license_class ?? 'site'}</a></span> : ''}</li>)}</ul>
+              <ul data-tools>{track.tools.map((tool) => { const links = toolLinks(tool.catalogId ?? '', tool.catalogEntry, base); return <li><strong>{tool.name}:</strong> {tool.purpose}<span class="catalog-ref"> — {tool.catalogEntry?.license_class ? <span>{tool.catalogEntry.license_class} · </span> : ''}<a href={links.recordUrl}>Record</a>{links.guideUrl ? <span> · <a href={links.guideUrl}>{links.guideLabel}</a></span> : ''}{tool.catalogEntry?.homepage ? <span> · <a href={tool.catalogEntry.homepage}>Official site</a></span> : ''}</span></li>; })}</ul>
               <h4>Alternatives</h4>
               <ul data-alternatives>{track.alternatives.map((item) => <li>{item}</li>)}</ul>
             </details>
@@ -262,6 +257,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
   import {
     recommendStack,
     stackRecommendationToMarkdown,
+    toolLinks,
     type CostAssumptions,
     type Currency,
     type DataSensitivity,
@@ -274,7 +270,7 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
   } from '../utils/stack-builder';
 
   const catalogScript = document.querySelector<HTMLScriptElement>('script[data-catalog]');
-  let catalog: Record<string, { homepage?: string; license_class?: string; spdx?: string }> = {};
+  let catalog: Record<string, { homepage?: string; license_class?: string; spdx?: string; guide_status?: string }> = {};
   try { if (catalogScript?.textContent) catalog = JSON.parse(catalogScript.textContent); } catch { /* ok */ }
 
   const root = document.querySelector<HTMLElement>('[data-stack-builder]');
@@ -312,7 +308,16 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
       };
     }
 
-    function replaceList(container: Element | null, items: Array<string | { name: string; purpose: string; catalogEntry?: { homepage?: string; license_class?: string } }>) {
+    const siteBase = root.dataset.base ?? '/';
+
+    function appendLink(parent: Element, label: string, href: string) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = label;
+      parent.append(link);
+    }
+
+    function replaceList(container: Element | null, items: Array<string | { name: string; purpose: string; catalogId?: string; catalogEntry?: { homepage?: string; license_class?: string; guide_status?: string } }>) {
       if (!container) return;
       container.replaceChildren(
         ...items.map((item) => {
@@ -322,13 +327,21 @@ const costFields: Array<[keyof CostAssumptions, string, string]> = [
             const strong = document.createElement('strong');
             strong.textContent = `${item.name}:`;
             li.append(strong, ` ${item.purpose}`);
-            if (item.catalogEntry?.homepage) {
-              const link = document.createElement('a');
-              link.href = item.catalogEntry.homepage;
-              link.textContent = item.catalogEntry.license_class ?? 'site';
-              link.className = 'catalog-ref';
-              li.append(' — ', link);
+            const ref = document.createElement('span');
+            ref.className = 'catalog-ref';
+            ref.append(' — ');
+            if (item.catalogEntry?.license_class) ref.append(`${item.catalogEntry.license_class} · `);
+            const links = toolLinks(item.catalogId ?? '', item.catalogEntry, siteBase);
+            appendLink(ref, 'Record', links.recordUrl);
+            if (links.guideUrl && links.guideLabel) {
+              ref.append(' · ');
+              appendLink(ref, links.guideLabel, links.guideUrl);
             }
+            if (item.catalogEntry?.homepage) {
+              ref.append(' · ');
+              appendLink(ref, 'Official site', item.catalogEntry.homepage);
+            }
+            li.append(ref);
           }
           return li;
         }),

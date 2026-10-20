@@ -5,11 +5,15 @@ template: splash
 hero:
   tagline: Start with a task, see what remains human, and test the smallest useful change before committing a budget.
   actions:
-    - text: Build a stack plan
-      link: ./stack-builder/
+    - text: Start here (no technical skills needed)
+      link: ./start/start-here/
       icon: right-arrow
       variant: primary
-    - text: Estimate ROI and TCO
+    - text: Build a stack plan
+      link: ./stack-builder/
+      icon: setting
+      variant: secondary
+    - text: Estimate capacity and payback
       link: ./roi-calculator/
       icon: open-book
       variant: minimal
@@ -42,6 +46,14 @@ import catalog from '../../../public/data/catalog.json';
   Generated {catalog.generated_at.slice(0, 10)}. Counts describe catalog coverage, not proof of
   implementation quality.
 </p>
+
+## What this is
+
+A directory of software for coworking and flexible-workspace operators. Each record states the
+**license type** (truly open source, source-available, or proprietary), the **cost model**, the
+**human work that stays with your team**, and an installation guide where one exists. There is no
+paid placement in the listings. If you are new, begin with the
+[operator pathway](./start/start-here/).
 
 ## Start with the outcome
 
@@ -119,8 +131,12 @@ import catalog from '../../../public/data/catalog.json';
   <h3>This is a decision aid, not a completed verification program</h3>
   <ul>
     <li>
-      <strong>No Verified Core tools yet.</strong> Research-backlog entries are not promoted by a
-      recent date or a high rank score.
+      <strong>
+        {catalog.tools.filter((tool) => tool.verification_tier === 'verified-core').length === 0
+          ? 'No Verified Core tools yet.'
+          : 'Few tools are Verified Core.'}
+      </strong>{' '}
+      Research-backlog entries are not promoted by a recent date or a high rank score.
     </li>
     <li>
       <strong>Task-fit coverage is partial.</strong> Cards say “Task fit not reviewed” where
