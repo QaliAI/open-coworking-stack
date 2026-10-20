@@ -27,8 +27,8 @@ license:
   class: oss-osi-approved
   spdx: AGPL-3.0-only
   source_url: https://github.com/element-hq/synapse
-  notes: Synapse AGPL; Element clients have their own licenses.
-  verified_on: 2026-07-17
+  notes: Synapse is AGPL-3.0 and the repository also ships LICENSE-COMMERCIAL for a separate commercial option; Element clients have their own licenses.
+  verified_on: 2026-10-20
 cost:
   model: free-self-hosted
   summary: Self-host free; Element Matrix Services and other hosts are paid.

@@ -29,10 +29,10 @@ deployment:
 maturity: stable
 license:
   class: open-core
-  spdx: AGPL-3.0-only
+  spdx: MIT
   source_url: https://github.com/calcom/cal.com
-  notes: Core is AGPL; platform/cloud and some features are commercial.
-  verified_on: 2026-07-17
+  notes: Root LICENSE reads MIT as of 2026-10-20 (earlier AGPL entry was not supported). Hosted cloud and enterprise offerings are separate commercial products; confirm terms for the features you need.
+  verified_on: 2026-10-20
 cost:
   model: open-core-paid-features
   summary:

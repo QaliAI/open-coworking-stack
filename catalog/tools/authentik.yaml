@@ -25,11 +25,11 @@ deployment:
   - self-hosted
 maturity: stable
 license:
-  class: oss-osi-approved
-  spdx: GPL-3.0-only
+  class: open-core
+  spdx: MIT
   source_url: https://github.com/goauthentik/authentik
-  notes: Confirm current LICENSE file for enterprise components.
-  verified_on: 2026-07-17
+  notes: 'Official LICENSE: MIT except the authentik/enterprise directory (separate enterprise license). Earlier GPL-3.0 classification was incorrect.'
+  verified_on: 2026-10-20
 cost:
   model: free-self-hosted
   summary:
