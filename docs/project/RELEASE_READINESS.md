@@ -16,7 +16,7 @@ This is a living gate, not a release claim. Re-evaluate it against the exact can
 - Hosted CI on PR #11's head: **3 failing checks**, all explained and addressed:
   Prettier drift in 25 files (fixed), Gitleaks 403 (fixed), CodeQL "code scanning is not enabled"
   (repository setting — open).
-- Protected preview: `https://open-coworking-stack-l5nj5hkxk-qaliais-projects.vercel.app`
+- Protected preview: `https://open-coworking-stack-272shh6vg-qaliais-projects.vercel.app`
   (Vercel Authentication on). Pages is not enabled for the private repository.
 
 ## Verified claims versus PR #11's description

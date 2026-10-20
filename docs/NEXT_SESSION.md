@@ -8,9 +8,9 @@ Read `docs/project/RELEASE_READINESS.md` first; it is the source of truth for st
   (PR #11 head `52d356b`). **Nothing has been pushed.** Commits: license corrections, link repairs,
   CI/format fixes, web feature + a11y fixes, docs.
 - A protected Vercel preview exists: project `open-coworking-stack` (team `qaliais-projects`),
-  `https://open-coworking-stack-l5nj5hkxk-qaliais-projects.vercel.app`. It was deployed from commit
-  `46eeacd`; redeploy after merging later commits (`vercel deploy --yes --scope qaliais-projects`).
-  `.vercel/` and `.env.local` are git-ignored; do not commit them.
+  `https://open-coworking-stack-272shh6vg-qaliais-projects.vercel.app`. It was deployed from commit
+  `372fbbc` (docs-only commits after that do not change the site); redeploy after merging later commits (`vercel deploy --yes --scope qaliais-projects`).
+  `.vercel/` is git-ignored; `vercel link` also writes `.env.local` and edits `.gitignore` — delete/revert both, never commit them.
 - The repository is private and must stay private until the blocking items in
   `docs/project/PUBLIC_RELEASE_PLAN.md` close. No DNS was changed.
 

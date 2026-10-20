@@ -6,7 +6,7 @@ writing. DNS is not changed by this plan.
 ## Where we are
 
 - Release candidate branch: `release/final-readiness-v0.1` (PR #11 head plus narrow fixes).
-- Protected preview: `https://open-coworking-stack-l5nj5hkxk-qaliais-projects.vercel.app`
+- Protected preview: `https://open-coworking-stack-272shh6vg-qaliais-projects.vercel.app`
   (Vercel project `open-coworking-stack`, team `qaliais-projects`; Vercel Authentication is on, so
   an anonymous request is redirected to login). Vercel labelled the first deployment "production"
   because the project was new; it has no custom domain.
