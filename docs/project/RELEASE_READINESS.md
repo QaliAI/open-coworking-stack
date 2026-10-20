@@ -1,83 +1,84 @@
 # Release Readiness
 
-Last reviewed: 2026-07-20  
-Candidate commit: `97f6a26`  
-Candidate branch: `release/operator-product-v0.1`  
-Decision: **not release-ready — operator owner approval required**
+Last reviewed: 2026-10-20  
+Candidate branch: `release/final-readiness-v0.1` (PR #11 head `52d356b` plus narrow fixes, unpushed)  
+Decision: **ready for owner review and protected preview; not approved for public release**
 
 This is a living gate, not a release claim. Re-evaluate it against the exact candidate commit.
 
-## QA branches merged
+## Exact state
 
-All 5 independent QA branches have been merged into this release candidate:
+- PR #11 (`release/operator-product-v0.1` → `main`): **draft**, 731 files, head `52d356b`.
+- QA PRs #12–#16 were merged into the release branch on 2026-07-20 and are ancestors of `52d356b`;
+  PR #11 already contains them. `qa/pr11-release-candidate` (one docs-only commit, the independent
+  QA report) is not merged; its findings were checked (below).
+- Open Dependabot PRs #1–#10 target `main` and are deliberately excluded.
+- Hosted CI on PR #11's head: **3 failing checks**, all explained and addressed:
+  Prettier drift in 25 files (fixed), Gitleaks 403 (fixed), CodeQL "code scanning is not enabled"
+  (repository setting — open).
+- Protected preview: `https://open-coworking-stack-l5nj5hkxk-qaliais-projects.vercel.app`
+  (Vercel Authentication on). Pages is not enabled for the private repository.
 
-| PR  | Branch                           | Scope                                                                                        | Merge commit       |
-| --- | -------------------------------- | -------------------------------------------------------------------------------------------- | ------------------ |
-| #14 | `qa/builder-estimator-integrity` | ROI calculator renamed, currency selector, new fields, privacy warning, cost labels          | Merged             |
-| #12 | `qa/content-evidence-quality`    | Guide validation, quality report CLI, comparison page classification                         | Merged             |
-| #13 | `qa/implementation-pack-depth`   | 3 compose stacks, 3 n8n workflows, Caddyfile, backup scripts, Paperless-ngx taxonomy         | Merged             |
-| #15 | `qa/security-release-controls`   | CodeQL, Gitleaks, semantic PR, labeler; CODEOWNERS; release checklist; security gap analysis | Merged             |
-| #16 | `qa/visual-navigation`           | Stack Builder catalog enrichment, logo, sidebar collapsed groups, route test expansion       | Merged (`97f6a26`) |
+## Verified claims versus PR #11's description
+
+| PR #11 claim                   | Re-run result (2026-10-20)                                                                                                                                                                                     |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 116 software records           | Confirmed (`pnpm validate`: 116 tools, 14 stacks, 75 workflows, 105 tasks, 14 roles, 0 issues)                                                                                                                 |
+| 440 generated pages            | 440 at start; **441** now (Start Here added)                                                                                                                                                                   |
+| 37 passing browser tests       | Inaccurate. There were 60 browser tests (59 passed, **1 failed**: stale ROI heading) and 44 unit tests. Now 102 browser + 46 unit, all passing                                                                 |
+| Stack builder / ROI calculator | Work. Fixed: builder never received catalog data in the production build (see below)                                                                                                                           |
+| Link check 0 errors            | External: 2,409 links, 9 flagged (paperless 403, HashiCorp 429, mosquitto.org unreachable from this network, one dead Seatsurfing URL fixed). **Internal: 157 broken links found and fixed; now 0 of 147,984** |
+
+## Defects found and fixed in this pass
+
+1. 157 broken internal links (comparisons, generated task/role pages, integrations index).
+2. Stack Builder: the catalog JSON was embedded as literal text and read by file path, so the
+   built site never showed license class or guide status and replaced server-rendered links with
+   bare lists. Tool lists now link to the record, the install guide (stubs labeled), and the
+   official site.
+3. Accessibility: unlabeled markdown checkboxes (critical) and keyboard-inaccessible scrollable
+   tables (serious) on every checklist/table page; fixed with a rehype plugin.
+4. Stale e2e test (ROI heading) and a mislabeled homepage action ("Estimate ROI and TCO").
+5. License classification: 9 records corrected from official LICENSE files
+   (`LICENSING_PRIVACY_AUDIT.md`).
+6. Missing explainability: the builder page now states its four rules and what it does not do.
+
+## Independent QA report (`PR11_INDEPENDENT_QA.md`) status
+
+| Finding                                      | Status now                                                                                                                                                           |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| P0-1 builder hard-coded, not catalog-derived | **Still true by design.** Tool choice is a fixed editorial mapping; catalog supplies license/guide/links. Disclosed on the builder page. Rebuild is post-launch work |
+| P0-2 ROI label and prefilled numbers         | Resolved (renamed; empty start; "Load example (fabricated)")                                                                                                         |
+| P0-3 guide validation structural only        | Addressed (placeholder, source, boilerplate checks; quality report)                                                                                                  |
+| P0-4 comparisons overstated                  | Addressed (classification labels); depth remains partial                                                                                                             |
+| P1-1 implementation pack depth               | Partly (3 compose stacks, 3 n8n workflows); runtime unverified                                                                                                       |
+| P1-2 sidebar length                          | Mitigated (collapsed groups)                                                                                                                                         |
+| P1-3 duplicate sidebar ids                   | Resolved (`comparisons` slug)                                                                                                                                        |
+| P1-4 cost provenance                         | Resolved (labeled fabricated demonstration data)                                                                                                                     |
+| P1-5 missing builder questions               | **Open**                                                                                                                                                             |
+| P1-6 free-text privacy warning               | Resolved                                                                                                                                                             |
+
+## Test evidence (this machine, Windows, Node 24, pnpm 9.15)
+
+| Gate                | Result                                                                                                                                    |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm validate`     | 0 errors, 0 warnings                                                                                                                      |
+| `pnpm typecheck`    | 0 errors, 0 warnings (3 hints before; none now)                                                                                           |
+| `pnpm test`         | 46/46 unit tests                                                                                                                          |
+| `pnpm build`        | 441 pages; also built with `PUBLIC_BASE_PATH=/open-coworking-stack` — 0 broken links                                                      |
+| `pnpm format:check` | Pass (Prettier + markdownlint)                                                                                                            |
+| Playwright e2e+a11y | 102/102: routes, directory, calculators, operator journey, axe (serious/critical) and horizontal overflow on 12 routes at 320/375/1280 px |
+| Compose             | 8/8 files pass `docker compose config` (dummy env). **No container run** — Docker engine off                                              |
+| Preview             | Vercel preview reachable with authentication; Start Here and builder content confirmed                                                    |
 
 ## Remaining gates (owner)
 
-- [ ] Review and approve release candidate `97f6a26`
-- [ ] Enable Pages or configure alternative deployment
-- [ ] Run Docker-compose runtime validation on a Docker-capable runner
-- [ ] Authorize private preview or public launch
+- [ ] Review/merge PR #11; hosted CI green at the candidate (CodeQL needs GHAS or public repo)
+- [ ] Decide author-email exposure; run full-history Gitleaks; counsel review (see audit)
+- [ ] Review `crater` and other flagged catalog records
+- [ ] Supply related-product URLs (section is hidden until then)
+- [ ] Runtime validation of Compose packs on a Docker-capable runner
+- [ ] Human operator review of the acceptance test plan (8 personas)
+- [ ] Explicit approval to make the repository public; rollback rehearsal
 
-## Confirmed repository state
-
-- Repository: private `QaliAI/open-coworking-stack`; default hosted branch is `main`.
-- Remote: `origin` is configured for the GitHub repository.
-- Hosted CI: the initial `main` run for `e107548` passed.
-- Pages: run `29651717197` failed at `actions/configure-pages`; the Pages API returned `404` because a
-  Pages site is not enabled/configured for this private repository. No Pages deployment occurred.
-- Public release, version tag, and public site: none confirmed.
-- Current release branch changes have not yet passed hosted CI.
-- The checksum-verified Lychee wrapper is installed. Confirmed dead Cobot, draw.io, Fail2ban, and
-  Plausible URLs were replaced from official sources. The official LibreBooking homepage remained
-  unreachable on 2026-07-18, so that exact host is a documented, time-bounded exception while its
-  repository and wiki remain checked. HTTP 403 and 429 responses are accepted only as documented
-  automation-denial/rate-limit exceptions; they are not evidence that a product claim is correct.
-- Docker CLI 28.0.4 is installed locally, but the Docker Desktop Linux engine is not running. Local
-  Syft SBOM generation failed clearly at that boundary, and the Trivy reference-image scan was not run.
-  The workflows remain available on Docker-capable hosted runners.
-
-## Gates
-
-| Gate                                    | State       | Required evidence or action                                                                         |
-| --------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------- |
-| Scope and changelog reviewed            | Pending     | Reviewer confirms release scope and `CHANGELOG.md`                                                  |
-| Frozen install and complete local check | Passed      | `pnpm validate` (0 errors), `pnpm typecheck` (0 errors), `pnpm test` (44/44)                        |
-| Hosted CI for candidate                 | Pending     | Successful CI run at candidate commit (requires GitHub Actions enabled)                             |
-| Link check                              | Passed      | 2,308 links checked; 0 errors; documented 403/429/LibreBooking exceptions                           |
-| Comparison page quality                 | Enhanced    | All 22 pages classified (Directional shortlist/Due-diligence worksheet); classification guide added |
-| Stack Builder                           | Enhanced    | Catalog enrichment, currency selector, privacy warning, cost labels                                 |
-| Implementation pack depth               | Enhanced    | 3 compose stacks, 3 n8n workflows, sample Caddyfile, backup scripts, document taxonomy              |
-| Security controls                       | Enhanced    | CodeQL, Gitleaks, semantic PR, labeler workflows; CODEOWNERS; branch protection audit; gap analysis |
-| Navigation and visual                   | Enhanced    | Logo, sidebar collapsed groups, label fix, route test expansion                                     |
-| SBOM and dependency licenses            | Implemented | Run unsigned release-evidence workflow and review outputs                                           |
-| Static artifact checksums               | Implemented | Review `SHA256SUMS`; do not call checksums signatures                                               |
-| Reference-image scan                    | Advisory    | Review results and scan errors; tags remain mutable and packs remain untested                       |
-| Runtime validation of Compose packs     | Blocked     | Requires Docker engine; not available on this runner                                                |
-| Security and privacy review             | Enhanced    | Gap analysis document created; automated secret scanning; CodeQL analysis set up                    |
-| Accessibility and browser evidence      | Partial     | Chromium and axe exist; broader browser/mobile coverage is not established                          |
-| Private preview                         | Pending     | Approved protected preview and private-preview checklist — owner decision                           |
-| Public launch authorization             | Blocked     | Explicit owner approval and completed public-launch checklist                                       |
-| Rollback rehearsal                      | Pending     | Known-good artifact/ref and provider-specific restoration test                                      |
-| Artifact signing/provenance             | Not offered | No supported signing identity or provenance workflow is configured                                  |
-
-## Blocking facts
-
-- Pages cannot deploy with the current private-repository configuration.
-- Reference Compose packs are configuration-validated templates, not runtime-verified releases.
-- No protected preview has been reviewed and no public launch has been authorized.
-- No CHANGELOG.md has been updated for the v0.1 release.
-
-The release owner (QaliAI) must record accepted exceptions with an owner and expiry. A missing gate is not
-implicitly waived by a passing build.
-
-## Gate summary
-
-15 gates total: 7 Passed/Enhanced, 2 Advisory/Partial, 4 Pending (owner), 2 Blocked (infra)
+A missing gate is not implicitly waived by a passing build.

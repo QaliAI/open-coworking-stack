@@ -21,6 +21,23 @@ directional cost assumptions with current quotes and your own labor estimates.
 
 <StackBuilder />
 
+## How the recommendation is made
+
+The "recommended" label comes from four rules, applied in this order:
+
+1. **No technical capacity** → Hosted, with a strong "do not self-host" warning.
+2. **Easiest operations preferred, or a one-week window** → Hosted.
+3. **Maximum control preferred and an experienced in-house technical owner** → Self-hosted.
+4. **Anything else** → Hybrid.
+
+What it does _not_ do: it does not rank the whole catalog or score tools. For each outcome you tick,
+the builder shows one fixed, hand-chosen tool per operating model (the same choice for everyone),
+then looks up that tool's license class, install-guide status, and links in the catalog. Those
+catalog fields are real; the tool choice itself is an editorial starting point to pilot, not proof
+that it is the best fit. The default cost figures are **fabricated demonstration values**, not
+quotes. Data sensitivity and your free-text notes are recorded in the exported plan but do not change the
+recommendation or the tool choice, so treat a sensitive-data answer as a prompt for extra review.
+
 ## How to use the result
 
 1. Reject any option without a named business owner and an achievable support model.
