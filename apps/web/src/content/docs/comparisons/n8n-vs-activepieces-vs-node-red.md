@@ -6,11 +6,11 @@ page_classification: Directional shortlist
 
 ## Shared dimensions
 
-| Tool                                             | Evaluation lane                                 | Evidence status |
-| ------------------------------------------------ | ----------------------------------------------- | --------------- |
-| [n8n](../tools/generated/n8n/)                   | Application and data workflow automation        | Partial         |
-| [Activepieces](../tools/generated/activepieces/) | Application automation with an open-source core | Partial         |
-| [Node-RED](../tools/generated/node-red/)         | Event, device, and protocol flows               | Partial         |
+| Tool                                                | Evaluation lane                                 | Evidence status |
+| --------------------------------------------------- | ----------------------------------------------- | --------------- |
+| [n8n](../../tools/generated/n8n/)                   | Application and data workflow automation        | Partial         |
+| [Activepieces](../../tools/generated/activepieces/) | Application automation with an open-source core | Partial         |
+| [Node-RED](../../tools/generated/node-red/)         | Event, device, and protocol flows               | Partial         |
 
 Compare connector fit, credentials, branching, retries, idempotency, versioning, testing, logs,
 approvals, and failure recovery rather than counting connectors.

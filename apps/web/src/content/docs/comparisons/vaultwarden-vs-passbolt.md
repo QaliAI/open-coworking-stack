@@ -6,10 +6,10 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                           | Evaluation lane                                      | Evidence status |
-| ---------------------------------------------- | ---------------------------------------------------- | --------------- |
-| [Vaultwarden](../tools/generated/vaultwarden/) | Lightweight server compatible with Bitwarden clients | Partial         |
-| [Passbolt](../tools/generated/passbolt/)       | Team-oriented credential collaboration               | Partial         |
+| Tool                                              | Evaluation lane                                      | Evidence status |
+| ------------------------------------------------- | ---------------------------------------------------- | --------------- |
+| [Vaultwarden](../../tools/generated/vaultwarden/) | Lightweight server compatible with Bitwarden clients | Partial         |
+| [Passbolt](../../tools/generated/passbolt/)       | Team-oriented credential collaboration               | Partial         |
 
 Compare client fit, organization/sharing model, recovery, administrator powers, audit needs,
 directory lifecycle, attachments/secrets, backups, support, and emergency access.

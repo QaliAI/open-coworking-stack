@@ -6,12 +6,12 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                     | Evaluation lane                                | Evidence status           |
-| ---------------------------------------- | ---------------------------------------------- | ------------------------- |
-| [Listmonk](../tools/generated/listmonk/) | Self-hosted lists and campaigns                | Partial                   |
-| [Brevo](../tools/generated/brevo/)       | Managed marketing/transactional communications | Partial                   |
-| MailerLite                               | Managed email marketing                        | Partial; no catalog entry |
-| [Mautic](../tools/generated/mautic/)     | Self-hosted marketing automation               | Partial                   |
+| Tool                                        | Evaluation lane                                | Evidence status           |
+| ------------------------------------------- | ---------------------------------------------- | ------------------------- |
+| [Listmonk](../../tools/generated/listmonk/) | Self-hosted lists and campaigns                | Partial                   |
+| [Brevo](../../tools/generated/brevo/)       | Managed marketing/transactional communications | Partial                   |
+| MailerLite                                  | Managed email marketing                        | Partial; no catalog entry |
+| [Mautic](../../tools/generated/mautic/)     | Self-hosted marketing automation               | Partial                   |
 
 ## Operator profiles
 

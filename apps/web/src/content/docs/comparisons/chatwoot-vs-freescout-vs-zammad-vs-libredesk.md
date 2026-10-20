@@ -6,12 +6,12 @@ page_classification: Directional shortlist
 
 ## Shared dimensions
 
-| Tool                                       | Evaluation lane                       | Evidence status                   |
-| ------------------------------------------ | ------------------------------------- | --------------------------------- |
-| [Chatwoot](../tools/generated/chatwoot/)   | Multi-channel customer conversations  | Partial                           |
-| [FreeScout](../tools/generated/freescout/) | Email-centered shared inbox           | Partial                           |
-| [Zammad](../tools/generated/zammad/)       | Structured ticketing and service desk | Partial                           |
-| LibreDesk                                  | Emerging self-hosted support desk     | Not established; no catalog entry |
+| Tool                                          | Evaluation lane                       | Evidence status                   |
+| --------------------------------------------- | ------------------------------------- | --------------------------------- |
+| [Chatwoot](../../tools/generated/chatwoot/)   | Multi-channel customer conversations  | Partial                           |
+| [FreeScout](../../tools/generated/freescout/) | Email-centered shared inbox           | Partial                           |
+| [Zammad](../../tools/generated/zammad/)       | Structured ticketing and service desk | Partial                           |
+| LibreDesk                                     | Emerging self-hosted support desk     | Not established; no catalog entry |
 
 ## Operator profiles
 

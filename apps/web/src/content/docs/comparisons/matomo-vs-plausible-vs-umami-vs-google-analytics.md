@@ -6,12 +6,12 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                                     | Evaluation lane                                  | Evidence status |
-| -------------------------------------------------------- | ------------------------------------------------ | --------------- |
-| [Matomo](../tools/generated/matomo/)                     | Broad self-hostable/open-core web analytics      | Partial         |
-| [Plausible](../tools/generated/plausible-ce/)            | Focused web analytics with cloud/self-host paths | Partial         |
-| [Umami](../tools/generated/umami/)                       | Focused self-hostable web analytics              | Partial         |
-| [Google Analytics](../tools/generated/google-analytics/) | Managed marketing analytics ecosystem            | Partial         |
+| Tool                                                        | Evaluation lane                                  | Evidence status |
+| ----------------------------------------------------------- | ------------------------------------------------ | --------------- |
+| [Matomo](../../tools/generated/matomo/)                     | Broad self-hostable/open-core web analytics      | Partial         |
+| [Plausible](../../tools/generated/plausible-ce/)            | Focused web analytics with cloud/self-host paths | Partial         |
+| [Umami](../../tools/generated/umami/)                       | Focused self-hostable web analytics              | Partial         |
+| [Google Analytics](../../tools/generated/google-analytics/) | Managed marketing analytics ecosystem            | Partial         |
 
 ## Operator profiles
 

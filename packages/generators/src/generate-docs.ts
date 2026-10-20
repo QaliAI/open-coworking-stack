@@ -231,7 +231,7 @@ ${task.description}
 | Field | Value |
 | --- | --- |
 | Business area | ${task.business_area} |
-| Primary role | [${task.primary_role}](../../roles/generated/${task.primary_role}/) |
+| Primary role | [${task.primary_role}](../../../roles/generated/${task.primary_role}/) |
 | Frequency | ${task.frequency} |
 | Privacy sensitivity | ${task.privacy_sensitivity} |
 | Security sensitivity | ${task.security_sensitivity} |
@@ -298,9 +298,9 @@ ${section('Dangerous tasks to automate blindly', role.dangerous_to_automate_blin
 
 ## Stack choices
 
-- **Easiest hosted:** [${role.easiest_hosted_stack}](../../stacks/generated/${role.easiest_hosted_stack}/)
-- **Hybrid:** [${role.hybrid_stack}](../../stacks/generated/${role.hybrid_stack}/)
-- **Self-hosted:** [${role.self_hosted_stack}](../../stacks/generated/${role.self_hosted_stack}/)
+- **Easiest hosted:** [${role.easiest_hosted_stack}](../../../stacks/generated/${role.easiest_hosted_stack}/)
+- **Hybrid:** [${role.hybrid_stack}](../../../stacks/generated/${role.hybrid_stack}/)
+- **Self-hosted:** [${role.self_hosted_stack}](../../../stacks/generated/${role.self_hosted_stack}/)
 
 ${section('KPIs', role.kpis)}
 
@@ -485,7 +485,13 @@ async function publishIntegrationRecipes(repoRoot: string, integrationsOut: stri
     .sort((a, b) => a.name.localeCompare(b.name))) {
     const source = await readFile(path.join(sourceDirectory, entry.name), 'utf8');
     const title = source.match(/^# (.+)$/m)?.[1] ?? 'Integration recipe';
-    const body = source.replace(/^# [^\n]+\n\n?/, '');
+    // Source recipes link to sibling .md files for GitHub; the published site uses directory URLs.
+    const linkPrefix = entry.name === 'README.md' ? './' : '../';
+    const body = source
+      .replace(/^# [^\n]+\n\n?/, '')
+      .replace(/\]\(([a-z0-9-]+)\.md\)/g, (_match, name: string) =>
+        name === 'README' ? `](${linkPrefix})` : `](${linkPrefix}${name}/)`,
+      );
     const published = `---
 title: ${JSON.stringify(title)}
 description: Vendor-neutral coworking integration pattern with explicit human controls.

@@ -6,11 +6,11 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                     | Evaluation lane                                | Evidence status           |
-| ---------------------------------------- | ---------------------------------------------- | ------------------------- |
-| [Metabase](../tools/generated/metabase/) | Accessible business questions and dashboards   | Partial                   |
-| Apache Superset                          | Analyst-oriented business intelligence         | Partial; no catalog entry |
-| [Grafana](../tools/generated/grafana/)   | Time-series operations dashboards and alerting | Partial                   |
+| Tool                                        | Evaluation lane                                | Evidence status           |
+| ------------------------------------------- | ---------------------------------------------- | ------------------------- |
+| [Metabase](../../tools/generated/metabase/) | Accessible business questions and dashboards   | Partial                   |
+| Apache Superset                             | Analyst-oriented business intelligence         | Partial; no catalog entry |
+| [Grafana](../../tools/generated/grafana/)   | Time-series operations dashboards and alerting | Partial                   |
 
 ## Operator profiles
 

@@ -6,11 +6,11 @@ page_classification: Directional shortlist
 
 ## Shared dimensions
 
-| Tool                                       | Evaluation lane                                         | Evidence status |
-| ------------------------------------------ | ------------------------------------------------------- | --------------- |
-| [Authentik](../tools/generated/authentik/) | Identity provider and application access                | Partial         |
-| [Keycloak](../tools/generated/keycloak/)   | Broad identity and access management                    | Partial         |
-| [Authelia](../tools/generated/authelia/)   | Authentication/authorization gateway for protected apps | Partial         |
+| Tool                                          | Evaluation lane                                         | Evidence status |
+| --------------------------------------------- | ------------------------------------------------------- | --------------- |
+| [Authentik](../../tools/generated/authentik/) | Identity provider and application access                | Partial         |
+| [Keycloak](../../tools/generated/keycloak/)   | Broad identity and access management                    | Partial         |
+| [Authelia](../../tools/generated/authelia/)   | Authentication/authorization gateway for protected apps | Partial         |
 
 These are not interchangeable. Compare required protocols, application compatibility, lifecycle,
 MFA, recovery, delegated administration, audit, high availability, and support.

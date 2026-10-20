@@ -6,10 +6,10 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                       | Evaluation lane                                   | Evidence status |
-| ------------------------------------------ | ------------------------------------------------- | --------------- |
-| [Documenso](../tools/generated/documenso/) | Self-hostable/cloud electronic-signature workflow | Partial         |
-| [DocuSeal](../tools/generated/docuseal/)   | Self-hostable/cloud electronic-signature workflow | Partial         |
+| Tool                                          | Evaluation lane                                   | Evidence status |
+| --------------------------------------------- | ------------------------------------------------- | --------------- |
+| [Documenso](../../tools/generated/documenso/) | Self-hostable/cloud electronic-signature workflow | Partial         |
+| [DocuSeal](../../tools/generated/docuseal/)   | Self-hostable/cloud electronic-signature workflow | Partial         |
 
 Compare template preparation, signer experience, evidence, authentication, reminders, completion,
 download, API, retention, and administrator controls for the intended jurisdiction and document.

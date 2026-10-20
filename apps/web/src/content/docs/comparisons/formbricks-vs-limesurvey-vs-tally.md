@@ -6,11 +6,11 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                         | Evaluation lane                            | Evidence status           |
-| -------------------------------------------- | ------------------------------------------ | ------------------------- |
-| [Formbricks](../tools/generated/formbricks/) | Product/experience feedback and surveys    | Partial                   |
-| LimeSurvey                                   | Broad survey design and research workflows | Partial; no catalog entry |
-| Tally                                        | Managed, low-friction forms                | Partial; no catalog entry |
+| Tool                                            | Evaluation lane                            | Evidence status           |
+| ----------------------------------------------- | ------------------------------------------ | ------------------------- |
+| [Formbricks](../../tools/generated/formbricks/) | Product/experience feedback and surveys    | Partial                   |
+| LimeSurvey                                      | Broad survey design and research workflows | Partial; no catalog entry |
+| Tally                                           | Managed, low-friction forms                | Partial; no catalog entry |
 
 ## Operator profiles
 

@@ -6,11 +6,11 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                     | Evaluation lane                                       | Evidence status |
-| ---------------------------------------- | ----------------------------------------------------- | --------------- |
-| [NocoDB](../tools/generated/nocodb/)     | Spreadsheet-style interface over structured data      | Partial         |
-| [Baserow](../tools/generated/baserow/)   | No-code collaborative database                        | Partial         |
-| [Directus](../tools/generated/directus/) | Headless data platform and administrative application | Partial         |
+| Tool                                        | Evaluation lane                                       | Evidence status |
+| ------------------------------------------- | ----------------------------------------------------- | --------------- |
+| [NocoDB](../../tools/generated/nocodb/)     | Spreadsheet-style interface over structured data      | Partial         |
+| [Baserow](../../tools/generated/baserow/)   | No-code collaborative database                        | Partial         |
+| [Directus](../../tools/generated/directus/) | Headless data platform and administrative application | Partial         |
 
 ## Operator profiles
 

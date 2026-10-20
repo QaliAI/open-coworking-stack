@@ -6,13 +6,13 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Platform                                                                   | Operator-facing position                       | Verification status                                |
-| -------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------- |
-| [OfficeRnD](../tools/generated/officerd-saas/)                             | Dedicated flexible-workspace SaaS benchmark    | Partial                                            |
-| [Nexudus](../tools/generated/nexudus/)                                     | Dedicated flexible-workspace SaaS benchmark    | Partial                                            |
-| [Cobot](../tools/generated/cobot/)                                         | Dedicated coworking SaaS benchmark             | Partial                                            |
-| [Optix](../tools/generated/optix-app/)                                     | Dedicated coworking/flex-space SaaS benchmark  | Partial                                            |
-| [Other commercial benchmarks](./commercial-platform-capability-benchmark/) | Evidence rows for additional vendor evaluation | Not established until added from official evidence |
+| Platform                                                                    | Operator-facing position                       | Verification status                                |
+| --------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------- |
+| [OfficeRnD](../../tools/generated/officerd-saas/)                           | Dedicated flexible-workspace SaaS benchmark    | Partial                                            |
+| [Nexudus](../../tools/generated/nexudus/)                                   | Dedicated flexible-workspace SaaS benchmark    | Partial                                            |
+| [Cobot](../../tools/generated/cobot/)                                       | Dedicated coworking SaaS benchmark             | Partial                                            |
+| [Optix](../../tools/generated/optix-app/)                                   | Dedicated coworking/flex-space SaaS benchmark  | Partial                                            |
+| [Other commercial benchmarks](../commercial-platform-capability-benchmark/) | Evidence rows for additional vendor evaluation | Not established until added from official evidence |
 
 Use the same scripted demo for every vendor: prospect to contract, member change, booking conflict,
 invoice exception, access failure, cancellation, export, and restore/continuity response.
@@ -26,7 +26,7 @@ implementation support; relative fit is not established without that profile.
 ## Task coverage
 
 Official positioning supports evaluating membership, booking, billing, member-facing, and operational
-workflows. Exact depth by edition is `partial`; use the [capability benchmark](./commercial-platform-capability-benchmark/)
+workflows. Exact depth by edition is `partial`; use the [capability benchmark](../commercial-platform-capability-benchmark/)
 to record observed evidence rather than converting marketing pages into yes/no claims.
 
 ## Human work remaining

@@ -6,12 +6,12 @@ page_classification: Directional shortlist
 
 ## Shared dimensions
 
-| Tool                                     | Evaluation lane                       | Evidence status                                    |
-| ---------------------------------------- | ------------------------------------- | -------------------------------------------------- |
-| [Twenty](../tools/generated/twenty-crm/) | Modern self-hostable CRM              | Partial                                            |
-| [EspoCRM](../tools/generated/espocrm/)   | Configurable self-hostable CRM        | Partial                                            |
-| [SuiteCRM](../tools/generated/suitecrm/) | Broad self-hostable CRM customization | Partial                                            |
-| HubSpot free CRM                         | Managed proprietary CRM entry point   | Partial; current free entitlements not established |
+| Tool                                        | Evaluation lane                       | Evidence status                                    |
+| ------------------------------------------- | ------------------------------------- | -------------------------------------------------- |
+| [Twenty](../../tools/generated/twenty-crm/) | Modern self-hostable CRM              | Partial                                            |
+| [EspoCRM](../../tools/generated/espocrm/)   | Configurable self-hostable CRM        | Partial                                            |
+| [SuiteCRM](../../tools/generated/suitecrm/) | Broad self-hostable CRM customization | Partial                                            |
+| HubSpot free CRM                            | Managed proprietary CRM entry point   | Partial; current free entitlements not established |
 
 ## Operator profiles
 

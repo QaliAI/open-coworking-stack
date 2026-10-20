@@ -6,10 +6,10 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool                                               | Evaluation lane                             | Evidence status           |
-| -------------------------------------------------- | ------------------------------------------- | ------------------------- |
-| [Paperless-ngx](../tools/generated/paperless-ngx/) | Self-hosted document archive and processing | Partial                   |
-| Docspell                                           | Self-hosted document organizer              | Partial; no catalog entry |
+| Tool                                                  | Evaluation lane                             | Evidence status           |
+| ----------------------------------------------------- | ------------------------------------------- | ------------------------- |
+| [Paperless-ngx](../../tools/generated/paperless-ngx/) | Self-hosted document archive and processing | Partial                   |
+| Docspell                                              | Self-hosted document organizer              | Partial; no catalog entry |
 
 Compare ingestion, OCR, metadata, correspondence, tagging, search, permissions, retention, bulk
 export, backup, and recovery with representative documents.

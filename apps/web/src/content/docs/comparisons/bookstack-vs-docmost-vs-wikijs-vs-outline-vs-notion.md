@@ -6,13 +6,13 @@ page_classification: Directional shortlist
 
 ## Shared dimensions
 
-| Tool                                       | Evaluation lane                                | Evidence status           |
-| ------------------------------------------ | ---------------------------------------------- | ------------------------- |
-| [BookStack](../tools/generated/bookstack/) | Structured, self-hosted documentation          | Partial                   |
-| Docmost                                    | Collaborative self-hosted knowledge base       | Partial; no catalog entry |
-| [Wiki.js](../tools/generated/wikijs/)      | Flexible self-hosted wiki                      | Partial                   |
-| [Outline](../tools/generated/outline/)     | Polished source-available/cloud knowledge base | Partial                   |
-| [Notion](../tools/generated/notion/)       | Managed collaborative workspace                | Partial                   |
+| Tool                                          | Evaluation lane                                | Evidence status           |
+| --------------------------------------------- | ---------------------------------------------- | ------------------------- |
+| [BookStack](../../tools/generated/bookstack/) | Structured, self-hosted documentation          | Partial                   |
+| Docmost                                       | Collaborative self-hosted knowledge base       | Partial; no catalog entry |
+| [Wiki.js](../../tools/generated/wikijs/)      | Flexible self-hosted wiki                      | Partial                   |
+| [Outline](../../tools/generated/outline/)     | Polished source-available/cloud knowledge base | Partial                   |
+| [Notion](../../tools/generated/notion/)       | Managed collaborative workspace                | Partial                   |
 
 ## Operator profiles
 

@@ -6,12 +6,12 @@ page_classification: Directional shortlist
 
 ## Shared dimensions
 
-| Tool                                                      | Best evaluation lane                                             | Coverage status |
-| --------------------------------------------------------- | ---------------------------------------------------------------- | --------------- |
-| [Cal.com/Cal.diy](../tools/generated/cal-com/)            | External appointment scheduling and calendar-connected workflows | Partial         |
-| [Easy!Appointments](../tools/generated/easyappointments/) | Focused appointment scheduling                                   | Partial         |
-| [LibreBooking](../tools/generated/librebooking/)          | Resource reservation                                             | Partial         |
-| [Seatsurfing](../tools/generated/seatsurfing/)            | Workspace and desk reservation                                   | Partial         |
+| Tool                                                         | Best evaluation lane                                             | Coverage status |
+| ------------------------------------------------------------ | ---------------------------------------------------------------- | --------------- |
+| [Cal.com/Cal.diy](../../tools/generated/cal-com/)            | External appointment scheduling and calendar-connected workflows | Partial         |
+| [Easy!Appointments](../../tools/generated/easyappointments/) | Focused appointment scheduling                                   | Partial         |
+| [LibreBooking](../../tools/generated/librebooking/)          | Resource reservation                                             | Partial         |
+| [Seatsurfing](../../tools/generated/seatsurfing/)            | Workspace and desk reservation                                   | Partial         |
 
 Cal.diy refers to Cal.com's self-hosting path; verify current naming, edition boundaries, and terms
 in official Cal.com materials.

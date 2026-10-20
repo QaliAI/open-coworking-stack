@@ -96,4 +96,4 @@ Verified on **2026-07-18**. Product capabilities, prices, free limits, and integ
 - [OfficeRnD](https://www.officernd.com/) and [OfficeRnD help](https://help.officernd.com/)
 - [Nexudus](https://www.nexudus.com/) and [Nexudus help](https://help.nexudus.com/)
 - [Cobot](https://www.cobot.me/) and [Cobot support](https://www.cobot.me/support)
-- [Open Coworking Stack deployment options](../guides/deployment-options/)
+- [Open Coworking Stack deployment options](../../guides/deployment-options/)

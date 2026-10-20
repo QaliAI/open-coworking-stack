@@ -9,14 +9,14 @@ know what evidence to expect before you click. `Partial` means official material
 of the decision; `not established` means this library has not verified the claim. Prices, free
 limits, and edition-specific entitlements are intentionally omitted.
 
-**Classification guide**
+## Classification guide
 
-| Label | Meaning |
-|---|---|
-| **Evidence-backed** | Contains material, sourced differentiators across shared dimensions. Ready for shortlisting. |
-| **Directional shortlist** | Useful structural comparison; most claims remain unverified. Use as a worksheet for your own evaluation. |
-| **Due-diligence worksheet** | Evaluation structure with minimal established evidence. Use as a test-script template. |
-| **Research backlog** | Topic identified; no published comparison yet. |
+| Label                       | Meaning                                                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Evidence-backed**         | Contains material, sourced differentiators across shared dimensions. Ready for shortlisting.             |
+| **Directional shortlist**   | Useful structural comparison; most claims remain unverified. Use as a worksheet for your own evaluation. |
+| **Due-diligence worksheet** | Evaluation structure with minimal established evidence. Use as a test-script template.                   |
+| **Research backlog**        | Topic identified; no published comparison yet.                                                           |
 
 ## Coworking platform strategy
 
@@ -62,10 +62,10 @@ dated editorial review, not a warranty or a production certification.
 
 Use this live checklist while running each comparison page through its claims:
 
-| Step | Done |
-|---|---|
-| Read the `page_classification` badge to calibrate trust before reading | [ ] |
-| Confirm every URL in "Official sources" resolves and matches the product | [ ] |
-| If a page says "Not established" — note that absence is not evidence of absence | [ ] |
-| If a page says "Partial" — verify the specific claim against official docs | [ ] |
-| Never treat a highlighted feature as a verified capability without your own test | [ ] |
+| Step                                                                             | Done |
+| -------------------------------------------------------------------------------- | ---- |
+| Read the `page_classification` badge to calibrate trust before reading           | [ ]  |
+| Confirm every URL in "Official sources" resolves and matches the product         | [ ]  |
+| If a page says "Not established" — note that absence is not evidence of absence  | [ ]  |
+| If a page says "Partial" — verify the specific claim against official docs       | [ ]  |
+| Never treat a highlighted feature as a verified capability without your own test | [ ]  |
