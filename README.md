@@ -1,18 +1,40 @@
-# Open Coworking Stack
+# Open Coworking Stack — Free Tools for Coworking
 
-Open Coworking Stack is a Git-first directory of technology for coworking and flexible-workspace
-operators. It combines structured catalog records, coworking-specific evaluation guidance, reference
-stacks, and a generated Astro/Starlight documentation site.
+Open Coworking Stack is a free, Git-first directory of technology for coworking and flexible-workspace
+operators. It catalogs free, open-source, and freemium software for **sales, marketing, operations,
+member experience, finance and administration, and technology and security**, with structured catalog
+records, coworking-specific evaluation guidance, reference stacks, and a generated Astro/Starlight
+documentation site.
 
 This repository is a directory and implementation resource, not a hosted SaaS product and not a copy
 of the projects it describes. Upstream software remains in its official repositories and under its own
 license.
 
-> Repository status (2026-07-18): `QaliAI/open-coworking-stack` exists as a private GitHub repository
-> with `main` as its default branch, and `origin` is configured in this checkout. Hosted CI passed for
-> the initial `main` commit. No public repository, release, or documentation URL is asserted to be live.
-> GitHub Pages is not enabled/configured for the private repository, so the preserved Pages workflow
-> currently stops at `actions/configure-pages` without deploying.
+> **Release status (2026-10-22):** v0.1.0 is released. The repository is public on GitHub at
+> [`QaliAI/open-coworking-stack`](https://github.com/QaliAI/open-coworking-stack) and the generated
+> documentation site is live at <https://open-coworking-stack.vercel.app>. Listings are not
+> endorsements; re-check official pricing, licensing, privacy, and security sources before any
+> production decision.
+
+## Start here — browse without installing anything
+
+This is a **directory**, not a hosted coworking application. You do **not** need Node.js, Docker, a
+database, or paid software to use the reference material.
+
+- **[Open the documentation site](https://open-coworking-stack.vercel.app):** the generated directory,
+  comparisons, role pages, and the Stack Builder.
+- **[Browse the tool catalog](catalog/tools/):** 116 categorized tool records, including conservative
+  licensing and verification notes. A listing is not an endorsement or a claim that every price or
+  integration has been independently checked.
+- **[Read the implementation guides](guides/):** operational guidance and evaluation checklists for
+  choosing software that fits your workspace.
+- **[Compare reference stacks](catalog/stacks/):** sample combinations and tradeoffs, not universal
+  prescriptions.
+- **[Explore starter Compose packs](compose/):** optional technical examples for people who want to
+  self-host; these are not plug-and-play production deployments.
+
+Use the files directly on GitHub, or download the repository ZIP. The optional Astro documentation
+website and local build instructions below are for maintainers and developers.
 
 ## Architecture
 
@@ -126,10 +148,12 @@ neither is a deployment or runtime certification.
 
 ## GitHub Pages
 
-`.github/workflows/deploy-pages.yml` is preserved for GitHub Pages. The hosted run for commit
-`e107548` failed before the build at `actions/configure-pages`: GitHub's Pages API returned `404`
-because Pages is not enabled/configured for the private repository. This is a repository/account
-configuration blocker, not evidence of a site build failure. No Pages deployment occurred.
+The public site is deployed on Vercel at <https://open-coworking-stack.vercel.app>.
+`.github/workflows/deploy-pages.yml` is preserved for GitHub Pages as an alternative. A hosted run for
+commit `e107548` failed before the build at `actions/configure-pages`: GitHub's Pages API returned
+`404` because Pages was not enabled/configured for the then-private repository. This was a
+repository/account configuration blocker, not evidence of a site build failure. No Pages deployment
+occurred.
 
 If the repository owner later authorizes Pages:
 
@@ -149,7 +173,8 @@ Vercel, and Netlify build settings.
 
 ## Release Engineering
 
-- [`CHANGELOG.md`](CHANGELOG.md) records unreleased changes; no version tag or release is claimed.
+- [`CHANGELOG.md`](CHANGELOG.md) records repository changes; v0.1.0 notes are in
+  [`docs/project/V0.1_RELEASE_NOTES.md`](docs/project/V0.1_RELEASE_NOTES.md).
 - [`docs/project/RELEASE_PROCESS.md`](docs/project/RELEASE_PROCESS.md) defines evidence and approvals.
 - [`docs/project/RELEASE_READINESS.md`](docs/project/RELEASE_READINESS.md) records current blockers.
 - [`docs/project/PRIVATE_PREVIEW_CHECKLIST.md`](docs/project/PRIVATE_PREVIEW_CHECKLIST.md) keeps preview

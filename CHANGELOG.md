@@ -6,6 +6,8 @@ All notable repository changes are recorded here. This project follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-22
+
 ### Added
 
 - Start Here operator pathway, stack-builder install-guide links, release-audit browser tests
@@ -33,4 +35,4 @@ All notable repository changes are recorded here. This project follows
 - Repository and deployment status documentation now reflects the private GitHub repository, hosted
   CI evidence, and confirmed Pages configuration failure.
 
-No version has been tagged or published from these changes.
+v0.1.0 is tagged and published on GitHub Releases; see `docs/project/V0.1_RELEASE_NOTES.md`.

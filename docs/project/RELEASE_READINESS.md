@@ -1,5 +1,10 @@
 # Release Readiness
 
+> **Status 2026-10-22:** v0.1.0 was released from the consolidated candidate (PR #11 plus the
+> October final-readiness fixes and the PR #17 corrections). This gate document is retained as the
+> pre-release evidence record; see `docs/project/V0.1_RELEASE_NOTES.md` and
+> `docs/project/POST_RELEASE_BACKLOG.md` for current state.
+
 Last reviewed: 2026-10-20  
 Candidate branch: `release/final-readiness-v0.1` (PR #11 head `52d356b` plus narrow fixes, unpushed)  
 Decision: **ready for owner review and protected preview; not approved for public release**
