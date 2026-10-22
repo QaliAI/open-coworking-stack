@@ -1,27 +1,26 @@
 # The repository is owned by the maintainer team.
-# Replace `@org/maintainers` with the actual GitHub team or individual accounts
-# after a remote and maintainer identities are established.
+# `@QaliAI` is the owning GitHub account for QaliAI/open-coworking-stack.
 
-* @org/maintainers
+* @QaliAI
 
 # Packages — individual or subteam review recommended
-/packages/schema/   @org/maintainers
-/packages/shared/   @org/maintainers
-/packages/validators/   @org/maintainers
-/packages/generators/   @org/maintainers
+/packages/schema/   @QaliAI
+/packages/shared/   @QaliAI
+/packages/validators/   @QaliAI
+/packages/generators/   @QaliAI
 
 # App
-/apps/web/  @org/maintainers
+/apps/web/  @QaliAI
 
 # Core content
-/catalog/   @org/maintainers
-/stacks/    @org/maintainers
-/guides/    @org/maintainers
+/catalog/   @QaliAI
+/stacks/    @QaliAI
+/guides/    @QaliAI
 
 # Infrastructure
-/.github/   @org/maintainers
-/compose/   @org/maintainers
-/scripts/   @org/maintainers
+/.github/   @QaliAI
+/compose/   @QaliAI
+/scripts/   @QaliAI
 
 # Documentation
-/docs/  @org/maintainers
+/docs/  @QaliAI
