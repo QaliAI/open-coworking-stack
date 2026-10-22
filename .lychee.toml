@@ -33,4 +33,4 @@ exclude_path = [
 ]
 
 scheme = ["https", "http", "file"]
-include_fragments = false
+include_fragments = "none"
