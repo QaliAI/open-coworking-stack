@@ -13,6 +13,27 @@ license.
 > The catalog's source-level checks passed in earlier audits, but scheduled link-check CI has
 > failed. Check the latest Actions results and verify a hosted build before public release.
 
+## Start here — browse without installing anything
+
+This is a **directory**, not a hosted coworking application. You do **not** need Node.js, Docker,
+a database, or paid software to use the reference material.
+
+- **[Browse the tool catalog](catalog/tools/):** 116 categorized tool records, including
+  conservative licensing and verification notes. A listing is not an endorsement or a claim
+  that every price or integration has been independently checked.
+- **[Read the implementation guides](guides/):** operational guidance and evaluation
+  checklists for choosing software that fits your workspace.
+- **[Compare reference stacks](catalog/stacks/):** sample combinations and tradeoffs, not
+  universal prescriptions.
+- **[Explore starter Compose packs](compose/):** optional technical examples for people
+  who want to self-host; these are not plug-and-play production deployments.
+
+Use the files directly on GitHub, or download the repository ZIP. The optional Astro
+documentation website and local build instructions below are for maintainers and developers.
+
+**Release note:** The repository is currently private. This section becomes publicly
+accessible only after the owner approves publication and the GitHub visibility changes.
+
 ## Architecture
 
 ```text
