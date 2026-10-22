@@ -8,9 +8,10 @@ This repository is a directory and implementation resource, not a hosted SaaS pr
 of the projects it describes. Upstream software remains in its official repositories and under its own
 license.
 
-> Repository status: this checkout currently has no commits and no configured Git remote. No public
-> repository or documentation URL is asserted to be live. The workflows in `.github/workflows/` become
-> operational after the project is committed, hosted, and configured on GitHub.
+> **Release status:** This repository is hosted on GitHub but remains **private**. The source and
+> GitHub Actions definitions are committed; this is not yet a verified public directory or site.
+> The catalog's source-level checks passed in earlier audits, but scheduled link-check CI has
+> failed. Check the latest Actions results and verify a hosted build before public release.
 
 ## Architecture
 
@@ -121,10 +122,11 @@ attributable.
 
 ## GitHub Pages
 
-`.github/workflows/deploy-pages.yml` is prepared for GitHub Pages, but this checkout is not connected
-to GitHub and no deployment has run. To activate it after establishing a repository:
+`.github/workflows/deploy-pages.yml` is prepared for GitHub Pages. The GitHub repository
+exists, but a public Pages URL and successful public deployment have not been verified. Before
+publication, validate the workflows and configure Pages:
 
-1. Make `main` the hosted default branch and push the repository.
+1. Confirm `main` is the intended default branch and push reviewed changes.
 2. In the repository Pages settings, choose **GitHub Actions** as the source.
 3. Ensure Actions has permission to deploy Pages.
 4. Push to `main` or manually dispatch the **Deploy Pages** workflow.
