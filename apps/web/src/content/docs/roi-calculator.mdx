@@ -1,0 +1,55 @@
+---
+title: Workflow Capacity and Payback Estimator
+description: Estimate capacity value, operating cost, payback, and sensitivity without promising cash savings.
+sidebar:
+  badge:
+    text: Updated
+    variant: tip
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import RoiCalculator from '../../components/RoiCalculator.astro';
+
+<Aside type="caution" title="Capacity value is not cash savings">
+  This estimator values time that may be redirected to other work. That value is not a staffing
+  reduction, cash savings, or guaranteed financial return unless cash expense actually decreases.
+</Aside>
+
+This browser-only estimator shows the assumptions and formulas needed for an operator conversation.
+Start with empty fields and add your own measured or quoted values. Use the **Load example** button
+to see fabricated demonstration data — every example number is clearly labeled as assumed, not real.
+
+<RoiCalculator />
+
+## What the numbers mean
+
+- **Hours potentially redirected**: Adopted task volume × positive minutes difference ÷ 60.
+  Time that could become available for other work.
+- **Gross labor capacity value**: Hours × loaded hourly labor cost. The notional value of
+  redirected time if it were applied to productive work at the same rate.
+- **Monthly cash cost**: Software/hosting plus other cash costs, adjusted for annual price
+  increases. The actual cash leaving your account.
+- **Monthly labor cost**: Maintenance hours and estimated downtime/incident time. Labor
+  you or your team will spend operating the tooling.
+- **Net monthly capacity value**: Gross capacity value minus total monthly operating cost.
+  Positive means the estimated capacity value exceeds the cost to operate.
+- **First-year capacity estimate**: Net monthly value × 12, minus all one-time costs (setup,
+  training, migration, and contingency). A directional year-one picture.
+- **Payback period**: How many months of net capacity value would recover total one-time
+  costs. Not shown when the monthly net is zero or negative.
+
+## Cash savings mode
+
+Check "This tooling will reduce cash expense" only if you have a specific plan to reduce
+staffing or cancel a contract. The estimator does not change its math — but the label
+reminds you that capacity value and cash savings are different things.
+
+## Formula boundaries
+
+- All figures are estimates based on your inputs. Even "measured" values are samples,
+  not guarantees.
+- Adoption ramps, exceptions, downtime, migration, and training are estimated as overhead.
+  Actual overhead will vary.
+- Contingency is a percentage added to one-time costs. It covers unknowns, not known risks.
+- This is not financial, accounting, tax, employment, or procurement advice. Verify every
+  assumption with a bounded pilot before making decisions.

@@ -5,6 +5,7 @@ import {
   matchesDirectoryTool,
   parseCatalogExport,
   parseDirectoryFilters,
+  readableLabel,
   serializeDirectoryFilters,
   withBasePath,
   type CatalogTool,
@@ -29,7 +30,35 @@ const tool: CatalogTool = {
   homepage: 'https://example.com',
   verification_status: 'verified',
   last_reviewed: '2026-01-01',
+  verification_completeness: 'metadata-verified',
+  verification_confidence: 'medium',
+  verification_tier: 'evaluated',
+  task_fits: [
+    {
+      task_id: 'manage-room-bookings',
+      relationship: 'partial automation',
+      automation_level: 'assisted',
+      role_assisted: 'operations-manager',
+      manual_process: 'Updating a shared booking sheet',
+      human_work: 'Resolve exceptions and approve policies',
+      failure_consequence: 'A room may be double booked',
+      pilot_metric: 'Ten bookings reconcile without conflicts',
+    },
+  ],
 };
+
+describe('readableLabel', () => {
+  it('turns catalog slugs into operator-readable labels', () => {
+    expect(readableLabel('operations-manager')).toBe('Operations Manager');
+    expect(readableLabel('oss-osi-approved')).toBe('Open source (OSI-approved)');
+    expect(readableLabel('managed-saas')).toBe('Managed SaaS');
+    expect(readableLabel('research-backlog')).toBe('Research backlog');
+  });
+
+  it('never relabels research backlog as Verified Core', () => {
+    expect(readableLabel('research-backlog')).not.toBe('Verified Core');
+  });
+});
 
 describe('licenseBadgeClass', () => {
   it('maps known classes', () => {
@@ -52,10 +81,18 @@ describe('directory filters', () => {
     filters.q = 'fill-meeting-rooms';
     filters.cost = 'free-self-hosted';
     filters.verification = 'verified';
+    filters.tier = 'evaluated';
 
     expect(matchesDirectoryTool(tool, filters)).toBe(true);
     filters.workflow = 'member-onboarding';
     expect(matchesDirectoryTool(tool, filters)).toBe(false);
+  });
+
+  it('searches reviewed task-fit language', () => {
+    const filters = emptyDirectoryFilters();
+    filters.q = 'shared booking sheet';
+
+    expect(matchesDirectoryTool(tool, filters)).toBe(true);
   });
 });
 

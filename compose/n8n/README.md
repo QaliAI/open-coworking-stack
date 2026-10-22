@@ -46,6 +46,22 @@ The example uses the stable version documented by n8n on 2026-07-18. Tags are mu
 image values with verified `tag@sha256:digest` references before production. Review n8n and database
 release notes, back up, and test the upgrade against restored data before changing either pin.
 
+## Sample workflow exports
+
+The `workflows/` subdirectory contains three **fabricated demonstration** n8n workflow exports
+in JSON format. These are incomplete (credential references, environment variables, and API URLs
+must be configured per your deployment) but illustrate coworking-relevant automation patterns:
+
+- `member-onboarding.json` — webhook-triggered flow: create CRM contact, create support ticket,
+  schedule orientation, notify team, then send a check-in survey after 7 days.
+- `tour-to-close.json` — webhook-triggered flow: log lead in CRM, send confirmation email,
+  wait for tour, trigger follow-up task, then send feedback survey if not closed within 3 days.
+- `invoice-reminder.json` — cron-triggered weekly flow: fetch overdue invoices, send tiered
+  reminders at 7/14/30+ days, escalate via Slack at 30+.
+
+Import into n8n via **Workflows → Import from File** or the REST API. All use environment
+variables (`$env.*`) for API endpoints and secrets; set these in n8n settings before activating.
+
 ## Official documentation
 
 - [Docker Compose hosting](https://docs.n8n.io/deploy/host-n8n/install-options/use-a-cloud-provider/use-docker-compose/)

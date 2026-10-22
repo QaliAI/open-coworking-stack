@@ -1,0 +1,20 @@
+schema_version: 1.0.0
+tool_id: unifi-network
+intended_outcome: segmented guest and staff Wi-Fi in one reversible test area
+deployment_boundary: approved UniFi test hardware; no life-safety or access-control dependency
+accountable_owner: network change approver
+required_operators:
+  - network operator skilled in VLANs, DHCP, DNS, routing, firewall policy, and recovery
+  - facilities owner for cabling, power, PoE, and physical inventory
+required_reviewers:
+  - privacy reviewer for client telemetry
+  - incident and member-communications owners
+minimum_staffing: two people for production change and rollback
+prohibited_uses:
+  - autonomous client blocking or identity inference
+  - unreviewed production adoption or firmware rollout
+  - life-safety network operation under this pack
+readiness_evidence:
+  - current topology and device/version inventory
+  - approved maintenance and failback plan
+  - protected backup and independent recovery access

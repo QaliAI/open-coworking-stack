@@ -1,0 +1,62 @@
+schema_version: 1.0.0
+id: broker-pipeline
+name: Broker pipeline
+description: Manage coworking opportunities introduced by brokers with clear ownership, permission-aware communication, and reviewed commercial obligations.
+objective: Keep broker-sourced opportunities and commitments visible without bypassing prospect consent or commercial approval.
+responsible_role: Sales manager
+trigger: A broker introduces an eligible prospect or requests an approved inventory update.
+inputs: [broker identity, prospect introduction, communication permissions, requirements, fee terms]
+outputs: [owned opportunity, communication plan, reviewed broker status, obligation record]
+source_of_truth: The reviewed sales opportunity and controlled broker agreement record are authoritative.
+systems_involved: [sales pipeline, agreement store, approved inventory, communication channel]
+automation_steps:
+  [
+    identify duplicates,
+    assign an owner,
+    flag missing permission or fee terms,
+    schedule review tasks,
+  ]
+human_approval_points:
+  [Staff approve prospect contact, inventory claims, fee commitments, and opportunity closure.]
+failure_exception_paths:
+  [
+    Pause contact for disputed introductions,
+    duplicate claims,
+    missing permission,
+    or unclear commercial terms.,
+  ]
+privacy_risks: [Broker introductions can share prospect information without an appropriate basis.]
+security_risks:
+  [External attachments and impersonated brokers can introduce fraud or malicious content.]
+measurable_kpis:
+  [broker leads with permission recorded, duplicate disputes, opportunities with reviewed fee terms]
+test_cases:
+  [
+    Accept a valid introduction,
+    detect a duplicate,
+    reject missing permission,
+    escalate a fee dispute.,
+  ]
+manual_fallback:
+  [Maintain a manager-reviewed broker register and enter approved opportunities manually.]
+rollback_disable_procedure:
+  [
+    Disable broker intake automation,
+    preserve records and obligations,
+    notify owners,
+    use the controlled register.,
+  ]
+primary_roles: [sales-manager, owner-operator]
+stages:
+  - id: accept-and-manage
+    name: Accept and manage
+    description: Verify the introduction and commercial context before staff own the opportunity.
+    manual_tasks:
+      [verify broker and permission, review fee terms, approve communications and claims]
+    automation_opportunities: [detect duplicates and create owner-assigned review tasks]
+    suggested_tool_ids: [espocrm, paperless-ngx]
+    risks: [Unreviewed introductions can create privacy, attribution, or payment disputes.]
+success_metrics: [Every broker opportunity has permission, owner, and reviewed commercial context.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Broker, privacy, and commission obligations vary and require local review.

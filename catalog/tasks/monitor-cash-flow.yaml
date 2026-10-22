@@ -1,0 +1,38 @@
+schema_version: 1.0.0
+id: monitor-cash-flow
+name: Monitor cash flow
+description: Maintain a scenario-based view of available cash, committed payments, expected collections, uncertainty, and decision dates using reconciled sources and explicit assumptions.
+business_area: finance
+primary_role: owner-operator
+supporting_roles: [finance-billing-administrator, sales-leasing-manager]
+frequency: weekly
+trigger: Scheduled cash review or a material change in collections, commitments, or forecast.
+inputs:
+  [
+    Reconciled cash position,
+    Approved payment commitments,
+    Evidence-based collection and sales forecast,
+  ]
+outputs: [Cash scenarios and assumptions, Upcoming decision points, Assigned mitigation actions]
+current_manual_methods: [Bank balance check, Static spreadsheet, Best-case sales forecast]
+common_failure_modes:
+  [Available balance ignores committed outflows, Forecast dates are treated as certain]
+human_judgment_required:
+  [
+    Assess uncertainty and scenario credibility,
+    Choose proportionate actions considering members,
+    staff,
+    suppliers,
+    and obligations,
+  ]
+approval_points:
+  [Owner approves cash actions; qualified finance reviewer approves model and source treatment]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: false
+success_metrics:
+  [
+    Forecast error and assumptions are reviewed,
+    Material obligations are visible before decision deadlines,
+  ]
+related_workflows: [reporting-kpis, invoice-collections]

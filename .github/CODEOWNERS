@@ -1,2 +1,26 @@
-# Placeholder only. No GitHub account or team is configured as an owner in this repository.
-# Replace these comments with verified owners after a remote and maintainer identities are established.
+# The repository is owned by the maintainer team.
+# `@QaliAI` is the owning GitHub account for QaliAI/open-coworking-stack.
+
+* @QaliAI
+
+# Packages — individual or subteam review recommended
+/packages/schema/   @QaliAI
+/packages/shared/   @QaliAI
+/packages/validators/   @QaliAI
+/packages/generators/   @QaliAI
+
+# App
+/apps/web/  @QaliAI
+
+# Core content
+/catalog/   @QaliAI
+/stacks/    @QaliAI
+/guides/    @QaliAI
+
+# Infrastructure
+/.github/   @QaliAI
+/compose/   @QaliAI
+/scripts/   @QaliAI
+
+# Documentation
+/docs/  @QaliAI

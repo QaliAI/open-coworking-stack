@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+id: prepare-shift-briefings
+name: Prepare shift briefings
+description: Give on-duty staff a concise, role-appropriate view of service priorities, arrivals, events, hazards, outages, changes, and escalation ownership without oversharing personal information.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [community-coordinator-front-desk, operations-facilities-manager]
+frequency: daily
+trigger: Before an operating shift or a material mid-shift change.
+inputs:
+  [
+    Current site and service status,
+    Expected demand and events,
+    Open actions and approved communications,
+  ]
+outputs: [Acknowledged briefing, Clarified assignments, Escalated information gaps]
+current_manual_methods: [Stand-up meeting, Printed diary, Group-chat summary]
+common_failure_modes:
+  [
+    Old briefing is reused after conditions change,
+    Staff receive sensitive detail unrelated to their role,
+  ]
+human_judgment_required:
+  [
+    Select actionable context and explain priorities,
+    Invite concerns and adjust assignments from frontline insight,
+  ]
+approval_points: [Duty manager approves priorities and restricted information distribution]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: false
+success_metrics:
+  [
+    Staff can state current priorities and escalation owner,
+    Briefing changes reach affected staff promptly,
+  ]
+related_workflows: [incident-response, visitor-management, event-lifecycle]

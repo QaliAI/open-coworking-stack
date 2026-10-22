@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: tour-confirmation
+name: Tour confirmation
+description: Confirm an agreed coworking tour with accurate time, location, host, accessibility, and change instructions after staff review.
+objective: Give the prospect and host a reliable shared record of the planned tour.
+responsible_role: Sales manager
+trigger: A tour slot is booked or changed.
+inputs: [prospect contact preference, approved slot, location, host, access and accessibility notes]
+outputs: [approved confirmation, calendar status, delivery status]
+source_of_truth: The reviewed scheduling record is authoritative for the tour appointment.
+systems_involved: [scheduling system, sales pipeline, approved communication channel]
+automation_steps:
+  [
+    prepare confirmation from approved appointment data,
+    send after validation,
+    record delivery status,
+  ]
+human_approval_points:
+  [Staff approve unusual access, accessibility, group-size, or after-hours arrangements.]
+failure_exception_paths:
+  [
+    Alert the host when delivery fails or appointment data conflicts and contact the prospect manually.,
+  ]
+privacy_risks: [Calendar invitations can reveal contact, location, and attendance details.]
+security_risks:
+  [Incorrect links or calendar permissions can expose other appointments or meeting access.]
+measurable_kpis:
+  [confirmation delivery rate, appointment-data correction rate, unresolved delivery failures]
+test_cases:
+  [Confirm a standard tour, change a slot, test failed delivery, test an after-hours exception.]
+manual_fallback:
+  [
+    Verify the appointment and send or call with approved details,
+    then record confirmation manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop automatic confirmations,
+    preserve booking records,
+    notify hosts,
+    use staffed confirmation until corrected.,
+  ]
+primary_roles: [sales-manager, community-manager]
+stages:
+  - id: verify-and-confirm
+    name: Verify and confirm
+    description: Check appointment details and issue an approved confirmation to both prospect and host.
+    manual_tasks: [review exceptions, verify the host, correct conflicting details]
+    automation_opportunities: [populate an approved template and record delivery]
+    suggested_tool_ids: [cal-com, espocrm]
+    risks: [An incorrect confirmation can send a visitor to the wrong place or time.]
+success_metrics:
+  [Confirmed tours have matching prospect and host details, failed delivery receives staff action.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Confirm actual scheduling and messaging behavior before enabling automation.

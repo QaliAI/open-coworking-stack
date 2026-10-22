@@ -1,0 +1,63 @@
+schema_version: 1.0.0
+id: social-scheduling
+name: Social scheduling
+description: Schedule only approved coworking social content with accountable timing, channel access, pause controls, and post-publication verification.
+objective: Publish approved posts at reviewed times without bypassing context checks or account security.
+responsible_role: Marketing manager
+trigger: A specific social-content version receives valid publication approval.
+inputs:
+  [approved content version, channels, schedule, approval expiry, account owner, pause conditions]
+outputs: [scheduled item, publication status, verification task, exception record]
+source_of_truth: The approved content record and publishing log are authoritative together.
+systems_involved: [approval queue, social publishing accounts, content calendar]
+automation_steps:
+  [validate approval version and window, schedule the item, record result, alert on failure]
+human_approval_points:
+  [Marketing staff approve timing and recheck sensitive or rapidly changing context before release.]
+failure_exception_paths:
+  [
+    Pause queued items during incidents,
+    stale offers,
+    account compromise,
+    or unexpected public events.,
+  ]
+privacy_risks:
+  [Scheduled content can reveal member identities or location activity at an inappropriate time.]
+security_risks:
+  [
+    Shared credentials,
+    excessive tokens,
+    or compromised schedulers can publish unauthorized content.,
+  ]
+measurable_kpis: [scheduled posts matching approval, publish failures, time to pause queued content]
+test_cases:
+  [
+    Schedule an approved post,
+    reject an edited version,
+    pause all content,
+    simulate account failure.,
+  ]
+manual_fallback:
+  [Use the approved calendar and publish from secured accounts after a final human context check.]
+rollback_disable_procedure:
+  [
+    Cancel queued posts,
+    revoke scheduler access,
+    preserve logs,
+    rotate affected credentials,
+    publish manually.,
+  ]
+primary_roles: [marketing]
+stages:
+  - id: schedule-and-verify
+    name: Schedule and verify
+    description: Validate the approval and schedule before staff verify the actual publication outcome.
+    manual_tasks: [approve timing, perform context check, verify or remove the published post]
+    automation_opportunities: [schedule an exact approved version and report status]
+    suggested_tool_ids: [n8n, canva]
+    risks: [A scheduled post can become inappropriate or inaccurate before it publishes.]
+success_metrics:
+  [Only approved current versions publish, failures and pause requests are acted on promptly.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: No integration is assumed; verify each channel and pause control before use.

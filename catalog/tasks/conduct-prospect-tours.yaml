@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+id: conduct-prospect-tours
+name: Conduct prospect tours
+description: Explore the prospect's actual working needs, demonstrate relevant spaces and services accurately, and record agreed next steps without pressuring or making unauthorized promises.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [community-manager, operations-facilities-manager]
+frequency: per-interaction
+trigger: A confirmed prospect arrives for an in-person or remote tour.
+inputs: [Tour brief, Current site readiness, Approved product and availability information]
+outputs:
+  [
+    Prospect-specific discovery notes,
+    Accurate next-step commitment,
+    Operational questions for follow-up,
+  ]
+current_manual_methods:
+  [Standard route and pitch, Business card exchange, Memory-based notes afterward]
+common_failure_modes:
+  [Tour emphasizes features unrelated to need, Host promises inventory or changes without authority]
+human_judgment_required:
+  [
+    Adapt discovery and route to expressed priorities,
+    Recognize concerns that require specialist confirmation,
+  ]
+approval_points:
+  [Authorized owners approve any commitment beyond published products and current inventory]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [
+    Prospect receives relevant and accurate information,
+    Next actions and unresolved questions are recorded,
+  ]
+related_workflows: [tour-to-close, visitor-management]

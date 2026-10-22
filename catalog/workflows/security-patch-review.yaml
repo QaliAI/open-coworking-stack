@@ -1,0 +1,96 @@
+schema_version: 1.0.0
+id: security-patch-review
+name: Security patch review
+description: Assess, test, approve, deploy, and verify security patches for coworking systems with service ownership, maintenance windows, and rollback readiness.
+objective: Reduce known vulnerability exposure without creating unmanaged outages or unsafe changes.
+responsible_role: Technical operator
+trigger: A relevant trusted advisory or approved patch inventory identifies a pending security update.
+inputs:
+  [
+    vendor or project advisory,
+    affected inventory,
+    severity evidence,
+    dependencies,
+    test results,
+    rollback plan,
+  ]
+outputs:
+  [reviewed priority, approved change, deployment evidence, verification and exception record]
+source_of_truth: The controlled system inventory and authorized change record are authoritative.
+systems_involved:
+  [system inventory, advisory sources, test environment, change queue, monitoring system]
+automation_steps:
+  [
+    match approved inventory to advisories,
+    prepare test tasks,
+    collect deployment and health evidence,
+  ]
+human_approval_points:
+  [
+    System owners approve priority,
+    testing,
+    maintenance window,
+    deployment,
+    exceptions,
+    and closure.,
+  ]
+failure_exception_paths:
+  [
+    Isolate exposed systems and escalate active exploitation,
+    failed tests,
+    failed deployment,
+    or rollback failure.,
+  ]
+privacy_risks: [Inventories and logs can reveal sensitive architecture, users, and system data.]
+security_risks:
+  [
+    Malicious update sources,
+    dependency changes,
+    credential exposure,
+    and untested patches can compromise systems.,
+  ]
+measurable_kpis:
+  [critical patches reviewed within policy, deployment failures, overdue approved exceptions]
+test_cases:
+  [
+    Patch a test system,
+    reject an untrusted source,
+    exercise rollback,
+    handle an incompatible dependency.,
+  ]
+manual_fallback:
+  [
+    Review trusted advisories against the inventory,
+    document approval,
+    patch in a controlled window,
+    and verify manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Pause automated deployment,
+    isolate affected services if needed,
+    execute the tested rollback,
+    preserve evidence,
+    require manual changes.,
+  ]
+primary_roles: [technical-operator, operations-manager, owner-operator]
+stages:
+  - id: assess-test-deploy
+    name: Assess, test, and deploy
+    description: Validate relevance and source, test the change, then deploy only with owner approval and rollback readiness.
+    manual_tasks:
+      [assess exposure, review source and test, approve window, verify health and rollback]
+    automation_opportunities: [match advisories and gather change evidence]
+    suggested_tool_ids: [openproject, netdata]
+    risks: [Automated urgency can bypass testing or install a compromised or incompatible update.]
+success_metrics:
+  [
+    Relevant patches are timely,
+    controlled,
+    verified,
+    and reversible,
+    with explicit ownership of exceptions.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Use trusted project or vendor advisories and test service-specific recovery before deployment.

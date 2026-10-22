@@ -1,0 +1,20 @@
+example_only: true
+runtime_evidence: none
+tool_id: paperless-ngx
+document_class: synthetic-supplier-invoices
+document_count: 20
+originals_retained: true
+member_mail_present: false
+contracts_present: false
+real_payment_credentials_present: false
+users:
+  - setup-admin-synthetic
+  - finance-daily-synthetic
+  - denied-user-synthetic
+required_results:
+  - twenty quality records
+  - denied UI search and download
+  - exporter inventory reconciled
+  - sanity checker passed
+  - empty matching-version import passed
+result: not-run

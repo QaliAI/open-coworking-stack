@@ -23,10 +23,11 @@ deployment:
   - managed-saas
 maturity: emerging
 license:
-  class: oss-osi-approved
+  class: open-core
   spdx: AGPL-3.0-only
   source_url: https://github.com/documenso/documenso
-  verified_on: 2026-07-17
+  notes: Root LICENSE is AGPL-3.0, but the repository contains a packages/ee directory; review its terms before assuming every feature is AGPL.
+  verified_on: 2026-10-20
 cost:
   model: freemium
   summary: Self-host free; hosted plans may exist—verify official pricing.

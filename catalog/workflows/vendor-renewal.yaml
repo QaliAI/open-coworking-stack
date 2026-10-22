@@ -1,0 +1,79 @@
+schema_version: 1.0.0
+id: vendor-renewal
+name: Vendor renewal
+description: Review a coworking vendor before renewal across service, security, privacy, cost, contract, continuity, and accountable ownership.
+objective: Make a timely evidence-based renew, renegotiate, replace, or exit decision.
+responsible_role: Operations manager
+trigger: A vendor agreement enters its approved review window or materially changes.
+inputs:
+  [
+    current contract,
+    notice date,
+    service evidence,
+    incidents,
+    costs,
+    data handling,
+    access,
+    alternatives,
+  ]
+outputs: [review package, approved decision, negotiation or exit actions, signed record]
+source_of_truth: The controlled contract register and authorized renewal decision are authoritative.
+systems_involved: [contract store, vendor register, finance records, security and service evidence]
+automation_steps:
+  [surface review dates, assemble approved evidence links, assign owner tasks, flag missing inputs]
+human_approval_points:
+  [Authorized owners approve risk acceptance, commercial terms, signature, replacement, or exit.]
+failure_exception_paths:
+  [
+    Escalate missed notice dates,
+    material incidents,
+    price changes,
+    data risk,
+    or service continuity gaps.,
+  ]
+privacy_risks:
+  [Vendor evidence can include member data, support records, and processor information.]
+security_risks:
+  [Renewal can preserve excessive vendor access, stale credentials, or unacceptable control gaps.]
+measurable_kpis:
+  [renewals reviewed before notice deadline, unresolved high risks, contracts with current owners]
+test_cases:
+  [
+    Approve renewal,
+    renegotiate a price change,
+    reject unresolved security risk,
+    start exit before deadline.,
+  ]
+manual_fallback:
+  [
+    Review the contract register monthly,
+    assemble evidence,
+    record owner decisions,
+    and obtain authorized signatures.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable renewal task automation,
+    preserve dates and evidence,
+    audit upcoming contracts,
+    use manual calendar review.,
+  ]
+primary_roles: [operations-manager, owner-operator, finance, technical-operator]
+stages:
+  - id: review-and-decide
+    name: Review and decide
+    description: Evaluate current evidence and let authorized owners decide the vendor's future.
+    manual_tasks: [review performance and risk, compare options, approve terms and decision]
+    automation_opportunities: [surface deadlines and gather evidence links]
+    suggested_tool_ids: [paperless-ngx, openproject]
+    risks: [Deadline automation can encourage renewal without meaningful risk and service review.]
+success_metrics:
+  [
+    Decisions occur before contractual deadlines and explicitly address continuity,
+    cost,
+    data,
+    and access.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Contract interpretation, procurement authority, privacy, and security require qualified local review.

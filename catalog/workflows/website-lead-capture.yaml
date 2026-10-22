@@ -1,0 +1,70 @@
+schema_version: 1.0.0
+id: website-lead-capture
+name: Website lead capture
+description: Capture a website enquiry into a controlled sales queue without assuming consent, fit, or an unverified system integration.
+objective: Preserve complete and timely website enquiries for accountable human sales follow-up.
+responsible_role: Sales manager
+trigger: A prospect submits the approved website enquiry form.
+inputs: [submitted contact details, enquiry details, consent choices, submission timestamp]
+outputs: [lead record, acknowledgement status, review task]
+source_of_truth: The approved sales pipeline record is authoritative after staff review.
+systems_involved: [website form, sales pipeline, staff notification channel]
+automation_steps:
+  [
+    validate required fields,
+    detect likely duplicates,
+    create a review task,
+    prepare an acknowledgement,
+  ]
+human_approval_points:
+  [Staff approve duplicate handling and any message beyond the approved acknowledgement.]
+failure_exception_paths:
+  [
+    Retain a recoverable submission log and alert staff when record creation or acknowledgement fails.,
+  ]
+privacy_risks:
+  [Forms can collect unnecessary personal details or consent choices can be misapplied.]
+security_risks:
+  [Public forms can receive spam, malicious content, or attempts to access pipeline data.]
+measurable_kpis:
+  [percentage of valid submissions recorded, median time to staff review, duplicate rate]
+test_cases:
+  [
+    Submit a valid enquiry,
+    submit a duplicate,
+    omit a required field,
+    simulate pipeline unavailability.,
+  ]
+manual_fallback:
+  [
+    Monitor the form inbox,
+    enter valid enquiries manually,
+    record consent and timestamp,
+    acknowledge from an approved template.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automatic record creation,
+    preserve submission logs,
+    reconcile pending enquiries,
+    return to staffed inbox intake.,
+  ]
+primary_roles: [sales-manager, marketing]
+stages:
+  - id: capture-and-review
+    name: Capture and review
+    description: Validate the submission and place it in a staff-owned queue before further sales action.
+    manual_tasks: [review fit and consent, resolve duplicates, approve nonstandard responses]
+    automation_opportunities: [validate fields, prepare a pipeline record and acknowledgement]
+    suggested_tool_ids: [typeform, espocrm]
+    risks:
+      [
+        A technically valid submission may still be spam,
+        duplicated,
+        or outside the intended consent scope.,
+      ]
+success_metrics:
+  [Every valid enquiry has an owner and timestamp, failed transfers are visible to staff.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Vendor-neutral pattern; verify form, consent, retention, and routing behavior locally before use.

@@ -1,0 +1,68 @@
+# Auto-label PRs by changed paths
+# Used by labeler.yml workflow
+
+'area/catalog':
+  - any:
+      - catalog/**/*
+
+'area/stacks':
+  - any:
+      - catalog/stacks/**/*
+      - stacks/**/*
+
+'area/compose':
+  - any:
+      - compose/**/*
+
+'area/guides':
+  - any:
+      - guides/**/*
+      - apps/web/src/content/docs/guides/**/*
+
+'area/schema':
+  - any:
+      - packages/schema/**/*
+
+'area/validators':
+  - any:
+      - packages/validators/**/*
+
+'area/generators':
+  - any:
+      - packages/generators/**/*
+
+'area/shared':
+  - any:
+      - packages/shared/**/*
+
+'area/web':
+  - any:
+      - apps/web/src/**/*
+      - apps/web/tests/**/*
+      - apps/web/e2e/**/*
+
+'area/ci':
+  - any:
+      - .github/workflows/**/*
+      - .github/CODEOWNERS
+      - .github/labeler-config.yml
+
+'area/docs':
+  - any:
+      - docs/**/*
+      - apps/web/src/content/docs/comparisons/**/*
+
+'area/scripts':
+  - any:
+      - scripts/**/*
+
+'area/root':
+  - any:
+      - package.json
+      - pnpm-workspace.yaml
+      - README.md
+      - CHANGELOG.md
+      - ROADMAP.md
+      - SECURITY.md
+      - CONTRIBUTING.md
+      - tsconfig.json

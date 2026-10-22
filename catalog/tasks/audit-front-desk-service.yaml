@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: audit-front-desk-service
+name: Audit front desk service
+description: Review a representative sample of reception journeys, records, waits, and exceptions to improve service and controls without using surveillance as a proxy for staff quality.
+business_area: front-desk
+primary_role: general-manager
+supporting_roles: [community-coordinator-front-desk, community-manager]
+frequency: monthly
+trigger: Scheduled service review or a pattern of reception failures.
+inputs: [Service queue sample, Member and visitor feedback, Handover and exception records]
+outputs: [Evidence-based findings, Assigned improvement actions, Updated guidance proposal]
+current_manual_methods: [Anecdotal feedback, Complaint count, Manager observation during one shift]
+common_failure_modes:
+  [Review sample excludes busy periods, Metrics reward speed while hiding poor resolution]
+human_judgment_required:
+  [
+    Interpret service evidence with shift context,
+    Distinguish training,
+    process,
+    capacity,
+    and conduct causes,
+  ]
+approval_points:
+  [General manager approves procedure changes; employment matters follow the proper people process]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics: [Actions address evidenced causes, Repeat service failures decline after review]
+related_workflows: [reporting-kpis, visitor-management]

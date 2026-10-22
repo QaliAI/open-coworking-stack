@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: sales-leasing-manager
+name: Sales and leasing manager
+description: Guides qualified prospects from need discovery through an accurate commitment, using structured pipeline support while retaining human ownership of fit, fairness, negotiation, and disclosure.
+responsibilities:
+  - Maintain a truthful, consent-aware pipeline and timely next actions.
+  - Match needs to available products without promising operationally infeasible outcomes.
+  - Coordinate nonstandard terms with authorized finance, operations, and legal reviewers.
+daily_tasks:
+  - Qualify inquiries, prepare tours, follow up commitments, and update material pipeline facts.
+  - Confirm availability and constraints before making offers or commitments.
+weekly_tasks:
+  - Review pipeline aging, conversion barriers, upcoming capacity, and renewal signals.
+  - Coach tour and discovery quality using sampled records rather than activity volume alone.
+monthly_tasks:
+  - Reconcile forecasts to signed outcomes and investigate systematic forecast bias.
+  - Review discount use, lost reasons, lead sources, and product-market feedback.
+revenue_impacting_work:
+  - Conduct discovery, negotiate within authority, and protect value through accurate fit.
+  - Identify expansion, renewal, and product opportunities grounded in expressed needs.
+member_experience_work:
+  - Set clear expectations so onboarding begins with accurate terms and service understanding.
+  - Hand off context without making new members repeat important requirements.
+repetitive_administrative_work:
+  - Scheduling, reminders, proposal assembly, pipeline hygiene prompts, and forecast compilation.
+  - Recording standard requirements and routing approvals to named owners.
+dangerous_to_automate_blindly:
+  - Lead scoring, eligibility, pricing, discounting, or rejection using opaque proxies.
+  - Generating contractual commitments without checking inventory, authority, and special terms.
+recommended_task_ids:
+  - qualify-inbound-leads
+  - prepare-tour-briefs
+  - conduct-prospect-tours
+  - review-nonstandard-deal-terms
+  - forecast-sales-and-renewals
+easiest_hosted_stack: Hosted CRM and coworking inventory with scheduling, approved proposal templates, and explicit approval stages.
+hybrid_stack: Hosted CRM connected to controlled inventory, e-signature, reporting, and approval workflows through reviewed integrations.
+self_hosted_stack: Self-hosted CRM, scheduling, document workflow, and analytics with consent, audit, backup, and support ownership.
+suggested_workflows:
+  - tour-to-close
+  - member-onboarding
+  - reporting-kpis
+  - compliance-review
+kpis:
+  - Qualified inquiry to tour and tour to signed agreement conversion by validated segment.
+  - Forecast accuracy and pipeline records with a dated, owned next action.
+  - Commitments requiring operational correction after sale.
+improvement_plan_30_day:
+  - Define qualification evidence, disallowed proxy criteria, and approval thresholds.
+  - Map inventory truth from source system through proposal and signed handoff.
+  - Standardize tour briefs and post-tour notes while preserving conversational judgment.
+  - Audit a sample of won and lost opportunities for fairness, accuracy, and handoff quality.
+implementation_owner: Sales and leasing manager, with finance and operations approving exceptions within documented authority.
+expert_help_triggers:
+  - Lease, consumer, fair-access, advertising, tax, or e-signature obligations are uncertain.
+  - Automated scoring or identity data could create discriminatory or opaque outcomes.

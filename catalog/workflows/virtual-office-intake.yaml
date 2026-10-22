@@ -1,0 +1,76 @@
+schema_version: 1.0.0
+id: virtual-office-intake
+name: Virtual-office intake
+description: Receive a virtual-office enquiry and collect only the information needed for human service-fit, eligibility, and compliance review.
+objective: Create a complete, privacy-bounded intake record without activating service or assuming eligibility.
+responsible_role: Virtual-office and mailroom manager
+trigger: A prospective client submits a virtual-office service enquiry or application.
+inputs:
+  [
+    contact details,
+    requested service,
+    business-use summary,
+    location need,
+    consent choices,
+    submitted documents,
+  ]
+outputs:
+  [
+    intake record,
+    missing-information request,
+    assigned reviewer,
+    eligible declined or escalated status,
+  ]
+source_of_truth: The access-controlled, human-reviewed intake record is authoritative before onboarding.
+systems_involved: [intake form, client register, controlled document store, review queue]
+automation_steps:
+  [validate required fields, identify possible duplicates, quarantine uploads, create a review task]
+human_approval_points:
+  [Authorized staff assess service fit, document need, eligibility, and any decline or escalation.]
+failure_exception_paths:
+  [
+    Stop processing and escalate suspicious,
+    prohibited,
+    incomplete,
+    or legally uncertain applications.,
+  ]
+privacy_risks:
+  [Applications can contain identity, ownership, address, and sensitive business information.]
+security_risks:
+  [Public uploads can contain malware, forged documents, or data intended for identity fraud.]
+measurable_kpis:
+  [intakes reviewed within policy, unnecessary data removed, applications activated before approval]
+test_cases:
+  [
+    Accept a complete intake,
+    request missing information,
+    quarantine a malicious upload,
+    escalate suspicious information.,
+  ]
+manual_fallback:
+  [
+    Use the approved intake form,
+    receive documents through the controlled route,
+    and record reviewer decisions manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automated intake transfers,
+    preserve submissions securely,
+    notify reviewers,
+    use controlled manual intake.,
+  ]
+primary_roles: [virtual-office-mailroom, sales-manager, owner-operator]
+stages:
+  - id: collect-and-review
+    name: Collect and review
+    description: Gather minimum necessary information and require an authorized eligibility decision.
+    manual_tasks: [verify completeness, assess fit and risk, approve decline or escalation]
+    automation_opportunities: [validate fields and create a restricted review task]
+    suggested_tool_ids: [typeform, paperless-ngx]
+    risks: [A complete form is not proof of identity, eligibility, or legitimate service use.]
+success_metrics:
+  [Every intake has a named reviewer and no service begins before documented human approval.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Identity, business-address, sanctions, mail, and local compliance requirements need qualified review.

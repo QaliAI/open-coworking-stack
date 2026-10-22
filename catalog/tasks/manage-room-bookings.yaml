@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: manage-room-bookings
+name: Manage room bookings
+description: Confirm room reservations against entitlement, capacity, equipment, access, setup, and operating constraints while giving staff a clear route to resolve nonstandard needs.
+business_area: space-inventory
+primary_role: community-coordinator-front-desk
+supporting_roles: [member, operations-facilities-manager]
+frequency: continuous
+trigger: A room is requested, changed, canceled, checked in, or released.
+inputs: [Requester entitlement, Current room inventory, Requested time and setup]
+outputs: [Confirmed or explained booking outcome, Setup and access actions, Updated availability]
+current_manual_methods: [Shared calendar, Reception booking, Door sign]
+common_failure_modes:
+  [
+    Recurring booking blocks unused capacity,
+    Equipment or access need is not attached to reservation,
+  ]
+human_judgment_required:
+  [
+    Resolve unusual setup or duration requests,
+    Identify when a booking affects safety or other members,
+  ]
+approval_points:
+  [Authorized owner approves entitlement override, after-hours use, or material setup]
+privacy_sensitivity: medium
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [
+    Confirmed bookings are usable as specified,
+    Released and no-show capacity returns to availability,
+  ]
+related_workflows: [room-booking]

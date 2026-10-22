@@ -1,0 +1,66 @@
+schema_version: 1.0.0
+id: printer-access
+name: Printer access
+description: Grant and support coworking printer access using approved entitlements, safe network boundaries, clear privacy guidance, and staffed troubleshooting.
+objective: Let authorized users print reliably without exposing documents, credentials, or internal networks.
+responsible_role: Technical operator
+trigger: An eligible member or staff user requests printer access or reports a printing problem.
+inputs:
+  [verified user, approved entitlement, device type, location, printer policy, support request]
+outputs: [approved setup, tested print path, support record, revoked or corrected access]
+source_of_truth: The membership or staff entitlement record is authoritative for authorization.
+systems_involved: [membership or identity system, print service, network, support queue]
+automation_steps:
+  [provide approved setup instructions, create a support record, collect bounded diagnostics]
+human_approval_points:
+  [
+    Staff verify entitlement and approve exceptions,
+    configuration changes,
+    and access to retained jobs.,
+  ]
+failure_exception_paths:
+  [
+    Use a staffed print option and escalate suspected data exposure,
+    network segmentation failure,
+    or device compromise.,
+  ]
+privacy_risks:
+  [Print queues, filenames, pages, and abandoned documents can expose sensitive information.]
+security_risks:
+  [
+    Printer services can expose networks,
+    accept malicious jobs,
+    or retain credentials and documents.,
+  ]
+measurable_kpis: [successful setup rate, print privacy incidents, unresolved printer-access tickets]
+test_cases:
+  [
+    Set up an entitled user,
+    deny an unentitled user,
+    clear a stuck job safely,
+    test network isolation.,
+  ]
+manual_fallback:
+  [Verify entitlement and offer supervised staff printing with immediate document collection.]
+rollback_disable_procedure:
+  [
+    Disable affected printer access,
+    clear jobs under policy,
+    revoke credentials,
+    preserve logs,
+    use supervised printing.,
+  ]
+primary_roles: [technical-operator, operations-manager, member-end-user]
+stages:
+  - id: authorize-and-test
+    name: Authorize and test
+    description: Verify entitlement, apply the approved setup, and test without exposing another user's work.
+    manual_tasks: [verify the requester, inspect configuration, test and explain secure collection]
+    automation_opportunities: [serve approved instructions and gather limited diagnostics]
+    suggested_tool_ids: [freescout, unifi-network]
+    risks: [Convenient shared printing can expose documents or bridge protected networks.]
+success_metrics:
+  [Authorized users can print and retrieve documents without unauthorized data or network access.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Validate printer retention, network segmentation, drivers, and secure-release behavior locally.

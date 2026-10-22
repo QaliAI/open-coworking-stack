@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: manage-local-listings
+name: Manage local listings
+description: Keep official location names, addresses, hours, access information, contact routes, amenities, and temporary changes consistent across public discovery channels.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [general-manager, operations-facilities-manager]
+frequency: weekly
+trigger: Scheduled listing check or an approved location, hour, contact, or service change.
+inputs: [Authoritative location facts, Approved temporary changes, Current public listing inventory]
+outputs: [Corrected listings, Unresolved platform issues, Verified change evidence]
+current_manual_methods: [Search each site, Spreadsheet of profiles, Update after customer report]
+common_failure_modes:
+  [Holiday hours remain wrong, Third-party edit changes an operational fact unnoticed]
+human_judgment_required:
+  [
+    Resolve conflicting public and internal facts,
+    Choose clear wording for temporary or nuanced access conditions,
+  ]
+approval_points: [Location owner approves operating facts before publication]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [
+    Priority listings match authoritative facts,
+    Material incorrect edits are detected and corrected promptly,
+  ]
+related_workflows: [marketing-campaigns, multi-site-rollout]

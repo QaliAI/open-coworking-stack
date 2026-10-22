@@ -1,0 +1,68 @@
+schema_version: 1.0.0
+id: failed-access-escalation
+name: Failed-access escalation
+description: Respond to a member who cannot access an approved coworking space or service with identity checks, safety awareness, and staffed recovery.
+objective: Restore legitimate access promptly without weakening controls or leaving a person in an unsafe situation.
+responsible_role: Operations manager
+trigger: A member or monitored system reports a failed approved access attempt.
+inputs:
+  [
+    member report,
+    credential status,
+    approved entitlement,
+    location,
+    time,
+    access logs,
+    safety context,
+  ]
+outputs:
+  [human-owned incident, verified temporary or permanent resolution, access record correction]
+source_of_truth: The approved entitlement record and reviewed access-system evidence are authoritative together.
+systems_involved: [access system, membership system, support queue, staff alert channel]
+automation_steps: [open an urgent support record, gather bounded diagnostics, notify the duty owner]
+human_approval_points:
+  [
+    Staff verify identity and entitlement and approve temporary access,
+    credential changes,
+    or denial.,
+  ]
+failure_exception_paths:
+  [
+    Use the site safety plan and emergency contacts when the person is stranded or at risk; escalate suspected compromise.,
+  ]
+privacy_risks: [Access logs reveal attendance, location, and movement patterns.]
+security_risks:
+  [Pressure to restore access can lead staff to bypass identity or least-privilege controls.]
+measurable_kpis: [time to human acknowledgement, time to safe resolution, unauthorized bypasses]
+test_cases:
+  [
+    Resolve an expired credential error,
+    deny an unentitled request,
+    handle system outage,
+    escalate suspected theft.,
+  ]
+manual_fallback:
+  [
+    Verify identity and entitlement using the approved offline process and provide staffed access if authorized.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automatic diagnostic or credential actions,
+    revoke unsafe temporary grants,
+    preserve logs,
+    use staffed verification.,
+  ]
+primary_roles: [operations-manager, technical-operator, community-manager]
+stages:
+  - id: verify-and-restore
+    name: Verify and restore
+    description: Assess safety, verify the person and entitlement, then approve the least risky resolution.
+    manual_tasks: [contact the member, verify identity and entitlement, approve and test resolution]
+    automation_opportunities: [assemble diagnostics and alert the duty owner]
+    suggested_tool_ids: [freescout, authentik]
+    risks: [Automated unlocking or weak identity checks can grant access to the wrong person.]
+success_metrics:
+  [Legitimate users receive safe timely help and no resolution bypasses authorization controls.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Test after-hours, outage, safety, identity, and temporary-access procedures locally.

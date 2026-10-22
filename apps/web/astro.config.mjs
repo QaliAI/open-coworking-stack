@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { existsSync } from 'node:fs';
+import rehypeAccessibleContent from './src/plugins/rehype-accessible-content.mjs';
 
 const base = process.env.PUBLIC_BASE_PATH || '';
 const githubRepository = process.env.GITHUB_REPOSITORY;
@@ -15,13 +16,26 @@ const site =
 const hasGeneratedWorkflows = existsSync(
   new URL('./src/content/docs/workflows/generated', import.meta.url),
 );
+const hasGeneratedTasks = existsSync(
+  new URL('./src/content/docs/tasks/generated', import.meta.url),
+);
+const hasGeneratedRoles = existsSync(
+  new URL('./src/content/docs/roles/generated', import.meta.url),
+);
 
 export default defineConfig({
   site,
+  markdown: {
+    rehypePlugins: [rehypeAccessibleContent],
+  },
   base: base || undefined,
   integrations: [
     starlight({
       title: 'Open Coworking Stack',
+      logo: {
+        src: './src/assets/logo.svg',
+        alt: 'Open Coworking Stack logo',
+      },
       description:
         'A practical, verified directory of free, open-source, source-available, freemium, and free-to-try technology for coworking operators.',
       social: repositoryUrl ? { github: repositoryUrl } : undefined,
@@ -37,6 +51,7 @@ export default defineConfig({
         {
           label: 'Start here',
           items: [
+            { label: 'Operator pathway (begin here)', slug: 'start/start-here' },
             { label: 'Introduction', slug: 'index' },
             { label: 'How to use this project', slug: 'start/how-to-use' },
             { label: 'Evaluation criteria', slug: 'start/evaluation-criteria' },
@@ -52,11 +67,29 @@ export default defineConfig({
             { label: 'By category', slug: 'navigation/by-category' },
             { label: 'By role', slug: 'navigation/by-role' },
             { label: 'By problem', slug: 'navigation/by-problem' },
-            { label: 'Comparisons', slug: 'comparisons' },
+            ...(hasGeneratedTasks
+              ? [{ label: 'Operator tasks', autogenerate: { directory: 'tasks/generated' } }]
+              : []),
+            ...(hasGeneratedRoles
+              ? [{ label: 'Operator roles', autogenerate: { directory: 'roles/generated' } }]
+              : []),
+            { label: 'Comparison index', slug: 'comparisons' },
+          ],
+        },
+        {
+          label: 'Decision paths',
+          items: [
+            { label: 'Stack Builder', slug: 'stack-builder' },
+            { label: 'Capacity & payback estimator', slug: 'roi-calculator' },
+            { label: 'By lifecycle', slug: 'navigation/by-lifecycle' },
+            { label: 'By business model', slug: 'navigation/by-business-model' },
+            { label: 'By technical ability', slug: 'navigation/by-technical-ability' },
+            { label: 'By budget', slug: 'navigation/by-budget' },
           ],
         },
         {
           label: 'Reference stacks',
+          collapsed: true,
           autogenerate: { directory: 'stacks' },
         },
         {
@@ -69,6 +102,7 @@ export default defineConfig({
               ? [
                   {
                     label: 'Generated workflows',
+                    collapsed: true,
                     autogenerate: { directory: 'workflows/generated' },
                   },
                 ]
@@ -86,20 +120,24 @@ export default defineConfig({
             { label: 'Starter packs', slug: 'guides/starter-packs' },
             {
               label: 'Tool guides',
+              collapsed: true,
               autogenerate: { directory: 'guides/tools' },
             },
           ],
         },
         {
           label: 'Integration recipes',
+          collapsed: true,
           autogenerate: { directory: 'integrations/generated' },
         },
         {
           label: 'Operations',
+          collapsed: true,
           autogenerate: { directory: 'ops' },
         },
         {
           label: 'Architecture',
+          collapsed: true,
           autogenerate: { directory: 'architecture' },
         },
         {

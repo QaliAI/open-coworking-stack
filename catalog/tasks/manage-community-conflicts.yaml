@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: manage-community-conflicts
+name: Manage community conflicts
+description: Hear affected people, assess safety and policy context, and facilitate or escalate a fair response without allowing automated sentiment or incomplete reports to decide the outcome.
+business_area: community
+primary_role: community-manager
+supporting_roles: [general-manager]
+frequency: event-driven
+trigger: A disagreement materially affects safety, dignity, work, or continued shared-space use.
+inputs: [Separate participant accounts, Relevant policy and evidence, Immediate safety context]
+outputs:
+  [Safety controls where needed, Documented resolution process, Agreed actions or formal escalation]
+current_manual_methods:
+  [Informal mediation, Group-chat interpretation, Avoidance until complaint escalates]
+common_failure_modes: [Power imbalance is ignored, Premature joint meeting increases harm]
+human_judgment_required:
+  [
+    Assess safety,
+    credibility,
+    impact,
+    and readiness for mediation,
+    Choose a proportionate and trauma-aware process,
+  ]
+approval_points:
+  [
+    General manager approves formal sanctions; qualified experts handle legal or safeguarding matters,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Immediate safety needs addressed, Parties understand process and follow-up commitments]
+related_workflows: [incident-response, compliance-review]

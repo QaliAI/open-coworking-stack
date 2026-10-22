@@ -1,0 +1,72 @@
+---
+title: 'Start here: a path for coworking operators'
+description: A five-step path from "something is painful" to a costed, safe first pilot. No technical background needed.
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import RelatedProducts from '../../../components/RelatedProducts.astro';
+
+This site helps a coworking operator choose software without getting lost in jargon. It lists tools
+with their **license type, cost model, the human work that stays with your team, and an
+installation guide where one exists**. It is a decision aid, not a ranking to trust blindly: read
+[what "verified" means](../how-to-use/) and the [disclaimer](../disclaimer/).
+
+<Aside type="tip" title="You do not need to be technical">
+  If nobody on your team administers servers, the honest answer is usually a **hosted** product, and
+  the [Stack Builder](../../stack-builder/) will say so. Self-hosting is a real option only with a
+  named person responsible for security, backups, and updates.
+</Aside>
+
+<Steps>
+
+1. **Find the problem.** Pick the thing that hurts most: billing chaos, missed tours, room
+   double-booking, scattered procedures, member onboarding. Browse
+   [problems](../../navigation/by-problem/), [operator roles](../../navigation/by-role/), or search the
+   [directory](../../directory/) in plain words ("invoice", "tour", "door access").
+
+2. **Compare the options.** Open the [comparison pages](../../comparisons/) for side-by-side
+   trade-offs, and check each tool's [license class](../license-classes/). "Free" and "open source"
+   are not the same thing: `source-available`, `fair-code`, and `open-core` tools can restrict how
+   you may use them. Comparisons are directional — re-check the vendor's official pages before
+   buying.
+
+3. **Choose an operating model.** The [Stack Builder](../../stack-builder/) compares a hosted,
+   hybrid, and self-hosted setup for your size, budget, and technical capacity. It explains why it
+   recommends each one and which human responsibilities each model creates.
+
+4. **Review the cost.** Every number in the builder and in the
+   [capacity and payback estimator](../../roi-calculator/) is an **editable estimate**, starting
+   from fabricated demonstration values. Replace them with real quotes and your own labor hours.
+   Read the [cost model guide](../../ops/cost-model/) for the costs people forget: labor, backups,
+   migration, and exit.
+
+5. **Get installation help and run a small pilot.** Each tool page links to its installation guide
+   when one is written. For several tools together see the [starter packs](../../guides/starter-packs/).
+   Run one workflow with synthetic or low-risk data first, and confirm you can back up, restore,
+   and leave before using real member data.
+
+</Steps>
+
+## Before real member data goes in
+
+<Aside type="caution" title="Reference installations are demonstrations, not production">
+  The Compose files in this project's `compose/` folder are **demonstration and staging
+  references**. They use placeholder secrets, are not hardened, have no off-host backups, and have
+  been syntax-checked rather than run through backup, restore, and upgrade drills. Do not expose
+  them to the internet or load member data until a qualified person has reviewed them against the
+  [security baseline](../../guides/security-baseline/).
+</Aside>
+
+- Read the [security baseline](../../guides/security-baseline/) and
+  [privacy checklist](../../guides/privacy-checklist/).
+- Set up and test [backup and restore](../../guides/backup-and-restore/).
+- Know how you would leave: [data portability](../../ops/data-portability/).
+- Decide when to hire help: [professional help](../../ops/professional-help/) and
+  [buy vs build vs self-host](../../ops/buy-build-self-host/).
+
+## What this directory will not do
+
+It does not replace staff. Tools here reduce or support specific tasks, and each record lists the
+human oversight that remains. It is also not legal, tax, accounting, or security advice.
+
+<RelatedProducts />

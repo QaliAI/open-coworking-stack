@@ -29,11 +29,12 @@ Open Coworking Stack is a community-maintained directory and implementation reso
 
 ## Releases
 
-The documentation site is intended to deploy from `main` after a GitHub remote and Pages environment
-are configured; no live deployment is currently asserted. Catalog schema versions are recorded in the
-YAML records and schema package. JSON Schema mirrors under `catalog/schema/` are generated from the
-Zod schemas and must remain synchronized. Breaking schema changes require a major version bump in
-`@ocs/schema` and a migration note in `ROADMAP.md`.
+The documentation site is intended to deploy from `main` only after the repository owner enables and
+authorizes a Pages environment. The repository and hosted CI exist, but the confirmed Pages attempt
+failed because Pages is not enabled/configured; no live deployment is asserted. Catalog schema
+versions are recorded in the YAML records and schema package. JSON Schema mirrors under
+`catalog/schema/` are generated from the Zod schemas and must remain synchronized. Breaking schema
+changes require a major version bump in `@ocs/schema` and a migration note in `ROADMAP.md`.
 
 ## Conflict of interest
 

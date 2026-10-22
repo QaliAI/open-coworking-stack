@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: schedule-prospect-tours
+name: Schedule prospect tours
+description: Agree a tour time, site, attendees, access needs, and purpose that match staff and space availability, with a human route for nonstandard requirements.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: per-interaction
+trigger: A qualified prospect agrees that a site tour is the appropriate next step.
+inputs: [Prospect availability and needs, Staff calendar, Site and room availability]
+outputs: [Confirmed tour appointment, Arrival instructions, Internal preparation request]
+current_manual_methods: [Email negotiation, Personal calendar, Separate reception message]
+common_failure_modes:
+  [
+    Calendar shows availability but site is unsuitable,
+    Accessibility request does not reach the host,
+  ]
+human_judgment_required:
+  [Select the right site and host for the need, Resolve unusual attendee or access requirements]
+approval_points: [Site owner approves tours outside normal operating or security boundaries]
+privacy_sensitivity: medium
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [Tours occur as confirmed, Arrival and accommodation requirements reach responsible staff]
+related_workflows: [tour-to-close, visitor-management]

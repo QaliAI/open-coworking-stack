@@ -25,11 +25,11 @@ deployment:
   - self-hosted
 maturity: stable
 license:
-  class: oss-osi-approved
-  spdx: GPL-3.0-only
+  class: open-core
+  spdx: MIT
   source_url: https://github.com/goauthentik/authentik
-  notes: Confirm current LICENSE file for enterprise components.
-  verified_on: 2026-07-17
+  notes: 'Official LICENSE: MIT except the authentik/enterprise directory (separate enterprise license). Earlier GPL-3.0 classification was incorrect.'
+  verified_on: 2026-10-20
 cost:
   model: free-self-hosted
   summary:
@@ -73,6 +73,39 @@ human_oversight_still_needed:
   - Flow design
   - MFA enforcement
   - Application access reviews
+task_fits:
+  - task_id: provision-member-access
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Creating separate digital application accounts and assigning access in each application by hand.
+    what_it_takes_off_the_team: Centralizes staff authentication and applies configured group and application policies consistently.
+    role_assisted: it-security-administrator
+    what_remains_human: Verify identity and approved entitlement, authorize each application role, review exceptions, and confirm effective access in the protected application.
+    prerequisites:
+      - An approved staff roster and application access matrix
+      - Tested identity matching, MFA, and least-privilege policies
+      - A documented application fallback and break-glass procedure
+    failure_consequence: An incorrect identity or policy mapping can grant excess application access or lock out an authorized worker, requiring immediate human containment and reconciliation.
+    pilot_metric: For two approved pilot users, all expected application grants and denials match the signed access matrix with no unexplained result.
+    evidence:
+      - https://docs.goauthentik.io/
+    confidence: low
+  - task_id: revoke-departing-access
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Finding and disabling a departing worker's separate digital application accounts one by one.
+    what_it_takes_off_the_team: Provides one identity control point for disabling configured application access and reviewing related events.
+    role_assisted: it-security-administrator
+    what_remains_human: Confirm authorized scope and timing, assess active sessions and accounts outside Authentik, preserve required records, and verify each application no longer permits access.
+    prerequisites:
+      - A manager-approved offboarding request and effective time
+      - A current inventory of applications and session behavior
+      - Tested emergency revocation and application fallback procedures
+    failure_consequence: Premature disablement can interrupt operations, while incomplete revocation can leave a departed worker able to reach sensitive applications.
+    pilot_metric: A test leaver is denied new login at the approved time and every protected application and residual session is reconciled by a named reviewer.
+    evidence:
+      - https://docs.goauthentik.io/
+    confidence: low
 data_privacy:
   data_held:
     - identities
@@ -104,5 +137,19 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://goauthentik.io/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/goauthentik/authentik
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://docs.goauthentik.io/
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed editorially; no runtime or operator evidence is retained.
 featured: true
 rank_score: 86

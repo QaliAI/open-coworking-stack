@@ -1,0 +1,70 @@
+schema_version: 1.0.0
+id: preventive-maintenance
+name: Preventive maintenance
+description: Plan, perform, and verify preventive work on coworking assets using manufacturer guidance, qualified people, and controlled service windows.
+objective: Reduce avoidable failures while keeping safety, shutdown, and technical judgments with competent people.
+responsible_role: Facilities manager
+trigger: An asset reaches its approved time, usage, condition, or statutory maintenance point.
+inputs:
+  [
+    asset register,
+    approved schedule,
+    manufacturer guidance,
+    condition history,
+    competency requirements,
+  ]
+outputs: [approved work order, completion evidence, verified asset status, updated next due date]
+source_of_truth: The controlled asset register and signed maintenance evidence are authoritative.
+systems_involved: [asset register, work-order queue, monitoring system, document store]
+automation_steps: [calculate due dates from approved rules, create work orders, flag overdue tasks]
+human_approval_points:
+  [Qualified staff approve scope, isolation, vendor, return to service, and schedule changes.]
+failure_exception_paths:
+  [
+    Remove unsafe assets from service and escalate unexpected damage,
+    missed statutory work,
+    or unqualified assignment.,
+  ]
+privacy_risks:
+  [Access schedules and site photos can reveal occupancy and security-sensitive layouts.]
+security_risks:
+  [
+    Vendor access,
+    connected equipment,
+    and maintenance credentials can expose physical or digital systems.,
+  ]
+measurable_kpis:
+  [maintenance completed before due date, failures between services, return-to-service exceptions]
+test_cases:
+  [
+    Complete scheduled work,
+    handle an unsafe discovery,
+    reject an unqualified assignee,
+    verify return to service.,
+  ]
+manual_fallback:
+  [
+    Use the controlled asset calendar and work forms,
+    then update the register after signed verification.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automatic scheduling changes,
+    preserve work history,
+    recalculate due dates,
+    return to controlled calendar review.,
+  ]
+primary_roles: [facilities, operations-manager, technical-operator]
+stages:
+  - id: plan-perform-verify
+    name: Plan, perform, and verify
+    description: Assign competent work and require physical or technical verification before return to service.
+    manual_tasks: [review guidance, isolate safely, perform or supervise work, approve return]
+    automation_opportunities: [calculate approved due dates and track work orders]
+    suggested_tool_ids: [openproject, home-assistant]
+    risks: [A generated schedule cannot determine asset safety or worker competence.]
+success_metrics:
+  [Due work is completed by qualified people and assets return only after documented verification.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Manufacturer, insurer, lease, safety, and statutory requirements require local review.

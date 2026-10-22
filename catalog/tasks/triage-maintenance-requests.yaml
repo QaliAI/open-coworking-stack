@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: triage-maintenance-requests
+name: Triage maintenance requests
+description: Clarify the defect, location, exposure, affected service, and immediate controls before assigning priority and a competent owner.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: continuous
+trigger: Staff, members, monitoring, or inspection reports a facility defect or concern.
+inputs: [Reporter observation, Asset and location context, Safety and service priority rules]
+outputs: [Risk-informed work order, Immediate isolation or workaround, Reporter acknowledgment]
+current_manual_methods: [Chat message, Verbal report, Generic ticket priority]
+common_failure_modes: [Visible inconvenience hides safety risk, Duplicate reports fragment evidence]
+human_judgment_required:
+  [
+    Assess credible worst-case exposure and urgency,
+    Decide safe immediate controls and required competence,
+  ]
+approval_points:
+  [Duty manager approves closure or major disruption; qualified owner accepts technical risk]
+privacy_sensitivity: low
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Safety-critical reports receive immediate control,
+    Work reaches the correct competent owner first time,
+  ]
+related_workflows: [facility-maintenance, incident-response]

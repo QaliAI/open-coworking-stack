@@ -7,85 +7,156 @@ verified_on: 2026-07-17
 
 # Authentik for coworking staff SSO
 
-Authentik is a self-hosted identity provider commonly used to protect internal applications. For a coworking stack, begin with two staff users and one non-critical internal app behind a proxy provider.
+This guide scopes Authentik to staff single sign-on for one non-critical internal application. It is an operator plan, not evidence that Authentik has been run in this repository or is suitable for a particular production environment.
 
-## Fit and non-fit
+## 1. Coworking outcome
 
-**Good fit:** a smaller technically managed stack that needs staff SSO, fewer shared passwords, and controlled deprovisioning.
+Reduce shared passwords and make staff access removal more consistent. Authentik augments authentication and deprovisioning; it does not decide who should see member, finance, access-control, or employee systems.
 
-**Poor fit:** a team without identity and recovery ownership, a direct physical-access replacement, or a rollout where an identity-provider outage would lock out every operational tool without fallback.
+## 2. Pilot scope
 
-## License and cost boundary
+Protect one staging application through one provider, enroll two individually named staff users with MFA, and test one disablement. Keep physical access, member identity, payroll, and production-critical applications out of the pilot.
 
-The catalog classifies Authentik as OSI-approved open source under `GPL-3.0-only`, while noting that the current license for enterprise components must be confirmed. Budget for compute/database/TLS, deployment and app integration, updates and recovery, optional enterprise components, and internal or commercial support. Re-check [official pricing](https://goauthentik.io/pricing/) rather than inferring included features.
+## 3. Fit
 
-Record **software**, **hosting**, **setup**, **maintenance**, **plugins/extensions**, and **support** separately; mark each as applicable, not applicable, or unknown rather than assuming a zero cost.
+**Good fit:** a technically managed stack with an identity owner, a current staff roster, app owners, and an independent recovery route.
 
-## Prerequisites and data map
+## 4. Non-fit and alternatives
 
-Name identity, security, and recovery owners. Maintain a staff roster, app access matrix, MFA policy, break-glass process, and list of apps that can fall back safely.
+**Poor fit:** a team without identity/recovery ownership, a direct physical-access replacement, or a rollout that can lock every operator out. Retain the application's existing login or another tested identity path until the pilot passes; compare managed identity services if self-hosting duty is unacceptable.
 
-| Data             | Source          | Authentik use             | Exit/fallback             |
-| ---------------- | --------------- | ------------------------- | ------------------------- |
-| Staff identities | Staff roster    | Authentication            | Roster reconciliation     |
-| MFA factors      | User enrollment | Stronger authentication   | Approved recovery         |
-| App policies     | Access matrix   | Authorization/proxy rules | Independent policy record |
-| Logs             | Authentik       | Security/operations       | Retention-limited review  |
+## 5. Coworking use cases
 
-Personal identity data is held; payment data is excluded.
+- Staff SSO to internal knowledge, monitoring, or administration tools.
+- Joiner, mover, and leaver access changes based on an approved roster.
+- MFA enrollment and recovery for staff accounts.
 
-## Smallest useful experiment
+Do not infer compatibility with any named application; no integration is catalog-verified.
 
-Following the [official docs](https://docs.goauthentik.io/), deploy Authentik, protect one staging app through a proxy provider, and enroll two staff users with MFA. Disable one user and test the app's behavior when Authentik is unavailable.
+## 6. Tasks reduced or augmented
 
-## Implementation sequence
+Authentik can reduce repeated logins, shared credential handling, and manual per-app disablement where an app integration is proven. It does not eliminate roster reconciliation, permission review, exception handling, or incident response.
 
-1. Confirm license/edition needs from the [official project](https://goauthentik.io/) and [repository](https://github.com/goauthentik/authentik).
-2. Inventory the pilot app's login and emergency fallback.
-3. Deploy isolated staging with TLS and restricted administration from official docs.
-4. Configure one provider/application and least-privilege policy.
-5. Test login, MFA, logout, disablement, recovery, and outage behavior.
-6. Document joiner/leaver, app access review, updates, and break-glass use.
-7. Complete state/configuration restore before production adoption.
+## 7. Human decisions and approvals
 
-## Security and privacy controls
+Managers approve access and offboarding timing. The identity administrator implements policy; the app owner confirms effective permissions; the recovery owner witnesses break-glass tests. A person must approve MFA exceptions, privileged roles, policy changes, and production cutover.
 
-- Require TLS and MFA; separate administrative and routine accounts.
-- Minimize identity attributes released to applications.
-- Restrict provider callbacks, secrets, and proxy trust according to official docs.
-- Review application policies and logs on a defined schedule.
-- Protect recovery credentials outside the primary identity path.
-- Apply supported updates and review enterprise/component license boundaries.
+## 8. Owners and RACI
 
-## Backup, export, and restore test
+Name an accountable identity owner, a responsible technical operator, each app owner, a security reviewer, and a recovery witness. No person should approve and silently verify their own privileged access change.
 
-Back up the database, configuration, keys/secrets, and officially required state. Restore to clean isolated staging and verify both users, MFA recovery, provider/application policy, login, and disablement. Keep an independent app access matrix and fallback instructions because exports alone may not restore external app configuration.
+## 9. Prerequisites
 
-## Integrations and manual handoffs
+Maintain a staff roster, application access matrix, MFA policy, supported domain/TLS path, outbound email decision, time synchronization, break-glass procedure, and app-specific fallback. Inventory callback URLs and current login behavior before configuration.
 
-No app integration is catalog-verified. Use Authentik's and the target app's official documentation. Managers approve access; identity admins implement/revoke it; app owners validate permissions; recovery owners witness break-glass tests.
+## 10. Skills and effort boundary
 
-## Human oversight
+The pilot needs Linux/container, DNS/TLS, application-authentication, PostgreSQL recovery, and identity-policy skills. The catalog's `1-3 days` is an unverified estimate, not a commitment; app troubleshooting, review, and restore testing may take longer.
 
-People decide access, MFA exceptions, flow design, offboarding timing, and incident response. Authentik augments SSO and deprovisioning; it does not decide who may access staff or member systems.
+## 11. Deployment choice
 
-## Operational checklist
+The catalog verifies self-hosting only. Official Docker Compose documentation describes that method for test and small-scale production setups; use the upstream requirements for the selected release. High availability, Kubernetes, external PostgreSQL, and production sizing remain separate designs.
 
-- [ ] Identity, security, and recovery owners named
-- [ ] Staff roster and app matrix current
-- [ ] License/component boundary reviewed
-- [ ] TLS, MFA, admin separation, and fallback tested
-- [ ] User disablement blocks the pilot app
-- [ ] Policy changes require review
-- [ ] Clean restore passed
-- [ ] Break-glass route remains independent
+## 12. Architecture and dependencies
 
-## Rollback and exit
+Map the reverse proxy, Authentik server and worker, PostgreSQL, any Redis requirement in the selected release, email path, provider/application, and any outpost. Official Compose currently mounts the Docker socket for automatic outpost management; either review that privilege, use the documented socket-proxy approach, or manage outposts manually.
 
-Retain the pilot app's previous authentication during testing. Roll back by restoring that configuration, disabling the Authentik route, revoking provider secrets, and reconciling accounts. Before expansion, document/export identities and policies and prove each dependent app can move to another identity path without operator lockout.
+## 13. License and edition boundary
 
-## Verification and unknowns
+The catalog classifies the core as OSI-approved `GPL-3.0-only` and flags enterprise-component licensing for confirmation. Re-check the repository license and [official pricing](https://goauthentik.io/pricing/) for every required feature; this guide does not establish enterprise entitlement.
 
-Snapshot verified **2026-07-17** from [Authentik](https://goauthentik.io/), its [repository](https://github.com/goauthentik/authentik), and [documentation](https://docs.goauthentik.io/).
+## 14. Total cost boundary
 
-Unknown until verified: current enterprise licensing and pricing, app compatibility, exact backup/export coverage, production sizing/HA, support, identity migration behavior, and regulatory requirements.
+Record software/edition, compute, PostgreSQL, storage, TLS/DNS, email, monitoring, setup labor, app integration, upgrades, recovery drills, support, and exit labor separately. Do not treat open-source software as zero operating cost or use unverified price figures.
+
+## 15. Data map
+
+| Data                                     | Source                 | Purpose                          | Minimum exit record                                             |
+| ---------------------------------------- | ---------------------- | -------------------------------- | --------------------------------------------------------------- |
+| Staff identities and attributes          | Approved staff roster  | Authentication                   | Roster and account reconciliation                               |
+| MFA factors                              | Staff enrollment       | Stronger authentication          | Recovery/offboarding record; never copy factor secrets casually |
+| Providers, applications, flows, policies | Approved access matrix | Authentication and authorization | Reviewed configuration inventory                                |
+| Events and logs                          | Authentik              | Security and operations          | Retention-limited incident evidence                             |
+| Uploaded branding/reports                | Operator               | User interface/operations        | File inventory if used                                          |
+
+Payment data is excluded.
+
+## 16. Privacy and retention
+
+Collect only attributes the pilot app needs, document the lawful/organizational basis for staff identity processing, restrict event access, and set review/deletion rules for departed staff and logs. Data residency, subprocessor, and regulatory conclusions are unverified and require local review.
+
+## 17. Security baseline
+
+Require TLS, individual admin accounts, MFA, least-privilege policies, restricted administration, protected provider secrets, and an independent break-glass credential. Minimize attributes released to the app. Review proxy trust and callback URLs against both upstreams.
+
+## 18. Compliance and expert review
+
+Identity policy can affect employment records, privacy obligations, audit evidence, and access to regulated systems. Obtain security/privacy or legal review when required locally, and specialist IAM review before privileged, financial, physical-access, or safety-critical integrations.
+
+## 19. Integration boundary
+
+No app integration is catalog-verified. Use Authentik's provider documentation and the target application's official authentication documentation; record protocol, identifiers, scopes/claims, callbacks, logout behavior, secret owner, and fallback. Do not use a generic proxy pattern to claim app-level authorization.
+
+## 20. Configuration baseline
+
+Record the exact Authentik and outpost versions, deployment manifests, non-secret environment variable names, external URLs, provider type, flow/policy names, group-to-app rule, MFA enrollment/recovery path, admin roles, email behavior, and log retention. Keep secrets in an approved secret store, never in this repository.
+
+## 21. Smallest useful experiment
+
+Following the [official docs](https://docs.goauthentik.io/), deploy isolated staging, protect one non-critical app, and enroll two staff users with MFA. Disable one user and test the app when Authentik is unavailable.
+
+## 22. Implementation sequence
+
+1. Approve owners, scope, data boundary, and fallback.
+2. Verify edition, release, app protocol, callback, and logout support from official sources.
+3. Deploy isolated staging with TLS and restricted administration.
+4. Configure one provider/application and a least-privilege group policy.
+5. Enroll two users and MFA without removing the old login.
+6. Run functional, security, outage, recovery, and restore tests.
+7. Obtain app-owner and recovery-witness sign-off before any cutover.
+
+## 23. Migration and rollout
+
+Reconcile pilot identities to the authoritative roster, communicate login/recovery changes, and add apps one at a time. Never bulk-enable access from an unreviewed directory attribute. Freeze policy changes during cutover and retain the previous login until acceptance.
+
+## 24. Required test plan
+
+Test correct login, denied login, MFA enrollment, MFA recovery, logout, session behavior after disablement, least-privilege access, callback rejection, admin separation, event visibility, email failure, Authentik outage, app fallback, and clean restore. Record actor, time, expected result, actual result, and evidence location without exposing secrets.
+
+## 25. Acceptance criteria
+
+Both pilot users can authenticate; an unapproved user cannot; disablement blocks new access and behaves as documented for existing sessions; no excess claims are released; app fallback works; break-glass and clean restore pass; all owners sign off. Any unexplained authorization result blocks production.
+
+## 26. Success metrics
+
+Track successful and failed pilot logins, disablement completion time, recovery completion, access-review exceptions, support effort, and IdP-caused app unavailability. Do not convert these into staffing-replacement claims.
+
+## 27. Monitoring and alerting
+
+Monitor service health, failed/background tasks, authentication anomalies, certificate expiry, database/storage capacity, email failures, backup results, and outpost/server version match where used. Route alerts to a named human with an escalation and manual app-access path.
+
+## 28. Operating cadence
+
+Reconcile roster and app access on an approved cadence and after each leaver; review privileged access and break-glass use; patch supported releases; rotate exposed secrets; test backup results; and schedule witnessed recovery drills. Record exceptions and closure owners.
+
+## 29. Failure modes and response
+
+Plan for IdP outage, database loss, bad policy, expired certificate, broken callback, email/recovery failure, compromised admin, and version mismatch. Stop rollout on unexpected grants; use the app fallback for availability; preserve logs; and require a human incident lead for containment and re-enable decisions.
+
+## 30. Backup procedure
+
+Official guidance identifies PostgreSQL as the critical persistent store and lists `/data`, `/certs`, `/custom-templates`, and `/blueprints` conditionally by use. Back up applicable state, deployment configuration, and secret references to a separate protected location. Do not assume a data export is a full backup.
+
+## 31. Restore drill
+
+Restore PostgreSQL before reconnecting Authentik, restore applicable static directories, and start an isolated instance at a non-production address. Verify two users, provider/application policy, MFA recovery rather than copied factors, login, denial, disablement, and version. The repository contains no retained runtime restore evidence.
+
+## 32. Upgrade, rollback, and exit
+
+Read release notes, back up PostgreSQL, follow major releases in sequence, and keep server/outpost versions matched as required by [official upgrade guidance](https://docs.goauthentik.io/docs/install-config/upgrade/). Authentik documents that downgrade is unsupported, so rollback means restoring the pre-upgrade version and database/state in isolation, not running new code against an old schema. Exit by restoring each app's alternative login, revoking provider secrets, reconciling accounts, and retaining an independent policy/access record.
+
+## 33. Sources, evidence, and unknowns
+
+Reviewed **2026-07-17**: [homepage](https://goauthentik.io/), [repository](https://github.com/goauthentik/authentik), [documentation](https://docs.goauthentik.io/), [Compose installation](https://docs.goauthentik.io/docs/install-config/install/docker-compose/), [backup/restore](https://docs.goauthentik.io/docs/sys-mgmt/ops/backup-restore/), and [upgrade guidance](https://docs.goauthentik.io/docs/install-config/upgrade/).
+
+Evidence is documentation review only. Untested: runtime installation, app compatibility, policy behavior, MFA recovery, proxy/outpost design, email, backup/restore, upgrade/rollback, HA, sizing, performance, support, enterprise licensing/pricing, export fidelity, residency, and compliance. Treat all as open gates until evidenced in the target environment.

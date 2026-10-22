@@ -69,6 +69,57 @@ human_oversight_still_needed:
   - Data residency
   - Offboarding accounts
   - Oversharing links
+task_fits:
+  - task_id: maintain-operating-procedures
+    relationship: system of record
+    automation_level: manual support
+    what_manual_process_it_can_replace: Manual process reduced is distributing procedure copies by
+      email and maintaining conflicting local files or printed binders.
+    what_it_takes_off_the_team: Human work reduced is sharing, finding, and collaboratively updating
+      one controlled working copy in Docs and Drive.
+    role_assisted: general-manager
+    what_remains_human: A human owner must reconcile policy with actual practice, review access and
+      revision evidence, retire obsolete copies, and approve content. Prohibited safety, legal,
+      financial, security, and policy decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is an approved document owner, folder structure, access model, naming convention,
+        review interval, and fallback copy.
+      - Prerequisite is an approved data classification, sharing, retention, export, and offboarding
+        policy configured and tested by administrators.
+    failure_consequence:
+      Failure can expose sensitive procedures or leave staff following an obsolete
+      copy; remove unsafe sharing and use the approved fallback while a human reconciles versions.
+    pilot_metric:
+      Metric is the percentage of critical procedures with one named owner, current review
+      evidence, approved access, and a successful staff retrieval test.
+    evidence:
+      - https://support.google.com/a/
+    confidence: medium
+  - task_id: coordinate-member-onboarding
+    relationship: assistant
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Manual process reduced is coordinating an approved onboarding
+      checklist through separate email threads, local files, and unowned calendar reminders.
+    what_it_takes_off_the_team: Human work reduced is collecting approved intake details, sharing an
+      owned checklist, scheduling orientation, and tracking unresolved actions in Workspace documents.
+    role_assisted: community-manager
+    what_remains_human:
+      Humans must verify agreement authorization and identity, interpret nonstandard
+      needs, approve each service, and decide readiness. Prohibited billing, physical-access,
+      entitlement, identity, and exception decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is an approved agreement and start date plus named owners for billing, access,
+        space, orientation, and unresolved exceptions.
+      - Prerequisite is a minimized intake form and approved permissions, retention, notification,
+        account-recovery, and fallback procedures.
+    failure_consequence: Failure can expose member data, duplicate an onboarding request, or omit a
+      service before arrival; stop the workflow and reconcile every item with its human owner.
+    pilot_metric: Metric is approved services ready by the agreed start date, unresolved exceptions
+      with named owners, duplicate submissions, and human coordination time per pilot member.
+    evidence:
+      - https://support.google.com/a/
+    confidence: low
 data_privacy:
   data_held:
     - email
@@ -99,5 +150,22 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: commercial-benchmark
+  evidence:
+    - kind: docs
+      source: https://support.google.com/a/
+      verified_on: 2026-07-17
+      notes: Official administrator documentation covers Docs, Forms, Sheets, Drive, Calendar, user
+        management, security, and data protection.
+    - kind: pricing
+      source: https://workspace.google.com/pricing.html
+      verified_on: 2026-07-17
+      notes: Official pricing page; plan, region, billing term, and current limits require rechecking.
+    - kind: homepage
+      source: https://workspace.google.com/
+      verified_on: 2026-07-17
+      notes: Official product homepage used to verify product scope and identity.
 featured: false
 rank_score: 86

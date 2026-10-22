@@ -1,59 +1,135 @@
 schema_version: 1.0.0
 id: commercial-hybrid
-name: Commercial Hybrid
-tagline: Vertical coworking SaaS plus open tools for cost control
-description: Use a purpose-built coworking platform for memberships/billing while surrounding it
-  with open tools for wiki, monitoring, automation, and analytics to reduce add-on spend.
+name: Dedicated Coworking SaaS Plus Open Tools
+tagline: Keep core membership operations in vertical SaaS and control the surrounding layer
+description: A dedicated coworking platform remains the membership and billing authority while open tools provide documentation, monitoring, automation, and operator-controlled reporting.
 audience_roles:
-  - owner-operator
-  - operations-manager
-  - community-manager
-  - multi-location-operator
-  - finance
+  [owner-operator, operations-manager, community-manager, multi-location-operator, finance]
 problems_solved:
-  - automate-billing
-  - improve-member-experience
-  - integrate-stack
-  - reduce-software-cost
+  [automate-billing, improve-member-experience, integrate-stack, reduce-software-cost]
 workflows:
-  - member-onboarding
-  - invoice-collections
-  - room-booking
-  - access-provisioning
-  - reporting-kpis
-monthly_cash_budget_band: under-500
+  [member-onboarding, invoice-collections, room-booking, access-provisioning, reporting-kpis]
+monthly_cash_budget_band: flexible
 self_host_heavy: false
+operator_profile: An operator that values mature coworking workflows but wants portable documentation, visible integrations, and tested exports.
+number_of_locations: One to several locations using one governed membership record.
+team_size: Three or more staff with operations, finance, and technical/vendor ownership assigned.
+products_offered: [memberships, day passes, desks, meeting rooms, add-on services]
+technical_skill_required: Moderate; SaaS administration, export testing, webhook hygiene, and basic self-host operations.
+tasks_covered:
+  [
+    membership-administration,
+    recurring-billing,
+    room-booking,
+    member-onboarding,
+    operational-reporting,
+    integration-monitoring,
+  ]
+tasks_not_covered:
+  [
+    statutory-accounting,
+    payment-dispute-judgment,
+    physical-security-response,
+    member-support-judgment,
+    legal-compliance-review,
+  ]
+systems_of_record:
+  - Cobot is the membership, plan, entitlement, and invoice workflow record.
+  - Stripe is the payment transaction record.
+  - BookStack is the approved internal procedure record.
 components:
   - tool_id: cobot
-    role_in_stack: Memberships and billing system of record
+    role_in_stack: Membership and billing workflow authority
     required: true
   - tool_id: stripe
-    role_in_stack: Payments
+    role_in_stack: Payment processing authority
     required: true
   - tool_id: bookstack
-    role_in_stack: Internal SOPs
+    role_in_stack: Operator-controlled SOP record
     required: true
   - tool_id: n8n
-    role_in_stack: Integration glue (license review required)
+    role_in_stack: Optional reviewed integration workflows
     required: false
+    notes: Review license and deployment terms before adoption.
   - tool_id: uptime-kuma
-    role_in_stack: Monitor public pages and portals
+    role_in_stack: Public portal and integration health checks
     required: true
   - tool_id: metabase
-    role_in_stack: Operational dashboards from exports/DB
+    role_in_stack: Optional dashboards built from approved exports
     required: false
   - tool_id: google-workspace
-    role_in_stack: Staff email/docs
+    role_in_stack: Optional staff email and document collaboration
     required: false
+data_flow:
+  - Staff create membership facts in Cobot and send payment requests to Stripe.
+  - Approved exports feed Metabase without writing changes back to source systems.
+  - n8n may copy minimum necessary events between tools with retries and human exception review.
+implementation_order:
+  [
+    define-system-boundaries,
+    configure-cobot-sandbox,
+    connect-stripe,
+    document-sops,
+    test-exports,
+    add-monitoring,
+    pilot-one-integration,
+    add-reporting,
+  ]
+cost_assumptions:
+  monthly_cash: Edit with current vendor quotes; includes vertical SaaS, payment processing, staff suite, hosting, and optional integrations.
+  setup_labor: Budget process mapping, configuration, migration rehearsal, staff training, and acceptance testing.
+  maintenance_labor: Assign monthly vendor review, failed-payment handling, integration exceptions, exports, and access review.
+  messaging_email_sms: Treat email and SMS as separate subscription or usage lines and require consent controls.
+  hosting_storage: Open tools need patched hosting and offsite backups; SaaS storage and retention require contract review.
+  notes:
+    - No budget ceiling is promised because location, member, and transaction variables differ.
+    - Obtain official quotes before approving the stack.
+  pricing_sources: []
+human_owners:
+  [
+    operations-manager for membership configuration,
+    finance for reconciliation,
+    technical-operator for integrations,
+    owner-operator for vendor risk,
+  ]
+security_boundaries:
+  - Stripe handles card data; do not copy card details into other tools.
+  - Limit integration credentials to minimum scopes and keep a kill switch.
+  - Require human review for refunds, access exceptions, and account termination.
+backup_and_recovery:
+  - Export membership and configuration data on a tested schedule.
+  - Back up self-hosted documentation and reporting configuration separately.
+  - Rehearse manual check-in, booking, and payment lookup during vendor outages.
 assumptions:
-  - Budget exists for vertical SaaS.
-  - Data export tested quarterly.
+  - Budget exists for vertical SaaS and payment processing.
+  - The operator tests exports before treating the platform as portable.
 risks:
-  - Vendor lock-in on membership system of record.
-  - Automation license constraints with n8n.
+  - Core workflow continuity depends on a commercial vendor.
+  - Unowned integrations can silently create inconsistent records.
 getting_started:
-  - Select vertical SaaS via pilot.
-  - Document system-of-record boundaries.
-  - Automate only 1–2 high-ROI syncs.
+  [
+    map-current-workflows,
+    pilot-with-one-product,
+    test-payment-and-refund,
+    test-complete-export,
+    train-staff,
+    schedule-vendor-review,
+  ]
+pilot_plan:
+  - Pilot one membership product and one room with a small staff cohort.
+  - Exercise onboarding, failed payment, refund, export, and outage procedures.
+rollout_30_day:
+  - Migrate active records in controlled batches and reconcile each batch.
+  - Enable only monitored integrations with named exception owners.
+maturity_90_day:
+  - Review permissions, exports, integration failures, and support performance.
+  - Measure whether each surrounding tool reduces work without splitting records.
+exit_strategy:
+  - Maintain a field-mapped export runbook and sample successful import to a neutral format.
+  - Remove API credentials and retain records according to finance and privacy obligations.
+commercial_fallback:
+  - Use vendor-supported native features if an open integration becomes unsafe to maintain.
+  - Evaluate another coworking SaaS using export and migration acceptance tests before switching.
 verification:
-  last_reviewed: 2026-07-17
+  last_reviewed: 2026-07-18
+  notes: Vendor pricing and feature availability must be confirmed directly before procurement.

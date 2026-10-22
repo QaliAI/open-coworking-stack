@@ -1,0 +1,127 @@
+schema_version: 1.0.0
+id: marketing-local-seo-reviews-social
+name: Marketing Local SEO Reviews and Social
+tagline: Maintain accurate local pages, ethical review requests, useful content, and measured campaigns
+description: A practical local marketing stack for website publishing, search measurement, email, content production, and feedback, with reviews and social posting kept as supervised platform work.
+audience_roles: [marketing, owner-operator, community-manager, sales-manager]
+problems_solved:
+  [grow-pipeline, improve-member-experience, reduce-manual-admin, measure-utilization]
+workflows: [marketing-campaigns, tour-to-close, community-programming, reporting-kpis]
+monthly_cash_budget_band: under-200
+self_host_heavy: false
+operator_profile: A local operator with verified location facts, regular community activity, and a named person accountable for responses.
+number_of_locations: One to ten locations with one approved fact sheet per location.
+team_size: Two to twenty contributors with one publishing owner.
+products_offered: [memberships, day passes, meeting rooms, events, local-community-programming]
+technical_skill_required: Low to moderate; CMS, analytics, consent, account security, and publishing workflow.
+tasks_covered:
+  [
+    local-landing-pages,
+    search-performance-measurement,
+    email-newsletters,
+    campaign-assets,
+    feedback-collection,
+    review-request-workflow,
+    social-content-calendar,
+  ]
+tasks_not_covered:
+  [
+    search-ranking-guarantees,
+    review-moderation-control,
+    paid-ad-management,
+    social-network-automation,
+    reputation-crisis-judgment,
+    content-legal-approval,
+  ]
+systems_of_record:
+  - WordPress is the approved public location and product content record.
+  - Google Analytics is the web measurement record where adopted with appropriate consent.
+  - Brevo is the consent and campaign execution record for email.
+components:
+  - tool_id: wordpress
+    role_in_stack: Public site and location landing pages
+    required: true
+  - tool_id: google-analytics
+    role_in_stack: Optional website performance measurement
+    required: false
+  - tool_id: brevo
+    role_in_stack: Consented email campaigns and newsletters
+    required: true
+  - tool_id: canva
+    role_in_stack: Campaign and social asset creation
+    required: false
+  - tool_id: formbricks
+    role_in_stack: First-party feedback and review-request trigger
+    required: false
+data_flow:
+  - Approved location facts publish from the content process to WordPress and are manually reconciled with external listings.
+  - Consented subscribers enter Brevo; analytics returns aggregate outcomes rather than becoming a member record.
+  - Staff review feedback before requesting an honest public review and never suppress requests based on sentiment.
+implementation_order:
+  [
+    approve-location-facts,
+    secure-publishing-accounts,
+    fix-location-pages,
+    configure-measurement-and-consent,
+    clean-email-consent,
+    create-content-calendar,
+    pilot-feedback,
+    document-review-and-social-workflows,
+  ]
+cost_assumptions:
+  monthly_cash: Edit for site hosting, domains, analytics consent tooling, email delivery, design plans, and any external listing or social services.
+  setup_labor: Include fact verification, content and photography, consent review, templates, account recovery, and measurement setup.
+  maintenance_labor: Reserve weekly publishing and response time plus monthly listing, consent, link, and performance review.
+  messaging_email_sms: Email varies by contact volume; SMS is outside the base stack and needs separate consent and funding.
+  hosting_storage: Website media requires maintained hosting and backups; avoid retaining unnecessary raw analytics data.
+  notes:
+    - No ranking, review volume, reach, or lead outcome is guaranteed.
+    - External review and social platforms are manual boundaries because no matching catalog tool is assumed.
+  pricing_sources: []
+human_owners:
+  [
+    marketing for publishing,
+    community-manager for responses,
+    owner-operator for claims and incidents,
+    sales-manager for lead feedback,
+  ]
+security_boundaries:
+  - Use separate named accounts, multifactor authentication, and controlled recovery details for external profiles.
+  - Do not incentivize only positive reviews or expose private feedback.
+  - Human staff approve claims, public replies, campaign sends, and crisis communication.
+backup_and_recovery:
+  - Back up website content, media, templates, consent exports, and location fact sheets.
+  - Maintain an inventory of external profile owners and recovery paths.
+  - Test website restore and account recovery quarterly.
+assumptions:
+  - Location names, addresses, hours, amenities, and accessibility facts can be verified.
+  - Staff can respond to enquiries and public feedback consistently.
+risks:
+  - Inconsistent listings or unattended channels can harm trust.
+  - Weak consent or manipulative review practices can create legal and platform risk.
+getting_started:
+  [
+    verify-location-facts,
+    audit-public-profiles,
+    improve-one-location-page,
+    send-one-consented-campaign,
+    measure-enquiries-not-vanity,
+  ]
+pilot_plan:
+  - Pilot one location page, one newsletter, and a neutral post-visit feedback request.
+  - Track factual errors, response load, consent issues, and qualified enquiries.
+rollout_30_day:
+  - Correct major listing inconsistencies and publish a sustainable content calendar.
+  - Assign response coverage and escalation for every active channel.
+maturity_90_day:
+  - Review search enquiries, tour conversion, unsubscribes, response times, and content freshness.
+  - Close or redirect channels that cannot be maintained.
+exit_strategy:
+  - Export site content, consent records, templates, analytics summaries, and profile ownership inventory.
+  - Transfer external accounts through supported ownership controls, not shared passwords.
+commercial_fallback:
+  - Use a reputable local marketing partner with operator-owned accounts and export rights.
+  - Adopt managed email or website hosting if maintenance blocks consistent publishing.
+verification:
+  last_reviewed: 2026-07-18
+  notes: Search, review, and social platform policies must be checked at execution time.

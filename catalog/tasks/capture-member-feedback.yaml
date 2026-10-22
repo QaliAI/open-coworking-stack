@@ -1,0 +1,28 @@
+schema_version: 1.0.0
+id: capture-member-feedback
+name: Capture member feedback
+description: Record specific member observations, desired outcomes, consent boundaries, and follow-up commitments so feedback can inform action without flattening people into sentiment scores.
+business_area: member-service
+primary_role: community-manager
+supporting_roles: [community-coordinator-front-desk, member]
+frequency: continuous
+trigger: A member volunteers feedback or staff initiate an approved listening activity.
+inputs: [Member statement, Relevant service context, Communication and anonymity preference]
+outputs: [Structured feedback record, Immediate service action where needed, Theme for human review]
+current_manual_methods: [Survey score, Staff memory, Screenshot in a group chat]
+common_failure_modes:
+  [
+    Critical context is lost during categorization,
+    Anonymous feedback is reidentified through detail,
+  ]
+human_judgment_required:
+  [
+    Separate a service request from research insight,
+    Preserve nuance and assess whether immediate care is needed,
+  ]
+approval_points: [Member approves attribution; manager approves wider sharing of sensitive detail]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics: [Feedback receives the promised response, Themes link to evidence and owned action]
+related_workflows: [community-programming, reporting-kpis]

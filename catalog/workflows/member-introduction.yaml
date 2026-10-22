@@ -1,0 +1,45 @@
+schema_version: 1.0.0
+id: member-introduction
+name: Member introduction
+description: Facilitate an optional introduction between coworking members only after checking mutual relevance, consent, and appropriate boundaries.
+objective: Support useful community connections without disclosing profiles or contact details without permission.
+responsible_role: Community manager
+trigger: A member requests an introduction or staff identify a potentially relevant connection for consent review.
+inputs: [stated interests, introduction purpose, each member's consent, approved profile details]
+outputs: [approved introduction, declined or deferred status, minimal connection record]
+source_of_truth: The consent and introduction status recorded by community staff are authoritative.
+systems_involved: [member directory, community notes, approved communication channel]
+automation_steps:
+  [prepare a consent request, record responses, draft an introduction using approved details]
+human_approval_points:
+  [Community staff and both members approve the introduction and information shared.]
+failure_exception_paths:
+  [Stop without explanation to the other party when consent is declined, withdrawn, or uncertain.]
+privacy_risks:
+  [Interests, identity, contact details, and business context can be disclosed without consent.]
+security_risks: [Directory scraping or overbroad access can expose member profiles.]
+measurable_kpis: [introductions with mutual consent, withdrawals honored, privacy incidents]
+test_cases:
+  [Complete a mutual introduction, record a decline, withdraw consent, limit shared profile fields.]
+manual_fallback:
+  [Ask each member privately, confirm what may be shared, and make the introduction personally.]
+rollback_disable_procedure:
+  [
+    Disable matching and drafts,
+    delete unapproved queued introductions,
+    preserve consent evidence,
+    use personal facilitation.,
+  ]
+primary_roles: [community-manager, member-end-user]
+stages:
+  - id: consent-and-introduce
+    name: Consent and introduce
+    description: Confirm mutual interest and approved details before a person facilitates contact.
+    manual_tasks: [assess relevance, obtain mutual consent, approve shared details and wording]
+    automation_opportunities: [track consent and prepare a minimal draft]
+    suggested_tool_ids: [cobot, monica-crm]
+    risks: [Suggested matching can create unwanted contact or reveal sensitive interests.]
+success_metrics: [Every introduction has mutual consent and shares only approved information.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Participation must remain optional and consent can be withdrawn at any time.

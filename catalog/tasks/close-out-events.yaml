@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: close-out-events
+name: Close out events
+description: Reconcile space, equipment, attendance, incidents, supplier completion, financial evidence, and follow-up commitments before marking an event operationally complete.
+business_area: events
+primary_role: event-manager
+supporting_roles: [operations-facilities-manager, finance-billing-administrator]
+frequency: event-driven
+trigger: Attendees depart and the event moves from live delivery to handback and review.
+inputs: [Run of show and change log, Site inspection, Supplier and transaction records]
+outputs: [Accepted space handback, Open action and incident list, Complete closeout record]
+current_manual_methods: [Quick room check, Expense emails, Informal debrief]
+common_failure_modes:
+  [Damage or missing equipment is discovered later, Event is closed while incidents remain unowned]
+human_judgment_required:
+  [
+    Assess handback condition and evidence,
+    Decide which observations need formal incident or corrective action,
+  ]
+approval_points:
+  [Facilities accepts handback; finance approves adjustments; duty manager accepts open risks]
+privacy_sensitivity: medium
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics: [Space and assets reconcile promptly, Every open item has an owner and target]
+related_workflows: [event-lifecycle, facility-maintenance, invoice-collections]

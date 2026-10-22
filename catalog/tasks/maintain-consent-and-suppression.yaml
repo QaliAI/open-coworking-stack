@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+id: maintain-consent-and-suppression
+name: Maintain consent and suppression records
+description: Apply communication choices, objections, unsubscribes, source restrictions, and suppression rules across relevant channels with reconciliation and a human correction route.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [it-security-administrator]
+frequency: continuous
+trigger: A person changes preference, an import occurs, a channel reports an event, or a scheduled reconciliation runs.
+inputs:
+  [
+    Preference or objection evidence,
+    Identity and channel mapping,
+    Approved purpose and suppression rules,
+  ]
+outputs:
+  [Updated authoritative preference, Propagated channel changes, Identity or sync exception queue]
+current_manual_methods: [Email unsubscribe list, CRM checkbox, Manual exclusion spreadsheet]
+common_failure_modes:
+  [One channel update does not reach another, Duplicate identity is re-added by later import]
+human_judgment_required:
+  [
+    Resolve identity and scope ambiguity,
+    Distinguish required service communication from optional marketing,
+  ]
+approval_points:
+  [Privacy or marketing owner approves purpose interpretation and exceptional reactivation]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Preference changes propagate within approved target,
+    Suppressed people are not reintroduced by imports,
+  ]
+related_workflows: [marketing-campaigns, compliance-review]

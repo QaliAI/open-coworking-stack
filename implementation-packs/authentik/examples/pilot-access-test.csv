@@ -1,0 +1,6 @@
+case,actor,expected,human_witness,actual,evidence_ref,status
+approved-login,pilot-user-a,login succeeds with MFA,app-owner,,,not-run
+unapproved-login,pilot-user-b,application access denied,security-reviewer,,,not-run
+disabled-login,pilot-user-a,new login denied after approved disablement,identity-owner,,,not-run
+idp-outage,operator,documented app fallback works,recovery-witness,,,not-run
+clean-restore,operator,policy and allowed-denied behavior restored,recovery-witness,,,not-run

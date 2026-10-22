@@ -1,0 +1,36 @@
+schema_version: 1.0.0
+id: produce-campaign-content
+name: Produce campaign content
+description: Develop channel-appropriate copy and assets from an approved brief and verified source material, clearly marking drafts and generated elements for accountable review.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [community-manager]
+frequency: weekly
+trigger: An approved campaign brief enters content production.
+inputs:
+  [
+    Approved brief and claims,
+    Current brand and accessibility guidance,
+    Licensed or consented source assets,
+  ]
+outputs:
+  [Review-ready content variants, Source and rights record, Open factual or creative questions]
+current_manual_methods: [Blank-page drafting, Reusing old assets, Untracked file versions]
+common_failure_modes:
+  [Generated detail is presented as fact, Member image or quote lacks current permission]
+human_judgment_required:
+  [
+    Shape tone and meaning for the actual audience,
+    Identify misleading implications and accessibility barriers,
+  ]
+approval_points:
+  [Content owner approves creative; claim and rights owners approve factual and usage elements]
+privacy_sensitivity: medium
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Drafts trace claims and rights to approved sources,
+    Review catches issues before publication rather than after,
+  ]
+related_workflows: [marketing-campaigns]

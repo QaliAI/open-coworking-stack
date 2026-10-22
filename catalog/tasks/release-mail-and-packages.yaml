@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+id: release-mail-and-packages
+name: Release mail and packages
+description: Verify current collection authority, retrieve the correct item, obtain release evidence, and update custody while retaining a clear refusal and escalation route.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: per-interaction
+trigger: A person requests collection or an authorized handoff is scheduled.
+inputs: [Current authorization, Item custody record, Collector-provided evidence]
+outputs: [Verified release and acknowledgment, Updated item status, Discrepancy or dispute record]
+current_manual_methods: [Visual recognition, Signature sheet, Verbal confirmation]
+common_failure_modes: [Wrong item is selected, Familiarity overrides expired authority]
+human_judgment_required:
+  [
+    Assess evidence and behavior in context,
+    Pause release when identity,
+    authority,
+    or custody conflicts,
+  ]
+approval_points: [Manager approves any exceptional release or disputed handoff]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Every release matches item and current authority,
+    Disputed requests are paused with an explained next step,
+  ]
+related_workflows: [mail-package-handling]

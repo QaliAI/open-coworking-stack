@@ -1,0 +1,97 @@
+schema_version: 1.0.0
+id: ai-knowledge-base-update
+name: AI knowledge-base update
+description: Propose, review, publish, test, and if necessary withdraw source-grounded updates used by a coworking staff AI knowledge assistant.
+objective: Keep AI-assisted answers aligned with approved current policy while preventing generated text from becoming policy automatically.
+responsible_role: Operations manager
+trigger: An approved source changes, staff identify a knowledge gap, or evaluation reveals an incorrect answer.
+inputs:
+  [
+    authoritative source,
+    proposed update,
+    owner,
+    effective date,
+    audience,
+    evaluation cases,
+    retention constraints,
+  ]
+outputs:
+  [approved knowledge version, provenance, evaluation evidence, publication or rejection decision]
+source_of_truth: The human-approved policy or procedure source remains authoritative over the AI knowledge base.
+systems_involved:
+  [approved source repository, knowledge base, AI retrieval system, evaluation set, change queue]
+automation_steps:
+  [
+    detect source changes,
+    prepare a bounded draft,
+    link provenance,
+    run approved retrieval and answer tests,
+  ]
+human_approval_points:
+  [
+    Source owner approves meaning and scope; privacy and security owners approve sensitive material; staff approve publication.,
+  ]
+failure_exception_paths:
+  [
+    Withdraw or quarantine content for unsupported answers,
+    conflicting sources,
+    sensitive leakage,
+    or evaluation regression.,
+  ]
+privacy_risks:
+  [
+    Source documents or evaluations can expose member,
+    staff,
+    incident,
+    or commercial data to an AI provider.,
+  ]
+security_risks:
+  [
+    Prompt injection,
+    poisoned sources,
+    excessive retrieval permissions,
+    or leaked secrets can compromise answers and systems.,
+  ]
+measurable_kpis:
+  [updates with provenance and owner, evaluation pass rate, incorrect answers traced and withdrawn]
+test_cases:
+  [
+    Publish a sourced update,
+    reject generated policy,
+    test conflicting sources,
+    detect sensitive retrieval,
+    roll back a regression.,
+  ]
+manual_fallback:
+  [
+    Direct staff to the approved source repository and require supervisors to answer uncertain cases.,
+  ]
+rollback_disable_procedure:
+  [
+    Remove the knowledge version from retrieval,
+    restore the last approved index,
+    preserve evidence,
+    direct users to source documents.,
+  ]
+primary_roles: [operations-manager, technical-operator, owner-operator]
+stages:
+  - id: source-review-test-publish
+    name: Source, review, test, and publish
+    description: Link the proposed change to authority and require human approval after representative evaluation.
+    manual_tasks:
+      [
+        verify source authority,
+        edit content,
+        review privacy and security,
+        interpret tests,
+        approve publication,
+      ]
+    automation_opportunities: [prepare drafts, preserve provenance, run approved evaluations]
+    suggested_tool_ids: [bookstack, outline]
+    risks:
+      [Fluent generated material can be mistaken for approved policy or leak restricted knowledge.]
+success_metrics:
+  [Published knowledge is sourced, owned, tested, access-controlled, and readily reversible.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Human-approved sources remain canonical; verify provider data handling, retrieval boundaries, and evaluation coverage.

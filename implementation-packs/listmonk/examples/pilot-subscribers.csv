@@ -1,0 +1,4 @@
+source_id,email,display_name,consent_reference,segment,status,expected_action
+staff-001,alice.internal@example.invalid,Alice,consent-test-001,internal-pilot,active,include
+staff-002,bob.internal@example.invalid,Bob,consent-test-002,internal-pilot,active,include
+staff-003,suppressed.internal@example.invalid,Suppressed,withdrawn-test-003,internal-pilot,suppressed,exclude

@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: review-billing-exceptions
+name: Review billing exceptions
+description: Investigate missing, duplicate, changed, unusually sized, or disputed billing items against authoritative terms and service evidence before correction or posting.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [sales-leasing-manager, general-manager]
+frequency: daily
+trigger: A billing control, member question, or staff review identifies an exception.
+inputs: [Exception detail, Approved agreement and changes, Service and transaction evidence]
+outputs: [Explained resolution, Authorized correction or hold, Root-cause action]
+current_manual_methods: [Spreadsheet highlight, Email to sales, Direct invoice edit]
+common_failure_modes:
+  [Exception is cleared to meet deadline, Correction fixes invoice but not source data]
+human_judgment_required:
+  [
+    Determine governing evidence and member impact,
+    Distinguish data error,
+    policy exception,
+    and contract dispute,
+  ]
+approval_points:
+  [Authorized finance or commercial owner approves credits, terms, and material corrections]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Exceptions close with evidence and authority, Recurring source causes receive corrective action]
+related_workflows: [invoice-collections, compliance-review]

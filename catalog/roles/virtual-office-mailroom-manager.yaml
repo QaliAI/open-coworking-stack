@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: virtual-office-mailroom-manager
+name: Virtual office and mailroom manager
+description: Maintains documented custody and authorized release of client mail and packages, combining efficient notifications with human verification for identity, authority, exceptions, and disputes.
+responsibilities:
+  - Maintain client instructions, authorized recipients, custody records, and secure storage.
+  - Apply retention, forwarding, release, and exception procedures consistently.
+  - Escalate suspicious, prohibited, damaged, legal, or disputed items appropriately.
+daily_tasks:
+  - Receive, identify, log, store, notify, and release items using the approved custody process.
+  - Reconcile unmatched items and access exceptions before the end of the operating period.
+weekly_tasks:
+  - Review aging items, forwarding queues, storage capacity, and incomplete authorization records.
+  - Sample custody entries against physical inventory and notification evidence.
+monthly_tasks:
+  - Review client eligibility, authorized contacts, retention actions, and access permissions.
+  - Analyze loss, delay, misrouting, and dispute causes without exposing contents unnecessarily.
+revenue_impacting_work:
+  - Deliver a reliable virtual-office service within documented product and compliance boundaries.
+  - Identify capacity or service issues before accepting additional commitments.
+member_experience_work:
+  - Communicate clearly about arrival, collection, forwarding, delays, and required evidence.
+  - Resolve mistakes discreetly and preserve a usable record for affected clients.
+repetitive_administrative_work:
+  - Barcode or reference capture, standard notifications, aging reports, and forwarding queues.
+  - Matching expected recipients and producing custody audit samples.
+dangerous_to_automate_blindly:
+  - Client eligibility, identity, authority to collect, legal process, or suspicious-item decisions.
+  - Discarding, returning, opening, scanning, or forwarding items without approved instructions.
+recommended_task_ids:
+  - verify-mail-handling-authorizations
+  - receive-and-log-mail
+  - release-mail-and-packages
+  - process-mail-forwarding
+  - audit-mailroom-custody
+easiest_hosted_stack: Hosted mailroom and coworking client records with secure notifications, authorization history, and role-based custody reporting.
+hybrid_stack: Hosted client system connected to a controlled custody register, notification workflow, and retention review queue.
+self_hosted_stack: Self-hosted client registry, custody log, secure storage index, and notifications with backup, audit, and device controls.
+suggested_workflows:
+  - mail-package-handling
+  - member-onboarding
+  - member-offboarding
+  - compliance-review
+kpis:
+  - Items with complete custody records and authorized release evidence.
+  - Receipt-to-notification time and unresolved unmatched or aging items.
+  - Loss, misrelease, forwarding error, and substantiated complaint rates.
+improvement_plan_30_day:
+  - Map custody from receipt through final disposition and identify every human authorization.
+  - Define minimum data, retention, access, and exception categories with local review.
+  - Pilot standardized notifications and aging queues without automating release decisions.
+  - Reconcile a physical sample and fix process causes rather than only correcting records.
+implementation_owner: Virtual office and mailroom manager, overseen by the general manager or compliance owner.
+expert_help_triggers:
+  - Postal, business-address, identity, privacy, customs, or suspicious-item duties are uncertain.
+  - Scanning contents, cross-border forwarding, legal process, or law-enforcement requests arise.

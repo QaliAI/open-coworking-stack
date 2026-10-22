@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: prepare-membership-proposals
+name: Prepare membership proposals
+description: Convert confirmed requirements and current inventory into a clear proposal using approved terms, assumptions, exclusions, and validity conditions that a person verifies before sending.
+business_area: sales-leasing
+primary_role: sales-leasing-manager
+supporting_roles: [finance-billing-administrator, operations-facilities-manager]
+frequency: per-interaction
+trigger: Discovery establishes a viable offer and the prospect requests or expects written terms.
+inputs:
+  [
+    Confirmed requirements,
+    Approved product and terms,
+    Current inventory and operational constraints,
+  ]
+outputs: [Reviewed proposal, Recorded assumptions and validity, Approval requests for exceptions]
+current_manual_methods: [Copying an old document, Spreadsheet calculation, Email summary]
+common_failure_modes:
+  [Old terms or unavailable space are copied, Taxes or service exclusions are unclear]
+human_judgment_required:
+  [
+    Choose a suitable offer and explain tradeoffs,
+    Check that the proposal reflects discovery rather than template defaults,
+  ]
+approval_points: [Finance and operations approve pricing, billing, capacity, or delivery exceptions]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [Sent proposals match approved inventory and terms, Rework caused by preventable proposal errors]
+related_workflows: [tour-to-close, member-onboarding]

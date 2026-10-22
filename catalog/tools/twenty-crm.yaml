@@ -24,10 +24,11 @@ deployment:
   - managed-saas
 maturity: emerging
 license:
-  class: oss-osi-approved
+  class: open-core
   spdx: AGPL-3.0-only
   source_url: https://github.com/twentyhq/twenty
-  verified_on: 2026-07-17
+  notes: 'Official LICENSE: mostly AGPL-3.0 with an application exception; files marked "@license Enterprise" are under a commercial license and some packages are MIT.'
+  verified_on: 2026-10-20
 cost:
   model: freemium
   summary: Self-host free; cloud offering may have paid plans—verify official pricing.

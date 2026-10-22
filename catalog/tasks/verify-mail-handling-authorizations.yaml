@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: verify-mail-handling-authorizations
+name: Verify mail handling authorizations
+description: Confirm who may receive instructions, collect items, request forwarding, or change handling preferences using current evidence and a documented human exception process.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [general-manager]
+frequency: event-driven
+trigger: Authorization is created, changed, expires, is challenged, or is used for a sensitive action.
+inputs: [Client authority record, Requester evidence, Approved verification and delegation rules]
+outputs:
+  [Verified authorization status, Approved update or explained refusal, Escalated discrepancy]
+current_manual_methods: [Signature card, Familiarity with collector, Email from known address]
+common_failure_modes:
+  [Expired delegate remains accepted, Similar name or mailbox access is treated as authority]
+human_judgment_required:
+  [
+    Evaluate evidence and discrepancy context,
+    Recognize coercion,
+    fraud,
+    or legal-process indicators,
+  ]
+approval_points: [Manager approves nonstandard evidence or disputed authority]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Sensitive actions trace to current authorization,
+    Discrepancies are paused and escalated rather than guessed,
+  ]
+related_workflows: [mail-package-handling, compliance-review]

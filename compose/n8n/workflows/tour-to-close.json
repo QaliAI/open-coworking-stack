@@ -1,0 +1,155 @@
+{
+  "name": "Tour-to-Close Workflow (fabricated demonstration)",
+  "nodes": [
+    {
+      "id": "webhook-tour-booked",
+      "name": "Webhook - Tour Booked",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "path": "tour-booked",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "add-to-crm-lead",
+      "name": "Add/Update Lead in CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300],
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ $env.CRM_API_URL }}/api/contacts/find-or-create",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "email", "value": "={{ $json.body.email }}" },
+            { "name": "firstName", "value": "={{ $json.body.firstName }}" },
+            { "name": "lastName", "value": "={{ $json.body.lastName }}" },
+            { "name": "phone", "value": "={{ $json.body.phone }}" },
+            { "name": "leadSource", "value": "=\"website-tour\"" },
+            { "name": "status", "value": "=\"tour-scheduled\"" },
+            { "name": "tourDate", "value": "={{ $json.body.tourDate }}" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "send-tour-confirmation",
+      "name": "Send Tour Confirmation Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [450, 500],
+      "parameters": {
+        "fromEmail": "={{ $env.TOUR_EMAIL_FROM }}",
+        "toEmail": "={{ $json.body.email }}",
+        "subject": "=Your tour at {{ $env.COWORKING_SPACE_NAME }} is confirmed!",
+        "text": "=Hi {{ $json.body.firstName }},\n\nYour tour is scheduled for {{ $json.body.tourDate }}. We look forward to showing you around!\n\nParking: {{ $env.TOUR_PARKING_INFO }}\n\nSee you soon,\nThe {{ $env.COWORKING_SPACE_NAME }} Team",
+        "options": {}
+      }
+    },
+    {
+      "id": "wait-tour-complete",
+      "name": "Wait for Tour Date",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [450, 700],
+      "parameters": {
+        "resume": "afterTimeInterval",
+        "amount": 1,
+        "unit": "hours"
+      }
+    },
+    {
+      "id": "trigger-followup",
+      "name": "Trigger Follow-up Sequence",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [650, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPPORT_API_URL }}/api/v1/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "=Tour follow-up: {{ $json.body.firstName }} {{ $json.body.lastName }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ \"Tour completed for \" + $json.body.firstName + \" \" + $json.body.lastName + \". Follow up within 24 hours. Tour date: \" + $json.body.tourDate }}",
+              "assigneeId": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "checkin-three-days",
+      "name": "Wait 3 days no-close check",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [650, 500],
+      "parameters": {
+        "resume": "afterTimeInterval",
+        "amount": 3,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "no-close-survey",
+      "name": "Send Feedback Survey (no-close)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [850, 500],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SURVEY_API_URL }}/api/v1/responses",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "surveyId", "value": "={{ $env.TOUR_FEEDBACK_SURVEY_ID }}" },
+            { "name": "email", "value": "={{ $json.body.email }}" }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook - Tour Booked": {
+      "main": [[{ "node": "Add/Update Lead in CRM", "type": "main", "index": 0 }]]
+    },
+    "Add/Update Lead in CRM": {
+      "main": [[{ "node": "Send Tour Confirmation Email", "type": "main", "index": 0 }]]
+    },
+    "Send Tour Confirmation Email": {
+      "main": [[{ "node": "Wait for Tour Date", "type": "main", "index": 0 }]]
+    },
+    "Wait for Tour Date": {
+      "main": [[{ "node": "Trigger Follow-up Sequence", "type": "main", "index": 0 }]]
+    },
+    "Trigger Follow-up Sequence": {
+      "main": [[{ "node": "Wait 3 days no-close check", "type": "main", "index": 0 }]]
+    },
+    "Wait 3 days no-close check": {
+      "main": [[{ "node": "Send Feedback Survey (no-close)", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "timezone": "UTC",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": ["coworking", "sales", "tours", "fabricated-demo"],
+  "versionId": "demo-tour-to-close-v1"
+}

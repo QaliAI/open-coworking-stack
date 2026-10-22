@@ -1,0 +1,24 @@
+schema_version: 1.0.0
+id: make-member-introductions
+name: Make member introductions
+description: Propose and facilitate a mutually relevant introduction based on expressed goals and separate consent from both people rather than inferred similarity or activity data.
+business_area: community
+primary_role: community-manager
+supporting_roles: [member]
+frequency: event-driven
+trigger: Staff identify a plausible mutual benefit or a member asks for a connection.
+inputs: [Expressed member goals, Current consent and contact preferences, Community manager context]
+outputs: [Consented introduction or respectful non-action, Brief purpose and suggested next step]
+current_manual_methods:
+  [Spontaneous in-person introduction, Shared contact details, Memory-based matching]
+common_failure_modes:
+  [One party did not consent, Sensitive business plans or personal details are disclosed]
+human_judgment_required:
+  [Assess mutual relevance and power dynamics, Phrase context without overclaiming fit]
+approval_points: [Both members approve the introduction and information shared]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [Introductions have bilateral consent, Members report relevance without pressure to continue]
+related_workflows: [community-programming]

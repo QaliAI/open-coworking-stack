@@ -1,0 +1,18 @@
+example_only: true
+runtime_evidence: none
+tool_id: restic
+pilot_service: synthetic-room-booking-demo
+source_inputs:
+  - prepared-database-dump
+  - application-upload-directory
+  - secret-free-configuration
+repository:
+  backend: documented-backend-not-selected
+  offsite: to-be-verified
+required_results:
+  scheduled_snapshots: 7
+  induced_failure_alert: pending
+  repository_check: pending
+  clean_host_restore: pending
+  application_acceptance: pending
+result: not-run

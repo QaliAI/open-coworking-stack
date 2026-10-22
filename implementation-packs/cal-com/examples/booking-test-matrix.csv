@@ -1,0 +1,8 @@
+case,expected,human_owner,actual,evidence_ref,status
+valid-slot,one booking and matching calendar event,scheduling-owner,,,not-run
+same-slot-contention,only approved capacity accepted,host,,,not-run
+time-zone-display,host and attendee times are correct,host,,,not-run
+buffer-boundary,blocked interval behaves as approved,scheduling-owner,,,not-run
+cancel-reschedule,calendar and messages reconcile,community-owner,,,not-run
+token-revocation,connection fails visibly and manual route works,technical-owner,,,not-run
+export-or-restore,representative bookings remain usable,recovery-owner,,,not-run

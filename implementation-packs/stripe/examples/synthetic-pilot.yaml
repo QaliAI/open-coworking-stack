@@ -1,0 +1,20 @@
+example_only: true
+runtime_evidence: none
+tool_id: stripe
+mode: sandbox
+real_customer_data: false
+real_payment_data: false
+fixtures:
+  - invoice-success-synthetic
+  - invoice-decline-synthetic
+  - invoice-duplicate-event-synthetic
+  - invoice-refund-dispute-synthetic
+  - invoice-webhook-interruption-synthetic
+required_controls:
+  - documented low-risk connector
+  - sandbox keys in secret vault
+  - verified webhook signature
+  - idempotent event handling
+  - finance reconciliation
+live_activation: false
+result: not-run

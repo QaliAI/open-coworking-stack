@@ -1,87 +1,166 @@
 ---
-title: Open Coworking Stack
-description: A practical, verified directory of free, open-source, source-available, freemium, and free-to-try technology for coworking and flexible-workspace operators.
+title: Choose coworking technology around the work
+description: An operator-facing directory for comparing tools, human responsibilities, evidence status, and small pilots without pretending incomplete research is verified.
 template: splash
 hero:
-  tagline: Assemble a low-cost technology stack without expensive implementation mistakes.
+  tagline: Start with a task, see what remains human, and test the smallest useful change before committing a budget.
   actions:
-    - text: Browse the directory
-      link: ./directory/
+    - text: Start here (no technical skills needed)
+      link: ./start/start-here/
       icon: right-arrow
       variant: primary
-    - text: Reference stacks
-      link: ./stacks/generated/bootstrap-near-zero/
+    - text: Build a stack plan
+      link: ./stack-builder/
+      icon: setting
+      variant: secondary
+    - text: Estimate capacity and payback
+      link: ./roi-calculator/
       icon: open-book
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import catalog from '../../../public/data/catalog.json';
 
-## Why this exists
+<div class="ocs-home-ledger" aria-label="Current catalog status">
+  <div>
+    <strong>{catalog.tool_count}</strong>
+    <span>tool records</span>
+  </div>
+  <div>
+    <strong>{catalog.task_count ?? '—'}</strong>
+    <span>operator tasks</span>
+  </div>
+  <div>
+    <strong>{catalog.role_count ?? '—'}</strong>
+    <span>operator roles</span>
+  </div>
+  <div>
+    <strong>
+      {catalog.tools.filter((tool) => tool.verification_tier === 'verified-core').length}
+    </strong>
+    <span>Verified Core tools</span>
+  </div>
+</div>
 
-Coworking operators are flooded with SaaS demos, “awesome lists,” and vendor PDFs. Few resources carefully separate **OSI open source** from **source-available**, **open-core**, **freemium SaaS**, and **free trials**—or explain what a small space can actually run without a full-time platform team.
+<p class="ocs-home-ledger-note">
+  Generated {catalog.generated_at.slice(0, 10)}. Counts describe catalog coverage, not proof of
+  implementation quality.
+</p>
 
-Open Coworking Stack is a **documentation-first, Git-versioned catalog** with:
+## What this is
 
-- verified-where-possible metadata (and honest `unverified` gaps);
-- coworking workflows, roles, and problems—not generic IT categories alone;
-- implementation guides and Docker Compose starter packs where licensing permits;
-- comparison pages and low-cost reference stacks.
+A directory of software for coworking and flexible-workspace operators. Each record states the
+**license type** (truly open source, source-available, or proprietary), the **cost model**, the
+**human work that stays with your team**, and an installation guide where one exists. There is no
+paid placement in the listings. If you are new, begin with the
+[operator pathway](./start/start-here/).
 
-## Start by your job
+## Start with the outcome
 
-<CardGrid>
-  <LinkCard
-    title="Community manager"
-    href="./navigation/by-role/#community-manager"
-    description="Onboarding, events, shared inboxes, feedback."
-  />
-  <LinkCard
-    title="Owner / operator"
-    href="./navigation/by-role/#owner-operator"
-    description="Cost control, billing, risk, stack choices."
-  />
-  <LinkCard
-    title="Technical operator"
-    href="./navigation/by-role/#technical-operator"
-    description="Self-host, SSO, backups, monitoring."
-  />
-  <LinkCard
-    title="Sales manager"
-    href="./navigation/by-role/#sales-manager"
-    description="Tours, CRM, proposals, follow-up."
-  />
-</CardGrid>
+<div class="ocs-outcome-list">
+  <article>
+    <div>
+      <h3>Reduce repeated operator admin</h3>
+      <p>
+        Find task-fit reviews that state the manual process a tool can change and the judgment staff
+        still retain.
+      </p>
+    </div>
+    <a href="./directory/?problem=reduce-manual-admin">Review admin tools</a>
+  </article>
+  <article>
+    <div>
+      <h3>Control software cost without hiding labor</h3>
+      <p>
+        Compare license, hosting model, pilot difficulty, and maintenance boundaries before treating
+        a free tier as a low-cost system.
+      </p>
+    </div>
+    <a href="./ops/cost-model/">Plan total cost</a>
+  </article>
+  <article>
+    <div>
+      <h3>Improve one member journey</h3>
+      <p>
+        Follow an operating workflow, assign human owners, and test one stage instead of replacing
+        the whole stack at once.
+      </p>
+    </div>
+    <a href="./workflows/member-onboarding/">Open onboarding</a>
+  </article>
+  <article>
+    <div>
+      <h3>Run a bounded pilot</h3>
+      <p>
+        Use the directory to find an evaluated fit, then open its record for evidence, risks, and
+        the smallest useful experiment.
+      </p>
+    </div>
+    <a href="./directory/?tier=evaluated">Find evaluated fits</a>
+  </article>
+</div>
 
-## Start by the problem
+## Choose your working view
 
-<CardGrid>
-  <Card title="Cut software cost" icon="approve-check">
-    See tools tagged `reduce-software-cost` and the [near-zero
-    stack](./stacks/generated/bootstrap-near-zero/).
-  </Card>
-  <Card title="Self-host for control" icon="seti:lock">
-    Prefer OSS/self-host entries and the [privacy-first
-    stack](./stacks/generated/privacy-first-selfhost/).
-  </Card>
-  <Card title="Fill rooms & desks" icon="calendar">
-    Compare booking tools on the [comparisons page](./comparisons/).
-  </Card>
-  <Card title="Ship a pilot this week" icon="rocket">
-    Every tool lists a **smallest useful experiment**—try before you commit.
-  </Card>
-</CardGrid>
+<div class="ocs-workbench-links">
+  <article>
+    <span>By task</span>
+    <strong>Start with work that needs changing</strong>
+    <a href="./tasks/generated/manage-room-bookings/">Browse tasks</a>
+  </article>
+  <article>
+    <span>By role</span>
+    <strong>See responsibilities and dangerous automation boundaries</strong>
+    <a href="./roles/generated/owner-operator/">Browse roles</a>
+  </article>
+  <article>
+    <span>By evidence</span>
+    <strong>Filter tier, completeness, confidence, and guide status separately</strong>
+    <a href="./directory/">Filter evidence</a>
+  </article>
+  <article>
+    <span>By trade-off</span>
+    <strong>Use directional comparisons, then verify at the source</strong>
+    <a href="./comparisons/">Compare tools</a>
+  </article>
+</div>
 
-## Critical boundaries
+## Current limits
 
-1. **We do not vendor upstream projects.** Official repos stay authoritative.
-2. **We do not mislabel licenses.** Source-visible ≠ open source.
-3. **We do not invent pricing or star counts.** Missing facts stay `unverified`.
-4. **Software does not replace staff.** It may reduce or augment tasks with human oversight.
+<aside class="ocs-limitations" id="not-yet-available">
+  <h3>This is a decision aid, not a completed verification program</h3>
+  <ul>
+    <li>
+      <strong>
+        {catalog.tools.filter((tool) => tool.verification_tier === 'verified-core').length === 0
+          ? 'No Verified Core tools yet.'
+          : 'Few tools are Verified Core.'}
+      </strong>{' '}
+      Research-backlog entries are not promoted by a recent date or a high rank score.
+    </li>
+    <li>
+      <strong>Task-fit coverage is partial.</strong> Cards say “Task fit not reviewed” where
+      structured role, manual-process, and human-work review is absent.
+    </li>
+    <li>
+      <strong>Guide states are literal.</strong> A planned guide is not linked or described as
+      complete; a stub is identified as a stub.
+    </li>
+    <li>
+      <strong>Builder and estimator outputs are directional.</strong> They use editable assumptions,
+      not current quotes or proof of savings. No staffing reduction or payback is implied.
+    </li>
+    <li>
+      <strong>Comparisons are directional.</strong> Re-check official licensing, pricing, security,
+      and deployment sources before a production decision.
+    </li>
+  </ul>
+</aside>
 
-## Next steps
+## A practical first pass
 
-1. Read [How to use this project](./start/how-to-use/).
-2. Skim [Evaluation criteria](./start/evaluation-criteria/) and [License classes](./start/license-classes/).
-3. Open the [interactive directory](./directory/).
-4. Pick a [reference stack](./stacks/generated/bootstrap-near-zero/) and run one experiment.
+1. Name one manual task and the staff member accountable for its outcome.
+2. [Filter the directory](./directory/) by role, task language, deployment, and research tier.
+3. Read the human-work and confidence fields before comparing product features.
+4. Run one smallest useful experiment with synthetic or low-risk data.
+5. Keep an exit path and a person responsible for exceptions, security, and recovery.

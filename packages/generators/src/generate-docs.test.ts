@@ -152,7 +152,9 @@ describe('generateDerivedDocs', () => {
     });
     expect((await readdir(dataDirectory)).sort()).toEqual([
       'catalog.json',
+      'roles.json',
       'stacks.json',
+      'tasks.json',
       'tools.csv',
       'tools.json',
       'workflows.json',

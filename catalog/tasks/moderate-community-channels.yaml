@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: moderate-community-channels
+name: Moderate community channels
+description: Maintain useful, inclusive member channels by applying published norms with context, documenting consequential actions, and offering a human review route.
+business_area: community
+primary_role: community-manager
+supporting_roles: [general-manager, it-security-administrator]
+frequency: continuous
+trigger: New channel activity, a member report, or a scheduled moderation review.
+inputs:
+  [
+    Published community norms,
+    Reported content and context,
+    Member communication history where relevant,
+  ]
+outputs:
+  [Proportionate moderation action, Explanation and appeal route, Escalated safety or legal concern]
+current_manual_methods: [Ad hoc deletion, Private warning, Keyword filtering]
+common_failure_modes:
+  [Automated flag misses context, Similar conduct receives inconsistent outcomes]
+human_judgment_required:
+  [Interpret tone, context, impact, and pattern, Distinguish disagreement from harassment or threat]
+approval_points: [General manager approves suspension, removal, or formal sanction]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Material reports receive timely contextual review,
+    Consequential actions include reasons and appeal path,
+  ]
+related_workflows: [community-programming, incident-response]

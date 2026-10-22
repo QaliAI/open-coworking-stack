@@ -1,0 +1,32 @@
+tool_id: bookstack
+pack_status: documentation-reviewed-runtime-untested
+pilot_outcome: five-owned-searchable-permissioned-sops
+accountable_owner: knowledge-owner
+responsible_operators:
+  - content-editor
+  - technical-operator
+required_reviewers:
+  - page-owner
+  - privacy-or-safety-reviewer-as-needed
+  - recovery-witness
+minimum_skills:
+  - information-architecture
+  - content-governance
+  - role-and-permission-testing
+  - mysql-or-mariadb-recovery
+human_approval_gates:
+  - content-classification
+  - critical-page-publication
+  - role-or-public-access-change
+  - archive-and-cutover
+excluded_scope:
+  - contracts
+  - payment-records
+  - hr-cases
+  - emergency-training-replacement
+evidence_required:
+  - source-to-page-register
+  - permission-test
+  - export-and-restore-record
+untested_limitations:
+  - all-runtime-content-and-integration-behavior

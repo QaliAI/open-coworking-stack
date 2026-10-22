@@ -1,64 +1,135 @@
 schema_version: 1.0.0
 id: bootstrap-near-zero
-name: Bootstrap Near-Zero Cash Stack
-tagline: Self-host the minimum viable operator toolkit on one VPS
-description: 'A starting architecture for independent operators who can trade time for money:
-  reverse proxy, password vault, wiki, uptime monitoring, backups, and a simple CRM—before buying
-  vertical coworking SaaS.'
-audience_roles:
-  - owner-operator
-  - technical-operator
-  - operations-manager
+name: Near-Zero Cash Technical Self-Host
+tagline: Trade skilled operator time for a minimal self-hosted control plane
+description: A near-zero software-license architecture for a technical independent operator who can maintain a small server, document manual controls, and keep payments outside the stack.
+audience_roles: [owner-operator, technical-operator, operations-manager]
 problems_solved:
-  - reduce-software-cost
-  - self-host-for-data-control
-  - replace-spreadsheets
-  - disaster-recovery
-workflows:
-  - member-onboarding
-  - tour-to-close
-  - backup-restore-drill
-  - incident-response
-monthly_cash_budget_band: under-50
+  [reduce-software-cost, self-host-for-data-control, replace-spreadsheets, disaster-recovery]
+workflows: [member-onboarding, tour-to-close, backup-restore-drill, incident-response]
+monthly_cash_budget_band: near-zero
 self_host_heavy: true
+operator_profile: A cash-constrained independent operator with reliable Linux and container skills who accepts manual work during the pilot.
+number_of_locations: One location, with no shared production dependency across sites.
+team_size: One to three staff, including a named technical owner.
+products_offered: [coworking memberships, day passes, meeting rooms]
+technical_skill_required: High; Linux, DNS, TLS, containers, patching, logs, and restore testing are required.
+tasks_covered:
+  [
+    tour-lead-tracking,
+    staff-password-management,
+    sop-publishing,
+    service-monitoring,
+    encrypted-backup,
+    shared-support-inbox,
+  ]
+tasks_not_covered:
+  [
+    card-payment-processing,
+    door-access-control,
+    statutory-accounting,
+    tax-filing,
+    staffed-front-desk,
+    legal-compliance-review,
+  ]
+systems_of_record:
+  - EspoCRM is the lead and tour record.
+  - BookStack is the approved SOP record.
+  - The external payment processor and bank remain financial records.
 components:
   - tool_id: caddy
-    role_in_stack: TLS reverse proxy
+    role_in_stack: TLS termination and reverse proxy
     required: true
   - tool_id: vaultwarden
-    role_in_stack: Staff secrets
+    role_in_stack: Staff credential vault
     required: true
   - tool_id: bookstack
-    role_in_stack: SOPs and member FAQ
+    role_in_stack: SOP and member FAQ source
     required: true
   - tool_id: uptime-kuma
-    role_in_stack: Uptime monitoring
+    role_in_stack: Service availability checks
     required: true
   - tool_id: restic
-    role_in_stack: Encrypted backups
+    role_in_stack: Encrypted offsite-capable backups
     required: true
   - tool_id: espocrm
-    role_in_stack: Tour pipeline CRM
+    role_in_stack: Tour and sales pipeline record
     required: true
   - tool_id: listmonk
-    role_in_stack: Member newsletter (with SMTP provider)
+    role_in_stack: Optional newsletter delivery through approved SMTP
     required: false
   - tool_id: freescout
-    role_in_stack: Shared support inbox
+    role_in_stack: Optional shared support inbox
     required: false
+data_flow:
+  - Staff enter tour leads in EspoCRM and record consent before any newsletter export.
+  - Caddy routes encrypted traffic to internal services; administrative routes require restricted access.
+  - Restic encrypts application data and sends copies to storage outside the primary server.
+implementation_order:
+  [
+    define-record-boundaries,
+    deploy-caddy,
+    deploy-vaultwarden,
+    deploy-bookstack,
+    configure-restic,
+    prove-restore,
+    deploy-uptime-kuma,
+    pilot-espocrm,
+    add-optional-messaging,
+  ]
+cost_assumptions:
+  monthly_cash: Edit before adoption; expect infrastructure, domain, offsite storage, and delivery charges rather than software license fees.
+  setup_labor: Several focused technical sessions plus staff process mapping; do not treat setup time as free.
+  maintenance_labor: Reserve a recurring weekly patch and review window and a quarterly recovery exercise.
+  messaging_email_sms: Transactional email needs an approved delivery service; SMS is outside the base stack and usage-funded.
+  hosting_storage: One modest host may pilot the stack, but backups must use a separate provider or physical boundary.
+  notes:
+    - Near-zero describes license cash, not total cost of ownership.
+    - Replace assumptions with local quotes before production use.
+  pricing_sources: []
+human_owners:
+  [
+    owner-operator for process and data decisions,
+    technical-operator for hosting and recovery,
+    operations-manager for daily data quality,
+  ]
+security_boundaries:
+  - Keep payment card data out of every self-hosted application.
+  - Restrict admin interfaces and maintain tested break-glass credentials.
+  - Obtain human approval before bulk email or destructive automation.
+backup_and_recovery:
+  - Back up databases, attachments, and configuration to a separate boundary.
+  - Test one item restore monthly and a complete service restore quarterly.
+  - Keep a printed outage procedure and current credential escrow.
 assumptions:
-  - At least one person can maintain Linux/Docker basics.
-  - Domain DNS and a small VPS (~€5–20/mo class) are available—exact prices unverified and regional.
-  - Payments still use a PSP like Stripe; this stack does not replace banking.
+  - A named person can maintain Linux and containers.
+  - Manual payment reconciliation is acceptable during the pilot.
 risks:
-  - Single-VPS outage takes many tools offline—use offsite backups.
-  - Self-host time cost can exceed SaaS fees if unskilled.
-  - Email deliverability requires a commercial SMTP provider for most operators.
+  - A single-host outage can interrupt several workflows.
+  - Labor and email-delivery costs can exceed a small SaaS subscription.
 getting_started:
-  - Buy/reserve a domain and VPS; configure DNS.
-  - Deploy Caddy + Vaultwarden + BookStack + Uptime Kuma via Compose packs.
-  - Prove restore from Restic before migrating real member PII.
-  - Add EspoCRM only after staff agree on pipeline stages.
+  [
+    inventory-current-records,
+    choose-one-pilot-workflow,
+    deploy-with-test-data,
+    prove-backup-restore,
+    train-staff-before-member-data,
+  ]
+pilot_plan:
+  - Run tour tracking and the SOP library with test data for two weeks.
+  - Restore the pilot to a clean host before adding member data.
+rollout_30_day:
+  - Publish ownership, retention, incident, and change procedures.
+  - Move one live workflow at a time with a rollback window.
+maturity_90_day:
+  - Complete a recovery drill and remove abandoned accounts.
+  - Compare labor and incident burden with a hosted alternative.
+exit_strategy:
+  - Export CRM records and SOPs in documented portable formats.
+  - Retain encrypted final backups according to the retention policy, then destroy excess copies.
+commercial_fallback:
+  - Move memberships and billing to an evaluated coworking SaaS if maintenance exceeds capacity.
+  - Use managed hosting or a support partner before leaving unmaintained services online.
 verification:
-  last_reviewed: 2026-07-17
-  notes: Reference architecture, not a turnkey product.
+  last_reviewed: 2026-07-18
+  notes: Planning architecture; local infrastructure and labor assumptions require operator review.

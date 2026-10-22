@@ -1,0 +1,29 @@
+schema_version: 1.0.0
+id: run-member-listening-sessions
+name: Run member listening sessions
+description: Facilitate structured conversations with a varied member sample to understand experiences and needs, recording themes and consent boundaries rather than extracting identifiable quotes by default.
+business_area: community
+primary_role: community-manager
+supporting_roles: [member, consultant-implementer]
+frequency: quarterly
+trigger: Scheduled research cycle or a material service or community change.
+inputs: [Research questions, Participant consent, Existing evidence and known representation gaps]
+outputs: [Context-rich themes, Contradictory viewpoints and caveats, Owned learning actions]
+current_manual_methods: [Open town hall, Informal conversations, General satisfaction survey]
+common_failure_modes:
+  [Only highly engaged members attend, Staff defend decisions instead of listening]
+human_judgment_required:
+  [
+    Probe without leading and protect psychological safety,
+    Interpret conflicting experiences without false consensus,
+  ]
+approval_points: [Participants approve attribution; service owner approves resulting commitments]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Participant mix and evidence limitations are documented,
+    Findings lead to communicated actions or reasons for no action,
+  ]
+related_workflows: [community-programming, reporting-kpis]

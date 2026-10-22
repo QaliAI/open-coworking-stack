@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: notify-mail-recipients
+name: Notify mail recipients
+description: Send a minimum-detail notice through the recipient's approved channel after custody is recorded, and route failed or sensitive notifications for human follow-up.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: event-driven
+trigger: An eligible item is logged or its handling status materially changes.
+inputs: [Custody record, Current notification preference, Approved message template]
+outputs: [Delivery-status notification, Failed-contact queue, Recorded recipient response]
+current_manual_methods: [Manual email, Text message, Phone call]
+common_failure_modes:
+  [Notice exposes sender or item detail unnecessarily, Old contact receives sensitive information]
+human_judgment_required:
+  [
+    Choose safe wording for unusual items,
+    Decide when failed delivery needs alternate authorized contact,
+  ]
+approval_points: [Client approves contact preference; manager approves exceptional disclosure]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [Notifications are sent after verified receipt, Failed or bounced notices receive timely review]
+related_workflows: [mail-package-handling]

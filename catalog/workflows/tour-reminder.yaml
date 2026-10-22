@@ -1,0 +1,48 @@
+schema_version: 1.0.0
+id: tour-reminder
+name: Tour reminder
+description: Send a proportionate reminder for a still-valid tour while honoring contact preferences and leaving rescheduling with people.
+objective: Reduce avoidable missed tours without excessive or unwanted messaging.
+responsible_role: Sales manager
+trigger: A confirmed tour reaches the locally approved reminder interval.
+inputs:
+  [
+    current appointment status,
+    contact preference,
+    reminder policy,
+    location and change instructions,
+  ]
+outputs: [reminder delivery status, reply or change request, staff exception task]
+source_of_truth: The current scheduling record is authoritative.
+systems_involved: [scheduling system, communication channel, sales pipeline]
+automation_steps:
+  [recheck appointment status, suppress cancelled tours, send approved reminder, log delivery]
+human_approval_points: [Staff handle replies, accessibility needs, and rescheduling decisions.]
+failure_exception_paths: [Route bounces, replies, conflicts, and late changes to the tour owner.]
+privacy_risks: [Reminder previews can expose visit details on shared devices.]
+security_risks: [Untrusted links or compromised messaging accounts can redirect prospects.]
+measurable_kpis: [reminder delivery rate, opt-out complaints, tour attendance rate]
+test_cases:
+  [Remind a valid tour, suppress a cancelled tour, handle a reply, simulate failed delivery.]
+manual_fallback: [Review the next-day tour list and contact prospects through approved channels.]
+rollback_disable_procedure:
+  [
+    Disable reminder scheduling,
+    retain appointment status,
+    inform hosts,
+    resume manual reminder review.,
+  ]
+primary_roles: [sales-manager, community-manager]
+stages:
+  - id: recheck-and-remind
+    name: Recheck and remind
+    description: Confirm the tour remains valid before sending one policy-compliant reminder.
+    manual_tasks: [review replies and exceptions, approve rescheduling]
+    automation_opportunities: [suppress invalid appointments and send an approved reminder]
+    suggested_tool_ids: [cal-com, listmonk]
+    risks: [Stale status can cause reminders for cancelled or already changed tours.]
+success_metrics:
+  [Only valid tours receive reminders, replies and delivery failures reach the owner.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Reminder timing, frequency, and channels require local consent review.

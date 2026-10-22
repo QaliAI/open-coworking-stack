@@ -69,6 +69,80 @@ human_oversight_still_needed:
   - Read-only DB credentials
   - Row-level data exposure
   - Metric definitions
+task_fits:
+  - task_id: analyze-campaign-performance
+    relationship: reporting layer
+    automation_level: assisted
+    what_manual_process_it_can_replace: Rebuilding recurring campaign performance spreadsheets and
+      circulating screenshots of disconnected top-line metrics.
+    what_it_takes_off_the_team: Re-runs reviewed questions and dashboards over connected, curated
+      campaign and outcome data for periodic analysis.
+    role_assisted: marketing-manager
+    what_remains_human: Marketing and commercial owners interpret attribution and data limitations,
+      connect activity to qualified outcomes, and approve material spend, audience, or proposition changes.
+    prerequisites:
+      - Read-only access to curated delivery, cost, inquiry, and outcome data
+      - Approved metric definitions, identity rules, and documented attribution limits
+      - Row-level access controls and a named dashboard owner
+    failure_consequence:
+      Incorrect joins, duplicate identities, stale data, or misleading definitions
+      can make clicks appear valuable and drive unsupported campaign decisions.
+    pilot_metric: Percentage of reviewed figures reconciled to source controls; decisions record
+      qualified outcomes, assumptions, and attribution limits.
+    evidence:
+      - https://www.metabase.com/
+      - https://www.metabase.com/docs/latest/
+    confidence: medium
+  - task_id: forecast-sales-and-renewals
+    relationship: reporting layer
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Copying pipeline and renewal totals into a recurring weighted
+      forecast spreadsheet.
+    what_it_takes_off_the_team: Presents a repeatable view of curated pipeline, renewal, capacity,
+      and historical outcome data using reviewed calculations.
+    role_assisted: sales-leasing-manager
+    what_remains_human:
+      Sales staff assess evidence quality and uncertainty; the sales owner signs the
+      forecast and finance and operations approve the assumptions they own.
+    prerequisites:
+      - Read-only access to current pipeline, renewal, capacity, and outcome data
+      - Versioned forecast definitions with stale-stage and missing-data checks
+      - Named owners for assumptions, source quality, and access control
+    failure_consequence: Stale stages, omitted capacity, or an incorrect probability calculation can
+      create false revenue confidence and distort staffing or cash decisions.
+    pilot_metric:
+      Forecast error tracked by horizon and cause, with material assumptions, stale data,
+      and changes visible at each review.
+    evidence:
+      - https://www.metabase.com/
+      - https://www.metabase.com/docs/latest/
+    confidence: medium
+  - task_id: review-member-service-trends
+    relationship: reporting layer
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Manually combining service counts and feedback summaries into
+      a monthly trend spreadsheet.
+    what_it_takes_off_the_team: Refreshes reviewed aggregates and drill-down questions over curated
+      request, complaint, recovery, and feedback data.
+    role_assisted: general-manager
+    what_remains_human: The general manager interprets trends in context, checks for profiling or
+      misleading counts, and approves priorities and policy changes.
+    prerequisites:
+      - Curated service and feedback data with documented deduplication rules
+      - Privacy-preserving dimensions, row-level controls, and minimum-group policy
+      - Approved metric definitions and an owner for data-quality exceptions
+    failure_consequence:
+      Duplicate contacts, exposed detail, or a speed-only metric can misstate member
+      needs, profile people, and direct effort toward the wrong issue.
+    pilot_metric:
+      Priority themes have reconciled evidence, stated caveats, and owners; selected actions
+      are tracked for reduction in repeat contacts or impact.
+    evidence:
+      - https://www.metabase.com/
+      - https://www.metabase.com/docs/latest/
+    confidence: medium
 data_privacy:
   data_held:
     - query results cache
@@ -99,5 +173,18 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: repository
+      source: https://github.com/metabase/metabase
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://www.metabase.com/docs/latest/
+      verified_on: 2026-07-17
+    - kind: pricing
+      source: https://www.metabase.com/pricing/
+      verified_on: 2026-07-17
 featured: true
 rank_score: 82

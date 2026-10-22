@@ -1,0 +1,168 @@
+{
+  "name": "Member Onboarding Workflow (fabricated demonstration)",
+  "nodes": [
+    {
+      "id": "webhook-trigger",
+      "name": "Webhook - New Member Signed",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "path": "member-onboarding",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "find-crm-contact",
+      "name": "Find or Create CRM Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.CRM_API_URL }}/api/contacts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "email", "value": "={{ $json.body.email }}" },
+            { "name": "firstName", "value": "={{ $json.body.firstName }}" },
+            { "name": "lastName", "value": "={{ $json.body.lastName }}" },
+            { "name": "phone", "value": "={{ $json.body.phone }}" },
+            { "name": "membershipTier", "value": "={{ $json.body.plan }}" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "create-welcome-ticket",
+      "name": "Create Welcome Task in Support",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 500],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPPORT_API_URL }}/api/v1/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "=Welcome: {{ $json.body.firstName }} {{ $json.body.lastName }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ \"New member \" + $json.body.firstName + \" signed up for \" + $json.body.plan + \". Send welcome email, tour confirmation, and access instructions.\" }}"
+            },
+            { "name": "assigneeId", "value": "" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "schedule-tour-calcom",
+      "name": "Schedule Orientation via Cal.com",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 700],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SCHEDULING_API_URL }}/api/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "email", "value": "={{ $json.body.email }}" },
+            {
+              "name": "name",
+              "value": "={{ $json.body.firstName + \" \" + $json.body.lastName }}"
+            },
+            { "name": "eventTypeId", "value": "={{ $env.ORIENTATION_EVENT_TYPE_ID }}" },
+            {
+              "name": "start",
+              "value": "={{ $now.plus(2, 'days').format('yyyy-MM-dd') + 'T10:00:00Z' }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "send-slack-notification",
+      "name": "Notify Team via Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [450, 900],
+      "parameters": {
+        "channel": "={{ $env.STAFF_NOTIFICATION_CHANNEL }}",
+        "text": "=:wave: New member onboarded: {{ $json.body.firstName }} {{ $json.body.lastName }} ({{ $json.body.plan }})",
+        "otherOptions": {}
+      }
+    },
+    {
+      "id": "checkin-timer",
+      "name": "Wait 7 days then check-in",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "parameters": {
+        "resume": "afterTimeInterval",
+        "amount": 7,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "send-checkin-survey",
+      "name": "Send 7-Day Check-in Survey",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [850, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SURVEY_API_URL }}/api/v1/responses",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "surveyId", "value": "={{ $env.WEEK_ONE_SURVEY_ID }}" },
+            { "name": "email", "value": "={{ $json.body.email }}" },
+            { "name": "attributes", "value": "={ \"source\": \"onboarding-workflow\" }" }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook - New Member Signed": {
+      "main": [[{ "node": "Find or Create CRM Contact", "type": "main", "index": 0 }]]
+    },
+    "Find or Create CRM Contact": {
+      "main": [[{ "node": "Create Welcome Task in Support", "type": "main", "index": 0 }]]
+    },
+    "Create Welcome Task in Support": {
+      "main": [[{ "node": "Schedule Orientation via Cal.com", "type": "main", "index": 0 }]]
+    },
+    "Schedule Orientation via Cal.com": {
+      "main": [[{ "node": "Notify Team via Slack", "type": "main", "index": 0 }]]
+    },
+    "Notify Team via Slack": {
+      "main": [[{ "node": "Wait 7 days then check-in", "type": "main", "index": 0 }]]
+    },
+    "Wait 7 days then check-in": {
+      "main": [[{ "node": "Send 7-Day Check-in Survey", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "timezone": "UTC",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": ["coworking", "onboarding", "fabricated-demo"],
+  "versionId": "demo-onboarding-v1"
+}

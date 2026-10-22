@@ -29,10 +29,10 @@ deployment:
 maturity: stable
 license:
   class: open-core
-  spdx: AGPL-3.0-only
+  spdx: MIT
   source_url: https://github.com/calcom/cal.com
-  notes: Core is AGPL; platform/cloud and some features are commercial.
-  verified_on: 2026-07-17
+  notes: Root LICENSE reads MIT as of 2026-10-20 (earlier AGPL entry was not supported). Hosted cloud and enterprise offerings are separate commercial products; confirm terms for the features you need.
+  verified_on: 2026-10-20
 cost:
   model: open-core-paid-features
   summary:
@@ -76,6 +76,23 @@ human_oversight_still_needed:
   - Calendar conflict rules
   - Who owns no-show follow-up
   - Data retention for lead PII
+task_fits:
+  - task_id: schedule-prospect-tours
+    relationship: partial automation
+    automation_level: partially automated
+    what_manual_process_it_can_replace: Negotiating ordinary tour times by email and separately copying confirmed appointments into a host calendar.
+    what_it_takes_off_the_team: Presents configured host availability, collects approved preparation fields, and records standard bookings without repeated scheduling messages.
+    role_assisted: sales-leasing-manager
+    what_remains_human: Approve offered sites and hours, choose the right host, review accessibility or unusual access needs, and handle conflicts, cancellations, and exceptions.
+    prerequisites:
+      - An approved tour event type, host calendar, duration, and availability window
+      - Minimum-data intake fields and reviewed visitor instructions
+      - A visible human route for accessibility, security, and scheduling exceptions
+    failure_consequence: Incorrect availability or missed access needs can create a double booking, failed arrival, privacy exposure, or an unsuitable tour that staff must recover manually.
+    pilot_metric: Five real pilot tours occur as confirmed with no unexplained calendar conflict and every accommodation or arrival requirement reaches the named host.
+    evidence:
+      - https://cal.com/docs
+    confidence: medium
 data_privacy:
   data_held:
     - bookings
@@ -107,5 +124,19 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://cal.com/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/calcom/cal.com
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://cal.com/docs
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed editorially; no runtime or operator evidence is retained.
 featured: true
 rank_score: 91

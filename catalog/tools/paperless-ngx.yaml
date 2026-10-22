@@ -69,6 +69,52 @@ human_oversight_still_needed:
   - Access segregation for member documents
   - Retention/deletion policy
   - Scan quality control
+task_fits:
+  - task_id: receive-and-log-mail
+    relationship: assistant
+    automation_level: manual support
+    what_manual_process_it_can_replace: Paper archive indexes and unsearchable scan folders created after staff physically accept an item.
+    what_it_takes_off_the_team:
+      Ingests document images and produces OCR text, searchable metadata, and tags for the retained
+      digital record.
+    role_assisted: virtual-office-mailroom-manager
+    what_remains_human:
+      Staff must decide whether to accept the physical item, verify the recipient and authority,
+      maintain custody and storage location, inspect safety concerns, and quality-check every scan and
+      access assignment.
+    prerequisites:
+      - Approved mail acceptance, scanning, retention, and deletion policy
+      - Segregated member access and a separate physical chain-of-custody process
+    failure_consequence:
+      A wrong recipient, incomplete scan, poor access rule, or mistaken belief that OCR proves custody
+      can expose confidential mail, lose evidence, or make the physical item untraceable.
+    pilot_metric:
+      Percentage of pilot scans passing recipient, page-completeness, search, access, and physical
+      custody checks with every defect reviewed by mailroom staff.
+    evidence:
+      - https://docs.paperless-ngx.com/
+    confidence: medium
+  - task_id: review-retention-and-deletion
+    relationship: system of record
+    automation_level: manual support
+    what_manual_process_it_can_replace: Searching paper files and shared-drive folders to identify records for a scheduled retention review.
+    what_it_takes_off_the_team: Makes retained document images, OCR text, correspondents, and tags searchable for an owned review.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Record owners and qualified reviewers must interpret purpose, holds, legal duties, backup effects,
+      and residual copies before approving or executing any deletion.
+    prerequisites:
+      - Approved retention schedule, record taxonomy, ownership, and legal-hold process
+      - Tested export and backup boundaries with restricted deletion permissions
+    failure_consequence:
+      Misclassified or prematurely deleted records can destroy required evidence, while incomplete
+      deletion or broad search access can retain and expose personal information beyond its purpose.
+    pilot_metric:
+      Percentage of sampled records mapped to an approved owner, category, hold status, and documented
+      disposition without any unapproved deletion.
+    evidence:
+      - https://docs.paperless-ngx.com/
+    confidence: medium
 data_privacy:
   data_held:
     - document images
@@ -96,10 +142,28 @@ verification:
     - https://docs.paperless-ngx.com/
     - https://github.com/paperless-ngx/paperless-ngx
     - https://docs.paperless-ngx.com/
-  notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
-  reviewer: seed-catalog
+  notes: Editorial review used the official documentation and repository only. OCR quality, access
+    segregation, retention behavior, backup and export recovery, and operator outcomes remain untested.
+  reviewer: catalog-editorial-review
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://docs.paperless-ngx.com/
+      verified_on: 2026-07-17
+      notes: Official project documentation site reviewed for product identity and scope.
+    - kind: repository
+      source: https://github.com/paperless-ngx/paperless-ngx
+      verified_on: 2026-07-17
+      notes: Official source repository reviewed.
+    - kind: license
+      source: https://github.com/paperless-ngx/paperless-ngx
+      verified_on: 2026-07-17
+      notes: Repository license metadata reviewed for GPL-3.0-only.
+    - kind: docs
+      source: https://docs.paperless-ngx.com/
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed for documented ingestion and document-management capabilities.
 featured: true
 rank_score: 83

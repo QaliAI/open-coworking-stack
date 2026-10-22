@@ -1,0 +1,26 @@
+schema_version: 1.0.0
+id: modify-access-permissions
+name: Modify access permissions
+description: Apply an authorized change to physical or digital access after checking current entitlement, conflicts, effective timing, and downstream dependencies.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [general-manager, community-manager]
+frequency: event-driven
+trigger: A member role, product, location, risk condition, or approved exception changes.
+inputs: [Authorized change request, Current access, Effective date and dependency context]
+outputs: [Updated least-privilege access, Change evidence, Rejected or escalated conflict]
+current_manual_methods: [Direct admin edit, Chat request, Clone another account]
+common_failure_modes:
+  [Old permissions remain alongside new ones, Urgent request bypasses authorization]
+human_judgment_required:
+  [
+    Evaluate aggregate access and conflict risk,
+    Plan timing to avoid unsafe lockout or excess access,
+  ]
+approval_points: [Entitlement owner approves change; security owner approves exceptions]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Changes match approved effective state, No residual privilege remains without documented need]
+related_workflows: [access-provisioning, compliance-review]

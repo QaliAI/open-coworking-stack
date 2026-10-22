@@ -69,6 +69,76 @@ human_oversight_still_needed:
   - Consent and unsubscribe compliance
   - SMTP reputation monitoring
   - Content approval for member communications
+task_fits:
+  - task_id: maintain-audience-segments
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Rebuilding campaign recipient lists from broad spreadsheets
+      for each send.
+    what_it_takes_off_the_team: Stores reusable audience definitions and applies them to subscriber
+      records when staff prepare a campaign.
+    role_assisted: marketing-manager
+    what_remains_human: Marketing and privacy owners approve the purpose, permitted data, audience
+      membership, exclusions, and activation.
+    prerequisites:
+      - Documented audience purpose and consent rules
+      - Governed subscriber attributes with a named data owner
+      - Review schedule for stale attributes and small or sensitive groups
+    failure_consequence: Stale or misclassified subscriber data can select the wrong audience and
+      create an inappropriate or noncompliant send.
+    pilot_metric: Percentage of active segments with a current purpose, owner, and reviewed sample;
+      consent and suppression changes applied before send.
+    evidence:
+      - https://listmonk.app/
+      - https://listmonk.app/docs/
+    confidence: medium
+  - task_id: maintain-consent-and-suppression
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Maintaining a separate unsubscribe spreadsheet for email
+      campaigns administered in listmonk.
+    what_it_takes_off_the_team: Records email subscription state and applies that state when staff
+      prepare sends within the tool.
+    role_assisted: marketing-manager
+    what_remains_human:
+      Privacy or marketing owners resolve identity and purpose ambiguity, reconcile
+      other channels, and approve exceptional reactivation.
+    prerequisites:
+      - Approved consent, suppression, and reactivation policy
+      - Reliable subscriber identity and import controls
+      - Reconciliation process for communication channels outside listmonk
+    failure_consequence: An import, identity mismatch, or missed reconciliation can reintroduce a
+      suppressed person or leave another channel unchanged.
+    pilot_metric: Preference changes applied within the approved target time and zero sampled
+      suppressed subscribers reintroduced by imports.
+    evidence:
+      - https://listmonk.app/
+      - https://listmonk.app/docs/
+    confidence: medium
+  - task_id: publish-campaign-assets
+    relationship: direct functional substitute
+    automation_level: mostly automated with review
+    what_manual_process_it_can_replace: Manually assembling and sending each approved member email
+      from an individual mailbox.
+    what_it_takes_off_the_team: Prepares and dispatches an approved email campaign to the selected
+      list or segment and retains campaign-level delivery and engagement records.
+    role_assisted: marketing-manager
+    what_remains_human: The named publisher confirms the final content, audience, consent, links,
+      timing, and correction path before send; an incident owner approves sensitive corrections.
+    prerequisites:
+      - Approved final content, audience, and schedule
+      - Configured SMTP delivery with domain authentication and test delivery completed
+      - Documented pause, correction, and unsubscribe handling process
+    failure_consequence:
+      Selecting the wrong draft or audience can expose member data, breach consent,
+      or publish an expired or inaccurate offer.
+    pilot_metric:
+      Percentage of pilot sends matching the approved version and audience, with delivery
+      failures and corrections recorded and resolved.
+    evidence:
+      - https://listmonk.app/
+      - https://listmonk.app/docs/
+    confidence: medium
 data_privacy:
   data_held:
     - subscribers
@@ -100,5 +170,18 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://listmonk.app/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/knadh/listmonk
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://listmonk.app/docs/
+      verified_on: 2026-07-17
 featured: true
 rank_score: 89

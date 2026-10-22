@@ -1,0 +1,28 @@
+schema_version: 1.0.0
+id: record-lost-and-found
+name: Record lost and found property
+description: Register, secure, match, and release found property with minimum descriptive data and a human verification step before ownership is accepted.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [general-manager]
+frequency: event-driven
+trigger: Property is reported missing, found on site, claimed, or reaches its retention date.
+inputs: [Item description, Discovery context, Claimant-provided identifying details]
+outputs: [Custody record, Secured item, Verified release or approved disposition]
+current_manual_methods: [Paper tag, Open shelf, Staff group message]
+common_failure_modes:
+  [Item is released on a generic description, Sensitive contents are inspected unnecessarily]
+human_judgment_required:
+  [
+    Assess whether claimant evidence is sufficient,
+    Handle identity documents,
+    devices,
+    or suspicious items appropriately,
+  ]
+approval_points: [Manager approves disputed release and end-of-retention disposition]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [Items maintain traceable custody, Releases and dispositions include authorized evidence]
+related_workflows: [incident-response]

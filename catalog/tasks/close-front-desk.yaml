@@ -1,0 +1,25 @@
+schema_version: 1.0.0
+id: close-front-desk
+name: Close the front desk
+description: Secure reception records and assets, reconcile open visitor and service items, and leave an actionable handover rather than an unstructured end-of-shift note.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [general-manager]
+frequency: daily
+trigger: End of the staffed reception period or transfer to another service mode.
+inputs: [Open service queue, Visitor status, Keys and reception asset register]
+outputs: [Closing check, Secured assets and records, Prioritized handover]
+current_manual_methods: [Memory-based sweep, Paper notes, Messages sent to individual colleagues]
+common_failure_modes: [Visitor remains shown on site, Sensitive notes are left exposed]
+human_judgment_required:
+  [
+    Determine which unresolved items need immediate escalation,
+    Write enough context without recording unnecessary personal detail,
+  ]
+approval_points: [Duty manager accepts unresolved security or safeguarding items]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [Open items transferred with owner and context, Reception assets reconcile at close]
+related_workflows: [visitor-management, incident-response]

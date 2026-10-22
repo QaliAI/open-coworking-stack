@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+id: plan-staff-coverage
+name: Plan staff coverage
+description: Build a fair, safe service roster from forecast demand, competencies, contracted availability, rest needs, key-person dependencies, and known events with human review of conflicts.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [community-manager, operations-facilities-manager]
+frequency: weekly
+trigger: The scheduling window opens or demand, absence, or site conditions materially change.
+inputs:
+  [
+    Service coverage requirements,
+    Staff availability and competencies,
+    Events,
+    leave,
+    and workload evidence,
+  ]
+outputs: [Published roster, Coverage and competence gaps, Approved contingency actions]
+current_manual_methods: [Spreadsheet rota, Group-chat availability, Copy prior week]
+common_failure_modes:
+  [Headcount hides missing competence, Repeated undesirable shifts create unfair burden]
+human_judgment_required:
+  [
+    Balance service,
+    safety,
+    fairness,
+    development,
+    and individual circumstances,
+    Resolve conflicts through conversation,
+  ]
+approval_points: [General manager approves roster and exceptions under applicable employment rules]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Critical periods have competent coverage,
+    Late changes,
+    excessive workload,
+    and repeated inequity are reviewed,
+  ]
+related_workflows: [reporting-kpis, event-lifecycle]

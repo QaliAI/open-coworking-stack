@@ -163,4 +163,30 @@ describe('validateCatalog', () => {
     expect(messages).toContain('verification.last_reviewed: Expected a valid calendar date');
     expect(messages).toContain('verification.last_reviewed: Date must not be in the future');
   });
+
+  it('rejects a full guide that does not meet the flagship section standard', async () => {
+    const root = await createCatalog();
+    await mkdir(path.join(root, 'guides', 'tools'), { recursive: true });
+    await writeFile(
+      path.join(root, 'guides', 'tools', 'alpha-tool.md'),
+      `${Array.from({ length: 32 }, (_, index) => `## ${index + 1}. Section\n\nPlaceholder.`).join('\n\n')}\n`,
+      'utf8',
+    );
+    await writeYaml(
+      root,
+      'tools',
+      'alpha-tool',
+      tool('alpha-tool', {
+        guide_status: 'full',
+        guide_path: 'guides/tools/alpha-tool.md',
+      }),
+    );
+
+    const messages = (await validateCatalog(root)).issues.map((issue) => issue.message);
+
+    expect(messages).toContain(
+      'full guide requires 33 substantive sections or a 33-point coverage checklist, found 32 H2 sections',
+    );
+    expect(messages).toContain('full guide is missing required concept "backup"');
+  });
 });

@@ -1,0 +1,77 @@
+schema_version: 1.0.0
+id: staff-offboarding
+name: Staff offboarding
+description: End or change coworking staff access with coordinated human oversight of continuity, credentials, assets, records, and respectful communication.
+objective: Remove unneeded access and recover organizational property without losing required operational knowledge.
+responsible_role: Operations manager
+trigger: An authorized manager confirms a staff end date, immediate exit, or material role change.
+inputs:
+  [
+    verified staff record,
+    effective time,
+    accounts and groups,
+    assets,
+    duties,
+    shared secrets,
+    retention requirements,
+  ]
+outputs:
+  [approved exit plan, revoked access evidence, recovered assets, reassigned duties, closure record]
+source_of_truth: The authorized staff-status record and signed offboarding checklist are authoritative.
+systems_involved: [staff register, identity system, password manager, asset register, work queue]
+automation_steps:
+  [
+    create time-bounded tasks,
+    prepare account disables,
+    identify owned records and shared credentials,
+  ]
+human_approval_points:
+  [Manager approves timing, continuity, access actions, asset handling, and closure.]
+failure_exception_paths:
+  [
+    Use immediate security response for hostile or compromised exits and escalate missing assets,
+    records,
+    or credentials.,
+  ]
+privacy_risks:
+  [Exit records may contain sensitive employment, conduct, or investigation information.]
+security_risks:
+  [Missed accounts, sessions, tokens, keys, or shared secrets can preserve unauthorized access.]
+measurable_kpis:
+  [access revoked by approved time, residual credentials found, assets and duties reconciled]
+test_cases:
+  [
+    Process a planned exit,
+    execute immediate revocation,
+    rotate shared secrets,
+    discover an unknown account.,
+  ]
+manual_fallback:
+  [
+    Use a controlled system and asset inventory,
+    call each owner,
+    revoke access,
+    and record dual-checked evidence.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable unreliable automation,
+    verify every recent action,
+    restore only manager-approved access for mistaken changes,
+    use checklist control.,
+  ]
+primary_roles: [operations-manager, technical-operator, owner-operator]
+stages:
+  - id: coordinate-revoke-close
+    name: Coordinate, revoke, and close
+    description: Execute the authorized timing and verify every relevant access, asset, and responsibility outcome.
+    manual_tasks: [approve timing, recover assets, verify revocation, reassign duties, sign closure]
+    automation_opportunities: [prepare account actions and surface owned resources]
+    suggested_tool_ids: [authentik, passbolt]
+    risks:
+      [Automated account disable can miss shadow access or interrupt continuity if timing is wrong.]
+success_metrics:
+  [No unapproved access remains and assets, duties, records, and shared secrets are accounted for.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Coordinate employment, privacy, security, retention, safety, and continuity requirements locally.

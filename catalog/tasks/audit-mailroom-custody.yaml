@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: audit-mailroom-custody
+name: Audit mailroom custody
+description: Reconcile a risk-based physical sample to receipt, storage, notification, release, forwarding, and disposition records and investigate every material mismatch.
+business_area: virtual-office-mailroom
+primary_role: virtual-office-mailroom-manager
+supporting_roles: [general-manager]
+frequency: monthly
+trigger: Scheduled custody control review or a loss, misrelease, or unexplained mismatch.
+inputs: [Custody register, Physical inventory sample, Authorization and release evidence]
+outputs: [Reconciled sample, Investigated exceptions, Corrective control actions]
+current_manual_methods: [Shelf count, Spreadsheet filter, Review after complaint]
+common_failure_modes:
+  [Sample excludes high-risk or old items, Record is corrected without investigating cause]
+human_judgment_required:
+  [
+    Select a meaningful sample and evaluate evidence,
+    Determine whether discrepancy indicates error,
+    misconduct,
+    or systemic weakness,
+  ]
+approval_points: [Manager signs findings; serious discrepancies enter formal incident review]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Sampled items reconcile through final status,
+    Material discrepancies receive root-cause and control action,
+  ]
+related_workflows: [mail-package-handling, compliance-review, incident-response]

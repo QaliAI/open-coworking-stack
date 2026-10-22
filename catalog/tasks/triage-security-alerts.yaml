@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+id: triage-security-alerts
+name: Triage security alerts
+description: Correlate security signals with identity, asset, network, physical, and operating context to determine credible scope and urgency before taking disruptive action.
+business_area: security-continuity
+primary_role: it-security-administrator
+supporting_roles: [general-manager, operations-facilities-manager]
+frequency: continuous
+trigger: A monitoring system, user, supplier, or staff member reports a possible security event.
+inputs:
+  [
+    Alert and source reliability,
+    Relevant system and access context,
+    Recent changes and known activity,
+  ]
+outputs:
+  [Documented severity and rationale, Safe containment or investigation action, Stakeholder update]
+current_manual_methods: [Email alert inbox, Vendor dashboard, Immediate account disable]
+common_failure_modes:
+  [
+    Single noisy signal triggers disruption,
+    Familiar activity causes a genuine alert to be dismissed,
+  ]
+human_judgment_required:
+  [
+    Assess confidence,
+    exposure,
+    business impact,
+    and adversarial possibility,
+    Select proportionate evidence-preserving action,
+  ]
+approval_points:
+  [Incident lead approves material containment; emergency action is reviewed immediately afterward]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    High-impact alerts receive timely contextual review,
+    False positives and missed escalation causes inform control tuning,
+  ]
+related_workflows: [incident-response]

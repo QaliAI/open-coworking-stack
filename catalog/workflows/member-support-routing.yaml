@@ -1,0 +1,61 @@
+schema_version: 1.0.0
+id: member-support-routing
+name: Member support routing
+description: Route coworking member requests to an accountable team while preserving context, urgency review, privacy, and a staffed escalation path.
+objective: Get each support request to a responsible person without treating automated classification as a final decision.
+responsible_role: Community manager
+trigger: A member submits a support request through an approved channel.
+inputs: [request content, member and location context, chosen category, urgency claim, attachments]
+outputs: [support record, assigned queue and owner, acknowledgement, escalation status]
+source_of_truth: The controlled support record and its human-reviewed status are authoritative.
+systems_involved: [support queue, membership system, staff communication channel]
+automation_steps:
+  [create a ticket, suggest a queue, acknowledge receipt, flag urgent keywords for review]
+human_approval_points:
+  [Staff verify priority, ownership, safety implications, and any resolution sent to the member.]
+failure_exception_paths:
+  [
+    Escalate safety or security reports immediately and expose unassigned,
+    bounced,
+    or failed requests.,
+  ]
+privacy_risks:
+  [Support requests can contain health, access, conflict, billing, or other sensitive information.]
+security_risks:
+  [Attachments, spoofed identities, and broad queue permissions can create security exposure.]
+measurable_kpis: [time to human owner, misroute rate, unresolved requests beyond policy]
+test_cases:
+  [
+    Route a routine request,
+    correct a misroute,
+    handle an urgent safety report,
+    scan a suspicious attachment.,
+  ]
+manual_fallback:
+  [Monitor approved inboxes and channels, log requests, assign a person, and acknowledge manually.]
+rollback_disable_procedure:
+  [
+    Disable automatic routing,
+    preserve open tickets,
+    notify duty staff,
+    triage from one staffed queue.,
+  ]
+primary_roles: [community-manager, operations-manager]
+stages:
+  - id: receive-and-route
+    name: Receive and route
+    description: Record the request and let staff confirm its priority and accountable destination.
+    manual_tasks: [review content and urgency, correct routing, own the member response]
+    automation_opportunities: [create a record and suggest a queue]
+    suggested_tool_ids: [freescout, chatwoot]
+    risks:
+      [Misclassification can delay urgent help or expose a sensitive request to the wrong team.]
+success_metrics:
+  [
+    Every request gains a human owner,
+    urgent exceptions are reviewed promptly,
+    misroutes are corrected.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Test routing, access, retention, attachments, and emergency escalation locally.

@@ -1,0 +1,19 @@
+tool_id: seatsurfing
+profile_status: fill-before-pilot
+pilot_scope:
+  floor: unassigned
+  desk_count: 20
+  duration_days: 14
+  paid_inventory: false
+membership_system_remains_authoritative: true
+door_access_integration: prohibited
+owners:
+  operations: unassigned
+  facilities: unassigned
+  community: unassigned
+  privacy: unassigned
+  technical: unassigned
+  membership_roster: unassigned
+retention_days: unapproved
+manual_fallback: unassigned
+runtime_evidence: not-tested

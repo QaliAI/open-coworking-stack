@@ -1,0 +1,67 @@
+schema_version: 1.0.0
+id: plan-change
+name: Plan change
+description: Process a coworking membership plan change with verified member intent, pricing, dates, entitlements, billing impact, and access review.
+objective: Apply the requested approved plan accurately without unintended charges or access changes.
+responsible_role: Community manager
+trigger: A member requests a plan change or authorized staff propose one for member approval.
+inputs:
+  [
+    member request,
+    current agreement,
+    target plan,
+    effective date,
+    pricing,
+    billing and access impact,
+  ]
+outputs: [approved change record, updated entitlements, billing review, member confirmation]
+source_of_truth: The signed or otherwise approved change record and current membership record are authoritative.
+systems_involved: [membership system, agreement store, billing system, access system]
+automation_steps:
+  [
+    calculate provisional impacts,
+    create dependent tasks,
+    prepare a confirmation,
+    reconcile outcomes,
+  ]
+human_approval_points:
+  [Member and authorized staff approve terms, effective date, charges, credits, and exceptions.]
+failure_exception_paths:
+  [
+    Pause and reverse partial changes when billing,
+    access,
+    inventory,
+    or agreement updates conflict.,
+  ]
+privacy_risks: [Plan and billing records expose membership and financial information.]
+security_risks: [Incorrect entitlement mapping can grant unauthorized physical or digital access.]
+measurable_kpis: [changes completed on approved date, correction rate, partial-change exceptions]
+test_cases:
+  [
+    Upgrade a plan,
+    downgrade with notice,
+    reject unavailable inventory,
+    recover from billing failure.,
+  ]
+manual_fallback:
+  [Use an approved change form, update each system with dual checking, and confirm completion.]
+rollback_disable_procedure:
+  [
+    Stop automatic updates,
+    restore the last approved plan and entitlements,
+    reconcile billing,
+    notify the member.,
+  ]
+primary_roles: [community-manager, sales-manager, finance]
+stages:
+  - id: approve-and-change
+    name: Approve and change
+    description: Confirm intent and impacts before coordinated membership, billing, and access updates.
+    manual_tasks: [review terms and impacts, obtain approvals, verify all system outcomes]
+    automation_opportunities: [prepare impact calculations and dependent update tasks]
+    suggested_tool_ids: [cobot, erpnext]
+    risks: [Partial or premature changes can overcharge a member or grant the wrong access.]
+success_metrics: [Plan, billing, agreement, and access records reconcile to the approved change.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Test plan mappings, proration, notice, access, and rollback with nonproduction records.

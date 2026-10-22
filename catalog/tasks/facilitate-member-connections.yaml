@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+id: facilitate-member-connections
+name: Facilitate member connections
+description: Create opt-in settings where members can discover relevant peers and exchange help, with active facilitation that notices exclusion, imbalance, and unmet expectations.
+business_area: community
+primary_role: community-manager
+supporting_roles: [event-manager, member]
+frequency: weekly
+trigger: A scheduled connection activity occurs or an expressed member need warrants facilitation.
+inputs:
+  [Participant goals and consent, Session format and norms, Accessibility and safety considerations]
+outputs: [Facilitated interaction, Follow-up choices, Observed barriers and improvements]
+current_manual_methods: [Open mixer, Unmoderated chat thread, Name-tag prompt]
+common_failure_modes:
+  [Existing groups exclude newcomers, Participation volume is mistaken for useful connection]
+human_judgment_required:
+  [
+    Read group dynamics and intervene respectfully,
+    Adapt the format for differing comfort and access needs,
+  ]
+approval_points: [Participants approve any sharing of contact details or session outputs]
+privacy_sensitivity: medium
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [
+    Participants report useful and voluntary interaction,
+    Observed participation barriers receive action,
+  ]
+related_workflows: [community-programming, event-lifecycle]

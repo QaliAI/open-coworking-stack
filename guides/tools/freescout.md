@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 FreeScout is a self-hosted shared mailbox/help desk. A coworking operator can route one `support@` alias through it for 14 days to evaluate assignment, canned replies, escalation, and visibility across community and operations staff.
 
+**Manual tasks reduced:** assigning, labeling, and tracking routine shared-mailbox conversations. Staff still interpret requests, protect sensitive data, approve consequential replies, and resolve member disputes.
+
 ## Fit and non-fit
 
 **Good fit:** a smaller site needing shared handling of member IT/facilities email with explicit closure and vendor escalation ownership.
@@ -69,6 +71,20 @@ No mail provider, CRM, or vendor integration is catalog-verified. Agents classif
 
 People decide priority, communicate with members, close tickets, escalate vendors, and protect sensitive content. FreeScout augments assignment and shared visibility; it does not replace community or facilities staff.
 
+## Automation and approval boundaries
+
+FreeScout may collect mailbox messages, thread them, apply approved mailbox rules, notify named agents, and present canned text for review. It must not decide emergency severity, member fault, compensation/refunds, vendor authorization, access rights, case closure, or whether sensitive content may be disclosed. The mailbox owner approves routing and sender behavior; facilities approves escalation paths and vendor contact; privacy approves fields, notes, retention, and exports; the technical owner approves modules and changes; an agent approves every external reply and closure during the pilot.
+
+## Acceptance, operations, and failure handling
+
+Test inbound and outbound delivery, threading, attachment handling within approved limits, assignment, reassignment, private-note visibility, canned-reply review, overdue escalation, reopened cases, agent offboarding, duplicate/failed delivery handling, queue reconciliation, export/return to mailbox, and clean restore. Use synthetic or staff-authored messages before member traffic. During the 14-day pilot, reconcile source mailbox counts to FreeScout daily and sample closed cases for an actual human response and closure rationale.
+
+If inbound retrieval or outbound delivery fails, stop relying on the queue, place a visible incident notice for staff, work from the underlying mailbox, and reconcile message IDs/timestamps before resuming. Safety and emergency reports always use the separately staffed emergency route. Never let an automated acknowledgement imply that urgent help has been dispatched.
+
+## Professional help threshold
+
+Use an experienced mail administrator for DNS authentication, deliverability, mailbox migration, or provider-specific retrieval/send failures. Obtain privacy/legal review for retention, subject requests, monitoring, sensitive attachments, or cross-border processing. Obtain security review before Internet exposure, SSO, custom modules, or processing health, identity, legal, or payment-related messages.
+
 ## Operational checklist
 
 - [ ] Mailbox, facilities, privacy, and technical owners named
@@ -89,3 +105,39 @@ Keep the underlying mailbox and prior access available. Roll back by stopping ro
 Snapshot verified **2026-07-17** from [FreeScout](https://freescout.net/), its [repository](https://github.com/freescout-help-desk/freescout), and [wiki](https://github.com/freescout-help-desk/freescout/wiki).
 
 Unknown until verified: current module prices/licenses, mailbox-provider behavior, export fidelity, exact retention controls, production sizing, support, authentication options, and reporting limits.
+
+## Flagship requirement coverage (33 points)
+
+1. **Coworking purpose:** coordinate one support mailbox for member IT/facilities requests.
+2. **Outcome:** fewer unowned messages with human responses and traceable handoffs.
+3. **Good fit:** small teams with mailbox, closure, and vendor-escalation ownership.
+4. **Non-fit:** emergency dispatch, unreviewed sensitive archive, or assumed module terms.
+5. **Named owners:** mailbox, facilities, privacy, technical, and pilot-review owners.
+6. **Prerequisites:** alias, agents, categories, response targets, emergency route, and retention.
+7. **Skills:** mail administration, FreeScout operations, privacy, security, and queue management.
+8. **License:** core is `AGPL-3.0-only`; every module has a separate terms review.
+9. **Cost model:** host, mail, setup, maintenance, modules, backup, and support are separate.
+10. **Official sources:** official site, repository, wiki, and module page are linked and dated.
+11. **Evidence limit:** provider behavior, module terms, export fidelity, scale, and support are unproven.
+12. **Data map:** messages, contacts, tags, assignments, private notes, and attachments are covered.
+13. **Privacy:** minimize content; approve retention, requests, exports, and restricted notes.
+14. **Security:** named roles, TLS, credentials, updates, backups, and modules are controlled.
+15. **Compliance:** mail, privacy, and security professional-help thresholds are explicit.
+16. **Allowed automation:** retrieval, threading, approved rules, notifications, and draft text.
+17. **Prohibited decisions:** emergencies, fault, refunds, vendors, access, disclosure, and closure stay human.
+18. **Human approvals:** mailbox, facilities, privacy, technical, and agent gates are explicit.
+19. **Smallest experiment:** one alias, small agent group, and 14-day pilot.
+20. **Implementation:** document, stage, test mail, pilot, approve controls, restore, and decide.
+21. **Configuration baseline:** mailbox, roles, tags, templates, escalation text, modules, and retention.
+22. **Integrations:** provider, CRM, and vendor integrations are not claimed as verified.
+23. **Exceptions:** failed/duplicate delivery, overdue, reopen, attachment, and outage paths are tested.
+24. **Acceptance tests:** daily count reconciliation plus delivery, permission, export, and restore checks.
+25. **Monitoring:** queue age, unassigned, delivery failure, backup failure, and updates have owners.
+26. **Routine operations:** daily queue review, closure sampling, offboarding, and module review.
+27. **Backup:** database, attachments, configuration, and required state are protected together.
+28. **Restore:** clean restore checks threads, roles, notes, assignments, and attachments.
+29. **Upgrade:** review official guidance and module compatibility; stage and back up first.
+30. **Rollback:** return routing to the underlying mailbox and reconcile every open case.
+31. **Exit:** map/export messages, attachments, contacts, notes, status, and owners.
+32. **Manual fallback:** staff work the source mailbox; emergencies remain on their separate route.
+33. **Expert review and cadence:** review controls after provider/module changes and periodically during use.

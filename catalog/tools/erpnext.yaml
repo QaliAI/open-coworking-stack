@@ -82,6 +82,50 @@ human_oversight_still_needed:
   - Accounting configuration by a qualified person
   - Membership product design
   - Data migration validation
+task_fits:
+  - task_id: generate-recurring-invoices
+    relationship: system of record
+    automation_level: partially automated
+    what_manual_process_it_can_replace: Manual process reduced is copying prior invoices and
+      re-entering approved recurring customer, item, and billing records for each cycle.
+    what_it_takes_off_the_team: Human work reduced is repetitive invoice preparation and gathering
+      customer, item, and payment records from separate spreadsheets.
+    role_assisted: finance-billing-administrator
+    what_remains_human: A qualified human must configure accounting and tax treatment, verify source
+      agreements, review exceptions, and approve posting. Prohibited tax, credit, exception, and
+      material posting decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is a qualified review of the chart of accounts, taxes, invoice settings, and
+        approval controls.
+      - Prerequisite is validated customer, item, agreement, effective-date, and opening-balance data.
+    failure_consequence: Failure can create duplicate, mistimed, or incorrect invoices and corrupt
+      receivable reporting; pause posting and reconcile the batch to approved terms.
+    pilot_metric: Metric is the percentage of pilot invoices agreeing to approved terms before
+      posting, with exception count and human review time reported separately.
+    evidence:
+      - https://docs.erpnext.com/
+    confidence: medium
+  - task_id: reconcile-payments
+    relationship: system of record
+    automation_level: assisted
+    what_manual_process_it_can_replace: Manual process reduced is assembling invoice and payment
+      status from separate customer, receivable, and ledger files before reconciliation.
+    what_it_takes_off_the_team: Human work reduced is locating related invoice and payment records
+      and maintaining a parallel spreadsheet of open items.
+    role_assisted: finance-billing-administrator
+    what_remains_human: A qualified human must validate settlement evidence, investigate ambiguous
+      or duplicate matches, and approve postings and close. Prohibited write-off, refund, dispute,
+      and unsupported-match decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is controlled access to complete invoice, ledger, bank, and processor evidence.
+      - Prerequisite is documented matching, reviewer, segregation-of-duties, and correction rules.
+    failure_consequence: Failure can misapply funds or conceal fees, duplicates, chargebacks, and
+      unpaid balances; affected entries must remain unapplied until a human resolves them.
+    pilot_metric: Metric is settlement value reconciled to control totals, unmatched-item age, and
+      number of manual matches independently rejected or corrected.
+    evidence:
+      - https://docs.erpnext.com/
+    confidence: medium
 data_privacy:
   data_held:
     - customers
@@ -114,5 +158,22 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: docs
+      source: https://docs.erpnext.com/
+      verified_on: 2026-07-17
+      notes: Official documentation describes accounting, invoices, payments, customer records,
+        tasks, and maintenance scheduling.
+    - kind: repository
+      source: https://github.com/frappe/erpnext
+      verified_on: 2026-07-17
+      notes: Official source repository used to verify project identity and license metadata.
+    - kind: pricing
+      source: https://frappe.io/erpnext/pricing
+      verified_on: 2026-07-17
+      notes: Official pricing page; implementation and hosting costs still require a current quote.
 featured: true
 rank_score: 85

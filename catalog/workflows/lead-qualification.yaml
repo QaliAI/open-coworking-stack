@@ -1,0 +1,62 @@
+schema_version: 1.0.0
+id: lead-qualification
+name: Lead qualification
+description: Assess a coworking enquiry against transparent service fit and capacity criteria without automated exclusion or discriminatory inference.
+objective: Produce a consistent, reviewable fit assessment and an appropriate human-led next step.
+responsible_role: Sales manager
+trigger: A valid enquiry is ready for initial sales assessment.
+inputs:
+  [
+    stated workspace needs,
+    timing,
+    location,
+    budget range,
+    accessibility requests,
+    current availability,
+  ]
+outputs: [reviewed qualification status, rationale, next action, assigned owner]
+source_of_truth: The reviewed sales pipeline record and current approved inventory are authoritative.
+systems_involved: [sales pipeline, approved inventory, sales playbook]
+automation_steps:
+  [check required information, surface possible options, flag missing or conflicting details]
+human_approval_points:
+  [Sales staff approve fit status, rationale, and any decline or waitlist communication.]
+failure_exception_paths:
+  [
+    Route uncertain,
+    accessibility-related,
+    or policy-exception cases to a manager rather than rejecting them.,
+  ]
+privacy_risks: [Qualification notes can include sensitive personal or business circumstances.]
+security_risks: [Broad pipeline permissions can expose commercial and contact information.]
+measurable_kpis: [percentage with documented rationale, time to qualification, later reversal rate]
+test_cases:
+  [
+    Qualify a clear fit,
+    test missing needs,
+    test no current capacity,
+    test an accessibility exception.,
+  ]
+manual_fallback:
+  [Use the approved qualification checklist and enter the reviewed result in the pipeline.]
+rollback_disable_procedure:
+  [
+    Disable automated suggestions,
+    preserve reviewed decisions,
+    audit pending records,
+    return to checklist review.,
+  ]
+primary_roles: [sales-manager, community-manager]
+stages:
+  - id: assess-and-decide
+    name: Assess and decide
+    description: Gather missing context and let authorized sales staff decide fit and next action.
+    manual_tasks: [speak with the prospect, assess fit fairly, approve status and rationale]
+    automation_opportunities: [surface missing fields and matching inventory for review]
+    suggested_tool_ids: [espocrm, cobot]
+    risks: [Rigid scoring can discriminate, conceal uncertainty, or reject viable enquiries.]
+success_metrics:
+  [Every status has a human owner and rationale, exceptions are reviewed rather than auto-rejected.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Criteria must be reviewed locally for fairness, accessibility, availability, and service policy.

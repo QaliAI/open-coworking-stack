@@ -1,0 +1,47 @@
+schema_version: 1.0.0
+id: member-anniversary
+name: Member anniversary
+description: Recognize an eligible coworking membership anniversary in a respectful, optional way without exposing tenure or automating personal claims.
+objective: Create a genuine relationship touchpoint while honoring member preferences and current status.
+responsible_role: Community manager
+trigger: An active member reaches an approved membership anniversary date.
+inputs: [verified start date, current status, communication preference, staff relationship context]
+outputs: [review task, approved private acknowledgement, optional public-consent status]
+source_of_truth: The reviewed membership start date and current member preference are authoritative.
+systems_involved: [membership system, community task list, communication channel]
+automation_steps:
+  [surface upcoming dates, suppress inactive or opted-out members, create a staff task]
+human_approval_points:
+  [Staff choose appropriate acknowledgement and obtain separate consent for any public recognition.]
+failure_exception_paths:
+  [Suppress or defer during sensitive account, complaint, bereavement, or status circumstances.]
+privacy_risks:
+  [Public recognition can disclose membership, tenure, workplace, or identity without consent.]
+security_risks: [Overbroad calendar access can expose the member list and relationship metadata.]
+measurable_kpis:
+  [anniversaries reviewed, preferences honored, public acknowledgements with recorded consent]
+test_cases:
+  [Acknowledge privately, honor opt-out, suppress an inactive member, obtain public consent.]
+manual_fallback:
+  [Review a controlled monthly anniversary list and let community staff choose personal outreach.]
+rollback_disable_procedure:
+  [
+    Disable anniversary tasks and messages,
+    cancel queued content,
+    preserve preferences,
+    use manual review.,
+  ]
+primary_roles: [community-manager]
+stages:
+  - id: review-and-recognize
+    name: Review and recognize
+    description: Confirm eligibility and preference before a staff member chooses an appropriate acknowledgement.
+    manual_tasks: [review relationship context, choose wording, obtain public consent when relevant]
+    automation_opportunities: [surface dates and create private review tasks]
+    suggested_tool_ids: [cobot, monica-crm]
+    risks: [Generic or public automation can feel intrusive and reveal member information.]
+success_metrics:
+  [Recognition is accurate, optional, appropriately personal, and never public without consent.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Review date quality, preferences, public consent, and sensitive exclusions locally.

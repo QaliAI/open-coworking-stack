@@ -1,0 +1,11 @@
+External ID,Name,Contact Name,Email,Expected Stage,Fixture Note
+coworking_lead_001,Example Studio Tour,Ada Example,ada@example.invalid,New,valid
+coworking_lead_002,Example Meeting Room,Lin Example,lin@example.invalid,Contacted,valid
+coworking_lead_003,Example Fixed Desk,Sam Example,sam@example.invalid,Proposal review,valid
+coworking_lead_004,Example Hot Desk,Jo Example,jo@example.invalid,Won/Lost,valid
+coworking_lead_005,Example Duplicate A,Taylor Example,taylor@example.invalid,New,duplicate email case
+coworking_lead_006,Example Duplicate B,Taylor Example,taylor@example.invalid,New,duplicate email case
+coworking_lead_007,Example Missing Email,Missing Email,,New,missing required field
+coworking_lead_008,Example Same Name A,Alex Example,alex.a@example.invalid,Contacted,same name case
+coworking_lead_009,Example Same Name B,Alex Example,alex.b@example.invalid,Contacted,same name case
+coworking_lead_010,Example Reopened,Robin Example,robin@example.invalid,New,reopen workflow case

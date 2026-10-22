@@ -1,0 +1,51 @@
+schema_version: 1.0.0
+id: tour-no-show-recovery
+name: Tour no-show recovery
+description: Review an apparent tour no-show and offer respectful human follow-up without blame, repeated pressure, or automatic pipeline closure.
+objective: Recover useful conversations while accurately distinguishing no-shows from staff or scheduling errors.
+responsible_role: Sales manager
+trigger: The host records that a scheduled prospect did not attend.
+inputs: [appointment record, host attendance confirmation, contact history, delivery status]
+outputs: [reviewed no-show status, approved follow-up, rescheduled or closed outcome]
+source_of_truth: The sales pipeline record updated from host-confirmed attendance is authoritative.
+systems_involved: [scheduling system, sales pipeline, communication channel]
+automation_steps:
+  [open a review task, present appointment history, draft one approved recovery message]
+human_approval_points:
+  [The host confirms nonattendance and sales staff approve any follow-up or closure.]
+failure_exception_paths:
+  [Correct the record and apologize when venue, host, access, or scheduling failure contributed.]
+privacy_risks: [Attendance history can reveal location and behavioral patterns.]
+security_risks: [Weak record permissions can expose prospect movements and communications.]
+measurable_kpis: [no-show records host-confirmed, recovery response rate, operator-error cases]
+test_cases:
+  [Confirm a no-show, identify a host error, reschedule after reply, suppress repeated follow-up.]
+manual_fallback:
+  [
+    Host reviews the appointment and sales staff make one appropriate contact and record the outcome.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable recovery task creation,
+    preserve attendance notes,
+    review pending cases manually,
+    stop queued messages.,
+  ]
+primary_roles: [sales-manager, community-manager]
+stages:
+  - id: verify-and-recover
+    name: Verify and recover
+    description: Verify what happened and let a salesperson choose a respectful next step.
+    manual_tasks: [confirm attendance facts, acknowledge operator error, approve follow-up]
+    automation_opportunities: [assemble history and prepare a single message for review]
+    suggested_tool_ids: [espocrm, cal-com]
+    risks: [Mislabeling a scheduling failure as prospect behavior can damage trust.]
+success_metrics:
+  [
+    No-show status is human-confirmed,
+    operator failures receive corrective action,
+    outreach remains proportionate.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Recovery rules must preserve staff judgment and prospect communication preferences.

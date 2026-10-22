@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: expansion-opportunity
+name: Expansion opportunity
+description: Review member-stated growth or space needs and offer relevant coworking options without surveillance, pressure, or automatic upselling.
+objective: Match genuine member needs to verified available options through a helpful human conversation.
+responsible_role: Sales manager
+trigger: A member asks about more capacity or staff record a directly observed, service-relevant need.
+inputs:
+  [member request, current plan, stated timing, approved inventory, pricing, relationship context]
+outputs:
+  [reviewed opportunity, suitable options, follow-up owner, accepted declined or deferred status]
+source_of_truth: The reviewed member opportunity linked to current approved inventory is authoritative.
+systems_involved: [membership system, sales pipeline, approved inventory]
+automation_steps:
+  [
+    create an owner task,
+    surface relevant approved inventory,
+    flag pricing or availability conflicts,
+  ]
+human_approval_points:
+  [Staff confirm the need and approve options, pricing, concessions, and outreach.]
+failure_exception_paths:
+  [Close or defer without repeated contact when the member declines or no suitable option exists.]
+privacy_risks:
+  [Inferring growth from attendance or network behavior would create intrusive profiling.]
+security_risks: [Commercial plans and member company growth information require restricted access.]
+measurable_kpis:
+  [opportunities based on stated needs, option accuracy, declined preferences honored]
+test_cases: [Handle a direct request, find no inventory, correct stale pricing, honor a decline.]
+manual_fallback:
+  [Discuss needs personally, check approved inventory, and document only the agreed next step.]
+rollback_disable_procedure:
+  [
+    Disable opportunity suggestions,
+    cancel unapproved outreach,
+    preserve member requests,
+    use manual inventory review.,
+  ]
+primary_roles: [sales-manager, community-manager]
+stages:
+  - id: understand-and-offer
+    name: Understand and offer
+    description: Confirm the member need and let staff present only suitable, verified options.
+    manual_tasks: [discuss needs, verify availability and terms, approve the offer]
+    automation_opportunities: [surface potentially suitable approved inventory]
+    suggested_tool_ids: [cobot, espocrm]
+    risks: [Automated upselling can be intrusive or recommend unavailable and unsuitable space.]
+success_metrics:
+  [
+    Opportunities originate from legitimate needs,
+    options are verified,
+    declines stop further outreach.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Do not derive expansion signals from covert monitoring or unsupported inference.

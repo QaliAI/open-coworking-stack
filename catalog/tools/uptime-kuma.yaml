@@ -62,6 +62,30 @@ tasks_reduced_or_augmented:
 human_oversight_still_needed:
   - On-call ownership
   - Public status page messaging
+task_fits:
+  - task_id: triage-network-connectivity
+    relationship: infrastructure
+    automation_level: assisted
+    what_manual_process_it_can_replace: Repeated manual checks of configured HTTP endpoints, ports, and certificates after a report.
+    what_it_takes_off_the_team: Supplies check results, alert timing, and heartbeat history for monitored services.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Validate each alert, establish affected users and locations, distinguish network from
+      application or upstream causes, communicate status, and approve changes.
+    prerequisites:
+      - Approved monitors and thresholds for representative member-facing services
+      - A tested notification route with named response ownership
+      - Monitoring placed so its own failure and blind spots are understood
+    failure_consequence:
+      A missed or false alert can delay response or cause unnecessary intervention, while a healthy
+      endpoint can conceal a user-specific connectivity problem.
+    pilot_metric:
+      For pilot alerts, record time to human acknowledgement and whether investigation confirms the
+      reported service and scope.
+    evidence:
+      - https://uptime.kuma.pet/
+      - https://github.com/louislam/uptime-kuma/wiki
+    confidence: low
 data_privacy:
   data_held:
     - monitor configs
@@ -89,9 +113,22 @@ verification:
     - https://github.com/louislam/uptime-kuma
     - https://github.com/louislam/uptime-kuma/wiki
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
+    Editorial evaluation based on the listed official project, repository, and documentation pages.
+    Task fit has not been implementation-tested; monitoring evidence assists but does not complete
+    network diagnosis or incident ownership.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://uptime.kuma.pet/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/louislam/uptime-kuma
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://github.com/louislam/uptime-kuma/wiki
+      verified_on: 2026-07-17
 featured: true
 rank_score: 88

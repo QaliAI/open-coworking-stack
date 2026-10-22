@@ -1,0 +1,129 @@
+schema_version: 1.0.0
+id: meeting-room-event-revenue
+name: Meeting Room and Event Revenue
+tagline: Publish inventory, capture enquiries, collect payment, and deliver staffed events
+description: A revenue workflow for meeting rooms and events that joins public discovery, scheduling, payment, reminders, and post-event learning while leaving delivery and safety with staff.
+audience_roles: [event-coordinator, sales-manager, community-manager, finance]
+problems_solved: [fill-meeting-rooms, run-events, grow-pipeline, automate-billing]
+workflows: [room-booking, event-lifecycle, invoice-collections, marketing-campaigns]
+monthly_cash_budget_band: under-200
+self_host_heavy: true
+operator_profile: An operator with underused rooms, clear hire policies, and staff capacity to qualify and deliver bookings.
+number_of_locations: One to five locations with location-specific capacity and event rules.
+team_size: Three or more staff across sales, events, hosts, and finance.
+products_offered: [hourly-meeting-rooms, day-room-hire, workshops, private-events, public-events]
+technical_skill_required: Moderate; website, booking, payments, delivery, backups, and reporting administration.
+tasks_covered:
+  [
+    room-availability,
+    tour-and-event-enquiry,
+    booking-request,
+    deposit-collection,
+    reminder-email,
+    event-registration,
+    post-event-feedback,
+  ]
+tasks_not_covered:
+  [
+    event-safety,
+    alcohol-licensing,
+    security-staffing,
+    damage-assessment,
+    contract-legal-review,
+    on-site-hospitality,
+  ]
+systems_of_record:
+  - LibreBooking is the room availability and reservation record.
+  - Stripe is the payment transaction record.
+  - WordPress is the public product and event content record.
+components:
+  - tool_id: librebooking
+    role_in_stack: Room inventory and reservation authority
+    required: true
+  - tool_id: cal-com
+    role_in_stack: Event enquiry and site-visit scheduling
+    required: true
+  - tool_id: stripe
+    role_in_stack: Deposit and payment processing authority
+    required: true
+  - tool_id: wordpress
+    role_in_stack: Public room and event discovery pages
+    required: true
+  - tool_id: brevo
+    role_in_stack: Optional consented reminders and follow-up
+    required: false
+  - tool_id: formbricks
+    role_in_stack: Optional post-event feedback
+    required: false
+data_flow:
+  - Public pages route customers to an enquiry or designated booking path without creating duplicate calendars.
+  - Staff approve qualified requests, then payment references are recorded against the reservation.
+  - Consented attendee communication uses minimum data and feedback is reviewed in aggregate.
+implementation_order:
+  [
+    inventory-rooms-and-rules,
+    define-booking-authority,
+    publish-one-room,
+    configure-enquiries,
+    test-payment-and-refund,
+    document-event-handoff,
+    add-reminders,
+    add-feedback,
+  ]
+cost_assumptions:
+  monthly_cash: Edit for hosting, payment processing, email delivery, domains, backups, and event-specific services.
+  setup_labor: Include photography and content, rate and policy design, contract review, calendar cleanup, and staff rehearsal.
+  maintenance_labor: Reserve daily enquiry and calendar checks plus event setup, reconciliation, and follow-up time.
+  messaging_email_sms: Email reminders may have delivery costs; SMS is optional and requires consent and quiet-hour controls.
+  hosting_storage: Booking and site data need backups; event media and attendee data need limited retention.
+  notes:
+    - Revenue projections are intentionally excluded.
+    - Payment does not replace human booking approval or event readiness checks.
+  pricing_sources: []
+human_owners:
+  [
+    event-coordinator for delivery,
+    sales-manager for enquiries,
+    community-manager for hosting,
+    finance for payments and refunds,
+  ]
+security_boundaries:
+  - Stripe handles card data and staff see only necessary payment references.
+  - Separate public attendee data from member records unless there is a lawful purpose.
+  - Human owners approve capacity, risky activities, refunds, damage decisions, and safety plans.
+backup_and_recovery:
+  - Export upcoming reservations and payment references daily during active event periods.
+  - Maintain printed event briefs, supplier contacts, and current-day room schedules.
+  - Back up booking configuration, public content, and approved attendee records.
+assumptions:
+  - Rooms have verified capacities, amenities, accessibility details, and hire rules.
+  - Staff are available to qualify and deliver events.
+risks:
+  - Calendar fragmentation can oversell scarce rooms.
+  - Automated confirmation before operational review can create unsafe commitments.
+getting_started:
+  [
+    select-one-room,
+    validate-content-and-capacity,
+    run-test-booking,
+    run-test-refund,
+    rehearse-event-handoff,
+  ]
+pilot_plan:
+  - Offer one room and one low-risk event format to an invited cohort.
+  - Review enquiry response, conversion, setup effort, incidents, and margin inputs.
+rollout_30_day:
+  - Add rooms and formats only after policies and event briefs are complete.
+  - Establish finance reconciliation and day-of-event escalation.
+maturity_90_day:
+  - Review utilization, cancellations, refunds, complaints, staff effort, and repeat demand.
+  - Retire low-value formats and stale public content.
+exit_strategy:
+  - Export future reservations, customer contacts, payment references, and event content.
+  - Stop sales before migration and personally reconfirm affected bookings.
+commercial_fallback:
+  - Move inventory into the core coworking SaaS when it prevents calendar duplication.
+  - Use a managed ticketing or event service when attendee complexity exceeds this stack.
+verification:
+  last_reviewed: 2026-07-18
+  notes: Local licensing, accessibility, insurance, safety, and tax requirements need human review.

@@ -1,0 +1,18 @@
+tool_id: caddy
+pilot_scope: one non-critical staging hostname and upstream
+required_owners:
+  - proxy_owner
+  - application_owner
+  - dns_owner
+  - security_privacy_owner
+  - incident_owner
+required_skills:
+  - DNS and TLS
+  - HTTP reverse proxies
+  - host and firewall operations
+  - monitoring and incident response
+excluded_scope:
+  - user entitlement decisions
+  - physical access
+  - production high availability
+readiness_gate: prior route recorded and rollback approved

@@ -1,0 +1,45 @@
+schema_version: 1.0.0
+id: analyze-campaign-performance
+name: Analyze campaign performance
+description: Reconcile delivery, engagement, qualified inquiry, sales, consent, cost, and operational evidence to evaluate decisions with stated attribution and data limitations.
+business_area: marketing
+primary_role: marketing-manager
+supporting_roles: [sales-leasing-manager, owner-operator]
+frequency: monthly
+trigger: A campaign reaches its review point or a material performance exception appears.
+inputs:
+  [
+    Channel delivery and cost,
+    Consent-aware web and inquiry evidence,
+    Qualified pipeline and outcome data,
+  ]
+outputs:
+  [
+    Decision-focused findings and caveats,
+    Continue,
+    change,
+    or stop recommendation,
+    Follow-up experiment,
+  ]
+current_manual_methods: [Platform dashboard, Last-click report, Screenshot of top metrics]
+common_failure_modes:
+  [Clicks are treated as business value, Cross-channel duplicates and dark traffic are ignored]
+human_judgment_required:
+  [
+    Interpret attribution uncertainty and customer quality,
+    Consider brand,
+    consent,
+    sales,
+    and capacity effects together,
+  ]
+approval_points:
+  [Marketing and commercial owners approve material spend, audience, or proposition changes]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Reviews connect spend to qualified outcomes within stated limits,
+    Decisions and assumptions are recorded for later comparison,
+  ]
+related_workflows: [marketing-campaigns, reporting-kpis]

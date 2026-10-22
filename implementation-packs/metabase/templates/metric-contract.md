@@ -1,0 +1,22 @@
+# Occupancy Metric Contract
+
+- Metric name/version:
+- Coworking decision it informs (not makes):
+- Numerator definition:
+- Denominator definition:
+- Resource scope/location:
+- Reporting time zone:
+- Reporting grain and delay:
+- Included booking statuses:
+- Cancellation/no-show treatment:
+- Internal hold treatment:
+- Closure/maintenance treatment:
+- Overnight/boundary treatment:
+- Deduplication rule:
+- Rounding and missing-data display:
+- Source view/fields and owner:
+- Member fields explicitly excluded:
+- Independent fixture/workbook evidence:
+- Metric owner approval:
+- Source owner approval:
+- Privacy approval:

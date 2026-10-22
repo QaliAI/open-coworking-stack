@@ -7,6 +7,8 @@ no remote, and no tracked files; every existing project file was untracked. The 
 `Codex_Open_Coworking_Stack_Master_Prompt.md` and a root README were absent. Existing files were
 preserved and audited against the specification supplied in the takeover request.
 
+This is a historical starting-state record. See section 18 for the current repository state.
+
 ## 2. Starting commit and branch
 
 - Branch: `master`
@@ -127,13 +129,13 @@ Astro emits a non-failing message while producing its Starlight-provided 404 pag
 dependency deprecation warnings during Pagefind execution. Neither affects generated routes or test
 results.
 
-## 11. Checks that could not run
+## 11. Original verification gaps and current status
 
-- `pnpm link-check` could not run locally because the Lychee executable is not installed on this
-  Windows environment. It failed with `lychee is not recognized`. The scheduled workflow uses the
-  official `lycheeverse/lychee-action@v2`; that network-dependent workflow has not run because there is
-  no remote or commit.
-- GitHub CI and Pages deployment could not be run without a hosted repository.
+- The original `pnpm link-check` required an undeclared global Lychee executable. It now uses a
+  checksum-verified Lychee 0.24.2 download wrapper, and the scheduled workflow calls the same script.
+- Hosted CI passed for initial `main` commit `e107548`. The Pages run failed at
+  `actions/configure-pages` because Pages is not enabled/configured for the private repository; no
+  deployment occurred.
 - Browser coverage is Chromium-only; no Firefox, WebKit, or mobile-device browser matrix was run.
 - Compose containers were not started. Config parsing passed, but runtime health, upgrade, backup, and
   restore behavior still require staging drills.
@@ -163,9 +165,10 @@ content CC BY 4.0.
 
 ## 15. Remaining work
 
-- Commit the repository, select the real GitHub owner/repository, configure a remote, and run hosted CI
-  and Pages deployment.
-- Run the scheduled external link check and address current upstream redirects/rate limits.
+- Run hosted CI and release-evidence workflows against the exact release candidate.
+- Obtain approval for a protected preview; Pages remains blocked by private-repository configuration.
+- Run the external link check in hosted automation and address the stale/unreachable sources and rate
+  limiting reported by the local pinned run.
 - Reverify the 116 volatile tool records independently against official sources over time.
 - Write the 65 planned implementation guides and populate catalog integrations only when official
   endpoint evidence is available.
@@ -193,35 +196,36 @@ pnpm freshness
 pnpm dev
 ```
 
-Install Lychee separately before running `pnpm link-check` locally.
+`pnpm link-check` downloads the pinned platform archive into ignored `.lychee/` storage and verifies
+its repository-recorded SHA-256 hash before execution.
 
 ## 17. Exact deployment procedure
 
-1. Commit the current source on a `main` branch and push it to the intended GitHub repository.
-2. In GitHub repository settings, select **GitHub Actions** as the Pages source.
-3. Ensure Actions has read access to contents and Pages/id-token deployment permissions.
-4. Push to `main` or run the `Deploy Pages` workflow manually.
-5. For a nonstandard custom-domain/base-path deployment, set repository variables
+1. Obtain repository-owner approval for the exact ref and deployment visibility.
+2. Confirm the GitHub plan supports Pages for this private repository.
+3. In GitHub repository settings, enable Pages with **GitHub Actions** as the source.
+4. Ensure Actions has read access to contents and Pages/id-token deployment permissions.
+5. Run the `Deploy Pages` workflow manually for the approved ref.
+6. For a nonstandard custom-domain/base-path deployment, set repository variables
    `PUBLIC_BASE_PATH` and optionally `PUBLIC_SITE_URL`; project Pages derives the repository base path
    automatically.
-6. Confirm the workflow's reported Pages URL, then verify `/directory/`, one tool, one guide, one
+7. Confirm the workflow's reported Pages URL, then verify `/directory/`, one tool, one guide, one
    workflow, and `/sitemap-index.xml`.
 
-Workflow command after a remote exists:
+Authorized workflow command:
 
 ```bash
 gh workflow run deploy-pages.yml --ref main
 gh run watch
 ```
 
-## 18. Final Git status
+## 18. Repository status
 
-- Branch: unborn `master`
-- Commit/`HEAD`: none
-- Remote: none
-- Staged files: none
-- Modified tracked files: none, because no file has ever been tracked
-- Untracked files: the entire project, including all preserved and completed work
+- Historical report endpoint: unborn `master`, no commit, no remote, and all files untracked.
+- Current checkout branch: `release/operator-product-v0.1`.
+- Current repository: private `QaliAI/open-coworking-stack`; `origin` is configured.
+- Hosted default branch: `main`; initial hosted CI passed.
+- Current history contains commits; latest state must be read from Git rather than the historical
+  endpoint above.
 
-No commit was created because the user did not request one and there is no existing history or remote
-policy to anchor it.
+No deployment, tag, publication, or repository-visibility change is asserted by this report update.

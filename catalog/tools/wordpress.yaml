@@ -66,6 +66,32 @@ human_oversight_still_needed:
   - Plugin supply-chain risk
   - Update discipline
   - Form spam
+task_fits:
+  - task_id: publish-campaign-assets
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Editing server files directly to publish approved campaign content on the marketing website.
+    what_it_takes_off_the_team:
+      Provides an administrative editor and publishing workflow for the website portion of a
+      campaign.
+    role_assisted: marketing-manager
+    what_remains_human:
+      Confirm the approved version, claims, links, audience, consent, accessibility, and offer state;
+      preview the page; authorize publication; and decide whether to pause or roll back.
+    prerequisites:
+      - Approved final content, claims, assets, and publication timing
+      - Least-privilege publishing roles and a protected administrator account
+      - Maintained themes and plugins plus a tested backup, staging, and rollback path
+    failure_consequence:
+      The wrong or unsafe content can become public, and a vulnerable publishing stack can expose
+      the site or submitted personal data.
+    pilot_metric:
+      Pilot web assets match the approved version after human preview, and one correction or rollback
+      path is demonstrated before campaign use.
+    evidence:
+      - https://wordpress.org/
+      - https://wordpress.org/documentation/
+    confidence: medium
 data_privacy:
   data_held:
     - content
@@ -92,9 +118,22 @@ verification:
     - https://github.com/WordPress/WordPress
     - https://wordpress.org/documentation/
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
+    Editorial evaluation based on the listed official project, repository, and documentation pages.
+    Task fit has not been implementation-tested and is limited to website publishing, with approval,
+    security maintenance, and rollback retained by operators.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://wordpress.org/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/WordPress/WordPress
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://wordpress.org/documentation/
+      verified_on: 2026-07-17
 featured: true
 rank_score: 85

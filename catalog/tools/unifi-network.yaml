@@ -68,6 +68,53 @@ human_oversight_still_needed:
   - Vendor ecosystem lock-in
   - Controller backups
   - Firmware discipline
+task_fits:
+  - task_id: manage-guest-wifi
+    relationship: infrastructure
+    automation_level: assisted
+    what_manual_process_it_can_replace: Configuring each access point independently and relying on one unsegmented Wi-Fi network.
+    what_it_takes_off_the_team: Provides one place to configure UniFi Wi-Fi networks and inspect connected-client context.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Approve isolation, retention, and access policy; validate the configured boundaries; authorize
+      guests; and resolve device or accessibility exceptions without bypassing controls.
+    prerequisites:
+      - Compatible UniFi network hardware and a restricted administration environment
+      - An approved guest isolation, credential expiry, retention, and exception policy
+      - Tested configuration backups and a rollback path
+    failure_consequence:
+      A configuration error can expose member or building systems to guests or deny legitimate
+      connectivity.
+    pilot_metric:
+      All pilot guest sessions pass approved isolation and expiry checks, with every exception
+      reviewed by the network owner.
+    evidence:
+      - https://ui.com/wi-fi
+      - https://help.ui.com/
+    confidence: medium
+  - task_id: triage-network-connectivity
+    relationship: infrastructure
+    automation_level: assisted
+    what_manual_process_it_can_replace: Inspecting individual UniFi devices before establishing basic client and network context.
+    what_it_takes_off_the_team: Centralizes UniFi device, network, and connected-client context for initial investigation.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Distinguish device, radio, configuration, upstream, and security causes; minimize member-device
+      data collection; communicate status; and approve every network change.
+    prerequisites:
+      - A current network topology and documented recent changes
+      - Restricted controller access and approved diagnostic data handling
+      - A triage runbook with escalation and rollback ownership
+    failure_consequence:
+      Incomplete or misread controller context can prompt a disruptive change, miss an upstream
+      fault, or expose unnecessary client data.
+    pilot_metric:
+      Pilot incidents are scoped before configuration changes, and the suspected cause is confirmed
+      or corrected in the incident record.
+    evidence:
+      - https://ui.com/wi-fi
+      - https://help.ui.com/
+    confidence: low
 data_privacy:
   data_held:
     - client connections
@@ -93,9 +140,22 @@ verification:
     - https://ui.com/wi-fi
     - https://help.ui.com/
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
+    Editorial evaluation based on the listed official product and documentation pages. Task fit has
+    not been implementation-tested; network design, privacy, change approval, and rollback remain
+    operator responsibilities.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://ui.com/wi-fi
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://help.ui.com/
+      verified_on: 2026-07-17
+    - kind: license
+      source: https://ui.com/download/software/unifi-controller
+      verified_on: 2026-07-17
 featured: true
 rank_score: 85

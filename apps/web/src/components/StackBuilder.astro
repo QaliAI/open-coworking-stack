@@ -1,0 +1,521 @@
+---
+import catalogSource from '../../public/data/catalog.json';
+import {
+  defaultStackBuilderInput,
+  recommendStack,
+  toolLinks,
+  type CatalogLookup,
+  type CostAssumptions,
+  type StackPriority,
+} from '../utils/stack-builder';
+
+// Static import: reading this file by path breaks once the component is bundled for production,
+// which silently dropped all catalog enrichment (license labels, install-guide links).
+const catalog: CatalogLookup = Object.fromEntries(
+  (catalogSource.tools as Array<Record<string, unknown>>).map((tool) => [
+    tool.id as string,
+    {
+      homepage: tool.homepage as string | undefined,
+      license_class: tool.license_class as string | undefined,
+      spdx: tool.spdx as string | undefined,
+      guide_status: tool.guide_status as string | undefined,
+      verification_status: tool.verification_status as string | undefined,
+    },
+  ]),
+);
+
+const base = import.meta.env.BASE_URL;
+const initial = recommendStack(defaultStackBuilderInput, catalog);
+const priorityOptions: Array<[StackPriority, string, string]> = [
+  ['members-billing', 'Members and billing', 'Membership, invoices, and payment follow-up'],
+  ['rooms-desks', 'Rooms and desks', 'Availability and booking'],
+  ['sales-tours', 'Sales and tours', 'Lead capture, tours, and follow-up'],
+  ['community-comms', 'Community communications', 'Shared, permissioned communication'],
+  ['knowledge-sops', 'Knowledge and SOPs', 'Procedures and staff handoffs'],
+  ['automation-reporting', 'Automation and reporting', 'Approved handoffs and reporting'],
+];
+const costFields: Array<[keyof CostAssumptions, string, string]> = [
+  ['setupServices', 'Setup services', 'one-time cash'],
+  ['subscriptions', 'Subscriptions', 'monthly cash'],
+  ['hosting', 'Hosting and storage', 'monthly cash'],
+  ['messaging', 'Email and messaging', 'monthly cash'],
+  ['paymentFees', 'Payment processing fees', 'monthly estimate'],
+  ['hardware', 'Hardware', 'one-time cash'],
+  ['setupLaborHours', 'Setup labor', 'hours'],
+  ['monthlyLaborHours', 'Maintenance and admin labor', 'hours/month'],
+];
+---
+
+<script is:inline type="application/json" data-catalog set:html={JSON.stringify(catalog).replace(/</g, '\\u003c')} />
+
+<div class="builder" data-stack-builder data-base={base}>
+  <form data-builder-form>
+    <fieldset>
+      <legend>1. Your operation</legend>
+      <div class="grid compact">
+        <label class="wide">
+          Plan name
+          <input name="operatorName" value={defaultStackBuilderInput.operatorName} required />
+        </label>
+        <label>
+          Sites
+          <input name="sites" type="number" min="1" step="1" value="1" required />
+        </label>
+        <label>
+          Active members
+          <input name="activeMembers" type="number" min="0" step="1" value="80" required />
+        </label>
+        <label>
+          Staff users
+          <input name="staffUsers" type="number" min="1" step="1" value="3" required />
+        </label>
+        <label>
+          Operator hours available/week
+          <input name="operatorHoursPerWeek" type="number" min="0" step="1" value="4" required />
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Outcomes to cover</legend>
+      <p class="hint">Choose every area the stack needs to support. Human owners still approve exceptions and consequential decisions.</p>
+      <div class="checks">
+        {
+          priorityOptions.map(([value, label, description]) => (
+            <label class="check-card">
+              <input
+                type="checkbox"
+                name="priorities"
+                value={value}
+                checked={defaultStackBuilderInput.priorities.includes(value)}
+              />
+              <span><strong>{label}</strong><small>{description}</small></span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. Capacity and constraints</legend>
+      <div class="grid">
+        <label>
+          Technical capacity
+          <select name="technicalCapacity" required>
+            <option value="none">None / nontechnical team</option>
+            <option value="vendor-supported">Contracted or vendor support</option>
+            <option value="in-house">Experienced in-house technical owner</option>
+          </select>
+        </label>
+        <label>
+          Deployment preference
+          <select name="deploymentPreference" required>
+            <option value="easiest">Easiest operations</option>
+            <option value="balanced">Balance convenience and control</option>
+            <option value="control">Maximum infrastructure control</option>
+          </select>
+        </label>
+        <label>
+          Data sensitivity
+          <select name="dataSensitivity" required>
+            <option value="standard">Standard business/member data</option>
+            <option value="sensitive">Sensitive personal/financial records</option>
+            <option value="regulated">Regulated or contract-restricted data</option>
+          </select>
+        </label>
+        <label>
+          Implementation window
+          <select name="implementationWindow" required>
+            <option value="one-week">One week</option>
+            <option value="one-month" selected>One month</option>
+            <option value="one-quarter">One quarter</option>
+          </select>
+        </label>
+        <label>
+          Currency for estimates
+          <select name="currency" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="CAD">CAD</option>
+            <option value="AUD">AUD</option>
+          </select>
+        </label>
+        <label>
+          Monthly cash budget
+          <input name="monthlyBudget" type="number" min="0" step="1" value="500" required />
+        </label>
+        <label>
+          One-time setup cash budget
+          <input name="setupBudget" type="number" min="0" step="1" value="1500" required />
+        </label>
+      </div>
+      <div class="grid textareas">
+        <label>
+          Current systems
+          <textarea name="currentSystems" rows="3" placeholder="Spreadsheets, accounting, access control, calendars..."></textarea>
+        </label>
+        <label>
+          Required integrations
+          <textarea name="requiredIntegrations" rows="3">Calendar, accounting, and payment processor</textarea>
+        </label>
+        <label>
+          Other constraints
+          <textarea name="constraints" rows="3" placeholder="Residency, procurement, accessibility, contract, or staffing constraints"></textarea>
+        </label>
+      </div>
+      <p class="privacy-warning"><strong>Do not enter</strong> credentials, member personal data, payment details, access codes, or confidential contracts. This data stays in your browser but the exported plan will contain your text.</p>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit">Build and compare stacks</button>
+      <button type="reset" class="secondary">Reset assumptions</button>
+    </div>
+  </form>
+
+  <section class="results" aria-labelledby="stack-results-heading" aria-live="polite">
+    <div class="result-heading">
+      <div>
+        <p class="eyebrow">Deterministic result</p>
+        <h2 id="stack-results-heading" tabindex="-1">Three operating models</h2>
+        <p data-summary>{initial.summary}</p>
+      </div>
+      <div class="output-actions">
+        <button type="button" class="secondary" data-export>Export Markdown</button>
+        <button type="button" class="secondary" data-print>Print</button>
+      </div>
+    </div>
+    <p class="guardrail" data-guardrail data-strong={String(initial.doNotSelfHost)}>
+      <strong>{initial.doNotSelfHost ? 'Do not self-host.' : 'Pilot before committing.'}</strong>
+      <span>{initial.guardrail}</span>
+    </p>
+
+    <div class="track-grid" data-tracks>
+      {
+        initial.tracks.map((track) => (
+          <article class="track" data-track={track.id} data-fit={track.fit}>
+            <header>
+              <p class="track-number">{track.id === 'hosted' ? '01' : track.id === 'hybrid' ? '02' : '03'}</p>
+              <h3><span data-track-title>{track.title}</span> <small>/ {track.label}</small></h3>
+              <span class="fit" data-fit-label>{track.fit.replace('-', ' ')}</span>
+            </header>
+            <p data-reasoning>{track.reasoning}</p>
+
+            <details open>
+              <summary>Tools and alternatives</summary>
+              <h4>Tools</h4>
+              <ul data-tools>{track.tools.map((tool) => { const links = toolLinks(tool.catalogId ?? '', tool.catalogEntry, base); return <li><strong>{tool.name}:</strong> {tool.purpose}<span class="catalog-ref"> — {tool.catalogEntry?.license_class ? <span>{tool.catalogEntry.license_class} · </span> : ''}<a href={links.recordUrl}>Record</a>{links.guideUrl ? <span> · <a href={links.guideUrl}>{links.guideLabel}</a></span> : ''}{tool.catalogEntry?.homepage ? <span> · <a href={tool.catalogEntry.homepage}>Official site</a></span> : ''}</span></li>; })}</ul>
+              <h4>Alternatives</h4>
+              <ul data-alternatives>{track.alternatives.map((item) => <li>{item}</li>)}</ul>
+            </details>
+
+            <details>
+              <summary>Coverage, gaps, and records</summary>
+              <h4>Covered tasks</h4>
+              <ul data-covered>{track.coveredTasks.map((item) => <li>{item}</li>)}</ul>
+              <h4>Gaps</h4>
+              <ul data-gaps>{track.gaps.map((item) => <li>{item}</li>)}</ul>
+              <h4>Systems of record</h4>
+              <ul data-records>{track.systemsOfRecord.map((item) => <li>{item}</li>)}</ul>
+            </details>
+
+            <details open>
+              <summary>Editable cost assumptions (fabricated demonstration data)</summary>
+              <p class="hint"><strong>Fabricated demonstration data.</strong> All numbers are examples — not sourced quotes, estimates, or verified prices. Replace every value with actual quotes or internal figures before using this plan. Prices change; review dates are not shown for individual cost rows.</p>
+              <div class="cost-grid">
+                {costFields.map(([key, label, unit]) => (
+                  <label>
+                    {label} <small>{unit}</small>
+                    <input type="number" min="0" step="1" value={track.costs[key]} data-cost={key} />
+                  </label>
+                ))}
+              </div>
+              <p class="cost-total" data-cost-total></p>
+              <ul data-cost-notes>{track.costNotes.map((item) => <li>{item}</li>)}</ul>
+            </details>
+
+            <details>
+              <summary>Delivery and resilience</summary>
+              <h4>Labor</h4><p data-labor>{track.labor}</p>
+              <h4>Expertise</h4><p data-expertise>{track.expertise}</p>
+              <h4>Implementation order</h4>
+              <ol data-order>{track.order.map((item) => <li>{item}</li>)}</ol>
+              <h4>Pilot</h4><p data-pilot>{track.pilot}</p>
+              <h4>Risks</h4><ul data-risks>{track.risks.map((item) => <li>{item}</li>)}</ul>
+              <h4>Backup</h4><p data-backup>{track.backup}</p>
+              <h4>Fallback</h4><p data-fallback>{track.fallback}</p>
+            </details>
+          </article>
+        ))
+      }
+    </div>
+    <p class="boundary">This planning aid does not verify current prices, guarantee fit or savings, or replace security, privacy, legal, accounting, tax, accessibility, or procurement review. Staff remain responsible for approvals, exceptions, member care, safety, and recovery.</p>
+  </section>
+</div>
+
+<script>
+  import {
+    recommendStack,
+    stackRecommendationToMarkdown,
+    toolLinks,
+    type CostAssumptions,
+    type Currency,
+    type DataSensitivity,
+    type DeploymentPreference,
+    type ImplementationWindow,
+    type StackBuilderInput,
+    type StackPriority,
+    type StackRecommendation,
+    type TechnicalCapacity,
+  } from '../utils/stack-builder';
+
+  const catalogScript = document.querySelector<HTMLScriptElement>('script[data-catalog]');
+  let catalog: Record<string, { homepage?: string; license_class?: string; spdx?: string; guide_status?: string }> = {};
+  try { if (catalogScript?.textContent) catalog = JSON.parse(catalogScript.textContent); } catch { /* ok */ }
+
+  const root = document.querySelector<HTMLElement>('[data-stack-builder]');
+  if (root && !root.dataset.ready) {
+    root.dataset.ready = 'true';
+    const form = root.querySelector<HTMLFormElement>('[data-builder-form]');
+    const summary = root.querySelector<HTMLElement>('[data-summary]');
+    const guardrail = root.querySelector<HTMLElement>('[data-guardrail]');
+    let current: StackRecommendation | null = null;
+
+    function number(formData: FormData, key: string): number {
+      return Number(formData.get(key) ?? 0);
+    }
+
+    function readInput(): StackBuilderInput | null {
+      if (!form) return null;
+      const data = new FormData(form);
+      return {
+        operatorName: String(data.get('operatorName') ?? ''),
+        sites: number(data, 'sites'),
+        activeMembers: number(data, 'activeMembers'),
+        staffUsers: number(data, 'staffUsers'),
+        operatorHoursPerWeek: number(data, 'operatorHoursPerWeek'),
+        priorities: data.getAll('priorities').map(String) as StackPriority[],
+        technicalCapacity: String(data.get('technicalCapacity')) as TechnicalCapacity,
+        deploymentPreference: String(data.get('deploymentPreference')) as DeploymentPreference,
+        dataSensitivity: String(data.get('dataSensitivity')) as DataSensitivity,
+        implementationWindow: String(data.get('implementationWindow')) as ImplementationWindow,
+        currency: String(data.get('currency')) as Currency,
+        monthlyBudget: number(data, 'monthlyBudget'),
+        setupBudget: number(data, 'setupBudget'),
+        currentSystems: String(data.get('currentSystems') ?? ''),
+        requiredIntegrations: String(data.get('requiredIntegrations') ?? ''),
+        constraints: String(data.get('constraints') ?? ''),
+      };
+    }
+
+    const siteBase = root.dataset.base ?? '/';
+
+    function appendLink(parent: Element, label: string, href: string) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = label;
+      parent.append(link);
+    }
+
+    function replaceList(container: Element | null, items: Array<string | { name: string; purpose: string; catalogId?: string; catalogEntry?: { homepage?: string; license_class?: string; guide_status?: string } }>) {
+      if (!container) return;
+      container.replaceChildren(
+        ...items.map((item) => {
+          const li = document.createElement('li');
+          if (typeof item === 'string') li.textContent = item;
+          else {
+            const strong = document.createElement('strong');
+            strong.textContent = `${item.name}:`;
+            li.append(strong, ` ${item.purpose}`);
+            const ref = document.createElement('span');
+            ref.className = 'catalog-ref';
+            ref.append(' — ');
+            if (item.catalogEntry?.license_class) ref.append(`${item.catalogEntry.license_class} · `);
+            const links = toolLinks(item.catalogId ?? '', item.catalogEntry, siteBase);
+            appendLink(ref, 'Record', links.recordUrl);
+            if (links.guideUrl && links.guideLabel) {
+              ref.append(' · ');
+              appendLink(ref, links.guideLabel, links.guideUrl);
+            }
+            if (item.catalogEntry?.homepage) {
+              ref.append(' · ');
+              appendLink(ref, 'Official site', item.catalogEntry.homepage);
+            }
+            li.append(ref);
+          }
+          return li;
+        }),
+      );
+    }
+
+    function setText(card: Element, selector: string, value: string) {
+      const element = card.querySelector<HTMLElement>(selector);
+      if (element) element.textContent = value;
+    }
+
+    function readEditedCosts() {
+      if (!current) return;
+      for (const track of current.tracks) {
+        const card = root?.querySelector<HTMLElement>(`[data-track="${track.id}"]`);
+        if (!card) continue;
+        for (const key of Object.keys(track.costs) as Array<keyof CostAssumptions>) {
+          const control = card.querySelector<HTMLInputElement>(`[data-cost="${key}"]`);
+          track.costs[key] = Math.max(0, Number(control?.value ?? 0));
+        }
+      }
+    }
+
+    function updateCostTotal(card: HTMLElement, currency: string) {
+      const get = (key: keyof CostAssumptions) =>
+        Math.max(0, Number(card.querySelector<HTMLInputElement>(`[data-cost="${key}"]`)?.value ?? 0));
+      const oneTime = get('setupServices') + get('hardware');
+      const monthly = get('subscriptions') + get('hosting') + get('messaging') + get('paymentFees');
+      const output = card.querySelector<HTMLElement>('[data-cost-total]');
+      if (output) {
+        output.textContent = `Cash estimate: ${currency} ${oneTime.toLocaleString()} one-time + ${currency} ${monthly.toLocaleString()}/month. Labor: ${get('setupLaborHours')} setup hours + ${get('monthlyLaborHours')} hours/month.`;
+      }
+    }
+
+    function render(result: StackRecommendation) {
+      current = result;
+      if (summary) summary.textContent = result.summary;
+      if (guardrail) {
+        guardrail.dataset.strong = String(result.doNotSelfHost);
+        guardrail.replaceChildren();
+        const strong = document.createElement('strong');
+        strong.textContent = result.doNotSelfHost ? 'Do not self-host. ' : 'Pilot before committing. ';
+        guardrail.append(strong, result.guardrail);
+      }
+      for (const track of result.tracks) {
+        const card = root?.querySelector<HTMLElement>(`[data-track="${track.id}"]`);
+        if (!card) continue;
+        card.dataset.fit = track.fit;
+        setText(card, '[data-fit-label]', track.fit.replace('-', ' '));
+        setText(card, '[data-reasoning]', track.reasoning);
+        replaceList(card.querySelector('[data-tools]'), track.tools);
+        replaceList(card.querySelector('[data-alternatives]'), track.alternatives);
+        replaceList(card.querySelector('[data-covered]'), track.coveredTasks);
+        replaceList(card.querySelector('[data-gaps]'), track.gaps);
+        replaceList(card.querySelector('[data-records]'), track.systemsOfRecord);
+        replaceList(card.querySelector('[data-cost-notes]'), track.costNotes);
+        replaceList(card.querySelector('[data-order]'), track.order);
+        replaceList(card.querySelector('[data-risks]'), track.risks);
+        setText(card, '[data-labor]', track.labor);
+        setText(card, '[data-expertise]', track.expertise);
+        setText(card, '[data-pilot]', track.pilot);
+        setText(card, '[data-backup]', track.backup);
+        setText(card, '[data-fallback]', track.fallback);
+        for (const [key, value] of Object.entries(track.costs)) {
+          const control = card.querySelector<HTMLInputElement>(`[data-cost="${key}"]`);
+          if (control) control.value = String(value);
+        }
+        updateCostTotal(card, result.input.currency);
+      }
+    }
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = readInput();
+      if (!input) return;
+      render(recommendStack(input, catalog));
+      root?.querySelector<HTMLElement>('#stack-results-heading')?.focus({ preventScroll: true });
+      root?.querySelector<HTMLElement>('.results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    form?.addEventListener('reset', () => window.setTimeout(() => {
+      const input = readInput();
+      if (input) render(recommendStack(input, catalog));
+    }));
+    root.addEventListener('input', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement) || !target.dataset.cost || !current) return;
+      const card = target.closest<HTMLElement>('[data-track]');
+      if (card) updateCostTotal(card, current.input.currency);
+    });
+    root.querySelector<HTMLButtonElement>('[data-export]')?.addEventListener('click', () => {
+      if (!current) return;
+      readEditedCosts();
+      const blob = new Blob([stackRecommendationToMarkdown(current)], { type: 'text/markdown;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'coworking-stack-plan.md';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+    root.querySelector<HTMLButtonElement>('[data-print]')?.addEventListener('click', () => window.print());
+
+    const initialInput = readInput();
+    if (initialInput) render(recommendStack(initialInput, catalog));
+  }
+</script>
+
+<style>
+  .builder { --ink: #17251f; --line: #cad8d0; --paper: #f7faf7; color: var(--ink); }
+  form, .results { margin-block: 1.5rem; }
+  fieldset { border: 1px solid var(--line); border-radius: .35rem; margin: 0 0 1rem; padding: 1rem; }
+  legend { font-weight: 750; padding: 0 .4rem; }
+  label { display: grid; gap: .35rem; font-size: .88rem; font-weight: 650; }
+  input, select, textarea, button { font: inherit; }
+  input, select, textarea { background: white; border: 1px solid #82978c; border-radius: .2rem; color: var(--ink); min-width: 0; padding: .65rem; }
+  textarea { resize: vertical; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #e9a23b; outline-offset: 2px; }
+  .grid { display: grid; gap: .8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .wide { grid-column: span 2; }
+  .textareas { margin-top: .8rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .checks { display: grid; gap: .6rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .check-card { align-items: start; border: 1px solid var(--line); border-radius: .25rem; display: grid; gap: .6rem; grid-template-columns: auto 1fr; padding: .75rem; }
+  .check-card:has(input:checked) { background: #eef7f1; border-color: #39745a; }
+  .check-card input { margin-top: .2rem; }
+  .check-card small { display: block; font-weight: 400; margin-top: .15rem; }
+  .hint, .boundary { color: #50635a; font-size: .85rem; }
+  .form-actions, .output-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+  button { background: #173f31; border: 1px solid #173f31; border-radius: .2rem; color: white; cursor: pointer; font-weight: 700; padding: .65rem .9rem; }
+  button.secondary { background: white; color: #173f31; }
+  .results { border-top: 4px solid #173f31; padding-top: 1.25rem; scroll-margin-top: 1rem; }
+  .result-heading { align-items: end; display: flex; gap: 1rem; justify-content: space-between; }
+  .result-heading h2 { margin-block: .1rem; }
+  .eyebrow, .track-number { color: #39745a; font-size: .75rem; font-weight: 800; letter-spacing: .1em; margin: 0; text-transform: uppercase; }
+  .guardrail { background: #eef7f1; border-left: 5px solid #39745a; padding: .9rem; }
+  .guardrail[data-strong="true"] { background: #fff0e8; border-color: #a43d16; }
+  .guardrail strong, .guardrail span { display: inline; }
+  .track-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .track { background: var(--paper); border: 1px solid var(--line); border-top: 5px solid #82978c; border-radius: .25rem; min-width: 0; padding: 1rem; }
+  .track[data-fit="recommended"] { border-top-color: #248357; }
+  .track[data-fit="not-recommended"] { border-top-color: #a43d16; }
+  .track header { position: relative; }
+  .track h3 { font-size: 1.25rem; margin: .2rem 0; }
+  .track h3 small { font-weight: 450; }
+  .fit { background: #e5ece8; border-radius: 99px; display: inline-block; font-size: .72rem; font-weight: 750; padding: .15rem .5rem; text-transform: uppercase; }
+  .track[data-fit="recommended"] .fit { background: #d8f3e4; }
+  .track[data-fit="not-recommended"] .fit { background: #fde0d3; }
+  details { border-top: 1px solid var(--line); margin-top: .85rem; padding-top: .65rem; }
+  summary { cursor: pointer; font-weight: 750; }
+  .track h4 { font-size: .82rem; letter-spacing: .04em; margin: .9rem 0 .3rem; text-transform: uppercase; }
+  .track ul, .track ol { font-size: .88rem; margin: .35rem 0; padding-left: 1.2rem; }
+  .track li + li { margin-top: .3rem; }
+  .cost-grid { display: grid; gap: .55rem; grid-template-columns: 1fr 1fr; }
+  .cost-grid label { font-size: .75rem; }
+  .cost-grid label small { font-weight: 400; }
+  .cost-grid input { padding: .45rem; }
+  .cost-total { border-top: 1px dashed #82978c; font-size: .84rem; font-weight: 700; padding-top: .65rem; }
+  .catalog-ref { font-size: .72rem; font-weight: 500; text-decoration: underline; text-underline-offset: .15em; }
+  .boundary { border-top: 1px solid var(--line); margin-top: 1.2rem; padding-top: .9rem; }
+  @media (max-width: 72rem) { .track-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 44rem) {
+    .grid, .grid.compact, .checks, .textareas { grid-template-columns: 1fr; }
+    .wide { grid-column: auto; }
+    .result-heading { align-items: stretch; flex-direction: column; }
+  }
+  @media (max-width: 320px) {
+    fieldset, .track { padding: .7rem; }
+    .cost-grid { grid-template-columns: 1fr; }
+    .form-actions button, .output-actions button { width: 100%; }
+  }
+  @media print {
+    form, .output-actions { display: none; }
+    .track-grid { display: block; }
+    .track { break-inside: avoid; margin-bottom: 1rem; }
+    details { display: block; }
+    details > * { display: block; }
+  }
+</style>

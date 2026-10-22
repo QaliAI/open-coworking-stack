@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: triage-network-connectivity
+name: Triage network connectivity issues
+description: Establish affected users, locations, services, timing, and safe diagnostic evidence before routing or changing network controls, while minimizing collection from member devices.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [community-coordinator-front-desk, member]
+frequency: continuous
+trigger: A user or monitor reports unavailable, unstable, slow, or unsafe connectivity.
+inputs: [User-provided symptoms and consent, Network health context, Recent approved changes]
+outputs: [Severity and scope assessment, Safe workaround or assigned investigation, User update]
+current_manual_methods: [Restart advice, Speed test screenshot, Direct admin troubleshooting]
+common_failure_modes:
+  [One device issue is declared an outage, Excessive device data is collected without purpose]
+human_judgment_required:
+  [
+    Distinguish device,
+    account,
+    radio,
+    upstream,
+    and security signals,
+    Choose diagnostics proportionate to impact,
+  ]
+approval_points:
+  [Network owner approves configuration changes, isolation, and intrusive diagnostics]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: false
+success_metrics:
+  [Issues are scoped correctly before change, Users receive timely status and a safe next step]
+related_workflows: [incident-response]

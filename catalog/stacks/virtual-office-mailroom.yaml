@@ -1,0 +1,128 @@
+schema_version: 1.0.0
+id: virtual-office-mailroom
+name: Virtual Office and Mailroom
+tagline: Track customer authority, mail events, documents, and exceptions with custody controls
+description: A virtual-office operating pattern for customer records, mail and package events, secure document handling, signatures, and support while preserving physical custody and human verification.
+audience_roles: [virtual-office-mailroom, operations-manager, owner-operator, finance]
+problems_solved:
+  [operate-virtual-office, reduce-manual-admin, privacy-compliance, centralize-knowledge]
+workflows: [mail-package-handling, member-onboarding, member-offboarding, compliance-review]
+monthly_cash_budget_band: under-500
+self_host_heavy: false
+operator_profile: An operator offering legitimate address and mail services with trained staff, documented custody, and local legal review.
+number_of_locations: One or more staffed receiving locations with location-specific logs.
+team_size: Two or more trained staff so custody and exception handling are not dependent on one person.
+products_offered:
+  [business-address-service, mail-receipt, package-notification, document-scanning, mail-forwarding]
+technical_skill_required: Moderate; SaaS administration, scanner security, retention, exports, and access review.
+tasks_covered:
+  [
+    customer-record-management,
+    mail-event-logging,
+    package-notification,
+    approved-document-scanning,
+    signature-workflow,
+    support-case-tracking,
+  ]
+tasks_not_covered:
+  [
+    identity-legal-judgment,
+    prohibited-mail-screening,
+    physical-custody,
+    carrier-liability,
+    regulatory-advice,
+    suspicious-activity-decision,
+  ]
+systems_of_record:
+  - OfficeRnD is the customer, product, and service status record.
+  - Paperless-ngx is the approved scanned-document record when scanning is authorized.
+  - Zammad is the customer request and exception record.
+components:
+  - tool_id: officerd-saas
+    role_in_stack: Virtual office customer and service authority
+    required: true
+  - tool_id: paperless-ngx
+    role_in_stack: Controlled optional document scanning and retention
+    required: true
+  - tool_id: docuseal
+    role_in_stack: Service agreement signature workflow
+    required: true
+  - tool_id: zammad
+    role_in_stack: Customer requests and exception cases
+    required: true
+  - tool_id: vaultwarden
+    role_in_stack: Staff service credentials
+    required: true
+data_flow:
+  - Staff verify service status before logging a physical mail event against the customer record.
+  - Authorized items are scanned to Paperless-ngx and linked by reference, not copied into broad inboxes.
+  - Notifications contain minimum necessary information and customer instructions return through Zammad.
+implementation_order:
+  [
+    obtain-local-legal-review,
+    define-custody-policy,
+    configure-customer-products,
+    configure-mail-event-fields,
+    secure-scanning,
+    configure-signatures,
+    configure-support,
+    test-retention-and-export,
+  ]
+cost_assumptions:
+  monthly_cash: Edit for core platform, scanning storage, signature volume, support hosting, delivery, postage, and secure destruction.
+  setup_labor: Include legal and process review, customer migration, custody design, templates, scanner hardening, and staff drills.
+  maintenance_labor: Reserve daily reconciliation plus recurring access, retention, undeliverable, and exception review.
+  messaging_email_sms: Notifications may be usage-priced; SMS requires explicit consent, delivery monitoring, and fallback.
+  hosting_storage: Scanned mail can grow quickly and may be sensitive; use encryption, retention limits, and separate backups.
+  notes:
+    - Postage, labor, secure storage, and destruction are material operating costs.
+    - Local virtual-office and mail regulations must drive configuration.
+  pricing_sources: []
+human_owners:
+  [
+    mailroom-lead for custody,
+    operations-manager for service records,
+    owner-operator for legal risk,
+    technical-operator for document security,
+  ]
+security_boundaries:
+  - Separate physical custody from digital authorization and require staff identity on each event.
+  - Restrict scanned documents by role and prohibit casual forwarding through personal accounts.
+  - Human staff decide identity, suspicious, damaged, prohibited, and legal exceptions.
+backup_and_recovery:
+  - Back up customer, mail-event, agreement, case, and authorized scan records separately.
+  - Maintain numbered manual intake logs for outages and reconcile them after recovery.
+  - Test recovery and secure deletion evidence quarterly.
+assumptions:
+  - The operator has obtained local legal and carrier guidance.
+  - Every receiving shift has trained staff and controlled physical storage.
+risks:
+  - Misdelivery or unauthorized scanning can create serious privacy and custody harm.
+  - Digital records cannot compensate for weak physical chain of custody.
+getting_started:
+  [
+    review-legal-duties,
+    map-custody,
+    pilot-internal-mail,
+    test-notifications,
+    test-customer-export,
+    train-two-staff,
+  ]
+pilot_plan:
+  - Process internal test letters and packages through receipt, scan, notification, release, and destruction.
+  - Reconcile every physical item to a digital event and exception owner.
+rollout_30_day:
+  - Enroll a small approved customer cohort and audit daily.
+  - Publish service scope, identification, retention, forwarding, and escalation rules.
+maturity_90_day:
+  - Audit custody gaps, access, retention, failed notifications, complaints, and unclaimed items.
+  - Run an outage and mistaken-recipient response exercise.
+exit_strategy:
+  - Export customer and event records according to legal retention duties.
+  - Notify customers, stop receiving authorization, resolve held mail, and securely remove excess scans.
+commercial_fallback:
+  - Use the core platform's supported mailroom module or a specialist provider if custom handling is unsafe.
+  - Suspend scanning or forwarding products when staffing or compliance controls cannot be maintained.
+verification:
+  last_reviewed: 2026-07-18
+  notes: Operators must verify local mail, identity, privacy, and virtual-office obligations.

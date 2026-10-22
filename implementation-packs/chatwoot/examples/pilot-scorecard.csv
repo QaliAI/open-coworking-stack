@@ -1,0 +1,7 @@
+measure,definition,result,evidence_ref,owner,status
+unassigned-at-close,conversations lacking named ownership,,,inbox-owner,not-run
+missed-after-hours,urgent or expected handoff not seen at opening,,,after-hours-manager,not-run
+private-note-visibility,unauthorized or visitor exposure must be zero,,,privacy-reviewer,not-run
+open-case-reconciliation,every open case mapped to human owner,,,inbox-owner,not-run
+notification-failure,forced failure becomes visible to operator,,,technical-owner,not-run
+export-or-restore,representative conversation remains usable and restricted,,,recovery-owner,not-run

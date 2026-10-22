@@ -1,0 +1,20 @@
+schema_version: 1.0.0
+tool_id: vaultwarden
+intended_outcome: individually authorized access to one rotated low-impact facilities credential
+deployment_boundary: isolated staging, then one Facilities collection and one approved credential
+accountable_owner: security service owner
+required_operators:
+  - technical operator for TLS, runtime, storage, updates, backup, and restore
+  - collection and credential owners for access and rotation
+required_reviewers:
+  - independent recovery custodian
+  - security reviewer for architecture, clients, and incident handling
+minimum_staffing: two people for recovery, decrypted export, and destructive retirement
+prohibited_uses:
+  - payment data or life-safety credentials
+  - shared vault logins or open enrollment
+  - autonomous access approval, export, or credential rotation
+readiness_evidence:
+  - accepted unofficial-server and support boundary
+  - approved collection matrix and offboarding runbook
+  - isolated restore, protected export, rotation, and revocation evidence

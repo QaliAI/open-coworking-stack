@@ -1,0 +1,32 @@
+schema_version: 1.0.0
+id: prepare-month-end-close
+name: Prepare month-end close
+description: Complete and review scheduled reconciliations, accruals, deferrals, receivables, adjustments, evidence, and unresolved items before publishing period results.
+business_area: finance
+primary_role: finance-billing-administrator
+supporting_roles: [owner-operator]
+frequency: monthly
+trigger: The accounting period reaches the approved close timetable.
+inputs: [Ledger and subledgers, Reconciliation schedules, Approved estimates and adjustments]
+outputs: [Reviewed close package, Outstanding item register, Decision-ready financial results]
+current_manual_methods: [Recurring spreadsheet checklist, Email evidence, Late journal entries]
+common_failure_modes:
+  [Deadline pressure hides unreconciled balances, Estimate is copied without current assumptions]
+human_judgment_required:
+  [
+    Evaluate materiality,
+    evidence,
+    estimates,
+    and cut-off,
+    Explain unresolved items and result limitations,
+  ]
+approval_points: [Qualified financial owner approves journals, reconciliations, and close release]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Close meets timetable with reviewer evidence,
+    Post-close corrections and unexplained balances decline,
+  ]
+related_workflows: [reporting-kpis, compliance-review]

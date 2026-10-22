@@ -1,0 +1,21 @@
+tool_id: wordpress
+component_name: REPLACE_ME
+component_type: theme_plugin_form_or_service
+official_source: REPLACE_ME
+version_and_license: REPLACE_ME
+maintainer_and_update_status: UNVERIFIED
+business_need: REPLACE_ME
+data_read_written_and_destinations: []
+credentials_and_permissions: []
+failure_and_disable_path: REPLACE_ME
+replacement_or_exit: REPLACE_ME
+form_fields_if_applicable: []
+retention_and_deletion_if_applicable: REPLACE_ME
+approvals:
+  marketing: PENDING
+  privacy: PENDING
+  accessibility: PENDING
+  security: PENDING
+  technical: PENDING
+test_result: NOT_RUN
+unknowns: []

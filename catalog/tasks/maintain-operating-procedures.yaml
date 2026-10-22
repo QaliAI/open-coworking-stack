@@ -1,0 +1,46 @@
+schema_version: 1.0.0
+id: maintain-operating-procedures
+name: Maintain operating procedures
+description: Keep role-owned procedures current, concise, testable, accessible, and connected to real exceptions, decision rights, system sources, fallbacks, and review evidence.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [consultant-implementer, community-coordinator-front-desk]
+frequency: monthly
+trigger: Scheduled review, observed process friction, incident action, or material tool, policy, or service change.
+inputs:
+  [
+    Current procedure and owner,
+    Frontline observations and exception evidence,
+    Approved system and policy changes,
+  ]
+outputs:
+  [
+    Reviewed procedure version,
+    Communicated changes and training need,
+    Retired duplicate or obsolete guidance,
+  ]
+current_manual_methods: [Shared document folder, Printed binder, Instructions in chat history]
+common_failure_modes: [Procedure describes ideal path only, Several current-looking copies conflict]
+human_judgment_required:
+  [
+    Decide the simplest safe guidance and useful exception boundaries,
+    Reconcile policy intent with frontline reality,
+  ]
+approval_points:
+  [
+    Accountable process owner approves content; specialists approve safety,
+    legal,
+    financial,
+    or security controls,
+  ]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Critical procedures have current owner and review evidence,
+    Staff can execute normal,
+    exception,
+    and fallback paths,
+  ]
+related_workflows: [compliance-review, multi-site-rollout, reporting-kpis]

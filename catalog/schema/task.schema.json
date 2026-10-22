@@ -1,0 +1,187 @@
+{
+  "$ref": "#/definitions/Task",
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 40
+        },
+        "business_area": {
+          "type": "string",
+          "enum": [
+            "front-desk",
+            "member-service",
+            "sales-leasing",
+            "community",
+            "events",
+            "space-inventory",
+            "virtual-office-mailroom",
+            "access-network-printing",
+            "facilities",
+            "finance",
+            "marketing",
+            "security-continuity",
+            "staff-administration"
+          ]
+        },
+        "primary_role": {
+          "type": "string",
+          "enum": [
+            "owner-operator",
+            "general-manager",
+            "community-coordinator-front-desk",
+            "community-manager",
+            "sales-leasing-manager",
+            "marketing-manager",
+            "event-manager",
+            "virtual-office-mailroom-manager",
+            "operations-facilities-manager",
+            "finance-billing-administrator",
+            "it-security-administrator",
+            "multi-location-operator",
+            "consultant-implementer",
+            "member"
+          ]
+        },
+        "supporting_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Task/properties/primary_role"
+          },
+          "default": []
+        },
+        "frequency": {
+          "type": "string",
+          "enum": [
+            "continuous",
+            "per-interaction",
+            "daily",
+            "weekly",
+            "monthly",
+            "quarterly",
+            "annual",
+            "event-driven"
+          ]
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "current_manual_methods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "common_failure_modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "human_judgment_required": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "approval_points": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "privacy_sensitivity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "security_sensitivity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "compliance_review_needed": {
+          "type": "boolean"
+        },
+        "success_metrics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "related_workflows": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "name",
+        "description",
+        "business_area",
+        "primary_role",
+        "frequency",
+        "trigger",
+        "inputs",
+        "outputs",
+        "current_manual_methods",
+        "common_failure_modes",
+        "human_judgment_required",
+        "approval_points",
+        "privacy_sensitivity",
+        "security_sensitivity",
+        "compliance_review_needed",
+        "success_metrics",
+        "related_workflows"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

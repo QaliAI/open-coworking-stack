@@ -1,0 +1,52 @@
+schema_version: 1.0.0
+id: post-tour-follow-up
+name: Post-tour follow-up
+description: Follow up after a coworking tour with accurate answers and a relevant next step based on host notes and prospect preference.
+objective: Continue the sales conversation without losing tour context or sending unsupported offers.
+responsible_role: Sales manager
+trigger: A host marks a tour completed and submits reviewed notes.
+inputs:
+  [tour outcome, prospect needs, approved availability, unanswered questions, contact preference]
+outputs: [approved follow-up, assigned questions, next-step status]
+source_of_truth: The reviewed sales pipeline record is authoritative.
+systems_involved: [sales pipeline, approved inventory, communication channel]
+automation_steps:
+  [create a follow-up task, surface unresolved questions, draft approved factual content]
+human_approval_points:
+  [Sales staff approve claims, pricing, availability, concessions, and the final message.]
+failure_exception_paths:
+  [Hold the message and assign a fact owner when notes, pricing, or inventory conflict.]
+privacy_risks: [Tour notes may contain sensitive business plans or personal requirements.]
+security_risks: [Misaddressed follow-up can disclose commercial needs or proposed terms.]
+measurable_kpis:
+  [completed tours with reviewed follow-up, time to follow-up, unresolved question age]
+test_cases:
+  [
+    Follow up a standard tour,
+    flag stale availability,
+    route an unanswered question,
+    honor no-contact preference.,
+  ]
+manual_fallback:
+  [Review host notes, verify facts, contact the prospect personally, and record the outcome.]
+rollback_disable_procedure:
+  [
+    Stop draft and task automation,
+    preserve tour records,
+    cancel queued messages,
+    use manual review.,
+  ]
+primary_roles: [sales-manager, community-manager]
+stages:
+  - id: review-and-follow-up
+    name: Review and follow up
+    description: Verify tour context and send a human-approved response with a clear next step.
+    manual_tasks: [review notes, verify commercial facts, answer questions, approve the message]
+    automation_opportunities: [surface questions and prepare a factual draft]
+    suggested_tool_ids: [espocrm, freescout]
+    risks: [Stale pricing or availability in a template can mislead the prospect.]
+success_metrics:
+  [Follow-up is accurate and owned, unresolved questions are tracked, preferences are honored.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Validate content sources and any message workflow locally.

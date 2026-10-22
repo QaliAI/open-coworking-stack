@@ -1,0 +1,41 @@
+schema_version: 1.0.0
+id: manage-security-incidents
+name: Manage security incidents
+description: Coordinate evidence preservation, containment, service continuity, investigation, communication, recovery, and follow-up through named human decision-makers.
+business_area: security-continuity
+primary_role: it-security-administrator
+supporting_roles: [general-manager, owner-operator, operations-facilities-manager]
+frequency: event-driven
+trigger: An authorized incident lead declares a suspected or confirmed security incident.
+inputs: [Triage evidence and scope, Incident plan and contacts, Critical service and legal context]
+outputs:
+  [
+    Controlled incident timeline and decisions,
+    Contained and recovered services,
+    Required notifications and corrective actions,
+  ]
+current_manual_methods: [Group chat, Ad hoc calls, Vendor-led response]
+common_failure_modes:
+  [Containment destroys evidence or safety fallback, Public communication precedes verified facts]
+human_judgment_required:
+  [
+    Balance containment,
+    safety,
+    privacy,
+    evidence,
+    and continuity,
+    Reassess scope and decide when expert help is required,
+  ]
+approval_points:
+  [
+    Incident commander approves major actions; legal and accountable executives approve regulated communications,
+  ]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Decisions and evidence remain traceable,
+    Recovery criteria and corrective actions are explicitly accepted,
+  ]
+related_workflows: [incident-response, compliance-review]

@@ -25,10 +25,11 @@ deployment:
   - self-hosted
 maturity: stable
 license:
-  class: oss-osi-approved
+  class: open-core
   spdx: MIT
   source_url: https://github.com/Stirling-Tools/Stirling-PDF
-  verified_on: 2026-07-17
+  notes: 'Official LICENSE: MIT except app/proprietary, app/saas, engine and proprietary frontend directories, which carry their own licenses.'
+  verified_on: 2026-10-20
 cost:
   model: free-self-hosted
   summary: Free software; host on internal network preferably.

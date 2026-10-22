@@ -74,6 +74,39 @@ human_oversight_still_needed:
   - SLA expectations
   - PII in chat transcripts
   - Handoff rules after hours
+task_fits:
+  - task_id: triage-member-requests
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Copying website enquiries from personal inboxes into a shared list and asking who owns each reply.
+    what_it_takes_off_the_team: Keeps conversation context in a shared inbox and supports approved labels and named assignment for routine routing.
+    role_assisted: community-coordinator-front-desk
+    what_remains_human: Read the request, clarify the desired outcome, recognize urgency, safety, accessibility, or sensitive context, choose the owner, and accept high-severity escalation.
+    prerequisites:
+      - An approved label, ownership, severity, and escalation policy
+      - Named inbox coverage and after-hours fallback
+      - Privacy, attachment, retention, and prohibited-data rules
+    failure_consequence: A wrong label, missed notification, or unattended queue can delay urgent help or expose sensitive context, requiring immediate human escalation and member communication.
+    pilot_metric: During a one-week pilot, every enquiry has a named owner or explicit unassigned status and every urgent test case reaches the duty manager within the approved target.
+    evidence:
+      - https://www.chatwoot.com/docs
+    confidence: medium
+  - task_id: qualify-inbound-leads
+    relationship: assistant
+    automation_level: manual support
+    what_manual_process_it_can_replace: Gathering a prospect's enquiry history from personal inboxes before a sales qualification conversation.
+    what_it_takes_off_the_team: Preserves the prospect's submitted context and provides a visible handoff from the shared inbox to a named sales owner.
+    role_assisted: sales-leasing-manager
+    what_remains_human: Ask for missing requirements, apply fair approved criteria, discuss accommodations or alternatives, honor communication preferences, and approve any ambiguous disqualification.
+    prerequisites:
+      - Approved qualification criteria and minimum-data questions
+      - A consent-aware handoff route to the authoritative sales record
+      - Human review before qualification, disqualification, or promises of price and availability
+    failure_consequence: Treating an inbox label as a fit decision can unfairly exclude a prospect, lose consent context, or create an unsupported commercial promise that a sales manager must correct.
+    pilot_metric: Every pilot enquiry handed to sales includes the prospect's stated need and a named next step, with no qualification outcome created solely from an automated label.
+    evidence:
+      - https://www.chatwoot.com/docs
+    confidence: low
 data_privacy:
   data_held:
     - conversations
@@ -105,5 +138,19 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: homepage
+      source: https://www.chatwoot.com/
+      verified_on: 2026-07-17
+    - kind: repository
+      source: https://github.com/chatwoot/chatwoot
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://www.chatwoot.com/docs
+      verified_on: 2026-07-17
+      notes: Official documentation reviewed editorially; no runtime or operator evidence is retained.
 featured: true
 rank_score: 86

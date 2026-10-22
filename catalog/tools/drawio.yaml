@@ -47,7 +47,7 @@ implementation:
   smallest_useful_experiment: Draw your network and critical app dependencies; store the file in your wiki/repo.
 homepage: https://www.diagrams.net/
 repository: https://github.com/jgraph/drawio
-documentation: https://www.drawio.com/doc/
+documentation: https://www.drawio.com/docs/
 links:
   - label: Homepage
     url: https://www.diagrams.net/
@@ -56,7 +56,7 @@ links:
     url: https://github.com/jgraph/drawio
     kind: repo
   - label: Documentation
-    url: https://www.drawio.com/doc/
+    url: https://www.drawio.com/docs/
     kind: docs
 tasks_reduced_or_augmented:
   - Architecture diagrams
@@ -84,7 +84,7 @@ verification:
   sources:
     - https://www.diagrams.net/
     - https://github.com/jgraph/drawio
-    - https://www.drawio.com/doc/
+    - https://www.drawio.com/docs/
   notes:
     Seed entry compiled from official project sites and repositories. Re-verify pricing, license
     text, and feature claims before production decisions. Star counts and free-tier numeric limits

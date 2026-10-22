@@ -1,0 +1,99 @@
+schema_version: 1.0.0
+id: virtual-office-onboarding
+name: Virtual-office onboarding
+description: Activate an approved virtual-office client through completed agreement, identity and compliance checks, mail instructions, contacts, and staff readiness.
+objective: Start only approved services with clear handling instructions, accountable ownership, and tested communication.
+responsible_role: Virtual-office and mailroom manager
+trigger: Intake review approves the client to proceed to contracted service onboarding.
+inputs:
+  [
+    approved intake,
+    completed checks,
+    signed agreement,
+    service scope,
+    authorized contacts,
+    mail preferences,
+    start date,
+  ]
+outputs:
+  [
+    active client record,
+    service instructions,
+    tested notification route,
+    staff checklist and exceptions,
+  ]
+source_of_truth: The approved agreement and controlled active virtual-office client register are authoritative.
+systems_involved:
+  [client register, agreement store, mailroom register, communication channel, staff knowledge base]
+automation_steps:
+  [create tasks from approved service scope, prepare client instructions, schedule required reviews]
+human_approval_points:
+  [
+    Authorized staff approve completed checks,
+    agreement,
+    service activation,
+    contacts,
+    and handling instructions.,
+  ]
+failure_exception_paths:
+  [
+    Hold activation for incomplete checks,
+    conflicting details,
+    failed contact testing,
+    or unsupported handling requests.,
+  ]
+privacy_risks:
+  [Identity, company ownership, addresses, authorized contacts, and mail preferences are sensitive.]
+security_risks:
+  [Wrong contacts or permissions can expose mail, documents, and business identity information.]
+measurable_kpis:
+  [
+    services activated with complete approval,
+    failed first notifications,
+    onboarding exceptions unresolved,
+  ]
+test_cases:
+  [
+    Onboard a standard client,
+    hold incomplete checks,
+    reject an unauthorized contact,
+    test notification failure.,
+  ]
+manual_fallback:
+  [
+    Use the controlled onboarding checklist,
+    verify every approval,
+    brief staff,
+    and test contact manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop activation automation,
+    suspend prematurely activated service,
+    preserve approvals,
+    complete onboarding from checklist.,
+  ]
+primary_roles: [virtual-office-mailroom, operations-manager]
+stages:
+  - id: approve-and-activate
+    name: Approve and activate
+    description: Confirm every prerequisite and handling rule before staff activate the service.
+    manual_tasks:
+      [
+        verify agreement and checks,
+        confirm contacts and preferences,
+        brief staff,
+        approve activation,
+      ]
+    automation_opportunities: [create scope-based tasks and prepare approved instructions]
+    suggested_tool_ids: [paperless-ngx, docuseal]
+    risks: [Premature activation can accept mail or address use for an unapproved client.]
+success_metrics:
+  [
+    Active clients have complete approvals,
+    tested contacts,
+    and clear current handling instructions.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Service activation requires local compliance, contract, identity, and mail-handling review.

@@ -14,6 +14,8 @@ import {
   WorkflowSchema,
 } from './enums.js';
 import { IsoDateSchema } from './date.js';
+import { OperatorRoleIdSchema } from './role.js';
+import { TaskIdSchema } from './task.js';
 
 const HttpUrl = z.string().url();
 
@@ -79,6 +81,88 @@ export const VerificationSchema = z.object({
   sources: z.array(HttpUrl).min(1),
   notes: z.string().optional(),
   reviewer: z.string().optional(),
+  completeness: z
+    .enum([
+      'unresearched',
+      'partial',
+      'metadata-verified',
+      'editorially-reviewed',
+      'implementation-tested',
+      'production-evaluated',
+    ])
+    .default('partial'),
+  confidence: z.enum(['high', 'medium', 'low', 'unknown']).default('low'),
+  tier: z
+    .enum([
+      'verified-core',
+      'evaluated',
+      'research-backlog',
+      'historical-archived',
+      'commercial-benchmark',
+      'avoid-new-deployment',
+    ])
+    .default('research-backlog'),
+  evidence: z
+    .array(
+      z.object({
+        kind: z.enum([
+          'homepage',
+          'repository',
+          'license',
+          'pricing',
+          'free-limits',
+          'maintenance',
+          'release',
+          'docs',
+          'docker',
+          'api',
+          'webhooks',
+          'backup-export',
+          'security',
+          'integrations',
+          'runtime-tests',
+          'operator-review',
+        ]),
+        source: HttpUrl,
+        verified_on: IsoDateSchema,
+        notes: z.string().optional(),
+      }),
+    )
+    .default([]),
+});
+
+export const TaskRelationshipSchema = z.enum([
+  'direct functional substitute',
+  'partial automation',
+  'assistant',
+  'system of record',
+  'integration layer',
+  'reporting layer',
+  'infrastructure',
+  'unsuitable as replacement',
+]);
+
+export const AutomationLevelSchema = z.enum([
+  'manual support',
+  'assisted',
+  'partially automated',
+  'mostly automated with review',
+  'low-risk fully automated',
+]);
+
+export const ToolTaskFitSchema = z.object({
+  task_id: TaskIdSchema,
+  relationship: TaskRelationshipSchema,
+  automation_level: AutomationLevelSchema,
+  what_manual_process_it_can_replace: z.string().min(1),
+  what_it_takes_off_the_team: z.string().min(1),
+  role_assisted: OperatorRoleIdSchema,
+  what_remains_human: z.string().min(1),
+  prerequisites: z.array(z.string().min(1)).min(1),
+  failure_consequence: z.string().min(1),
+  pilot_metric: z.string().min(1),
+  evidence: z.array(HttpUrl).min(1),
+  confidence: z.enum(['high', 'medium', 'low', 'unknown']),
 });
 
 export const IntegrationSchema = z.object({
@@ -117,6 +201,7 @@ export const ToolSchema = z
     links: z.array(ToolLinkSchema).default([]),
     tasks_reduced_or_augmented: z.array(z.string()).min(1),
     human_oversight_still_needed: z.array(z.string()).min(1),
+    task_fits: z.array(ToolTaskFitSchema).default([]),
     data_privacy: DataPrivacySchema,
     risks: RiskNotesSchema.default({}),
     integrations: z.array(IntegrationSchema).default([]),

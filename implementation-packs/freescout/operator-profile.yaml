@@ -1,0 +1,19 @@
+tool_id: freescout
+pilot_scope: one support alias, small agent group, 14 days
+required_owners:
+  - mailbox_owner
+  - facilities_escalation_owner
+  - privacy_owner
+  - technical_recovery_owner
+  - daily_queue_reviewer
+required_skills:
+  - mail provider administration
+  - support queue operations
+  - privacy and retention
+  - web application and database operations
+excluded_scope:
+  - emergency dispatch
+  - payment credentials
+  - automated refunds or fault decisions
+  - unreviewed modules
+readiness_gate: source mailbox fallback and emergency route tested

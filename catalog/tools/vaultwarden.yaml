@@ -70,6 +70,53 @@ human_oversight_still_needed:
   - Who can access organization collections
   - Emergency access procedures
   - Backup encryption key custody
+task_fits:
+  - task_id: review-privileged-access
+    relationship: assistant
+    automation_level: manual support
+    what_manual_process_it_can_replace: Reviewing shared passwords and their recipients from an unstructured spreadsheet or document.
+    what_it_takes_off_the_team: Keeps Vaultwarden organization membership and shared collection access in one reviewable place.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Inventory privileged capabilities outside the vault, verify named need and authentication,
+      obtain independent approval, and remediate excessive or orphaned access.
+    prerequisites:
+      - A current privileged-system and shared-credential inventory
+      - Named owners and purpose-specific organization collections
+      - Restricted administration, strong authentication, encrypted backups, and recovery custody
+    failure_consequence:
+      Treating vault membership as the complete access inventory can leave supplier, API, local, or
+      downstream administrative access unreviewed.
+    pilot_metric:
+      Every sampled shared credential has a named owner and reviewed collection membership, with
+      out-of-vault privileged access tracked separately.
+    evidence:
+      - https://github.com/dani-garcia/vaultwarden
+      - https://github.com/dani-garcia/vaultwarden/wiki
+    confidence: low
+  - task_id: revoke-departing-access
+    relationship: infrastructure
+    automation_level: manual support
+    what_manual_process_it_can_replace: Removing a departing user separately from each shared password document or distribution list.
+    what_it_takes_off_the_team: Provides a central place to remove the user's access to Vaultwarden organization collections.
+    role_assisted: it-security-administrator
+    what_remains_human:
+      Confirm authorized timing, preserve emergency continuity, revoke every downstream account and
+      session, rotate credentials the person knew, and verify residual access.
+    prerequisites:
+      - An authorized offboarding scope, identity match, and effective time
+      - A mapped inventory of shared credentials and downstream systems
+      - Tested emergency access, backup, and credential rotation procedures
+    failure_consequence:
+      Premature removal can lock out operations, while vault removal alone does not invalidate a
+      memorized or downstream credential.
+    pilot_metric:
+      Pilot departures lose vault access at the authorized time and every exposed shared credential
+      receives a documented rotate-or-retain decision.
+    evidence:
+      - https://github.com/dani-garcia/vaultwarden
+      - https://github.com/dani-garcia/vaultwarden/wiki
+    confidence: low
 data_privacy:
   data_held:
     - encrypted vault items
@@ -97,9 +144,19 @@ verification:
     - https://github.com/dani-garcia/vaultwarden
     - https://github.com/dani-garcia/vaultwarden/wiki
   notes:
-    Seed entry compiled from official project sites and repositories. Re-verify pricing, license
-    text, and feature claims before production decisions. Star counts and free-tier numeric limits
-    intentionally omitted unless verified at review time.
+    Editorial evaluation based on the listed official project repository and documentation. Task
+    fits have not been implementation-tested and cover vault access only, not downstream account or
+    credential revocation.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: repository
+      source: https://github.com/dani-garcia/vaultwarden
+      verified_on: 2026-07-17
+    - kind: docs
+      source: https://github.com/dani-garcia/vaultwarden/wiki
+      verified_on: 2026-07-17
 featured: true
 rank_score: 88

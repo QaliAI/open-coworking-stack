@@ -1,0 +1,24 @@
+tool_id: seatsurfing
+test_status: pending
+application_version: null
+database_version: null
+floor_id: null
+desk_count_expected: 20
+desk_count_validated_onsite: null
+conflict_prevention_passed: null
+cancellation_passed: null
+approval_rule_passed: null
+unauthorized_access_denied: null
+disabled_user_denied: null
+mobile_and_timezone_accepted: null
+manual_fallback_rehearsed: null
+restore_desk_count: null
+restore_future_bookings_count: null
+elapsed_recovery_minutes: null
+evidence_location: null
+tested_on: null
+tester: null
+facilities_approval: null
+privacy_approval: null
+operations_approval: null
+notes: Do not include member identity, bookings, or secrets in this record.

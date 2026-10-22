@@ -1,0 +1,35 @@
+schema_version: 1.0.0
+id: analyze-space-utilization
+name: Analyze space utilization
+description: Interpret bookings, observed use, availability, product, and local context with privacy safeguards to support capacity decisions rather than monitor individual member behavior.
+business_area: space-inventory
+primary_role: multi-location-operator
+supporting_roles: [owner-operator, operations-facilities-manager]
+frequency: monthly
+trigger: Scheduled capacity review or a proposed product or layout change.
+inputs:
+  [Aggregated booking and occupancy evidence, Inventory status, Local events and operating context]
+outputs:
+  [
+    Utilization findings with definitions,
+    Capacity opportunities and constraints,
+    Measurement caveats,
+  ]
+current_manual_methods: [Booking percentage, Spot counts, Anecdotal fullness]
+common_failure_modes: [Bookings are treated as presence, Small segments expose individual routines]
+human_judgment_required:
+  [
+    Interpret data-quality and behavioral differences,
+    Decide whether further observation or consultation is needed,
+  ]
+approval_points:
+  [Business and privacy owners approve measurement method and resulting capacity action]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Measures have reconciled definitions and caveats,
+    Capacity changes are tested against member and operational outcomes,
+  ]
+related_workflows: [desk-hot-desk, reporting-kpis]

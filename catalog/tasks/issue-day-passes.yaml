@@ -1,0 +1,24 @@
+schema_version: 1.0.0
+id: issue-day-passes
+name: Issue day passes
+description: Confirm the selected day-pass product, payment or authorization status, capacity, identity needs, and site orientation before granting time-bounded workspace access.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [finance-billing-administrator, sales-leasing-manager]
+frequency: per-interaction
+trigger: A person arrives with or requests an eligible day-pass booking.
+inputs: [Booking or purchase record, Current capacity, Day-pass terms and access rules]
+outputs: [Activated time-bounded pass, Orientation confirmation, Recorded exception or denial]
+current_manual_methods: [Payment lookup, Manual availability check, Reused temporary credential]
+common_failure_modes: [Access outlives the pass, Staff promise unavailable amenities]
+human_judgment_required:
+  [
+    Resolve payment or booking discrepancies fairly,
+    Assess whether support or accessibility adjustments are needed,
+  ]
+approval_points: [Authorized manager approves complimentary or exception access]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics: [Passes match paid or approved entitlement, Temporary access expires as scheduled]
+related_workflows: [day-pass-checkin, access-provisioning]

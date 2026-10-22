@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+id: test-access-outage-procedures
+name: Test access outage procedures
+description: Exercise a controlled loss of door, identity, network, or printing service to verify safe entry, emergency egress, support, communication, and restoration decision paths.
+business_area: access-network-printing
+primary_role: it-security-administrator
+supporting_roles: [operations-facilities-manager, general-manager]
+frequency: quarterly
+trigger: Scheduled resilience test or a material access architecture change.
+inputs:
+  [Approved test scenario, Current fallback and emergency procedures, Participant and stop criteria]
+outputs: [Observed recovery evidence, Safety and service gaps, Owned corrective actions]
+current_manual_methods: [Tabletop discussion, Vendor assurance, Unplanned outage experience]
+common_failure_modes:
+  [Test validates login but not physical safety, Staff rely on unavailable cloud instructions]
+human_judgment_required:
+  [
+    Control test risk and stop if safety degrades,
+    Evaluate whether fallback is workable under realistic demand,
+  ]
+approval_points: [Facilities and duty owners approve scenario, timing, and stop conditions]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Safe fallback and restoration are demonstrated,
+    Corrective actions close before next material change,
+  ]
+related_workflows: [incident-response, backup-restore-drill, access-provisioning]

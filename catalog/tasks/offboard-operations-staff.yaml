@@ -1,0 +1,48 @@
+schema_version: 1.0.0
+id: offboard-operations-staff
+name: Offboard operations staff
+description: Coordinate an authorized departure across roster, duties, access, equipment, records, handover, confidentiality, and final obligations at the correct time and with respectful communication.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [it-security-administrator, finance-billing-administrator]
+frequency: event-driven
+trigger: An authorized employment or engagement end, role transfer, or emergency action is confirmed.
+inputs:
+  [
+    Authorized end terms and timing,
+    Current duties,
+    assets,
+    and access,
+    Handover and record requirements,
+  ]
+outputs:
+  [
+    Completed departure controls,
+    Transferred operational knowledge,
+    Documented unresolved obligations,
+  ]
+current_manual_methods: [Manager checklist, Badge return, Inbox forwarding]
+common_failure_modes:
+  [
+    Access ends too early or survives departure,
+    Personal and business records are mixed during transfer,
+  ]
+human_judgment_required:
+  [
+    Coordinate timing,
+    dignity,
+    continuity,
+    and evidence needs,
+    Distinguish routine departure from sensitive or contested action,
+  ]
+approval_points:
+  [Authorized people owner confirms terms; each asset and access owner confirms control completion]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Access and assets reconcile at authorized time,
+    Critical duties transfer without inappropriate personal-data access,
+  ]
+related_workflows: [vendor-offboarding, access-provisioning, incident-response]

@@ -1,0 +1,31 @@
+schema_version: 1.0.0
+id: manage-training-records
+name: Manage training records
+description: Maintain current role requirements, completed learning, observed competence, expiry, restrictions, and refresher actions without equating course attendance with safe performance.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [operations-facilities-manager, it-security-administrator]
+frequency: monthly
+trigger: Training is assigned, completed, assessed, expires, or changes with role or procedure.
+inputs:
+  [Role competence requirements, Completion and assessment evidence, Expiry and restriction rules]
+outputs:
+  [Current training and competence record, Due or restricted-duty queue, Manager review actions]
+current_manual_methods: [Certificate folder, Training spreadsheet, Calendar reminder]
+common_failure_modes:
+  [Expired certificate goes unnoticed, Attendance is recorded as competence without assessment]
+human_judgment_required:
+  [
+    Evaluate practical competence and refresher need,
+    Decide supervised or restricted duties after a gap,
+  ]
+approval_points: [Qualified assessor or manager approves competence and return to duty]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Assigned duties map to current competence evidence,
+    Expiry and restriction actions occur before unsafe assignment,
+  ]
+related_workflows: [compliance-review, reporting-kpis]

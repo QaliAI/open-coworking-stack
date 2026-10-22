@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: answer-wayfinding-requests
+name: Answer wayfinding requests
+description: Help members and visitors reach an appropriate space or service using current, accessible guidance without disclosing restricted locations or another person's presence.
+business_area: front-desk
+primary_role: community-coordinator-front-desk
+supporting_roles: [operations-facilities-manager]
+frequency: per-interaction
+trigger: A person asks how to find a room, amenity, host, exit, or accessible route.
+inputs: [Current space map, Access zones, Temporary closures and accessible routes]
+outputs: [Clear directions or escorted support, Reported signage or route defect]
+current_manual_methods: [Staff memory, Printed map, Pointing across the space]
+common_failure_modes:
+  [Directions ignore access restrictions, Accessible route information is outdated]
+human_judgment_required:
+  [
+    Adapt help to mobility,
+    language,
+    or privacy needs,
+    Avoid confirming another person's location without authority,
+  ]
+approval_points: [Facilities owner approves temporary route changes and public guidance]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics: [Requests resolved without repeat assistance, Route and signage defects corrected]
+related_workflows: [visitor-management, facility-maintenance]

@@ -69,6 +69,55 @@ human_oversight_still_needed:
   - Who closes tickets
   - Escalation to facilities vendors
   - Retention of email content
+task_fits:
+  - task_id: triage-member-requests
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace: Manual process reduced is forwarding support email between
+      personal inboxes and tracking ownership in chat or verbal promises.
+    what_it_takes_off_the_team: Human work reduced is consolidating threads, assigning routine
+      requests, applying approved tags, and locating prior correspondence in a shared mailbox.
+    role_assisted: community-coordinator-front-desk
+    what_remains_human: A human must understand the requested outcome, recognize safety,
+      accessibility, vulnerability, and relationship context, and accept escalation. Prohibited
+      urgency, emergency, entitlement, and service-recovery decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is an approved mailbox, accountable staff roster, assignment and response rules,
+        and an urgent fallback channel.
+      - Prerequisite is approved access, attachment, prohibited-data, retention, and deletion policy.
+    failure_consequence:
+      Failure can leave a member request unowned, expose sensitive email, or delay
+      an urgent case; staff must monitor the source mailbox and use the fallback contact path.
+    pilot_metric: Metric is correct first-owner assignment, time to human acknowledgment, unassigned
+      request age, and urgent cases missed during a synthetic pilot.
+    evidence:
+      - https://github.com/freescout-help-desk/freescout/wiki
+    confidence: medium
+  - task_id: triage-maintenance-requests
+    relationship: partial automation
+    automation_level: assisted
+    what_manual_process_it_can_replace:
+      Manual process reduced is receiving facilities reports through
+      scattered email, chat, and verbal channels without a shared owner or thread.
+    what_it_takes_off_the_team:
+      Human work reduced is collecting messages in one queue, preserving the
+      conversation, and assigning routine follow-up to a named operator.
+    role_assisted: operations-facilities-manager
+    what_remains_human: A competent human must assess credible safety exposure, set priority, choose
+      immediate controls, assign qualified work, and approve closure. Prohibited safety, isolation,
+      competence, and technical-risk decisions can never be fully automated.
+    prerequisites:
+      - Prerequisite is an approved facilities mailbox with location, asset, urgency, and contact
+        fields plus a named duty owner.
+      - Prerequisite is an emergency bypass and escalation route tested outside FreeScout.
+    failure_consequence:
+      Failure can fragment duplicate reports or delay control of a safety-critical
+      defect; the duty owner must retain a separately tested emergency reporting path.
+    pilot_metric: Metric is correct human priority and owner on synthetic requests, duplicate rate,
+      and time until safety-critical reports reach the duty owner.
+    evidence:
+      - https://github.com/freescout-help-desk/freescout/wiki
+    confidence: medium
 data_privacy:
   data_held:
     - emails
@@ -100,5 +149,24 @@ verification:
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  completeness: editorially-reviewed
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: docs
+      source: https://github.com/freescout-help-desk/freescout/wiki
+      verified_on: 2026-07-17
+      notes: Official project wiki identifies FreeScout as a help desk and shared mailbox and
+        documents operation and configuration.
+    - kind: repository
+      source: https://github.com/freescout-help-desk/freescout
+      verified_on: 2026-07-17
+      notes: Official source repository used to verify project identity and license metadata.
+    - kind: pricing
+      source: https://freescout.net/modules/
+      verified_on: 2026-07-17
+      notes:
+        Official modules page documents optional modules; module requirements and prices must be
+        rechecked before purchase.
 featured: true
 rank_score: 83

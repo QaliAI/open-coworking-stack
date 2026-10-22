@@ -1,0 +1,22 @@
+tool_id: vaultwarden
+collection: Facilities
+credential_reference_without_secret: REPLACE_ME
+credential_risk_class: low-impact-pilot
+requester: REPLACE_ME
+individual_user: REPLACE_ME
+access_reason: REPLACE_ME
+access_expiry_or_review_date: REPLACE_ME
+supported_mfa_verified: false
+source_rotation_owner: REPLACE_ME
+recovery_custodian: REPLACE_ME
+approvals:
+  collection_owner: PENDING
+  credential_owner: PENDING
+  security: PENDING
+tests:
+  fake_item_boundary: NOT_RUN
+  user_revocation: NOT_RUN
+  isolated_restore: NOT_RUN
+  protected_export_import: NOT_RUN
+  source_rotation_old_password_rejected: NOT_RUN
+unknowns: []

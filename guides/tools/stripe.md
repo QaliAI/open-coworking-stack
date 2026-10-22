@@ -2,92 +2,162 @@
 title: Stripe evaluation for coworking payments
 tool_id: stripe
 guide_status: full
-verified_on: 2026-07-17
+verified_on: 2026-07-18
 ---
 
 # Stripe evaluation for coworking payments
 
-Stripe is proprietary managed payments infrastructure commonly connected to coworking billing systems. The controlled starting point is test mode with five test invoices, not live member payments.
+This guide scopes Stripe to five synthetic invoices through an officially documented coworking/invoicing connector in a Stripe sandbox. It does not authorize live money movement or establish PCI, tax, accounting, legal, or connector suitability. No runtime was tested.
 
-## Fit and non-fit
+## 1. Coworking outcome
 
-**Good fit:** an operator whose invoicing or coworking platform has a documented Stripe connection and who can own reconciliation, disputes, fees, and account security.
+Collect approved coworking invoices with traceability from invoice to payment, fees, exceptions, and payout reconciliation. Stripe augments payment processing; it does not own membership terms, the accounting ledger, or access decisions.
 
-**Poor fit:** treating Stripe as a complete membership ledger, sending card data through custom fields or logs, switching on live payments without finance review, or assuming an integration automatically minimizes PCI scope.
+## 2. Pilot scope
 
-## License and cost boundary
+In sandbox only, process five synthetic invoice cases: success, decline, duplicate/replayed event, refund/dispute path, and webhook interruption/recovery. Reconcile reports, reject invalid signatures, rotate sandbox credentials, and rehearse alternate payment.
 
-Stripe is **proprietary SaaS**, not open source. The catalog records usage-based payment-processing fees and no meaningful free production payments. Budget for processing and related usage, integration/setup, reconciliation and dispute maintenance, optional connected software/plugins, and finance/technical support. Hosting of Stripe itself is managed; operator systems and integrations still have hosting costs. Verify the current [fee schedule](https://stripe.com/pricing).
+## 3. Fit
 
-Record **software**, **hosting**, **setup**, **maintenance**, **plugins/extensions**, and **support** separately; mark each as applicable, not applicable, or unknown rather than assuming a zero cost.
+**Good fit:** the authoritative invoicing/coworking system documents Stripe support and finance, account, integration, security, dispute, and member-communication owners can operate reconciliation and exceptions.
 
-## Prerequisites and data map
+## 4. Non-fit and alternatives
 
-Assign finance, account-admin, integration, and dispute owners. Define the authoritative customer/invoice system, fee model, payout reconciliation, refund/chargeback approval, and test-to-live gate.
+**Poor fit:** custom raw-card collection, no finance reconciliation, unattended exceptions, Stripe as member/accounting ledger, payment directly opening doors, unclear PCI scope, or live activation without adverse tests. Prefer a provider-hosted/low-risk flow or the accounting platform's supported service with qualified help.
 
-| Data                           | Source                      | Stripe handling           | System of record/handoff           |
-| ------------------------------ | --------------------------- | ------------------------- | ---------------------------------- |
-| Customer email/billing details | Invoicing tool              | Payment customer metadata | Approved customer record           |
-| Invoice/payment reference      | Invoicing tool              | Payment correlation       | Finance ledger                     |
-| Payment metadata               | Stripe                      | Status and reconciliation | Finance review                     |
-| Card/payment credentials       | Stripe-hosted approved flow | Payment processing        | Must not enter operator logs/forms |
+## 5. Coworking use cases
 
-Stripe holds personal and payment data. Data minimization and proper integration are mandatory.
+- Request payment for an already approved membership, room, or service invoice.
+- Correlate customer/invoice/payment/refund/dispute/payout references.
+- Route declines and exceptions to human follow-up.
+- Reconcile processing fees and payouts into the finance ledger.
 
-## Smallest useful experiment
+Price, tax, credit, refund, dispute, fraud, contract, and access decisions stay with people and authoritative systems.
 
-Using [official Stripe docs](https://stripe.com/docs) and the invoicing tool's official docs, process five test-mode invoices. Reconcile statuses and model fee impact into membership pricing without asserting a rate in this guide. Include a failed payment and refund/void path where test mode supports it.
+## 6. Tasks reduced or augmented
 
-## Implementation sequence
+Stripe can reduce payment-form handling, status retrieval, event delivery, and report preparation. It cannot approve invoice terms, ensure ledger correctness, decide exceptions, satisfy PCI automatically, communicate empathetically, or determine member/access consequences.
 
-1. Map the invoice, payment, refund, dispute, and payout responsibilities.
-2. Review the chosen documented integration in [Stripe documentation](https://stripe.com/docs).
-3. Create restricted test access and use test mode only.
-4. Process five representative invoices and record status mappings.
-5. Test failure, duplicate prevention, refund/void, webhook interruption, and reconciliation.
-6. Review fee assumptions against [official pricing](https://stripe.com/pricing).
-7. Approve account recovery, export, incident, and live-mode controls before production.
+## 7. Human decisions and approvals
 
-## Security and privacy controls
+Finance approves mappings/reconciliation/refunds/write-offs; account owners approve bank/account/live changes; security approves PCI/key controls; technical staff own integration; dispute owners approve evidence; member support communicates exceptions; and a second approver applies financial limits.
 
-- Use the documented provider-hosted integration to limit payment-data exposure; do not invent a card-handling flow.
-- Restrict account roles, API credentials, and live-mode access; rotate/revoke credentials through owners.
-- Verify webhook authenticity and failure handling according to official docs.
-- Keep payment details out of coworking notes, email, logs, and automation payloads.
-- Review customer data retention, exports, and privacy requests.
-- Require finance approval for refunds, disputes, bank changes, and live activation.
+## 8. Owners and RACI
 
-## Backup, export, and restore test
+Name accountable finance and Stripe account owners plus responsible integration, security/PCI, accounting/tax, disputes, member support, incident, and recovery owners. Separate bank/account administration, refund approval, and reconciliation where practical.
 
-Stripe is managed SaaS, so operator recovery centers on tested exports, account recovery, and local system reconciliation. Export representative test customers, invoices/payment metadata, and payout/reconciliation data where officially supported. Verify that finance can match records without dashboard-only knowledge.
+## 9. Prerequisites
 
-Back up the operator-owned integration configuration and webhook mapping without embedding secrets. Restore these to staging, reconnect test credentials, and prove that a new test payment reconciles. Never assume a SaaS provider backup is an operator-accessible restore.
+Define operator country/currencies/methods, authoritative customer/invoice IDs, chosen connector/docs, chart-of-account and tax ownership, fee model, refund/dispute limits, payout reconciliation, alternate payment, privacy/retention, sandbox, vault, HTTPS endpoint, incident contacts, and test-to-live gate.
 
-## Integrations and manual handoffs
+## 10. Skills and effort boundary
 
-No integration is catalog-verified. Use only the invoicing/coworking product's official Stripe instructions and Stripe's docs. Finance manually owns payout reconciliation, fee review, refunds, disputes, chargebacks, and exceptions; staff own member communication.
+The pilot needs payment-flow/PCI, server integration, HTTPS/webhook, secret, idempotency, finance reconciliation, accounting/tax, privacy, and incident skills. Sandbox setup may be quick; correct failure handling and financial reconciliation can dominate. No implementation duration is verified.
 
-## Human oversight
+## 11. Deployment choice
 
-People decide membership terms, pricing, refunds, disputes, fraud responses, and reconciliation. Stripe augments payment processing and billing primitives; it does not approve financial exceptions or replace finance controls.
+Stripe is proprietary managed SaaS. Use the chosen platform's officially documented low-risk/provider-hosted integration rather than inventing card handling. Select country, products, methods, and contract only after reviewing the operator's regional official pricing/eligibility and support.
 
-## Operational checklist
+## 12. Architecture and dependencies
 
-- [ ] Finance, admin, integration, and dispute owners named
-- [ ] Test and live access separated
-- [ ] Official integration and credential scopes reviewed
-- [ ] Five test invoices reconciled
-- [ ] Failure/refund/webhook cases tested
-- [ ] Payment data excluded from operator logs/forms
-- [ ] Export and account recovery verified
-- [ ] Live activation requires recorded approval
+Map authoritative billing/customer records, server-side connector, provider-hosted collection UI, separate sandbox/live vault entries, Stripe API, HTTPS signed webhook endpoint, queue/idempotency store, finance ledger/reports, monitoring, and alternate payment. Payment status must not directly issue door credentials.
 
-## Rollback and exit
+## 13. License and edition boundary
 
-Remain in test mode until accepted. For production rollback, stop new payment initiation through the integration, preserve open invoice/payment references, communicate alternate payment instructions, revoke integration credentials after reconciliation, and keep authorized access for refunds/disputes. Before exit, export supported customer, payment, payout, and dispute records and test mapping to the replacement provider.
+Stripe is proprietary SaaS, not open source. Products such as Payments, Billing, Invoicing, Radar, Tax, Sigma, Connect, and support can have separate regional charges/terms. This guide establishes no account eligibility, fee contract, product entitlement, or connector certification.
 
-## Verification and unknowns
+## 14. Total cost boundary
 
-Snapshot verified **2026-07-17** from [Stripe](https://stripe.com/) and [official documentation](https://stripe.com/docs).
+Annual true cost = payment-method/transaction/currency fees + optional products + dispute/refund effects + connector/hosting + engineering/security + reconciliation/support + accounting/tax/legal + incident/recovery + exit. Model volume/value/method/country low/base/high cases using current regional pricing; never reuse a different country's landing-page rate.
 
-Unknown until re-verified: current fees and country/currency terms, account eligibility, payout timing, integration-specific PCI scope, data residency/certifications, export completeness, support, and any coworking-platform behavior.
+## 15. Data map
+
+| Data                      | Source               | Stripe purpose      | Authority                      | Exit/reconciliation       |
+| ------------------------- | -------------------- | ------------------- | ------------------------------ | ------------------------- |
+| Customer/billing details  | Billing platform     | Payment customer    | Approved customer record       | Customer-ID crosswalk     |
+| Invoice/payment reference | Billing platform     | Correlation         | Finance ledger                 | Stable ID crosswalk       |
+| Payment/refund/dispute    | Stripe               | Processing status   | Stripe plus finance posting    | Transaction reports       |
+| Payout/fee data           | Stripe               | Bank reconciliation | Accounting ledger after review | Payout/fee reports        |
+| Payment credential        | Hosted approved flow | Processing          | Stripe                         | Never operator logs/forms |
+
+Metadata must exclude door codes, identity files, contract notes, and sensitive member narratives.
+
+## 16. Privacy and retention
+
+Map personal, billing, payment, financial-event, metadata, log, report, and backup data; minimize fields; use synthetic sandbox data; and define privacy-request plus financial-retention handling with qualified owners. Verify contractual location/subprocessors and do not delete records subject to accounting/legal duties casually.
+
+## 17. Security baseline
+
+Use a documented low-risk integration, TLS, strong account authentication, least-privilege/restricted keys, vault storage, separate modes/endpoints, verified raw-body webhook signatures, replay/duplicate/idempotency controls, minimal event subscriptions, monitored API/account logs, and rotation. Never put secret keys or raw card data in code, git, chat, logs, tickets, or templates.
+
+## 18. Compliance and expert review
+
+PCI compliance is shared responsibility. Engage a Qualified Security Assessor or qualified payment-security professional for unclear/custom card scope; accountant/tax advisers for ledger/tax design; legal/privacy counsel for terms, mandates, retention, disputes, or cross-border data; and payment/security specialists for Connect, high volume, compromised keys, or unresolved reconciliation.
+
+## 19. Integration boundary
+
+No coworking, invoicing, or accounting connector is catalog-verified. Require official docs from Stripe and the connector; record objects/statuses/IDs/API/event versions, key scopes, endpoint events, retries, duplicate/out-of-order handling, owner, changelog, and fallback. Retrieve authoritative object state instead of trusting event order.
+
+## 20. Configuration baseline
+
+Record country/currencies/products/methods, account/role owners, connector/SDK/API/event versions, sandbox/live separation, key references/scopes, endpoint URL/events/signature handling, idempotency state, metadata schema, invoice/payment mappings, logs/alerts, refund/dispute limits, payout cadence, reports/exports, and alternate payment. Store no secret values.
+
+## 21. Smallest useful experiment
+
+Process five synthetic invoices in a Stripe sandbox through the chosen documented connector, including adverse event delivery and finance cases; reconcile every fixture and prove clean staging recovery without any real customer/card data.
+
+## 22. Implementation sequence
+
+1. Approve owners, authoritative IDs, data flow, exceptions, and fallback.
+2. Verify connector, regional pricing/eligibility, PCI path, and official docs.
+3. Configure least-privilege sandbox roles, vault keys, and signed endpoint.
+4. Execute five cases plus invalid-signature and key-rotation tests.
+5. Reconcile reports/fees/statuses to a finance worksheet.
+6. Restore secret-free integration configuration in clean staging.
+7. Obtain finance/security/account-owner approval before any live project.
+
+## 23. Migration and rollout
+
+Keep live credentials absent during pilot. Before rollout, reconcile sandbox-to-live configuration differences, establish cutover/alternate payment, communicate member-facing changes, and stage a small approved live cohort only under a separate authorization. Never combine live activation, bank change, API migration, connector upgrade, and key rotation.
+
+## 24. Required test plan
+
+Test success, decline, duplicate and separate-object duplicates, replay, out-of-order delivery, invalid signature, stale replay protection, endpoint interruption/retry/recovery, idempotency, refund/dispute simulation, sandbox/live separation, key/secret rotation, credential absence from code/logs, exports, five-invoice reconciliation, account recovery, and alternate payment.
+
+## 25. Acceptance criteria
+
+All five fixtures reconcile; decline cannot mark paid; duplicate/out-of-order/replayed events cause no duplicate finance action; invalid signatures fail; interrupted delivery is visible/recoverable; refund/dispute reaches humans; secrets remain vaulted; exports are usable; and alternate payment is ready. Any unexplained money-state mismatch blocks live planning.
+
+## 26. Success metrics
+
+Track reconciliation exceptions/age, webhook failures/recovery, duplicate actions prevented, declines routed, refund/dispute queue time, payout differences, fee impact, support labor, key-rotation time, export/recovery result, and true cost. Do not equate payment automation with staffing replacement or revenue gain.
+
+## 27. Monitoring and alerting
+
+Monitor webhook delivery age/failure/signature rejection, API errors, duplicate suppression, key use/changes, connector/API notices, account/bank/security changes, payout exceptions, unreconciled balances, disputes/deadlines, and provider status. Route technical and finance alerts to named humans.
+
+## 28. Operating cadence
+
+Finance reconciles payments/fees/payouts at an approved frequency and reviews disputes/refunds promptly. Technical staff review delivery/errors/keys and connector releases; account owners review roles/recovery/bank controls; security periodically rotates/tests sandbox first; and budgeting re-verifies regional fees/products.
+
+## 29. Failure modes and response
+
+Plan for provider/connector outage, decline, duplicate/late/unordered event, invalid signature, API/version drift, leaked key, account takeover/bank change, reconciliation mismatch, refund failure, dispute deadline, and export/account loss. Stop new initiation when state is uncertain, retrieve authoritative state, use alternate payment, preserve evidence, rotate compromise, and assign a human incident lead.
+
+## 30. Backup procedure
+
+Preserve secret-free connector configuration, versions/event inventory, ID mappings, runbooks, ledger postings, reconciliation worksheets, account-role register, and supported customer/payment metadata, balance/payout, fee, refund, and dispute reports. Reconcile counts/totals to the ledger. Never export or back up raw payment credentials.
+
+## 31. Restore drill
+
+Restore configuration to clean staging, inject new sandbox credentials from the vault, register/test the endpoint secret, reject invalid signatures, replay safe synthetic events, create a new synthetic payment, and reconcile five invoice/payment/report relationships without dashboard-only knowledge. Stripe service restore is provider-controlled; this tests operator continuity. No runtime evidence exists yet.
+
+## 32. Upgrade, rollback, and exit
+
+Review Stripe/connector changelogs, pin/test API/event/SDK changes in sandbox, and rerun adverse cases. Roll back by disabling new initiation, preserving open records, reverting connector/config, rotating affected keys, reconciling the window, and retaining access for refunds/disputes. Exit by inventorying all objects/mandates, confirming portability/recollection, freezing creation, exporting/reconciling, migrating supported IDs, handling open cases, revoking endpoints/keys/users, and closing only after finance/legal approval.
+
+## 33. Sources, evidence, and unknowns
+
+Reviewed **2026-07-18**: country-selectable [pricing](https://stripe.com/pricing), [testing](https://docs.stripe.com/testing), [integration security](https://docs.stripe.com/security/guide), [API key practices](https://docs.stripe.com/keys-best-practices), and [webhooks](https://docs.stripe.com/webhooks).
+
+Evidence is documentation review only. Untested: chosen connector, account eligibility, regional fees/terms, PCI scope/attestation, API/event behavior, key/account recovery, reconciliation, payout timing/reserves, exports, disputes/refunds, residency/support, live behavior, true cost, and exit portability. Treat each as an open gate.

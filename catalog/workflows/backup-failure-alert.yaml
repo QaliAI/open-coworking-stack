@@ -1,0 +1,87 @@
+schema_version: 1.0.0
+id: backup-failure-alert
+name: Backup failure alert
+description: Detect a missing or failed coworking backup signal, obtain human acknowledgement, investigate safely, and preserve recovery evidence.
+objective: Make backup protection failures visible and resolved without assuming that a successful retry proves recoverability.
+responsible_role: Technical operator
+trigger: An expected backup job fails, is incomplete, exceeds its window, or does not report.
+inputs:
+  [backup job status, expected schedule, protected scope, logs, storage health, recovery objectives]
+outputs:
+  [acknowledged incident, diagnosis, approved corrective action, verification and restore-test task]
+source_of_truth: The backup system evidence and reviewed incident record are authoritative together.
+systems_involved: [backup system, monitoring system, incident queue, protected service inventory]
+automation_steps:
+  [detect missing or failed signals, deduplicate alerts, notify the on-call owner, preserve logs]
+human_approval_points:
+  [
+    Technical staff assess impact and approve retries,
+    storage changes,
+    credential actions,
+    and closure.,
+  ]
+failure_exception_paths:
+  [
+    Escalate repeated failure,
+    suspected compromise,
+    storage loss,
+    credential failure,
+    or missed recovery objective.,
+  ]
+privacy_risks:
+  [Backup logs and test artifacts can expose file names, systems, users, and retained data.]
+security_risks:
+  [
+    Attackers may disable backups; unsafe retries or restores can overwrite data or spread compromise.,
+  ]
+measurable_kpis:
+  [
+    time to acknowledgement,
+    unresolved failed backup windows,
+    failures followed by restore verification,
+  ]
+test_cases:
+  [
+    Alert on explicit failure,
+    alert on missing signal,
+    suppress duplicate alerts,
+    escalate suspected compromise.,
+  ]
+manual_fallback:
+  [
+    Review backup status on the approved schedule,
+    contact the on-call owner,
+    preserve evidence,
+    and log actions.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable noisy alert rules,
+    retain direct backup monitoring,
+    notify owners,
+    perform scheduled manual checks until corrected.,
+  ]
+primary_roles: [technical-operator, owner-operator]
+stages:
+  - id: detect-investigate-verify
+    name: Detect, investigate, and verify
+    description: Alert a responsible person and require evidence-based recovery and closure decisions.
+    manual_tasks:
+      [
+        assess protected scope,
+        investigate cause,
+        approve remediation,
+        schedule restore verification,
+      ]
+    automation_opportunities: [detect missing signals and notify the on-call owner]
+    suggested_tool_ids: [uptime-kuma, restic]
+    risks: [A green retry status can conceal incomplete, corrupt, or unrecoverable backups.]
+success_metrics:
+  [
+    Every failure is acknowledged,
+    its protection gap is understood,
+    and recoverability receives human verification.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Test alert delivery, missing-heartbeat detection, escalation, and restore verification regularly.

@@ -26,10 +26,11 @@ deployment:
   - managed-saas
 maturity: emerging
 license:
-  class: oss-osi-approved
+  class: open-core
   spdx: MIT
   source_url: https://github.com/medusajs/medusa
-  verified_on: 2026-07-17
+  notes: 'Official LICENSE: MIT except materials covered by ENTERPRISE-LICENSE.md, which are governed by a separate commercial license.'
+  verified_on: 2026-10-20
 cost:
   model: freemium
   summary: Self-host free; commercial cloud may exist—verify pricing.

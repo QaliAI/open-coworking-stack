@@ -24,12 +24,12 @@ deployment:
   - managed-saas
 maturity: stable
 license:
-  class: open-core
-  name: Elastic License / freemium variants—verify current
+  class: source-available
+  spdx: Elastic-2.0
+  name: Elastic License 2.0
   source_url: https://github.com/invoiceninja/invoiceninja
-  notes: License has changed over versions; verify the version you deploy. Do not assume OSI open
-    source without checking.
-  verified_on: 2026-07-17
+  notes: 'Official LICENSE is Elastic License 2.0 (ELv2): source-available, not OSI open source. It forbids offering the software as a hosted service and circumventing license-key functionality.'
+  verified_on: 2026-10-20
 cost:
   model: freemium
   summary: Hosted free tier historically offered; self-host available. Verify current pricing and license.

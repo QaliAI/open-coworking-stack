@@ -1,0 +1,35 @@
+schema_version: 1.0.0
+id: review-workload-and-wellbeing
+name: Review workload and wellbeing
+description: Discuss demand, control, support, recovery time, role clarity, difficult interactions, and sustainable adjustments with staff rather than inferring wellbeing from productivity or presence data.
+business_area: staff-administration
+primary_role: general-manager
+supporting_roles: [owner-operator]
+frequency: monthly
+trigger: Scheduled one-to-one or team review, material workload change, absence pattern, or staff-raised concern.
+inputs: [Staff-provided experience, Roster and work-demand evidence, Open role and process issues]
+outputs: [Agreed support and workload actions, Escalated safety or specialist need, Follow-up date]
+current_manual_methods: [Informal check-in, Overtime total, Annual engagement survey]
+common_failure_modes:
+  [Dashboard is used to diagnose an individual, Staff disclosure is shared beyond need]
+human_judgment_required:
+  [
+    Listen without diagnosing and recognize risk signals,
+    Balance confidentiality,
+    duty of care,
+    fairness,
+    and operational change,
+  ]
+approval_points:
+  [
+    Staff member and manager agree routine actions; qualified people owner handles sensitive or formal measures,
+  ]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: true
+success_metrics:
+  [
+    Agreed actions complete and are reviewed for effect,
+    Repeated overload signals prompt capacity or process decisions,
+  ]
+related_workflows: [reporting-kpis, compliance-review]

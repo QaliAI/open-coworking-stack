@@ -1,0 +1,131 @@
+{
+  "name": "Invoice Reminder Workflow (fabricated demonstration)",
+  "nodes": [
+    {
+      "id": "cron-trigger",
+      "name": "Weekly Invoice Check (Cron)",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyWeek",
+              "hour": 8,
+              "minute": 0,
+              "weekday": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fetch-overdue-invoices",
+      "name": "Fetch Overdue Invoices from CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.CRM_API_URL }}/api/invoices?status=overdue&days=7,14,30",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      }
+    },
+    {
+      "id": "split-by-age",
+      "name": "Split by Overdue Bracket",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 500],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.daysOverdue }}",
+              "operation": "largerEqual",
+              "value2": 30
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "send-7-day-reminder",
+      "name": "Send 7-Day Overdue Reminder",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "parameters": {
+        "fromEmail": "={{ $env.BILLING_EMAIL_FROM }}",
+        "toEmail": "={{ $json.email }}",
+        "subject": "=Friendly reminder: invoice {{ $json.invoiceNumber }}",
+        "text": "=Hi {{ $json.contactName }},\n\nThis is a reminder that invoice {{ $json.invoiceNumber }} for {{ $json.amount }} was due on {{ $json.dueDate }}.\n\nPlease remit payment at your earliest convenience.\n\n{{ $env.BILLING_PORTAL_URL }}\n\nThanks,\n{{ $env.COWORKING_SPACE_NAME }} Billing",
+        "options": {}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "send-14-day-reminder",
+      "name": "Send 14-Day Overdue Notice",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [650, 400],
+      "parameters": {
+        "fromEmail": "={{ $env.BILLING_EMAIL_FROM }}",
+        "toEmail": "={{ $json.email }}",
+        "subject": "=Second notice: invoice {{ $json.invoiceNumber }} overdue",
+        "text": "=Hi {{ $json.contactName }},\n\nInvoice {{ $json.invoiceNumber }} ({{ $json.amount }}) is now 14 days overdue.\n\nPlease pay immediately to avoid service interruption.\n\n{{ $env.BILLING_PORTAL_URL }}\n\n{{ $env.COWORKING_SPACE_NAME }} Billing",
+        "options": {}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "escalate-30-day",
+      "name": "Escalate 30+ Day Overdue",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [650, 600],
+      "parameters": {
+        "channel": "={{ $env.STAFF_ALERT_CHANNEL }}",
+        "text": "=:rotating_light: Invoice {{ $json.invoiceNumber }} ({{ $json.contactName }}) is {{ $json.daysOverdue }} days overdue for {{ $json.amount }}. Review and escalate.",
+        "otherOptions": {}
+      }
+    },
+    {
+      "id": "log-check",
+      "name": "Log Check Result",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Weekly Invoice Check (Cron)": {
+      "main": [[{ "node": "Fetch Overdue Invoices from CRM", "type": "main", "index": 0 }]]
+    },
+    "Fetch Overdue Invoices from CRM": {
+      "main": [[{ "node": "Split by Overdue Bracket", "type": "main", "index": 0 }]]
+    },
+    "Split by Overdue Bracket": {
+      "main": [
+        [
+          { "node": "Send 7-Day Overdue Reminder", "type": "main", "index": 0 },
+          { "node": "Send 14-Day Overdue Notice", "type": "main", "index": 0 },
+          { "node": "Escalate 30+ Day Overdue", "type": "main", "index": 0 }
+        ],
+        [{ "node": "Log Check Result", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "timezone": "UTC",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": ["coworking", "billing", "automation", "fabricated-demo"],
+  "versionId": "demo-invoice-reminder-v1"
+}

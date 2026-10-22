@@ -40,7 +40,7 @@ implementation:
   smallest_useful_experiment: Enable jail for sshd on a bastion host and verify legitimate admin access still works.
 homepage: https://www.fail2ban.org/
 repository: https://github.com/fail2ban/fail2ban
-documentation: https://www.fail2ban.org/wiki/index.php/Main_Page
+documentation: https://fail2ban.readthedocs.io/
 links:
   - label: Homepage
     url: https://www.fail2ban.org/
@@ -49,7 +49,7 @@ links:
     url: https://github.com/fail2ban/fail2ban
     kind: repo
   - label: Documentation
-    url: https://www.fail2ban.org/wiki/index.php/Main_Page
+    url: https://fail2ban.readthedocs.io/
     kind: docs
 tasks_reduced_or_augmented:
   - Auto-banning abusive IPs
@@ -79,7 +79,7 @@ verification:
   sources:
     - https://www.fail2ban.org/
     - https://github.com/fail2ban/fail2ban
-    - https://www.fail2ban.org/wiki/index.php/Main_Page
+    - https://fail2ban.readthedocs.io/
   notes:
     Seed entry compiled from official project sites and repositories. Re-verify pricing, license
     text, and feature claims before production decisions. Star counts and free-tier numeric limits

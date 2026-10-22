@@ -1,0 +1,50 @@
+name: Reference Image Scan (advisory)
+
+on:
+  schedule:
+    - cron: '43 7 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  advisory-scan:
+    name: Scan mutable reference tags (templates are not runtime-tested)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Scan reference images with pinned Trivy
+        id: scan
+        continue-on-error: true
+        run: node scripts/scan-reference-images.mjs
+
+      - name: Checksum scan reports
+        if: always()
+        run: node scripts/generate-checksums.mjs release-artifacts/image-scan
+
+      - name: Upload advisory reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: advisory-reference-image-scan-${{ github.sha }}
+          path: release-artifacts/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Summarize scan boundary
+        if: always()
+        env:
+          SCAN_OUTCOME: ${{ steps.scan.outcome }}
+        run: |
+          echo '### Advisory reference-image scan' >> "$GITHUB_STEP_SUMMARY"
+          echo "Scanner step outcome: $SCAN_OUTCOME" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Compose packs remain untested reference templates. Tags may be mutable; a scan is not runtime validation or a production approval.' >> "$GITHUB_STEP_SUMMARY"

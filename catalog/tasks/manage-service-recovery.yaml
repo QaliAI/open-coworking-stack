@@ -1,0 +1,22 @@
+schema_version: 1.0.0
+id: manage-service-recovery
+name: Manage service recovery
+description: Investigate a material service failure, hear the affected member, agree a proportionate remedy within authority, and correct the operating cause rather than sending only an apology.
+business_area: member-service
+primary_role: community-manager
+supporting_roles: [general-manager, finance-billing-administrator]
+frequency: event-driven
+trigger: A member experiences repeated, severe, or consequential failure against the service promise.
+inputs: [Member account and statement, Service and incident evidence, Remedy authority and policy]
+outputs: [Explained finding, Approved remedy and follow-up, Corrective action for root cause]
+current_manual_methods: [Ad hoc apology, Untracked complimentary credit, Internal blame discussion]
+common_failure_modes:
+  [Automation sends an apology before facts are known, Remedy is inconsistent or not delivered]
+human_judgment_required:
+  [Assess impact and fairness in context, Distinguish individual remedy from systemic correction]
+approval_points: [Authorized manager approves compensation, contractual change, or formal finding]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics: [Promised remedies completed, Recurrence and unresolved dissatisfaction reduced]
+related_workflows: [incident-response, invoice-collections]

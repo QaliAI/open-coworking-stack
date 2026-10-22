@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+id: monitor-environmental-comfort
+name: Monitor environmental comfort
+description: Combine temperature, air, light, noise, and other available readings with member observations and building context before changing controls or declaring conditions acceptable.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [community-manager]
+frequency: continuous
+trigger: Scheduled review, sensor exception, member report, weather change, or occupancy shift.
+inputs:
+  [Available environmental readings, Member and staff observations, Building operating parameters]
+outputs: [Contextual comfort assessment, Approved adjustment or investigation, Member update]
+current_manual_methods: [Thermostat check, Complaint count, Manual adjustment]
+common_failure_modes:
+  [
+    One sensor represents the whole site,
+    Automated adjustment worsens another zone or equipment condition,
+  ]
+human_judgment_required:
+  [
+    Interpret subjective and measured evidence together,
+    Balance differing needs and equipment constraints,
+  ]
+approval_points:
+  [Facilities owner approves control changes beyond normal range or requiring technical work]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: false
+success_metrics:
+  [
+    Material comfort issues receive timely contextual response,
+    Repeat zone problems lead to root-cause work,
+  ]
+related_workflows: [facility-maintenance, reporting-kpis]

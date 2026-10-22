@@ -1,0 +1,27 @@
+schema_version: 1.0.0
+id: manage-cleaning-quality
+name: Manage cleaning quality
+description: Define outcome-based cleaning standards, inspect representative spaces, respond to member and staff observations, and correct process or capacity causes with the supplier.
+business_area: facilities
+primary_role: operations-facilities-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: daily
+trigger: Scheduled quality check, service completion, complaint, spill, or hygiene exception.
+inputs: [Area-specific standard, Cleaning completion record, Inspection and user observations]
+outputs:
+  [Accepted result or corrective request, Urgent hygiene control, Supplier improvement action]
+current_manual_methods: [Cleaner sign sheet, Visual check, Complaint forwarding]
+common_failure_modes: [Completion is treated as quality, Only obvious public areas are sampled]
+human_judgment_required:
+  [
+    Assess cleanliness and hygiene in use context,
+    Distinguish isolated miss from unsafe or systemic failure,
+  ]
+approval_points:
+  [Facilities owner accepts service; duty manager approves area closure or chemical exception]
+privacy_sensitivity: low
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [Sampled areas meet defined outcomes, Repeat defects and urgent hygiene events decline]
+related_workflows: [facility-maintenance, vendor-offboarding]

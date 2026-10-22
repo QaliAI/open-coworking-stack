@@ -1,12 +1,16 @@
 import path from 'node:path';
-import { stat } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import {
   ToolSchema,
   StackSchema,
   WorkflowDefSchema,
+  RoleRecordSchema,
+  TaskRecordSchema,
   type Tool,
   type Stack,
   type WorkflowDef,
+  type RoleRecord,
+  type TaskRecord,
 } from '@ocs/schema';
 import { listYamlFiles, loadYamlFile } from '@ocs/shared';
 
@@ -20,7 +24,17 @@ export interface CatalogSnapshot {
   tools: Tool[];
   stacks: Stack[];
   workflows: WorkflowDef[];
+  tasks: TaskRecord[];
+  roles: RoleRecord[];
   issues: ValidationIssue[];
+}
+
+async function directoryExists(directory: string): Promise<boolean> {
+  try {
+    return (await stat(directory)).isDirectory();
+  } catch {
+    return false;
+  }
 }
 
 function reportDuplicates(
@@ -43,6 +57,8 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
   const toolsDir = path.join(repoRoot, 'catalog', 'tools');
   const stacksDir = path.join(repoRoot, 'catalog', 'stacks');
   const workflowsDir = path.join(repoRoot, 'catalog', 'workflows');
+  const tasksDir = path.join(repoRoot, 'catalog', 'tasks');
+  const rolesDir = path.join(repoRoot, 'catalog', 'roles');
 
   const tools: Tool[] = [];
   const toolSources: Array<{ tool: Tool; file: string }> = [];
@@ -134,6 +150,75 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
           } else {
             try {
               await stat(guideFile);
+              if (tool.guide_status === 'full') {
+                const guide = await readFile(guideFile, 'utf8');
+                const levelTwoHeadings = guide.match(/^## /gm)?.length ?? 0;
+                const hasCoverageChecklist =
+                  /^## Flagship requirement coverage/m.test(guide) && /^33\. /m.test(guide);
+                if (levelTwoHeadings < 33 && !hasCoverageChecklist) {
+                  issues.push({
+                    file: rel,
+                    level: 'error',
+                    message: `full guide requires 33 substantive sections or a 33-point coverage checklist, found ${levelTwoHeadings} H2 sections`,
+                  });
+                }
+                const requiredGuideConcepts = [
+                  'fit',
+                  'tasks',
+                  'human',
+                  'cost',
+                  'data map',
+                  'integration',
+                  'failure',
+                  'security',
+                  'privacy',
+                  'backup',
+                  'restore',
+                  'upgrade',
+                  'rollback',
+                  'exit',
+                  'sources',
+                  'review',
+                  'expert',
+                ];
+                const normalizedGuide = guide.toLowerCase();
+                for (const concept of requiredGuideConcepts) {
+                  if (!normalizedGuide.includes(concept)) {
+                    issues.push({
+                      file: rel,
+                      level: 'error',
+                      message: `full guide is missing required concept "${concept}"`,
+                    });
+                  }
+                }
+                const placeholderMarkers = /\b(TODO|FIXME|HACK|XXX|PLACEHOLDER|TO DO)\b/i;
+                const placeholderMatches = guide.match(placeholderMarkers);
+                if (placeholderMatches) {
+                  issues.push({
+                    file: rel,
+                    level: 'warning',
+                    message: `full guide contains placeholder markers: ${[...new Set(placeholderMatches.map((m) => m.toUpperCase()))].join(', ')}`,
+                  });
+                }
+                const lines = guide.split('\n');
+                const nonEmptyLines = lines.filter((l) => l.trim().length > 0);
+                const boilerplateSentences = [
+                  /^this guide covers/i,
+                  /^this document describes/i,
+                  /^(please )?refer to/i,
+                  /^(contact|consult|review|check) (the )?(official|vendor|tool)/i,
+                ];
+                const boilerplateCount = nonEmptyLines.filter((l) =>
+                  boilerplateSentences.some((bs) => bs.test(l.trim())),
+                ).length;
+                if (boilerplateCount / nonEmptyLines.length > 0.3 && nonEmptyLines.length > 20) {
+                  issues.push({
+                    file: rel,
+                    level: 'warning',
+                    message: `full guide has high boilerplate ratio: ${Math.round((boilerplateCount / nonEmptyLines.length) * 100)}% boilerplate (${boilerplateCount}/${nonEmptyLines.length} non-empty lines)`,
+                  });
+                }
+              }
             } catch {
               issues.push({
                 file: rel,
@@ -310,6 +395,197 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
     }
   }
 
+  const roles: RoleRecord[] = [];
+  const roleIds = new Set<string>();
+  if (await directoryExists(rolesDir)) {
+    for (const file of await listYamlFiles(rolesDir)) {
+      const rel = path.relative(repoRoot, file);
+      const parsed = RoleRecordSchema.safeParse(await loadYamlFile<unknown>(file));
+      if (!parsed.success) {
+        for (const err of parsed.error.issues) {
+          issues.push({
+            file: rel,
+            level: 'error',
+            message: `${err.path.join('.') || '(root)'}: ${err.message}`,
+          });
+        }
+        continue;
+      }
+      const role = parsed.data;
+      const base = path.basename(file, '.yaml');
+      if (base !== role.id)
+        issues.push({
+          file: rel,
+          level: 'error',
+          message: `filename slug "${base}" must match id "${role.id}"`,
+        });
+      if (roleIds.has(role.id))
+        issues.push({ file: rel, level: 'error', message: `duplicate role id "${role.id}"` });
+      roleIds.add(role.id);
+      roles.push(role);
+    }
+    if (roles.length < 14) {
+      issues.push({
+        file: 'catalog/roles',
+        level: 'error',
+        message: `expected at least 14 roles, found ${roles.length}`,
+      });
+    }
+  }
+
+  const tasks: TaskRecord[] = [];
+  const taskIds = new Set<string>();
+  if (await directoryExists(tasksDir)) {
+    for (const file of await listYamlFiles(tasksDir)) {
+      const rel = path.relative(repoRoot, file);
+      const parsed = TaskRecordSchema.safeParse(await loadYamlFile<unknown>(file));
+      if (!parsed.success) {
+        for (const err of parsed.error.issues) {
+          issues.push({
+            file: rel,
+            level: 'error',
+            message: `${err.path.join('.') || '(root)'}: ${err.message}`,
+          });
+        }
+        continue;
+      }
+      const task = parsed.data;
+      const base = path.basename(file, '.yaml');
+      if (base !== task.id)
+        issues.push({
+          file: rel,
+          level: 'error',
+          message: `filename slug "${base}" must match id "${task.id}"`,
+        });
+      if (taskIds.has(task.id))
+        issues.push({ file: rel, level: 'error', message: `duplicate task id "${task.id}"` });
+      taskIds.add(task.id);
+      if (!roleIds.has(task.primary_role))
+        issues.push({
+          file: rel,
+          level: 'error',
+          message: `primary_role references unknown role "${task.primary_role}"`,
+        });
+      for (const role of task.supporting_roles) {
+        if (!roleIds.has(role))
+          issues.push({
+            file: rel,
+            level: 'error',
+            message: `supporting_roles references unknown role "${role}"`,
+          });
+      }
+      tasks.push(task);
+    }
+    if (tasks.length < 100) {
+      issues.push({
+        file: 'catalog/tasks',
+        level: 'error',
+        message: `expected at least 100 tasks, found ${tasks.length}`,
+      });
+    }
+  }
+
+  for (const { tool, file } of toolSources) {
+    reportDuplicates(
+      tool.task_fits.map((fit) => fit.task_id),
+      'task_fits.task_id',
+      file,
+      issues,
+    );
+    for (const fit of tool.task_fits) {
+      if (!taskIds.has(fit.task_id))
+        issues.push({
+          file,
+          level: 'error',
+          message: `task_fits references unknown task id "${fit.task_id}"`,
+        });
+      if (
+        fit.automation_level === 'low-risk fully automated' &&
+        /eligibility|identity-approval|legal-compliance|refund|physical-safety|emergency-access|financial-exception|member-dispute|employment-decision/.test(
+          fit.task_id,
+        )
+      ) {
+        issues.push({
+          file,
+          level: 'error',
+          message: `task "${fit.task_id}" must not be labeled low-risk fully automated`,
+        });
+      }
+    }
+  }
+
+  const packsRoot = path.join(repoRoot, 'implementation-packs');
+  if (await directoryExists(packsRoot)) {
+    const requiredPackFiles = [
+      'README.md',
+      'SKILL.md',
+      'operator-profile.yaml',
+      'coworking-use-cases.md',
+      'data-map.md',
+      'configuration-checklist.md',
+      'pilot-plan.md',
+      'security-review.md',
+      'backup-restore.md',
+      'upgrade-rollback.md',
+      'exit-strategy.md',
+    ];
+    const packDirectories = (await readdir(packsRoot, { withFileTypes: true })).filter((entry) =>
+      entry.isDirectory(),
+    );
+    for (const pack of packDirectories) {
+      const packPath = path.join(packsRoot, pack.name);
+      for (const requiredFile of requiredPackFiles) {
+        try {
+          await stat(path.join(packPath, requiredFile));
+        } catch {
+          issues.push({
+            file: path.relative(repoRoot, packPath),
+            level: 'error',
+            message: `implementation pack missing ${requiredFile}`,
+          });
+        }
+      }
+      for (const requiredDirectory of ['recipes', 'templates', 'examples']) {
+        if (!(await directoryExists(path.join(packPath, requiredDirectory)))) {
+          issues.push({
+            file: path.relative(repoRoot, packPath),
+            level: 'error',
+            message: `implementation pack missing ${requiredDirectory}/`,
+          });
+        }
+      }
+      try {
+        const skill = await readFile(path.join(packPath, 'SKILL.md'), 'utf8');
+        for (const heading of [
+          'Coworking purpose',
+          'Allowed automation',
+          'Prohibited decisions',
+          'Source verification',
+          'Data boundaries',
+          'Human approvals',
+          'Required tests',
+          'Backup and rollback',
+          'Expert review',
+        ]) {
+          if (!skill.includes(`## ${heading}`))
+            issues.push({
+              file: path.relative(repoRoot, path.join(packPath, 'SKILL.md')),
+              level: 'error',
+              message: `SKILL.md missing heading "${heading}"`,
+            });
+        }
+      } catch {
+        // The missing file is reported above.
+      }
+    }
+    if (packDirectories.length < 20)
+      issues.push({
+        file: 'implementation-packs',
+        level: 'error',
+        message: `expected at least 20 implementation packs, found ${packDirectories.length}`,
+      });
+  }
+
   if (tools.length < 75) {
     issues.push({
       file: 'catalog/tools',
@@ -327,5 +603,119 @@ export async function validateCatalog(repoRoot: string): Promise<CatalogSnapshot
     });
   }
 
-  return { tools, stacks, workflows, issues };
+  return { tools, stacks, workflows, tasks, roles, issues };
+}
+
+export interface ContentQualityIssue {
+  file: string;
+  message: string;
+}
+
+export async function contentQualityReport(repoRoot: string): Promise<ContentQualityIssue[]> {
+  const report: ContentQualityIssue[] = [];
+  const toolsDir = path.join(repoRoot, 'catalog', 'tools');
+
+  for (const file of await listYamlFiles(toolsDir)) {
+    const raw = await loadYamlFile<Record<string, unknown>>(file);
+    if (
+      !raw ||
+      typeof raw.id !== 'string' ||
+      raw.guide_status !== 'full' ||
+      typeof raw.guide_path !== 'string'
+    ) {
+      continue;
+    }
+    const guidePath: string = raw.guide_path;
+    const toolId: string = raw.id;
+    const guideFile = path.resolve(repoRoot, guidePath);
+    try {
+      const guide = await readFile(guideFile, 'utf8');
+
+      const placeholderMatch = guide.match(/\b(TODO|FIXME|HACK|XXX|PLACEHOLDER|TO DO)\b/i);
+      if (placeholderMatch) {
+        const markers = [...new Set(placeholderMatch.map((m) => m.toUpperCase()))];
+        report.push({
+          file: guidePath,
+          message: `guide "${toolId}" has placeholder markers: ${markers.join(', ')}`,
+        });
+      }
+
+      const sourceAttributionCount = (guide.match(/\[(.+?)\]\(https?:\/\/.+?\)/g) || []).length;
+      if (sourceAttributionCount === 0) {
+        report.push({
+          file: guidePath,
+          message: `guide "${toolId}" has no source URL attributions`,
+        });
+      }
+
+      const sectionRegex = /^##\s+(.+)/gm;
+      const sections: Array<{ name: string; lineCount: number }> = [];
+      let lastIndex = 0;
+      let lastName = 'preamble';
+      while (true) {
+        const secMatch = sectionRegex.exec(guide);
+        if (secMatch === null) break;
+        const sectionName = secMatch[1]!.trim();
+        sections.push({ name: lastName, lineCount: secMatch.index - lastIndex });
+        lastIndex = secMatch.index;
+        lastName = sectionName;
+      }
+      sections.push({ name: lastName, lineCount: guide.length - lastIndex });
+
+      const shortSections = sections.filter((s) => s.lineCount < 80 && s.name !== 'preamble');
+      if (shortSections.length > 0) {
+        report.push({
+          file: guidePath,
+          message: `guide "${toolId}" has ${shortSections.length} short section(s): ${shortSections.map((s) => `"${s.name}"`).join(', ')}`,
+        });
+      }
+
+      const lineCandidates = guide.match(/^.{40,}$/gm) || [];
+      const seen = new Set<string>();
+      let duplicateCount = 0;
+      for (const line of lineCandidates) {
+        if (seen.has(line)) duplicateCount++;
+        seen.add(line);
+      }
+      if (duplicateCount > 3) {
+        report.push({
+          file: guidePath,
+          message: `guide "${toolId}" has ${duplicateCount} repeated lines`,
+        });
+      }
+    } catch {
+      report.push({
+        file: guidePath,
+        message: `guide "${toolId}" could not be read for quality analysis`,
+      });
+    }
+  }
+
+  const comparisonsDir = path.join(
+    repoRoot,
+    'apps',
+    'web',
+    'src',
+    'content',
+    'docs',
+    'comparisons',
+  );
+  try {
+    const comparisonFiles = (await readdir(comparisonsDir, { withFileTypes: true })).filter(
+      (e) => e.isFile() && e.name.endsWith('.md'),
+    );
+    for (const file of comparisonFiles) {
+      const content = await readFile(path.join(comparisonsDir, file.name), 'utf8');
+      if (!content.includes('page_classification:')) {
+        report.push({
+          file: `comparisons/${file.name}`,
+          message: `comparison page "${file.name}" is missing page_classification frontmatter`,
+        });
+      }
+    }
+  } catch {
+    // comparisons directory may not exist
+  }
+
+  return report;
 }

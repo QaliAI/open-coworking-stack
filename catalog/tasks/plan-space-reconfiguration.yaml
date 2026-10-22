@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+id: plan-space-reconfiguration
+name: Plan space reconfiguration
+description: Develop a reversible layout or use change from validated demand, safety, accessibility, building, technology, and disruption requirements before physical work begins.
+business_area: space-inventory
+primary_role: operations-facilities-manager
+supporting_roles: [owner-operator, community-manager, it-security-administrator]
+frequency: quarterly
+trigger: Utilization evidence, member needs, or asset constraints justify evaluating a space change.
+inputs:
+  [Validated use case, Current plans and building constraints, Member and staff impact evidence]
+outputs:
+  [
+    Reviewed change plan and options,
+    Approved controls and disruption plan,
+    Pilot and rollback criteria,
+  ]
+current_manual_methods: [Furniture sketch, Vendor proposal, Management preference]
+common_failure_modes:
+  [
+    Network,
+    evacuation,
+    acoustics,
+    or accessibility impacts emerge after work,
+    Temporary pilot becomes permanent without review,
+  ]
+human_judgment_required:
+  [
+    Balance competing uses and long-term effects,
+    Evaluate qualitative experience alongside capacity estimates,
+  ]
+approval_points:
+  [Property, safety, accessibility, technology, and budget owners approve affected elements]
+privacy_sensitivity: low
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Required reviews complete before commitment,
+    Post-change evidence meets stated use and safety criteria,
+  ]
+related_workflows: [facility-maintenance, multi-site-rollout]

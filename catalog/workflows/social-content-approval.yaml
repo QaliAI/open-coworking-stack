@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: social-content-approval
+name: Social-content approval
+description: Review coworking social content for factual accuracy, consent, accessibility, brand fit, and current local context before publication.
+objective: Ensure every social post has accountable human approval and supportable claims.
+responsible_role: Marketing manager
+trigger: A draft social post and its assets are submitted for approval.
+inputs: [draft copy, assets, source facts, consent evidence, target channels, proposed timing]
+outputs: [approved rejected or revised status, reviewer, approved version, expiry or publish window]
+source_of_truth: The versioned content record with human approval is authoritative.
+systems_involved: [content workspace, asset store, approval queue, social account register]
+automation_steps:
+  [check required evidence, flag missing alt text or consent, route to the assigned reviewer]
+human_approval_points:
+  [An authorized reviewer approves final claims, assets, accessibility, audience, and timing.]
+failure_exception_paths:
+  [Block publication when approval, consent, source evidence, or current-context review is missing.]
+privacy_risks:
+  [Photos, names, locations, and member stories can identify people without valid consent.]
+security_risks:
+  [Malicious assets, unsafe links, or compromised publishing accounts can harm the audience.]
+measurable_kpis:
+  [posts published from approved version, corrections after publication, consent exceptions]
+test_cases:
+  [
+    Approve a sourced post,
+    reject missing consent,
+    require alt text,
+    expire stale availability copy.,
+  ]
+manual_fallback:
+  [
+    Use a controlled content checklist and require recorded reviewer sign-off before manual publishing.,
+  ]
+rollback_disable_procedure:
+  [
+    Disable automated routing and publishing handoff,
+    preserve versions,
+    revoke pending approvals,
+    use manual sign-off.,
+  ]
+primary_roles: [marketing, owner-operator]
+stages:
+  - id: review-and-approve
+    name: Review and approve
+    description: Check the exact content version and record a bounded human publication decision.
+    manual_tasks:
+      [verify claims and consent, review accessibility and context, approve the final version]
+    automation_opportunities: [check required fields and route the draft]
+    suggested_tool_ids: [canva, plane]
+    risks: [Approval of one version can be incorrectly applied to a later edited version.]
+success_metrics:
+  [Published content matches its approved version and has current evidence and consent.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Channel policies, consent, accessibility, and local claims require current review.

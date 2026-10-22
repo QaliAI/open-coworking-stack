@@ -1,0 +1,60 @@
+schema_version: 1.0.0
+id: move-out-feedback
+name: Move-out feedback
+description: Invite departing coworking members to share optional feedback after operational closure while protecting disputes, confidentiality, and dignity.
+objective: Learn from the exit experience without delaying offboarding or pressuring the former member.
+responsible_role: Community manager
+trigger: Staff confirm that essential move-out and access closure steps are complete.
+inputs:
+  [
+    confirmed exit status,
+    contact preference,
+    open dispute flags,
+    approved questions,
+    support contact,
+  ]
+outputs: [optional feedback, acknowledgement, restricted action items, no-contact status]
+source_of_truth: The controlled feedback record is authoritative for responses; offboarding records remain authoritative for closure.
+systems_involved: [membership system, survey form, feedback register]
+automation_steps:
+  [check eligibility and exclusions, send one approved invitation, record response and opt-out]
+human_approval_points:
+  [Staff approve eligibility, interpret feedback, and own any follow-up or corrective action.]
+failure_exception_paths:
+  [
+    Exclude unresolved sensitive disputes unless the responsible manager approves a suitable personal route.,
+  ]
+privacy_risks:
+  [Exit feedback may identify staff, members, disputes, or sensitive personal circumstances.]
+security_risks: [Expired member accounts or insecure survey links can expose records.]
+measurable_kpis: [eligible exits invited once, feedback reviewed, agreed actions closed]
+test_cases:
+  [Invite a standard exit, exclude an open dispute, honor opt-out, route a serious complaint.]
+manual_fallback:
+  [Offer one optional personal conversation or controlled written feedback route after closure.]
+rollback_disable_procedure:
+  [
+    Stop queued invitations,
+    preserve opt-outs and open actions,
+    publish a staffed contact path,
+    review manually.,
+  ]
+primary_roles: [community-manager, owner-operator]
+stages:
+  - id: invite-and-learn
+    name: Invite and learn
+    description: Offer a voluntary feedback route and assign human review without affecting the exit.
+    manual_tasks: [review eligibility, protect confidentiality, interpret feedback, assign action]
+    automation_opportunities: [send one approved invitation and record response]
+    suggested_tool_ids: [formbricks, cobot]
+    risks:
+      [An automated request during a dispute can feel coercive or mishandle sensitive feedback.]
+success_metrics:
+  [
+    Feedback remains voluntary,
+    serious issues reach accountable people,
+    learning actions are tracked.,
+  ]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Coordinate with offboarding, complaint, retention, and contact-preference policies.

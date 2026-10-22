@@ -1,0 +1,35 @@
+schema_version: 1.0.0
+id: resolve-member-account-questions
+name: Resolve member account questions
+description: Explain account, plan, booking, access, or contact information from authoritative records and correct discrepancies through controlled owner-approved changes.
+business_area: member-service
+primary_role: community-coordinator-front-desk
+supporting_roles: [finance-billing-administrator, sales-leasing-manager]
+frequency: per-interaction
+trigger: A member asks about account status or reports that displayed information is wrong.
+inputs: [Authoritative member record, Agreement and approved changes, Member-provided evidence]
+outputs:
+  [
+    Plain-language answer,
+    Corrected record or assigned exception,
+    Audit note for consequential changes,
+  ]
+current_manual_methods:
+  [Searching emails, Asking multiple departments, Editing the first available system]
+common_failure_modes:
+  [
+    Stale system is treated as authoritative,
+    Staff expose another account or unsupported internal notes,
+  ]
+human_judgment_required:
+  [Determine which source governs the question, Explain ambiguity and seek authorized correction]
+approval_points: [Finance or sales owner approves contractual and billing changes]
+privacy_sensitivity: high
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Questions resolved without contradictory answers,
+    Corrections reconcile across responsible systems,
+  ]
+related_workflows: [member-onboarding, invoice-collections]

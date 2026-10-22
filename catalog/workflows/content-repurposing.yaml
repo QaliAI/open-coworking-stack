@@ -1,0 +1,71 @@
+schema_version: 1.0.0
+id: content-repurposing
+name: Content repurposing
+description: Adapt approved coworking content for new formats or channels while rechecking facts, rights, consent, accessibility, and context.
+objective: Extend useful content without carrying stale claims or consent beyond its original scope.
+responsible_role: Marketing manager
+trigger: Staff select an approved source asset for a defined new audience or channel.
+inputs:
+  [
+    approved source,
+    source date,
+    rights and consent scope,
+    target format,
+    current facts,
+    channel requirements,
+  ]
+outputs: [adapted draft, provenance record, renewed approvals, publication-ready version]
+source_of_truth: The approved source and exact newly approved derivative version are authoritative.
+systems_involved: [content workspace, asset store, consent record, approval queue]
+automation_steps: [copy provenance, flag age and scope limits, prepare format variants for review]
+human_approval_points:
+  [
+    Staff and affected contributors approve changed wording,
+    context,
+    assets,
+    channels,
+    and renewed consent.,
+  ]
+failure_exception_paths:
+  [Retire the derivative when facts, rights, consent, or context cannot be verified.]
+privacy_risks: [Reuse can expose a person to a wider audience or new context they did not approve.]
+security_risks:
+  [Untrusted source assets, embedded metadata, or unsafe links can spread across channels.]
+measurable_kpis:
+  [derivatives with provenance, renewed consent where needed, stale-content corrections]
+test_cases:
+  [
+    Adapt current evergreen content,
+    reject expired consent,
+    update stale pricing,
+    remove embedded sensitive metadata.,
+  ]
+manual_fallback:
+  [
+    Review the source and permissions,
+    recreate the asset,
+    obtain approval,
+    and record provenance manually.,
+  ]
+rollback_disable_procedure:
+  [
+    Stop derivative generation,
+    unpublish controlled copies where appropriate,
+    preserve approvals,
+    return to original-content review.,
+  ]
+primary_roles: [marketing]
+stages:
+  - id: adapt-and-reapprove
+    name: Adapt and reapprove
+    description: Create a derivative with traceable provenance and a new human approval decision.
+    manual_tasks:
+      [verify source and rights, edit for context and accessibility, obtain renewed approval]
+    automation_opportunities: [prepare variants and flag old or scope-limited material]
+    suggested_tool_ids: [canva, figma]
+    risks: [A derivative can materially change meaning or exceed the original consent and rights.]
+success_metrics:
+  [Every derivative has provenance, current facts, appropriate rights, and exact-version approval.]
+verification:
+  last_reviewed: 2026-07-18
+  notes: Treat every new channel and format as a fresh context and approval decision.

@@ -1,0 +1,41 @@
+---
+import { relatedProducts } from '../data/related-products';
+
+const products = relatedProducts.filter((product) => product.url?.startsWith('https://'));
+---
+
+{
+  products.length > 0 && (
+    <aside class="ocs-related" aria-labelledby="related-products-heading">
+      <h2 id="related-products-heading">Related paid resources (separate products)</h2>
+      <p>
+        These are separate paid products from the maintainer of this directory. They are not part of
+        the directory, no tool is ranked or tiered because of them, and there is no paid placement.
+        See the <a href={`${import.meta.env.BASE_URL}ops/trust-policy/`}>trust and monetization policy</a>.
+      </p>
+      <ul>
+        {products.map((product) => (
+          <li>
+            <a href={product.url} rel="noopener">
+              {product.name}
+            </a>
+            {product.summary ? <span> — {product.summary}</span> : null}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )
+}
+
+<style>
+  .ocs-related {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .ocs-related h2 {
+    font-size: var(--sl-text-lg);
+    margin-top: 0;
+  }
+</style>

@@ -1,0 +1,20 @@
+example_only: true
+runtime_evidence: none
+tool_id: notion
+pilot:
+  pages:
+    - opening-sop-synthetic
+    - closing-sop-synthetic
+    - tour-sop-synthetic
+    - room-reset-sop-synthetic
+    - escalation-sop-synthetic
+  source_authority: retained-test-folder
+  guest_page: contractor-orientation-synthetic
+  prohibited_data_present: false
+expected_tests:
+  - unauthorized user denied
+  - guest limited and revoked
+  - five pages exported
+  - attachments opened
+  - fallback index reconstructed
+result: not-run

@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: it-security-administrator
+name: IT and security administrator
+description: Operates identity, network, endpoint, backup, and security controls for a mixed member environment, using automation for consistency while preserving human incident and risk decisions.
+responsibilities:
+  - Maintain least-privilege access, network separation, supported configurations, and recovery capability.
+  - Triage security and availability signals with business and physical context.
+  - Document control ownership, exceptions, dependencies, and tested recovery procedures.
+daily_tasks:
+  - Review access, network, printing, backup, and security exceptions requiring action.
+  - Support users without bypassing identity, privacy, or change controls.
+weekly_tasks:
+  - Review privileged changes, vulnerabilities, failed jobs, and recurring support causes.
+  - Test a selected restore, access, or monitoring control and record evidence.
+monthly_tasks:
+  - Review accounts, suppliers, patches, retention, capacity, and incident actions.
+  - Update threat and continuity assumptions with operations leadership.
+revenue_impacting_work:
+  - Protect reliable connectivity and access services that underpin member trust and inventory use.
+  - Assess technical feasibility and risk before new products or integrations are promised.
+member_experience_work:
+  - Provide clear, respectful support while minimizing collection of member device information.
+  - Communicate outages and security actions with useful scope, alternatives, and updates.
+repetitive_administrative_work:
+  - Standard account provisioning, evidence collection, health checks, and review reminders.
+  - Producing access-change, backup, vulnerability, and incident status queues.
+dangerous_to_automate_blindly:
+  - Disabling identities, isolating systems, deleting data, or declaring incidents resolved.
+  - Applying patches or network changes without dependency, rollback, and service-impact review.
+recommended_task_ids:
+  - provision-member-access
+  - revoke-departing-access
+  - triage-security-alerts
+  - perform-backup-restore-tests
+  - review-privileged-access
+easiest_hosted_stack: Managed identity, network, endpoint, backup, ticketing, and monitoring services with documented tenant ownership and export paths.
+hybrid_stack: Managed identity and endpoints combined with locally controlled network, logs, procedures, and backup copies.
+self_hosted_stack: Self-hosted identity, network management, monitoring, ticketing, and backup with redundant administration and tested break-glass access.
+suggested_workflows:
+  - access-provisioning
+  - incident-response
+  - backup-restore-drill
+  - vendor-offboarding
+kpis:
+  - Access changes completed accurately and privileged access reviewed by accountable owners.
+  - Restore objectives demonstrated by tests rather than inferred from successful backup jobs.
+  - Security and availability incidents contained, communicated, and followed by owned actions.
+improvement_plan_30_day:
+  - Inventory identities, networks, administrators, backups, logs, and critical suppliers.
+  - Define joiner, mover, leaver, incident, and emergency-access decision points.
+  - Test one representative restore and one access revocation end to end.
+  - Prioritize remediation by credible exposure and business impact, not scanner score alone.
+implementation_owner: IT and security administrator, with business owners accepting residual risk and qualified specialists reviewing high-impact controls.
+expert_help_triggers:
+  - Active compromise, ransomware, payment exposure, legal notification, or forensic preservation is possible.
+  - Network architecture, building controls, identity federation, or recovery design exceeds internal competence.

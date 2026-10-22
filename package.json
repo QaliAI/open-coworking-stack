@@ -18,13 +18,19 @@
     "test:a11y": "pnpm --filter @ocs/web test:a11y",
     "lint": "pnpm -r run lint && pnpm format:check",
     "format": "prettier --write .",
-    "format:check": "prettier --check . && markdownlint-cli2 \"**/*.{md,mdx}\" \"#**/node_modules/**\" \"#**/dist/**\" \"#**/.astro/**\" \"#apps/web/src/content/docs/**/generated/**\" \"#apps/web/src/content/docs/guides/tools/**\"",
+    "format:check": "prettier --check . && markdownlint-cli2 \"**/*.{md,mdx}\" \"#**/node_modules/**\" \"#**/dist/**\" \"#**/.astro/**\" \"#**/.lychee/**\" \"#apps/web/src/content/docs/**/generated/**\" \"#apps/web/src/content/docs/guides/tools/**\"",
     "validate": "pnpm run build:validators && pnpm --filter @ocs/validators validate",
     "generate": "pnpm run build:pipeline && pnpm --filter @ocs/schema generate && prettier --write \"catalog/schema/*.json\" && pnpm --filter @ocs/generators generate && prettier --write \"apps/web/src/content/docs/workflows/generated/*.md\"",
     "check": "pnpm validate && pnpm generate && pnpm test && pnpm build",
-    "typecheck": "pnpm run build:pipeline && pnpm -r run typecheck",
-    "link-check": "lychee --config .lychee.toml --offline --include-fragments false \"./**/*.md\" \"./**/*.mdx\" \"./**/*.yml\" \"./**/*.yaml\" || lychee --config .lychee.toml \"./**/*.md\" \"./**/*.mdx\" \"./**/*.yml\" \"./**/*.yaml\"",
-    "freshness": "pnpm run build:validators && pnpm --filter @ocs/validators freshness"
+    "typecheck": "pnpm generate && pnpm -r run typecheck",
+    "quality-report": "pnpm run build:validators && pnpm --filter @ocs/validators quality-report",
+    "link-check": "node scripts/run-lychee.mjs",
+    "freshness": "pnpm run build:validators && pnpm --filter @ocs/validators freshness",
+    "release:licenses": "node scripts/generate-license-inventory.mjs",
+    "release:sbom": "node scripts/generate-sbom.mjs",
+    "release:checksums": "node scripts/generate-checksums.mjs apps/web/dist release-artifacts/dependency-licenses.json release-artifacts/sbom.cyclonedx.json",
+    "release:evidence": "pnpm release:licenses && pnpm release:sbom && pnpm release:checksums",
+    "scan:reference-images": "node scripts/scan-reference-images.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

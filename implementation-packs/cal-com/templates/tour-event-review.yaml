@@ -1,0 +1,24 @@
+event_type: tour-booking
+owner: CHANGE-ME
+host_calendar: CHANGE-ME-NO-CREDENTIAL
+duration_minutes: CHANGE-ME
+time_zone: CHANGE-ME
+availability_reference: CHANGE-ME
+minimum_notice: CHANGE-ME
+booking_window: CHANGE-ME
+buffers: CHANGE-ME
+conflict_calendars: CHANGE-ME
+location_text: CHANGE-ME
+attendee_fields:
+  - name
+  - email
+privacy_notice: CHANGE-ME
+accessibility_route: CHANGE-ME
+cancellation_and_reschedule: CHANGE-ME
+no_show_owner: CHANGE-ME
+manual_fallback: CHANGE-ME
+retention_review: pending
+approvals:
+  scheduling_owner: pending
+  host: pending
+  privacy: pending

@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: multi-location-operator
+name: Multi-location operator
+description: Establishes comparable controls and shared services across locations while preserving local context, accountable site leadership, and deliberate review before standards are scaled.
+responsibilities:
+  - Define minimum controls, shared data definitions, and local decision rights.
+  - Compare sites fairly and support adaptation where property, market, or law differs.
+  - Stage rollouts with readiness evidence, rollback paths, and local feedback.
+daily_tasks:
+  - Review material site exceptions and shared-service failures needing cross-location coordination.
+  - Resolve ownership conflicts without bypassing the accountable local operator.
+weekly_tasks:
+  - Compare performance using reconciled definitions and discuss contextual causes with sites.
+  - Review rollout readiness, dependencies, adoption friction, and unresolved risks.
+monthly_tasks:
+  - Assess standard controls, vendor performance, data quality, and location-level capacity.
+  - Retire central requirements whose burden exceeds demonstrated value.
+revenue_impacting_work:
+  - Allocate demand and investment across sites using capacity and local market evidence.
+  - Scale proven products without carrying hidden operational failure into every location.
+member_experience_work:
+  - Provide predictable cross-site access and service while communicating local differences.
+  - Ensure central metrics do not suppress important local member feedback.
+repetitive_administrative_work:
+  - Consolidating site reports, checking definitions, tracking rollouts, and chasing attestations.
+  - Publishing approved templates and synchronizing non-sensitive reference data.
+dangerous_to_automate_blindly:
+  - Ranking sites or staff without context, normalized definitions, and data-quality review.
+  - Applying access, pricing, retention, or operating changes simultaneously without staged evidence.
+recommended_task_ids:
+  - publish-availability
+  - analyze-space-utilization
+  - forecast-sales-and-renewals
+  - run-business-continuity-exercises
+  - maintain-operating-procedures
+easiest_hosted_stack: Multi-site coworking platform, shared knowledge base, controlled analytics, and centralized identity with local administration boundaries.
+hybrid_stack: Shared hosted systems integrated with site-owned facility, access, and continuity controls through documented interfaces.
+self_hosted_stack: Federated self-hosted operations, identity, reporting, and knowledge services with central standards and tested site independence.
+suggested_workflows:
+  - multi-site-rollout
+  - reporting-kpis
+  - access-provisioning
+  - compliance-review
+kpis:
+  - Sites reporting comparable measures with reconciled definitions and stated caveats.
+  - Rollout gates passed, local exceptions resolved, and rollback readiness demonstrated.
+  - Cross-site member journeys completed without avoidable access or billing failures.
+improvement_plan_30_day:
+  - Define the minimum shared control set and explicitly list local decision rights.
+  - Reconcile three high-value measures across sites before expanding the dashboard.
+  - Pilot one change at a representative site with local success and stop criteria.
+  - Review adoption and unintended effects before authorizing the next rollout wave.
+implementation_owner: Multi-location operator, with named site leaders accountable for local readiness and outcomes.
+expert_help_triggers:
+  - Data residency, employment, tax, access, lease, or privacy requirements differ by location.
+  - Shared identity, network, finance, or vendor failure could disable multiple sites.

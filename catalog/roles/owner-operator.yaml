@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: owner-operator
+name: Owner-operator
+description: Owns the coworking business model, risk posture, capital allocation, and service promise while keeping consequential decisions accountable to people with local operating context.
+responsibilities:
+  - Set strategy, operating guardrails, and decision rights for the workspace.
+  - Balance sustainable revenue, member value, staff capacity, safety, and compliance.
+  - Sponsor modernization only where ownership, controls, and measurable outcomes are clear.
+daily_tasks:
+  - Review material service, safety, cash, and staffing exceptions requiring executive judgment.
+  - Remove blockers for accountable operators without taking routine decisions away from them.
+weekly_tasks:
+  - Review sales, occupancy, cash, member experience, and operational risk as one decision set.
+  - Confirm that priority actions have named owners, due dates, and escalation paths.
+monthly_tasks:
+  - Review financial controls, capacity assumptions, vendor performance, and modernization outcomes.
+  - Revisit which reports or automations create action and retire those that create noise.
+revenue_impacting_work:
+  - Approve positioning, capacity, discount guardrails, and nonstandard commercial terms.
+  - Decide investments that improve retention, utilization, or reliable service delivery.
+member_experience_work:
+  - Define the service promise and review whether policies produce fair member outcomes.
+  - Personally own escalations with reputational, contractual, or community-wide impact.
+repetitive_administrative_work:
+  - Consolidating recurring operating reports and chasing action updates.
+  - Rechecking approval queues that should have explicit thresholds and delegated owners.
+dangerous_to_automate_blindly:
+  - Pricing, contract exceptions, refunds, staffing decisions, or member sanctions without context.
+  - Safety, legal, privacy, or security decisions based only on dashboard thresholds.
+recommended_task_ids:
+  - forecast-sales-and-renewals
+  - monitor-cash-flow
+  - review-financial-controls
+  - run-business-continuity-exercises
+  - review-workload-and-wellbeing
+easiest_hosted_stack: Coworking management platform, hosted accounting, shared knowledge base, and role-based KPI dashboard with documented owners.
+hybrid_stack: Hosted member and finance systems connected through reviewed exports or integrations to a controlled analytics and procedure layer.
+self_hosted_stack: Self-hosted CRM, invoicing, knowledge base, workflow automation, and analytics operated with assigned security, backup, and upgrade owners.
+suggested_workflows:
+  - reporting-kpis
+  - compliance-review
+  - multi-site-rollout
+  - incident-response
+kpis:
+  - Contribution margin and cash runway interpreted with documented assumptions.
+  - Retention, occupancy, utilization, and qualified pipeline by product and location.
+  - Material risks and corrective actions closed by their accountable owners.
+improvement_plan_30_day:
+  - Define five decisions the operating dashboard must support and remove vanity measures.
+  - Publish approval thresholds for discounts, refunds, incidents, and vendor commitments.
+  - Baseline staff time spent on reconciliation, duplicate entry, and status chasing.
+  - Select one reversible workflow improvement and review member, staff, and control outcomes.
+implementation_owner: Owner-operator, with each operating control delegated to a named functional owner.
+expert_help_triggers:
+  - Contract, employment, tax, accessibility, privacy, or life-safety obligations are unclear.
+  - A modernization proposal changes core financial records, identity controls, or member rights.

@@ -40,6 +40,39 @@ registry.example/project/image:1.2.3@sha256:verified-digest
 Re-verify release notes, supported upgrade paths, architecture, and signatures before changing a
 pin. Test upgrades against a restored copy of production data, then update one version at a time.
 
+## Multi-tool stack prototypes
+
+Experimental multi-service compose files for flagship stacks live in `stacks/`. These are **not
+production configurations** — they demonstrate how individual tools from this directory could be
+combined around a shared reverse proxy (Caddy) with internal networking:
+
+| Stack                                                              | Services included                                     |
+| ------------------------------------------------------------------ | ----------------------------------------------------- |
+| [Bootstrap Near-Zero](stacks/bootstrap-near-zero/README.md)        | Caddy, Vaultwarden, BookStack, Uptime Kuma            |
+| [Privacy-First Self-Host](stacks/privacy-first-selfhost/README.md) | Caddy, Authentik, Nextcloud, Vaultwarden, Uptime Kuma |
+| [Member Experience Lite](stacks/member-experience-lite/README.md)  | Caddy, Cal.com, LibreBooking, Chatwoot, Formbricks    |
+
+Each stack compose file is **fabricated demonstration data** — secrets use placeholder markers,
+image pins are internally consistent but not verified against multi-service upgrade paths, and
+no testing has been done on combined resource requirements. Use them as a starting point for
+your own stack composition, not as a turnkey deployment.
+
+## Sample collateral
+
+Additional fabricated demonstration artifacts are provided for review:
+
+- **n8n workflow exports** — `n8n/workflows/` contains three JSON-format workflow exports
+  (member onboarding, tour-to-close, invoice reminder) that reference coworking-specific
+  API endpoints and environment variables. Import via n8n web UI or API after configuration.
+- **Sample Caddyfile** — `sample-caddy/Caddyfile` demonstrates reverse-proxy routing for all
+  tools across subdomains, with trusted-network restrictions and separate access logs.
+- **Paperless-ngx document taxonomy** — `paperless-ngx/sample-taxonomy/coworking-document-types.yaml`
+  provides a YAML-format starting taxonomy with regex matching rules for coworking documents
+  (member agreements, invoices, forwarded mail, vendor bills, etc.).
+- **Backup / restore scripts** — `scripts/backup.sh` and `scripts/restore.sh` demonstrate
+  Docker volume and database dump/restore for a multi-service compose project. Not hardened
+  for concurrent access, encryption, rotation, or alerting.
+
 ## Operator obligations
 
 The operator owns host hardening, firewall rules, DNS, TLS, proxy-header trust, authentication and

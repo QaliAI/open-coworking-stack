@@ -1,0 +1,20 @@
+schema_version: 1.0.0
+tool_id: wordpress
+intended_outcome: accessible coworking marketing content and reliable minimal tour-request delivery
+deployment_boundary: private staging, minimal approved theme/plugins, no payment or membership system
+accountable_owner: marketing site owner
+required_operators:
+  - technical operator for DNS, TLS, hosting, updates, backups, monitoring, and incidents
+  - editor and lead-response owner for content and tour submissions
+required_reviewers:
+  - privacy reviewer for forms, retention, notice, and third parties
+  - accessibility and security reviewers for launch
+minimum_staffing: marketing owner plus independent technical release approver
+prohibited_uses:
+  - payment, member billing, identity-document, or door-access storage
+  - unreviewed plugins, themes, embeds, analytics, or automated lead decisions
+  - public launch without tested fallback, backup restore, and accessibility review
+readiness_evidence:
+  - approved dependency and data-flow inventory
+  - synthetic form delivery/failure/reconciliation evidence
+  - clean restore, update, rollback, and accessibility evidence

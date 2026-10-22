@@ -1,0 +1,215 @@
+# FABRICATED DEMONSTRATION DATA — not a production-ready deployment.
+# Reference prototype for the Secure Infrastructure and Business Continuity stack.
+# Adapt secrets, image pins, ports, volumes, and networking before staging.
+
+services:
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2-alpine}
+    restart: unless-stopped
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:80:80'
+      - '${BIND_ADDRESS:-127.0.0.1}:443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+      - caddy_logs:/var/log/caddy
+    networks:
+      - frontend
+
+  authentik-db:
+    image: ${AUTHENTIK_DB_IMAGE:-postgres:16-alpine}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: authentik
+      POSTGRES_USER: authentik
+      POSTGRES_PASSWORD: ${AUTHENTIK_DB_PASSWORD:?Set AUTHENTIK_DB_PASSWORD}
+    volumes:
+      - authentik_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U authentik -d authentik']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  authentik-redis:
+    image: ${AUTHENTIK_REDIS_IMAGE:-redis:7-alpine}
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${AUTHENTIK_REDIS_PASSWORD:?Set AUTHENTIK_REDIS_PASSWORD}
+    command: ['sh', '-c', 'exec redis-server --requirepass "$$REDIS_PASSWORD"']
+    volumes:
+      - authentik_redis:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - backend
+
+  authentik-server:
+    image: ${AUTHENTIK_SERVER_IMAGE:?Set AUTHENTIK_SERVER_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_REDIS__PASSWORD: ${AUTHENTIK_REDIS_PASSWORD:?Set AUTHENTIK_REDIS_PASSWORD}
+      AUTHENTIK_POSTGRESQL__HOST: authentik-db
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_DB_PASSWORD:?Set AUTHENTIK_DB_PASSWORD}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?Set AUTHENTIK_SECRET_KEY}
+      AUTHENTIK_TOKEN_LENGTH: 64
+      AUTHENTIK_BOOTSTRAP_EMAIL: ${AUTHENTIK_BOOTSTRAP_EMAIL:?Set AUTHENTIK_BOOTSTRAP_EMAIL}
+      AUTHENTIK_BOOTSTRAP_PASSWORD: ${AUTHENTIK_BOOTSTRAP_PASSWORD:?Set AUTHENTIK_BOOTSTRAP_PASSWORD}
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8088:9000'
+    depends_on:
+      authentik-db:
+        condition: service_healthy
+      authentik-redis:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  authentik-worker:
+    image: ${AUTHENTIK_SERVER_IMAGE:?Set AUTHENTIK_SERVER_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    entrypoint: /bin/ak-worker
+    environment:
+      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_REDIS__PASSWORD: ${AUTHENTIK_REDIS_PASSWORD:?Set AUTHENTIK_REDIS_PASSWORD}
+      AUTHENTIK_POSTGRESQL__HOST: authentik-db
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_DB_PASSWORD:?Set AUTHENTIK_DB_PASSWORD}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?Set AUTHENTIK_SECRET_KEY}
+    depends_on:
+      authentik-db:
+        condition: service_healthy
+      authentik-redis:
+        condition: service_healthy
+    networks:
+      - backend
+
+  nextcloud-db:
+    image: ${NEXTCLOUD_DB_IMAGE:-postgres:16-alpine}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${NEXTCLOUD_DB_PASSWORD:?Set NEXTCLOUD_DB_PASSWORD}
+    volumes:
+      - nextcloud_db:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U nextcloud -d nextcloud']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+
+  nextcloud-redis:
+    image: ${NEXTCLOUD_REDIS_IMAGE:-redis:7-alpine}
+    restart: unless-stopped
+    command:
+      ['redis-server', '--requirepass', '${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}']
+    volumes:
+      - nextcloud_redis:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'REDISCLI_AUTH=$$NEXTCLOUD_REDIS_PASSWORD redis-cli ping | grep -q PONG']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - backend
+
+  nextcloud:
+    image: ${NEXTCLOUD_IMAGE:?Set NEXTCLOUD_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: nextcloud-db
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${NEXTCLOUD_DB_PASSWORD:?Set NEXTCLOUD_DB_PASSWORD}
+      REDIS_HOST: nextcloud-redis
+      REDIS_HOST_PASSWORD: ${NEXTCLOUD_REDIS_PASSWORD:?Set NEXTCLOUD_REDIS_PASSWORD}
+      NEXTCLOUD_ADMIN_USER: ${NEXTCLOUD_ADMIN_USER:?Set NEXTCLOUD_ADMIN_USER}
+      NEXTCLOUD_ADMIN_PASSWORD: ${NEXTCLOUD_ADMIN_PASSWORD:?Set NEXTCLOUD_ADMIN_PASSWORD}
+      NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_TRUSTED_DOMAINS:-nextcloud.coworking.test}
+      OVERWRITEPROTOCOL: https
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8080:80'
+    volumes:
+      - nextcloud_data:/var/www/html
+    depends_on:
+      nextcloud-db:
+        condition: service_healthy
+      nextcloud-redis:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  vaultwarden:
+    image: ${VAULTWARDEN_IMAGE:?Set VAULTWARDEN_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${VAULTWARDEN_DOMAIN:-https://vaultwarden.coworking.test}
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN:?Set VAULTWARDEN_ADMIN_TOKEN}
+      SIGNUPS_ALLOWED: 'false'
+      INVITATIONS_ALLOWED: 'true'
+      SHOW_PASSWORD_HINT: 'false'
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:8082:80'
+    volumes:
+      - vaultwarden_data:/data
+    healthcheck:
+      test: ['CMD', '/healthcheck.sh']
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - frontend
+      - backend
+
+  uptime-kuma:
+    image: ${UPTIME_KUMA_IMAGE:?Set UPTIME_KUMA_IMAGE to an exact version or digest}
+    restart: unless-stopped
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:3001:3001'
+    volumes:
+      - uptime_kuma_data:/app/data
+    healthcheck:
+      test: ['CMD', 'extra/healthcheck']
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 3m
+    networks:
+      - frontend
+
+volumes:
+  caddy_data:
+  caddy_config:
+  caddy_logs:
+  authentik_db:
+  authentik_redis:
+  nextcloud_db:
+  nextcloud_redis:
+  nextcloud_data:
+  vaultwarden_data:
+  uptime_kuma_data:
+
+networks:
+  frontend:
+  backend:
+    internal: true

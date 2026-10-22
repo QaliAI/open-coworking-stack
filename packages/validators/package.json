@@ -14,6 +14,7 @@
     "test": "vitest run",
     "validate": "tsx src/cli.ts validate",
     "freshness": "tsx src/cli.ts freshness",
+    "quality-report": "tsx src/cli.ts quality-report",
     "lint": "echo \"no lint config in validators package\""
   },
   "dependencies": {

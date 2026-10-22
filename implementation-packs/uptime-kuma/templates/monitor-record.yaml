@@ -1,0 +1,20 @@
+tool_id: uptime-kuma
+monitor_name_neutral: REPLACE_ME
+target_owner: REPLACE_ME
+target_authorization: PENDING
+business_impact: REPLACE_ME
+expected_response: REPLACE_ME
+manual_workflow_test: REPLACE_ME
+check_type_and_interval: REPLACE_ME
+credentials_required: false
+notification_and_fallback: REPLACE_ME
+maintenance_owner: REPLACE_ME
+runbook: REPLACE_ME
+public_status_allowed: false
+approvals:
+  service_owner: PENDING
+  security_network: PENDING
+  operations: PENDING
+  communications: NOT_APPLICABLE
+controlled_test_result: NOT_RUN
+unknowns: []

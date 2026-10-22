@@ -10,28 +10,9 @@
         },
         "id": {
           "type": "string",
-          "enum": [
-            "member-onboarding",
-            "member-offboarding",
-            "day-pass-checkin",
-            "tour-to-close",
-            "room-booking",
-            "desk-hot-desk",
-            "invoice-collections",
-            "access-provisioning",
-            "visitor-management",
-            "event-lifecycle",
-            "mail-package-handling",
-            "community-programming",
-            "incident-response",
-            "facility-maintenance",
-            "marketing-campaigns",
-            "reporting-kpis",
-            "multi-site-rollout",
-            "backup-restore-drill",
-            "vendor-offboarding",
-            "compliance-review"
-          ]
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "minLength": 2,
+          "maxLength": 80
         },
         "name": {
           "type": "string",
@@ -118,6 +99,106 @@
             "type": "string"
           },
           "minItems": 1
+        },
+        "objective": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "responsible_role": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "trigger": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "source_of_truth": {
+          "type": "string",
+          "default": "Not yet documented."
+        },
+        "systems_involved": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "automation_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "human_approval_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "failure_exception_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "privacy_risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "security_risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "measurable_kpis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "test_cases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "manual_fallback": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "rollback_disable_procedure": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
         },
         "verification": {
           "type": "object",

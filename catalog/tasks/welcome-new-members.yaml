@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+id: welcome-new-members
+name: Welcome new members
+description: Provide a timely personal welcome, confirm how the member wants to participate, and connect them to useful people and help without forcing public visibility.
+business_area: community
+primary_role: community-manager
+supporting_roles: [community-coordinator-front-desk]
+frequency: per-interaction
+trigger: A member starts service or arrives for their first substantive use of the space.
+inputs:
+  [
+    Onboarding status,
+    Member-stated goals and preferences,
+    Current community and support information,
+  ]
+outputs:
+  [Completed personal welcome, Consent-aware follow-up, Identified support or connection needs]
+current_manual_methods:
+  [Generic welcome email, Chance front-desk encounter, Public channel announcement]
+common_failure_modes:
+  [Member is announced without permission, Welcome repeats onboarding but misses practical goals]
+human_judgment_required:
+  [
+    Adapt warmth and detail to the person,
+    Recognize when privacy or immediate support matters more than introduction,
+  ]
+approval_points: [Member approves any public introduction or profile visibility]
+privacy_sensitivity: high
+security_sensitivity: low
+compliance_review_needed: false
+success_metrics:
+  [New members know a named help contact, Follow-up reflects stated participation preferences]
+related_workflows: [member-onboarding, community-programming]

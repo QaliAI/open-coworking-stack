@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+id: manage-event-registration
+name: Manage event registration
+description: Collect only necessary attendee information, apply capacity and consent rules, communicate access needs, and keep registration status aligned with the approved event plan.
+business_area: events
+primary_role: event-manager
+supporting_roles: [marketing-manager, community-coordinator-front-desk]
+frequency: continuous
+trigger: Registration opens, changes, reaches a threshold, or receives an attendee request.
+inputs: [Approved capacity and audience, Registration records, Consent and accessibility responses]
+outputs:
+  [
+    Current attendee and wait list,
+    Approved attendee communications,
+    Escalated access or capacity needs,
+  ]
+current_manual_methods: [Spreadsheet export, Separate email list, Manual headcount]
+common_failure_modes:
+  [Wait-list promotion exceeds safe capacity, Sensitive access details appear in broad exports]
+human_judgment_required:
+  [
+    Resolve duplicate or exceptional registrations,
+    Coordinate accommodations without unnecessary disclosure,
+  ]
+approval_points: [Event manager approves capacity changes and any sharing of attendee data]
+privacy_sensitivity: high
+security_sensitivity: medium
+compliance_review_needed: true
+success_metrics:
+  [
+    Attendance status stays within approved capacity,
+    Consent and access requests reach only responsible owners,
+  ]
+related_workflows: [event-lifecycle, visitor-management, marketing-campaigns]

@@ -1,0 +1,20 @@
+schema_version: 1.0.0
+tool_id: umami
+intended_outcome: aggregate measurement of one tour CTA question
+deployment_boundary: marketing-site staging first; production only after privacy and web approval
+accountable_owner: marketing business owner
+required_operators:
+  - web operator for script deployment and rollback
+  - technical operator for cloud administration or self-hosted DNS, TLS, database, and recovery
+required_reviewers:
+  - privacy reviewer for collection, notice, consent, retention, and deletion
+  - security reviewer for access and production exposure
+minimum_staffing: marketing owner plus independent web/privacy approval
+prohibited_uses:
+  - personal data or free text in events
+  - member, lead, or employee identity joins
+  - automated lead scoring or campaign decisions
+readiness_evidence:
+  - approved event dictionary and prohibited-field list
+  - staging request and stored-data inspection
+  - tested script disable and recovery path

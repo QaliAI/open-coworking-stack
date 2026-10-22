@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+id: assess-event-fit-and-risk
+name: Assess event fit and risk
+description: Evaluate event purpose, capacity, disruption, accessibility, security, safeguarding, licensing, vendor, and financial implications with accountable human reviewers.
+business_area: events
+primary_role: event-manager
+supporting_roles: [general-manager, operations-facilities-manager, it-security-administrator]
+frequency: event-driven
+trigger: An event brief is complete enough for a go, revise, or decline decision.
+inputs: [Event brief, Site constraints and risk controls, Applicable policy and expert advice]
+outputs:
+  [Approved risk tier and conditions, Revision request or explained decline, Named control owners]
+current_manual_methods: [Manager intuition, Reused risk assessment, Capacity-only check]
+common_failure_modes:
+  [Novel risks inherit an old template, Commercial pressure bypasses control owners]
+human_judgment_required:
+  [
+    Assess interacting risks and local context,
+    Decide whether controls are proportionate and credible,
+  ]
+approval_points: [General manager and relevant duty holders approve high-risk or nonstandard events]
+privacy_sensitivity: medium
+security_sensitivity: high
+compliance_review_needed: true
+success_metrics:
+  [
+    Approved events have owned controls before commitment,
+    Late cancellation caused by missed foreseeable requirements,
+  ]
+related_workflows: [event-lifecycle, compliance-review, incident-response]
