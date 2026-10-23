@@ -54,7 +54,7 @@ WARP is deferred: no identifiable project in available prior research or `git lo
 - `pnpm quality-report`: zero issues. `pnpm freshness`: 0/125 older than 180 days or marked stale. Freshness is not an endorsement.
 - `pnpm link-check`: 2,582 links / 1,020 unique, one temporary 522 at `https://docmost.com/docs/`; a separate anonymous request returned 200. Existing 403/429 exceptions and excluded example/blocked hosts remain connectivity exceptions, not verified factual claims. No records were deleted for request blocking.
 - CoworkingSpace.ai: `npm ci`, `npm run build` passed. `npm audit --omit=dev`: zero vulnerabilities. Existing build/development dependencies report four high findings; follow-up needed, with no dependency upgrade folded into this presentation release.
-- `pnpm release:licenses` succeeded. `pnpm release:evidence` stopped at SBOM generation because Docker Desktop's Linux engine was unavailable. No SBOM/checksum completion is claimed; existing GitHub Release Evidence workflow can generate it on a Docker-capable runner.
+- `pnpm release:licenses` succeeded locally. Local `pnpm release:evidence` stopped because Docker Desktop's Linux engine was unavailable. The [unsigned evidence workflow](https://github.com/QaliAI/open-coworking-stack/actions/runs/39993965965) subsequently **succeeded** on GitHub, producing a 9.3 MB artifact with the site, dependency licenses, CycloneDX SBOM and checksums at release commit `e5397e8` (before the CI-only labeler repair).
 - CoworkingSpace.ai preview `https://coworkingspace-d6zlpylr1-qaliais-projects.vercel.app/tools` is READY at `f1ff5e7`, but anonymous requests redirect to Vercel login. Automatic approval review rejected the temporary authentication-bypass action as an unauthorized access-control change. Protection remains intact; local page verification and post-release anonymous custom-domain checks are used instead.
 - Directory preview `https://open-coworking-stack-98o474l0t-qaliais-projects.vercel.app/` was checked anonymously: correct heading, generated counts, directory navigation and production-origin canonical. GitHub Secret Scan and CodeQL passed. The existing size-label workflow referenced nonexistent `@v1`; pinned the officially documented v0.5.7 commit and removed an unsupported input. Its current `pull_request_target` run uses the old base workflow, so that automation-only failure cannot validate the fix until it reaches main.
 
@@ -74,4 +74,25 @@ Thought it might be useful for you and others in the industry. Would love your f
 
 Rubin
 
-The link above must be confirmed on the public production domain before this draft is used. No email or other message has been sent.
+The public URL above passed anonymous production checks. No email or other message has been sent.
+
+## Production handoff — GO
+
+Both destinations were verified anonymously after publication:
+
+- <https://www.coworkingspace.ai/tools> and `/tools/` return the dedicated landing page. Apex requests redirect to www; canonical, Open Graph URL and new sitemap entry match the final www tools URL. Browser checks include phone and desktop widths and the Browse Tools path into the directory.
+- <https://open-coworking-stack.vercel.app> returns the requested heading and current counts. Fourteen known route variants spanning the homepage, directory, tool records, guide, comparison, stack, role, task, workflow, builder and estimator return 200. All eleven discovered production assets return 200. Production JSON reports 125 / 22 Evaluated / 100 Research Backlog / 3 Commercial Benchmark / 0 Verified Core, generated `2026-10-23T17:25:18.929Z`. No authentication is required for these public destinations.
+- Directory release merged via [PR #18](https://github.com/QaliAI/open-coworking-stack/pull/18), production merge `915a75e50ec5a20db641af6d26c7a3fce05eacae`, deployment `dpl_EnU3LnN4hFjtpdHmVuDHvrRnYToT`. [Final release CI](https://github.com/QaliAI/open-coworking-stack/actions/runs/39994259612) passed, as did CodeQL, Secret Scan, title validation, path labeling and Vercel. The old size-label check used the pre-fix base workflow; its valid release pin is included in main.
+- CoworkingSpace.ai merged [PR #2](https://github.com/QaliAI/coworkingspace-ai/pull/2) and the hostname-only correction in [PR #3](https://github.com/QaliAI/coworkingspace-ai/pull/3), production merge `1adfa41889a3f9ee6dea384ecb3da8b79f92447d`. Original unmerged product-funnel work and PR #1 were preserved.
+- The directory repository remains public. Both release working trees were clean before this documentation-only handoff update. No DNS changes, purchases, emails or GitHub version release were performed.
+
+### Remaining work
+
+No distribution blocker remains. Important follow-ups belong to the maintainer:
+
+1. Re-review older Research Backlog entries in bounded batches; evaluate installation, privacy, recovery and actual coworking workflows before recommending them for production. Roomer and Cal.diy remain research-only; WARP remains unidentified.
+2. Patch and retest CoworkingSpace.ai's four development/build dependency audit findings separately; production dependencies reported zero. Avoid folding unrelated framework upgrades into this release.
+3. Decide whether to retire or explicitly configure the legacy GitHub Pages workflow. Its [production run](https://github.com/QaliAI/open-coworking-stack/actions/runs/39994813477) failed at Configure Pages with “Get Pages site failed / Not Found”; the working Vercel destination is the canonical release. No Pages site was enabled as a shortcut.
+4. Keep blocked/rate-limited external link results separate from genuine missing pages. The Docmost documentation URL returned 200 on direct recheck; an additional crawl of the provider's page reported rate limits, a 522 and obfuscated email-protection URLs. None justified deleting a catalog record.
+
+Protected-preview bypass remains unavailable because automatic approval review rejected the access-control change. No approval is pending for the completed public production release; that preview limitation does not affect either verified public URL.
