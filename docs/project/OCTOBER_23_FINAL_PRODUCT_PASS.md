@@ -56,6 +56,7 @@ WARP is deferred: no identifiable project in available prior research or `git lo
 - CoworkingSpace.ai: `npm ci`, `npm run build` passed. `npm audit --omit=dev`: zero vulnerabilities. Existing build/development dependencies report four high findings; follow-up needed, with no dependency upgrade folded into this presentation release.
 - `pnpm release:licenses` succeeded. `pnpm release:evidence` stopped at SBOM generation because Docker Desktop's Linux engine was unavailable. No SBOM/checksum completion is claimed; existing GitHub Release Evidence workflow can generate it on a Docker-capable runner.
 - CoworkingSpace.ai preview `https://coworkingspace-d6zlpylr1-qaliais-projects.vercel.app/tools` is READY at `f1ff5e7`, but anonymous requests redirect to Vercel login. Automatic approval review rejected the temporary authentication-bypass action as an unauthorized access-control change. Protection remains intact; local page verification and post-release anonymous custom-domain checks are used instead.
+- Directory preview `https://open-coworking-stack-98o474l0t-qaliais-projects.vercel.app/` was checked anonymously: correct heading, generated counts, directory navigation and production-origin canonical. GitHub Secret Scan and CodeQL passed. The existing size-label workflow referenced nonexistent `@v1`; pinned the officially documented v0.5.7 commit and removed an unsupported input. Its current `pull_request_target` run uses the old base workflow, so that automation-only failure cannot validate the fix until it reaches main.
 
 ## Sharing copy (unsent)
 
