@@ -1,4 +1,5 @@
 :root {
+  --sl-font: system-ui, sans-serif;
   --ocs-forest: #0f3d2e;
   --ocs-moss: #1f6b4a;
   --ocs-sand: #f4efe6;
@@ -25,6 +26,89 @@
   --ocs-dark-prop-text: #ffd4d4;
   --ocs-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ocs-dur-micro: 120ms;
+}
+
+.ocs-brand-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.15;
+  text-decoration: none;
+  color: var(--sl-color-text-accent);
+}
+.ocs-brand-title img {
+  flex-shrink: 0;
+}
+.ocs-brand-title small {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  color: var(--sl-color-gray-2);
+}
+.ocs-article-context,
+.ocs-related-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  margin-block: 0.5rem 1rem;
+}
+.ocs-related-context {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+.ocs-brand-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-block: 3rem 1rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--sl-color-gray-5);
+  font-size: 0.85rem;
+}
+.ocs-brand-footer strong {
+  flex-basis: 100%;
+}
+.ocs-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+  margin-block: 1.5rem;
+}
+.ocs-library-card {
+  display: block;
+  padding: 1.2rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.35rem;
+  text-decoration: none;
+}
+.ocs-library-card strong,
+.ocs-library-card span {
+  display: block;
+}
+.ocs-library-card span {
+  color: var(--sl-color-gray-2);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+.ocs-library-card:hover {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-accent-low);
+}
+.ocs-library-list {
+  padding-inline-start: 1.25rem;
+}
+.ocs-library-list li {
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+.ocs-library-list p {
+  margin-block: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2);
 }
 
 :root[data-theme='light'] {

@@ -14,6 +14,7 @@
     "lint": "echo \"web lint via root prettier/markdownlint\""
   },
   "dependencies": {
+    "@ocs/shared": "workspace:*",
     "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.32.0",
     "astro": "^5.1.1",

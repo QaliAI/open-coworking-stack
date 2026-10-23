@@ -35,6 +35,9 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.32.0
         version: 0.32.6(astro@5.18.2(@types/node@24.13.3)(rollup@4.62.2)(tsx@4.23.1)(typescript@5.9.3)(yaml@2.9.0))
+      '@ocs/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       astro:
         specifier: ^5.1.1
         version: 5.18.2(@types/node@24.13.3)(rollup@4.62.2)(tsx@4.23.1)(typescript@5.9.3)(yaml@2.9.0)
@@ -4405,6 +4408,14 @@ snapshots:
     optionalDependencies:
       vite: 5.4.21(@types/node@22.20.1)
 
+  '@vitest/mocker@2.1.9(vite@5.4.21(@types/node@24.13.3))':
+    dependencies:
+      '@vitest/spy': 2.1.9
+      estree-walker: 3.0.3
+      magic-string: 0.30.21
+    optionalDependencies:
+      vite: 5.4.21(@types/node@24.13.3)
+
   '@vitest/pretty-format@2.1.9':
     dependencies:
       tinyrainbow: 1.2.0
@@ -6743,7 +6754,7 @@ snapshots:
   vitest@2.1.9(@types/node@24.13.3):
     dependencies:
       '@vitest/expect': 2.1.9
-      '@vitest/mocker': 2.1.9(vite@5.4.21(@types/node@22.20.1))
+      '@vitest/mocker': 2.1.9(vite@5.4.21(@types/node@24.13.3))
       '@vitest/pretty-format': 2.1.9
       '@vitest/runner': 2.1.9
       '@vitest/snapshot': 2.1.9

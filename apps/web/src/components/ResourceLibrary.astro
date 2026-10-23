@@ -1,0 +1,26 @@
+---
+import catalog from '../../public/data/catalog.json';
+import discovery from '../../public/data/discovery.json';
+import { withBasePath } from '../utils/catalog';
+const { kind = 'all' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const groups = {
+  tasks: catalog.tasks.map((t) => ({ ...t, href: `tasks/generated/${t.id}/`, summary: t.description })),
+  roles: catalog.roles.map((r) => ({ ...r, href: `roles/generated/${r.id}/`, summary: r.description })),
+  workflows: catalog.workflows.map((w) => ({ ...w, href: `workflows/generated/${w.id}/`, summary: w.description })),
+  stacks: catalog.stacks.map((s) => ({ ...s, href: `stacks/generated/${s.id}/`, summary: s.tagline })),
+};
+const entries = kind in groups ? groups[kind as keyof typeof groups] : [];
+const guides = catalog.tools.filter((t) => t.guide_status === 'full');
+const stubs = catalog.tools.filter((t) => t.guide_status === 'stub');
+---
+
+{kind === 'all' && <div class="ocs-library-grid">
+  {discovery.resources.map((r) => <a class="ocs-library-card" href={withBasePath(r.href, base)}><strong>{'count' in r ? `${r.count} ` : ''}{r.label}</strong><span>{r.description}</span></a>)}
+</div>}
+{entries.length > 0 && <><p>{entries.length} resources. Choose a topic to see the full page, human responsibilities and related tools.</p><ul class="ocs-library-list">{entries.map((e) => <li><a href={withBasePath(e.href, base)}>{e.name}</a><p>{e.summary}</p></li>)}</ul></>}
+{kind === 'guides' && <>
+  <h2 id="full-guides">{guides.length} full installation guides</h2>
+  <ul class="ocs-library-list">{guides.map((t) => <li><a href={withBasePath(`guides/tools/${t.id}/`, base)}>{t.name}</a> — {t.tagline}</li>)}</ul>
+  <details><summary>{stubs.length} guide outlines</summary><p>Outlines are starting points, not full installation instructions.</p><ul>{stubs.map((t) => <li><a href={withBasePath(`guides/tools/${t.id}/`, base)}>{t.name}</a> — outline</li>)}</ul></details>
+</>}

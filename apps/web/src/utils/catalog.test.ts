@@ -95,6 +95,19 @@ describe('directory filters', () => {
     expect(matchesDirectoryTool(tool, filters)).toBe(true);
   });
 
+  it('finds common spaced and compact product-name aliases', () => {
+    const entry = { ...tool, id: 'espocrm', name: 'EspoCRM' };
+    expect(matchesDirectoryTool(entry, { ...emptyDirectoryFilters(), q: '  ESPO CRM  ' })).toBe(
+      true,
+    );
+    expect(
+      matchesDirectoryTool(
+        { ...tool, id: 'cal-diy', name: 'Cal.diy' },
+        { ...emptyDirectoryFilters(), q: 'caldiy' },
+      ),
+    ).toBe(true);
+  });
+
   it('normalizes case, punctuation, plurals and word order for operator searches', () => {
     const filters = emptyDirectoryFilters();
     filters.q = 'DESKS, ROOM';

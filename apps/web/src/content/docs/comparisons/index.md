@@ -39,6 +39,23 @@ limits, and edition-specific entitlements are intentionally omitted.
 
 ## Data, automation, and AI
 
+### Team chat: retained evaluation questions
+
+The earlier comparison overview also covered team chat. Keep this shortlist when planning staff
+coordination or a member channel. These are evaluation questions, not newly verified feature claims;
+the linked records carry the current license, cost and review status.
+
+| Option                                         | Coworking pilot focus                    | Check before choosing                                                        |
+| ---------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------- |
+| [Zulip](../tools/generated/zulip/)             | Topic-based staff operations discussions | Can the team learn the topic/thread model?                                   |
+| [Mattermost](../tools/generated/mattermost/)   | Familiar staff chat workflow             | Which required features belong to paid editions?                             |
+| [Rocket.Chat](../tools/generated/rocket-chat/) | Staff and community communication        | Can the team maintain the selected deployment?                               |
+| Slack / Discord                                | A familiar hosted member community       | Check history limits, moderation, export and member consent with the vendor. |
+
+[Explore communication tools](../directory/?category=communication-chat). The expanded knowledge-base,
+scheduling, CRM, analytics, automation and identity comparisons below and above retain the other six
+subjects from the earlier overview. Their evidence limits remain explicit.
+
 - [n8n vs Activepieces vs Node-RED](./n8n-vs-activepieces-vs-node-red/) — Directional shortlist
 - [NocoDB vs Baserow vs Directus](./nocodb-vs-baserow-vs-directus/) — Due-diligence worksheet
 - [Metabase vs Superset vs Grafana](./metabase-vs-superset-vs-grafana/) — Due-diligence worksheet
