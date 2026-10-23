@@ -116,6 +116,14 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: 'Architecture', collapsed: true, autogenerate: { directory: 'architecture' } },
+            { label: 'Security baseline', slug: 'guides/security-baseline' },
+            { label: 'Deployment & self-hosting', slug: 'guides/deployment-options' },
+            { label: 'Maintenance & updates', slug: 'ops/maintenance' },
+            { label: 'Trust & monetization policy', slug: 'ops/trust-policy' },
+            {
+              label: 'Development & contribution',
+              link: `${repositoryUrl}/blob/main/CONTRIBUTING.md`,
+            },
             { label: 'All tools (table)', slug: 'tools/generated' },
           ],
         },
