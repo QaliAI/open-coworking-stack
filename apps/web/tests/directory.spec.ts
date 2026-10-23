@@ -54,6 +54,8 @@ test('makes the results region reachable by keyboard', async ({ page }) => {
   await page.keyboard.press('Tab');
   await expect(page.getByLabel('Research tier')).toBeFocused();
   await page.keyboard.press('Tab');
+  await expect(page.getByLabel('Cost model')).toBeFocused();
+  await page.keyboard.press('Tab');
   await expect(page.getByText('Advanced filters', { exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('.ocs-advanced-filters')).toHaveAttribute('open', '');

@@ -1,5 +1,11 @@
 import { mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import {
+  categoryShortcuts,
+  emptyDirectoryFilters,
+  matchesDirectoryTool,
+  readableLabel,
+} from '@ocs/shared/directory';
 import type { RoleRecord, Stack, TaskRecord, Tool, WorkflowDef } from '@ocs/schema';
 
 export interface CatalogExport {
@@ -86,6 +92,10 @@ editUrl: false
 import { Aside, Badge } from '@astrojs/starlight/components';
 
 ${tool.tagline}
+
+**Review status: ${readableLabel(tool.verification.tier)}.** ${tool.verification.tier === 'research-backlog' ? 'Research candidate with incomplete checks; not a vetted recommendation.' : 'Read the evidence and pilot limits below before choosing.'}
+
+[Official Website](${tool.homepage})${tool.repository ? ` · [Source Code](${tool.repository})` : ''}
 
 <Badge text="${tool.license.class}" variant="note" />
 <Badge text="${tool.guide_status} guide" variant="caution" />
@@ -690,6 +700,133 @@ export async function generateDerivedDocs(
   };
 
   await writeJson(path.join(dataOut, 'catalog.json'), exportPayload);
+  const docFiles = async (dir: string): Promise<string[]> => {
+    try {
+      return (await readdir(path.join(repoRoot, dir))).filter(
+        (name) => /\.mdx?$/.test(name) && !/^index\./.test(name),
+      );
+    } catch {
+      return [];
+    }
+  };
+  const comparisons = await docFiles('apps/web/src/content/docs/comparisons');
+  const packs = await readdir(path.join(repoRoot, 'compose'), { withFileTypes: true }).catch(
+    () => [],
+  );
+  const packNames = packs
+    .filter((entry) => entry.isDirectory() && entry.name !== 'scripts')
+    .map((entry) => entry.name);
+  const recipes = (await docFiles('docs/integrations')).filter((name) => name !== 'README.md');
+  const resources = [
+    {
+      id: 'guides',
+      label: 'Installation guides',
+      count: toolExport.filter((t) => t.guide_status === 'full').length,
+      href: '/guides/',
+      description: 'Full pilot guides, with outlines listed separately.',
+    },
+    {
+      id: 'workflows',
+      label: 'Workflows',
+      count: workflowExport.length,
+      href: '/workflows/',
+      description: 'Follow the stages of an operator journey.',
+    },
+    {
+      id: 'tasks',
+      label: 'Operator tasks',
+      count: sortedTasks.length,
+      href: '/tasks/',
+      description: 'Start with a specific piece of work.',
+    },
+    {
+      id: 'comparisons',
+      label: 'Comparisons',
+      count: comparisons.length,
+      href: '/comparisons/',
+      description: 'Compare options and see the evidence limits.',
+    },
+    {
+      id: 'stacks',
+      label: 'Reference stacks',
+      count: stackExport.length,
+      href: '/stacks/',
+      description: 'See tools assembled around an operating model.',
+    },
+    {
+      id: 'roles',
+      label: 'Operator roles',
+      count: sortedRoles.length,
+      href: '/roles/',
+      description: 'Find responsibilities, tasks and supporting tools.',
+    },
+    {
+      id: 'packs',
+      label: 'Implementation packs',
+      count: packNames.length,
+      href: '/guides/starter-packs/',
+      description: 'Staging templates with security and backup requirements.',
+    },
+    {
+      id: 'recipes',
+      label: 'Integration recipes',
+      count: recipes.length,
+      href: '/integrations/generated/',
+      description: 'Keep onboarding, access and invoice handoffs accountable.',
+    },
+    {
+      id: 'estimator',
+      label: 'Cost & capacity estimator',
+      href: '/roi-calculator/',
+      description: 'Explore hosting, maintenance and staff capacity assumptions.',
+    },
+    {
+      id: 'builder',
+      label: 'Build My Tech Stack',
+      href: '/stack-builder/',
+      description: 'Compare approaches for your space.',
+    },
+  ];
+  await writeJson(path.join(dataOut, 'discovery.json'), {
+    schema_version: '1.0.0',
+    generated_at: exportPayload.generated_at,
+    tool_count: toolExport.length,
+    tiers: Object.fromEntries(
+      ['evaluated', 'research-backlog', 'commercial-benchmark', 'verified-core'].map((tier) => [
+        tier,
+        toolExport.filter((t) => t.verification_tier === tier).length,
+      ]),
+    ),
+    collections: categoryShortcuts.map((collection) => ({
+      ...collection,
+      count: toolExport.filter((tool) =>
+        matchesDirectoryTool(tool, { ...emptyDirectoryFilters(), collection: collection.id }),
+      ).length,
+      href: `/directory/?collection=${collection.id}`,
+      description: collection.categories.map(readableLabel).join(' · '),
+    })),
+    resources,
+    samples: ['espocrm', 'librebooking', 'docuseal', 'hi-events', 'postiz', 'snipe-it'].flatMap(
+      (id) => {
+        const tool = toolExport.find((t) => t.id === id);
+        return tool
+          ? [
+              {
+                id,
+                name: tool.name,
+                use_case: tool.coworking_use_cases[0] ?? tool.tagline,
+                license: readableLabel(tool.license_class),
+                cost: readableLabel(tool.cost_model),
+                review: readableLabel(tool.verification_tier),
+                homepage: tool.homepage,
+                repository: tool.repository,
+                href: `/tools/generated/${id}/`,
+              },
+            ]
+          : [];
+      },
+    ),
+  });
   await writeJson(path.join(dataOut, 'tools.json'), toolExport);
   await writeJson(path.join(dataOut, 'stacks.json'), stackExport);
   await writeJson(path.join(dataOut, 'workflows.json'), workflowExport);

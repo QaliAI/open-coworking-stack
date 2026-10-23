@@ -5,11 +5,11 @@ description: Security-conscious staging templates for selected self-hosted tools
 
 The repository includes five Docker Compose starter packs:
 
-- `compose/n8n`
-- `compose/nextcloud`
-- `compose/paperless-ngx`
-- `compose/uptime-kuma`
-- `compose/vaultwarden`
+- [n8n pack and operator README](https://github.com/QaliAI/open-coworking-stack/tree/main/compose/n8n)
+- [Nextcloud pack and operator README](https://github.com/QaliAI/open-coworking-stack/tree/main/compose/nextcloud)
+- [Paperless-ngx pack and operator README](https://github.com/QaliAI/open-coworking-stack/tree/main/compose/paperless-ngx)
+- [Uptime Kuma pack and operator README](https://github.com/QaliAI/open-coworking-stack/tree/main/compose/uptime-kuma)
+- [Vaultwarden pack and operator README](https://github.com/QaliAI/open-coworking-stack/tree/main/compose/vaultwarden)
 
 Each pack contains `compose.yaml`, `.env.example`, and an operator README. The templates bind web
 ports to localhost by default, require explicit credentials, use persistent volumes, avoid privileged

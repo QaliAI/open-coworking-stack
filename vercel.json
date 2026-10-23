@@ -3,5 +3,17 @@
   "buildCommand": "pnpm build",
   "installCommand": "corepack enable && pnpm install --frozen-lockfile",
   "outputDirectory": "apps/web/dist",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    {
+      "source": "/guides/integration-recipes",
+      "destination": "/integrations/generated/",
+      "permanent": true
+    },
+    {
+      "source": "/guides/integration-recipes/",
+      "destination": "/integrations/generated/",
+      "permanent": true
+    }
+  ]
 }

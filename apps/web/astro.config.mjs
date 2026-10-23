@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import { existsSync } from 'node:fs';
 import rehypeAccessibleContent from './src/plugins/rehype-accessible-content.mjs';
 
 const base = process.env.PUBLIC_BASE_PATH || '';
@@ -15,22 +14,15 @@ const site =
   (githubRepository
     ? `https://${githubRepository.split('/')[0].toLowerCase()}.github.io`
     : 'https://open-coworking-stack.vercel.app');
-const hasGeneratedWorkflows = existsSync(
-  new URL('./src/content/docs/workflows/generated', import.meta.url),
-);
-const hasGeneratedTasks = existsSync(
-  new URL('./src/content/docs/tasks/generated', import.meta.url),
-);
-const hasGeneratedRoles = existsSync(
-  new URL('./src/content/docs/roles/generated', import.meta.url),
-);
-
 export default defineConfig({
   site,
   markdown: {
     rehypePlugins: [rehypeAccessibleContent],
   },
   base: base || undefined,
+  redirects: {
+    '/guides/integration-recipes/': { status: 308, destination: '/integrations/generated/' },
+  },
   integrations: [
     starlight({
       title: 'Open Coworking Stack',
@@ -43,7 +35,14 @@ export default defineConfig({
       social: repositoryUrl ? { github: repositoryUrl } : undefined,
       editLink: repositoryUrl ? { baseUrl: `${repositoryUrl}/edit/main/apps/web/` } : undefined,
       lastUpdated: true,
-      pagination: true,
+      // The sidebar is a set of libraries, not a reading sequence. Context links replace unrelated neighbours.
+      pagination: false,
+      components: {
+        PageTitle: './src/components/ArticleTitle.astro',
+        SiteTitle: './src/components/BrandTitle.astro',
+        Footer: './src/components/BrandFooter.astro',
+        ThemeProvider: './src/components/BrandTheme.astro',
+      },
       favicon: '/favicon.svg',
       locales: {
         root: { label: 'English', lang: 'en' },
@@ -66,6 +65,7 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: 'Guide index', slug: 'guides' },
+            { label: 'All resource libraries', slug: 'library' },
             { label: 'Security baseline', slug: 'guides/security-baseline' },
             { label: 'Backup & restore', slug: 'guides/backup-and-restore' },
             { label: 'Privacy checklist', slug: 'guides/privacy-checklist' },
@@ -90,51 +90,24 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Operator Playbooks',
+          label: 'Operator Resources',
           collapsed: true,
           items: [
+            { label: 'All resource libraries', slug: 'library' },
+            { label: 'Operator tasks', slug: 'tasks' },
+            { label: 'Operator roles', slug: 'roles' },
+            { label: 'Workflow library', slug: 'workflows' },
+            { label: 'Comparison library', slug: 'comparisons' },
+            { label: 'Integration recipes', slug: 'integrations/generated' },
             { label: 'By role', slug: 'navigation/by-role' },
             { label: 'By problem', slug: 'navigation/by-problem' },
             { label: 'By lifecycle', slug: 'navigation/by-lifecycle' },
             { label: 'By business model', slug: 'navigation/by-business-model' },
             { label: 'By technical ability', slug: 'navigation/by-technical-ability' },
             { label: 'By budget', slug: 'navigation/by-budget' },
-            ...(hasGeneratedTasks
-              ? [
-                  {
-                    label: 'Tasks',
-                    collapsed: true,
-                    autogenerate: { directory: 'tasks/generated' },
-                  },
-                ]
-              : []),
-            ...(hasGeneratedRoles
-              ? [
-                  {
-                    label: 'Roles',
-                    collapsed: true,
-                    autogenerate: { directory: 'roles/generated' },
-                  },
-                ]
-              : []),
             { label: 'Member onboarding', slug: 'workflows/member-onboarding' },
             { label: 'Room booking', slug: 'workflows/room-booking' },
             { label: 'Tour to close', slug: 'workflows/tour-to-close' },
-            ...(hasGeneratedWorkflows
-              ? [
-                  {
-                    label: 'Workflow library',
-                    collapsed: true,
-                    autogenerate: { directory: 'workflows/generated' },
-                  },
-                ]
-              : []),
-            { label: 'Comparisons', slug: 'comparisons' },
-            {
-              label: 'Implementation recipes',
-              collapsed: true,
-              autogenerate: { directory: 'integrations/generated' },
-            },
             { label: 'Operational guides', collapsed: true, autogenerate: { directory: 'ops' } },
           ],
         },
@@ -143,6 +116,14 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: 'Architecture', collapsed: true, autogenerate: { directory: 'architecture' } },
+            { label: 'Security baseline', slug: 'guides/security-baseline' },
+            { label: 'Deployment & self-hosting', slug: 'guides/deployment-options' },
+            { label: 'Maintenance & updates', slug: 'ops/maintenance' },
+            { label: 'Trust & monetization policy', slug: 'ops/trust-policy' },
+            {
+              label: 'Development & contribution',
+              link: `${repositoryUrl}/blob/main/CONTRIBUTING.md`,
+            },
             { label: 'All tools (table)', slug: 'tools/generated' },
           ],
         },

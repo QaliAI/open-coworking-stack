@@ -1,0 +1,8 @@
+---
+import logo from '../assets/logo.svg';
+const { siteTitleHref } = Astro.locals.starlightRoute;
+---
+<a class="ocs-brand-title" href={siteTitleHref} aria-label="CoworkingSpace.ai — Open Coworking Stack home">
+  <img src={logo.src} width="32" height="32" alt="" />
+  <span>CoworkingSpace.ai<small>Open Coworking Stack</small></span>
+</a>

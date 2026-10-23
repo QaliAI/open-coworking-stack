@@ -2,6 +2,12 @@
 
 This library contains small, vendor-neutral handoff patterns for coworking operations.
 
+Use it when a signed agreement needs a staff-owned welcome, a room booking needs approved access,
+or a failed invoice needs respectful follow-up. Choose one handoff, name its owner, and test with
+synthetic records first. The recipes below show the fields, checks and fallback queue needed to
+keep that work accountable. Start with the controlled CSV/manual path; automate only after the
+required evidence is recorded.
+
 ## Capability Boundary
 
 These recipes are patterns, not claims of verified pairwise compatibility. Tool names appear only as
