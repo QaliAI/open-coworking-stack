@@ -8,5 +8,6 @@ apps/web/src/content/docs/stacks/generated
 apps/web/public/data
 playwright-report
 test-results
+tmp
 *.min.js
 *.min.css

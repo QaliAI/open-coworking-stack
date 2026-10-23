@@ -1,20 +1,24 @@
 ---
-title: Cal.com/Cal.diy vs Easy!Appointments vs LibreBooking vs Seatsurfing
+title: Cal.com vs Easy!Appointments vs LibreBooking vs Seatsurfing
 description: Compare scheduling and resource-booking tools for tours, rooms, and desks.
 page_classification: Directional shortlist
 ---
 
 ## Shared dimensions
 
-| Tool                                                         | Best evaluation lane                                             | Coverage status |
-| ------------------------------------------------------------ | ---------------------------------------------------------------- | --------------- |
-| [Cal.com/Cal.diy](../../tools/generated/cal-com/)            | External appointment scheduling and calendar-connected workflows | Partial         |
-| [Easy!Appointments](../../tools/generated/easyappointments/) | Focused appointment scheduling                                   | Partial         |
-| [LibreBooking](../../tools/generated/librebooking/)          | Resource reservation                                             | Partial         |
-| [Seatsurfing](../../tools/generated/seatsurfing/)            | Workspace and desk reservation                                   | Partial         |
+| Tool                                                         | Best evaluation lane                   | Coverage status |
+| ------------------------------------------------------------ | -------------------------------------- | --------------- |
+| [Cal.com](../../tools/generated/cal-com/)                    | Hosted tour and appointment scheduling | Partial         |
+| [Easy!Appointments](../../tools/generated/easyappointments/) | Focused appointment scheduling         | Partial         |
+| [LibreBooking](../../tools/generated/librebooking/)          | Resource reservation                   | Partial         |
+| [Seatsurfing](../../tools/generated/seatsurfing/)            | Workspace and desk reservation         | Partial         |
 
-Cal.diy refers to Cal.com's self-hosting path; verify current naming, edition boundaries, and terms
-in official Cal.com materials.
+Edition check, October 23, 2026: [Cal.diy](https://www.cal.diy/) is a separate MIT-licensed community
+edition. Its maintainers recommend personal, non-production use; do not treat it as an equivalent
+production alternative to hosted Cal.com. The hosted service has free individual and paid team plans.
+
+For LibreBooking, use **7.1.0 or later**: its [critical October advisory](https://github.com/LibreBooking/librebooking/security/advisories/GHSA-mvjx-72w3-wqhp)
+warns that earlier versions permit unauthenticated account takeover.
 
 ## Operator profiles
 
@@ -91,5 +95,5 @@ Verified on **2026-07-18**. Edition-specific features, prices, free limits, and 
 
 - [Cal.com](https://cal.com/) and [Cal.com docs](https://cal.com/docs)
 - [Easy!Appointments](https://easyappointments.org/) and [documentation](https://easyappointments.org/docs.html)
-- [LibreBooking](https://librebooking.readthedocs.io/) and [repository](https://github.com/LibreBooking/app)
+- [LibreBooking](https://librebooking.readthedocs.io/) and [repository](https://github.com/LibreBooking/librebooking)
 - [Seatsurfing](https://seatsurfing.io/) and [documentation](https://seatsurfing.io/docs/)

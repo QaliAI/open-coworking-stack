@@ -177,7 +177,7 @@ describe('generateDerivedDocs', () => {
       path.join(repoRoot, 'apps/web/src/content/docs/tools/generated/example-tool.mdx'),
       'utf8',
     );
-    expect(page).toContain('A routable implementation guide is not currently published.');
+    expect(page).toContain('No implementation guide is published yet.');
     expect(page).not.toContain('(../../../guides/tools/example-tool/)');
   });
 });

@@ -36,6 +36,8 @@ services:
       - backend
 
   calcom:
+    # Historical service block only. Cal.diy upstream recommends non-production use.
+    # For operational tours, use hosted Cal.com or evaluate a supported alternative.
     image: ${CALCOM_IMAGE:?Set CALCOM_IMAGE to an exact version or digest}
     restart: unless-stopped
     environment:

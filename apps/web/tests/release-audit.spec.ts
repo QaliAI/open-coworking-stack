@@ -47,9 +47,11 @@ for (const width of widths) {
 }
 
 test.describe('operator journey', () => {
-  test('home page leads a new operator to the Start Here pathway', async ({ page }) => {
+  test('home page leads with tools and preserves the Start Here pathway', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: /Start here \(no technical skills needed\)/ }).click();
+    await page.getByRole('link', { name: 'Browse Tools', exact: true }).click();
+    await expect(page.locator('[data-ocs-directory]')).toBeVisible();
+    await page.goto('/start/start-here/');
     await expect(
       page.getByRole('heading', { level: 1, name: /Start here: a path for coworking operators/ }),
     ).toBeVisible();

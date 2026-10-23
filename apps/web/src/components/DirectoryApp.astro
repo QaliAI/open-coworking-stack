@@ -2,6 +2,7 @@
 import { readFile } from 'node:fs/promises';
 import {
   licenseBadgeClass,
+  categoryShortcuts,
   parseCatalogExport,
   readableLabel,
   withBasePath,
@@ -82,6 +83,19 @@ const guideHref = (tool: CatalogTool) =>
 ---
 
 <div class="ocs-directory" data-ocs-directory>
+  <div class="ocs-category-shortcuts" aria-label="Browse by category">
+    {categoryShortcuts.map((item) => <button type="button" data-collection={item.id} aria-pressed="false">{item.label}</button>)}
+  </div>
+  <nav class="ocs-tier-shortcuts" aria-label="Review groups">
+    <button type="button" data-tier-filter="" aria-pressed="true">All Tools ({tools.length})</button>
+    <button type="button" data-tier-filter="evaluated" aria-pressed="false">Evaluated ({evaluatedCount})</button>
+    <button type="button" data-tier-filter="research-backlog" aria-pressed="false">More Tools to Explore ({tools.filter((tool) => tool.verification_tier === 'research-backlog').length})</button>
+    <button type="button" data-tier-filter="commercial-benchmark" aria-pressed="false">Commercial Comparisons ({tools.filter((tool) => tool.verification_tier === 'commercial-benchmark').length})</button>
+  </nav>
+  <p class="ocs-muted">Evaluated entries have a fuller review. More Tools to Explore is the research backlog: useful candidates with incomplete checks. Commercial comparisons provide context. Verified Core requires stronger evidence; there are currently {verifiedCoreCount}. No account is needed.</p>
+
+  <details class="ocs-review-notes">
+    <summary>How reviews and guides work</summary>
   <aside class="ocs-directory-status" aria-labelledby="directory-status-title">
     <div>
       <h2 id="directory-status-title">What has actually been reviewed</h2>
@@ -97,6 +111,7 @@ const guideHref = (tool: CatalogTool) =>
       <div><dt>Full guides</dt><dd>{fullGuideCount}</dd></div>
     </dl>
   </aside>
+  </details>
 
   <p class="ocs-count" aria-live="polite" aria-atomic="true">
     Showing <span data-count>{tools.length}</span> of {tools.length} tools
@@ -105,19 +120,41 @@ const guideHref = (tool: CatalogTool) =>
 
   <div class="ocs-filters" role="search" aria-label="Filter tools">
     <label class="ocs-search-field">
-      Search the work, not just the product
+      Search tools
       <input
         type="search"
         data-filter="q"
-        placeholder="Try room booking, invoices, or BookStack"
+        placeholder="Search CRM, meeting rooms, e-signatures, mailroom, marketing..."
         autocomplete="off"
       />
     </label>
+    <input type="hidden" data-filter="collection" value="" />
     <label>
-      Role assisted
-      <select data-filter="role">
-        <option value="">Any role</option>
-        {roles.map((value) => <option value={value}>{readableLabel(value)}</option>)}
+      Category
+      <select data-filter="category">
+        <option value="">Any category</option>
+        {categories.map((value) => <option value={value}>{readableLabel(value)}</option>)}
+      </select>
+    </label>
+    <label>
+      License class
+      <select data-filter="license">
+        <option value="">Any license</option>
+        {licenses.map((value) => <option value={value}>{readableLabel(value)}</option>)}
+      </select>
+    </label>
+    <label>
+      Deployment
+      <select data-filter="deployment">
+        <option value="">Any deployment</option>
+        {deployments.map((value) => <option value={value}>{readableLabel(value)}</option>)}
+      </select>
+    </label>
+    <label>
+      Difficulty
+      <select data-filter="difficulty">
+        <option value="">Any difficulty</option>
+        {difficulties.map((value) => <option value={value}>{readableLabel(value)}</option>)}
       </select>
     </label>
     <label>
@@ -131,20 +168,13 @@ const guideHref = (tool: CatalogTool) =>
     <details class="ocs-advanced-filters">
       <summary>Advanced filters</summary>
       <div class="ocs-advanced-grid">
-        <label>
-          License class
-          <select data-filter="license">
-            <option value="">Any license</option>
-            {licenses.map((value) => <option value={value}>{readableLabel(value)}</option>)}
-          </select>
-        </label>
-        <label>
-          Category
-          <select data-filter="category">
-            <option value="">Any category</option>
-            {categories.map((value) => <option value={value}>{readableLabel(value)}</option>)}
-          </select>
-        </label>
+    <label>
+      Role assisted
+      <select data-filter="role">
+        <option value="">Any role</option>
+        {roles.map((value) => <option value={value}>{readableLabel(value)}</option>)}
+      </select>
+    </label>
         <label>
           Problem
           <select data-filter="problem">
@@ -157,13 +187,6 @@ const guideHref = (tool: CatalogTool) =>
           <select data-filter="workflow">
             <option value="">Any workflow</option>
             {workflows.map((value) => <option value={value}>{readableLabel(value)}</option>)}
-          </select>
-        </label>
-        <label>
-          Deployment
-          <select data-filter="deployment">
-            <option value="">Any deployment</option>
-            {deployments.map((value) => <option value={value}>{readableLabel(value)}</option>)}
           </select>
         </label>
         <label>
@@ -198,13 +221,6 @@ const guideHref = (tool: CatalogTool) =>
             {confidenceStatuses.map((value) => (
               <option value={value}>{readableLabel(value)}</option>
             ))}
-          </select>
-        </label>
-        <label>
-          Pilot difficulty
-          <select data-filter="difficulty">
-            <option value="">Any difficulty</option>
-            {difficulties.map((value) => <option value={value}>{readableLabel(value)}</option>)}
           </select>
         </label>
         <label>
@@ -245,7 +261,16 @@ const guideHref = (tool: CatalogTool) =>
               </span>
             </header>
 
-            <section class="ocs-fit-summary" aria-label={`${tool.name} operator fit`}>
+            <p class="ocs-use-case"><strong>Coworking use:</strong> {tool.coworking_use_cases?.[0] ?? tool.tagline}</p>
+            <p class="ocs-muted">{tool.categories.map(readableLabel).join(' · ')}</p>
+            <div class="ocs-card-actions">
+              <a href={tool.homepage}>Visit Website<span class="sr-only"> for {tool.name}</span></a>
+              {tool.repository && <a href={tool.repository}>View Source<span class="sr-only"> for {tool.name}</span></a>}
+              {tool.guide_status === 'full' && guide && <a href={guide}>Read Guide<span class="sr-only"> for {tool.name}</span></a>}
+              <a href={withBasePath(`tools/generated/${tool.id}/`, base)}>More Details<span class="sr-only"> for {tool.name}</span></a>
+            </div>
+            <details class="ocs-fit-summary">
+              <summary>Operator fit and human oversight</summary>
               <h3>Operator fit</h3>
               <dl>
                 <div>
@@ -261,7 +286,7 @@ const guideHref = (tool: CatalogTool) =>
                   <dd>{fit?.human_work ?? 'Human responsibilities have not been task-fit reviewed'}</dd>
                 </div>
               </dl>
-            </section>
+            </details>
 
             <dl class="ocs-tool-facts">
               <div>
@@ -312,6 +337,8 @@ const guideHref = (tool: CatalogTool) =>
     }
   </div>
 
+  <details class="ocs-table-view">
+    <summary>Compact comparison table</summary>
   <div
     class="ocs-table-wrap"
     role="region"
@@ -382,6 +409,7 @@ const guideHref = (tool: CatalogTool) =>
       </tbody>
     </table>
   </div>
+  </details>
   <script type="application/json" data-tools set:html={payload} is:inline></script>
 </div>
 
@@ -439,6 +467,12 @@ const guideHref = (tool: CatalogTool) =>
 
     function applyFilters(updateUrl = true) {
       const filters = readControls();
+      root?.querySelectorAll<HTMLButtonElement>('[data-collection]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.collection === filters.collection));
+      });
+      root?.querySelectorAll<HTMLButtonElement>('[data-tier-filter]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.tierFilter === filters.tier));
+      });
       let visible = 0;
       for (const tool of tools) {
         const show = matchesDirectoryTool(tool, filters);
@@ -458,13 +492,29 @@ const guideHref = (tool: CatalogTool) =>
     writeControls(initialFilters);
     if (
       advanced &&
-      directoryFilterKeys.some(
-        (key) => key !== 'q' && key !== 'role' && key !== 'tier' && initialFilters[key],
-      )
+      ['role', 'problem', 'workflow', 'cost', 'verification', 'completeness', 'confidence', 'guide'].some((key) => initialFilters[key as keyof DirectoryFilters])
     ) {
       advanced.open = true;
     }
     applyFilters(false);
+
+    root.querySelectorAll<HTMLButtonElement>('[data-collection]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (controls.collection) controls.collection.value = controls.collection.value === button.dataset.collection ? '' : button.dataset.collection ?? '';
+        if (controls.category) controls.category.value = '';
+        applyFilters();
+      });
+    });
+    root.querySelectorAll<HTMLButtonElement>('[data-tier-filter]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (controls.tier) controls.tier.value = button.dataset.tierFilter ?? '';
+        applyFilters();
+      });
+    });
+    window.addEventListener('popstate', () => {
+      writeControls(parseDirectoryFilters(window.location.search));
+      applyFilters(false);
+    });
 
     for (const key of directoryFilterKeys) {
       const control = controls[key];

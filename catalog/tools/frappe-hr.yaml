@@ -1,0 +1,155 @@
+schema_version: 1.0.0
+id: frappe-hr
+name: Frappe HR
+tagline: Staff records, leave and attendance for growing operators
+description: Frappe HR manages employee records, onboarding, leave, shifts and attendance. A growing
+  coworking operator could use it to organize community and operations staff across locations.
+  Payroll exists but country-specific rules, extensions and reporting must be reviewed by a
+  qualified local payroll owner before use.
+status: active
+categories:
+  - hr-people
+secondary_categories: []
+roles:
+  - owner-operator
+  - operations-manager
+  - multi-location-operator
+  - finance
+  - technical-operator
+workflows:
+  - multi-site-rollout
+  - compliance-review
+problems:
+  - replace-spreadsheets
+  - multi-location-consistency
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: unknown
+license:
+  class: oss-osi-approved
+  spdx: GPL-3.0-only
+  name: GNU General Public License version 3
+  source_url: https://github.com/frappe/hrms/blob/develop/license.txt
+  notes: Official HRMS repository carries GPL version 3. Frappe Cloud hosting and professional
+    implementation are separate services; verify licenses and compatibility for any regional
+    extension.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary:
+    Self-hosted software has infrastructure, implementation, upgrade and support costs. Managed
+    Frappe Cloud hosting is paid. Payroll localization, migration and professional review may
+    require additional services.
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - frappe-administration
+    - database-backups
+    - hr-data-governance
+    - payroll-domain-review
+  smallest_useful_experiment: Use synthetic employee records to configure one location, two shift
+    types and a leave approval, then have the operations manager verify the roster; exclude live
+    payroll from the first pilot.
+homepage: https://frappe.io/hr
+repository: https://github.com/frappe/hrms
+documentation: https://docs.frappe.io/hr
+links:
+  - label: Official website
+    url: https://frappe.io/hr
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/frappe/hrms
+    kind: repo
+  - label: Official documentation
+    url: https://docs.frappe.io/hr
+    kind: docs
+tasks_reduced_or_augmented:
+  - Record staff onboarding and leave requests
+  - Maintain staff shift assignments and attendance records
+human_oversight_still_needed:
+  - Approve coverage, leave decisions and corrections to attendance
+  - Review local payroll obligations, employment rules and sensitive-data access
+task_fits: []
+data_privacy:
+  data_held:
+    - employee records and contacts
+    - leave and attendance
+    - shift assignments
+    - salary or payroll records if enabled
+    - location data if explicitly enabled
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Separate HR administration from ordinary member accounts. Restrict salary and personnel
+    records, protect backups and configure location or biometric processing only after an approved
+    need and privacy review.
+  compliance: A qualified local owner must validate employment and payroll rules. India Payroll is
+    documented as a separate extension, not evidence of universal localization.
+  licensing: Official HRMS repository carries GPL version 3. Frappe Cloud hosting and professional
+    implementation are separate services; verify licenses and compatibility for any regional
+    extension.
+  operational: Frappe installation and upgrades need technical ownership and compatible application
+    versions. Shift features are documented, but jurisdiction-compliant payroll, bank filing and tax
+    reporting are not established by this review.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - staff hr
+  - employee onboarding
+  - leave
+  - attendance
+  - shift roster
+  - payroll
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/frappe/hrms
+    - https://github.com/frappe/hrms/blob/develop/license.txt
+    - https://docs.frappe.io/hr/shift-management
+    - https://docs.frappe.io/hr/roster
+    - https://docs.frappe.io/hr/india-payroll/introduction
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: repository
+      source: https://github.com/frappe/hrms
+      verified_on: 2026-10-23
+      notes: Official HRMS description and self-hosting/managed deployment distinction reviewed.
+    - kind: license
+      source: https://github.com/frappe/hrms/blob/develop/license.txt
+      verified_on: 2026-10-23
+      notes: GPL version 3 license text reviewed.
+    - kind: docs
+      source: https://docs.frappe.io/hr/shift-management
+      verified_on: 2026-10-23
+      notes: Shift assignments, requests and attendance documented.
+    - kind: docs
+      source: https://docs.frappe.io/hr/roster
+      verified_on: 2026-10-23
+      notes: Roster and repeating shift features documented.
+    - kind: docs
+      source: https://docs.frappe.io/hr/india-payroll/introduction
+      verified_on: 2026-10-23
+      notes:
+        India-specific extension illustrates localization boundary; no claim of country-wide payroll
+        suitability.
+featured: false
+rank_score: 40

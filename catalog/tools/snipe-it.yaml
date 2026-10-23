@@ -1,0 +1,135 @@
+schema_version: 1.0.0
+id: snipe-it
+name: Snipe-IT
+tagline: Track shared equipment and who has checked it out
+description: Snipe-IT records assets and their assignment history. A coworking operator could track
+  loan laptops, monitors, AV kits and key inventory, with staff reconciling physical handovers. It
+  is an asset register rather than a complete facilities maintenance system, room-reservation system
+  or physical access controller.
+status: active
+categories:
+  - facility-operations
+secondary_categories: []
+roles:
+  - operations-manager
+  - facilities
+  - technical-operator
+workflows:
+  - facility-maintenance
+  - member-onboarding
+  - member-offboarding
+problems:
+  - replace-spreadsheets
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: unknown
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-or-later
+  name: GNU Affero General Public License version 3
+  source_url: https://github.com/grokability/snipe-it
+  notes:
+    Official repository identifies AGPL-3.0. Paid hosting and support do not turn the self-hosted
+    software into a free hosted service.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary: Self-hosted software is free; infrastructure, backups, upgrades and support require staff
+    time or a supplier. Official managed hosting and support plans are paid.
+  pricing_url: https://snipeitapp.com/pricing
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - web-server-administration
+    - database-backups
+    - asset-data-cleanup
+  smallest_useful_experiment: Enter ten shared AV or loan assets, check two out to consenting staff,
+    record their returns, and compare the register with a physical count.
+homepage: https://snipeitapp.com/
+repository: https://github.com/grokability/snipe-it
+documentation: https://snipe-it.readme.io/
+links:
+  - label: Official website
+    url: https://snipeitapp.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/grokability/snipe-it
+    kind: repo
+  - label: Official documentation
+    url: https://snipe-it.readme.io/
+    kind: docs
+  - label: Pricing and edition terms
+    url: https://snipeitapp.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Record equipment ownership, assignment and return history
+  - Reduce manual updates to shared-asset spreadsheets
+human_oversight_still_needed:
+  - Verify physical handovers, condition and missing items
+  - Approve access to user records and decide replacement or maintenance actions
+task_fits: []
+data_privacy:
+  data_held:
+    - asset identifiers and serial numbers
+    - purchase and warranty records
+    - assigned users
+    - checkout and return history
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security:
+    Restrict administrative access and asset exports, apply updates and secure attachments and
+    backups. Avoid storing door codes or unnecessary personal documents in asset notes.
+  compliance: Set retention and access rules for staff or member assignment history and purchase documents.
+  licensing: Official repository identifies AGPL-3.0. Paid hosting and support do not turn the
+    self-hosted software into a free hosted service.
+  operational: An assignment record is not proof that an item was physically returned. Define who
+    reconciles inventory; asset maintenance records do not replace a full maintenance dispatch
+    process.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - asset tracking
+  - equipment checkout
+  - av gear
+  - keys
+  - inventory
+  - monitors
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/grokability/snipe-it
+    - https://snipeitapp.com/pricing
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: repository
+      source: https://github.com/grokability/snipe-it
+      verified_on: 2026-10-23
+      notes:
+        AGPL asset-management project and official installation/manual links reviewed; no deployment
+        tested.
+    - kind: pricing
+      source: https://snipeitapp.com/pricing
+      verified_on: 2026-10-23
+      notes: Free self-hosting and paid managed hosting/support distinguished.
+featured: false
+rank_score: 40

@@ -20,43 +20,43 @@ limits, and edition-specific entitlements are intentionally omitted.
 
 ## Coworking platform strategy
 
-- [ ] Dedicated coworking SaaS vs hybrid vs modular self-host — Directional shortlist
-- [ ] OfficeRnD vs Nexudus vs Cobot vs Optix — Due-diligence worksheet
-- [ ] Commercial platform capability benchmark — Due-diligence worksheet
+- [Dedicated coworking SaaS vs hybrid vs modular self-host](./dedicated-coworking-saas-vs-hybrid-vs-modular-self-host/) — Directional shortlist
+- [OfficeRnD vs Nexudus vs Cobot vs Optix](./officernd-vs-nexudus-vs-cobot-vs-optix/) — Due-diligence worksheet
+- [Commercial platform capability benchmark](./commercial-platform-capability-benchmark/) — Due-diligence worksheet
 
 ## Operator applications
 
-- [ ] Cal.com vs Easy!Appointments vs LibreBooking vs Seatsurfing — Directional shortlist
-- [ ] Twenty vs EspoCRM vs SuiteCRM vs HubSpot — Directional shortlist
-- [ ] Chatwoot vs FreeScout vs Zammad vs LibreDesk — Directional shortlist
-- [ ] BookStack vs Docmost vs Wiki.js vs Outline vs Notion — Directional shortlist
-- [ ] Listmonk vs Brevo vs MailerLite vs Mautic — Due-diligence worksheet
-- [ ] Postiz vs Mixpost vs commercial schedulers — Due-diligence worksheet
-- [ ] Formbricks vs LimeSurvey vs Tally — Due-diligence worksheet
-- [ ] Paperless-ngx vs Docspell — Due-diligence worksheet
-- [ ] Documenso vs DocuSeal — Due-diligence worksheet
-- [ ] Self-hosted PBX vs hosted phone — Due-diligence worksheet
+- [Cal.com vs Easy!Appointments vs LibreBooking vs Seatsurfing](./calcom-vs-easyappointments-vs-librebooking-vs-seatsurfing/) — Directional shortlist
+- [Twenty vs EspoCRM vs SuiteCRM vs HubSpot](./twenty-vs-espocrm-vs-suitecrm-vs-hubspot/) — Directional shortlist
+- [Chatwoot vs FreeScout vs Zammad vs LibreDesk](./chatwoot-vs-freescout-vs-zammad-vs-libredesk/) — Directional shortlist
+- [BookStack vs Docmost vs Wiki.js vs Outline vs Notion](./bookstack-vs-docmost-vs-wikijs-vs-outline-vs-notion/) — Directional shortlist
+- [Listmonk vs Brevo vs MailerLite vs Mautic](./listmonk-vs-brevo-vs-mailerlite-vs-mautic/) — Due-diligence worksheet
+- [Postiz vs Mixpost vs commercial schedulers](./postiz-vs-mixpost-vs-commercial-schedulers/) — Due-diligence worksheet
+- [Formbricks vs LimeSurvey vs Tally](./formbricks-vs-limesurvey-vs-tally/) — Due-diligence worksheet
+- [Paperless-ngx vs Docspell](./paperless-ngx-vs-docspell/) — Due-diligence worksheet
+- [Documenso vs DocuSeal](./documenso-vs-docuseal/) — Due-diligence worksheet
+- [Self-hosted PBX vs hosted phone](./self-hosted-pbx-vs-hosted-phone/) — Due-diligence worksheet
 
 ## Data, automation, and AI
 
-- [ ] n8n vs Activepieces vs Node-RED — Directional shortlist
-- [ ] NocoDB vs Baserow vs Directus — Due-diligence worksheet
-- [ ] Metabase vs Superset vs Grafana — Due-diligence worksheet
-- [ ] Matomo vs Plausible vs Umami vs Google Analytics — Due-diligence worksheet
-- [ ] Open WebUI vs AnythingLLM vs Onyx — Due-diligence worksheet
-- [ ] Dify vs Flowise vs Langflow — Due-diligence worksheet
+- [n8n vs Activepieces vs Node-RED](./n8n-vs-activepieces-vs-node-red/) — Directional shortlist
+- [NocoDB vs Baserow vs Directus](./nocodb-vs-baserow-vs-directus/) — Due-diligence worksheet
+- [Metabase vs Superset vs Grafana](./metabase-vs-superset-vs-grafana/) — Due-diligence worksheet
+- [Matomo vs Plausible vs Umami vs Google Analytics](./matomo-vs-plausible-vs-umami-vs-google-analytics/) — Due-diligence worksheet
+- [Open WebUI vs AnythingLLM vs Onyx](./open-webui-vs-anythingllm-vs-onyx/) — Due-diligence worksheet
+- [Dify vs Flowise vs Langflow](./dify-vs-flowise-vs-langflow/) — Due-diligence worksheet
 
 ## Security and infrastructure
 
-- [ ] Vaultwarden vs Passbolt — Due-diligence worksheet
-- [ ] Authentik vs Keycloak vs Authelia — Directional shortlist
-- [ ] PacketFence vs FreeRADIUS vs managed network access — Due-diligence worksheet
+- [Vaultwarden vs Passbolt](./vaultwarden-vs-passbolt/) — Due-diligence worksheet
+- [Authentik vs Keycloak vs Authelia](./authentik-vs-keycloak-vs-authelia/) — Directional shortlist
+- [PacketFence vs FreeRADIUS vs managed network access](./packetfence-vs-freeradius-vs-managed-network-access/) — Due-diligence worksheet
 
-No page is classified as **Evidence-backed** yet. See the prompt for each page to understand what
+No page is classified as **Evidence-backed** yet. Review the evidence limits on each page to understand what
 sourced evidence is missing.
 
-All pages were verified on **2026-07-18** against the official sources they list. Verification is a
-dated editorial review, not a warranty or a production certification.
+These pages retain their original dated source reviews. Review dates describe documentation checks;
+they do not establish current pricing, production testing or certification.
 
 ## Manual acceptance checklist
 
@@ -64,7 +64,7 @@ Use this live checklist while running each comparison page through its claims:
 
 | Step                                                                             | Done |
 | -------------------------------------------------------------------------------- | ---- |
-| Read the `page_classification` badge to calibrate trust before reading           | [ ]  |
+| Read the classification beside the link in this index before shortlisting        | [ ]  |
 | Confirm every URL in "Official sources" resolves and matches the product         | [ ]  |
 | If a page says "Not established" — note that absence is not evidence of absence  | [ ]  |
 | If a page says "Partial" — verify the specific claim against official docs       | [ ]  |

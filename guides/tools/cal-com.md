@@ -9,6 +9,8 @@ verified_on: 2026-07-17
 
 This guide scopes Cal.com to one coworking tour event type and one host calendar. It does not prove that a plan, edition, calendar connection, notification, export, backup, or upgrade has been tested here.
 
+> Edition check, October 23, 2026: this pilot now covers hosted Cal.com. Its former public repository redirects to the separate MIT-licensed [Cal.diy](https://www.cal.diy/) community edition, whose maintainers recommend personal, non-production use. Self-host recovery notes below are retained as evaluation questions for a separately contracted on-premises edition; they are not a recommendation to deploy Cal.diy for member-facing operations.
+
 ## 1. Coworking outcome
 
 Reduce tour-scheduling email while retaining staff control over availability, qualification, accessibility requests, no-shows, and the actual visit. Scheduling augments coordination; it does not replace sales or community judgment.
@@ -55,7 +57,7 @@ The pilot needs calendar administration, scheduling design, privacy review, DNS/
 
 ## 11. Deployment choice
 
-The catalog records self-hosted and managed SaaS options. Decide before design because edition, operations, recovery, data location, support, and feature availability can differ. Verify the current [pricing](https://cal.com/pricing), docs, and repository for the exact option; this guide endorses neither.
+The catalog covers hosted Cal.com. Its free individual plan and paid team plans have different entitlements; confirm shared availability and host assignment on the [pricing page](https://cal.com/pricing). Enterprise on-premises access requires a separate agreement. Cal.diy is research-only here because its official documentation recommends non-production use.
 
 ## 12. Architecture and dependencies
 
@@ -63,7 +65,7 @@ Map public booking page, Cal.com service/database if self-hosted, host account, 
 
 ## 13. License and edition boundary
 
-The catalog classifies Cal.com as open core with core `AGPL-3.0-only`; cloud/platform and some features are commercial. Confirm current source license, plan/edition availability, self-host terms, and required feature entitlement from official sources before committing.
+Hosted Cal.com is classified as freemium software with commercial service terms. MIT applies to the separate Cal.diy community code, not the hosted Cal.com application. Confirm the exact plan and feature entitlements before publishing a tour-booking link.
 
 ## 14. Total cost boundary
 

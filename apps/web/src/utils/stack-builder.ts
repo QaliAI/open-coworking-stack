@@ -206,9 +206,9 @@ const toolChoices: Record<StackTrackId, Record<StackPriority, ToolChoice>> = {
       purpose: 'Self-hosted desk and room booking',
     },
     'sales-tours': {
-      catalogId: 'cal-com',
-      name: 'Cal.com',
-      purpose: 'Self-hosted scheduling and calendar handoff',
+      catalogId: 'easyappointments',
+      name: 'Easy!Appointments',
+      purpose: 'Self-hosted tour appointment scheduling; test calendar conflicts and recovery',
     },
     'community-comms': {
       catalogId: 'chatwoot',

@@ -1,0 +1,138 @@
+schema_version: 1.0.0
+id: mixpost-lite
+name: Mixpost Lite
+tagline: Self-hosted scheduling for a limited set of social networks
+description: Mixpost Lite provides a calendar and publishing tools for Facebook Pages, Mastodon
+  profiles and X profiles. Coworking staff could schedule approved event and office-availability
+  posts on those channels. Other networks, approval flows, the posting queue and advanced analytics
+  belong to paid editions and must not be assumed available in Lite.
+status: active
+categories:
+  - community-engagement
+secondary_categories: []
+roles:
+  - marketing
+  - community-manager
+  - technical-operator
+workflows:
+  - marketing-campaigns
+  - community-programming
+problems:
+  - reduce-manual-admin
+  - self-host-for-data-control
+deployment:
+  - self-hosted
+maturity: unknown
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/inovector/mixpost
+  notes: This record covers the MIT-licensed Lite repository only. Pro and Enterprise are commercial
+    products with separate terms; their network connectors and features are not licensed by the Lite
+    MIT grant.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary: Lite is free software with server, storage, domain and administration costs. Pro,
+    Enterprise, Cloud and professional installation are paid options. Verify network API access and
+    charges separately.
+  pricing_url: https://mixpost.app/pricing
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - php-or-container-administration
+    - queue-monitoring
+    - oauth-configuration
+    - database-backups
+  smallest_useful_experiment: Install Lite on a test subdomain, connect one supported test account,
+    and schedule three approved event posts while a named staff member checks every publication.
+homepage: https://mixpost.app/
+repository: https://github.com/inovector/mixpost
+documentation: https://docs.mixpost.app/lite/
+links:
+  - label: Official website
+    url: https://mixpost.app/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/inovector/mixpost
+    kind: repo
+  - label: Official documentation
+    url: https://docs.mixpost.app/lite/
+    kind: docs
+  - label: Pricing and edition terms
+    url: https://mixpost.app/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Prepare and schedule approved posts on Lite-supported networks
+  - Organize marketing media, post labels and calendar entries
+human_oversight_still_needed:
+  - Review every post and member-image permission before scheduling
+  - Maintain provider credentials and recover failed publications
+task_fits: []
+data_privacy:
+  data_held:
+    - social account credentials and tokens
+    - post drafts and media
+    - publication history
+    - basic analytics
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Protect OAuth secrets and media, restrict administration, monitor queues and install
+    security updates. Use a public domain with TLS for provider communication.
+  compliance: Check image rights, member consent, advertising claims and provider terms before posting.
+  licensing: This record covers the MIT-licensed Lite repository only. Pro and Enterprise are
+    commercial products with separate terms; their network connectors and features are not licensed
+    by the Lite MIT grant.
+  operational: Lite supports a narrower network set than paid editions. Staff approval must happen
+    outside Lite unless a separately licensed edition provides the required approval flow.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - social media
+  - facebook pages
+  - mastodon
+  - x
+  - content calendar
+  - marketing
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/inovector/mixpost
+    - https://mixpost.app/pricing
+    - https://docs.mixpost.app/lite/
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: license
+      source: https://github.com/inovector/mixpost
+      verified_on: 2026-10-23
+      notes: MIT license and explicit Lite versus Pro/Enterprise boundary reviewed.
+    - kind: pricing
+      source: https://mixpost.app/pricing
+      verified_on: 2026-10-23
+      notes:
+        Lite network list and basic features distinguished from paid approvals, queue, AI and broader
+        network support.
+    - kind: docs
+      source: https://docs.mixpost.app/lite/
+      verified_on: 2026-10-23
+      notes: Public-domain requirement and installation/maintenance guidance reviewed.
+featured: false
+rank_score: 40

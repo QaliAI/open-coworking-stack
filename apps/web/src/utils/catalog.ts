@@ -15,6 +15,10 @@ export interface CatalogTool {
   featured: boolean;
   rank_score: number;
   homepage: string;
+  repository?: string;
+  description?: string;
+  tags?: string[];
+  coworking_use_cases?: string[];
   verification_status: string;
   last_reviewed: string;
   verification_completeness?: string;
@@ -66,6 +70,7 @@ export interface CatalogExport {
 
 export const directoryFilterKeys = [
   'q',
+  'collection',
   'license',
   'category',
   'role',
@@ -105,11 +110,14 @@ export function serializeDirectoryFilters(filters: DirectoryFilters): string {
 }
 
 export function matchesDirectoryTool(tool: CatalogTool, filters: DirectoryFilters): boolean {
-  const query = filters.q.trim().toLowerCase();
+  const query = normalizeSearch(filters.q);
   const searchable = [
     tool.id,
     tool.name,
     tool.tagline,
+    tool.description ?? '',
+    ...(tool.tags ?? []),
+    ...(tool.coworking_use_cases ?? []),
     tool.license_class,
     tool.spdx ?? '',
     tool.cost_model,
@@ -134,12 +142,18 @@ export function matchesDirectoryTool(tool: CatalogTool, filters: DirectoryFilter
       fit.human_work,
       fit.pilot_metric,
     ]),
-  ]
-    .join(' ')
-    .toLowerCase();
+  ].join(' ');
+  const normalizedSearchable = normalizeSearch(searchable);
+  const collection = categoryShortcuts.find((item) => item.id === filters.collection);
 
   return (
-    (!query || searchable.includes(query)) &&
+    (!query || query.split(' ').every((word) => normalizedSearchable.includes(word))) &&
+    (!filters.collection ||
+      Boolean(
+        collection &&
+        (collection.categories.some((category) => tool.categories.includes(category)) ||
+          collection.tags?.some((tag) => tool.tags?.includes(tag))),
+      )) &&
     (!filters.license || tool.license_class === filters.license) &&
     (!filters.category || tool.categories.includes(filters.category)) &&
     (!filters.role ||
@@ -156,6 +170,87 @@ export function matchesDirectoryTool(tool: CatalogTool, filters: DirectoryFilter
     (!filters.difficulty || tool.difficulty === filters.difficulty) &&
     (!filters.guide || tool.guide_status === filters.guide)
   );
+}
+
+// Presentation groups map to canonical categories; they never create additional tool records.
+export const categoryShortcuts: ReadonlyArray<{
+  id: string;
+  label: string;
+  categories: readonly string[];
+  tags?: readonly string[];
+}> = [
+  { id: 'sales-crm', label: 'Sales & CRM', categories: ['membership-crm'] },
+  { id: 'tours-scheduling', label: 'Tours & Scheduling', categories: ['booking-scheduling'] },
+  {
+    id: 'desks-rooms',
+    label: 'Desks & Meeting Rooms',
+    categories: ['booking-scheduling', 'maps-wayfinding'],
+  },
+  {
+    id: 'documents-signatures',
+    label: 'Documents & E-Signatures',
+    categories: ['legal-contracts', 'file-storage', 'knowledge-base'],
+  },
+  {
+    id: 'finance-billing',
+    label: 'Finance & Billing',
+    categories: ['billing-payments', 'accounting', 'pos-retail'],
+  },
+  {
+    id: 'marketing-seo',
+    label: 'Marketing & SEO',
+    categories: ['email-marketing', 'website-cms', 'forms-surveys'],
+    tags: ['marketing', 'social media'],
+  },
+  {
+    id: 'events-community',
+    label: 'Events & Community',
+    categories: ['event-management', 'community-engagement', 'communication-chat'],
+  },
+  { id: 'automation-ai', label: 'Automation & AI', categories: ['automation-integration'] },
+  {
+    id: 'virtual-office-mailroom',
+    label: 'Virtual Office & Mailroom',
+    categories: ['mailroom-virtual-office'],
+  },
+  {
+    id: 'facilities-assets',
+    label: 'Facilities & Assets',
+    categories: ['facility-operations', 'digital-signage', 'iot-sensors'],
+  },
+  {
+    id: 'analytics-reporting',
+    label: 'Analytics & Reporting',
+    categories: ['analytics-bi', 'monitoring-observability'],
+  },
+  {
+    id: 'it-security',
+    label: 'IT & Security',
+    categories: [
+      'access-control',
+      'network-wifi',
+      'identity-sso',
+      'password-secrets',
+      'backup-recovery',
+      'security-compliance',
+    ],
+  },
+] as const;
+
+function normalizeSearch(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/([a-z])\.(?=[a-z])/g, '$1')
+    .replace(/e[\s-]?signatures?/g, 'signature')
+    .replace(/\bcrm\b/g, 'customer relationship')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(
+      /\b(rooms|tours|invoices|signatures|desks|bookings|agreements|events|assets)\b/g,
+      (word) => word.slice(0, -1),
+    )
+    .trim();
 }
 
 export function withBasePath(pathname: string, base: string): string {
@@ -229,12 +324,16 @@ function validateTool(value: unknown, index: number): asserts value is CatalogTo
     typeof value.rank_score !== 'number' ||
     !Number.isFinite(value.rank_score) ||
     !hasOptionalStrings(value, [
+      'repository',
+      'description',
       'verification_completeness',
       'verification_confidence',
       'verification_tier',
       'maintenance_burden',
     ]) ||
     !(value.skills_required === undefined || isStringArray(value.skills_required)) ||
+    !(value.tags === undefined || isStringArray(value.tags)) ||
+    !(value.coworking_use_cases === undefined || isStringArray(value.coworking_use_cases)) ||
     !(value.task_fits === undefined || isTaskFitArray(value.task_fits))
   ) {
     throw new Error(`tools[${index}] has an invalid shape`);
@@ -272,11 +371,43 @@ function isTaskFitArray(value: unknown): value is CatalogTaskFit[] {
 }
 
 const readableLabelOverrides: Record<string, string> = {
-  'oss-osi-approved': 'Open source (OSI-approved)',
-  'freemium-saas': 'Freemium SaaS',
-  'free-saas': 'Free SaaS',
-  'managed-saas': 'Managed SaaS',
-  'free-self-hosted': 'Free when self-hosted',
+  'membership-crm': 'Sales & Membership CRM',
+  'booking-scheduling': 'Booking & Scheduling',
+  'billing-payments': 'Billing & Payments',
+  'community-engagement': 'Community & Social Publishing',
+  'communication-chat': 'Communication & Chat',
+  'website-cms': 'Websites & Content Management',
+  'forms-surveys': 'Forms & Surveys',
+  'helpdesk-support': 'Helpdesk & Support',
+  'facility-operations': 'Facilities & Assets',
+  'mailroom-virtual-office': 'Virtual Office & Mailroom',
+  'network-wifi': 'Network & Wi-Fi',
+  'identity-sso': 'Identity & Single Sign-On',
+  'password-secrets': 'Passwords & Secrets',
+  'automation-integration': 'Automation & AI',
+  'analytics-bi': 'Analytics & Reporting',
+  'monitoring-observability': 'Monitoring & Alerts',
+  'backup-recovery': 'Backup & Recovery',
+  'pos-retail': 'Point of Sale & Retail',
+  'legal-contracts': 'Documents & E-Signatures',
+  'hr-people': 'Staff & HR',
+  'security-compliance': 'Security & Compliance',
+  'maps-wayfinding': 'Maps & Wayfinding',
+  'iot-sensors': 'Sensors & Building Devices',
+  'self-hosted': 'Self-hosted',
+  proprietary: 'Paid Software',
+  'free-trial': 'Free Trial — Time-Limited',
+  'oss-osi-approved': 'Open Source — Free Software',
+  'open-core': 'Open Core — Some Paid Features',
+  'source-available': 'Source Available — Check License',
+  'fair-code': 'Source Available — Fair-Code Terms',
+  'free-saas': 'Free Hosted Plan',
+  'free-tier': 'Free Hosted Plan',
+  'freemium-saas': 'Freemium',
+  'managed-saas': 'Hosted service',
+  'free-self-hosted': 'Self-Hosted — Infrastructure Required',
+  'open-core-paid-features': 'Some Paid Features',
+  subscription: 'Paid Software — Subscription',
   'partially-verified': 'Partially verified',
   'verified-core': 'Verified Core',
   'research-backlog': 'Research backlog',

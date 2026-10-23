@@ -50,8 +50,8 @@ const tool: CatalogTool = {
 describe('readableLabel', () => {
   it('turns catalog slugs into operator-readable labels', () => {
     expect(readableLabel('operations-manager')).toBe('Operations Manager');
-    expect(readableLabel('oss-osi-approved')).toBe('Open source (OSI-approved)');
-    expect(readableLabel('managed-saas')).toBe('Managed SaaS');
+    expect(readableLabel('oss-osi-approved')).toBe('Open Source — Free Software');
+    expect(readableLabel('managed-saas')).toBe('Hosted service');
     expect(readableLabel('research-backlog')).toBe('Research backlog');
   });
 
@@ -93,6 +93,29 @@ describe('directory filters', () => {
     filters.q = 'shared booking sheet';
 
     expect(matchesDirectoryTool(tool, filters)).toBe(true);
+  });
+
+  it('normalizes case, punctuation, plurals and word order for operator searches', () => {
+    const filters = emptyDirectoryFilters();
+    filters.q = 'DESKS, ROOM';
+    expect(matchesDirectoryTool(tool, filters)).toBe(true);
+    filters.q = 'not-a-real-product';
+    expect(matchesDirectoryTool(tool, filters)).toBe(false);
+  });
+
+  it('searches canonical description, tags and coworking uses with category groups', () => {
+    const entry = {
+      ...tool,
+      tags: ['social media'],
+      description: 'Prepare event announcements',
+      coworking_use_cases: ['Schedule approved marketing posts'],
+    };
+    const filters = emptyDirectoryFilters();
+    filters.q = 'marketing';
+    filters.collection = 'marketing-seo';
+    expect(matchesDirectoryTool(entry, filters)).toBe(true);
+    filters.collection = 'it-security';
+    expect(matchesDirectoryTool(entry, filters)).toBe(false);
   });
 });
 

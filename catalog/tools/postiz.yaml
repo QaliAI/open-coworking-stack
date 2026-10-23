@@ -1,0 +1,139 @@
+schema_version: 1.0.0
+id: postiz
+name: Postiz
+tagline: Schedule approved social posts for coworking marketing
+description: Postiz schedules and publishes social content from a shared calendar. A coworking
+  marketing team could prepare posts about tours, member events and available offices, then review
+  them before publication. Self-hosting requires each social network provider to be configured;
+  hosted and self-hosted features may differ.
+status: active
+categories:
+  - community-engagement
+secondary_categories:
+  - automation-integration
+roles:
+  - marketing
+  - community-manager
+  - technical-operator
+workflows:
+  - marketing-campaigns
+  - community-programming
+problems:
+  - grow-pipeline
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: unknown
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  name: GNU Affero General Public License version 3
+  source_url: https://github.com/gitroomhq/postiz-app
+  notes: The public self-hosted repository identifies AGPL-3.0. Hosted plan access and new
+    hosted-first agent features are separate from the availability of community source code.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary: Self-hosted software requires infrastructure, maintenance and social-network app setup.
+    Cloud plans are paid. Provider API charges or optional AI services may add cost; optional paid
+    app-approval help is not a software requirement.
+  pricing_url: https://postiz.com/pricing
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - container-administration
+    - database-backups
+    - oauth-configuration
+    - social-platform-app-review
+  smallest_useful_experiment:
+    Connect one approved test social account, schedule three staff-reviewed
+    coworking event posts, and check actual publication, timezone handling and credential
+    revocation.
+homepage: https://postiz.com/
+repository: https://github.com/gitroomhq/postiz-app
+documentation: https://docs.postiz.com/general/introduction
+links:
+  - label: Official website
+    url: https://postiz.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/gitroomhq/postiz-app
+    kind: repo
+  - label: Official documentation
+    url: https://docs.postiz.com/general/introduction
+    kind: docs
+  - label: Pricing and edition terms
+    url: https://postiz.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Schedule approved marketing posts from one calendar
+  - Reduce repeated manual publishing to configured social accounts
+human_oversight_still_needed:
+  - Approve copy, images, member consent and publication timing
+  - Respond to comments and check failed or incorrectly formatted posts
+task_fits: []
+data_privacy:
+  data_held:
+    - social account tokens
+    - draft and published content
+    - team accounts
+    - media and publishing analytics
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Protect provider tokens, OAuth secrets and team access. Restrict automation permissions
+    and revoke access when staff or agencies leave.
+  compliance: Obtain permission for member images and testimonials. Staff own copyright, advertising
+    claims, marketing consent and retention.
+  licensing: The public self-hosted repository identifies AGPL-3.0. Hosted plan access and new
+    hosted-first agent features are separate from the availability of community source code.
+  operational: Social-network app approval may take weeks, and API policy changes can interrupt
+    publishing. Hosted agent features ship first; verify feature parity instead of assuming it.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - social media
+  - content calendar
+  - scheduled posts
+  - marketing
+  - member events
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/gitroomhq/postiz-app
+    - https://docs.postiz.com/general/introduction
+    - https://postiz.com/pricing
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: repository
+      source: https://github.com/gitroomhq/postiz-app
+      verified_on: 2026-10-23
+      notes: README identifies AGPL source, self-hosting and social publishing; not runtime-tested.
+    - kind: docs
+      source: https://docs.postiz.com/general/introduction
+      verified_on: 2026-10-23
+      notes: Official docs distinguish using Postiz, Cloud and self-hosting.
+    - kind: pricing
+      source: https://postiz.com/pricing
+      verified_on: 2026-10-23
+      notes: Paid cloud, hosted-first agent features and optional app-approval service reviewed.
+featured: false
+rank_score: 40

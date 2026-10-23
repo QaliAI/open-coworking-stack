@@ -17,7 +17,6 @@ stages:
       - Quotas
     suggested_tool_ids:
       - librebooking
-      - cal-com
       - seatsurfing
       - cobot
     risks:

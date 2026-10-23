@@ -1,0 +1,145 @@
+schema_version: 1.0.0
+id: xibo
+name: Xibo CMS
+tagline: Manage lobby announcements and event displays
+description: Xibo CMS manages content shown by connected digital-signage players. A coworking team
+  could schedule lobby welcome messages, event promotion and member announcements. The CMS license
+  does not make every player free; player-platform terms and hardware support must be checked
+  separately. Automatic room-booking synchronization is not verified here.
+status: active
+categories:
+  - digital-signage
+secondary_categories: []
+roles:
+  - community-manager
+  - marketing
+  - technical-operator
+workflows:
+  - community-programming
+  - event-lifecycle
+problems:
+  - improve-member-experience
+  - multi-location-consistency
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: unknown
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-or-later
+  name: CMS under GNU Affero General Public License version 3; player licenses vary
+  source_url: https://github.com/xibosignage/xibo-cms
+  notes: This record covers the AGPL CMS. Official open-source information covers Windows and Linux
+    players. Android, LG webOS and Samsung Tizen players use separate commercial perpetual licenses;
+    do not infer ChromeOS licensing or compatibility from the CMS license.
+  verified_on: 2026-10-23
+cost:
+  model: hardware-plus-software
+  summary: Self-hosting requires CMS infrastructure, display hardware and administration.
+    Windows/Linux open-source players have no software license cost, while Android/webOS/Tizen
+    players require commercial licenses; paid major upgrades may apply. Cloud plans are paid.
+  pricing_url: https://xibosignage.com/pricing
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - container-administration
+    - display-player-administration
+    - network-security
+    - database-backups
+  smallest_useful_experiment: Use one spare supported display and player to show a staff-approved
+    event slide and welcome message for a week, checking schedules, reboot recovery and the actual
+    player license.
+homepage: https://xibosignage.com/
+repository: https://github.com/xibosignage/xibo-cms
+documentation: https://docs.xibosignage.com/
+links:
+  - label: Official website
+    url: https://xibosignage.com/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/xibosignage/xibo-cms
+    kind: repo
+  - label: Official documentation
+    url: https://docs.xibosignage.com/
+    kind: docs
+  - label: Pricing and edition terms
+    url: https://xibosignage.com/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Schedule approved announcements across configured lobby displays
+  - Reduce manual replacement of event slides on individual screens
+human_oversight_still_needed:
+  - Approve public content, image permissions and announcement expiry
+  - Check display hardware, network access and player-specific licensing
+task_fits: []
+data_privacy:
+  data_held:
+    - media files and announcements
+    - administrator accounts
+    - display inventory and schedules
+    - player connection logs
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Separate signage players from sensitive member and office networks. Restrict CMS
+    administration and uploaded content, apply CMS/player updates and avoid showing private booking
+    or member data.
+  compliance: Obtain permission before publishing member names, photographs or event attendee
+    information on public screens.
+  licensing: This record covers the AGPL CMS. Official open-source information covers Windows and
+    Linux players. Android, LG webOS and Samsung Tizen players use separate commercial perpetual
+    licenses; do not infer ChromeOS licensing or compatibility from the CMS license.
+  operational: Test the exact hardware/player/CMS combination. Do not assume Linux, Windows, Android
+    and TV-platform players have identical features or support; ChromeOS terms remain outside this
+    review.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - digital signage
+  - lobby displays
+  - welcome screen
+  - event promotion
+  - member announcements
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/xibosignage/xibo-cms
+    - https://xibosignage.com/open-source
+    - https://xibosignage.com/pricing
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: license
+      source: https://github.com/xibosignage/xibo-cms
+      verified_on: 2026-10-23
+      notes: CMS identifies AGPL-3.0; no player or CMS runtime tests performed.
+    - kind: docs
+      source: https://xibosignage.com/open-source
+      verified_on: 2026-10-23
+      notes:
+        Official open-source promise distinguishes CMS and Windows/Linux players from operational
+        support.
+    - kind: pricing
+      source: https://xibosignage.com/pricing
+      verified_on: 2026-10-23
+      notes:
+        Windows free player and Android/webOS/Tizen commercial licensing with paid major upgrades
+        reviewed.
+featured: false
+rank_score: 40

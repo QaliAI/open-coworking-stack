@@ -3,8 +3,12 @@ title: Contribute
 description: How to contribute tools, guides, and fixes.
 ---
 
-The full requirements are in `CONTRIBUTING.md` at the repository root. This private release candidate
-does not publish a public source URL.
+Open Coworking Stack is maintained in public by [QaliAI](https://github.com/QaliAI/open-coworking-stack).
+Anyone can [suggest a tool or report a correction](https://github.com/QaliAI/open-coworking-stack/issues/new/choose).
+Include the tool name, the claim that needs correcting, and an official source when possible.
+You do not need to write code to help.
+
+For a catalog or guide contribution, read the [contributor requirements](https://github.com/QaliAI/open-coworking-stack/blob/main/CONTRIBUTING.md).
 
 Quick path:
 

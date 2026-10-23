@@ -1,15 +1,16 @@
 ---
-title: Choose coworking technology around the work
-description: An operator-facing directory for comparing tools, human responsibilities, evidence status, and small pilots without pretending incomplete research is verified.
+title: Free & Open-Source Tools for Coworking Spaces
+description: A free directory of coworking software, open-source tools, self-hosted alternatives, free-tier software and commercial comparisons.
 template: splash
+pagination: false
 hero:
-  tagline: Start with a task, see what remains human, and test the smallest useful change before committing a budget.
+  tagline: Explore free and open-source tools, self-hosted alternatives, free-tier software and commercial comparisons for coworking spaces. Find practical options for CRM, tours, bookings, meeting rooms, e-signatures, marketing, events, accounting and member experience.
   actions:
-    - text: Start here (no technical skills needed)
-      link: ./start/start-here/
+    - text: Browse Tools
+      link: ./directory/
       icon: right-arrow
       variant: primary
-    - text: Build a stack plan
+    - text: Build My Tech Stack
       link: ./stack-builder/
       icon: setting
       variant: secondary
@@ -20,6 +21,20 @@ hero:
 ---
 
 import catalog from '../../../public/data/catalog.json';
+import { categoryShortcuts } from '../../utils/catalog';
+
+Free to browse. No account needed. Listings include paid products and paid features; check the
+license and cost labels before choosing. Self-hosted software still needs hosting and maintenance.
+
+## Find tools for your space
+
+<div class="ocs-category-shortcuts">
+  {categoryShortcuts.map((item) => (
+    <a href={`./directory/?collection=${item.id}`}>{item.label}</a>
+  ))}
+</div>
+
+New to choosing software? Start with the [operator pathway](./start/start-here/).
 
 <div class="ocs-home-ledger" aria-label="Current catalog status">
   <div>
@@ -27,12 +42,14 @@ import catalog from '../../../public/data/catalog.json';
     <span>tool records</span>
   </div>
   <div>
-    <strong>{catalog.task_count ?? '—'}</strong>
-    <span>operator tasks</span>
+    <strong>{catalog.tools.filter((tool) => tool.verification_tier === 'evaluated').length}</strong>
+    <span>evaluated tools</span>
   </div>
   <div>
-    <strong>{catalog.role_count ?? '—'}</strong>
-    <span>operator roles</span>
+    <strong>
+      {catalog.tools.filter((tool) => tool.verification_tier === 'research-backlog').length}
+    </strong>
+    <span>more tools to explore</span>
   </div>
   <div>
     <strong>
@@ -43,8 +60,9 @@ import catalog from '../../../public/data/catalog.json';
 </div>
 
 <p class="ocs-home-ledger-note">
-  Generated {catalog.generated_at.slice(0, 10)}. Counts describe catalog coverage, not proof of
-  implementation quality.
+  Catalog generated {catalog.generated_at.slice(0, 10)}. Individual tools have their own
+  verification dates. Commercial comparisons:{' '}
+  {catalog.tools.filter((tool) => tool.verification_tier === 'commercial-benchmark').length}.
 </p>
 
 ## What this is
@@ -62,8 +80,8 @@ paid placement in the listings. If you are new, begin with the
     <div>
       <h3>Reduce repeated operator admin</h3>
       <p>
-        Find task-fit reviews that state the manual process a tool can change and the judgment staff
-        still retain.
+        Find tools for repeated booking, invoicing and follow-up tasks, with the decisions your team
+        still needs to make.
       </p>
     </div>
     <a href="./directory/?problem=reduce-manual-admin">Review admin tools</a>
@@ -110,17 +128,17 @@ paid placement in the listings. If you are new, begin with the
   </article>
   <article>
     <span>By role</span>
-    <strong>See responsibilities and dangerous automation boundaries</strong>
+    <strong>Find tools for your team's responsibilities</strong>
     <a href="./roles/generated/owner-operator/">Browse roles</a>
   </article>
   <article>
     <span>By evidence</span>
-    <strong>Filter tier, completeness, confidence, and guide status separately</strong>
-    <a href="./directory/">Filter evidence</a>
+    <strong>See which tools have been reviewed and have guides</strong>
+    <a href="./directory/">Browse reviewed tools</a>
   </article>
   <article>
     <span>By trade-off</span>
-    <strong>Use directional comparisons, then verify at the source</strong>
+    <strong>Compare options for the same coworking task</strong>
     <a href="./comparisons/">Compare tools</a>
   </article>
 </div>
@@ -164,3 +182,9 @@ paid placement in the listings. If you are new, begin with the
 3. Read the human-work and confidence fields before comparing product features.
 4. Run one smallest useful experiment with synthetic or low-risk data.
 5. Keep an exit path and a person responsible for exceptions, security, and recovery.
+
+## Maintained in public
+
+Open Coworking Stack is maintained by [QaliAI on GitHub](https://github.com/QaliAI/open-coworking-stack).
+[Suggest a correction or contribute a tool](./contribute/). For related coworking services, visit
+[CoworkingSpace.ai](https://www.coworkingspace.ai/).
