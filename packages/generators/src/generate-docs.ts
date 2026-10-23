@@ -29,6 +29,10 @@ export interface CatalogExport {
     featured: boolean;
     rank_score: number;
     homepage: string;
+    repository?: string;
+    description: string;
+    tags: string[];
+    coworking_use_cases: string[];
     verification_status: Tool['verification']['status'];
     last_reviewed: string;
     verification_completeness: Tool['verification']['completeness'];
@@ -183,7 +187,7 @@ ${tool.data_privacy.privacy_url ? `[Privacy policy](${tool.data_privacy.privacy_
 
 ${tool.implementation.smallest_useful_experiment}
 
-${tool.implementation.typical_time_to_first_value ? `**Typical time to first value:** ${tool.implementation.typical_time_to_first_value}` : ''}
+${tool.implementation.typical_time_to_first_value ? `**Initial planning estimate (unverified):** ${tool.implementation.typical_time_to_first_value}` : ''}
 
 ## Links
 
@@ -197,7 +201,7 @@ ${tool.links.map((l) => `- [${l.label}](${l.url})`).join('\n')}
 ${
   guideRoute
     ? `See the [human-written implementation guide](${guideRoute}).`
-    : 'A routable implementation guide is not currently published.'
+    : 'No implementation guide is published yet.'
 }
 
 ${tool.compose_pack ? `**Compose pack:** \`${tool.compose_pack}\`` : ''}
@@ -630,6 +634,10 @@ export async function generateDerivedDocs(
     featured: tool.featured,
     rank_score: tool.rank_score,
     homepage: tool.homepage,
+    repository: tool.repository,
+    description: tool.description,
+    tags: tool.tags,
+    coworking_use_cases: tool.tasks_reduced_or_augmented,
     verification_status: tool.verification.status,
     last_reviewed: tool.verification.last_reviewed,
     verification_completeness: tool.verification.completeness,
@@ -668,7 +676,7 @@ export async function generateDerivedDocs(
 
   const exportPayload: CatalogExport = {
     schema_version: '1.0.0',
-    generated_at: `${[...tools.map((tool) => tool.verification.last_reviewed), '1970-01-01'].sort().at(-1)}T00:00:00.000Z`,
+    generated_at: new Date().toISOString(),
     tool_count: toolExport.length,
     stack_count: stackExport.length,
     workflow_count: workflowExport.length,

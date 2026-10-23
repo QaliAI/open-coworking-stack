@@ -1,0 +1,142 @@
+schema_version: 1.0.0
+id: hi-events
+name: Hi.Events
+tagline: Tickets, registration and check-in for coworking events
+description: Hi.Events lets organizers sell tickets, collect registrations and check attendees in. A
+  coworking team could use it for a paid workshop or networking event while staff control capacity,
+  refunds and arrival exceptions. Reserved seating, box office and company single sign-on require
+  paid enterprise features.
+status: active
+categories:
+  - event-management
+secondary_categories: []
+roles:
+  - event-coordinator
+  - community-manager
+  - finance
+workflows:
+  - event-lifecycle
+problems:
+  - run-events
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: unknown
+license:
+  class: open-core
+  name: AGPL version 3 with additional terms; enterprise directories separately licensed
+  source_url: https://github.com/HiEventsDev/hi.events/blob/develop/LICENCE
+  notes: Community code requires visible Powered by Hi.Events attribution on generated pages and
+    emails. Files under backend/ee and frontend/src/ee have an Enterprise Licence. Do not treat
+    reserved seating, box office or company SSO as free community features.
+  verified_on: 2026-10-23
+cost:
+  model: open-core-paid-features
+  summary: Community self-hosting has no platform fee but needs hosting, email, administration and
+    payment processing. Hosted ticket fees and payment processor fees apply. Paid enterprise
+    licensing or add-ons cover restricted features and attribution removal.
+  pricing_url: https://hi.events/pricing
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - container-administration
+    - database-backups
+    - payment-provider-configuration
+    - email-delivery
+  smallest_useful_experiment:
+    Create a private test workshop with ten places, register staff, test one
+    approved low-value payment and refund if payments are needed, and reconcile check-in counts
+    before opening sales.
+homepage: https://hi.events/
+repository: https://github.com/HiEventsDev/hi.events
+documentation: https://hi.events/docs
+links:
+  - label: Official website
+    url: https://hi.events/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/HiEventsDev/hi.events
+    kind: repo
+  - label: Official documentation
+    url: https://hi.events/docs
+    kind: docs
+  - label: Pricing and edition terms
+    url: https://hi.events/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Collect event registrations and send ticket confirmations
+  - Maintain attendee lists and record event check-in
+human_oversight_still_needed:
+  - Approve event capacity, pricing, accessibility information and refunds
+  - Resolve payment failures, attendee disputes and door exceptions
+task_fits: []
+data_privacy:
+  data_held:
+    - attendee names and email addresses
+    - registration answers
+    - ticket orders and payment references
+    - check-in records
+  personal_data: true
+  payment_data: true
+  notes: Orders and payment references can be personal data. Actual card-data handling depends on
+    provider and configuration and was not tested.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security:
+    Protect organizer accounts, payment credentials, attendee exports and check-in links. Keep
+    the application updated and test a restore before public ticket sales.
+  compliance:
+    Staff remain responsible for event taxes, refund terms, marketing consent, accessibility
+    and attendee-data retention.
+  licensing: Community code requires visible Powered by Hi.Events attribution on generated pages and
+    emails. Files under backend/ee and frontend/src/ee have an Enterprise Licence. Do not treat
+    reserved seating, box office or company SSO as free community features.
+  operational: Check the exact free versus enterprise feature boundary. Retain a staff-readable
+    attendee list and a payment/refund exception process; software check-in does not determine
+    physical venue safety.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - event tickets
+  - workshops
+  - networking
+  - attendee registration
+  - qr check-in
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/HiEventsDev/hi.events
+    - https://github.com/HiEventsDev/hi.events/blob/develop/LICENCE
+    - https://hi.events/pricing
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: repository
+      source: https://github.com/HiEventsDev/hi.events
+      verified_on: 2026-10-23
+      notes: Official README describes registration, ticket sales and check-in; no deployment was tested.
+    - kind: license
+      source: https://github.com/HiEventsDev/hi.events/blob/develop/LICENCE
+      verified_on: 2026-10-23
+      notes: Community AGPL attribution terms and enterprise-directory exclusion reviewed.
+    - kind: pricing
+      source: https://hi.events/pricing
+      verified_on: 2026-10-23
+      notes: Hosted fees, processing costs and paid reserved seating, box office and SSO boundaries
+        reviewed.
+featured: false
+rank_score: 40

@@ -29,6 +29,7 @@ exclude = [
 ]
 
 exclude_path = [
+  "tmp",
   ".git",
   ".lychee",
   "release-artifacts",

@@ -14,4 +14,4 @@ description: Coworking-specific implementation guidance and security/ops checkli
 
 Human-written guides live in the repository under `guides/tools/`. Generated tool pages link to them and include metadata automatically.
 
-Priority “full” guides cover the highest-leverage tools for independent operators (identity, backups, booking, CRM, monitoring, etc.). Remaining tools have stubs with verified metadata and clear TODOs.
+Some tools have detailed pilot guides; others have a short outline or no published guide. Check each tool’s guide and research status. A planned guide has no published page.

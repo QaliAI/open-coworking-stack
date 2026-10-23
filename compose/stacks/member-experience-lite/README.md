@@ -1,6 +1,12 @@
 # Member Experience Lite stack compose
 
 > **FABRICATED DEMONSTRATION — prototype for review, not production.**
+>
+> **October 2026 edition warning:** the historical Cal.com service block is retained for reference.
+> Hosted Cal.com is a separate commercial service; the MIT community repository is now Cal.diy,
+> whose maintainers recommend personal, non-production use. Do not deploy that service block as a
+> supported coworking booking system. Use hosted Cal.com for tours or evaluate Easy!Appointments.
+> LibreBooking must be 7.1.0 or later because of a critical account-takeover advisory.
 
 Multi-service staging baseline combining Cal.com (scheduling), LibreBooking (room/desk booking),
 Chatwoot (support inbox), Formbricks (surveys), and Caddy (reverse proxy). Matches the

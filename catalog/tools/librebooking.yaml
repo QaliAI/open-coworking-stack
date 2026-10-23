@@ -28,12 +28,12 @@ maturity: stable
 license:
   class: oss-osi-approved
   spdx: GPL-3.0-only
-  source_url: https://github.com/LibreBooking/app
-  notes: Verify LICENSE in the active repository fork you deploy.
-  verified_on: 2026-07-17
+  source_url: https://github.com/LibreBooking/librebooking
+  notes: GPL-3.0 license in the official LibreBooking repository.
+  verified_on: 2026-10-23
 cost:
   model: free-self-hosted
-  summary: Free software with self-hosting costs only.
+  summary: No software license fee for self-hosting; budget for hosting, updates, backups and staff administration.
   currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
     budget decisions.
   verified_on: 2026-07-17
@@ -49,17 +49,17 @@ implementation:
     Configure three meeting rooms with business-hour rules and run bookings
     for one week with staff as fake members.
 homepage: https://librebooking.org/
-repository: https://github.com/LibreBooking/app
-documentation: https://github.com/LibreBooking/app/wiki
+repository: https://github.com/LibreBooking/librebooking
+documentation: https://librebooking.readthedocs.io/
 links:
   - label: Homepage
     url: https://librebooking.org/
     kind: homepage
   - label: Source repository
-    url: https://github.com/LibreBooking/app
+    url: https://github.com/LibreBooking/librebooking
     kind: repo
   - label: Documentation
-    url: https://github.com/LibreBooking/app/wiki
+    url: https://librebooking.readthedocs.io/
     kind: docs
 tasks_reduced_or_augmented:
   - Room reservation without commercial workplace suites
@@ -79,7 +79,10 @@ data_privacy:
   payment_data: false
 risks:
   vendor_lock_in: Evaluate export formats and API completeness before deep customization.
-  security: Apply updates promptly; restrict admin access; enable TLS.
+  security:
+    Use 7.1.0 or later. Versions before 7.1.0 permit unauthenticated account takeover through
+    a forged persistent-login cookie, including administrator accounts (GHSA-mvjx-72w3-wqhp).
+    Hiding Remember Me is not a fix. Review upstream incident guidance if an older instance was exposed.
   compliance: Operator remains responsible for privacy and local regulatory obligations.
   licensing: Verify LICENSE in the active repository fork you deploy.
   operational: Plan backups, monitoring, and a restore drill before production use.
@@ -92,12 +95,25 @@ verification:
   last_reviewed: 2026-07-17
   sources:
     - https://librebooking.org/
-    - https://github.com/LibreBooking/app
-    - https://github.com/LibreBooking/app/wiki
+    - https://github.com/LibreBooking/librebooking
+    - https://librebooking.readthedocs.io/
   notes:
     Seed entry compiled from official project sites and repositories. Re-verify pricing, license
     text, and feature claims before production decisions. Star counts and free-tier numeric limits
     intentionally omitted unless verified at review time.
   reviewer: seed-catalog
+  evidence:
+    - kind: release
+      source: https://github.com/LibreBooking/librebooking/releases/tag/v7.1.0
+      verified_on: 2026-10-23
+      notes: Release 7.1.0 dated October 13, 2026; this is a minimum security requirement, not a latest-version claim.
+    - kind: security
+      source: https://github.com/LibreBooking/librebooking/security/advisories/GHSA-mvjx-72w3-wqhp
+      verified_on: 2026-10-23
+      notes: All affected versions before 7.1.0 require upgrade; version 7.0.0 is also affected.
+    - kind: license
+      source: https://github.com/LibreBooking/librebooking/blob/develop/LICENSE.md
+      verified_on: 2026-10-23
+      notes: GPL-3.0 license reviewed in current official repository.
 featured: true
 rank_score: 80

@@ -1,0 +1,129 @@
+schema_version: 1.0.0
+id: cal-diy
+name: Cal.diy
+tagline: Research-only community scheduling edition with a non-production warning
+description: Cal.diy is the MIT-licensed self-hosted community edition associated with Cal.com. Its
+  documentation describes individual appointment scheduling, but explicitly recommends personal,
+  non-production use and advanced administration. Coworking tour scheduling is a possible research
+  use only; it is not recommended here for a live operator booking system.
+status: needs-review
+categories:
+  - booking-scheduling
+secondary_categories: []
+roles:
+  - technical-operator
+  - consultant-implementer
+workflows:
+  - tour-to-close
+problems:
+  - self-host-for-data-control
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+maturity: experimental
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/calcom/cal.diy
+  notes: MIT applies to the community repository, not the commercial Cal.com hosted application or
+    enterprise offering. The old calcom/cal.com repository URL redirects here. Official
+    documentation recommends personal, non-production use.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary: MIT source has no software subscription, but servers, database operations, provider
+    credentials, email, security and maintenance require technical work. Commercial Cal.com hosting
+    or on-prem enterprise access is a separate offering.
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: expert
+  maintenance_burden: high
+  skills_required:
+    - server-administration
+    - database-management
+    - oauth-configuration
+    - application-security-review
+  smallest_useful_experiment: Use an isolated test environment with synthetic attendees and a test
+    calendar to inspect one sample tour event type; do not publish a live prospect booking link.
+homepage: https://www.cal.diy/
+repository: https://github.com/calcom/cal.diy
+documentation: https://www.cal.diy/
+links:
+  - label: Official website
+    url: https://www.cal.diy/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/calcom/cal.diy
+    kind: repo
+  - label: Official documentation
+    url: https://www.cal.diy/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Explore how an individual appointment link presents tour availability
+  - Study scheduling configuration without adopting it as an operational system
+human_oversight_still_needed:
+  - Respect the upstream non-production boundary when selecting operational scheduling software
+  - Review calendar credentials, conflicts and security in any isolated research environment
+task_fits: []
+data_privacy:
+  data_held:
+    - booking and attendee details
+    - calendar access tokens
+    - host availability
+    - notification configuration
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Upstream does not guarantee the community edition security or safety. Do not connect
+    production credentials or real prospect records for the first research pilot.
+  compliance: Even test calendar access can reveal personal data; use synthetic data and test
+    credentials. Commercial use suitability requires an explicit edition and support decision.
+  licensing:
+    MIT applies to the community repository, not the commercial Cal.com hosted application or
+    enterprise offering. The old calcom/cal.com repository URL redirects here. Official
+    documentation recommends personal, non-production use.
+  operational: Official documentation strictly recommends personal, non-production use. Team events,
+    round-robin and collective team scheduling are absent from its published edition comparison. No
+    production recommendation or operational test is claimed.
+integrations: []
+related_tools:
+  - cal-com
+guide_status: planned
+tags:
+  - tour scheduling
+  - appointments
+  - calcom community edition
+  - research only
+  - non-production
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/calcom/cal.diy
+    - https://www.cal.diy/
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: license
+      source: https://github.com/calcom/cal.diy
+      verified_on: 2026-10-23
+      notes: Official community repository identifies MIT; legacy calcom/cal.com URL redirects to it.
+    - kind: docs
+      source: https://www.cal.diy/
+      verified_on: 2026-10-23
+      notes: Personal/non-production recommendation, advanced skill requirement and team-feature
+        exclusions reviewed.
+featured: false
+rank_score: 40

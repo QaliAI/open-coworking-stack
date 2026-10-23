@@ -1,0 +1,128 @@
+schema_version: 1.0.0
+id: roomer
+name: Roomer
+tagline: Explore desk and asset reservations on uploaded floor plans
+description: Roomer is the c0dewhacker self-hosted desk and asset reservation project. Its official
+  repository describes buildings, floors and uploaded plans with bookable assets. A coworking team
+  could explore visual hot-desk discovery in an isolated pilot. Production reliability, security,
+  accessibility and recovery have not been established here.
+status: needs-review
+categories:
+  - booking-scheduling
+secondary_categories:
+  - maps-wayfinding
+roles:
+  - operations-manager
+  - community-manager
+  - technical-operator
+workflows:
+  - desk-hot-desk
+  - room-booking
+problems:
+  - replace-spreadsheets
+  - improve-member-experience
+deployment:
+  - self-hosted
+maturity: emerging
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  name: GNU Affero General Public License version 3
+  source_url: https://github.com/c0dewhacker/Roomer
+  notes: The exact project from prior research is c0dewhacker/Roomer, which identifies AGPL-3.0. Do
+    not confuse it with similarly named room, hotel or property products.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary: Self-hosted source is available without a software subscription; server, database,
+    floor-plan preparation and technical support still cost time or money. No managed-service price
+    or support commitment is verified.
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - container-administration
+    - database-backups
+    - floor-plan-preparation
+    - application-security-review
+  smallest_useful_experiment: In an isolated environment with synthetic users, upload one
+    non-sensitive sample floor plan and reserve five sample desks, checking conflicts and
+    cancellations before considering any real member data.
+homepage: https://github.com/c0dewhacker/Roomer
+repository: https://github.com/c0dewhacker/Roomer
+documentation: https://github.com/c0dewhacker/Roomer
+links:
+  - label: Official website
+    url: https://github.com/c0dewhacker/Roomer
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/c0dewhacker/Roomer
+    kind: repo
+  - label: Official documentation
+    url: https://github.com/c0dewhacker/Roomer
+    kind: docs
+tasks_reduced_or_augmented:
+  - Explore visual desk availability and reservation requests
+  - Reduce manual selection of desks from a spreadsheet during a test
+human_oversight_still_needed:
+  - Check desk accessibility, suitability and actual availability
+  - Assess security, backups, support and booking conflicts before any operational trial
+task_fits: []
+data_privacy:
+  data_held:
+    - user identities
+    - building and floor plans
+    - desk and asset records
+    - reservations
+  personal_data: true
+  payment_data: false
+  notes: Collect only data needed for the pilot and confirm access, deletion and export behavior
+    before operational adoption.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Readiness is unverified. Keep the first pilot isolated with synthetic data; review
+    authentication, generated credentials, upload handling, network access and database backups
+    before exposing it.
+  compliance:
+    Floor plans and occupancy data can be sensitive; obtain permission and define access and
+    retention before using real locations or member records.
+  licensing: The exact project from prior research is c0dewhacker/Roomer, which identifies AGPL-3.0.
+    Do not confuse it with similarly named room, hotel or property products.
+  operational: Repository features are not evidence of safe production operation. Release/support
+    policy, security response, migration recovery, accessibility and operator adoption remain
+    unresolved; no memberships, billing or access-control capability is asserted.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - desk booking
+  - hot desks
+  - floor plan
+  - asset reservations
+  - research candidate
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/c0dewhacker/Roomer
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: repository
+      source: https://github.com/c0dewhacker/Roomer
+      verified_on: 2026-10-23
+      notes:
+        Exact project identity, AGPL license label and documented desk/asset/floor-plan features
+        reviewed; no runtime or readiness evaluation performed.
+featured: false
+rank_score: 40

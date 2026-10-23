@@ -46,11 +46,11 @@ Experimental multi-service compose files for flagship stacks live in `stacks/`. 
 production configurations** — they demonstrate how individual tools from this directory could be
 combined around a shared reverse proxy (Caddy) with internal networking:
 
-| Stack                                                              | Services included                                     |
-| ------------------------------------------------------------------ | ----------------------------------------------------- |
-| [Bootstrap Near-Zero](stacks/bootstrap-near-zero/README.md)        | Caddy, Vaultwarden, BookStack, Uptime Kuma            |
-| [Privacy-First Self-Host](stacks/privacy-first-selfhost/README.md) | Caddy, Authentik, Nextcloud, Vaultwarden, Uptime Kuma |
-| [Member Experience Lite](stacks/member-experience-lite/README.md)  | Caddy, Cal.com, LibreBooking, Chatwoot, Formbricks    |
+| Stack                                                              | Services included                                             |
+| ------------------------------------------------------------------ | ------------------------------------------------------------- |
+| [Bootstrap Near-Zero](stacks/bootstrap-near-zero/README.md)        | Caddy, Vaultwarden, BookStack, Uptime Kuma                    |
+| [Privacy-First Self-Host](stacks/privacy-first-selfhost/README.md) | Caddy, Authentik, Nextcloud, Vaultwarden, Uptime Kuma         |
+| [Member Experience Lite](stacks/member-experience-lite/README.md)  | Historical prototype; read Cal.diy edition warning before use |
 
 Each stack compose file is **fabricated demonstration data** — secrets use placeholder markers,
 image pins are internally consistent but not verified against multi-service upgrade paths, and

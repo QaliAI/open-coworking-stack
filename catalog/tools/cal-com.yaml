@@ -1,9 +1,10 @@
 schema_version: 1.0.0
 id: cal-com
 name: Cal.com
-tagline: Open scheduling infrastructure for tours, rooms, and consultations
-description: Cal.com is scheduling software with self-hostable and cloud options. Operators use it
-  for tour booking, meeting-room holds, and sales consultations with calendar sync and workflows.
+tagline: Hosted scheduling for prospect tours and sales consultations
+description: Cal.com lets prospects choose a tour or consultation time from configured host
+  availability. This record covers the hosted service; its free individual plan and paid team
+  features differ. It is not a membership, room-inventory, recurring-billing or access-control system.
 status: active
 categories:
   - booking-scheduling
@@ -24,44 +25,42 @@ problems:
   - reduce-manual-admin
   - improve-member-experience
 deployment:
-  - self-hosted
   - managed-saas
 maturity: stable
 license:
-  class: open-core
-  spdx: MIT
-  source_url: https://github.com/calcom/cal.com
-  notes: Root LICENSE reads MIT as of 2026-10-20 (earlier AGPL entry was not supported). Hosted cloud and enterprise offerings are separate commercial products; confirm terms for the features you need.
-  verified_on: 2026-10-20
+  class: freemium-saas
+  source_url: https://cal.com/pricing
+  notes: The hosted service has commercial plan terms. The former calcom/cal.com repository
+    redirects to the separate MIT-licensed Cal.diy community edition; that license does not license
+    the hosted service. Cal.diy's official documentation recommends personal, non-production use.
+  verified_on: 2026-10-23
 cost:
-  model: open-core-paid-features
-  summary:
-    Self-host community edition or use Cal.com cloud plans. Confirm current plan limits on the
-    official pricing page.
+  model: freemium
+  summary: A free hosted individual plan is available; collaborative team scheduling and other
+    premium capabilities require paid plans. Review the current plan before offering shared tour availability.
   currency_caveat: Pricing and free-tier limits change frequently; re-check official pricing before
     budget decisions.
   pricing_url: https://cal.com/pricing
-  verified_on: 2026-07-17
+  verified_on: 2026-10-23
   confidence: partially-verified
 implementation:
   difficulty: moderate
-  maintenance_burden: medium
+  maintenance_burden: low
   skills_required:
-    - basic-linux
-    - dns-tls
+    - calendar-administration
+    - privacy-review
   typical_time_to_first_value: 1–3 days
   smallest_useful_experiment: Create a Tour Booking event type, connect one sales calendar, and run
     five real tour bookings in a week.
 homepage: https://cal.com/
-repository: https://github.com/calcom/cal.com
 documentation: https://cal.com/docs
 links:
   - label: Homepage
     url: https://cal.com/
     kind: homepage
-  - label: Source repository
-    url: https://github.com/calcom/cal.com
-    kind: repo
+  - label: Separate Cal.diy community edition (non-production research)
+    url: https://www.cal.diy/
+    kind: other
   - label: Documentation
     url: https://cal.com/docs
     kind: docs
@@ -70,7 +69,7 @@ links:
     kind: pricing
 tasks_reduced_or_augmented:
   - Reducing back-and-forth email for tour scheduling
-  - Standardizing meeting-room booking links
+  - Collecting standard tour preparation questions
   - Capturing lead form data before tours
 human_oversight_still_needed:
   - Calendar conflict rules
@@ -105,7 +104,9 @@ risks:
   vendor_lock_in: Evaluate export formats and API completeness before deep customization.
   security: Apply updates promptly; restrict admin access; enable TLS.
   compliance: Operator remains responsible for privacy and local regulatory obligations.
-  licensing: Core is AGPL; platform/cloud and some features are commercial.
+  licensing:
+    Hosted Cal.com uses commercial plan terms. MIT applies to the separate Cal.diy repository,
+    whose official documentation recommends personal, non-production use.
   operational: Plan backups, monitoring, and a restore drill before production use.
 integrations: []
 related_tools: []
@@ -128,6 +129,14 @@ verification:
   confidence: medium
   tier: evaluated
   evidence:
+    - kind: license
+      source: https://www.cal.diy/
+      verified_on: 2026-10-23
+      notes: Community edition separated from hosted service; MIT is not a license for hosted Cal.com.
+    - kind: pricing
+      source: https://cal.com/pricing
+      verified_on: 2026-10-23
+      notes: Free individual and paid collaborative plans reviewed; no runtime feature test.
     - kind: homepage
       source: https://cal.com/
       verified_on: 2026-07-17

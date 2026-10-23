@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Label PR by changed lines
-        uses: pascalgn/size-label-action@v1
+        uses: pascalgn/size-label-action@56b489b027932ec0cf60438a1a5f1a19c8fc71ff # v0.5.7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -32,7 +32,6 @@ jobs:
               "500": "L",
               "1000": "XL"
             }
-          ignore_labels: 'size/'
 
   paths:
     name: Label by changed paths

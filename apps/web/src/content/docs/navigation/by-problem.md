@@ -12,7 +12,7 @@ Use the [directory filters](../../directory/) with these problem tags.
 | `replace-spreadsheets`       | Baserow, NocoDB, EspoCRM, BookStack                                      |
 | `automate-billing`           | ERPNext, Invoice Ninja, Cobot + Stripe                                   |
 | `secure-door-access`         | Treat DIY carefully; start with identity hygiene + vendor access systems |
-| `fill-meeting-rooms`         | LibreBooking, Cal.com, Seatsurfing                                       |
+| `fill-meeting-rooms`         | LibreBooking (7.1.0 or later), Seatsurfing                               |
 | `grow-pipeline`              | EspoCRM, Twenty, Cal.com, Listmonk                                       |
 | `run-events`                 | Rallly, Listmonk, Jitsi/BBB/Zoom                                         |
 | `operate-virtual-office`     | Paperless-ngx, FreeScout, Stirling PDF                                   |

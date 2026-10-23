@@ -1,0 +1,142 @@
+schema_version: 1.0.0
+id: pretix
+name: pretix
+tagline: Registration and ticket sales for coworking workshops and events
+description: pretix provides event ticket shops and registration management. A coworking operator
+  could sell workshop tickets and organize check-in for community or venue events, while staff own
+  capacity, refunds and tax decisions. Self-hosted Community, commercial Enterprise and paid Hosted
+  offerings have different support and feature conditions.
+status: active
+categories:
+  - event-management
+secondary_categories: []
+roles:
+  - event-coordinator
+  - community-manager
+  - finance
+  - technical-operator
+workflows:
+  - event-lifecycle
+problems:
+  - run-events
+  - reduce-manual-admin
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: AGPL-3.0-only
+  name: AGPL version 3 with additional terms and component-specific licenses
+  source_url: https://github.com/pretix/pretix/blob/master/LICENSE
+  notes: Most code uses AGPL v3 with additional terms including attribution and a conditional
+    remote-network exception. Other components have different licenses. Read the full terms before
+    modifying, white-labeling or offering services for third-party organizers.
+  verified_on: 2026-10-23
+cost:
+  model: free-self-hosted
+  summary: Community self-hosting requires server administration, backups and payment-provider fees.
+    Hosted charges ticket fees plus payment processing, with a quota for free tickets; Enterprise,
+    support and some modules are commercial.
+  pricing_url: https://pretix.eu/about/en/pricing
+  currency_caveat: Plans, provider terms and prices change; check official sources before making a
+    budget or deployment decision.
+  verified_on: 2026-10-23
+  confidence: partially-verified
+implementation:
+  difficulty: hard
+  maintenance_burden: high
+  skills_required:
+    - python-server-administration
+    - database-backups
+    - email-delivery
+    - payment-provider-configuration
+  smallest_useful_experiment:
+    Create a private ten-person workshop, issue staff test tickets, exercise
+    cancellation and check-in, and reconcile an approved test payment/refund before selling public
+    tickets.
+homepage: https://pretix.eu/
+repository: https://github.com/pretix/pretix
+documentation: https://docs.pretix.eu/
+links:
+  - label: Official website
+    url: https://pretix.eu/
+    kind: homepage
+  - label: Source repository
+    url: https://github.com/pretix/pretix
+    kind: repo
+  - label: Official documentation
+    url: https://docs.pretix.eu/
+    kind: docs
+  - label: Pricing and edition terms
+    url: https://pretix.eu/about/en/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Collect workshop registrations and issue event tickets
+  - Maintain order and attendee lists for event staff
+human_oversight_still_needed:
+  - Approve event capacity, taxes, refunds and organizer terms
+  - Handle payment exceptions and check-in disputes with a manual fallback
+task_fits: []
+data_privacy:
+  data_held:
+    - attendee contact details
+    - registration answers
+    - orders and payment references
+    - ticket and check-in records
+  personal_data: true
+  payment_data: true
+  notes: Orders and payment references can be personal data. Actual card-data handling depends on
+    provider and configuration and was not tested.
+risks:
+  vendor_lock_in: Export, migration and restore behavior have not been tested; retain a practical
+    manual fallback before depending on the tool.
+  security: Protect organizer credentials, payment keys, attendee exports and scanner access. Follow
+    stable-release upgrade guidance and test backup restoration before public sales.
+  compliance: Staff retain responsibility for taxes, cancellation terms, accessibility and attendee
+    privacy; ticketing software does not establish legal venue capacity.
+  licensing: Most code uses AGPL v3 with additional terms including attribution and a conditional
+    remote-network exception. Other components have different licenses. Read the full terms before
+    modifying, white-labeling or offering services for third-party organizers.
+  operational: Use a supported stable release rather than assuming the development branch is a
+    production version. Verify plugins, scanner hardware, payment provider and required commercial
+    modules separately.
+integrations: []
+related_tools: []
+guide_status: planned
+tags:
+  - event tickets
+  - workshops
+  - registration
+  - community events
+  - check-in
+verification:
+  status: partially-verified
+  last_reviewed: 2026-10-23
+  sources:
+    - https://github.com/pretix/pretix
+    - https://github.com/pretix/pretix/blob/master/LICENSE
+    - https://pretix.eu/about/en/pricing
+  notes: Bounded official-source metadata review only. Features and edition boundaries were read;
+    installation, task-fit evaluation, operator outcomes, integrations, security and recovery were
+    not tested. Retained in Research Backlog; not a recommendation.
+  reviewer: october-2026-official-source-review
+  completeness: partial
+  confidence: medium
+  tier: research-backlog
+  evidence:
+    - kind: repository
+      source: https://github.com/pretix/pretix
+      verified_on: 2026-10-23
+      notes: Official README describes stable use, release-branch guidance and commercial support
+        boundaries.
+    - kind: license
+      source: https://github.com/pretix/pretix/blob/master/LICENSE
+      verified_on: 2026-10-23
+      notes: AGPL additional terms and component-specific licenses reviewed.
+    - kind: pricing
+      source: https://pretix.eu/about/en/pricing
+      verified_on: 2026-10-23
+      notes: Hosted ticket fees, payment fees, free-ticket quota and commercial modules reviewed.
+featured: false
+rank_score: 40
