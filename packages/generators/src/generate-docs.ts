@@ -720,71 +720,71 @@ export async function generateDerivedDocs(
   const resources = [
     {
       id: 'guides',
-      label: 'Installation guides',
+      label: 'Setup guides',
       count: toolExport.filter((t) => t.guide_status === 'full').length,
       href: '/guides/',
-      description: 'Full pilot guides, with outlines listed separately.',
+      description: 'Step-by-step instructions for setting up a tool.',
     },
     {
       id: 'workflows',
       label: 'Workflows',
       count: workflowExport.length,
       href: '/workflows/',
-      description: 'Follow the stages of an operator journey.',
+      description: 'Processes like member onboarding and tour to signed agreement.',
     },
     {
       id: 'tasks',
-      label: 'Operator tasks',
+      label: 'Everyday tasks',
       count: sortedTasks.length,
       href: '/tasks/',
-      description: 'Start with a specific piece of work.',
+      description: 'Start from a job, like managing room bookings.',
     },
     {
       id: 'comparisons',
-      label: 'Comparisons',
+      label: 'Side-by-side comparisons',
       count: comparisons.length,
       href: '/comparisons/',
-      description: 'Compare options and see the evidence limits.',
+      description: 'How similar tools stack up for the same job.',
     },
     {
       id: 'stacks',
-      label: 'Reference stacks',
+      label: 'Ready-made stacks',
       count: stackExport.length,
       href: '/stacks/',
-      description: 'See tools assembled around an operating model.',
+      description: 'Example tool combinations for different kinds of spaces.',
     },
     {
       id: 'roles',
-      label: 'Operator roles',
+      label: 'Team roles',
       count: sortedRoles.length,
       href: '/roles/',
-      description: 'Find responsibilities, tasks and supporting tools.',
+      description: 'Tools that help each person on your team.',
     },
     {
       id: 'packs',
-      label: 'Implementation packs',
+      label: 'Starter packs',
       count: packNames.length,
       href: '/guides/starter-packs/',
-      description: 'Staging templates with security and backup requirements.',
+      description: 'Technical starter kits for self-hosting a group of tools.',
     },
     {
       id: 'recipes',
-      label: 'Integration recipes',
+      label: 'Connecting tools together',
       count: recipes.length,
       href: '/integrations/generated/',
-      description: 'Keep onboarding, access and invoice handoffs accountable.',
+      description: 'Pass data between tools, like new member to door access.',
     },
     {
       id: 'estimator',
-      label: 'Cost & capacity estimator',
+      label: 'Cost and time estimator',
       href: '/roi-calculator/',
-      description: 'Explore hosting, maintenance and staff capacity assumptions.',
+      description: 'Rough hosting, upkeep and staff-time numbers for a tool.',
     },
     {
       id: 'builder',
-      label: 'Build My Tech Stack',
+      label: 'Build my tech stack',
       href: '/stack-builder/',
-      description: 'Compare approaches for your space.',
+      description: 'Answer a few questions and get a suggested set of tools.',
     },
   ];
   await writeJson(path.join(dataOut, 'discovery.json'), {
@@ -806,26 +806,36 @@ export async function generateDerivedDocs(
       description: collection.categories.map(readableLabel).join(' · '),
     })),
     resources,
-    samples: ['espocrm', 'librebooking', 'docuseal', 'hi-events', 'postiz', 'snipe-it'].flatMap(
-      (id) => {
-        const tool = toolExport.find((t) => t.id === id);
-        return tool
-          ? [
-              {
-                id,
-                name: tool.name,
-                use_case: tool.coworking_use_cases[0] ?? tool.tagline,
-                license: readableLabel(tool.license_class),
-                cost: readableLabel(tool.cost_model),
-                review: readableLabel(tool.verification_tier),
-                homepage: tool.homepage,
-                repository: tool.repository,
-                href: `/tools/generated/${id}/`,
-              },
-            ]
-          : [];
-      },
-    ),
+    // Reviewed tools with full setup guides, each paired with the everyday job it handles.
+    samples: [
+      ['cal-com', 'Let prospects book tours online'],
+      ['seatsurfing', 'Let members book desks and rooms'],
+      ['chatwoot', 'Answer website chat and member messages in one inbox'],
+      ['bookstack', 'Keep house rules and staff how-tos in one place'],
+      ['listmonk', 'Send the member newsletter'],
+      ['n8n', 'Connect your apps so data moves on its own'],
+    ].flatMap(([id, job]) => {
+      const tool = toolExport.find((t) => t.id === id);
+      return tool
+        ? [
+            {
+              id,
+              name: tool.name,
+              job,
+              use_case: tool.coworking_use_cases[0] ?? tool.tagline,
+              tagline: tool.tagline,
+              license: readableLabel(tool.license_class),
+              cost: readableLabel(tool.cost_model),
+              difficulty: readableLabel(tool.difficulty),
+              review: readableLabel(tool.verification_tier),
+              homepage: tool.homepage,
+              repository: tool.repository,
+              href: `/tools/generated/${id}/`,
+              guide_href: tool.guide_status === 'full' ? `/guides/tools/${id}/` : undefined,
+            },
+          ]
+        : [];
+    }),
   });
   await writeJson(path.join(dataOut, 'tools.json'), toolExport);
   await writeJson(path.join(dataOut, 'stacks.json'), stackExport);

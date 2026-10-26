@@ -152,11 +152,9 @@ if (gateway) {
       page.on('pageerror', (error) => errors.push(error.message));
       const response = await page.goto(`${gateway}/tools/`);
       expect(response?.ok()).toBe(true);
+      await expect(page.locator('.facts')).toContainText(`${discovery.tool_count} tools listed`);
       await expect(
-        page.getByText(`${discovery.tool_count} tools to explore`, { exact: true }),
-      ).toBeVisible();
-      await expect(
-        page.getByRole('link', { name: 'Browse All Tools', exact: true }),
+        page.getByRole('link', { name: 'Browse all the tools', exact: true }),
       ).toHaveAttribute('href', 'https://open-coworking-stack.vercel.app/directory/');
       for (const collection of discovery.collections)
         await expect(page.locator(`a[data-collection="${collection.id}"]`)).toHaveAttribute(
