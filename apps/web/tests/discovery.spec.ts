@@ -83,7 +83,7 @@ test('recipes retain the operational rules and tool pages provide related routes
   await expect(
     page.getByRole('link', { name: 'Related guide: LibreBooking', exact: true }),
   ).toHaveCount(0);
-  await expect(page.getByText('Review status: Research backlog.', { exact: true })).toBeVisible();
+  await expect(page.getByText('Review status: Not yet reviewed.', { exact: true })).toBeVisible();
   await page.goto('/tools/generated/seatsurfing/');
   await page.getByRole('link', { name: 'Related guide: Seatsurfing', exact: true }).click();
   await expect(page).toHaveURL(/\/guides\/tools\/seatsurfing\/$/);
@@ -100,11 +100,11 @@ for (const [query, id] of [
     await page.getByRole('searchbox', { name: 'Search tools' }).fill(query);
     const card = page.locator(`.ocs-operator-card[data-tool-id="${id}"]`);
     await expect(card).toBeVisible();
-    await expect(card.getByRole('link', { name: /Visit Website/ })).toHaveAttribute(
+    await expect(card.getByRole('link', { name: /Official site/ })).toHaveAttribute(
       'href',
       /^https:\/\//,
     );
-    await expect(card.getByRole('link', { name: /More Details/ })).toHaveAttribute(
+    await expect(card.getByRole('link', { name: /Full listing/ })).toHaveAttribute(
       'href',
       `/tools/generated/${id}/`,
     );
@@ -124,12 +124,12 @@ for (const width of [375, 1280]) {
     if (width < 800) await page.getByRole('button', { name: 'Menu', exact: true }).click();
     const sidebar = page.getByRole('navigation', { name: 'Main' });
     for (const text of [
-      'Browse Tools',
-      'Categories',
-      'Recommended Stacks',
-      'Guides',
-      'About / Contribute',
-      'Operator Resources',
+      'Browse all tools',
+      'Tools by category',
+      'Plan your stack',
+      'Setup guides',
+      'Compare and learn',
+      'About',
     ])
       await expect(sidebar.getByText(text, { exact: true }).first()).toBeVisible();
     await expect(sidebar.locator('a[href*="/tasks/generated/"]')).toHaveCount(0);

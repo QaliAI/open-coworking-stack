@@ -1,0 +1,47 @@
+---
+import catalog from '../../public/data/catalog.json';
+import { readableLabel, withBasePath, type CatalogTool } from '../utils/catalog';
+
+const base = import.meta.env.BASE_URL;
+
+// Reviewed tools with a full setup guide, each paired with the everyday job it handles.
+const picks: ReadonlyArray<{ id: string; job: string }> = [
+  { id: 'cal-com', job: 'Let prospects book tours online' },
+  { id: 'seatsurfing', job: 'Let members book desks and rooms' },
+  { id: 'chatwoot', job: 'Answer website chat and member messages in one inbox' },
+  { id: 'bookstack', job: 'Keep house rules and staff how-tos in one place' },
+  { id: 'listmonk', job: 'Send the member newsletter' },
+  { id: 'n8n', job: 'Connect your apps so data moves on its own' },
+  { id: 'umami', job: 'See how people find your website' },
+  { id: 'vaultwarden', job: 'Share staff passwords safely' },
+];
+
+const featured = picks
+  .map((pick) => ({ ...pick, tool: catalog.tools.find((tool) => tool.id === pick.id) as CatalogTool | undefined }))
+  .filter((pick): pick is { id: string; job: string; tool: CatalogTool } => Boolean(pick.tool));
+---
+<ul class="ocs-featured not-content" role="list">
+  {
+    featured.map(({ job, tool }) => (
+      <li>
+        <article>
+          <p class="ocs-featured__job">{job}</p>
+          <h3>
+            <a href={withBasePath(`tools/generated/${tool.id}/`, base)}>{tool.name}</a>
+          </h3>
+          <p>{tool.tagline}</p>
+          <dl>
+            <div><dt>Cost</dt><dd>{readableLabel(tool.cost_model)}</dd></div>
+            <div><dt>Setup</dt><dd>{readableLabel(tool.difficulty)}</dd></div>
+          </dl>
+          <div class="ocs-featured__links">
+            {tool.guide_status === 'full' && (
+              <a href={withBasePath(`guides/tools/${tool.id}/`, base)}>Setup guide<span class="sr-only"> for {tool.name}</span></a>
+            )}
+            <a href={tool.homepage} rel="noopener">Official site<span class="sr-only"> for {tool.name}</span></a>
+          </div>
+        </article>
+      </li>
+    ))
+  }
+</ul>

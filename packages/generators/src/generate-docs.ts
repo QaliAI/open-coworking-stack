@@ -93,7 +93,7 @@ import { Aside, Badge } from '@astrojs/starlight/components';
 
 ${tool.tagline}
 
-**Review status: ${readableLabel(tool.verification.tier)}.** ${tool.verification.tier === 'research-backlog' ? 'Research candidate with incomplete checks; not a vetted recommendation.' : 'Read the evidence and pilot limits below before choosing.'}
+**Review status: ${readableLabel(tool.verification.tier)}.** ${tool.verification.tier === 'research-backlog' ? "We haven't fully reviewed this tool yet. Treat it as a lead and confirm pricing and features on the official site." : 'Check the costs, setup effort and limits below before choosing.'}
 
 [Official Website](${tool.homepage})${tool.repository ? ` · [Source Code](${tool.repository})` : ''}
 

@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  ['homepage', '/', 'Free & Open-Source Tools for Coworking Spaces'],
-  ['directory', '/directory/', 'Browse Tools'],
+  ['homepage', '/', 'Free software to run your coworking space'],
+  ['directory', '/directory/', 'Browse all tools'],
   ['tool', '/tools/generated/zulip/', 'Zulip'],
   ['guide', '/guides/security-baseline/', 'Security baseline for self-hosted stacks'],
   ['workflow', '/workflows/room-booking/', 'Workflow — Room booking'],
@@ -43,7 +43,7 @@ const personaRoutes: Record<string, [string, string, string][]> = {
   ],
   'sales-leasing': [
     ['tour-to-close workflow', '/workflows/generated/tour-to-close/', 'Tour to close'],
-    ['directory', '/directory/', 'Browse Tools'],
+    ['directory', '/directory/', 'Browse all tools'],
   ],
   'operations-facilities': [
     ['room booking workflow', '/workflows/generated/room-booking/', 'Room booking'],

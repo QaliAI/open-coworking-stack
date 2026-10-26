@@ -14,9 +14,11 @@
     "lint": "echo \"web lint via root prettier/markdownlint\""
   },
   "dependencies": {
-    "@ocs/shared": "workspace:*",
     "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.32.0",
+    "@fontsource-variable/bricolage-grotesque": "5",
+    "@fontsource-variable/figtree": "5",
+    "@ocs/shared": "workspace:*",
     "astro": "^5.1.1",
     "sharp": "^0.33.5"
   },
