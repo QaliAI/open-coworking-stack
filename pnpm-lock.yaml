@@ -35,6 +35,12 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.32.0
         version: 0.32.6(astro@5.18.2(@types/node@24.13.3)(rollup@4.62.2)(tsx@4.23.1)(typescript@5.9.3)(yaml@2.9.0))
+      '@fontsource-variable/bricolage-grotesque':
+        specifier: '5'
+        version: 5.3.0
+      '@fontsource-variable/figtree':
+        specifier: '5'
+        version: 5.3.0
       '@ocs/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -1013,6 +1019,12 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.40.2':
     resolution: {integrity: sha512-/XoLjD67K9nfM4TgDlXAExzMJp6ewFKxNpfUw4F7q5Ecy+IU3/9zQQG/O70Zy+RxYTwKGw2MA9kd7yelsxnSmw==}
+
+  '@fontsource-variable/bricolage-grotesque@5.3.0':
+    resolution: {integrity: sha512-TLi9Q4hJjS2UvoTMRSS2nHu6c4R56lAw60NR9QYtVRCHn0XtsFpiEhNffZ8Glsoxu6wEEwLKBP8lb94J52PNBA==}
+
+  '@fontsource-variable/figtree@5.3.0':
+    resolution: {integrity: sha512-VRVodD7OiG7apQwE8/2fMjaqpY/a0qRJqL5HtYj8CKIVps+9amaFcdfKmDIf7iqYQx6iPLlArVXAfKeIZmVcNQ==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -3948,6 +3960,10 @@ snapshots:
   '@expressive-code/plugin-text-markers@0.40.2':
     dependencies:
       '@expressive-code/core': 0.40.2
+
+  '@fontsource-variable/bricolage-grotesque@5.3.0': {}
+
+  '@fontsource-variable/figtree@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

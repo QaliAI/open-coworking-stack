@@ -1,42 +1,116 @@
-# Open Coworking Stack — Free Tools for Coworking
+# Open Coworking Stack
 
-Open Coworking Stack is a free, Git-first directory of technology for coworking and flexible-workspace
-operators. It catalogs free, open-source, and freemium software for **sales, marketing, operations,
-member experience, finance and administration, and technology and security**, with structured catalog
-records, coworking-specific evaluation guidance, reference stacks, and a generated Astro/Starlight
-documentation site.
+**Free and open-source software for running a coworking space, explained in plain English.**
+
+A free resource from [CoworkingSpace.ai](https://www.coworkingspace.ai/).
+
+[**Browse the tools →**](https://open-coworking-stack.vercel.app/directory/) ·
+[Setup guides](https://open-coworking-stack.vercel.app/guides/) ·
+[Build my tech stack](https://open-coworking-stack.vercel.app/stack-builder/) ·
+[Get setup help](https://www.coworkingspace.ai/)
+
+---
+
+## What this is
+
+Running a coworking space means juggling tours, room bookings, member agreements, invoices,
+newsletters, Wi-Fi, door access and a lot of follow-up. There are good free and open-source tools for
+almost all of it, but they are hard to find and harder to compare.
+
+Open Coworking Stack is a curated list of those tools, written for coworking owners, community
+managers and operations teams. For each tool it tells you:
+
+- **What it does for a coworking space**, in everyday language
+- **What it really costs**: free, free with paid upgrades, or paid
+- **How hard it is to set up** and whether you need your own server
+- **What your team still does by hand**, because software helps your staff, it does not replace them
+- **Where to get it**: links to the official website and source code
+
+No sign-up. Nobody pays to be listed.
+
+## Find a tool for the job
+
+| You want to…                                         | Start here                                                                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Track leads, tours and follow-ups                    | [Sales & CRM](https://open-coworking-stack.vercel.app/directory/?collection=sales-crm)                             |
+| Let prospects book a tour online                     | [Tours & Scheduling](https://open-coworking-stack.vercel.app/directory/?collection=tours-scheduling)               |
+| Let members book desks and meeting rooms             | [Desks & Meeting Rooms](https://open-coworking-stack.vercel.app/directory/?collection=desks-rooms)                 |
+| Send agreements for e-signature, keep a house manual | [Documents & E-Signatures](https://open-coworking-stack.vercel.app/directory/?collection=documents-signatures)     |
+| Send invoices and take payments                      | [Finance & Billing](https://open-coworking-stack.vercel.app/directory/?collection=finance-billing)                 |
+| Run your website, newsletter and social posts        | [Marketing & SEO](https://open-coworking-stack.vercel.app/directory/?collection=marketing-seo)                     |
+| Run events and keep members talking                  | [Events & Community](https://open-coworking-stack.vercel.app/directory/?collection=events-community)               |
+| Connect your apps so data moves on its own           | [Automation & AI](https://open-coworking-stack.vercel.app/directory/?collection=automation-ai)                     |
+| Log mail and packages for virtual-office members     | [Virtual Office & Mailroom](https://open-coworking-stack.vercel.app/directory/?collection=virtual-office-mailroom) |
+| Track equipment and maintenance                      | [Facilities & Assets](https://open-coworking-stack.vercel.app/directory/?collection=facilities-assets)             |
+| See website traffic and how the space is used        | [Analytics & Reporting](https://open-coworking-stack.vercel.app/directory/?collection=analytics-reporting)         |
+| Sort out Wi-Fi, door access, passwords and backups   | [IT & Security](https://open-coworking-stack.vercel.app/directory/?collection=it-security)                         |
+
+## Good places to start
+
+These tools have been reviewed in depth and each has a step-by-step setup guide.
+
+| Job                                         | Tool                                                                             | Cost                     |
+| ------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------ |
+| Let prospects book tours online             | [Cal.com](https://open-coworking-stack.vercel.app/guides/tools/cal-com/)         | Free plan, paid upgrades |
+| Let members book desks and rooms            | [Seatsurfing](https://open-coworking-stack.vercel.app/guides/tools/seatsurfing/) | Free, you host it        |
+| Answer website chat and member messages     | [Chatwoot](https://open-coworking-stack.vercel.app/guides/tools/chatwoot/)       | Free core, paid extras   |
+| Keep house rules and staff how-tos together | [BookStack](https://open-coworking-stack.vercel.app/guides/tools/bookstack/)     | Free, you host it        |
+| Send the member newsletter                  | [listmonk](https://open-coworking-stack.vercel.app/guides/tools/listmonk/)       | Free, you host it        |
+| Connect your apps so data moves on its own  | [n8n](https://open-coworking-stack.vercel.app/guides/tools/n8n/)                 | Free core, paid extras   |
+| See how people find your website            | [Umami](https://open-coworking-stack.vercel.app/guides/tools/umami/)             | Free plan, paid upgrades |
+| Share staff passwords safely                | [Vaultwarden](https://open-coworking-stack.vercel.app/guides/tools/vaultwarden/) | Free, you host it        |
+
+## How to use it
+
+1. **Pick one job.** Start with the task that eats the most time. Don't try to replace everything at
+   once.
+2. **Compare a few options.** Each listing shows the price, setup effort and what your team still
+   handles. The [side-by-side comparisons](https://open-coworking-stack.vercel.app/comparisons/) help.
+3. **Try it small.** Test with one location, a few friendly members or dummy data before you move
+   everyone over.
+
+You don't need to install anything to use this project. Everything is on the
+[website](https://open-coworking-stack.vercel.app/). This GitHub repository is where the listings
+are maintained.
+
+## Good to know
+
+- **Free doesn't mean zero work.** Self-hosted tools need a server and someone to keep them updated
+  and backed up.
+- **Paid tools are labelled.** Some listings are paid products, included so you can compare.
+- **Some listings are still being checked.** Tools marked "Not yet reviewed" look promising, but
+  confirm pricing and features on the official site before you commit.
+- **Listings are not endorsements.** Prices and plans change; always check the official site. See the
+  [disclaimer](DISCLAIMER.md).
+
+## Want help setting it up?
+
+[CoworkingSpace.ai](https://www.coworkingspace.ai/) helps coworking operators choose, install and
+connect these tools: tour booking, CRM, room booking, billing, member communication and automation.
+[Get in touch](https://www.coworkingspace.ai/) and we'll suggest a practical starting stack for your
+space.
+
+## Suggest a tool or a fix
+
+Know a tool we missed, or spotted something out of date?
+[Open an issue](https://github.com/QaliAI/open-coworking-stack/issues) or see
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## For contributors and developers
+
+Everything below is for people who maintain the listings or the website. Coworking operators can
+stop reading here.
 
 This repository is a directory and implementation resource, not a hosted SaaS product and not a copy
-of the projects it describes. Upstream software remains in its official repositories and under its own
-license.
+of the projects it describes. Upstream software stays in its official repositories under its own
+license. Tool records live in [`catalog/tools/`](catalog/tools/), reference stacks in
+[`catalog/stacks/`](catalog/stacks/), operational guidance in [`guides/`](guides/), and optional
+self-hosting examples in [`compose/`](compose/). The Compose packs are technical starting points,
+not plug-and-play production deployments.
 
-> **Release status (2026-10-22):** v0.1.0 is released. The repository is public on GitHub at
-> [`QaliAI/open-coworking-stack`](https://github.com/QaliAI/open-coworking-stack) and the generated
-> documentation site is live at <https://open-coworking-stack.vercel.app>. Listings are not
-> endorsements; re-check official pricing, licensing, privacy, and security sources before any
-> production decision.
-
-## Start here — browse without installing anything
-
-This is a **directory**, not a hosted coworking application. You do **not** need Node.js, Docker, a
-database, or paid software to use the reference material.
-
-- **[Open the documentation site](https://open-coworking-stack.vercel.app):** the generated directory,
-  comparisons, role pages, and the Stack Builder.
-- **[Browse the tool catalog](catalog/tools/):** 116 categorized tool records, including conservative
-  licensing and verification notes. A listing is not an endorsement or a claim that every price or
-  integration has been independently checked.
-- **[Read the implementation guides](guides/):** operational guidance and evaluation checklists for
-  choosing software that fits your workspace.
-- **[Compare reference stacks](catalog/stacks/):** sample combinations and tradeoffs, not universal
-  prescriptions.
-- **[Explore starter Compose packs](compose/):** optional technical examples for people who want to
-  self-host; these are not plug-and-play production deployments.
-
-Use the files directly on GitHub, or download the repository ZIP. The optional Astro documentation
-website and local build instructions below are for maintainers and developers.
-
-## Architecture
+### Architecture
 
 ```text
 catalog/**/*.yaml (canonical records)
@@ -63,7 +137,7 @@ catalog/**/*.yaml (canonical records)
 See [`docs/architecture/`](docs/architecture/) for architecture decisions and
 [`ROADMAP.md`](ROADMAP.md) for implementation status.
 
-## Canonical And Generated Data
+### Canonical And Generated Data
 
 YAML under `catalog/` is canonical. Editorial Markdown outside a `generated/` directory is maintained
 by people. JSON Schema mirrors under `catalog/schema/` are derived from the Zod schemas and must stay
@@ -82,7 +156,7 @@ Do not hand-edit those generated paths. Change the canonical catalog or generato
 and inspect the resulting local site. CI and Pages builds generate these artifacts in their own clean
 workspace.
 
-## Prerequisites
+### Prerequisites
 
 - Node.js 22, matching `.nvmrc` and the GitHub workflows
 - Corepack
@@ -96,7 +170,7 @@ corepack prepare pnpm@9.15.0 --activate
 pnpm install --frozen-lockfile
 ```
 
-## Run Locally
+### Run Locally
 
 Validate canonical data, create generated content, and start Astro:
 
@@ -114,7 +188,7 @@ pnpm build
 pnpm --filter @ocs/web preview
 ```
 
-## Scripts
+### Scripts
 
 Run commands from the repository root.
 
@@ -146,7 +220,7 @@ production build, browser tests, and accessibility tests as separate steps so fa
 attributable. Release evidence and reference-image scans run in separately labeled workflows because
 neither is a deployment or runtime certification.
 
-## GitHub Pages
+### GitHub Pages
 
 The public site is deployed on Vercel at <https://open-coworking-stack.vercel.app>.
 `.github/workflows/deploy-pages.yml` is preserved for GitHub Pages as an alternative. A hosted run for
@@ -171,7 +245,7 @@ reported by GitHub after a successful run.
 See the site [deployment options](apps/web/src/content/docs/guides/deployment-options.md) for Pages,
 Vercel, and Netlify build settings.
 
-## Release Engineering
+### Release Engineering
 
 - [`CHANGELOG.md`](CHANGELOG.md) records repository changes; v0.1.0 notes are in
   [`docs/project/V0.1_RELEASE_NOTES.md`](docs/project/V0.1_RELEASE_NOTES.md).
@@ -187,13 +261,13 @@ file integrity only; this repository does not currently claim artifact signing o
 SBOM and reference-image commands require a running Docker engine for their pinned Syft and Trivy
 containers.
 
-## Contributing
+### Contributing
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before changing catalog records. Contributions must use
 official sources where possible, classify licensing conservatively, distinguish verified facts from
 unknowns, and describe how software augments work while retaining human oversight.
 
-## Security And Licensing
+### Security And Licensing
 
 Do not put credentials, private member data, or exploitable vulnerability details in catalog records,
 issues, examples, or workflows. Report repository vulnerabilities through the private path described

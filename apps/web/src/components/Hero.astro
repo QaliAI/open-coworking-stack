@@ -1,0 +1,26 @@
+---
+// Homepage hero. Replaces Starlight's default so the help call to action comes from data/brand.ts.
+import { brand } from '../data/brand';
+import catalog from '../../public/data/catalog.json';
+import { withBasePath } from '../utils/catalog';
+
+const { data } = Astro.locals.starlightRoute.entry;
+const base = import.meta.env.BASE_URL;
+const reviewed = catalog.tools.filter((tool) => tool.verification_tier === 'evaluated').length;
+const guides = catalog.tools.filter((tool) => tool.guide_status === 'full').length;
+---
+<section class="ocs-hero" aria-labelledby="_top">
+  <p class="ocs-eyebrow">A free resource from {brand.name}</p>
+  <h1 id="_top" data-page-title>{data.title}</h1>
+  {data.hero?.tagline && <p class="ocs-hero__lede" set:html={data.hero.tagline} />}
+  <div class="ocs-hero__actions">
+    <a class="ocs-button ocs-button--primary" href={withBasePath('directory/', base)}>Browse the free tools</a>
+    <a class="ocs-button ocs-button--secondary" href={brand.helpUrl}>{brand.helpLabel}</a>
+  </div>
+  <ul class="ocs-hero__facts" aria-label="At a glance">
+    <li><strong>{catalog.tool_count}</strong> tools listed</li>
+    <li><strong>{reviewed}</strong> reviewed in depth</li>
+    <li><strong>{guides}</strong> step-by-step setup guides</li>
+    <li>No sign-up. Nobody pays to be listed.</li>
+  </ul>
+</section>

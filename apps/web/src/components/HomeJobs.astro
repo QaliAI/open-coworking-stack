@@ -1,0 +1,43 @@
+---
+import catalog from '../../public/data/catalog.json';
+import { categoryShortcuts, withBasePath, type CatalogTool } from '../utils/catalog';
+
+const base = import.meta.env.BASE_URL;
+const tools = catalog.tools as CatalogTool[];
+
+// Plain descriptions of the job each category helps with, written for operators.
+const jobs: Record<string, string> = {
+  'sales-crm': 'Keep track of leads, tours and follow-ups so no inquiry slips through.',
+  'tours-scheduling': 'Let prospects book a tour online instead of trading emails.',
+  'desks-rooms': 'Let members book desks and meeting rooms themselves.',
+  'documents-signatures': 'Send membership agreements for e-signature and keep your house manual in one place.',
+  'finance-billing': 'Send invoices, take payments and keep the books tidy.',
+  'marketing-seo': 'Run your website, newsletter, forms and social posts.',
+  'events-community': 'Run events, sell tickets and keep members talking.',
+  'automation-ai': 'Connect your apps so information moves without copy and paste.',
+  'virtual-office-mailroom': 'Log incoming mail and packages for virtual-office members.',
+  'facilities-assets': 'Track equipment, maintenance requests and building devices.',
+  'analytics-reporting': 'See website traffic, occupancy trends and system health.',
+  'it-security': 'Wi-Fi, door access, passwords and backups that keep the space running.',
+};
+
+const matches = (item: (typeof categoryShortcuts)[number], tool: CatalogTool) =>
+  item.categories.some((category) => tool.categories.includes(category)) ||
+  Boolean(item.tags?.some((tag) => (tool.tags ?? []).includes(tag)));
+---
+<ul class="ocs-jobs not-content" role="list">
+  {
+    categoryShortcuts.map((item) => {
+      const count = tools.filter((tool) => matches(item, tool)).length;
+      return (
+        <li>
+          <a href={withBasePath(`directory/?collection=${item.id}`, base)}>
+            <strong>{item.label}</strong>
+            <span>{jobs[item.id] ?? ''}</span>
+            <small>{count} {count === 1 ? 'tool' : 'tools'}</small>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>

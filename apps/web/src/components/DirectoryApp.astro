@@ -87,28 +87,28 @@ const guideHref = (tool: CatalogTool) =>
     {categoryShortcuts.map((item) => <button type="button" data-collection={item.id} aria-pressed="false">{item.label}</button>)}
   </div>
   <nav class="ocs-tier-shortcuts" aria-label="Review groups">
-    <button type="button" data-tier-filter="" aria-pressed="true">All Tools ({tools.length})</button>
-    <button type="button" data-tier-filter="evaluated" aria-pressed="false">Evaluated ({evaluatedCount})</button>
-    <button type="button" data-tier-filter="research-backlog" aria-pressed="false">More Tools to Explore ({tools.filter((tool) => tool.verification_tier === 'research-backlog').length})</button>
-    <button type="button" data-tier-filter="commercial-benchmark" aria-pressed="false">Commercial Comparisons ({tools.filter((tool) => tool.verification_tier === 'commercial-benchmark').length})</button>
+    <button type="button" data-tier-filter="" aria-pressed="true">All tools ({tools.length})</button>
+    <button type="button" data-tier-filter="evaluated" aria-pressed="false">Reviewed ({evaluatedCount})</button>
+    <button type="button" data-tier-filter="research-backlog" aria-pressed="false">Not yet reviewed ({tools.filter((tool) => tool.verification_tier === 'research-backlog').length})</button>
+    <button type="button" data-tier-filter="commercial-benchmark" aria-pressed="false">Paid alternatives ({tools.filter((tool) => tool.verification_tier === 'commercial-benchmark').length})</button>
   </nav>
-  <p class="ocs-muted">Evaluated entries have a fuller review. More Tools to Explore is the research backlog: useful candidates with incomplete checks. Commercial comparisons provide context. Verified Core requires stronger evidence; there are currently {verifiedCoreCount}. No account is needed.</p>
+  <p class="ocs-muted">"Reviewed" tools have been checked in depth for coworking use. "Not yet reviewed" tools look promising, but confirm the details on the official site. Paid alternatives are listed so you can compare. Free to browse, no account needed.</p>
 
   <details class="ocs-review-notes">
-    <summary>How reviews and guides work</summary>
+    <summary>How we review tools</summary>
   <aside class="ocs-directory-status" aria-labelledby="directory-status-title">
     <div>
-      <h2 id="directory-status-title">What has actually been reviewed</h2>
+      <h2 id="directory-status-title">How many tools we have checked</h2>
       <p>
-        Tier, record completeness, evidence confidence, and guide status are separate signals. A
-        recent review date does not make an entry complete.
+        Each listing shows its review status, how complete it is and whether a setup guide exists.
+        A recent review date alone does not mean a listing is complete.
       </p>
     </div>
     <dl>
-      <div><dt>Verified Core</dt><dd>{verifiedCoreCount}</dd></div>
-      <div><dt>Evaluated</dt><dd>{evaluatedCount}</dd></div>
-      <div><dt>Task-fit reviewed</dt><dd>{taskFitCount}</dd></div>
-      <div><dt>Full guides</dt><dd>{fullGuideCount}</dd></div>
+      <div><dt>Fully verified</dt><dd>{verifiedCoreCount}</dd></div>
+      <div><dt>Reviewed</dt><dd>{evaluatedCount}</dd></div>
+      <div><dt>Checked against coworking tasks</dt><dd>{taskFitCount}</dd></div>
+      <div><dt>Full setup guides</dt><dd>{fullGuideCount}</dd></div>
     </dl>
   </aside>
   </details>
@@ -158,9 +158,9 @@ const guideHref = (tool: CatalogTool) =>
       </select>
     </label>
     <label>
-      Research tier
+      Review status
       <select data-filter="tier">
-        <option value="">Any tier</option>
+        <option value="">Any status</option>
         {tiers.map((value) => <option value={value}>{readableLabel(value)}</option>)}
       </select>
     </label>
@@ -258,33 +258,33 @@ const guideHref = (tool: CatalogTool) =>
                 <p>{tool.tagline}</p>
               </div>
               <span class="ocs-tier" data-tier={tool.verification_tier ?? 'not-exported'}>
-                {statusText(tool.verification_tier, 'Tier not included in export')}
+                {statusText(tool.verification_tier, 'Review status not recorded')}
               </span>
             </header>
 
-            <p class="ocs-use-case"><strong>Coworking use:</strong> {tool.coworking_use_cases?.[0] ?? tool.tagline}</p>
+            <p class="ocs-use-case"><strong>How a coworking space uses it:</strong> {tool.coworking_use_cases?.[0] ?? tool.tagline}</p>
             <p class="ocs-muted">{tool.categories.map(readableLabel).join(' · ')}</p>
             <div class="ocs-card-actions">
-              <a href={tool.homepage}>Visit Website<span class="sr-only"> for {tool.name}</span></a>
-              {tool.repository && <a href={tool.repository}>View Source<span class="sr-only"> for {tool.name}</span></a>}
-              {tool.guide_status === 'full' && guide && <a href={guide}>Read Guide<span class="sr-only"> for {tool.name}</span></a>}
-              <a href={withBasePath(`tools/generated/${tool.id}/`, base)}>More Details<span class="sr-only"> for {tool.name}</span></a>
+              <a href={tool.homepage}>Official site<span class="sr-only"> for {tool.name}</span></a>
+              {tool.repository && <a href={tool.repository}>Source code<span class="sr-only"> for {tool.name}</span></a>}
+              {tool.guide_status === 'full' && guide && <a href={guide}>Setup guide<span class="sr-only"> for {tool.name}</span></a>}
+              <a href={withBasePath(`tools/generated/${tool.id}/`, base)}>Full listing<span class="sr-only"> for {tool.name}</span></a>
             </div>
             <details class="ocs-fit-summary">
-              <summary>Operator fit and human oversight</summary>
-              <h3>Operator fit</h3>
+              <summary>Who it helps and what your team still does</summary>
+              <h3>Who it helps</h3>
               <dl>
                 <div>
-                  <dt>Role assisted</dt>
-                  <dd>{fit ? readableLabel(fit.role_assisted) : 'Task fit not reviewed'}</dd>
+                  <dt>Helps</dt>
+                  <dd>{fit ? readableLabel(fit.role_assisted) : 'Not reviewed yet'}</dd>
                 </div>
                 <div>
-                  <dt>Manual task replaced</dt>
-                  <dd>{fit?.manual_process ?? 'No reviewed manual-task replacement claim'}</dd>
+                  <dt>Manual work it cuts down</dt>
+                  <dd>{fit?.manual_process ?? 'Not reviewed yet'}</dd>
                 </div>
                 <div>
-                  <dt>Human work</dt>
-                  <dd>{fit?.human_work ?? 'Human responsibilities have not been task-fit reviewed'}</dd>
+                  <dt>Still done by your team</dt>
+                  <dd>{fit?.human_work ?? 'Not reviewed yet'}</dd>
                 </div>
               </dl>
             </details>
@@ -316,13 +316,13 @@ const guideHref = (tool: CatalogTool) =>
                 <dt>Maintenance</dt>
                 <dd>{statusText(tool.maintenance_burden, 'Not included in this export')}</dd>
               </div>
-              <div><dt>Pilot difficulty</dt><dd>{readableLabel(tool.difficulty)}</dd></div>
+              <div><dt>Setup difficulty</dt><dd>{readableLabel(tool.difficulty)}</dd></div>
               <div>
-                <dt>Completeness</dt>
+                <dt>Listing completeness</dt>
                 <dd>{statusText(tool.verification_completeness, 'Not included in export')}</dd>
               </div>
               <div>
-                <dt>Confidence</dt>
+                <dt>Our confidence</dt>
                 <dd>{statusText(tool.verification_confidence, 'Not included in export')}</dd>
               </div>
               <div>
@@ -353,7 +353,7 @@ const guideHref = (tool: CatalogTool) =>
           <th scope="col">Tool and purpose</th>
           <th scope="col">Operator task</th>
           <th scope="col">Cost and deployment</th>
-          <th scope="col">Research status</th>
+          <th scope="col">Review status</th>
           <th scope="col">Pilot and guide</th>
         </tr>
       </thead>
@@ -374,9 +374,9 @@ const guideHref = (tool: CatalogTool) =>
                   </span>
                 </td>
                 <td>
-                  <strong>{fit ? readableLabel(fit.role_assisted) : 'Task fit not reviewed'}</strong>
+                  <strong>{fit ? readableLabel(fit.role_assisted) : 'Not reviewed yet'}</strong>
                   <div class="ocs-muted">
-                    {fit?.manual_process ?? 'No reviewed manual-task replacement claim'}
+                    {fit?.manual_process ?? 'Not reviewed yet'}
                   </div>
                   <div class="ocs-human-work">
                     Human: {fit?.human_work ?? 'Responsibilities not task-fit reviewed'}
@@ -388,7 +388,7 @@ const guideHref = (tool: CatalogTool) =>
                 </td>
                 <td>
                   <span class="ocs-tier" data-tier={tool.verification_tier ?? 'not-exported'}>
-                    {statusText(tool.verification_tier, 'Tier not exported')}
+                    {statusText(tool.verification_tier, 'Not recorded')}
                   </span>
                   <div class="ocs-muted">
                     Completeness: {statusText(tool.verification_completeness, 'not exported')}

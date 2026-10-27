@@ -1,13 +1,19 @@
 ---
 import Footer from '@astrojs/starlight/components/Footer.astro';
+import HelpCta from './HelpCta.astro';
+import { brand } from '../data/brand';
 import { withBasePath } from '../utils/catalog';
 const base = import.meta.env.BASE_URL;
+const isHome = Astro.url.pathname === base || Astro.url.pathname === `${base}/`;
 ---
+{!isHome && <HelpCta compact />}
 <nav class="ocs-brand-footer" aria-label="Explore the directory">
-  <strong>CoworkingSpace.ai · Open Coworking Stack</strong>
+  <strong>Open Coworking Stack, a free resource from {brand.name}</strong>
   <a href={withBasePath('directory/', base)}>Browse all tools</a>
-  <a href={withBasePath('library/', base)}>Explore every resource library</a>
-  <a href="https://www.coworkingspace.ai/tools">Free Tools at CoworkingSpace.ai</a>
-  <a href={withBasePath('contribute/', base)}>Suggest a correction</a>
+  <a href={withBasePath('guides/', base)}>Setup guides</a>
+  <a href={withBasePath('library/', base)}>All resources</a>
+  <a href={withBasePath('contribute/', base)}>Suggest a tool or fix</a>
+  <a href={brand.repositoryUrl}>GitHub</a>
+  <a href={brand.homeUrl}>{brand.name}</a>
 </nav>
 <Footer />

@@ -52,11 +52,11 @@ describe('readableLabel', () => {
     expect(readableLabel('operations-manager')).toBe('Operations Manager');
     expect(readableLabel('oss-osi-approved')).toBe('Open Source — Free Software');
     expect(readableLabel('managed-saas')).toBe('Hosted service');
-    expect(readableLabel('research-backlog')).toBe('Research backlog');
+    expect(readableLabel('research-backlog')).toBe('Not yet reviewed');
   });
 
-  it('never relabels research backlog as Verified Core', () => {
-    expect(readableLabel('research-backlog')).not.toBe('Verified Core');
+  it('never relabels research backlog as fully verified', () => {
+    expect(readableLabel('research-backlog')).not.toBe('Fully verified');
   });
 });
 

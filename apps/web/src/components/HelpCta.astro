@@ -1,0 +1,26 @@
+---
+import { brand } from '../data/brand';
+
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+<aside class:list={['ocs-help-cta', 'not-content', { 'ocs-help-cta--compact': compact }]} aria-labelledby={compact ? undefined : 'help-cta-title'} aria-label={compact ? 'Get help from CoworkingSpace.ai' : undefined}>
+  <div>
+    {compact ? (
+      <p class="ocs-help-cta__title">Want these tools set up for you?</p>
+    ) : (
+      <h2 id="help-cta-title">Rather have someone set it up for you?</h2>
+    )}
+    <p>
+      {compact
+        ? 'CoworkingSpace.ai helps operators pick, install and connect the right tools for their space.'
+        : 'CoworkingSpace.ai helps coworking operators choose, install and connect these tools: tour booking, CRM, room booking, billing, member communication and automation. Tell us how your space runs and we will suggest a practical starting stack.'}
+    </p>
+  </div>
+  <div class="ocs-help-cta__actions">
+    <a class="ocs-button ocs-button--primary" href={brand.helpUrl}>{brand.helpLabel}</a>
+    {!compact && <a class="ocs-text-link" href={brand.homeUrl}>What CoworkingSpace.ai does</a>}
+  </div>
+</aside>

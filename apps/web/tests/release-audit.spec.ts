@@ -49,7 +49,7 @@ for (const width of widths) {
 test.describe('operator journey', () => {
   test('home page leads with tools and preserves the Start Here pathway', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'Browse Tools', exact: true }).click();
+    await page.getByRole('link', { name: 'Browse the free tools', exact: true }).click();
     await expect(page.locator('[data-ocs-directory]')).toBeVisible();
     await page.goto('/start/start-here/');
     await expect(

@@ -52,7 +52,7 @@ test('makes the results region reachable by keyboard', async ({ page }) => {
   await page.keyboard.press('Tab');
   await expect(page.getByLabel('Difficulty')).toBeFocused();
   await page.keyboard.press('Tab');
-  await expect(page.getByLabel('Research tier')).toBeFocused();
+  await expect(page.getByLabel('Review status')).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.getByLabel('Cost model')).toBeFocused();
   await page.keyboard.press('Tab');
@@ -78,13 +78,13 @@ test('uses readable labels and keeps research signals separate', async ({ page }
     'Hosted service',
   );
   await expect(
-    page.getByLabel('Research tier').locator('option[value="research-backlog"]'),
-  ).toHaveText('Research backlog');
+    page.getByLabel('Review status').locator('option[value="research-backlog"]'),
+  ).toHaveText('Not yet reviewed');
 
   await page.getByRole('searchbox', { name: 'Search tools' }).fill('activepieces');
   const result = page.locator('[data-tool-id="activepieces"]:visible');
-  await expect(result).toContainText('Research backlog');
-  await expect(result).not.toContainText('Verified Core');
+  await expect(result).toContainText('Not yet reviewed');
+  await expect(result).not.toContainText('Fully verified');
   await expect(result).toContainText('Planned, not published');
 });
 
@@ -96,15 +96,14 @@ test('presents operator cards on mobile with honest task-fit gaps', async ({ pag
   const card = page.locator('.ocs-operator-card[data-tool-id="activepieces"]');
   await expect(card).toBeVisible();
   await expect(page.locator('.ocs-table-wrap')).toBeHidden();
-  await card.getByText('Operator fit and human oversight', { exact: true }).click();
-  await expect(card).toContainText('Role assisted');
-  await expect(card).toContainText('Task fit not reviewed');
-  await expect(card).toContainText('Manual task replaced');
-  await expect(card).toContainText('No reviewed manual-task replacement claim');
-  await expect(card).toContainText('Human work');
+  await card.getByText('Who it helps and what your team still does', { exact: true }).click();
+  await expect(card).toContainText('Helps');
+  await expect(card).toContainText('Not reviewed yet');
+  await expect(card).toContainText('Manual work it cuts down');
+  await expect(card).toContainText('Still done by your team');
   await expect(card).toContainText('Skill');
   await expect(card).toContainText('Maintenance');
-  await expect(card).toContainText('Pilot difficulty');
+  await expect(card).toContainText('Setup difficulty');
 });
 
 for (const width of [320, 375, 414, 768]) {
@@ -123,7 +122,7 @@ test('category shortcuts, review groups, empty state and reset share one URL sta
   page,
 }) => {
   await page.getByRole('button', { name: 'Marketing & SEO', exact: true }).click();
-  await page.getByRole('button', { name: /^More Tools to Explore/ }).click();
+  await page.getByRole('button', { name: /^Not yet reviewed/ }).click();
   await expect(page).toHaveURL(/collection=marketing-seo.*tier=research-backlog/);
   await page.reload();
   await expect(page.getByRole('button', { name: 'Marketing & SEO', exact: true })).toHaveAttribute(
@@ -154,20 +153,20 @@ for (const [name, id, category] of [
   test(`October candidate ${name} survives generation, search and filters`, async ({ page }) => {
     await page.getByRole('searchbox', { name: 'Search tools' }).fill(name);
     await page.getByRole('combobox', { name: 'Category', exact: true }).selectOption(category);
-    await page.getByLabel('Research tier').selectOption('research-backlog');
+    await page.getByLabel('Review status').selectOption('research-backlog');
     const card = page.locator(`.ocs-operator-card[data-tool-id="${id}"]`);
     await expect(card).toBeVisible();
-    await expect(card).toContainText('Research backlog');
+    await expect(card).toContainText('Not yet reviewed');
     await expect(
-      card.getByRole('link', { name: `Visit Website for ${name}`, exact: true }),
+      card.getByRole('link', { name: `Official site for ${name}`, exact: true }),
     ).toHaveAttribute('href', /^https:\/\//);
     await expect(
-      card.getByRole('link', { name: `View Source for ${name}`, exact: true }),
+      card.getByRole('link', { name: `Source code for ${name}`, exact: true }),
     ).toHaveAttribute('href', /^https:\/\/github.com\//);
     await expect(
-      card.getByRole('link', { name: `Read Guide for ${name}`, exact: true }),
+      card.getByRole('link', { name: `Setup guide for ${name}`, exact: true }),
     ).toHaveCount(0);
-    await card.getByRole('link', { name: `More Details for ${name}`, exact: true }).click();
+    await card.getByRole('link', { name: `Full listing for ${name}`, exact: true }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(name);
   });
 }

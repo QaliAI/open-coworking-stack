@@ -1,193 +1,98 @@
 ---
-title: Free & Open-Source Tools for Coworking Spaces
-description: A free directory of coworking software, open-source tools, self-hosted alternatives, free-tier software and commercial comparisons.
+title: Free software to run your coworking space
+description: A free, curated list of open-source and free software for coworking spaces, with plain-English setup guides, honest cost notes and side-by-side comparisons.
 template: splash
 pagination: false
 hero:
-  tagline: Explore free and open-source tools, self-hosted alternatives, free-tier software and commercial comparisons for coworking spaces. Find practical options for CRM, tours, bookings, meeting rooms, e-signatures, marketing, events, accounting and member experience.
-  actions:
-    - text: Browse Tools
-      link: ./directory/
-      icon: right-arrow
-      variant: primary
-    - text: Build My Tech Stack
-      link: ./stack-builder/
-      icon: setting
-      variant: secondary
-    - text: Estimate capacity and payback
-      link: ./roi-calculator/
-      icon: open-book
-      variant: minimal
+  tagline: Free and open-source tools for tours, room booking, billing, member communication and day-to-day operations. Each listing explains what the tool does for a coworking space, what it really costs and how hard it is to set up.
 ---
 
-import catalog from '../../../public/data/catalog.json';
-import { categoryShortcuts } from '../../utils/catalog';
+import FeaturedTools from '../../components/FeaturedTools.astro';
+import HelpCta from '../../components/HelpCta.astro';
+import HomeJobs from '../../components/HomeJobs.astro';
 
-Free to browse. No account needed. Listings include paid products and paid features; check the
-license and cost labels before choosing. Self-hosted software still needs hosting and maintenance.
+## What do you need help with?
 
-## Find tools for your space
+Pick the job that takes up your team's time. Each one opens the tools that handle it.
 
-<div class="ocs-category-shortcuts">
-  {categoryShortcuts.map((item) => (
-    <a href={`./directory/?collection=${item.id}`}>{item.label}</a>
-  ))}
-</div>
+<HomeJobs />
 
-New to choosing software? Start with the [operator pathway](./start/start-here/).
+## Good places to start
 
-Already have a task in mind? [Explore every resource library](./library/): installation guides,
-workflows, operator tasks, roles, comparisons, reference stacks and integration recipes.
+These tools have been reviewed in depth and each one has a step-by-step setup guide.
 
-<div class="ocs-home-ledger" aria-label="Current catalog status">
-  <div>
-    <strong>{catalog.tool_count}</strong>
-    <span>tool records</span>
-  </div>
-  <div>
-    <strong>{catalog.tools.filter((tool) => tool.verification_tier === 'evaluated').length}</strong>
-    <span>evaluated tools</span>
-  </div>
-  <div>
-    <strong>
-      {catalog.tools.filter((tool) => tool.verification_tier === 'research-backlog').length}
-    </strong>
-    <span>more tools to explore</span>
-  </div>
-  <div>
-    <strong>
-      {catalog.tools.filter((tool) => tool.verification_tier === 'verified-core').length}
-    </strong>
-    <span>Verified Core tools</span>
-  </div>
-</div>
+<FeaturedTools />
 
-<p class="ocs-home-ledger-note">
-  Catalog generated {catalog.generated_at.slice(0, 10)}. Individual tools have their own
-  verification dates. Commercial comparisons:{' '}
-  {catalog.tools.filter((tool) => tool.verification_tier === 'commercial-benchmark').length}.
+<p class="ocs-section-link">
+  <a href="./directory/">See all the tools</a>
 </p>
 
-## What this is
+## How to use this site
 
-A directory of software for coworking and flexible-workspace operators. Each record states the
-**license type** (truly open source, source-available, or proprietary), the **cost model**, the
-**human work that stays with your team**, and an installation guide where one exists. There is no
-paid placement in the listings. If you are new, begin with the
-[operator pathway](./start/start-here/).
+<ol class="ocs-steps">
+  <li>
+    <strong>Pick one job.</strong> Start with the task that eats the most time: tour booking, room
+    booking, invoices or the member newsletter. Don't try to replace everything at once.
+  </li>
+  <li>
+    <strong>Compare a few options.</strong> Every listing shows the price, whether you need your own
+    server, how hard setup is and what your team still handles by hand. The{' '}
+    <a href="./comparisons/">side-by-side comparisons</a> help you choose.
+  </li>
+  <li>
+    <strong>Try it small.</strong> Test with one location, a few friendly members or dummy data
+    before you move everyone over. The <a href="./guides/">setup guides</a> walk you through it.
+  </li>
+</ol>
 
-## Start with the outcome
+## Good to know before you pick
 
-<div class="ocs-outcome-list">
-  <article>
-    <div>
-      <h3>Reduce repeated operator admin</h3>
-      <p>
-        Find tools for repeated booking, invoicing and follow-up tasks, with the decisions your team
-        still needs to make.
-      </p>
-    </div>
-    <a href="./directory/?problem=reduce-manual-admin">Review admin tools</a>
-  </article>
-  <article>
-    <div>
-      <h3>Control software cost without hiding labor</h3>
-      <p>
-        Compare license, hosting model, pilot difficulty, and maintenance boundaries before treating
-        a free tier as a low-cost system.
-      </p>
-    </div>
-    <a href="./ops/cost-model/">Plan total cost</a>
-  </article>
-  <article>
-    <div>
-      <h3>Improve one member journey</h3>
-      <p>
-        Follow an operating workflow, assign human owners, and test one stage instead of replacing
-        the whole stack at once.
-      </p>
-    </div>
-    <a href="./workflows/member-onboarding/">Open onboarding</a>
-  </article>
-  <article>
-    <div>
-      <h3>Run a bounded pilot</h3>
-      <p>
-        Use the directory to find an evaluated fit, then open its record for evidence, risks, and
-        the smallest useful experiment.
-      </p>
-    </div>
-    <a href="./directory/?tier=evaluated">Find evaluated fits</a>
-  </article>
-</div>
+<ul class="ocs-notes">
+  <li>
+    <strong>Free doesn't mean zero work.</strong> Open-source tools are free to use, but if you host
+    them yourself you need a server and someone to keep them updated and backed up.
+  </li>
+  <li>
+    <strong>Paid tools are labelled.</strong> Some listings are paid products or have paid upgrades.
+    They are included so you can compare, and every listing shows its cost.
+  </li>
+  <li>
+    <strong>Some listings are still being checked.</strong> Tools marked "Not yet reviewed" look
+    promising, but confirm pricing and features on the official site before you commit.
+  </li>
+  <li>
+    <strong>Nobody pays to be listed.</strong> Listings are not ads. Prices and plans change, so
+    always confirm on the official site.
+  </li>
+</ul>
 
-## Choose your working view
+<HelpCta />
 
-<div class="ocs-workbench-links">
-  <article>
-    <span>By task</span>
-    <strong>Start with work that needs changing</strong>
-    <a href="./tasks/generated/manage-room-bookings/">Browse tasks</a>
-  </article>
-  <article>
-    <span>By role</span>
-    <strong>Find tools for your team's responsibilities</strong>
-    <a href="./roles/generated/owner-operator/">Browse roles</a>
-  </article>
-  <article>
-    <span>By evidence</span>
-    <strong>See which tools have been reviewed and have guides</strong>
-    <a href="./directory/">Browse reviewed tools</a>
-  </article>
-  <article>
-    <span>By trade-off</span>
-    <strong>Compare options for the same coworking task</strong>
-    <a href="./comparisons/">Compare tools</a>
-  </article>
-</div>
+## More ways to dig in
 
-## Current limits
-
-<aside class="ocs-limitations" id="not-yet-available">
-  <h3>This is a decision aid, not a completed verification program</h3>
-  <ul>
-    <li>
-      <strong>
-        {catalog.tools.filter((tool) => tool.verification_tier === 'verified-core').length === 0
-          ? 'No Verified Core tools yet.'
-          : 'Few tools are Verified Core.'}
-      </strong>{' '}
-      Research-backlog entries are not promoted by a recent date or a high rank score.
-    </li>
-    <li>
-      <strong>Task-fit coverage is partial.</strong> Cards say “Task fit not reviewed” where
-      structured role, manual-process, and human-work review is absent.
-    </li>
-    <li>
-      <strong>Guide states are literal.</strong> A planned guide is not linked or described as
-      complete; a stub is identified as a stub.
-    </li>
-    <li>
-      <strong>Builder and estimator outputs are directional.</strong> They use editable assumptions,
-      not current quotes or proof of savings. No staffing reduction or payback is implied.
-    </li>
-    <li>
-      <strong>Comparisons are directional.</strong> Re-check official licensing, pricing, security,
-      and deployment sources before a production decision.
-    </li>
-  </ul>
-</aside>
-
-## A practical first pass
-
-1. Name one manual task and the staff member accountable for its outcome.
-2. [Filter the directory](./directory/) by role, task language, deployment, and research tier.
-3. Read the human-work and confidence fields before comparing product features.
-4. Run one smallest useful experiment with synthetic or low-risk data.
-5. Keep an exit path and a person responsible for exceptions, security, and recovery.
-
-## Maintained in public
-
-Open Coworking Stack is maintained by [QaliAI on GitHub](https://github.com/QaliAI/open-coworking-stack).
-[Suggest a correction or contribute a tool](./contribute/). For related coworking services, visit
-[CoworkingSpace.ai](https://www.coworkingspace.ai/).
+<ul class="ocs-more-links">
+  <li>
+    <a href="./stack-builder/">Build my tech stack</a>
+    <span>Answer a few questions and get a suggested set of tools.</span>
+  </li>
+  <li>
+    <a href="./stacks/">Ready-made stacks</a>
+    <span>Example tool combinations for different kinds of spaces.</span>
+  </li>
+  <li>
+    <a href="./comparisons/">Side-by-side comparisons</a>
+    <span>See how similar tools stack up for the same job.</span>
+  </li>
+  <li>
+    <a href="./roi-calculator/">Cost and time estimator</a>
+    <span>Rough hosting, upkeep and staff-time numbers for a tool.</span>
+  </li>
+  <li>
+    <a href="./workflows/">Workflows</a>
+    <span>Step-by-step processes like member onboarding and tour to signed agreement.</span>
+  </li>
+  <li>
+    <a href="./contribute/">Suggest a tool or a fix</a>
+    <span>Know a tool we missed or spot something out of date? Tell us.</span>
+  </li>
+</ul>
