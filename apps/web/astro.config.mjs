@@ -138,6 +138,7 @@ export default defineConfig({
         },
       ],
       head: [
+        { tag: 'script', attrs: { src: `${base}/portfolio-analytics.js`, defer: 'true' } },
         {
           tag: 'meta',
           attrs: {
