@@ -1,5 +1,7 @@
 (() => {
   if (location.hostname !== 'open-coworking-stack.vercel.app') return;
+  if (document.documentElement.dataset.ocsAnalyticsInitialized) return;
+  document.documentElement.dataset.ocsAnalyticsInitialized = 'true';
   const id = 'G-P123CVWY99';
   const key = 'ocs:google-analytics-consent:v1';
   let sent = false;
@@ -36,6 +38,7 @@
       window.gtag ||= function () {
         window.dataLayer.push(arguments);
       };
+      window.gtag('set', 'send_page_view', false);
       window.gtag('consent', 'update', {
         analytics_storage: 'granted',
         ad_storage: 'denied',
