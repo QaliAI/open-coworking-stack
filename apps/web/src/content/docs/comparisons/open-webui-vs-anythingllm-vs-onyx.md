@@ -6,11 +6,11 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Tool        | Evaluation lane                                 | Evidence status           |
-| ----------- | ----------------------------------------------- | ------------------------- |
-| Open WebUI  | General model chat interface                    | Partial; no catalog entry |
+| Tool                                              | Evaluation lane                                 | Evidence status                          |
+| ------------------------------------------------- | ----------------------------------------------- | ---------------------------------------- |
+| Open WebUI                                        | General model chat interface                    | Partial; no catalog entry                |
 | [AnythingLLM](../../tools/generated/anythingllm/) | Workspace-oriented chat and retrieval interface | Cataloged; partial; no tested deployment |
-| Onyx        | Workplace search and assistant interface        | Partial; no catalog entry |
+| Onyx                                              | Workplace search and assistant interface        | Partial; no catalog entry                |
 
 No quality, privacy, or connector parity is established. Results also depend on the chosen model,
 embedding service, retrieval configuration, source quality, and deployment.
