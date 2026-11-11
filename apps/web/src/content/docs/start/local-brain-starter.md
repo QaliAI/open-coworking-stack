@@ -67,8 +67,8 @@ location manager; do not guess or disclose their needs.
 
 **Status:** TRAINING EXAMPLE — NOT APPROVED
 
-For a contested meeting-room booking, check the *actual system of
-record* for the room, date, time zone, reservation status and booking
+For a contested meeting-room booking, check the _actual system of
+record_ for the room, date, time zone, reservation status and booking
 ID. A calendar screenshot alone may be out of date. Do not cancel
 either booking or promise the room without an authorized owner
 reviewing the records.
