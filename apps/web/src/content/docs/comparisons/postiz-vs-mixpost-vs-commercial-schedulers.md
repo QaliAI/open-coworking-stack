@@ -6,11 +6,11 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Option                | Evaluation lane                      | Evidence status |
-| --------------------- | ------------------------------------ | --------------- |
-| [Postiz](../../tools/generated/postiz/) | Self-hosted or hosted social scheduling | Cataloged; partial |
-| [Mixpost Lite](../../tools/generated/mixpost-lite/) | Self-hosted scheduling with edition-limited network support | Cataloged; partial |
-| Commercial schedulers | Managed publishing and collaboration | Not established until a named vendor and plan are assessed |
+| Option                                              | Evaluation lane                                             | Evidence status                                            |
+| --------------------------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------- |
+| [Postiz](../../tools/generated/postiz/)             | Self-hosted or hosted social scheduling                     | Cataloged; partial                                         |
+| [Mixpost Lite](../../tools/generated/mixpost-lite/) | Self-hosted scheduling with edition-limited network support | Cataloged; partial                                         |
+| Commercial schedulers                               | Managed publishing and collaboration                        | Not established until a named vendor and plan are assessed |
 
 ## Operator profiles
 
