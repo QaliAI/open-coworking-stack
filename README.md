@@ -1,6 +1,6 @@
 # Open Coworking Stack
 
-**Free and open-source software for running a coworking space, explained in plain English.**
+**Free, freemium, open-source and selected paid software for coworking operators—compared in plain English.**
 
 A free resource from [CoworkingSpace.ai](https://www.coworkingspace.ai/).
 
@@ -59,6 +59,31 @@ These tools have been reviewed in depth and each has a step-by-step setup guide.
 | Connect your apps so data moves on its own  | [n8n](https://open-coworking-stack.vercel.app/guides/tools/n8n/)                 | Free core, paid extras   |
 | See how people find your website            | [Umami](https://open-coworking-stack.vercel.app/guides/tools/umami/)             | Free plan, paid upgrades |
 | Share staff passwords safely                | [Vaultwarden](https://open-coworking-stack.vercel.app/guides/tools/vaultwarden/) | Free, you host it        |
+
+## A first win in 10 minutes: improve tour booking
+
+You don't need to replace your workspace management system to start. Here's a small, reversible exercise:
+
+1. **Write down your present process.** Where does a new inquiry request a tour today? Who confirms it, and what happens if they do not show? If you don't know, ask the person handling inquiries before changing anything.
+2. **Choose one test path.** Read the [Cal.com tour-scheduling guide](https://open-coworking-stack.vercel.app/guides/tools/cal-com/) and compare its available features, plan restrictions, privacy terms and total operating costs with your existing booking tool. Do not assume a feature is free or supported on your chosen plan.
+3. **Design one appointment type.** Define the location and tour duration, booking lead time, time zone, a buffer between tours, and the responsible team member. Use a fictional prospect for testing.
+4. **Perform an end-to-end dry run.** Verify booking availability, confirmation, staff notification, calendar visibility, cancellation and rescheduling. If any step fails, keep your existing process.
+5. **Measure before changing the process.** Track inquiries, tours booked, tours attended, and the time staff spend scheduling over the same stated period. Don't infer higher conversions from a single test booking.
+
+**Expected outcome:** a verified tour-booking checklist and a go/no-go decision—not a promise that the software is already configured or will improve conversion.
+
+Want an AI-assisted review of neglected inquiries instead? Try the [no-code pipeline-health demonstration](https://github.com/QaliAI/open-coworking-skills/blob/main/docs/getting-started/operator-quickstart.md). It uses fictional data and never needs CRM access.
+
+## Pick a tool based on your operating constraints
+
+Before following any recommendation, record these four facts:
+
+- **Existing system:** Your current workspace-management, CRM, billing and access tools. Prefer a working existing feature over another disconnected subscription.
+- **Owner of the task:** Who will configure, maintain, back up and troubleshoot it? Self-hosted software is not maintenance-free.
+- **True cost:** Subscription, hosting, email/SMS delivery, data migration, monitoring, backups, staff time and vendor support—not just the license price.
+- **Failure and exit plan:** What happens to inquiries, bookings, payments and member access if this tool is down, stops being free or is discontinued? Check data export before committing.
+
+Recommendations are research aids; the directory does not verify your specific integration, regulatory requirements or current vendor plan until you test them.
 
 ## How to use it
 
