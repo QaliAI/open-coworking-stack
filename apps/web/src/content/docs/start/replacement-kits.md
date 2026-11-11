@@ -157,18 +157,18 @@ entire proprietary index, free DataForSEO access or guaranteed rankings.
 
 Record the following **before** connecting live records:
 
-| Field                                     | Your answer                                               |
-| ----------------------------------------- | --------------------------------------------------------- |
-| Which member or staff problem?            | One job with a measurable outcome                         |
-| Current software that already handles it? | Keep, configure, or replace                               |
-| Location(s) and products?                 | Office, desk, meeting room, day pass, VO                  |
-| Source of truth?                          | WMS, CRM, accounting, approved policy repository          |
-| Human owner and escalation?               | Named role and exception path                             |
-| Staff technical capacity?                 | None, basic administrator, experienced self-host          |
-| Data permission?                          | Synthetic, pre-redacted, or authorized live data          |
-| Safe pilot and acceptance criteria?       | Measured pass/fail on an actual workflow                  |
-| Running and exit cost?                    | Licenses, hosting, API calls, support, migration, exports |
-| Rollback?                                 | Old workflow remains available if test fails              |
+**Customization worksheet:**
+
+- **Problem:** one member or staff job and the desired outcome
+- **Existing software:** what already does it; keep, configure or replace
+- **Location/product:** office, desk, meeting room, day pass or virtual office
+- **Source of truth:** approved WMS, CRM, accounting or policy record
+- **Human owner:** who approves and escalates failures
+- **Technical capacity:** none, basic administrator or experienced self-hosting
+- **Data permission:** synthetic, pre-redacted or authorized live records
+- **Safe pilot:** named scenario with measurable pass/fail result
+- **Cost and exit:** licenses, hosting, API, support, migration and exports
+- **Fallback:** the existing process if the pilot fails
 
 **What this library does not yet provide:** one-click, fully tested
 coworking-branded production deployments for these kits, automatic
