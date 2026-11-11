@@ -18,6 +18,8 @@ limits, and edition-specific entitlements are intentionally omitted.
 | **Due-diligence worksheet** | Evaluation structure with minimal established evidence. Use as a test-script template.                   |
 | **Research backlog**        | Topic identified; no published comparison yet.                                                           |
 
+- [2026 coworking software shortlist — suites, booking and access](./2026-platform-and-access-shortlist/) — Due-diligence worksheet; official vendor evidence checked November 2026
+
 ## Coworking platform strategy
 
 - [Dedicated coworking SaaS vs hybrid vs modular self-host](./dedicated-coworking-saas-vs-hybrid-vs-modular-self-host/) — Directional shortlist
