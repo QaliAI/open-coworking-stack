@@ -1,8 +1,11 @@
 schema_version: 1.0.0
 id: kisi
-name: "Kisi"
-tagline: "Commercial door access management and hardware for flex workspaces"
-description: "Proprietary physical-access platform used alongside coworking management systems, not a replacement for membership billing or CRM. Requires evaluation of door hardware, offline entry, emergency procedures, subscription-to-permission sync and administrator access."
+name: Kisi
+tagline: Commercial door access management and hardware for flex workspaces
+description: Proprietary physical-access platform used alongside coworking management systems, not a
+  replacement for membership billing or CRM. Requires evaluation of door hardware,
+  offline entry, emergency procedures, subscription-to-permission sync and administrator
+  access.
 status: active
 categories:
   - access-control
@@ -26,12 +29,14 @@ license:
   class: proprietary
   name: Proprietary commercial product
   source_url: https://www.getkisi.com/pricing/coworking-flex
-  notes: "This covers the hosted commercial offering, not any open-source license. Verify the signed terms, edition and data processing agreement."
+  notes: This covers the hosted commercial offering, not any open-source license. Verify the signed
+    terms, edition and data processing agreement.
   verified_on: 2026-11-11
 cost:
   model: hardware-plus-software
-  summary: "Paid access software with hardware and installation costs; price the actual doors, credentials, locations and integration add-ons."
-  currency_caveat: "No live quote has been obtained. Do not use directory text as a price commitment."
+  summary: Paid access software with hardware and installation costs; price the actual doors,
+    credentials, locations and integration add-ons.
+  currency_caveat: No live quote has been obtained. Do not use directory text as a price commitment.
   confidence: partially-verified
 implementation:
   difficulty: hard
@@ -40,7 +45,9 @@ implementation:
     - physical-access-administration
     - privacy-and-permissions-review
     - vendor-contract-and-export-review
-  smallest_useful_experiment: "Use test credentials to verify one activation, one expiry, one booking-based grant and offline/emergency entry with the building security lead."
+  smallest_useful_experiment: Use test credentials to verify one activation, one expiry, one
+    booking-based grant and offline/emergency entry with the building
+    security lead.
 homepage: https://www.getkisi.com/
 documentation: https://www.getkisi.com/pricing/coworking-flex
 links:
@@ -51,24 +58,29 @@ links:
     url: https://www.getkisi.com/integrations/nexudus
     kind: other
 tasks_reduced_or_augmented:
-  - "Commercial door access management and hardware for flex workspaces"
+  - Commercial door access management and hardware for flex workspaces
 human_oversight_still_needed:
-  - "Door hardware and life-safety approval"
-  - "Manual recovery and access audit"
+  - Door hardware and life-safety approval
+  - Manual recovery and access audit
 data_privacy:
   data_held:
-    - "access credentials"
-    - "door events"
-    - "staff and member identifiers"
+    - access credentials
+    - door events
+    - staff and member identifiers
   personal_data: true
   payment_data: false
-  notes: "Operator must verify actual data flows, permissions, security terms and export/deletion support with the vendor."
+  notes: Operator must verify actual data flows, permissions, security terms and export/deletion
+    support with the vendor.
 risks:
-  vendor_lock_in: "Demand a full sample export and test the termination and migration route before a long contract."
-  security: "Validate life-safety and emergency operations, credential removal, administrator recovery and offline access under the actual building's requirements."
-  compliance: "Local contract, privacy, tax, accessibility and building requirements require operator review."
-  licensing: "Proprietary commercial terms. Do not call this product open-source."
-  operational: "Test failure modes and handover responsibilities; vendor marketing does not establish a successful integration."
+  vendor_lock_in: Demand a full sample export and test the termination and migration route before a
+    long contract.
+  security: Validate life-safety and emergency operations, credential removal, administrator
+    recovery and offline access under the actual building's requirements.
+  compliance: Local contract, privacy, tax, accessibility and building requirements require operator
+    review.
+  licensing: Proprietary commercial terms. Do not call this product open-source.
+  operational: Test failure modes and handover responsibilities; vendor marketing does not establish
+    a successful integration.
 integrations: []
 related_tools: []
 guide_status: none
@@ -79,7 +91,9 @@ verification:
   sources:
     - https://www.getkisi.com/pricing/coworking-flex
     - https://www.getkisi.com/integrations/nexudus
-  notes: "Official product pages were reviewed for high-level product positioning only on 2026-11-11. No sandbox, runtime, edition-specific contract, integration, security certification or price quote independently verified."
+  notes: Official product pages were reviewed for high-level product positioning only on 2026-11-11.
+    No sandbox, runtime, edition-specific contract, integration, security certification or
+    price quote independently verified.
   reviewer: open-coworking-editorial-review
   completeness: metadata-verified
   confidence: low
@@ -88,6 +102,6 @@ verification:
     - kind: homepage
       source: https://www.getkisi.com/pricing/coworking-flex
       verified_on: 2026-11-11
-      notes: "Vendor-stated scope of features, not independently tested."
+      notes: Vendor-stated scope of features, not independently tested.
 featured: false
 rank_score: 50
