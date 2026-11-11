@@ -9,7 +9,7 @@ page_classification: Due-diligence worksheet
 | Tool        | Evaluation lane                                 | Evidence status           |
 | ----------- | ----------------------------------------------- | ------------------------- |
 | Open WebUI  | General model chat interface                    | Partial; no catalog entry |
-| AnythingLLM | Workspace-oriented chat and retrieval interface | Partial; no catalog entry |
+| [AnythingLLM](../../tools/generated/anythingllm/) | Workspace-oriented chat and retrieval interface | Cataloged; partial; no tested deployment |
 | Onyx        | Workplace search and assistant interface        | Partial; no catalog entry |
 
 No quality, privacy, or connector parity is established. Results also depend on the chosen model,
@@ -70,6 +70,8 @@ current repository license, branding clauses, connector terms, model licenses, a
 Maintain models, connectors, indexes, permissions, evaluations, prompt templates, usage controls,
 logs, upgrades, backups, source deletion, and a non-AI fallback.
 
+For a bounded beginner walkthrough, see the [Coworking Replacement Kits](../../start/replacement-kits/). A wiki with approved policies is the source of truth; an AI retrieval layer only helps people find and interpret that content. Missing and conflicting documents must not become fabricated answers.
+
 ## Scenario recommendations
 
 Pilot a non-sensitive, read-only SOP collection with known-answer, unknown-answer, conflicting-source,
@@ -82,7 +84,7 @@ can act without approval, or present generated output as policy or professional 
 
 ## Verification
 
-Verified on **2026-07-18**. Model support, connectors, licenses, prices, free limits, security claims,
+Originally reviewed on **2026-07-18**; AnythingLLM was added to the catalog on **2026-11-11**. Model support, connectors, licenses, prices, free limits, security claims,
 and integrations are `partial` or `not established`.
 
 ## Official sources
