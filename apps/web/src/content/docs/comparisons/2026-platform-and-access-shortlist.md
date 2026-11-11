@@ -22,13 +22,13 @@ Ask **what problem needs fixing in the next 30 days**:
 
 These listings have **commercial benchmark / partially verified** status; they have not been sandbox-tested or independently evaluated for the operator's edition.
 
-| Product and official evidence | Coworking job to evaluate | Don't assume |
-| --- | --- | --- |
-| [Spacebring](https://www.spacebring.com/features) ([catalog record](../../tools/generated/spacebring/)) | Billing, memberships, bookings, member experience, and [integration options](https://www.spacebring.com/integrations) | That every integration, AI action or feature is included in your plan |
-| [Archie](https://archieapp.co/coworking-software) ([catalog record](../../tools/generated/archie/)) | Coworking sales and member workflows, resource booking, billing, visitor and delivery handling | That contract, visitor, delivery or accounting workflows work in your own environment |
-| [Yardi Kube](https://www.yardikube.com/) ([catalog record](../../tools/generated/yardi-kube/)) | Member, billing, booking and Wi-Fi operations, especially multi-site and managed-network contexts | That the quoted edition includes every module or integrates with an existing property/accounting system |
-| [Kisi](https://www.getkisi.com/pricing/coworking-flex) ([catalog record](../../tools/generated/kisi/)) | Physical access, membership-related credential provisioning, hardware, offline and emergency access | That a vendor integration logo proves it will revoke access reliably or meets building life-safety requirements |
-| [Skedda](https://www.skedda.com/platform/meeting-room-booking-system) ([catalog record](../../tools/generated/skedda/)) | Desk/room booking, scheduling rules, conflict prevention and usage analysis | That it replaces membership billing, member CRM or door-access software |
+| Product and official evidence                                                                                           | Coworking job to evaluate                                                                                             | Don't assume                                                                                                    |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [Spacebring](https://www.spacebring.com/features) ([catalog record](../../tools/generated/spacebring/))                 | Billing, memberships, bookings, member experience, and [integration options](https://www.spacebring.com/integrations) | That every integration, AI action or feature is included in your plan                                           |
+| [Archie](https://archieapp.co/coworking-software) ([catalog record](../../tools/generated/archie/))                     | Coworking sales and member workflows, resource booking, billing, visitor and delivery handling                        | That contract, visitor, delivery or accounting workflows work in your own environment                           |
+| [Yardi Kube](https://www.yardikube.com/) ([catalog record](../../tools/generated/yardi-kube/))                          | Member, billing, booking and Wi-Fi operations, especially multi-site and managed-network contexts                     | That the quoted edition includes every module or integrates with an existing property/accounting system         |
+| [Kisi](https://www.getkisi.com/pricing/coworking-flex) ([catalog record](../../tools/generated/kisi/))                  | Physical access, membership-related credential provisioning, hardware, offline and emergency access                   | That a vendor integration logo proves it will revoke access reliably or meets building life-safety requirements |
+| [Skedda](https://www.skedda.com/platform/meeting-room-booking-system) ([catalog record](../../tools/generated/skedda/)) | Desk/room booking, scheduling rules, conflict prevention and usage analysis                                           | That it replaces membership billing, member CRM or door-access software                                         |
 
 The existing [OfficeRnD, Nexudus, Cobot and Optix comparison](../officernd-vs-nexudus-vs-cobot-vs-optix/) remains useful as a separate **partial-evidence worksheet**. These are nine evaluation candidates, not nine equally comparable solutions. Kisi is an access-control layer and Skedda is primarily a booking specialist; do not score them as full coworking suites.
 
@@ -36,12 +36,12 @@ Other worthwhile research candidates include Coworks, Proximity, and other regio
 
 ## Four operator profiles — and what to test
 
-| Operator | First priority | Pilot |
-| --- | --- | --- |
-| Single location, owner at front desk | One owner, simple training, accessible support, clear export and total price | Run a day-pass, a room booking, a recurring invoice and a cancellation with fictional records |
-| Sales-led private-office location | Lead-to-tour-to-contract continuity and suite availability | Run a sourced inquiry, tour, proposal, signed agreement, deposit/billing and CRM reconciliation |
-| Multi-location group | Cross-site permissions, portfolio metrics, accounting accuracy and migration | Create the same product in two sites, move a test member, reconcile reports and confirm permissions |
-| Virtual office / mail-heavy operator | Package chain of custody, pickup authority, partner billing and member privacy | Log a fictional delivery, notify, verify pickup, reconcile partner invoicing and test exceptions |
+| Operator                             | First priority                                                                 | Pilot                                                                                               |
+| ------------------------------------ | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| Single location, owner at front desk | One owner, simple training, accessible support, clear export and total price   | Run a day-pass, a room booking, a recurring invoice and a cancellation with fictional records       |
+| Sales-led private-office location    | Lead-to-tour-to-contract continuity and suite availability                     | Run a sourced inquiry, tour, proposal, signed agreement, deposit/billing and CRM reconciliation     |
+| Multi-location group                 | Cross-site permissions, portfolio metrics, accounting accuracy and migration   | Create the same product in two sites, move a test member, reconcile reports and confirm permissions |
+| Virtual office / mail-heavy operator | Package chain of custody, pickup authority, partner billing and member privacy | Log a fictional delivery, notify, verify pickup, reconcile partner invoicing and test exceptions    |
 
 ## The same scripted trial for every shortlisted **full coworking suite**
 
