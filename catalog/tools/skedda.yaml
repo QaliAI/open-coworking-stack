@@ -1,0 +1,105 @@
+schema_version: 1.0.0
+id: skedda
+name: Skedda
+tagline: Commercial room and desk booking platform with rules and interactive floor plans
+description: Proprietary hosted specialist for scheduling desks, meeting rooms and other bookable
+  spaces. It is not evidence of a complete coworking membership, recurring-billing or
+  door-access stack; validate those functions separately where needed.
+status: active
+categories:
+  - booking-scheduling
+secondary_categories: []
+roles:
+  - operations-manager
+  - community-manager
+  - technical-operator
+workflows:
+  - room-booking
+  - desk-hot-desk
+problems:
+  - fill-meeting-rooms
+  - measure-utilization
+  - reduce-manual-admin
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: proprietary
+  name: Proprietary commercial product
+  source_url: https://www.skedda.com/platform/meeting-room-booking-system
+  notes: This covers the hosted commercial offering, not any open-source license. Verify the signed
+    terms, edition and data processing agreement.
+  verified_on: 2026-11-11
+cost:
+  model: subscription
+  summary: Paid hosted service. Obtain current written edition-specific pricing, limits and add-on
+    estimates directly from the vendor.
+  currency_caveat: No live quote has been obtained. Do not use directory text as a price commitment.
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - coworking-workflow-configuration
+    - privacy-and-permissions-review
+    - vendor-contract-and-export-review
+  smallest_useful_experiment: Configure a fictional room with booking conflicts, buffers,
+    cancellation and no-show scenarios; confirm calendar sync in the
+    selected edition.
+homepage: https://www.skedda.com/
+documentation: https://www.skedda.com/platform/meeting-room-booking-system
+links:
+  - label: Official product evidence
+    url: https://www.skedda.com/platform/meeting-room-booking-system
+    kind: homepage
+  - label: Additional official information
+    url: https://www.skedda.com/platform/desk-booking-system
+    kind: other
+tasks_reduced_or_augmented:
+  - Commercial room and desk booking platform with rules and interactive floor plans
+human_oversight_still_needed:
+  - Booking policy management
+  - On-site room conflict and no-show handling
+data_privacy:
+  data_held:
+    - bookings
+    - user identifiers
+    - resource availability
+  personal_data: true
+  payment_data: false
+  notes: Operator must verify actual data flows, permissions, security terms and export/deletion
+    support with the vendor.
+risks:
+  vendor_lock_in: Demand a full sample export and test the termination and migration route before a
+    long contract.
+  security: Confirm MFA, role-based permissions, subprocessors, incident handling, audit logs and
+    administrator recovery in the selected plan.
+  compliance: Local contract, privacy, tax, accessibility and building requirements require operator
+    review.
+  licensing: Proprietary commercial terms. Do not call this product open-source.
+  operational: Test failure modes and handover responsibilities; vendor marketing does not establish
+    a successful integration.
+integrations: []
+related_tools: []
+guide_status: none
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-11-11
+  sources:
+    - https://www.skedda.com/platform/meeting-room-booking-system
+    - https://www.skedda.com/platform/desk-booking-system
+  notes: Official product pages were reviewed for high-level product positioning only on 2026-11-11.
+    No sandbox, runtime, edition-specific contract, integration, security certification or
+    price quote independently verified.
+  reviewer: open-coworking-editorial-review
+  completeness: metadata-verified
+  confidence: low
+  tier: commercial-benchmark
+  evidence:
+    - kind: homepage
+      source: https://www.skedda.com/platform/meeting-room-booking-system
+      verified_on: 2026-11-11
+      notes: Vendor-stated scope of features, not independently tested.
+featured: false
+rank_score: 50

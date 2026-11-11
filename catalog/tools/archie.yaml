@@ -1,0 +1,110 @@
+schema_version: 1.0.0
+id: archie
+name: Archie Coworking
+tagline: Commercial coworking administration, bookings, payments and visitor workflows
+description: Proprietary hosted platform for coworking administration, including prospect-to-member
+  workflows, billing, resource booking and visitor and delivery management. Edition
+  entitlements and actual integration behavior require an operator-led pilot.
+status: active
+categories:
+  - membership-crm
+  - booking-scheduling
+  - billing-payments
+secondary_categories: []
+roles:
+  - owner-operator
+  - operations-manager
+  - community-manager
+  - sales-manager
+workflows:
+  - tour-to-close
+  - member-onboarding
+  - visitor-management
+  - room-booking
+problems:
+  - grow-pipeline
+  - reduce-manual-admin
+  - improve-member-experience
+deployment:
+  - managed-saas
+maturity: stable
+license:
+  class: proprietary
+  name: Proprietary commercial product
+  source_url: https://archieapp.co/coworking-software
+  notes: This covers the hosted commercial offering, not any open-source license. Verify the signed
+    terms, edition and data processing agreement.
+  verified_on: 2026-11-11
+cost:
+  model: subscription
+  summary: Paid hosted service. Obtain current written edition-specific pricing, limits and add-on
+    estimates directly from the vendor.
+  currency_caveat: No live quote has been obtained. Do not use directory text as a price commitment.
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - coworking-workflow-configuration
+    - privacy-and-permissions-review
+    - vendor-contract-and-export-review
+  smallest_useful_experiment: Use fictional prospects and members to test inquiry, booking,
+    contract, invoice and visitor notification on the proposed edition.
+homepage: https://archieapp.co/
+documentation: https://archieapp.co/coworking-software
+links:
+  - label: Official product evidence
+    url: https://archieapp.co/coworking-software
+    kind: homepage
+  - label: Additional official information
+    url: https://archieapp.co/coworking-software
+    kind: other
+tasks_reduced_or_augmented:
+  - Commercial coworking administration, bookings, payments and visitor workflows
+human_oversight_still_needed:
+  - Staff triage of visitors and deliveries
+  - Billing review and member exceptions
+data_privacy:
+  data_held:
+    - member records
+    - visitor records
+    - bookings
+    - invoices
+  personal_data: true
+  payment_data: true
+  notes: Operator must verify actual data flows, permissions, security terms and export/deletion
+    support with the vendor.
+risks:
+  vendor_lock_in: Demand a full sample export and test the termination and migration route before a
+    long contract.
+  security: Confirm MFA, role-based permissions, subprocessors, incident handling, audit logs and
+    administrator recovery in the selected plan.
+  compliance: Local contract, privacy, tax, accessibility and building requirements require operator
+    review.
+  licensing: Proprietary commercial terms. Do not call this product open-source.
+  operational: Test failure modes and handover responsibilities; vendor marketing does not establish
+    a successful integration.
+integrations: []
+related_tools: []
+guide_status: none
+tags: []
+verification:
+  status: partially-verified
+  last_reviewed: 2026-11-11
+  sources:
+    - https://archieapp.co/coworking-software
+    - https://archieapp.co/
+  notes: Official product pages were reviewed for high-level product positioning only on 2026-11-11.
+    No sandbox, runtime, edition-specific contract, integration, security certification or
+    price quote independently verified.
+  reviewer: open-coworking-editorial-review
+  completeness: metadata-verified
+  confidence: low
+  tier: commercial-benchmark
+  evidence:
+    - kind: homepage
+      source: https://archieapp.co/coworking-software
+      verified_on: 2026-11-11
+      notes: Vendor-stated scope of features, not independently tested.
+featured: false
+rank_score: 50

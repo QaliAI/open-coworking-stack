@@ -55,7 +55,7 @@ jobs:
         run: pnpm build
 
       - name: Install Chromium
-        run: pnpm --filter @ocs/web exec playwright install --with-deps chromium
+        run: pnpm --filter @ocs/web exec playwright install chromium
 
       - name: Browser tests
         run: pnpm test:e2e

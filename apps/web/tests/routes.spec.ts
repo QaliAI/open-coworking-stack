@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  ['homepage', '/', 'Free software to run your coworking space'],
+  ['homepage', '/', 'Coworking software and open-source tools, compared honestly'],
   ['directory', '/directory/', 'Browse all tools'],
   ['tool', '/tools/generated/zulip/', 'Zulip'],
   ['guide', '/guides/security-baseline/', 'Security baseline for self-hosted stacks'],

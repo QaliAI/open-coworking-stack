@@ -1,0 +1,130 @@
+schema_version: 1.0.0
+id: anythingllm
+name: AnythingLLM
+tagline: Local-first AI assistant that can answer questions from approved SOPs
+description: >-
+  AnythingLLM is a self-hostable AI chat and retrieval platform that can
+  ingest operator-approved documents to answer questions about staff
+  procedures, amenities and policies. A coworking space can pilot a
+  read-only internal knowledge assistant with sourced answers. It is not
+  automatically connected to memberships or an authoritative policy system.
+status: active
+categories:
+  - knowledge-base
+secondary_categories:
+  - automation-integration
+roles:
+  - owner-operator
+  - operations-manager
+  - community-manager
+  - technical-operator
+workflows:
+  - member-onboarding
+  - multi-site-rollout
+  - incident-response
+problems:
+  - centralize-knowledge
+  - reduce-manual-admin
+  - self-host-for-data-control
+deployment:
+  - desktop
+  - self-hosted
+maturity: stable
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/Mintplex-Labs/anything-llm/blob/master/LICENSE
+  notes: >-
+    MIT license applies to the linked core project. Check any model,
+    deployment, connector and hosted edition terms independently.
+  verified_on: 2026-11-11
+cost:
+  model: free-self-hosted
+  summary: >-
+    Self-hosted software is MIT licensed. An actual AI assistant may require
+    local model compute or paid model APIs, embeddings, hosting, maintenance
+    and document governance.
+  currency_caveat: Do not represent third-party models or hosting as free.
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - document-governance
+    - user-permissions
+    - ai-model-configuration
+  smallest_useful_experiment: >-
+    Start with five fictional, approved coworking SOPs; ask ten questions
+    including two unknowns and one contradictory policy; confirm access
+    controls, citations and refusal before considering real staff records.
+homepage: https://anythingllm.com/
+repository: https://github.com/Mintplex-Labs/anything-llm
+documentation: https://docs.anythingllm.com/
+links:
+  - label: Project and self-hosting options
+    url: https://github.com/Mintplex-Labs/anything-llm
+    kind: repo
+  - label: Official documentation
+    url: https://docs.anythingllm.com/
+    kind: docs
+tasks_reduced_or_augmented:
+  - Locate approved front-desk procedures and membership FAQ answers
+  - Reduce repeated internal questions about published staff policies
+human_oversight_still_needed:
+  - Approve and version the underlying source documents
+  - Handle emergencies, contracts, access exceptions and policy conflicts
+data_privacy:
+  data_held:
+    - approved internal documents
+    - embeddings and retrieval indexes
+    - user queries and answer history
+  personal_data: true
+  payment_data: false
+  notes: >-
+    Never import unreviewed member agreements, payment records or broad
+    shared drives into a demo. Verify model endpoints, retrieval permissions
+    and deletion behavior before any confidential use.
+risks:
+  vendor_lock_in: >-
+    Keep authoritative documents outside the retrieval database and ensure
+    indexes can be rebuilt from approved source files.
+  security: >-
+    Validate user separation, document permissions, model endpoints,
+    administrator recovery, retention and prompt-injection defenses.
+  compliance: >-
+    Staff and member privacy, content rights and approval remain the
+    operator's responsibility.
+  licensing: >-
+    MIT software does not automatically license third-party models,
+    knowledge sources or cloud inference.
+  operational: >-
+    A wrong answer about pricing, emergency procedures or building access
+    requires an explicit handoff to authorized staff, not an AI guess.
+integrations: []
+guide_status: none
+related_tools:
+  - bookstack
+  - nextcloud
+  - wikijs
+verification:
+  status: partially-verified
+  last_reviewed: 2026-11-11
+  sources:
+    - https://github.com/Mintplex-Labs/anything-llm
+    - https://github.com/Mintplex-Labs/anything-llm/blob/master/LICENSE
+  notes: >-
+    Official README and MIT license reviewed. Multi-user security,
+    connectors, model provider and production operations are not tested.
+  reviewer: editorial
+  completeness: metadata-verified
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: repository
+      source: https://github.com/Mintplex-Labs/anything-llm
+      verified_on: 2026-11-11
+    - kind: license
+      source: https://github.com/Mintplex-Labs/anything-llm/blob/master/LICENSE
+      verified_on: 2026-11-11
+featured: false
+rank_score: 68

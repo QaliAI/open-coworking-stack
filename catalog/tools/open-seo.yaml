@@ -1,0 +1,125 @@
+schema_version: 1.0.0
+id: open-seo
+name: OpenSEO
+tagline: Self-hostable SEO research and AI-agent workflow tool
+description: >-
+  OpenSEO is a self-hostable SEO research interface for keyword research, rank
+  tracking, backlink insights, site audits and AI visibility. It can help
+  coworking operators investigate local search terms for offices, meeting
+  rooms, day passes and virtual offices. It is not a free backlink dataset
+  or a proven one-for-one replacement for Ahrefs or Semrush.
+status: active
+categories:
+  - analytics-bi
+secondary_categories: []
+roles:
+  - marketing
+  - owner-operator
+  - technical-operator
+workflows:
+  - marketing-campaigns
+  - reporting-kpis
+problems:
+  - grow-pipeline
+  - reduce-software-cost
+deployment:
+  - self-hosted
+  - managed-saas
+maturity: emerging
+license:
+  class: oss-osi-approved
+  spdx: MIT
+  source_url: https://github.com/every-app/open-seo/blob/main/LICENSE
+  notes: >-
+    The linked project license is MIT. Check current repository and hosting
+    terms before forking, branding or embedding the software.
+  verified_on: 2026-11-11
+cost:
+  model: usage-based
+  summary: >-
+    Self-hosted software is MIT licensed, but most SEO research workflows
+    require a separately billed DataForSEO API key. Hosting, AI models and
+    any managed service add costs. Pay-as-you-go is not free SEO data.
+  currency_caveat: Verify current API prices, quotas, charges and hosted plans.
+  pricing_url: https://openseo.so/pricing
+  confidence: partially-verified
+implementation:
+  difficulty: moderate
+  maintenance_burden: medium
+  skills_required:
+    - api-budget-management
+    - local-seo-knowledge
+    - container-or-cloud-administration
+  smallest_useful_experiment: >-
+    Use fictional locations and an explicitly capped API budget to research
+    five local service keywords, review one site audit, and check the
+    source and cost of each returned metric before any ranking decision.
+homepage: https://openseo.so/
+repository: https://github.com/every-app/open-seo
+documentation: https://github.com/every-app/open-seo
+links:
+  - label: Project repository and setup instructions
+    url: https://github.com/every-app/open-seo
+    kind: repo
+  - label: Data and pricing explanation
+    url: https://openseo.so/pricing
+    kind: pricing
+tasks_reduced_or_augmented:
+  - Explore local service keywords and site health in one interface
+  - Help prepare a factual SEO improvement worklist for each location
+human_oversight_still_needed:
+  - Assess actual local intent, service availability and listing eligibility
+  - Verify provider data, budget, website changes and attribution to leads
+data_privacy:
+  data_held:
+    - website and keyword research records
+    - api tokens
+    - agent activity where configured
+  personal_data: false
+  payment_data: false
+  notes: >-
+    Search terms and project domains can still be commercially sensitive.
+    Keep API keys private and review model-provider and usage logging settings.
+risks:
+  vendor_lock_in: >-
+    Research data depends on external providers; document exports and costs.
+  security: >-
+    Protect DataForSEO and model API keys, secure any public-facing dashboard,
+    and set explicit spending limits before enabling agent-driven calls.
+  compliance: >-
+    Verify current search-provider terms and Google rules before advising
+    operators on profile eligibility or automated ranking checks.
+  licensing: MIT source code does not include a free SEO data license.
+  operational: >-
+    API consumption costs may increase with automation; audit usage and
+    never promise ranking improvements from a tool installation.
+integrations: []
+guide_status: none
+related_tools:
+  - umami
+  - google-analytics
+  - matomo
+verification:
+  status: partially-verified
+  last_reviewed: 2026-11-11
+  sources:
+    - https://github.com/every-app/open-seo
+    - https://github.com/every-app/open-seo/blob/main/LICENSE
+  notes: >-
+    Official repository, MIT license and stated DataForSEO dependence reviewed
+    as documentation only; no deployment, data-quality evaluation or pricing
+    reconciliation was performed.
+  reviewer: editorial
+  completeness: metadata-verified
+  confidence: medium
+  tier: evaluated
+  evidence:
+    - kind: repository
+      source: https://github.com/every-app/open-seo
+      verified_on: 2026-11-11
+      notes: Vendor-published claims, not independent feature verification.
+    - kind: license
+      source: https://github.com/every-app/open-seo/blob/main/LICENSE
+      verified_on: 2026-11-11
+featured: false
+rank_score: 64

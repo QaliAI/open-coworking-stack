@@ -6,15 +6,15 @@ page_classification: Due-diligence worksheet
 
 ## Shared dimensions
 
-| Option                | Evaluation lane                      | Evidence status                                            |
-| --------------------- | ------------------------------------ | ---------------------------------------------------------- |
-| Postiz                | Self-hosted social scheduling        | Partial; no catalog entry                                  |
-| Mixpost               | Self-hosted social scheduling        | Partial; no catalog entry                                  |
-| Commercial schedulers | Managed publishing and collaboration | Not established until a named vendor and plan are assessed |
+| Option                                              | Evaluation lane                                             | Evidence status                                            |
+| --------------------------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------- |
+| [Postiz](../../tools/generated/postiz/)             | Self-hosted or hosted social scheduling                     | Cataloged; partial                                         |
+| [Mixpost Lite](../../tools/generated/mixpost-lite/) | Self-hosted scheduling with edition-limited network support | Cataloged; partial                                         |
+| Commercial schedulers                               | Managed publishing and collaboration                        | Not established until a named vendor and plan are assessed |
 
 ## Operator profiles
 
-Postiz or Mixpost may suit a technical marketing team prepared to maintain changing network APIs.
+Postiz self-hosted and Mixpost Lite may suit a technical marketing team prepared to maintain changing network APIs. The hosted Postiz plan is a separate operational choice, not proof that its features are available in the self-hosted edition.
 A commercial scheduler may suit a lean team prioritizing vendor-operated connectivity and support.
 Confirm the exact social networks and publishing formats needed.
 
@@ -78,7 +78,7 @@ or format coverage based on a logo; use native publishing when the scheduler can
 
 ## Verification
 
-Verified on **2026-07-18**. Network coverage, APIs, licenses, plan limits, prices, and integrations are
+Originally reviewed on **2026-07-18**; catalog presence and edition distinctions corrected on **2026-11-11**. Network coverage, APIs, licenses, plan limits, prices, and integrations are
 `partial` or `not established` pending a current vendor-specific pilot.
 
 ## Official sources

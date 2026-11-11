@@ -50,9 +50,10 @@ implementation:
   difficulty: moderate
   maintenance_burden: medium
   skills_required:
-    - basic-linux
-    - dns-tls
-  typical_time_to_first_value: 1–3 days
+    - coworking-workflow-configuration
+    - data-export-review
+    - privacy-and-permissions-review
+  typical_time_to_first_value: Pilot timing depends on vendor onboarding, plan, migration scope, and integrations; not independently tested.
   smallest_useful_experiment:
     Run a time-boxed pilot on one site with real room bookings; export data
     before committing annually.
@@ -87,10 +88,10 @@ data_privacy:
   payment_data: true
 risks:
   vendor_lock_in: Evaluate export formats and API completeness before deep customization.
-  security: Apply updates promptly; restrict admin access; enable TLS.
+  security: Verify vendor-hosted security controls, administrator MFA, least-privilege roles, support escalation and data export. The operator does not patch the vendor's hosted servers.
   compliance: Operator remains responsible for privacy and local regulatory obligations.
   licensing: Not open source. Verify current packaging and free trial terms on official site.
-  operational: Plan backups, monitoring, and a restore drill before production use.
+  operational: Confirm the vendor's backup and restore obligations, incident escalation, outage fallback, full export, and tested exit; the operator does not administer hosted backups directly.
 integrations: []
 related_tools: []
 guide_status: planned
