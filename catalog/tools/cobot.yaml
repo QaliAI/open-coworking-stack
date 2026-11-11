@@ -87,7 +87,7 @@ risks:
   compliance: Operator remains responsible for privacy and local regulatory obligations.
   licensing: Confirm free tier/trial terms on official site; classification may be free-trial
     depending on current packaging.
-  operational: Plan backups, monitoring, and a restore drill before production use.
+  operational: Confirm the vendor's backup and restore obligations, incident escalation, outage fallback, full export, and tested exit; the operator does not administer hosted backups directly.
 integrations: []
 related_tools: []
 guide_status: planned
