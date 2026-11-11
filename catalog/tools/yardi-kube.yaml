@@ -1,8 +1,11 @@
 schema_version: 1.0.0
 id: yardi-kube
-name: "Yardi Kube"
-tagline: "Commercial flex-space operations, membership, billing and Wi-Fi platform"
-description: "Proprietary hosted platform for coworking and flexible office management; vendor describes membership, bookings, payments, Wi-Fi operations and reporting. Verify product package and region-specific inclusions instead of assuming every feature or integration is included."
+name: Yardi Kube
+tagline: Commercial flex-space operations, membership, billing and Wi-Fi platform
+description: Proprietary hosted platform for coworking and flexible office management; vendor
+  describes membership, bookings, payments, Wi-Fi operations and reporting. Verify
+  product package and region-specific inclusions instead of assuming every feature or
+  integration is included.
 status: active
 categories:
   - membership-crm
@@ -30,12 +33,14 @@ license:
   class: proprietary
   name: Proprietary commercial product
   source_url: https://www.yardikube.com/
-  notes: "This covers the hosted commercial offering, not any open-source license. Verify the signed terms, edition and data processing agreement."
+  notes: This covers the hosted commercial offering, not any open-source license. Verify the signed
+    terms, edition and data processing agreement.
   verified_on: 2026-11-11
 cost:
   model: subscription
-  summary: "Paid hosted service. Obtain current written edition-specific pricing, limits and add-on estimates directly from the vendor."
-  currency_caveat: "No live quote has been obtained. Do not use directory text as a price commitment."
+  summary: Paid hosted service. Obtain current written edition-specific pricing, limits and add-on
+    estimates directly from the vendor.
+  currency_caveat: No live quote has been obtained. Do not use directory text as a price commitment.
   confidence: partially-verified
 implementation:
   difficulty: moderate
@@ -44,7 +49,8 @@ implementation:
     - coworking-workflow-configuration
     - privacy-and-permissions-review
     - vendor-contract-and-export-review
-  smallest_useful_experiment: "Request an edition-specific demo of membership activation, invoice reconciliation, network onboarding and full customer-data export."
+  smallest_useful_experiment: Request an edition-specific demo of membership activation, invoice
+    reconciliation, network onboarding and full customer-data export.
 homepage: https://www.yardikube.com/
 documentation: https://www.yardikube.com/
 links:
@@ -55,25 +61,30 @@ links:
     url: https://www.yardikube.com/flexible-pricing/
     kind: other
 tasks_reduced_or_augmented:
-  - "Commercial flex-space operations, membership, billing and Wi-Fi platform"
+  - Commercial flex-space operations, membership, billing and Wi-Fi platform
 human_oversight_still_needed:
-  - "IT and network support ownership"
-  - "Billing exceptions, export and migration verification"
+  - IT and network support ownership
+  - Billing exceptions, export and migration verification
 data_privacy:
   data_held:
-    - "member records"
-    - "invoices"
-    - "bookings"
-    - "network access data"
+    - member records
+    - invoices
+    - bookings
+    - network access data
   personal_data: true
   payment_data: true
-  notes: "Operator must verify actual data flows, permissions, security terms and export/deletion support with the vendor."
+  notes: Operator must verify actual data flows, permissions, security terms and export/deletion
+    support with the vendor.
 risks:
-  vendor_lock_in: "Demand a full sample export and test the termination and migration route before a long contract."
-  security: "Confirm MFA, role-based permissions, subprocessors, incident handling, audit logs and administrator recovery in the selected plan."
-  compliance: "Local contract, privacy, tax, accessibility and building requirements require operator review."
-  licensing: "Proprietary commercial terms. Do not call this product open-source."
-  operational: "Test failure modes and handover responsibilities; vendor marketing does not establish a successful integration."
+  vendor_lock_in: Demand a full sample export and test the termination and migration route before a
+    long contract.
+  security: Confirm MFA, role-based permissions, subprocessors, incident handling, audit logs and
+    administrator recovery in the selected plan.
+  compliance: Local contract, privacy, tax, accessibility and building requirements require operator
+    review.
+  licensing: Proprietary commercial terms. Do not call this product open-source.
+  operational: Test failure modes and handover responsibilities; vendor marketing does not establish
+    a successful integration.
 integrations: []
 related_tools: []
 guide_status: none
@@ -84,7 +95,9 @@ verification:
   sources:
     - https://www.yardikube.com/
     - https://www.yardikube.com/flexible-pricing/
-  notes: "Official product pages were reviewed for high-level product positioning only on 2026-11-11. No sandbox, runtime, edition-specific contract, integration, security certification or price quote independently verified."
+  notes: Official product pages were reviewed for high-level product positioning only on 2026-11-11.
+    No sandbox, runtime, edition-specific contract, integration, security certification or
+    price quote independently verified.
   reviewer: open-coworking-editorial-review
   completeness: metadata-verified
   confidence: low
@@ -93,6 +106,6 @@ verification:
     - kind: homepage
       source: https://www.yardikube.com/
       verified_on: 2026-11-11
-      notes: "Vendor-stated scope of features, not independently tested."
+      notes: Vendor-stated scope of features, not independently tested.
 featured: false
 rank_score: 50
