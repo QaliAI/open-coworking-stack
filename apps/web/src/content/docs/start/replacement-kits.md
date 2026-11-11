@@ -31,8 +31,8 @@ approved staff procedures, optionally
 optional AI retrieval layer**. An AI layer is not required to get value.
 
 1. **Start without AI.** Create a fictional location called Northstar.
-   In BookStack, make books for *Front Desk*, *Sales & Tours*, *Members*,
-   *Meeting Rooms*, *Virtual Office & Mail*, and *Safety & Incidents*.
+   In BookStack, make books for _Front Desk_, _Sales & Tours_, _Members_,
+   _Meeting Rooms_, _Virtual Office & Mail_, and _Safety & Incidents_.
    Set an owner and last-reviewed date on each procedure. Separate
    staff-only information from publicly suitable FAQ content.
 2. **Write five real-world procedure templates:** a tour confirmation,
