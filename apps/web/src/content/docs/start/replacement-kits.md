@@ -155,18 +155,18 @@ entire proprietary index, free DataForSEO access or guaranteed rankings.
 
 Record the following **before** connecting live records:
 
-| Field | Your answer |
-| --- | --- |
-| Which member or staff problem? | One job with a measurable outcome |
-| Current software that already handles it? | Keep, configure, or replace |
-| Location(s) and products? | Office, desk, meeting room, day pass, VO |
-| Source of truth? | WMS, CRM, accounting, approved policy repository |
-| Human owner and escalation? | Named role and exception path |
-| Staff technical capacity? | None, basic administrator, experienced self-host |
-| Data permission? | Synthetic, pre-redacted, or authorized live data |
-| Safe pilot and acceptance criteria? | Measured pass/fail on an actual workflow |
-| Running and exit cost? | Licenses, hosting, API calls, support, migration, exports |
-| Rollback? | Old workflow remains available if test fails |
+| Field                                     | Your answer                                               |
+| ----------------------------------------- | --------------------------------------------------------- |
+| Which member or staff problem?            | One job with a measurable outcome                         |
+| Current software that already handles it? | Keep, configure, or replace                               |
+| Location(s) and products?                 | Office, desk, meeting room, day pass, VO                  |
+| Source of truth?                          | WMS, CRM, accounting, approved policy repository          |
+| Human owner and escalation?               | Named role and exception path                             |
+| Staff technical capacity?                 | None, basic administrator, experienced self-host          |
+| Data permission?                          | Synthetic, pre-redacted, or authorized live data          |
+| Safe pilot and acceptance criteria?       | Measured pass/fail on an actual workflow                  |
+| Running and exit cost?                    | Licenses, hosting, API calls, support, migration, exports |
+| Rollback?                                 | Old workflow remains available if test fails              |
 
 **What this library does not yet provide:** one-click, fully tested
 coworking-branded production deployments for these kits, automatic
