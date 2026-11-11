@@ -101,6 +101,7 @@ risks:
     A wrong answer about pricing, emergency procedures or building access
     requires an explicit handoff to authorized staff, not an AI guess.
 integrations: []
+guide_status: none
 related_tools:
   - bookstack
   - nextcloud
