@@ -94,6 +94,7 @@ risks:
     API consumption costs may increase with automation; audit usage and
     never promise ranking improvements from a tool installation.
 integrations: []
+guide_status: none
 related_tools:
   - umami
   - google-analytics
