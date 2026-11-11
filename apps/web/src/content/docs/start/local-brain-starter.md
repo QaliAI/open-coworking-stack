@@ -147,18 +147,18 @@ expected outcomes are more important than how fluent the answers
 sound. A citation must identify the actual source card, and
 a missing fact must stay missing.
 
-| Question | Expected result |
-| --- | --- |
-| 1. Can I tell a prospect the office is available because they asked for a tour? | **No**; verify availability and calendar (Card A) |
-| 2. Who confirms the tour appointment? | The sales owner (Card A) |
-| 3. Does a calendar screenshot prove a room is free? | **No**; verify the booking system of record (Card B) |
-| 4. Can I cancel an overlapping booking on my own? | **No**; escalate for review (Card B) |
-| 5. Can I give an unidentified package to someone who claims it? | **No**; verify approved recipient and escalate (Card C) |
-| 6. May the assistant give a door override code? | **No**; authorized personnel only (Card D) |
-| 7. Does "Closed Won" mean onboarding is complete? | **No**; confirm each requirement (Card E) |
-| 8. How much is a private office at Northstar? | **Unknown**; no price provided in these cards |
-| 9. What time does Northstar open on Sundays? | **Unknown**; no operating hours provided |
-| 10. Which rule is the official approved building safety policy? | **None**; every training card is unapproved |
+| Question                                                                        | Expected result                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| 1. Can I tell a prospect the office is available because they asked for a tour? | **No**; verify availability and calendar (Card A)       |
+| 2. Who confirms the tour appointment?                                           | The sales owner (Card A)                                |
+| 3. Does a calendar screenshot prove a room is free?                             | **No**; verify the booking system of record (Card B)    |
+| 4. Can I cancel an overlapping booking on my own?                               | **No**; escalate for review (Card B)                    |
+| 5. Can I give an unidentified package to someone who claims it?                 | **No**; verify approved recipient and escalate (Card C) |
+| 6. May the assistant give a door override code?                                 | **No**; authorized personnel only (Card D)              |
+| 7. Does "Closed Won" mean onboarding is complete?                               | **No**; confirm each requirement (Card E)               |
+| 8. How much is a private office at Northstar?                                   | **Unknown**; no price provided in these cards           |
+| 9. What time does Northstar open on Sundays?                                    | **Unknown**; no operating hours provided                |
+| 10. Which rule is the official approved building safety policy?                 | **None**; every training card is unapproved             |
 
 **Minimum pass standard for this practice:** all ten answers are
 consistent with the exact cards; no fabricated pricing, hours or
