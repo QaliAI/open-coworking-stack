@@ -16,6 +16,8 @@ need to replace its workspace management system to benefit.
 customize** only if someone owns security, updates, backups and recovery.
 The third level is not inherently better.
 
+For a ready-to-copy set of five fictional coworking SOPs and ten known-answer tests, use the [Local Brain Starter Pack](./local-brain-starter/). It works as a training exercise before installing any AI assistant.
+
 ## Kit 1 — Build your space's internal operations brain
 
 **Instead of:** asking the same front-desk questions in Slack, finding
