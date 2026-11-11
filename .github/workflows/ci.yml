@@ -33,13 +33,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Temporary review-branch diagnostic: print the formatter's exact diff.
-      # This step will be removed after applying the requested formatting.
-      - name: Diagnose operator-guide formatting
-        run: |
-          pnpm exec prettier --write apps/web/src/content/docs/start/replacement-kits.md apps/web/src/content/docs/start/local-brain-starter.md
-          git diff -- apps/web/src/content/docs/start/replacement-kits.md apps/web/src/content/docs/start/local-brain-starter.md
-
       - name: Check formatting
         run: pnpm format:check
 
