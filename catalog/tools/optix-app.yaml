@@ -80,8 +80,8 @@ risks:
   vendor_lock_in: Evaluate export formats and API completeness before deep customization.
   security: Verify vendor-hosted security controls, administrator MFA, least-privilege roles, support escalation and data export. The operator does not patch the vendor's hosted servers.
   compliance: Operator remains responsible for privacy and local regulatory obligations.
-  licensing: Confirm license fits commercial coworking use.
-  operational: Plan backups, monitoring, and a restore drill before production use.
+  licensing: Review proprietary subscription, data-processing, support, API, renewal, and termination terms for the actual plan.
+  operational: Confirm the vendor's backup and restore obligations, incident escalation, outage fallback, full export, and tested exit; the operator does not administer hosted backups directly.
 integrations: []
 related_tools: []
 guide_status: stub
