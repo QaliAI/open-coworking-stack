@@ -1,9 +1,7 @@
 name: Deploy Pages
 
 on:
-  push:
-    branches:
-      - main
+  # GitHub Pages is not enabled; keep this as a manual fallback.
   workflow_dispatch:
 
 permissions:
